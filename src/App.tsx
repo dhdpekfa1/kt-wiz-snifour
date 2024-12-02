@@ -1,12 +1,13 @@
-import './App.css'
+import './App.css';
+import ExampleComponent from './features/__test__/ExampleComponent';
 
 function App() {
-
   return (
     <>
-     <p>KT wiz</p>
+      <p>KT wiz</p>
+      <ExampleComponent />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
