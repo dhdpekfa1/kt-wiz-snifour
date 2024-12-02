@@ -1,0 +1,50 @@
+{
+  "channels": [
+    {
+      "category": "TV",
+      "items": [
+        { "code": "K-2T", "name": "KBS 2TV" },
+        { "code": "M-T", "name": "MBC TV" },
+        { "code": "S-T", "name": "SBS TV" },
+        { "code": "KN-T", "name": "KBS N SPORTS" },
+        { "code": "MS-T", "name": "MBC SPORTS PLUS" },
+        { "code": "SS-T", "name": "SBS SPORTS" },
+        { "code": "SPOTV+", "name": "SPOTV PLUS" },
+        { "code": "SKY-T", "name": "SKY SPORTS" }
+      ]
+    },
+    {
+      "category": "CMB",
+      "items": [
+        { "code": "D-CMB", "name": "대전 CMB" },
+        { "code": "K-CMB", "name": "광주 CMB" }
+      ]
+    },
+    {
+      "category": "IPTV",
+      "items": [
+        { "code": "SPO-T", "name": "SPOTV" },
+        { "code": "SPO-2T", "name": "SPOTV2" },
+        { "code": "IB-T", "name": "IB SPORTS" }
+      ]
+    },
+    {
+      "category": "RADIO",
+      "items": [
+        { "code": "K-2R", "name": "KBS 2라디오" },
+        { "code": "M-R", "name": "MBC 라디오" },
+        { "code": "S-R", "name": "SBS 라디오" },
+        { "code": "DK-R", "name": "대전 KBS 라디오" },
+        { "code": "TM-R", "name": "대구 MBC 라디오" },
+        { "code": "PM-R", "name": "부산 MBC 라디오" },
+        { "code": "DM-R", "name": "대전 MBC 라디오" },
+        { "code": "KM-R", "name": "광주 MBC 라디오" },
+        { "code": "GM-R", "name": "MBC 경남 라디오" },
+        { "code": "T-R", "name": "TBC 라디오" },
+        { "code": "TJ-R", "name": "TJB 라디오" },
+        { "code": "KNN-R", "name": "KNN 라디오" },
+        { "code": "KBC-R", "name": "KBC 라디오" }
+      ]
+    }
+  ]
+}
