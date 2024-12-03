@@ -67,6 +67,7 @@ const MatchCalendar = () => {
   };
 
   const calendarHeader = ({ displayMonth }: { displayMonth: Date }) => {
+    // const today = new Date();
     return (
       <div className="flex justify-center items-center gap-10 px-4 py-4 bg-gray-100">
         <button
@@ -80,7 +81,7 @@ const MatchCalendar = () => {
         >
           <IconLeft />
         </button>
-        <div className="relative flex items-center ">
+        <div className="relative flex items-center">
           <span className="text-lg font-bold">
             {format(displayMonth, 'yyyy년 MM월')}
           </span>
@@ -117,6 +118,13 @@ const MatchCalendar = () => {
         >
           <IconRight />
         </button>
+        {/* <button
+          type="button"
+          className="absolute right-10 flex items-center justify-center text-xs text-slate-500 bg-slate-200 rounded hover:bg-slate-300 p-1"
+          onClick={() => setCurrentMonth(today)}
+        >
+          오늘
+        </button> */}
       </div>
     );
   };
@@ -124,6 +132,7 @@ const MatchCalendar = () => {
   const renderCellContent = (date: Date) => {
     const formattedDate = format(date, 'yyyy-MM-dd');
     const match = matchData[formattedDate];
+    const day = date.getDay();
 
     return (
       <div
@@ -132,7 +141,15 @@ const MatchCalendar = () => {
         }`}
       >
         {/* 날짜 */}
-        <div className="absolute top-2 right-2 text-sm font-bold text-gray-700">
+        <div
+          className={`absolute top-2 right-2 text-sm font-bold ${
+            day === 0
+              ? 'text-red-500'
+              : day === 6
+                ? 'text-blue-500'
+                : 'text-gray-700'
+          }`}
+        >
           {format(date, 'd')}
         </div>
         {match && (
@@ -196,7 +213,6 @@ const MatchCalendar = () => {
           </span>
         </div>
       </div>
-
       {/* 캘린더 */}
       <DayPicker
         mode="single"
@@ -217,6 +233,28 @@ const MatchCalendar = () => {
         toMonth={new Date(2025, 9)}
         components={{
           Caption: calendarHeader,
+          Head: () => (
+            <thead>
+              <tr className="bg-gray-100">
+                {['일', '월', '화', '수', '목', '금', '토'].map(
+                  (day, index) => (
+                    <th
+                      key={day}
+                      className={`p-2 font-medium ${
+                        index === 0
+                          ? 'text-red-500'
+                          : index === 6
+                            ? 'text-blue-500'
+                            : 'text-gray-600'
+                      }`}
+                    >
+                      {day}
+                    </th>
+                  )
+                )}
+              </tr>
+            </thead>
+          ),
           DayContent: ({ date }) => (
             <div className="relative w-full h-full">
               {renderCellContent(date)}
@@ -224,8 +262,6 @@ const MatchCalendar = () => {
           ),
         }}
       />
-
-      {/* 하단 설명 */}
       <p className="mt-5 text-sm text-gray-500 text-right">
         * 경기 일정은 사정에 따라 변동될 수 있습니다.
       </p>
