@@ -1,22 +1,21 @@
 import channelsData from '@/assets/data/broadcastChannels.json';
 import MatchInfoCarousel from '@/components/ui/carousel/MatchInfoCarousel';
-import { HomeIcon } from 'lucide-react';
-import { IconRight } from 'react-day-picker';
+import Breadcrumb from '@/features/common/Breadcrumb';
 import MatchCalendar from './MatchCalendar';
 
 const MatchScheduleTab = () => {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center my-20">
       <div className="max-w-[1200px] w-full flex flex-col items-center justify-center">
         {/* 경로 */}
-        <div className="flex flex-col items-end gap-2 m-4 mt-6 w-full">
-          <span className="flex items-center justify-center gap-2 text-sm font-light text-gray-300">
-            <HomeIcon />
-            Home <IconRight /> Game <IconRight /> 정규리그 <IconRight />
-            <p className="text-[#ec0a0b]">경기 일정</p>
-          </span>
-          <div className="w-full h-[2px] bg-[#ec0a0b]" />
-        </div>
+        <Breadcrumb
+          paths={[
+            { key: 'home', label: 'Home' },
+            { key: 'game', label: 'Game' },
+            { key: 'regular-season', label: '정규리그' },
+            { key: 'schedule', label: '경기 일정', isActive: true },
+          ]}
+        />
 
         {/* 경기 정보 */}
         <MatchInfoCarousel />

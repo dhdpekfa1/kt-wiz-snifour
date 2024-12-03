@@ -1,5 +1,5 @@
+import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
-import { HomeIcon } from 'lucide-react';
 import { IconLeft, IconRight } from 'react-day-picker';
 import {
   BattingRecordTable,
@@ -14,14 +14,14 @@ const BoxScoreTab = () => {
     <div className="w-full flex justify-center my-20">
       <div className="max-w-[1200px] w-full flex flex-col justify-center items-center">
         {/* 경로 */}
-        <div className="flex flex-col items-end gap-2 m-4 mt-6 w-full">
-          <span className="flex items-center justify-center gap-2 text-sm font-light text-gray-300">
-            <HomeIcon />
-            Home <IconRight /> Game <IconRight /> 정규리그 <IconRight />
-            <p className="text-[#ec0a0b]">박스 스코어</p>
-          </span>
-          <div className="w-full h-[2px] bg-[#ec0a0b]" />
-        </div>
+        <Breadcrumb
+          paths={[
+            { key: 'home', label: 'Home' },
+            { key: 'game', label: 'Game' },
+            { key: 'regular-season', label: '정규리그' },
+            { key: 'box-score', label: '박스 스코어', isActive: true },
+          ]}
+        />
 
         {/* 경기 스코어 테이블 */}
         <div className="w-full flex items-center justify-between border border-slate-200 px-8 py-6 gap-8">
@@ -125,7 +125,7 @@ const BoxScoreTab = () => {
           <div className="flex flex-col gap-2">
             <SubTitle title={`${mockMatchData[0].team2} 투수 기록`} />
             <div className="w-full">
-              <BattingRecordTable />
+              <PitchingRecordTable />
             </div>
           </div>
         </div>
