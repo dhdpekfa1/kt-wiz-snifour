@@ -47,19 +47,19 @@ const matchMockData = [
 
 const MatchInfoCarousel = () => {
   return (
-    <div className="w-full max-w-2xl min-w-fit flex">
-      <Carousel className="relative">
-        <CarouselContent className="-ml-1">
+    <div className="w-full max-w-2xl min-w-full overflow:hidden">
+      <Carousel className="relative max-w-full">
+        <CarouselContent className="-ml-2">
           {matchMockData.map((data) => (
             <CarouselItem
               key={data.date}
               className={
-                'pl-1 md:basis-1/2 lg:basis-1/3 transition-transform duration-300'
+                'pl-1 md:basis-1/2 lg:basis-1/3 transition-transform duration-300 w-fit'
               }
             >
               <div className="p-1">
-                <Card className="shadow-md min-w-80">
-                  <CardContent className="flex flex-col gap-2 items-center justify-between p-6">
+                <Card className="shadow-md min-w-80 w-full">
+                  <CardContent className="flex flex-col gap-2 items-center justify-between p-5">
                     {data.date ? (
                       <div className="flex flex-col h-48 items-center justify-between p-2">
                         {/* 날짜 라벨 */}
@@ -117,9 +117,9 @@ const MatchInfoCarousel = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="flex flex-col gap-4 h-48 items-center  p-4">
+                      <div className="flex flex-col gap-5 h-48 items-center p-2">
                         <div className="top-0 w-full h-7 bg-[#222] text-white p-1 rounded-2xl" />
-                        <p className="mt-8 mb-4">예정된 경기가 없습니다.</p>
+                        <p className=" mb-4">예정된 경기가 없습니다.</p>
                       </div>
                     )}
                   </CardContent>
@@ -128,8 +128,8 @@ const MatchInfoCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        {/* <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-gray-800 text-white  hover:bg-[#222] hover:text-[#eceef2] p-2 rounded-full" />
-        <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white  hover:bg-[#222] hover:text-[#eceef2] p-2 rounded-full" /> */}
+        {/* <CarouselPrevious className="absolute left-[-28px] top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white  hover:bg-[#222] hover:text-[#eceef2] p-2 rounded-full" />
+        <CarouselNext className="absolute right-[-24px] top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white  hover:bg-[#222] hover:text-[#eceef2] p-2 rounded-full" /> */}
       </Carousel>
     </div>
   );
