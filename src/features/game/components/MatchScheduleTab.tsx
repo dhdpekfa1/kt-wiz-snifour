@@ -4,7 +4,7 @@ import { HomeIcon } from 'lucide-react';
 import { IconRight } from 'react-day-picker';
 import MatchCalendar from './MatchCalendar';
 
-const MatchSchedule = () => {
+const MatchScheduleTab = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       {/* 경로 */}
@@ -47,4 +47,4 @@ const MatchSchedule = () => {
   );
 };
 
-export default MatchSchedule;
+export default MatchScheduleTab;
