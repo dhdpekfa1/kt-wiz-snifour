@@ -1,12 +1,19 @@
-import './App.css';
-import ExampleComponent from './features/__test__/ExampleComponent';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import Footer from './features/common/Footer';
+import Header from './features/common/Header';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <>
-      <p>KT wiz</p>
-      <ExampleComponent />
-    </>
+    <BrowserRouter>
+      <div className="w-screen">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
