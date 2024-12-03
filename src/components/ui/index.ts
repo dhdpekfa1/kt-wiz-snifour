@@ -15,3 +15,13 @@ export {
   CarouselPrevious,
   CarouselNext,
 } from './carousel/carousel';
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from './table/table';
