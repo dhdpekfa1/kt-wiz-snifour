@@ -73,4 +73,4 @@ const KeyRecordsTable = () => {
   );
 };
 
-export default KeyRecordsTable;
+export { KeyRecordsTable };

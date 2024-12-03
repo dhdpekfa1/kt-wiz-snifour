@@ -1,9 +1,13 @@
 import SubTitle from '@/features/common/SubTitle';
 import { HomeIcon } from 'lucide-react';
 import { IconLeft, IconRight } from 'react-day-picker';
-import BattingRecordTable from './table/BattingRecordTable';
-import KeyRecordsTable from './table/KeyRecordsTable';
-import MatchScoreTable, { mockMatchData } from './table/MatchScoreTable';
+import {
+  BattingRecordTable,
+  KeyRecordsTable,
+  MatchScoreTable,
+  PitchingRecordTable,
+} from './table';
+import { mockMatchData } from './table/MatchScoreTable';
 
 const BoxScoreTab = () => {
   return (
@@ -98,11 +102,28 @@ const BoxScoreTab = () => {
             </div>
           </div>
         </div>
-        {/* </div> */}
         {/* team2 타자 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
             <SubTitle title={`${mockMatchData[0].team2} 타자 기록`} />
+            <div className="w-full">
+              <BattingRecordTable />
+            </div>
+          </div>
+        </div>
+        {/* team1 투수 기록 */}
+        <div className="flex flex-col gap-2 w-full my-10">
+          <div className="flex flex-col gap-2">
+            <SubTitle title={`${mockMatchData[0].team1} 투수 기록`} />
+            <div className="w-full">
+              <PitchingRecordTable />
+            </div>
+          </div>
+        </div>
+        {/* team2 투수 기록 */}
+        <div className="flex flex-col gap-2 w-full my-10">
+          <div className="flex flex-col gap-2">
+            <SubTitle title={`${mockMatchData[0].team2} 투수 기록`} />
             <div className="w-full">
               <BattingRecordTable />
             </div>

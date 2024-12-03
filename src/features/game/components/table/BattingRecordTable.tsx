@@ -223,4 +223,4 @@ const BattingRecordTable = () => {
   );
 };
 
-export default BattingRecordTable;
+export { BattingRecordTable };

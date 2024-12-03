@@ -139,4 +139,4 @@ const MatchScoreTable = () => {
   );
 };
 
-export default MatchScoreTable;
+export { MatchScoreTable };
