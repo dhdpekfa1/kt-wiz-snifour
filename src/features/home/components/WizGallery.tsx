@@ -12,10 +12,10 @@ import {
 function WizGallery() {
   return (
     <Card className="w-full border-none shadow-none flex flex-col items-center pb-8">
-      <CardHeader className="w-full">
+      <CardHeader className="w-full px-0">
         <CardTitle>wiz Gallery</CardTitle>
       </CardHeader>
-      <CardContent className="w-full flex flex-col items-center gap-4">
+      <CardContent className="w-full flex flex-col items-center gap-4 px-0">
         <Carousel className="w-full">
           <CarouselContent>
             <CarouselItem className="basis-1/3">

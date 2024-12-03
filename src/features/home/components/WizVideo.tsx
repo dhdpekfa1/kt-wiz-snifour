@@ -9,10 +9,10 @@ import {
 function WizVideo() {
   return (
     <Card className="w-full border-none shadow-none flex flex-col items-center">
-      <CardHeader className="w-full">
+      <CardHeader className="w-full px-0">
         <CardTitle>wiz Video</CardTitle>
       </CardHeader>
-      <CardContent className="w-full">
+      <CardContent className="w-full px-0">
         <div className="w-full h-[500px] bg-gray-200">video</div>
         <div className="w-full grid grid-cols-4 gap-4 py-4">
           <div className="flex flex-col gap-2 relative">
