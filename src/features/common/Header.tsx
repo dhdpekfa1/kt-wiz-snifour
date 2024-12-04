@@ -120,7 +120,11 @@ function Header() {
                   menu.title === '티켓구매' ? 'text-[#d60c0c]' : ''
                 }`}
               >
-                {menu.title}
+                {menu.title === 'Shop' ? (
+                  <Link to="https://www.ktwizstore.co.kr/">{menu.title}</Link>
+                ) : (
+                  menu.title
+                )}
               </li>
             ))}
           </ul>
