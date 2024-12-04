@@ -100,7 +100,7 @@ const MatchScoreTable = () => {
           {thead.map((item) => (
             <TableHead
               key={item}
-              className="bg-wiz-red text-white border border-[#fefefe40]text-center"
+              className="bg-wiz-red text-white border border-[#fefefe40] text-center"
             >
               {item}
             </TableHead>
