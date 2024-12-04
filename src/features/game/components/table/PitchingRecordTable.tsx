@@ -93,108 +93,108 @@ const mockPitchingData = [
 const PitchingRecordTable = () => {
   return (
     <div className="mb-6">
-      <Table className="w-full border-collapse border border-slate-200 whitespace-nowrap">
+      <Table className="w-full border-collapse border border-[#ddd] whitespace-nowrap">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               선수명
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               등판
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               결과
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               승
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               패
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               세
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               이닝
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               타자
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               투구수
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               피안타
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               피홈런
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               사구
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               삼진
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               실점
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               자책
             </TableHead>
-            <TableHead className="text-center bg-slate-100 border border-slate-200">
+            <TableHead className="text-center bg-slate-100 border border-[#ddd]">
               평균 자책점
             </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {mockPitchingData.map((pitcher) => (
-            <TableRow key={pitcher.id} className="hover:bg-gray-50">
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableRow key={pitcher.id} className="hover:bg-[#fefefe40]">
+              <TableCell className="text-center bg-wiz-red border border-[#fefefe40] text-wiz-white">
                 {pitcher.name}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.appearances}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.result}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.wins}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.losses}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.saves}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.innings}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.battersFaced}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.pitchesThrown}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.hitsAllowed}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.runsAllowed}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.homeRuns}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.walks}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.strikeouts}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.earnedRuns}
               </TableCell>
-              <TableCell className="text-center border border-slate-200 text-gray-500">
+              <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
                 {pitcher.era.toFixed(2)}
               </TableCell>
             </TableRow>
