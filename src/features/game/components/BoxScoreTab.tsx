@@ -10,9 +10,57 @@ import {
 import { mockMatchData } from './table/MatchScoreTable';
 
 const BoxScoreTab = () => {
+  // const renderTeamInfo = ({
+  //   teamName,
+  //   logoUrl,
+  //   player,
+  //   result,
+  // }: {
+  //   teamName: string;
+  //   logoUrl: string;
+  //   player: string;
+  //   result: 'L' | 'W';
+  // }) => {
+  //   return (
+  //     <div className="min-w-fit flex flex-col items-center gap-2">
+  //       <img src={logoUrl} alt="team logo" className="w-14 h-14" />
+  //       <p className="text-sm font-medium leading-none text-white">
+  //         {teamName}
+  //       </p>
+  //       <p className="mb-4 text-sm text-[#717781] leading-none">
+  //         {result}: {player}
+  //       </p>
+  //     </div>
+  //   );
+  // };
+
+  const renderTeamInfo = ({
+    teamName,
+    logoUrl,
+    result,
+    betel,
+  }: {
+    teamName: string;
+    logoUrl: string;
+    result: number;
+    betel: '홈' | '원정';
+  }) => {
+    return (
+      <div className="flex flex-col gap-1">
+        <img src={logoUrl} alt="team logo" className="w-20 h-20" />
+        <p className="text-center text-2xl text-white font-semibold">
+          {result}
+        </p>
+        <p className="text-center text-sm">
+          {teamName}({betel})
+        </p>
+      </div>
+    );
+  };
+
   return (
     <div className="w-full flex justify-center my-20">
-      <div className="max-w-[1200px] w-full flex flex-col justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center">
         {/* 경로 */}
         <Breadcrumb
           paths={[
@@ -24,21 +72,15 @@ const BoxScoreTab = () => {
         />
 
         {/* 경기 스코어 테이블 */}
-        <div className="w-full flex items-center justify-between border border-slate-200 px-8 py-6 gap-8">
+        <div className="w-full flex items-center justify-between px-8 py-6 gap-8 bg-[#35383e] rounded">
           {/* team1 */}
-          <div className="flex flex-col gap-1">
-            <img
-              src={mockMatchData[0].team1_logo}
-              alt="team logo"
-              className="w-20 h-20"
-            />
-            <p className="text-center text-2xl font-semibold">
-              {mockMatchData[0].team1_result}
-            </p>
-            <p className="text-center text-sm">
-              {mockMatchData[0].team1}({mockMatchData[0].team1_betel})
-            </p>
-          </div>
+          {renderTeamInfo({
+            teamName: 'KT',
+            logoUrl:
+              'https:img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03',
+            result: 1,
+            betel: '원정',
+          })}
           {/* 날짜 헤더 */}
           <div>
             <div>
@@ -71,19 +113,13 @@ const BoxScoreTab = () => {
             <MatchScoreTable />
           </div>
           {/* team2 */}
-          <div className="flex flex-col gap-1">
-            <img
-              src={mockMatchData[0].team2_logo}
-              alt="team logo"
-              className="w-20 h-20"
-            />
-            <p className="text-center text-2xl font-semibold">
-              {mockMatchData[0].team2_result}
-            </p>
-            <p className="text-center text-sm">
-              {mockMatchData[0].team2}({mockMatchData[0].team2_betel})
-            </p>
-          </div>
+          {renderTeamInfo({
+            teamName: 'LG',
+            logoUrl:
+              'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604',
+            result: 4,
+            betel: '홈',
+          })}
         </div>
 
         {/* 주요 기록 */}

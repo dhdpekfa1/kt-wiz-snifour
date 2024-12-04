@@ -6,7 +6,7 @@ import MatchCalendar from './MatchCalendar';
 const MatchScheduleTab = () => {
   return (
     <div className="w-full flex justify-center my-20">
-      <div className="max-w-[1200px] w-full flex flex-col items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-center">
         {/* 경로 */}
         <Breadcrumb
           paths={[
