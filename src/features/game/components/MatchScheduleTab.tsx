@@ -33,9 +33,9 @@ const MatchScheduleTab = () => {
               </strong>
               <span className="text-sm font-light justify-start">
                 {channel.items.map((item, index) => (
-                  <span key={item.code}>
+                  <span key={item.code} className="text-[#fefefe90]">
                     {item.code}
-                    <span className="text-[#666]">({item.name})</span>
+                    <span className="text-[#fefefe50]">({item.name})</span>
                     {index < channel.items.length - 1 && ', '}
                   </span>
                 ))}
