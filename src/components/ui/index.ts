@@ -28,3 +28,13 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
 } from './select/select';
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from './table/table';
