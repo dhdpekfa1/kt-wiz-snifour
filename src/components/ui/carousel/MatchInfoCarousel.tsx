@@ -60,8 +60,10 @@ const MatchInfoCarousel = () => {
     return (
       <div className="min-w-fit flex flex-col items-center gap-2">
         <img src={logoUrl} alt="team logo" className="w-14 h-14" />
-        <p className="text-sm font-medium leading-none">{teamName}</p>
-        <p className="mb-4 text-sm text-[#666] leading-none">
+        <p className="text-sm font-medium leading-none text-white">
+          {teamName}
+        </p>
+        <p className="mb-4 text-sm text-[#717781] leading-none">
           {result}: {player}
         </p>
       </div>
@@ -80,8 +82,8 @@ const MatchInfoCarousel = () => {
               }
             >
               <div className="p-1">
-                <Card className="shadow-md min-w-80 w-full">
-                  <CardContent className="flex flex-col gap-2 items-center justify-between p-5">
+                <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#5b5f65]">
+                  <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-[#35383e]">
                     {data.date ? (
                       <div className="flex flex-col h-48 items-center justify-between p-2">
                         {/* 날짜 라벨 */}
@@ -100,11 +102,11 @@ const MatchInfoCarousel = () => {
 
                           {/* 스코어, 승패, 경기 정보 버튼 */}
                           <div className="flex flex-col items-center justify-center">
-                            <h4 className="mb-4 font-normal text-xl leading-none">
+                            <h4 className="mb-4 font-normal text-xl leading-none text-wiz-white">
                               {data.score}
                             </h4>
                             <div className="flex gap-2">
-                              <p className="mb-4 leading-none text-wiz-red">
+                              <p className="mb-4 font-bold leading-none text-wiz-red">
                                 {data.matchResult}
                               </p>
                             </div>
@@ -126,8 +128,10 @@ const MatchInfoCarousel = () => {
                       </div>
                     ) : (
                       <div className="flex flex-col gap-5 h-48 items-center p-2">
-                        <div className="top-0 w-full h-7 bg-[#222] text-white p-1 rounded-2xl" />
-                        <p className=" mb-4">예정된 경기가 없습니다.</p>
+                        <div className="top-0 w-full h-7 bg-wiz-black text-white p-1 rounded-2xl" />
+                        <p className="mb-4 text-wiz-white">
+                          예정된 경기가 없습니다.
+                        </p>
                       </div>
                     )}
                   </CardContent>
