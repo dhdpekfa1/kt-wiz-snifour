@@ -255,7 +255,14 @@ const MatchCalendar = () => {
             </thead>
           ),
           DayContent: ({ date }) => (
-            <div className="relative w-full h-full bg-[#35383e20]">
+            // <div className="relative w-full h-full bg-[#35383e20]">
+            <div
+              className={`relative w-full h-full bg-[#35383e20] ${
+                format(date, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
+                  ? 'border-2 border-wiz-red'
+                  : ''
+              }`}
+            >
               {renderCellContent(date)}
             </div>
           ),
