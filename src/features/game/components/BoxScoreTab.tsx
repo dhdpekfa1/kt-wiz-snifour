@@ -10,30 +10,6 @@ import {
 import { mockMatchData } from './table/MatchScoreTable';
 
 const BoxScoreTab = () => {
-  // const renderTeamInfo = ({
-  //   teamName,
-  //   logoUrl,
-  //   player,
-  //   result,
-  // }: {
-  //   teamName: string;
-  //   logoUrl: string;
-  //   player: string;
-  //   result: 'L' | 'W';
-  // }) => {
-  //   return (
-  //     <div className="min-w-fit flex flex-col items-center gap-2">
-  //       <img src={logoUrl} alt="team logo" className="w-14 h-14" />
-  //       <p className="text-sm font-medium leading-none text-white">
-  //         {teamName}
-  //       </p>
-  //       <p className="mb-4 text-sm text-[#717781] leading-none">
-  //         {result}: {player}
-  //       </p>
-  //     </div>
-  //   );
-  // };
-
   const renderTeamInfo = ({
     teamName,
     logoUrl,
@@ -51,7 +27,7 @@ const BoxScoreTab = () => {
         <p className="text-center text-2xl text-white font-semibold">
           {result}
         </p>
-        <p className="text-center text-sm">
+        <p className="text-center text-[#717781]">
           {teamName}({betel})
         </p>
       </div>
@@ -84,7 +60,7 @@ const BoxScoreTab = () => {
           {/* 날짜 헤더 */}
           <div>
             <div>
-              <div className="flex justify-center items-center gap-10 px-4 py-4">
+              <div className="flex justify-center items-center gap-10 text-white px-4 py-4">
                 <button
                   onClick={() => console.log('TODO')}
                   type="button"
@@ -96,7 +72,7 @@ const BoxScoreTab = () => {
                   <span className="text-2xl font-semibold">
                     {mockMatchData[0].match_date}
                   </span>
-                  <span className="text-center text-slate-500">
+                  <span className="text-center text-[#717781]">
                     {mockMatchData[0].match_time} | 관중:
                     {mockMatchData[0].audience}
                   </span>
