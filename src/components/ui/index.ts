@@ -38,3 +38,4 @@ export {
   TableCell,
   TableCaption,
 } from './table/table';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
