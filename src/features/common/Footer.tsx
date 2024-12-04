@@ -9,7 +9,7 @@ import {
 
 function Footer() {
   return (
-    <div className="w-full border-t flex justify-center py-7">
+    <div className="w-full border-t flex justify-center py-7 bg-white">
       <div className="w-[1200px] flex justify-between">
         {/* 케이티 위즈 로고 */}
         <div className="w-52">
@@ -75,6 +75,21 @@ function Footer() {
               </SelectGroup>
             </SelectContent>
           </Select>
+          <div className="flex items-center gap-4 mt-8">
+            {/* sns */}
+            <button type="button" className="w-8 p-1">
+              <img src="/assets/sns/ico-instagram@2x.png" alt="" />
+            </button>
+            <button type="button" className="w-6">
+              <img src="/assets/sns/ico-facebook@2x.png" alt="" />
+            </button>
+            <button type="button" className="w-8">
+              <img src="/assets/sns/ico-youtube@2x.png" alt="" />
+            </button>
+            <button type="button" className="w-6">
+              <img src="/assets/sns/ico-naver@2x.png" alt="" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
