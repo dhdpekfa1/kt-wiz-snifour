@@ -4,17 +4,29 @@ import Header from './features/common/Header';
 import BoxScoreTab from './features/game/components/BoxScoreTab';
 import MatchScheduleTab from './features/game/components/MatchScheduleTab';
 import HomePage from './pages/HomePage';
+import CheerSong from './pages/player/CheerSong';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="w-screen bg-wiz-black">
+      <div className="w-screen bg-wiz-black flex flex-col items-center">
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/game/regular/schedule" element={<MatchScheduleTab />} />
-          <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
-        </Routes>
+        <div className="w-[1200px]">
+          <Routes>
+            {/* 메인 */}
+            <Route path="/" element={<HomePage />} />
+
+            {/* Game */}
+            <Route
+              path="/game/regular/schedule"
+              element={<MatchScheduleTab />}
+            />
+            <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
+
+            {/* Player */}
+            <Route path="/player/song" element={<CheerSong />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </BrowserRouter>
