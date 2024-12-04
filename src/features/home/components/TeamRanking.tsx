@@ -1,13 +1,13 @@
 function TeamRanking() {
   return (
-    <div className="w-full h-[25%] flex items-end justify-between bg-[#d60c0c] text-white pr-4 py-4">
+    <div className="w-full h-[25%] flex items-end justify-between bg-wiz-red text-white pr-4 py-4">
       <div className="flex flex-col items-center justify-center relative">
         <img
           src="https://www.ktwiz.co.kr/v2/imgs/img-score@2x.png"
           alt=""
           className="w-24 translate-x-3 -translate-y-3"
         />
-        <div className="absolute bottom-0 -right-2 bg-white text-[#d60c0c] px-2 rounded-full font-extrabold">
+        <div className="absolute bottom-0 -right-2 bg-white text-wiz-red px-2 rounded-full font-extrabold">
           5위
         </div>
       </div>

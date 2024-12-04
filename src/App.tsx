@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/Header';
 import BoxScoreTab from './features/game/components/BoxScoreTab';
@@ -8,7 +8,7 @@ import HomePage from './pages/HomePage';
 function App() {
   return (
     <BrowserRouter>
-      <div className="w-screen">
+      <div className="w-screen bg-wiz-black">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />

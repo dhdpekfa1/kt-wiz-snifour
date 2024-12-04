@@ -11,7 +11,7 @@ import { TeamRanking } from './TeamRanking';
 
 function MatchInfo() {
   return (
-    <div className="w-full h-[500px] flex items-start rounded-3xl overflow-hidden border">
+    <div className="w-full h-[500px] flex items-start rounded-3xl overflow-hidden bg-white">
       <Card className="w-[75%] h-full px-8 pb-8 flex flex-col items-center border-none shadow-none">
         <CardHeader className="w-full flex flex-row items-center justify-between">
           <ChevronLeft className="cursor-pointer" />
@@ -30,7 +30,7 @@ function MatchInfo() {
                 <div className="text-6xl font-bold mt-8">1 : 4</div>
                 <button
                   type="button"
-                  className="flex justify-center items-center gap-2 bg-[#d60c0c] rounded px-4 py-1 mt-8 text-white"
+                  className="flex justify-center items-center gap-2 bg-wiz-red rounded px-4 py-1 mt-8 text-white"
                 >
                   경기정보 <ChevronRight />
                 </button>
@@ -42,14 +42,14 @@ function MatchInfo() {
           <div className="w-full flex items-center justify-center gap-4 mt-16">
             <Popover>
               <PopoverTrigger asChild>
-                <div className="flex-1 h-16 bg-[#d60c0c] flex items-center justify-center text-white text-lg rounded cursor-pointer">
+                <div className="flex-1 h-16 bg-wiz-red flex items-center justify-center text-white text-lg rounded cursor-pointer">
                   중계 안내
                 </div>
               </PopoverTrigger>
               <PopoverContent className="bg-white w-1/2">
                 <div>
                   <div className="flex items-start gap-2">
-                    <div className="bg-[#35383E] w-fit text-white px-2 py-1 rounded text-xs">
+                    <div className="bg-wiz-black w-fit text-white px-2 py-1 rounded text-xs">
                       TV
                     </div>
                     <p className="text-sm">
@@ -64,7 +64,7 @@ function MatchInfo() {
             </Popover>
             <div className="flex-1 h-16 overflow-hidden text-center text-white text-lg rounded relative bg-black bg-opacity-20 flex items-center justify-center cursor-pointer">
               <img
-                src="https://www.ktwiz.co.kr/v2/imgs/dummy/main/img-banner-parking@2x.png"
+                src=""
                 alt=""
                 className="absolute top-0 left-0 -z-10 object-cover -translate-y-10"
               />
