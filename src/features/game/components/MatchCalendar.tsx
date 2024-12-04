@@ -76,7 +76,7 @@ const MatchCalendar = () => {
             );
           }}
           type="button"
-          className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+          className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
         >
           <IconLeft />
         </button>
@@ -113,7 +113,7 @@ const MatchCalendar = () => {
               new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1)
             );
           }}
-          className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+          className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
         >
           <IconRight />
         </button>

@@ -64,7 +64,7 @@ const BoxScoreTab = () => {
                 <button
                   onClick={() => console.log('TODO')}
                   type="button"
-                  className="flex items-center justify-center text-lg font-semibold text-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+                  className="flex items-center justify-center text-lg font-semibold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
                 >
                   <IconLeft />
                 </button>
@@ -80,7 +80,7 @@ const BoxScoreTab = () => {
                 <button
                   type="button"
                   onClick={() => console.log('TODO')}
-                  className="flex items-center justify-center text-lg font-bold text-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+                  className="flex items-center justify-center text-lg font-bold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
                 >
                   <IconRight />
                 </button>
