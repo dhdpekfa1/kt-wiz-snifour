@@ -13,7 +13,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb = ({ paths, leftComponent = null }: BreadcrumbProps) => {
   return (
-    <div className="flex flex-col gap-2 m-4 mt-6 w-full">
+    <div className="flex flex-col gap-2 mt-6 mb-4 w-full">
       <div
         className={`flex items-center ${
           leftComponent ? 'justify-between' : 'justify-end'
