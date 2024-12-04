@@ -71,8 +71,8 @@ function Header() {
 
   return (
     <div
-      className={`w-full sticky top-0 ${
-        isHovered ? 'bg-white h-96' : 'bg-black h-28 overflow-hidden z-10'
+      className={`w-full sticky top-0 z-10 ${
+        isHovered ? 'bg-white h-96' : 'bg-black h-28 overflow-hidden'
       } text-white flex flex-col justify-between items-center transition-all duration-150 origin-top`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

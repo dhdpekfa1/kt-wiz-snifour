@@ -15,6 +15,19 @@ export {
   CarouselPrevious,
   CarouselNext,
 } from './carousel/carousel';
+export { Popover, PopoverTrigger, PopoverContent } from './popover/popover';
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+} from './select/select';
 export {
   Table,
   TableHeader,
