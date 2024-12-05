@@ -1,5 +1,6 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
+import TeamInfo from '@/features/common/TeamInfo';
 import { IconLeft, IconRight } from 'react-day-picker';
 import {
   BattingRecordTable,
@@ -12,7 +13,7 @@ import { mockMatchData } from './table/MatchScoreTable';
 const BoxScoreTab = () => {
   return (
     <div className="w-full flex justify-center my-20">
-      <div className="max-w-[1200px] w-full flex flex-col justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center">
         {/* 경로 */}
         <Breadcrumb
           paths={[
@@ -24,29 +25,26 @@ const BoxScoreTab = () => {
         />
 
         {/* 경기 스코어 테이블 */}
-        <div className="w-full flex items-center justify-between border border-slate-200 px-8 py-6 gap-8">
+        <div className="w-full flex items-center justify-between px-8 py-6 gap-8 bg-[#35383e] rounded">
           {/* team1 */}
-          <div className="flex flex-col gap-1">
-            <img
-              src={mockMatchData[0].team1_logo}
-              alt="team logo"
-              className="w-20 h-20"
-            />
-            <p className="text-center text-2xl font-semibold">
-              {mockMatchData[0].team1_result}
-            </p>
-            <p className="text-center text-sm">
-              {mockMatchData[0].team1}({mockMatchData[0].team1_betel})
-            </p>
-          </div>
+          <TeamInfo
+            teamName={'KT'}
+            logoUrl={
+              'https:img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03'
+            }
+            result={1}
+            stadium={'원정'}
+            tabType={'BoxScoreTab'}
+          />
+
           {/* 날짜 헤더 */}
           <div>
             <div>
-              <div className="flex justify-center items-center gap-10 px-4 py-4">
+              <div className="flex justify-center items-center gap-10 text-white px-4 py-4">
                 <button
                   onClick={() => console.log('TODO')}
                   type="button"
-                  className="flex items-center justify-center text-lg font-semibold text-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+                  className="flex items-center justify-center text-lg font-semibold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
                 >
                   <IconLeft />
                 </button>
@@ -54,7 +52,7 @@ const BoxScoreTab = () => {
                   <span className="text-2xl font-semibold">
                     {mockMatchData[0].match_date}
                   </span>
-                  <span className="text-center text-slate-500">
+                  <span className="text-center text-[#717781]">
                     {mockMatchData[0].match_time} | 관중:
                     {mockMatchData[0].audience}
                   </span>
@@ -62,7 +60,7 @@ const BoxScoreTab = () => {
                 <button
                   type="button"
                   onClick={() => console.log('TODO')}
-                  className="flex items-center justify-center text-lg font-bold text-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+                  className="flex items-center justify-center text-lg font-bold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
                 >
                   <IconRight />
                 </button>
@@ -71,19 +69,15 @@ const BoxScoreTab = () => {
             <MatchScoreTable />
           </div>
           {/* team2 */}
-          <div className="flex flex-col gap-1">
-            <img
-              src={mockMatchData[0].team2_logo}
-              alt="team logo"
-              className="w-20 h-20"
-            />
-            <p className="text-center text-2xl font-semibold">
-              {mockMatchData[0].team2_result}
-            </p>
-            <p className="text-center text-sm">
-              {mockMatchData[0].team2}({mockMatchData[0].team2_betel})
-            </p>
-          </div>
+          <TeamInfo
+            teamName={'LG'}
+            logoUrl={
+              'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604'
+            }
+            result={4}
+            stadium={'홈'}
+            tabType={'BoxScoreTab'}
+          />
         </div>
 
         {/* 주요 기록 */}

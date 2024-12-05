@@ -1,67 +1,61 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 const navMenus = [
   {
     title: 'KT Wiz',
-    link: '',
     sub: [
-      { title: 'kt wiz는?', link: '' },
-      { title: '구단 BI', link: '' },
-      { title: '회원 정책', link: '' },
-      { title: '스폰서', link: '' },
-      { title: '월페이퍼', link: '' },
+      { title: 'kt wiz는?', link: '/ktwiz/about' },
+      { title: '구단 BI', link: '/ktwiz/bi/symbol' },
+      { title: '회원 정책', link: '/ktwiz/policy/regular' },
+      { title: '스폰서', link: '/ktwiz/sponsor' },
+      { title: '월페이퍼', link: '/ktwiz/wallpaper' },
     ],
   },
   {
     title: 'Wiz Park',
-    link: '',
     sub: [
-      { title: '수원 kt wiz park', link: '' },
-      { title: '주차 예약', link: '' },
-      { title: '찾아오기', link: '' },
-      { title: '익산야구장', link: '' },
+      { title: '수원 kt wiz park', link: '/wizpark/intro' },
+      { title: '주차 예약', link: '/wizpark/parking' },
+      { title: '찾아오기', link: '/wizpark/location' },
+      { title: '익산야구장', link: '/wizpark/iksan' },
     ],
   },
   {
     title: 'Game',
-    link: '',
     sub: [
-      { title: '정규리그', link: '' },
-      { title: '퓨처스리그', link: '' },
+      { title: '정규리그', link: '/game/regular/schedule' },
+      { title: '퓨처스리그', link: '/game/futures/schedule' },
     ],
   },
   {
     title: 'Player',
-    link: '',
     sub: [
-      { title: '코칭스텝', link: '' },
-      { title: '투수', link: '' },
-      { title: '타자', link: '' },
-      { title: '응원단', link: '' },
-      { title: '응원가', link: '' },
-      { title: '응원가 저작권', link: '' },
+      { title: '코칭스텝', link: '/player/coach' },
+      { title: '투수', link: '/player/pitcher' },
+      { title: '타자', link: '/player/catcher' },
+      { title: '응원단', link: '/player/cheer' },
+      { title: '응원가', link: '/player/song' },
     ],
   },
   {
     title: 'Media',
-    link: '',
     sub: [
-      { title: 'wiz 뉴스', link: '' },
-      { title: 'wiz 스토리', link: '' },
-      { title: 'wiz 포토', link: '' },
-      { title: '시구자 정보', link: '' },
-      { title: '하이라이트', link: '' },
-      { title: 'Live 영상', link: '' },
+      { title: 'wiz 뉴스', link: '/media/wiznews' },
+      { title: 'wiz 스토리', link: '/media/wizstory' },
+      { title: 'wiz 포토', link: '/media/photos/1' },
+      { title: '시구자 정보', link: '/media/firstpitch' },
+      { title: '하이라이트', link: '/media/highlight' },
+      { title: 'Live 영상', link: '/media/live/pts' },
     ],
   },
-  { title: 'Shop', link: '', sub: [] },
+  { title: 'Shop', link: 'https://www.ktwizstore.co.kr/', sub: [] },
   {
     title: '티켓구매',
-    link: '',
     sub: [
-      { title: '티켓예매', link: '' },
-      { title: '단체관람', link: '' },
-      { title: '입장 및 좌석 정보', link: '' },
+      { title: '티켓예매', link: '/ticket/reservation' },
+      { title: '단체관람', link: '/ticket/group' },
+      { title: '입장 및 좌석 정보', link: '/ticket/seatmap' },
     ],
   },
 ];
@@ -71,7 +65,7 @@ function Header() {
 
   return (
     <div
-      className={`w-full sticky top-0 z-10 ${
+      className={`w-screen fixed top-0 z-10 ${
         isHovered ? 'bg-white h-96' : 'bg-black h-28 overflow-hidden'
       } text-white flex flex-col justify-between items-center transition-all duration-150 origin-top`}
       onMouseEnter={() => setIsHovered(true)}
@@ -85,10 +79,18 @@ function Header() {
               isHovered && 'text-black'
             }`}
           >
-            <li>스폰서</li>
-            <li>로그인</li>
-            <li>회원가입</li>
-            <li>KT Sports</li>
+            <Link to="https://b2b.ktwiz.co.kr/">
+              <li>스폰서</li>
+            </Link>
+            <Link to="/login">
+              <li>로그인</li>
+            </Link>
+            <Link to="/join">
+              <li>회원가입</li>
+            </Link>
+            <Link to="http://kt-sports.co.kr/sports/site/main.do">
+              <li>KT Sports</li>
+            </Link>
           </ul>
         </nav>
 
@@ -98,9 +100,17 @@ function Header() {
           <ul className="grid grid-cols-8 text-xl font-semibold ">
             <li className="">
               {isHovered ? (
-                <img src="/assets/img-logo-black.svg" alt="" className="mt-2" />
+                <Link to="/">
+                  <img
+                    src="/assets/img-logo-black.svg"
+                    alt=""
+                    className="mt-2"
+                  />
+                </Link>
               ) : (
-                <img src="/assets/img-logo.svg" alt="" className="mt-2" />
+                <Link to="/">
+                  <img src="/assets/img-logo.svg" alt="" className="mt-2" />
+                </Link>
               )}
             </li>
             {navMenus.map((menu) => (
@@ -110,7 +120,11 @@ function Header() {
                   menu.title === '티켓구매' ? 'text-[#d60c0c]' : ''
                 }`}
               >
-                {menu.title}
+                {menu.title === 'Shop' ? (
+                  <Link to="https://www.ktwizstore.co.kr/">{menu.title}</Link>
+                ) : (
+                  menu.title
+                )}
               </li>
             ))}
           </ul>
@@ -126,7 +140,7 @@ function Header() {
                     key={`sub-${subMenu.title}`}
                     className="py-1 cursor-pointer"
                   >
-                    {subMenu.title}
+                    <Link to={subMenu.link}>{subMenu.title}</Link>
                   </li>
                 ))}
               </ul>

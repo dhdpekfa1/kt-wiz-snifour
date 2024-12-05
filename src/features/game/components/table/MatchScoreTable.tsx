@@ -100,7 +100,7 @@ const MatchScoreTable = () => {
           {thead.map((item) => (
             <TableHead
               key={item}
-              className="bg-[#ec0a0b] text-white border border-slate-50 text-center"
+              className="bg-wiz-red text-white border border-[#fefefe40] text-center"
             >
               {item}
             </TableHead>
@@ -109,26 +109,26 @@ const MatchScoreTable = () => {
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableCell className="font-medium border border-slate-50  text-center bg-slate-100">
+          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
             {mockMatchData[0].team1}
           </TableCell>
           {mockMatchData[0].team1_score.map((score) => (
             <TableCell
               key={score.id}
-              className="font-medium border border-slate-50 text-center"
+              className="font-medium border bg-wiz-black border-[#fefefe40] text-center text-wiz-white"
             >
               {score.score}
             </TableCell>
           ))}
         </TableRow>
         <TableRow>
-          <TableCell className="font-medium border border-slate-50 text-center bg-slate-100">
+          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
             {mockMatchData[0].team2}
           </TableCell>
           {mockMatchData[0].team2_score.map((score) => (
             <TableCell
               key={score.id}
-              className="font-medium border border-slate-50  text-center"
+              className="font-medium border border-[#fefefe40] bg-wiz-black text-center text-wiz-white"
             >
               {score.score}
             </TableCell>
