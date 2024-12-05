@@ -1,6 +1,25 @@
 import Breadcrumb from '../common/Breadcrumb';
 import MatchBoard from './components/MatchBoard';
-import { MatchScoreTable } from './components/table';
+import { MatchSummaryTable } from './components/table';
+
+const mockData = {
+  teamA: {
+    wins: 72,
+    losses: 70,
+    draws: 2,
+    winRate: 0.507,
+    seasonResult: '시즌 성적',
+    seasonRank: 5,
+  },
+  teamB: {
+    wins: 76,
+    losses: 66,
+    draws: 2,
+    winRate: 0.535,
+    seasonResult: '시즌 성적',
+    seasonRank: 3,
+  },
+};
 
 const WatchPointTab = () => {
   return (
@@ -12,7 +31,7 @@ const WatchPointTab = () => {
             { key: 'home', label: 'Home' },
             { key: 'game', label: 'Game' },
             { key: 'regular-season', label: '정규리그' },
-            { key: 'box-score', label: '박스 스코어', isActive: true },
+            { key: 'box-score', label: '관전 포인트', isActive: true },
           ]}
         />
 
@@ -35,7 +54,9 @@ const WatchPointTab = () => {
           matchDate="2024-12-10"
           matchTime="18:30"
           stadium="수원 KT 위즈 파크"
-          gameTable={<MatchScoreTable />}
+          gameTable={
+            <MatchSummaryTable teamA={mockData.teamA} teamB={mockData.teamB} />
+          }
         />
       </div>
     </div>
