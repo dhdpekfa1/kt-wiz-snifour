@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className="w-screen bg-wiz-black flex flex-col items-center">
         <Header />
-        <div className="w-[1200px]">
+        <div className="w-[1200px] mt-28">
           <Routes>
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
