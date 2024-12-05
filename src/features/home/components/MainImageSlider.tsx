@@ -1,7 +1,7 @@
 import { Card, Carousel, CarouselContent, CarouselItem } from '@/components/ui';
 function MainImageSlider() {
   return (
-    <Carousel className="w-full relative">
+    <Carousel className="w-screen relative">
       <CarouselContent>
         <CarouselItem>
           <Card className="w-full h-96 bg-gray-300">kt 위즈 이미지</Card>
