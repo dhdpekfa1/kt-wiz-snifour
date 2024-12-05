@@ -7,8 +7,8 @@ import {
   KeyRecordsTable,
   MatchScoreTable,
   PitchingRecordTable,
-} from './table';
-import { mockMatchData } from './table/MatchScoreTable';
+} from './components/table';
+import { mockMatchData } from './components/table/MatchScoreTable';
 
 const BoxScoreTab = () => {
   return (
@@ -124,4 +124,4 @@ const BoxScoreTab = () => {
   );
 };
 
-export default BoxScoreTab;
+export { BoxScoreTab };
