@@ -28,7 +28,7 @@ const TeamInfo: React.FC<TeamInfoProps> = ({
       <img
         src={logoUrl}
         alt="team logo"
-        className={`${isBoxScoreTab ? 'w-20 h-20' : 'w-14 h-14'}`}
+        className={`${isBoxScoreTab ? 'w-28 h-28' : 'w-20 h-20'}`}
       />
       {isBoxScoreTab ? (
         <div>

@@ -29,9 +29,7 @@ const BoxScoreTab = () => {
           {/* team1 */}
           <TeamInfo
             teamName={'KT'}
-            logoUrl={
-              'https:img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03'
-            }
+            logoUrl={'/assets/emblems/ktwiz.svg'}
             result={1}
             stadium={'원정'}
             tabType={'BoxScoreTab'}
@@ -71,9 +69,7 @@ const BoxScoreTab = () => {
           {/* team2 */}
           <TeamInfo
             teamName={'LG'}
-            logoUrl={
-              'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604'
-            }
+            logoUrl={'/assets/emblems/lgtwins.svg'}
             result={4}
             stadium={'홈'}
             tabType={'BoxScoreTab'}

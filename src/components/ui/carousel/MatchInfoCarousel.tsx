@@ -12,12 +12,10 @@ const matchMockData = [
   {
     date: '2024.10.09',
     team1: 'LG 트윈스',
-    team1_logo:
-      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604',
+    team1_logo: '/assets/emblems/lgtwins.svg',
     team1_player: '백승현',
     team2: 'KT 위즈',
-    team2_logo:
-      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03',
+    team2_logo: '/assets/emblems/ktwiz.svg',
     team2_player: '박영현',
     score: '5:6',
     matchResult: '승',
@@ -25,12 +23,10 @@ const matchMockData = [
   {
     date: '2024.10.11',
     team1: 'KT 위즈',
-    team1_logo:
-      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03',
+    team1_logo: '/assets/emblems/ktwiz.svg',
     team1_player: '엄상백',
-    team2: 'LG 트윈스',
-    team2_logo:
-      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604',
+    team2: '키움',
+    team2_logo: '/assets/emblems/kiwoom.svg',
     team2_player: '임찬구',
     score: '1:4',
     matchResult: '패',
