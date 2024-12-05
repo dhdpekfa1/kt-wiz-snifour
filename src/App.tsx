@@ -4,7 +4,7 @@ import Header from './features/common/Header';
 import BoxScoreTab from './features/game/components/BoxScoreTab';
 import MatchScheduleTab from './features/game/components/MatchScheduleTab';
 import HomePage from './pages/HomePage';
-import CheerSong from './pages/player/CheerSong';
+import CheerSongPage from './pages/player/CheerSongPage';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
             <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
 
             {/* Player */}
-            <Route path="/player/song" element={<CheerSong />} />
+            <Route path="/player/song" element={<CheerSongPage />} />
           </Routes>
         </div>
         <Footer />

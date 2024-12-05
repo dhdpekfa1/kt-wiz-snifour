@@ -46,7 +46,7 @@ k t wi z 강 백 호
   },
 };
 
-function CheerSong() {
+function CheerSongPage() {
   return (
     <div className="w-[1200px]">
       {/* breadcrumbs */}
@@ -85,4 +85,4 @@ function CheerSong() {
   );
 }
 
-export default CheerSong;
+export default CheerSongPage;
