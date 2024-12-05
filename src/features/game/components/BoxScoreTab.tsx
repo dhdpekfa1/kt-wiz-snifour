@@ -14,12 +14,12 @@ const BoxScoreTab = () => {
     teamName,
     logoUrl,
     result,
-    betel,
+    stadium,
   }: {
     teamName: string;
     logoUrl: string;
     result: number;
-    betel: '홈' | '원정';
+    stadium: '홈' | '원정';
   }) => {
     return (
       <div className="flex flex-col gap-1">
@@ -28,7 +28,7 @@ const BoxScoreTab = () => {
           {result}
         </p>
         <p className="text-center text-[#717781]">
-          {teamName}({betel})
+          {teamName}({stadium})
         </p>
       </div>
     );
@@ -55,7 +55,7 @@ const BoxScoreTab = () => {
             logoUrl:
               'https:img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03',
             result: 1,
-            betel: '원정',
+            stadium: '원정',
           })}
           {/* 날짜 헤더 */}
           <div>
@@ -94,7 +94,7 @@ const BoxScoreTab = () => {
             logoUrl:
               'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604',
             result: 4,
-            betel: '홈',
+            stadium: '홈',
           })}
         </div>
 
