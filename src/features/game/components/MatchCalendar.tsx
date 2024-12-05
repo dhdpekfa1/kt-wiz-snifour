@@ -67,9 +67,8 @@ const MatchCalendar = () => {
   };
 
   const calendarHeader = ({ displayMonth }: { displayMonth: Date }) => {
-    // const today = new Date();
     return (
-      <div className="flex justify-center items-center gap-10 px-4 py-4 bg-gray-100">
+      <div className="flex justify-center items-center gap-10 px-4 py-4 bg-[#35383e]">
         <button
           onClick={() => {
             setCurrentMonth(
@@ -77,12 +76,12 @@ const MatchCalendar = () => {
             );
           }}
           type="button"
-          className="flex items-center justify-center text-lg font-bold text-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+          className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
         >
           <IconLeft />
         </button>
         <div className="relative flex items-center">
-          <span className="text-lg font-bold">
+          <span className="text-lg font-bold text-wiz-white">
             {format(displayMonth, 'yyyy년 MM월')}
           </span>
           {/* 드롭다운 버튼 */}
@@ -103,7 +102,7 @@ const MatchCalendar = () => {
               );
             })}
           </select>
-          <span className="cursor-pointer p-4">
+          <span className="cursor-pointer p-4 text-wiz-white">
             <IconDropdown className="w-3 h-3" />
           </span>
         </div>
@@ -114,14 +113,14 @@ const MatchCalendar = () => {
               new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1)
             );
           }}
-          className="flex items-center justify-center text-lg font-bold text-white bg-slate-400 w-10 h-10 rounded hover:bg-slate-500"
+          className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
         >
           <IconRight />
         </button>
         {/* <button
           type="button"
           className="absolute right-10 flex items-center justify-center text-xs text-slate-500 bg-slate-200 rounded hover:bg-slate-300 p-1"
-          onClick={() => setCurrentMonth(today)}
+          onClick={() => setCurrentMonth(new Date())}
         >
           오늘
         </button> */}
@@ -137,7 +136,7 @@ const MatchCalendar = () => {
     return (
       <div
         className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
-          match?.place === '수원' ? 'bg-red-50' : ''
+          match?.place === '수원' ? 'bg-[#f5323250]' : ''
         }`}
       >
         {/* 날짜 */}
@@ -147,7 +146,7 @@ const MatchCalendar = () => {
               ? 'text-red-500'
               : day === 6
                 ? 'text-blue-500'
-                : 'text-gray-700'
+                : 'text-wiz-white'
           }`}
         >
           {format(date, 'd')}
@@ -165,7 +164,7 @@ const MatchCalendar = () => {
             {/* 팀 로고 */}
             <img src={match.logo} alt={match.team} className="w-14 h-14 my-6" />
             {/* 경기 정보 */}
-            <span className="text-sm text-[#ec0a0b]">
+            <span className="text-sm text-wiz-white">
               {match.time} {match.place}
             </span>
             <div className="text-gray-400">{match.channel}</div>
@@ -181,20 +180,20 @@ const MatchCalendar = () => {
       <div className="flex justify-between items-center border-b pb-3 mb-5">
         <div className="flex gap-2">
           <Button
-            className={`text-md px-4 py-2 rounded cursor-pointer ${
+            className={`text-md px-4 py-2 rounded cursor-pointer border border-wiz-white ${
               selectedTab === 'kt wiz 경기'
-                ? 'bg-[#ec0a0b] text-white hover:bg-[#f53232]'
-                : 'bg-transparent text-black hover:bg-slate-100'
+                ? 'bg-wiz-red text-white hover:bg-wiz-red'
+                : 'bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white'
             }`}
             onClick={() => setSelectedTab('kt wiz 경기')}
           >
             kt wiz 경기
           </Button>
           <Button
-            className={`text-md px-5 py-2 rounded cursor-pointer ${
+            className={`text-md px-5 py-2 rounded cursor-pointer border border-wiz-white ${
               selectedTab === '전체 리그'
-                ? 'bg-[#ec0a0b] text-white hover:-bg-[#f53232]'
-                : 'bg-transparent text-black hover:bg-slate-100'
+                ? 'bg-wiz-red text-white hover:bg-wiz-red'
+                : 'bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white'
             }`}
             onClick={() => setSelectedTab('전체 리그')}
           >
@@ -202,7 +201,7 @@ const MatchCalendar = () => {
           </Button>
         </div>
         <div className="flex gap-2">
-          <span className="text-md px-3 py-2 rounded bg-[#ec0a0b] text-white">
+          <span className="text-md px-3 py-2 rounded bg-wiz-red text-white">
             승
           </span>
           <span className="text-md px-3 py-2 rounded bg-gray-600 text-white">
@@ -219,10 +218,10 @@ const MatchCalendar = () => {
         selected={selectedDate}
         onSelect={setSelectedDate}
         locale={ko}
-        className="border rounded-lg w-full max-w-full mx-auto"
+        className="border border-[#fefefe40] rounded-lg w-full max-w-full mx-auto"
         classNames={{
           table: 'w-full border-collapse',
-          cell: 'h-[180px] w-[160px] text-center p-0 border relative',
+          cell: 'h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative',
           day: 'h-full w-full text-sm flex items-center justify-center relative',
         }}
         captionLayout="dropdown"
@@ -235,7 +234,7 @@ const MatchCalendar = () => {
           Caption: calendarHeader,
           Head: () => (
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-[#35383e]">
                 {['일', '월', '화', '수', '목', '금', '토'].map(
                   (day, index) => (
                     <th
@@ -245,7 +244,7 @@ const MatchCalendar = () => {
                           ? 'text-red-500'
                           : index === 6
                             ? 'text-blue-500'
-                            : 'text-gray-600'
+                            : 'text-wiz-white'
                       }`}
                     >
                       {day}
@@ -256,7 +255,13 @@ const MatchCalendar = () => {
             </thead>
           ),
           DayContent: ({ date }) => (
-            <div className="relative w-full h-full">
+            <div
+              className={`relative w-full h-full bg-[#35383e20] ${
+                format(date, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
+                  ? 'border-2 border-wiz-red'
+                  : ''
+              }`}
+            >
               {renderCellContent(date)}
             </div>
           ),

@@ -6,7 +6,7 @@ import MatchCalendar from './MatchCalendar';
 const MatchScheduleTab = () => {
   return (
     <div className="w-full flex justify-center my-20">
-      <div className="max-w-[1200px] w-full flex flex-col items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-center">
         {/* 경로 */}
         <Breadcrumb
           paths={[
@@ -33,9 +33,9 @@ const MatchScheduleTab = () => {
               </strong>
               <span className="text-sm font-light justify-start">
                 {channel.items.map((item, index) => (
-                  <span key={item.code}>
+                  <span key={item.code} className="text-[#fefefe90]">
                     {item.code}
-                    <span className="text-[#666]">({item.name})</span>
+                    <span className="text-[#fefefe50]">({item.name})</span>
                     {index < channel.items.length - 1 && ', '}
                   </span>
                 ))}

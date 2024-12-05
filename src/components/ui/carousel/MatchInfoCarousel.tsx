@@ -1,3 +1,4 @@
+import TeamInfo from '@/features/common/TeamInfo';
 import { Card, CardContent } from '../card/card';
 import {
   Carousel,
@@ -58,38 +59,32 @@ const MatchInfoCarousel = () => {
               }
             >
               <div className="p-1">
-                <Card className="shadow-md min-w-80 w-full">
-                  <CardContent className="flex flex-col gap-2 items-center justify-between p-5">
+                <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#5b5f65]">
+                  <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-[#35383e]">
                     {data.date ? (
                       <div className="flex flex-col h-48 items-center justify-between p-2">
                         {/* 날짜 라벨 */}
-                        <h4 className="bg-[#ec0a0b] text-white px-6 py-1 rounded-full">
+                        <h4 className="bg-wiz-red text-white px-6 py-1 rounded-full">
                           {data.date}
                         </h4>
 
                         <div className="flex gap-6 items-center justify-center px-6">
                           {/* team1 */}
-                          <div className="min-w-fit flex flex-col items-center gap-2">
-                            <img
-                              src={data.team1_logo}
-                              alt="team logo"
-                              className="w-14 h-14"
-                            />
-                            <p className="text-sm font-medium leading-none">
-                              {data.team1}
-                            </p>
-                            <p className="mb-4 text-sm text-[#666] leading-none">
-                              L: {data.team1_player}
-                            </p>
-                          </div>
+                          <TeamInfo
+                            tabType="MatchScheduleTab"
+                            teamName={data.team1}
+                            logoUrl={data.team1_logo || ''}
+                            player={data.team1_player}
+                            result={'win'}
+                          />
 
                           {/* 스코어, 승패, 경기 정보 버튼 */}
                           <div className="flex flex-col items-center justify-center">
-                            <h4 className="mb-4 font-normal text-xl leading-none">
+                            <h4 className="mb-4 font-normal text-xl leading-none text-wiz-white">
                               {data.score}
                             </h4>
                             <div className="flex gap-2">
-                              <p className="mb-4 leading-none text-[#ec0a0b]">
+                              <p className="mb-4 font-bold leading-none text-wiz-red">
                                 {data.matchResult}
                               </p>
                             </div>
@@ -101,25 +96,21 @@ const MatchInfoCarousel = () => {
                             </button>
                           </div>
                           {/* team2 */}
-                          <div className="min-w-fit flex flex-col items-center gap-2">
-                            <img
-                              src={data.team2_logo}
-                              alt="team logo"
-                              className="w-14 h-14"
-                            />
-                            <p className="text-sm font-medium leading-none">
-                              {data.team2}
-                            </p>
-                            <p className="mb-4 text-sm text-[#666] leading-none">
-                              W: {data.team2_player}
-                            </p>
-                          </div>
+                          <TeamInfo
+                            tabType="MatchScheduleTab"
+                            teamName={data.team2}
+                            logoUrl={data.team2_logo || ''}
+                            player={data.team2_player}
+                            result={'win'}
+                          />
                         </div>
                       </div>
                     ) : (
                       <div className="flex flex-col gap-5 h-48 items-center p-2">
-                        <div className="top-0 w-full h-7 bg-[#222] text-white p-1 rounded-2xl" />
-                        <p className=" mb-4">예정된 경기가 없습니다.</p>
+                        <div className="top-0 w-full h-7 bg-wiz-black text-white p-1 rounded-2xl" />
+                        <p className="mb-4 text-wiz-white">
+                          예정된 경기가 없습니다.
+                        </p>
                       </div>
                     )}
                   </CardContent>
@@ -128,8 +119,8 @@ const MatchInfoCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        {/* <CarouselPrevious className="absolute left-[-28px] top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white  hover:bg-[#222] hover:text-[#eceef2] p-2 rounded-full" />
-        <CarouselNext className="absolute right-[-24px] top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white  hover:bg-[#222] hover:text-[#eceef2] p-2 rounded-full" /> */}
+        {/* <CarouselPrevious className="absolute left-[-28px] top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
+        <CarouselNext className="absolute right-[-24px] top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" /> */}
       </Carousel>
     </div>
   );

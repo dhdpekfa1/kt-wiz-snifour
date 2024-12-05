@@ -144,76 +144,76 @@ const mockData = [
 
 const BattingRecordTable = () => {
   return (
-    <Table className="w-full border-collapse border border-slate-200 whitespace-nowrap">
+    <Table className="w-full border-collapse whitespace-nowrap">
       <TableHeader>
         <TableRow>
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             타순
           </TableHead>
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             포지션
           </TableHead>
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             이름
           </TableHead>
           {[...Array(15)].map((_, index) => (
             <TableHead
               key={`inning-${index + 1}`}
-              className="text-center bg-slate-100 border border-slate-200"
+              className="text-center bg-slate-100 border border-[#ddd]"
             >
               {index + 1}
             </TableHead>
           ))}
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             타수
           </TableHead>
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             득점
           </TableHead>
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             안타
           </TableHead>
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             타점
           </TableHead>
-          <TableHead className="text-center bg-slate-100 border border-slate-200">
+          <TableHead className="text-center bg-slate-100 border border-[#ddd]">
             타율
           </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {mockData.map((player) => (
-          <TableRow key={player.id} className="hover:bg-gray-50">
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+          <TableRow key={player.id} className="hover:bg-[#fefefe40]">
+            <TableCell className="text-center bg-wiz-red border border-[#fefefe40] text-wiz-white">
               {player.order}
             </TableCell>
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
               {player.position}
             </TableCell>
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
               {player.name}
             </TableCell>
             {[...Array(15)].map((_, inningIndex) => (
               <TableCell
                 key={`${player.id}-${inningIndex}`}
-                className="text-center border border-slate-200 text-gray-500"
+                className="text-center border border-[#fefefe40] text-wiz-white"
               >
                 {player.results[inningIndex] || ''}
               </TableCell>
             ))}
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
               {player.atBats}
             </TableCell>
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
               {player.runs}
             </TableCell>
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
               {player.hits}
             </TableCell>
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
               {player.rbis}
             </TableCell>
-            <TableCell className="text-center border border-slate-200 text-gray-500">
+            <TableCell className="text-center border border-[#fefefe40] text-wiz-white">
               {player.avg.toFixed(3)}
             </TableCell>
           </TableRow>
