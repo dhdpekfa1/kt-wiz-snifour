@@ -1,20 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
 import { Button } from '@/components/ui';
 import Breadcrumb from '@/features/common/Breadcrumb';
+import WizParkMap from '@/features/home/components/WizParkMap';
 import { ArrowBigRightIcon } from 'lucide-react';
-import {
-  // biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
-  Map,
-  MapMarker,
-  MapTypeId,
-  ZoomControl,
-} from 'react-kakao-maps-sdk';
-import useKakaoLoader from '../../assets/hooks/useKakaoLoader';
 
 function ParkLocation() {
-  useKakaoLoader();
-  const position = { lat: 37.299759, lng: 127.009781 };
-
   return (
     <div className="flex flex-col items-center gap-10 my-20 mx-20 bg-wiz-black text-wiz-white">
       <Breadcrumb
@@ -24,39 +14,21 @@ function ParkLocation() {
           { key: 'wizpark-road', label: '찾아오기', isActive: true },
         ]}
       />
-      <Map // 지도를 표시할 Container
-        id="map"
-        center={position}
-        style={{
-          // 지도의 크기
-          width: '600px',
-          height: '400px',
-        }}
-        level={3} // 지도의 확대 레벨
-      >
-        <MapMarker position={position}>
-          {/* MapMarker의 자식을 넣어줌으로 해당 자식이 InfoWindow로 만들어지게 합니다 */}
-          {/* 인포윈도우에 표출될 내용으로 HTML 문자열이나 React Component가 가능합니다 */}
-          <div>
-            <a
-              href="https://map.kakao.com/link/to/수원 KT 위즈파크,37.299759,127.009781"
-              target="_blank"
-              rel="noreferrer"
-              className="text-red-600 m-5"
-            >
-              빠른길찾기
-            </a>
-          </div>
-        </MapMarker>
-        <ZoomControl position={'RIGHT'} />
-        {/* 실시간 교통 정보 표시 */}
-        <MapTypeId type={'TRAFFIC'} />
-      </Map>
+      <WizParkMap />
       <div className="flex flex-col items-center">
         <p className="text-xl font-semibold">
           경기도 수원시 장안구 경수대로 893(조원동) 수원 케이티 위즈 파크
         </p>
         <p>(구 : 경기도 수원시 장안구 조원동 775)</p>
+        <Button className="bg-wiz-red rounded-xl h-7 mt-3">
+          <a
+            href="https://map.kakao.com/link/to/수원 KT 위즈파크,37.299759,127.009781"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>빠른길찾기</span>
+          </a>
+        </Button>
       </div>
       <div className="flex gap-5">
         <Card className="rounded-3xl">
