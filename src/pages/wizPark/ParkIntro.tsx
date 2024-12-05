@@ -5,20 +5,30 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui';
+import Breadcrumb from '@/features/common/Breadcrumb';
 
 function ParkIntro() {
   return (
-    <div className="flex items-start h-screen">
+    <div className="flex flex-col items-center my-20 mx-20 justify-center bg-wiz-black">
+      <Breadcrumb
+        paths={[
+          { key: 'home', label: 'Home' },
+          { key: 'wizpark', label: 'Wiz Park' },
+          { key: 'suwon-kt-wizpark', label: '수원 KT Wiz Park' },
+          { key: 'wizpark-intro', label: '구장 소개', isActive: true },
+        ]}
+      />
       {/* biome-ignore lint/a11y/useAltText: <explanation> */}
-      <img src="/src/assets/image/ktwizpark.jpg" className="w-3/5 h-full" />
-      <Card className="h-full">
+      <img src="/assets/ktwizpark.jpg" className="w-3/5 h-2/3" />
+      <Card className="h-1/3 w-[75%] px-8 pb-8 flex flex-col items-center border-none shadow-none text-wiz-white">
         <CardHeader>
-          <CardTitle className="text-3xl">
-            복합 문화공간의 첨단 야구장! 수원구장
+          <CardTitle className="text-3xl flex gap-4">
+            복합 문화공간의 첨단 야구장!{' '}
+            <p className="text-wiz-red">수원구장</p>
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-5">
-          <Card className="flex flex-col gap-3">
+          <Card className="flex flex-col gap-3 rounded-3xl">
             <div className="m-4 flex flex-col gap-3">
               <CardTitle>최적의 경기 환경 조성</CardTitle>
               <CardDescription>
@@ -28,7 +38,7 @@ function ParkIntro() {
               </CardDescription>
             </div>
           </Card>
-          <Card className="flex flex-col gap-3">
+          <Card className="flex flex-col gap-3 rounded-3xl">
             <div className="m-4 flex flex-col gap-3">
               <CardTitle>스마트한 구장 시설</CardTitle>
               <CardDescription>
@@ -39,8 +49,8 @@ function ParkIntro() {
               </CardDescription>
             </div>
           </Card>
-          <Card className="flex flex-col gap-3">
-            <div className="m-4 flex flex-col gap-3">
+          <Card className="flex flex-col gap-3 rounded-3xl">
+            <div className="m-4 flex flex-col gap-3 ">
               <CardTitle> 다양한 관람층을 위한 복합 문화공간</CardTitle>
               <CardDescription>
                 익사이팅석, 프랜들리서, 커플석, 패밀리석, 장애인석 등 다양한
