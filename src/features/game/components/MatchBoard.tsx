@@ -41,7 +41,7 @@ const MatchBoard = ({
               <span className="text-2xl font-semibold">{matchDate}</span>
               <span className="text-center text-[#717781]">
                 {matchTime} | {stadium}
-                {/* boxscore ? 관중 수 : '' */}
+                {/* TODO: boxscore ? 관중 수 : '' */}
               </span>
             </div>
             <button

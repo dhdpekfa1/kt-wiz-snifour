@@ -23,14 +23,14 @@ const WatchPointTab = () => {
             logoUrl: '/assets/emblems/ktwiz.svg',
             result: 1,
             stadium: '원정',
-            tabType: 'BoxScoreTab',
+            tabType: 'MatchBoard',
           }}
           team2Data={{
             teamName: 'LG',
             logoUrl: '/assets/emblems/lgtwins.svg',
             result: 4,
             stadium: '홈',
-            tabType: 'BoxScoreTab',
+            tabType: 'MatchBoard',
           }}
           matchDate="2024-12-10"
           matchTime="18:30"
