@@ -8,7 +8,6 @@ const navMenus = [
       { title: 'kt wiz는?', link: '/ktwiz/about' },
       { title: '구단 BI', link: '/ktwiz/bi/symbol' },
       { title: '회원 정책', link: '/ktwiz/policy/regular' },
-      { title: '스폰서', link: '/ktwiz/sponsor' },
       { title: '월페이퍼', link: '/ktwiz/wallpaper' },
     ],
   },
@@ -79,17 +78,11 @@ function Header() {
               isHovered && 'text-black'
             }`}
           >
-            <Link to="https://b2b.ktwiz.co.kr/">
-              <li>스폰서</li>
-            </Link>
             <Link to="/login">
               <li>로그인</li>
             </Link>
             <Link to="/join">
               <li>회원가입</li>
-            </Link>
-            <Link to="http://kt-sports.co.kr/sports/site/main.do">
-              <li>KT Sports</li>
             </Link>
           </ul>
         </nav>
