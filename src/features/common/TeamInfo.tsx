@@ -1,27 +1,3 @@
-// const TeamInfo = ({
-//   teamName,
-//   logoUrl,
-//   player,
-//   result,
-// }: {
-//   teamName: string;
-//   logoUrl: string;
-//   player: string;
-//   result: "lose" | "win";
-// }) => {
-//   return (
-//     <div className="min-w-fit flex flex-col items-center gap-2">
-//       <img src={logoUrl} alt="team logo" className="w-14 h-14" />
-//       <p className="text-sm font-medium leading-none text-white">{teamName}</p>
-//       <p className="mb-4 text-sm text-[#717781] leading-none">
-//         {result === "lose" ? "L" : "W"}: {player}
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default TeamInfo;
-
 import React from 'react';
 
 type TeamInfoProps = {
