@@ -38,25 +38,25 @@ function ParkLocation() {
           <CardContent>
             <ul>
               <li>
-                <Button className="bg-green-500 h-4 border-none rounded-xl">
+                <Button className="bg-green-500 h-4 border-none rounded-xl hover:bg-green-500">
                   일반
                 </Button>{' '}
                 25, 25-2, 27, 36, 55, 62-1, 99, 99-2, 300-1
               </li>
               <li>
-                <Button className="bg-green-500 h-4 border-none rounded-xl">
+                <Button className="bg-green-500 h-4 border-none rounded-xl hover:bg-green-500">
                   일반
                 </Button>{' '}
                 310, 777
               </li>
               <li>
-                <Button className="bg-wiz-red h-4 border-none rounded-xl">
+                <Button className="bg-wiz-red h-4 border-none rounded-xl hover:bg-wiz-red">
                   직행
                 </Button>{' '}
                 2007, 3000, 7770
               </li>
               <li>
-                <Button className="bg-blue-700 h-4 border-none rounded-xl">
+                <Button className="bg-blue-700 h-4 border-none rounded-xl hover:bg-blue-700">
                   좌석
                 </Button>{' '}
                 300, 900
