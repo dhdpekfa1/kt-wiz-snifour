@@ -1,5 +1,6 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
+import TeamInfo from '@/features/common/TeamInfo';
 import { IconLeft, IconRight } from 'react-day-picker';
 import {
   BattingRecordTable,
@@ -10,29 +11,29 @@ import {
 import { mockMatchData } from './table/MatchScoreTable';
 
 const BoxScoreTab = () => {
-  const renderTeamInfo = ({
-    teamName,
-    logoUrl,
-    result,
-    stadium,
-  }: {
-    teamName: string;
-    logoUrl: string;
-    result: number;
-    stadium: '홈' | '원정';
-  }) => {
-    return (
-      <div className="flex flex-col gap-1">
-        <img src={logoUrl} alt="team logo" className="w-20 h-20" />
-        <p className="text-center text-2xl text-white font-semibold">
-          {result}
-        </p>
-        <p className="text-center text-[#717781]">
-          {teamName}({stadium})
-        </p>
-      </div>
-    );
-  };
+  // const renderTeamInfo = ({
+  //   teamName,
+  //   logoUrl,
+  //   result,
+  //   stadium,
+  // }: {
+  //   teamName: string;
+  //   logoUrl: string;
+  //   result: number;
+  //   stadium: '홈' | '원정';
+  // }) => {
+  //   return (
+  //     <div className="flex flex-col gap-1">
+  //       <img src={logoUrl} alt="team logo" className="w-20 h-20" />
+  //       <p className="text-center text-2xl text-white font-semibold">
+  //         {result}
+  //       </p>
+  //       <p className="text-center text-[#717781]">
+  //         {teamName}({stadium})
+  //       </p>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className="w-full flex justify-center my-20">
@@ -50,13 +51,16 @@ const BoxScoreTab = () => {
         {/* 경기 스코어 테이블 */}
         <div className="w-full flex items-center justify-between px-8 py-6 gap-8 bg-[#35383e] rounded">
           {/* team1 */}
-          {renderTeamInfo({
-            teamName: 'KT',
-            logoUrl:
-              'https:img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03',
-            result: 1,
-            stadium: '원정',
-          })}
+          <TeamInfo
+            teamName={'KT'}
+            logoUrl={
+              'https:img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03'
+            }
+            result={1}
+            stadium={'원정'}
+            tabType={'BoxScoreTab'}
+          />
+
           {/* 날짜 헤더 */}
           <div>
             <div>
@@ -89,13 +93,15 @@ const BoxScoreTab = () => {
             <MatchScoreTable />
           </div>
           {/* team2 */}
-          {renderTeamInfo({
-            teamName: 'LG',
-            logoUrl:
-              'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604',
-            result: 4,
-            stadium: '홈',
-          })}
+          <TeamInfo
+            teamName={'LG'}
+            logoUrl={
+              'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604'
+            }
+            result={4}
+            stadium={'홈'}
+            tabType={'BoxScoreTab'}
+          />
         </div>
 
         {/* 주요 기록 */}

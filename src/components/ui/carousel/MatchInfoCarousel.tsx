@@ -1,3 +1,4 @@
+import TeamInfo from '@/features/common/TeamInfo';
 import { Card, CardContent } from '../card/card';
 import {
   Carousel,
@@ -46,30 +47,6 @@ const matchMockData = [
 ];
 
 const MatchInfoCarousel = () => {
-  const renderTeamInfo = ({
-    teamName,
-    logoUrl,
-    player,
-    result,
-  }: {
-    teamName: string;
-    logoUrl: string;
-    player: string;
-    result: 'L' | 'W';
-  }) => {
-    return (
-      <div className="min-w-fit flex flex-col items-center gap-2">
-        <img src={logoUrl} alt="team logo" className="w-14 h-14" />
-        <p className="text-sm font-medium leading-none text-white">
-          {teamName}
-        </p>
-        <p className="mb-4 text-sm text-[#717781] leading-none">
-          {result}: {player}
-        </p>
-      </div>
-    );
-  };
-
   return (
     <div className="w-full max-w-2xl min-w-full overflow:hidden">
       <Carousel className="relative max-w-full">
@@ -93,12 +70,13 @@ const MatchInfoCarousel = () => {
 
                         <div className="flex gap-6 items-center justify-center px-6">
                           {/* team1 */}
-                          {renderTeamInfo({
-                            teamName: data.team1,
-                            logoUrl: data.team1_logo || '',
-                            player: data.team1_player,
-                            result: 'L',
-                          })}
+                          <TeamInfo
+                            tabType="MatchScheduleTab"
+                            teamName={data.team1}
+                            logoUrl={data.team1_logo || ''}
+                            player={data.team1_player}
+                            result={'win'}
+                          />
 
                           {/* 스코어, 승패, 경기 정보 버튼 */}
                           <div className="flex flex-col items-center justify-center">
@@ -118,12 +96,13 @@ const MatchInfoCarousel = () => {
                             </button>
                           </div>
                           {/* team2 */}
-                          {renderTeamInfo({
-                            teamName: data.team2,
-                            logoUrl: data.team2_logo || '',
-                            player: data.team2_player,
-                            result: 'W',
-                          })}
+                          <TeamInfo
+                            tabType="MatchScheduleTab"
+                            teamName={data.team2}
+                            logoUrl={data.team2_logo || ''}
+                            player={data.team2_player}
+                            result={'win'}
+                          />
                         </div>
                       </div>
                     ) : (
