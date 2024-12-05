@@ -11,30 +11,6 @@ import {
 import { mockMatchData } from './table/MatchScoreTable';
 
 const BoxScoreTab = () => {
-  // const renderTeamInfo = ({
-  //   teamName,
-  //   logoUrl,
-  //   result,
-  //   stadium,
-  // }: {
-  //   teamName: string;
-  //   logoUrl: string;
-  //   result: number;
-  //   stadium: '홈' | '원정';
-  // }) => {
-  //   return (
-  //     <div className="flex flex-col gap-1">
-  //       <img src={logoUrl} alt="team logo" className="w-20 h-20" />
-  //       <p className="text-center text-2xl text-white font-semibold">
-  //         {result}
-  //       </p>
-  //       <p className="text-center text-[#717781]">
-  //         {teamName}({stadium})
-  //       </p>
-  //     </div>
-  //   );
-  // };
-
   return (
     <div className="w-full flex justify-center my-20">
       <div className="w-full flex flex-col justify-center items-center">
