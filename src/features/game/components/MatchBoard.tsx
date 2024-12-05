@@ -22,7 +22,7 @@ const MatchBoard = ({
   gameTable,
 }: MatchBoardProps) => {
   return (
-    <div className="w-full flex items-center justify-between px-8 py-6 gap-8 bg-[#35383e] rounded">
+    <div className="w-full flex items-center justify-between px-8 py-6 gap-4 bg-[#35383e] rounded">
       {/* team1 */}
       <TeamInfo {...team1Data} />
 

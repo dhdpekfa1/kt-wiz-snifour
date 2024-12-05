@@ -74,7 +74,7 @@ const MatchSummaryTable = ({ teamA, teamB }: MatchSummaryTableProps) => {
           <TableCell className="text-center border border-[#ddd]">
             {teamB.draws}
           </TableCell>
-          <TableCell className="text-center border border-[#ddd]">
+          <TableCell className="text-center border border-[#ddd]  min-w-[70px]">
             {teamB.winRate.toFixed(3)}
           </TableCell>
         </TableRow>
