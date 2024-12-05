@@ -22,7 +22,7 @@ function App() {
             />
             <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
             <Route
-              path="/game/regular/watchPointTab"
+              path="/game/regular/watchPoint"
               element={<WatchPointTab />}
             />
 

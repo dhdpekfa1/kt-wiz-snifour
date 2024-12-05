@@ -71,7 +71,7 @@ const MatchInfoCarousel = () => {
                             teamName={data.team1}
                             logoUrl={data.team1_logo || ''}
                             player={data.team1_player}
-                            result={'win'}
+                            result={'lose'}
                           />
 
                           {/* 스코어, 승패, 경기 정보 버튼 */}
