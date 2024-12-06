@@ -30,7 +30,7 @@ const SearchBar = () => {
 
   return (
     <div className={cn('p-0')}>
-      <form onSubmit={handleSubmit} className={cn('flex-1 flex gap-2')}>
+      <form onSubmit={handleSubmit} className={cn('flex-1 flex gap-3')}>
         <div className={cn('relative w-full md:w-[300px]')}>
           <Input
             type="text"

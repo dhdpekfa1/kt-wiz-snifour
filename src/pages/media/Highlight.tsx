@@ -24,7 +24,7 @@ const HighlightPage = () => {
         </Banner>
       }
     >
-      <div className={cn('media-header', 'justify-self-end')}>
+      <div className={cn('media-header', 'justify-end')}>
         <SearchBar />
       </div>
       <HighlightContent />

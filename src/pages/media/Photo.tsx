@@ -47,7 +47,12 @@ const PhotoPage = () => {
         defaultValue={currentTab}
         onValueChange={handleTabChange}
       >
-        <div className="media-header">
+        <div
+          className={cn(
+            'media-header',
+            'flex-wrap md:justify-start lg:justify-end'
+          )}
+        >
           {/* 탭 */}
           <div className="media-tabs-wrapper">
             <TabsList className="media-tabs-list">

@@ -1,6 +1,5 @@
 import { DEFAULT_IMAGE } from '@/constants/default-image';
 import { cn } from '@/lib/utils';
-import { EyeIcon } from 'lucide-react';
 import { Link } from 'react-router';
 import { StoryType } from '../mock_data';
 
@@ -99,16 +98,11 @@ const ListArticleTitle = ({
 // Footer 컴포넌트
 const ListArticleFooter = ({
   date,
-  views,
   className,
-}: { date: string; views?: number; className?: string }) => {
+}: { date: string; className?: string }) => {
   return (
     <div className={cn('media-article-footer', className)}>
       <span>{date}</span>
-      <div className={cn('media-article-views')}>
-        <EyeIcon className="w-4 h-4" />
-        <span>{views?.toLocaleString() || 0}</span>
-      </div>
     </div>
   );
 };

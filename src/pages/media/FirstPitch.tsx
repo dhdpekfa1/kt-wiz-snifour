@@ -26,7 +26,7 @@ const FirstPitchPage = () => {
         </Banner>
       }
     >
-      <div className={cn('media-header', 'flex justify-end')}>
+      <div className={cn('media-header', 'justify-end')}>
         <SearchBar />
       </div>
       <FirstPitchContent />

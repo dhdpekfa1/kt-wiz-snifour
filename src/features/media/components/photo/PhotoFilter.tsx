@@ -16,8 +16,11 @@ const PhotoFilter = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-4">
-      <form onSubmit={handleSubmit} className={cn('flex items-center gap-3')}>
+    <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-4 lg:mt-4">
+      <form
+        onSubmit={handleSubmit}
+        className={cn('flex flex-col items-center gap-3 md:flex-row')}
+      >
         <DateRangePicker onDateRangeChange={handleDateRangeChange} />
         <div className={cn('relative w-full md:w-[300px]')}>
           <Input
@@ -39,6 +42,7 @@ const PhotoFilter = () => {
         </div>
         <Button
           className={cn(
+            'w-full md:w-auto',
             'shrink-0 rounded-md bg-wiz-white/10 text-white text-center hover:bg-wiz-white/20 transition-colors'
           )}
         >

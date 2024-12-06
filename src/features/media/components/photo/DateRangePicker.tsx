@@ -34,12 +34,12 @@ export function DateRangePicker({
   };
 
   return (
-    <div className={cn('grid gap-2', className)}>
+    <div className={cn('grid gap-2 w-full md:w-[300px]', className)}>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             className={cn(
-              'w-[300px] justify-start text-left font-normal',
+              'justify-start text-left font-normal',
               'text-[#c9c9cb] opacity-50',
               'hover:opacity-100 hover:border-wiz-white',
               'border border-solid border-[#6B7280]/50'

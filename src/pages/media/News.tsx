@@ -46,7 +46,7 @@ const NewsPage = () => {
         defaultValue={currentTab}
         onValueChange={handleTabChange}
       >
-        <div className="media-header">
+        <div className={cn('media-header')}>
           <div className="media-tabs-wrapper">
             {/* 탭 */}
             <TabsList className="media-tabs-list">

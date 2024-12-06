@@ -15,7 +15,6 @@ export type ListType = {
 };
 
 export type StoryType = ListType & {
-  views?: number;
   src?: string;
 };
 
@@ -89,21 +88,18 @@ export const storyItems: StoryType[] = [
     title: 'KT WIZ 2024 시즌 하이라이트',
     date: '2024.11.21',
     thumbnail: 'https://i.ytimg.com/vi/k4RSdq2RKHY/hqdefault.jpg',
-    views: 1234,
   },
   {
     id: 22222,
     title: '선수들의 훈련 현장 스케치',
     date: '2024.11.20',
     thumbnail: 'https://i.ytimg.com/vi/k4RSdq2RKHY/hqdefault.jpg',
-    views: 892,
   },
   {
     id: 33333,
     title: '팬들과 함께한 특별한 순간',
     date: '2024.11.19',
     thumbnail: 'https://i.ytimg.com/vi/k4RSdq2RKHY/hqdefault.jpg',
-    views: 567,
   },
 ];
 

@@ -26,9 +26,12 @@ function App() {
           데스크탑 -> 1240px (padding 포함, 실제컨텐츠 1200px),
           모바일 -> 100%
         */}
-        <div className="w-full px-5 lg:max-w-[1240px]">
+        <div className="w-full mt-28 px-5 lg:max-w-[1240px]">
           <Routes>
+            {/* 메인 */}
             <Route path="/" element={<HomePage />} />
+
+            {/* Game */}
             <Route
               path="/game/regular/schedule"
               element={<MatchScheduleTab />}
@@ -36,35 +39,22 @@ function App() {
             <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
             <Route path="/wizpark/intro" element={<ParkIntro />} />
             <Route path="/wizpark/location" element={<ParkLocation />} />
+
+            {/* Player */}
+            <Route path="/player/song" element={<CheerSong />} />
+
+            {/* Media */}
+            <Route path="/media/wiznews" element={<NewsPage />} />
+            <Route path="/media/wizpress" element={<NewsPage />} />
+            <Route path="/media/wizstory" element={<StoryPage />} />
+            <Route path="/media/photos/:id" element={<PhotoPage />} />
+            <Route path="/media/firstpitch" element={<PlayerPage />} />
+            <Route path="/media/highlight" element={<HighlightPage />} />
+            {/* 404 */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
-          <div className="w-[1200px] mt-28">
-            <Routes>
-              {/* 메인 */}
-              <Route path="/" element={<HomePage />} />
-
-              {/* Game */}
-              <Route
-                path="/game/regular/schedule"
-                element={<MatchScheduleTab />}
-              />
-              <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
-
-              {/* Player */}
-              <Route path="/player/song" element={<CheerSong />} />
-
-              {/* Media */}
-              <Route path="/media/wiznews" element={<NewsPage />} />
-              <Route path="/media/wizpress" element={<NewsPage />} />
-              <Route path="/media/wizstory" element={<StoryPage />} />
-              <Route path="/media/photos/:id" element={<PhotoPage />} />
-              <Route path="/media/firstpitch" element={<PlayerPage />} />
-              <Route path="/media/highlight" element={<HighlightPage />} />
-              {/* 404 */}
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </div>
-          <Footer />
         </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
