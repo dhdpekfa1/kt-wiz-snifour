@@ -4,12 +4,17 @@ import Header from './features/common/Header';
 import BoxScoreTab from './features/game/components/BoxScoreTab';
 import MatchScheduleTab from './features/game/components/MatchScheduleTab';
 import HomePage from './pages/HomePage';
+
 import NotFoundPage from './pages/NotFound';
 import PlayerPage from './pages/media/FirstPitch';
 import HighlightPage from './pages/media/Highlight';
 import NewsPage from './pages/media/News';
 import PhotoPage from './pages/media/Photo';
 import StoryPage from './pages/media/Story';
+
+import ParkIntro from './pages/wizPark/ParkIntro';
+import ParkLocation from './pages/wizPark/ParkLocation';
+
 import CheerSong from './pages/player/CheerSong';
 
 function App() {
@@ -23,31 +28,43 @@ function App() {
         */}
         <div className="w-full px-5 lg:max-w-[1240px]">
           <Routes>
-            {/* 메인 */}
             <Route path="/" element={<HomePage />} />
-
-            {/* Game */}
             <Route
               path="/game/regular/schedule"
               element={<MatchScheduleTab />}
             />
             <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
-
-            {/* Player */}
-            <Route path="/player/song" element={<CheerSong />} />
-
-            {/* Media */}
-            <Route path="/media/wiznews" element={<NewsPage />} />
-            <Route path="/media/wizpress" element={<NewsPage />} />
-            <Route path="/media/wizstory" element={<StoryPage />} />
-            <Route path="/media/photos/:id" element={<PhotoPage />} />
-            <Route path="/media/firstpitch" element={<PlayerPage />} />
-            <Route path="/media/highlight" element={<HighlightPage />} />
-            {/* 404 */}
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/wizpark/intro" element={<ParkIntro />} />
+            <Route path="/wizpark/location" element={<ParkLocation />} />
           </Routes>
+          <div className="w-[1200px] mt-28">
+            <Routes>
+              {/* 메인 */}
+              <Route path="/" element={<HomePage />} />
+
+              {/* Game */}
+              <Route
+                path="/game/regular/schedule"
+                element={<MatchScheduleTab />}
+              />
+              <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
+
+              {/* Player */}
+              <Route path="/player/song" element={<CheerSong />} />
+
+              {/* Media */}
+              <Route path="/media/wiznews" element={<NewsPage />} />
+              <Route path="/media/wizpress" element={<NewsPage />} />
+              <Route path="/media/wizstory" element={<StoryPage />} />
+              <Route path="/media/photos/:id" element={<PhotoPage />} />
+              <Route path="/media/firstpitch" element={<PlayerPage />} />
+              <Route path="/media/highlight" element={<HighlightPage />} />
+              {/* 404 */}
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
     </BrowserRouter>
   );
