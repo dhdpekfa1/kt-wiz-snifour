@@ -1,31 +1,17 @@
 import { Button } from '@/components/ui';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { debounce } from 'lodash-es';
 import { Search as SearchIcon } from 'lucide-react';
-import { useCallback, useDeferredValue, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const SearchBar = () => {
-  // TODO: store
   const [searchTerm, setSearchTerm] = useState('');
-  const deferredSearchTerm = useDeferredValue(searchTerm);
-
-  const debouncedSearch = useCallback(
-    debounce((term: string) => {
-      if (term.trim()) {
-        // api call
-      }
-    }, 500),
-    []
-  );
-
-  useEffect(() => {
-    debouncedSearch(deferredSearchTerm);
-    return () => debouncedSearch.cancel();
-  }, [deferredSearchTerm, debouncedSearch]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (searchTerm.trim()) {
+      console.log('검색:', searchTerm);
+    }
   };
 
   return (
