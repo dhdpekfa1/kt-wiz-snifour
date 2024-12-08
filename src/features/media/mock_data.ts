@@ -16,6 +16,7 @@ export type ListType = {
 
 export type StoryType = ListType & {
   src?: string;
+  description?: string;
 };
 
 export type PhotoType = ListType & {
@@ -86,6 +87,8 @@ export const storyItems: StoryType[] = [
   {
     id: 11111,
     title: 'KT WIZ 2024 시즌 하이라이트',
+    description:
+      '입대를! 명! 받았습니다✨ 논산에서 만난 까까머리 마법사들! 정운과 현인이 준영이에게 해준 조언은...? 00:00 머리 미는 삐약이.',
     date: '2024.11.21',
     thumbnail: 'https://i.ytimg.com/vi/k4RSdq2RKHY/hqdefault.jpg',
   },
@@ -93,12 +96,16 @@ export const storyItems: StoryType[] = [
     id: 22222,
     title: '선수들의 훈련 현장 스케치',
     date: '2024.11.20',
+    description:
+      '입대를! 명! 받았습니다✨ 논산에서 만난 까까머리 마법사들! 정운과 현인이 준영이에게 해준 조언은...? 00:00 머리 미는 삐약이.',
     thumbnail: 'https://i.ytimg.com/vi/k4RSdq2RKHY/hqdefault.jpg',
   },
   {
     id: 33333,
     title: '팬들과 함께한 특별한 순간',
     date: '2024.11.19',
+    description:
+      '입대를! 명! 받았습니다✨ 논산에서 만난 까까머리 마법사들! 정운과 현인이 준영이에게 해준 조언은...? 00:00 머리 미는 삐약이.',
     thumbnail: 'https://i.ytimg.com/vi/k4RSdq2RKHY/hqdefault.jpg',
   },
 ];

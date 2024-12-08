@@ -1,9 +1,11 @@
+import { cn } from '@/lib/utils';
 import { PlayIcon } from 'lucide-react';
 
-const PlayButton = () => {
+const PlayButton = ({ className }: { className?: string }) => {
   return (
-    <div className="bg-wiz-red/80 rounded-lg p-2">
+    <div className={cn('bg-wiz-red/80 rounded-lg p-2', className)}>
       <PlayIcon
+        stroke="white"
         strokeWidth={5}
         strokeLinecap="round"
         strokeLinejoin="round"
