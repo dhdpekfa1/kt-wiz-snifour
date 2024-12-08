@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui';
-import { Input } from '@/components/ui/input';
+import { Button, Input } from '@/components/ui';
 import { DateRangePicker } from '@/features/media/components/photo/DateRangePicker';
 import { cn } from '@/lib/utils';
 import { Search as SearchIcon } from 'lucide-react';

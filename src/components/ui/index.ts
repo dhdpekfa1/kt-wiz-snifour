@@ -58,3 +58,4 @@ export {
   DialogDescription,
   DialogClose,
 } from './dialog/dialog';
+export { Calendar } from './calendar/calendar';
