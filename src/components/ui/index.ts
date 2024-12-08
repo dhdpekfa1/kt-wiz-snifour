@@ -1,4 +1,4 @@
-export { Button, buttonVariants } from './button/button';
+export { Button, buttonVariants, type ButtonProps } from './button/button';
 export {
   Card,
   CardHeader,
@@ -39,3 +39,22 @@ export {
   TableCaption,
 } from './table/table';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
+export {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+  PaginationLink,
+} from './pagination/pagination';
+export { Input } from './input/input';
+export {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from './dialog/dialog';
