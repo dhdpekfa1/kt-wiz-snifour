@@ -1,38 +1,37 @@
 import { DEFAULT_IMAGE } from '@/constants/default-image';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router';
-import { StoryType } from '../mock_data';
-
-type ListArticleProps = Omit<StoryType, 'id'> & {
-  link: string;
-};
 
 const ListArticle = ({
-  link,
   children,
   className,
-}: Pick<ListArticleProps, 'link'> & {
+}: {
   children: React.ReactNode;
   className?: string;
 }) => {
-  return (
-    <Link to={link}>
-      <article className={cn('group', className)}>{children}</article>
-    </Link>
-  );
+  return <article className={cn('group', className)}>{children}</article>;
 };
 
 // Media Container 컴포넌트
 const ListArticleMedia = ({
   children,
+  onClick,
   className,
-}: { children: React.ReactNode; className?: string }) => {
+}: { children: React.ReactNode; onClick?: () => void; className?: string }) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick?.();
+    }
+  };
+
   return (
     <div
       className={cn(
         'relative aspect-video overflow-hidden rounded-lg mb-4',
         className
       )}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
     >
       {children}
     </div>
@@ -54,6 +53,7 @@ const ListArticleThumbnail = ({
         'thumbnail-animation',
         className
       )}
+      loading="lazy"
     />
   );
 };
@@ -61,11 +61,17 @@ const ListArticleThumbnail = ({
 // Video 컴포넌트
 const ListArticleVideo = ({
   src = '',
+  poster,
   className,
-}: { src: string; className?: string }) => {
+}: {
+  src: string;
+  poster?: string;
+  className?: string;
+}) => {
   return (
     <video
       src={src}
+      poster={poster}
       controls
       className={cn('absolute inset-0 w-full h-full object-cover', className)}
     >
