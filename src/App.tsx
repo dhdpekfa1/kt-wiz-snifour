@@ -4,6 +4,7 @@ import Header from './features/common/Header';
 import BoxScoreTab from './features/game/components/BoxScoreTab';
 import MatchScheduleTab from './features/game/components/MatchScheduleTab';
 import HomePage from './pages/HomePage';
+import WallpaperPage from './pages/ktwiz/WallpaperPage';
 import CheerSongPage from './pages/player/CheerSongPage';
 import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
@@ -18,6 +19,9 @@ function App() {
           <Routes>
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
+
+            {/* KT Wiz */}
+            <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
 
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
