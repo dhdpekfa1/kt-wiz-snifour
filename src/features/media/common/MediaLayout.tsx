@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
 type MediaLayoutProps = {
-  header: React.ReactNode;
+  header?: React.ReactNode;
   children: React.ReactNode;
 };
 
