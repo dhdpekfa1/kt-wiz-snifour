@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import CheerSongPage from './pages/player/CheerSongPage';
 import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
+import ParkingPage from './pages/wizPark/ParkingPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
             <Route path="/wizpark/location" element={<ParkLocationPage />} />
+            <Route path="/wizpark/parking" element={<ParkingPage />} />
 
             {/* Game */}
             <Route
