@@ -4,7 +4,7 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import WizParkMap from '@/features/home/components/WizParkMap';
 import { ArrowBigRightIcon } from 'lucide-react';
 
-function ParkLocation() {
+function ParkLocationPage() {
   return (
     <div className="flex flex-col items-center gap-10 my-20 mx-20 bg-wiz-black text-wiz-white">
       <Breadcrumb
@@ -97,4 +97,4 @@ function ParkLocation() {
   );
 }
 
-export default ParkLocation;
+export default ParkLocationPage;

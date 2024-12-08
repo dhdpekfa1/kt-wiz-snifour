@@ -7,7 +7,7 @@ import {
 } from '@/components/ui';
 import Breadcrumb from '@/features/common/Breadcrumb';
 
-function ParkIntro() {
+function ParkIntroPage() {
   return (
     <div className="flex flex-col items-center my-20 mx-20 justify-center bg-wiz-black">
       <Breadcrumb
@@ -66,4 +66,4 @@ function ParkIntro() {
   );
 }
 
-export default ParkIntro;
+export default ParkIntroPage;
