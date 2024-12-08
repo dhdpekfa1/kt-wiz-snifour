@@ -5,7 +5,6 @@ import BoxScoreTab from './features/game/components/BoxScoreTab';
 import MatchScheduleTab from './features/game/components/MatchScheduleTab';
 import HomePage from './pages/HomePage';
 
-import NotFoundPage from './pages/NotFound';
 import PlayerPage from './pages/media/FirstPitch';
 import HighlightPage from './pages/media/Highlight';
 import NewsPage from './pages/media/News';
@@ -15,7 +14,12 @@ import StoryPage from './pages/media/Story';
 import ParkIntro from './pages/wizPark/ParkIntro';
 import ParkLocation from './pages/wizPark/ParkLocation';
 
+import NewsDetailPage from './pages/media/id/NewsDetail';
 import CheerSong from './pages/player/CheerSong';
+
+import NotFoundPage from './pages/NotFoundPage';
+import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
+import PressDetailPage from './pages/media/id/PressDetail';
 
 function App() {
   return (
@@ -50,6 +54,15 @@ function App() {
             <Route path="/media/photos/:id" element={<PhotoPage />} />
             <Route path="/media/firstpitch" element={<PlayerPage />} />
             <Route path="/media/highlight" element={<HighlightPage />} />
+
+            {/* Media 상세 */}
+            <Route path="/media/wiznews/:id" element={<NewsDetailPage />} />
+            <Route path="/media/wizpress/:id" element={<PressDetailPage />} />
+            <Route
+              path="/media/firstpitch/:id"
+              element={<FirstPitchDetailPage />}
+            />
+
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
