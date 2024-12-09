@@ -18,7 +18,7 @@ function TeamBatterRankingTable() {
   const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
   useEffect(() => {
-    const getTeamPitcherRanking = async () => {
+    const getTeamBatterRanking = async () => {
       try {
         const { data, status } = await axios.get(
           `${API_URL}/game/rank/batting`
@@ -39,7 +39,7 @@ function TeamBatterRankingTable() {
       }
     };
 
-    getTeamPitcherRanking();
+    getTeamBatterRanking();
   }, []);
 
   return (
