@@ -5,6 +5,7 @@ import {
   TeamBatterRankingTable,
   TeamPitcherRankingTable,
   TeamRankingTable,
+  TeamVSTable,
 } from '@/features/game/components';
 
 function TeamRankingPage() {
@@ -47,7 +48,7 @@ function TeamRankingPage() {
             value="team-match-record"
             className="text-black text-base bg-white rounded"
           >
-            팀 간 승패표
+            팀 상대 전적
           </TabsTrigger>
         </TabsList>
         <TabsContent value="team" className="w-full">
@@ -60,7 +61,7 @@ function TeamRankingPage() {
           <TeamBatterRankingTable />
         </TabsContent>
         <TabsContent value="team-match-record" className="w-full">
-          {null}
+          <TeamVSTable />
         </TabsContent>
       </Tabs>
     </div>

@@ -108,3 +108,12 @@ export interface TeamBatterStats {
   teamCode: string; // 팀 코드
   teamName: 'KT'; // 팀 이름
 }
+
+export interface TeamVS {
+  drawn: number;
+  lose: number;
+  teamCode: string;
+  teamName: string;
+  vsTeamCode: string;
+  win: number;
+}
