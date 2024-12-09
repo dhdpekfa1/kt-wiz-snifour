@@ -1,68 +1,57 @@
-import { Button } from '@/components/ui';
-import { format } from 'date-fns';
-import { ko } from 'date-fns/locale';
-import { useState } from 'react';
-import { DayPicker, IconDropdown, IconLeft, IconRight } from 'react-day-picker';
-
-type MatchInfo = {
-  result: string;
-  team: string;
-  time: string;
-  place: string;
-  channel: string;
-  logo: string;
-};
-
-const matchData: Record<string, MatchInfo> = {
-  '2024-12-01': {
-    result: '승',
-    team: '엔씨 다이노스',
-    time: '17:00',
-    place: '수원',
-    channel: 'SPO-T,MS-T,SS-T',
-    logo: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F173D58365036F0AA03',
-  },
-  '2024-12-06': {
-    result: '패',
-    team: 'LG 트윈스',
-    time: '14:00',
-    place: '잠실',
-    channel: 'M-T',
-    logo: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604',
-  },
-  '2024-12-08': {
-    result: '승',
-    team: 'LG 트윈스',
-    time: '18:30',
-    place: '수원',
-    channel: 'K-2T',
-    logo: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1424D544502DD27604',
-  },
-  '2024-12-10': {
-    result: '무',
-    team: '한화 이글스',
-    time: '19:30',
-    place: '문학경기장',
-    channel: 'K-2T',
-    logo: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F127E7F41502DCD4632',
-  },
-};
+import { useEffect, useState } from "react";
+import { format } from "date-fns";
+import { ko } from "date-fns/locale";
+import { DayPicker, IconDropdown, IconLeft, IconRight } from "react-day-picker";
+import { Button } from "@/components/ui";
+import { getMonthSchedule } from "../../apis/matchSchedule";
+export interface GameSchedule {
+  broadcast: string; // 방송 정보
+  displayDate: string; // 화면에 표시되는 날짜
+  gameDate: string; // 실제 게임 날짜
+  gmkey: string; // 게임 고유 키
+  gtime: string; // 게임 시간
+  home: string; // 홈 팀 이름
+  homeKey: string; // 홈 팀 코드
+  homeLogo: string; // 홈 팀 로고 URL
+  homeScore: number; // 홈 팀 점수
+  matchTeamCode: string; // 매치된 팀 코드
+  matchTeamName: string; // 매치된 팀 이름
+  outcome: string; // 경기 결과 (승/패)
+  stadium: string; // 경기장 이름
+  stadiumKey: string; // 경기장 코드
+  status: string; // 경기 상태 코드
+  visit: string; // 원정 팀 이름
+  visitKey: string; // 원정 팀 코드
+  visitLogo: string; // 원정 팀 로고 URL
+  visitScore: number; // 원정 팀 점수
+}
 
 const MatchCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [selectedTab, setSelectedTab] = useState('kt wiz 경기');
+  const [selectedTab, setSelectedTab] = useState("kt wiz 경기");
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
+  const [matchData, setMatchData] = useState<GameSchedule[]>();
+
+  useEffect(() => {
+    fetchMatchSchedule();
+  }, [currentMonth]);
+
+  const fetchMatchSchedule = async () => {
+    const yearMonth = format(currentMonth, "yyyyMM");
+    const data: GameSchedule[] = await getMonthSchedule(yearMonth);
+    setMatchData(data);
+  };
 
   const getResultColor = (result: string) => {
     switch (result) {
-      case '승':
-        return 'bg-red-500';
-      case '패':
-        return 'bg-gray-600';
-      case '무':
-        return 'bg-gray-400';
+      case "승":
+        return "bg-red-500";
+      case "패":
+        return "bg-gray-600";
+      case "무":
+        return "bg-gray-400";
       default:
-        return '';
+        return "";
     }
   };
 
@@ -82,13 +71,13 @@ const MatchCalendar = () => {
         </button>
         <div className="relative flex items-center">
           <span className="text-lg font-bold text-wiz-white">
-            {format(displayMonth, 'yyyy년 MM월')}
+            {format(displayMonth, "yyyy년 MM월")}
           </span>
           {/* 드롭다운 버튼 */}
           <select
-            value={format(displayMonth, 'yyyy-MM')}
+            value={format(displayMonth, "yyyy-MM")}
             onChange={(e) => {
-              const [year, month] = e.target.value.split('-');
+              const [year, month] = e.target.value.split("-");
               setCurrentMonth(new Date(Number(year), Number(month) - 1));
             }}
             className="absolute right-0 top-0 text-sm bg-transparent border-none outline-none cursor-pointer w-6 h-6 opacity-0"
@@ -96,8 +85,8 @@ const MatchCalendar = () => {
             {Array.from({ length: 16 }, (_, i) => {
               const month = new Date(2024, 6 + i);
               return (
-                <option key={month.getTime()} value={format(month, 'yyyy-MM')}>
-                  {format(month, 'yyyy년 MM월')}
+                <option key={month.getTime()} value={format(month, "yyyy-MM")}>
+                  {format(month, "yyyy년 MM월")}
                 </option>
               );
             })}
@@ -129,46 +118,56 @@ const MatchCalendar = () => {
   };
 
   const renderCellContent = (date: Date) => {
-    const formattedDate = format(date, 'yyyy-MM-dd');
-    const match = matchData[formattedDate];
     const day = date.getDay();
+    const formattedDate = format(date, "yyyyMMdd");
+    const match = matchData?.find(
+      (item) => item.gameDate.toString() === formattedDate
+    );
 
     return (
-      <div
-        className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
-          match?.place === '수원' ? 'bg-[#f5323250]' : ''
-        }`}
-      >
+      <div className="relative w-full h-full p-2 flex flex-col items-center justify-start gap-2">
         {/* 날짜 */}
         <div
           className={`absolute top-2 right-2 text-sm font-bold ${
             day === 0
-              ? 'text-red-500'
+              ? "text-red-500"
               : day === 6
-                ? 'text-blue-500'
-                : 'text-wiz-white'
+              ? "text-blue-500"
+              : "text-wiz-white"
           }`}
         >
-          {format(date, 'd')}
+          {format(date, "d")}
         </div>
+
         {match && (
-          <>
+          <div
+            key={match.gmkey}
+            className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
+              match?.stadium === "수원" ? "bg-[#f5323250]" : ""
+            }`}
+          >
             {/* 경기 결과 */}
             <div
               className={`absolute top-2 left-2 text-xs text-white py-1 px-2 rounded ${getResultColor(
-                match.result
+                match.outcome
               )}`}
             >
-              {match.result}
+              {match.outcome}
             </div>
+
             {/* 팀 로고 */}
-            <img src={match.logo} alt={match.team} className="w-14 h-14 my-6" />
+            <img
+              src={match.home === "KT" ? match.visitLogo : match.homeLogo}
+              alt="team logo"
+              className="w-14 h-14 my-6"
+            />
+
             {/* 경기 정보 */}
             <span className="text-sm text-wiz-white">
-              {match.time} {match.place}
+              {match.gtime} {match.stadium}
             </span>
-            <div className="text-gray-400">{match.channel}</div>
-          </>
+            <div className="text-gray-400">{match.broadcast}</div>
+          </div>
         )}
       </div>
     );
@@ -181,21 +180,21 @@ const MatchCalendar = () => {
         <div className="flex gap-2">
           <Button
             className={`text-md px-4 py-2 rounded cursor-pointer border border-wiz-white ${
-              selectedTab === 'kt wiz 경기'
-                ? 'bg-wiz-red text-white hover:bg-wiz-red'
-                : 'bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white'
+              selectedTab === "kt wiz 경기"
+                ? "bg-wiz-red text-white hover:bg-wiz-red"
+                : "bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white"
             }`}
-            onClick={() => setSelectedTab('kt wiz 경기')}
+            onClick={() => setSelectedTab("kt wiz 경기")}
           >
             kt wiz 경기
           </Button>
           <Button
             className={`text-md px-5 py-2 rounded cursor-pointer border border-wiz-white ${
-              selectedTab === '전체 리그'
-                ? 'bg-wiz-red text-white hover:bg-wiz-red'
-                : 'bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white'
+              selectedTab === "전체 리그"
+                ? "bg-wiz-red text-white hover:bg-wiz-red"
+                : "bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white"
             }`}
-            onClick={() => setSelectedTab('전체 리그')}
+            onClick={() => setSelectedTab("전체 리그")}
           >
             전체 리그
           </Button>
@@ -220,9 +219,9 @@ const MatchCalendar = () => {
         locale={ko}
         className="border border-[#fefefe40] rounded-lg w-full max-w-full mx-auto"
         classNames={{
-          table: 'w-full border-collapse',
-          cell: 'h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative',
-          day: 'h-full w-full text-sm flex items-center justify-center relative',
+          table: "w-full border-collapse",
+          cell: "h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative",
+          day: "h-full w-full text-sm flex items-center justify-center relative",
         }}
         captionLayout="dropdown"
         defaultMonth={new Date()}
@@ -235,16 +234,16 @@ const MatchCalendar = () => {
           Head: () => (
             <thead>
               <tr className="bg-[#35383e]">
-                {['일', '월', '화', '수', '목', '금', '토'].map(
+                {["일", "월", "화", "수", "목", "금", "토"].map(
                   (day, index) => (
                     <th
                       key={day}
                       className={`p-2 font-medium ${
                         index === 0
-                          ? 'text-red-500'
+                          ? "text-red-500"
                           : index === 6
-                            ? 'text-blue-500'
-                            : 'text-wiz-white'
+                          ? "text-blue-500"
+                          : "text-wiz-white"
                       }`}
                     >
                       {day}
@@ -257,9 +256,9 @@ const MatchCalendar = () => {
           DayContent: ({ date }) => (
             <div
               className={`relative w-full h-full bg-[#35383e20] ${
-                format(date, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
-                  ? 'border-2 border-wiz-red'
-                  : ''
+                format(date, "yyyy-MM-dd") === format(new Date(), "yyyy-MM-dd")
+                  ? "border-2 border-wiz-red"
+                  : ""
               }`}
             >
               {renderCellContent(date)}
@@ -274,4 +273,4 @@ const MatchCalendar = () => {
   );
 };
 
-export default MatchCalendar;
+export { MatchCalendar };
