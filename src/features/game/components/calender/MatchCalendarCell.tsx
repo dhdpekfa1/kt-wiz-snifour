@@ -4,9 +4,14 @@ import { GameSchedule } from "./MatchCalendar";
 interface MatchCalendarCellProps {
   date: Date;
   matchData: GameSchedule | undefined;
+  selectedTab: "kt wiz 경기" | "전체 리그";
 }
 
-const MatchCalendarCell = ({ date, matchData }: MatchCalendarCellProps) => {
+const MatchCalendarCell = ({
+  date,
+  matchData,
+  selectedTab,
+}: MatchCalendarCellProps) => {
   const day = date.getDay();
 
   const getResultColor = (result: string) => {
@@ -37,7 +42,7 @@ const MatchCalendarCell = ({ date, matchData }: MatchCalendarCellProps) => {
         {format(date, "d")}
       </div>
 
-      {matchData && (
+      {matchData && selectedTab === "kt wiz 경기" && (
         <div
           key={matchData.gmkey}
           className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
@@ -59,7 +64,7 @@ const MatchCalendarCell = ({ date, matchData }: MatchCalendarCellProps) => {
               matchData.home === "KT" ? matchData.visitLogo : matchData.homeLogo
             }
             alt="team logo"
-            className="w-14 h-14 my-6"
+            className="w-20 h-20 my-6"
           />
 
           {/* 경기 정보 */}
@@ -69,6 +74,8 @@ const MatchCalendarCell = ({ date, matchData }: MatchCalendarCellProps) => {
           <div className="text-gray-400">{matchData.broadcast}</div>
         </div>
       )}
+
+      {matchData && selectedTab === "전체 리그" && <div>TODO</div>}
     </div>
   );
 };

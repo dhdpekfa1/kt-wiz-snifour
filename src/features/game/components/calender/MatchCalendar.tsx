@@ -4,6 +4,8 @@ import { ko } from "date-fns/locale";
 import { DayPicker, IconDropdown, IconLeft, IconRight } from "react-day-picker";
 import { Button } from "@/components/ui";
 import { getMonthSchedule } from "../../apis/matchSchedule";
+import { MatchCalendarCell } from "./MatchCalendarCell";
+
 export interface GameSchedule {
   broadcast: string; // 방송 정보
   displayDate: string; // 화면에 표시되는 날짜
@@ -28,7 +30,9 @@ export interface GameSchedule {
 
 const MatchCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [selectedTab, setSelectedTab] = useState("kt wiz 경기");
+  const [selectedTab, setSelectedTab] = useState<"kt wiz 경기" | "전체 리그">(
+    "kt wiz 경기"
+  );
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [matchData, setMatchData] = useState<GameSchedule[]>();
 
@@ -40,19 +44,6 @@ const MatchCalendar = () => {
     const yearMonth = format(currentMonth, "yyyyMM");
     const data: GameSchedule[] = await getMonthSchedule(yearMonth);
     setMatchData(data);
-  };
-
-  const getResultColor = (result: string) => {
-    switch (result) {
-      case "승":
-        return "bg-red-500";
-      case "패":
-        return "bg-gray-600";
-      case "무":
-        return "bg-gray-400";
-      default:
-        return "";
-    }
   };
 
   const calendarHeader = ({ displayMonth }: { displayMonth: Date }) => {
@@ -118,58 +109,17 @@ const MatchCalendar = () => {
   };
 
   const renderCellContent = (date: Date) => {
-    const day = date.getDay();
     const formattedDate = format(date, "yyyyMMdd");
     const match = matchData?.find(
       (item) => item.gameDate.toString() === formattedDate
     );
 
     return (
-      <div className="relative w-full h-full p-2 flex flex-col items-center justify-start gap-2">
-        {/* 날짜 */}
-        <div
-          className={`absolute top-2 right-2 text-sm font-bold ${
-            day === 0
-              ? "text-red-500"
-              : day === 6
-              ? "text-blue-500"
-              : "text-wiz-white"
-          }`}
-        >
-          {format(date, "d")}
-        </div>
-
-        {match && (
-          <div
-            key={match.gmkey}
-            className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
-              match?.stadium === "수원" ? "bg-[#f5323250]" : ""
-            }`}
-          >
-            {/* 경기 결과 */}
-            <div
-              className={`absolute top-2 left-2 text-xs text-white py-1 px-2 rounded ${getResultColor(
-                match.outcome
-              )}`}
-            >
-              {match.outcome}
-            </div>
-
-            {/* 팀 로고 */}
-            <img
-              src={match.home === "KT" ? match.visitLogo : match.homeLogo}
-              alt="team logo"
-              className="w-14 h-14 my-6"
-            />
-
-            {/* 경기 정보 */}
-            <span className="text-sm text-wiz-white">
-              {match.gtime} {match.stadium}
-            </span>
-            <div className="text-gray-400">{match.broadcast}</div>
-          </div>
-        )}
-      </div>
+      <MatchCalendarCell
+        date={date}
+        matchData={match}
+        selectedTab={selectedTab}
+      />
     );
   };
 

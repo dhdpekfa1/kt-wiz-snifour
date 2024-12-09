@@ -1,6 +1,6 @@
-import TeamInfo, { TeamData } from '@/features/common/TeamInfo';
-import { ReactNode } from 'react';
-import { IconLeft, IconRight } from 'react-day-picker';
+import TeamInfo, { TeamData } from "@/features/common/TeamInfo";
+import { ReactNode } from "react";
+import { IconLeft, IconRight } from "react-day-picker";
 
 interface MatchBoardProps {
   team1Data: TeamData;
