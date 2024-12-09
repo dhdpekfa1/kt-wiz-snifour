@@ -42,7 +42,7 @@ const MatchCalendar = () => {
 
   useEffect(() => {
     fetchMatchSchedule();
-  }, [currentMonth]);
+  }, [currentMonth, selectedTab]);
 
   const fetchMatchSchedule = async () => {
     const yearMonth = format(currentMonth, "yyyyMM");
