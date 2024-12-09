@@ -1,21 +1,21 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/Header';
-import BoxScoreTab from './features/game/components/BoxScoreTab';
-import MatchScheduleTab from './features/game/components/MatchScheduleTab';
+import { BoxScoreTab, MatchScheduleTab, WatchPointTab } from './features/game';
 import HomePage from './pages/HomePage';
-
 import PlayerPage from './pages/media/FirstPitch';
 import HighlightPage from './pages/media/Highlight';
 import NewsPage from './pages/media/News';
 import PhotoPage from './pages/media/Photo';
 import StoryPage from './pages/media/Story';
 
-import ParkIntro from './pages/wizPark/ParkIntro';
-import ParkLocation from './pages/wizPark/ParkLocation';
-
 import NewsDetailPage from './pages/media/id/NewsDetail';
-import CheerSong from './pages/player/CheerSong';
+
+import WallpaperPage from './pages/ktwiz/WallpaperPage';
+import CheerSongPage from './pages/player/CheerSongPage';
+import ParkIntroPage from './pages/wizPark/ParkIntroPage';
+import ParkLocationPage from './pages/wizPark/ParkLocationPage';
+import ParkingPage from './pages/wizPark/ParkingPage';
 
 import NotFoundPage from './pages/NotFoundPage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
@@ -35,17 +35,20 @@ function App() {
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
 
+            {/* KT Wiz */}
+            <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
+
+            {/* Wiz Park */}
+            <Route path="/wizpark/intro" element={<ParkIntroPage />} />
+            <Route path="/wizpark/location" element={<ParkLocationPage />} />
+            <Route path="/wizpark/parking" element={<ParkingPage />} />
+
             {/* Game */}
             <Route
               path="/game/regular/schedule"
               element={<MatchScheduleTab />}
             />
             <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
-            <Route path="/wizpark/intro" element={<ParkIntro />} />
-            <Route path="/wizpark/location" element={<ParkLocation />} />
-
-            {/* Player */}
-            <Route path="/player/song" element={<CheerSong />} />
 
             {/* Media */}
             <Route path="/media/wiznews" element={<NewsPage />} />
@@ -65,6 +68,15 @@ function App() {
 
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />
+
+            <Route
+              path="/game/regular/watchPoint"
+              element={<WatchPointTab />}
+            />
+
+            {/* Player */}
+            <Route path="/player/song" element={<CheerSongPage />} />
+
           </Routes>
         </div>
         <Footer />
