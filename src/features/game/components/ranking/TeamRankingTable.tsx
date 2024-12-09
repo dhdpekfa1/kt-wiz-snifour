@@ -54,7 +54,7 @@ function TeamRankingTable() {
           <TableRow
             key={team.teamCode}
             className={`${
-              team.teamCode === 'KT' && 'bg-wiz-red font-bold'
+              team.teamCode === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
             } border-b-wiz-white border-opacity-10`}
           >
             <TableCell>{team.rank}</TableCell>
