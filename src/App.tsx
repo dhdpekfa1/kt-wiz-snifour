@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/Header';
-import BoxScoreTab from './features/game/components/BoxScoreTab';
-import MatchScheduleTab from './features/game/components/MatchScheduleTab';
+import { BoxScoreTab, MatchScheduleTab, WatchPointTab } from './features/game';
 import HomePage from './pages/HomePage';
 import ParkIntro from './pages/wizPark/ParkIntro';
 import ParkLocation from './pages/wizPark/ParkLocation';
@@ -31,6 +30,10 @@ function App() {
               element={<MatchScheduleTab />}
             />
             <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
+            <Route
+              path="/game/regular/watchPoint"
+              element={<WatchPointTab />}
+            />
 
             {/* Player */}
             <Route path="/player/song" element={<CheerSong />} />
