@@ -26,7 +26,7 @@ export interface TeamStats {
 }
 
 export interface TeamPitcherStats {
-  ab: number;
+  ab: number; // 타수
   bb: number; // 볼넷
   bb9: number;
   bbhp: number; // 사구
@@ -46,7 +46,7 @@ export interface TeamPitcherStats {
   hold: number; // 홀드 수
   hp: number; //
   hr: number;
-  ib: number; // 고의사구
+  ib: number; // 고의4구
   inn: number;
   iso: string;
   kk: number; // 탈삼진
@@ -55,7 +55,7 @@ export interface TeamPitcherStats {
   obp: string;
   oops: string;
   oslg: string;
-  pa: number;
+  pa: number; // 타석
   qs: number; // QS
   r: number; // 실점
   sb: number;
@@ -70,4 +70,41 @@ export interface TeamPitcherStats {
   whip: string; // WHIP
   wp: number; // 폭투
   wra: string;
+}
+
+export interface TeamBatterStats {
+  ab: number;
+  bb: number; // 볼넷
+  bbhp: number;
+  bbkk: string;
+  bra: string; // 출루율
+  cs: number;
+  der: string;
+  err: number; // 실책
+  gd: number; // 병살
+  gyear: string; // 경기 연도(시즌)
+  h2: number; // 2루타
+  h3: number; // 3루타
+  hit: number; // 안타
+  hp: number; // 사구
+  hr: number; // 홈런
+  hra: string; // 타율
+  hrab: number;
+  ib: number; // 고의4구
+  iso: string;
+  kk: number; // 삼진
+  kkab: number;
+  ops: string; // OPS
+  pa: number;
+  rbi: number; // 타점
+  run: number;
+  sb: number; // 도루
+  sbTryCn: number;
+  sba: string;
+  sf: number;
+  sh: number;
+  slab: number;
+  slg: string; // 장타율
+  teamCode: string; // 팀 코드
+  teamName: 'KT'; // 팀 이름
 }

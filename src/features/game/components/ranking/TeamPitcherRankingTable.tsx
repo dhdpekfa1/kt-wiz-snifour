@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import {
@@ -8,8 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import axios from 'axios';
-import { TeamPitcherStats } from '../../types';
+import { TeamPitcherStats } from '@/features/game/types';
 
 function TeamPitcherRankingTable() {
   const [teamPitcherRanking, setTeamPitcherRanking] = useState<

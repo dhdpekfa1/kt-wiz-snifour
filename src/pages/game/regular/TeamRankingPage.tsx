@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import {
+  TeamBatterRankingTable,
   TeamPitcherRankingTable,
   TeamRankingTable,
 } from '@/features/game/components';
@@ -56,7 +57,7 @@ function TeamRankingPage() {
           <TeamPitcherRankingTable />
         </TabsContent>
         <TabsContent value="team-batter" className="w-full">
-          {null}
+          <TeamBatterRankingTable />
         </TabsContent>
         <TabsContent value="team-match-record" className="w-full">
           {null}
