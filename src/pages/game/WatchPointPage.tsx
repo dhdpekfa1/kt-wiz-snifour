@@ -1,8 +1,8 @@
-import Breadcrumb from '../common/Breadcrumb';
-import SubTitle from '../common/SubTitle';
-import MatchBoard from './components/MatchBoard';
-import TeamLineup from './components/TeamLineup';
-import { MatchSummaryTable } from './components/table';
+import Breadcrumb from "@/features/common/Breadcrumb";
+import SubTitle from "@/features/common/SubTitle";
+import MatchBoard from "@/features/game/components/MatchBoard";
+import TeamLineup from "@/features/game/components/TeamLineup";
+import { MatchSummaryTable } from "@/features/game/components/table";
 
 const mockData = {
   teamA: {
@@ -10,7 +10,7 @@ const mockData = {
     losses: 70,
     draws: 2,
     winRate: 0.507,
-    seasonResult: '시즌 성적',
+    seasonResult: "시즌 성적",
     seasonRank: 5,
   },
   teamB: {
@@ -18,38 +18,38 @@ const mockData = {
     losses: 66,
     draws: 2,
     winRate: 0.535,
-    seasonResult: '시즌 성적',
+    seasonResult: "시즌 성적",
     seasonRank: 3,
   },
 };
 
-const WatchPointTab = () => {
+const WatchPointPage = () => {
   const mock_data1 = {
-    logoUrl: '/assets/emblems/ktwiz.svg',
-    catcher: '장성우',
-    firstBase: '오재일',
-    secondBase: '김상수',
-    thirdBase: '황재균',
-    shortstop: '심우준',
-    leftField: '로하스',
-    centerField: '배정대',
-    rightField: '송민섭',
-    designatedHitter: '강백호',
-    pitcher: '박영현',
+    logoUrl: "/assets/emblems/ktwiz.svg",
+    catcher: "장성우",
+    firstBase: "오재일",
+    secondBase: "김상수",
+    thirdBase: "황재균",
+    shortstop: "심우준",
+    leftField: "로하스",
+    centerField: "배정대",
+    rightField: "송민섭",
+    designatedHitter: "강백호",
+    pitcher: "박영현",
   };
 
   const mock_data2 = {
-    logoUrl: '/assets/emblems/lgtwins.svg',
-    catcher: '허도환',
-    firstBase: '오스틴',
-    secondBase: '신민재',
-    thirdBase: '문보경',
-    shortstop: '오지환',
-    leftField: '문성주',
-    centerField: '박해민',
-    rightField: '홍창기',
-    designatedHitter: '이영빈',
-    pitcher: '정우영',
+    logoUrl: "/assets/emblems/lgtwins.svg",
+    catcher: "허도환",
+    firstBase: "오스틴",
+    secondBase: "신민재",
+    thirdBase: "문보경",
+    shortstop: "오지환",
+    leftField: "문성주",
+    centerField: "박해민",
+    rightField: "홍창기",
+    designatedHitter: "이영빈",
+    pitcher: "정우영",
   };
 
   return (
@@ -58,28 +58,28 @@ const WatchPointTab = () => {
         {/* 경로 */}
         <Breadcrumb
           paths={[
-            { key: 'home', label: 'Home' },
-            { key: 'game', label: 'Game' },
-            { key: 'regular-season', label: '정규리그' },
-            { key: 'box-score', label: '관전 포인트', isActive: true },
+            { key: "home", label: "Home" },
+            { key: "game", label: "Game" },
+            { key: "regular-season", label: "정규리그" },
+            { key: "box-score", label: "관전 포인트", isActive: true },
           ]}
         />
 
         {/* 경기 정보 보드 */}
         <MatchBoard
           team1Data={{
-            teamName: 'KT',
-            logoUrl: '/assets/emblems/ktwiz.svg',
+            teamName: "KT",
+            logoUrl: "/assets/emblems/ktwiz.svg",
             result: 1,
-            stadium: '원정',
-            tabType: 'MatchBoard',
+            stadium: "원정",
+            tabType: "MatchBoard",
           }}
           team2Data={{
-            teamName: 'LG',
-            logoUrl: '/assets/emblems/lgtwins.svg',
+            teamName: "LG",
+            logoUrl: "/assets/emblems/lgtwins.svg",
             result: 4,
-            stadium: '홈',
-            tabType: 'MatchBoard',
+            stadium: "홈",
+            tabType: "MatchBoard",
           }}
           matchDate="2024-12-10"
           matchTime="18:30"
@@ -101,9 +101,7 @@ const WatchPointTab = () => {
             <SubTitle title="라인업" />
             <div className="w-full flex items-center justify-between gap-10 px-20">
               <TeamLineup data={mock_data1} />
-              <h2 className="text-6xl	text-wiz-red font-extrabold mt-20">
-                VS
-              </h2>
+              <h2 className="text-6xl	text-wiz-red font-extrabold mt-20">VS</h2>
               <TeamLineup data={mock_data2} />
             </div>
           </div>
@@ -131,4 +129,4 @@ const WatchPointTab = () => {
   );
 };
 
-export { WatchPointTab };
+export default WatchPointPage;

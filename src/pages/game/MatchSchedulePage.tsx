@@ -1,9 +1,9 @@
 import channelsData from "@/assets/data/broadcastChannels.json";
 import MatchInfoCarousel from "@/components/ui/carousel/MatchInfoCarousel";
 import Breadcrumb from "@/features/common/Breadcrumb";
-import { MatchCalendar } from "./components/calender";
+import { MatchCalendar } from "@/features/game/components/calender";
 
-const MatchScheduleTab = () => {
+const MatchSchedulePage = () => {
   return (
     <div className="w-full flex justify-center my-20">
       <div className="w-full flex flex-col items-center justify-center">
@@ -48,4 +48,4 @@ const MatchScheduleTab = () => {
   );
 };
 
-export { MatchScheduleTab };
+export default MatchSchedulePage;

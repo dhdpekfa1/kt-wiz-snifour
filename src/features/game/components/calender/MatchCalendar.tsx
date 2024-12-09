@@ -42,7 +42,6 @@ const MatchCalendar = () => {
 
   useEffect(() => {
     fetchMatchSchedule();
-    console.log("allMatchData ===> ", allMatchData);
   }, [currentMonth]);
 
   const fetchMatchSchedule = async () => {
