@@ -3,8 +3,8 @@ import MediaLayout from '@/features/media/common/MediaLayout';
 import PhotoContent from '@/features/media/components/photo/PhotoContent';
 import PhotoFilter from '@/features/media/components/photo/PhotoFilter';
 
+import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
-import { useTabFromUrl } from '@/features/media/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';
 
 import '@/features/media/css/media-list-layout.css';
