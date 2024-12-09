@@ -1,4 +1,4 @@
-import Banner from '@/features/media/common/Banner';
+import Banner from '@/features/common/Banner';
 import MediaLayout from '@/features/media/common/MediaLayout';
 import SearchBar from '@/features/media/common/SearchBar';
 import NewsContent from '@/features/media/components/news/NewsContent';
