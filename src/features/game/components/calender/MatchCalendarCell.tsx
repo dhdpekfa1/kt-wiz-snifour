@@ -3,15 +3,18 @@ import { GameSchedule } from "./MatchCalendar";
 
 interface MatchCalendarCellProps {
   date: Date;
-  matchData: GameSchedule | undefined;
+  ktMatchData: GameSchedule | undefined;
+  allMatchData: GameSchedule[] | [];
   selectedTab: "kt wiz 경기" | "전체 리그";
 }
 
 const MatchCalendarCell = ({
   date,
-  matchData,
+  ktMatchData,
+  allMatchData,
   selectedTab,
 }: MatchCalendarCellProps) => {
+  const isKTGame = ktMatchData?.home === "KT" || ktMatchData?.visit === "KT";
   const day = date.getDay();
 
   const getResultColor = (result: string) => {
@@ -42,26 +45,28 @@ const MatchCalendarCell = ({
         {format(date, "d")}
       </div>
 
-      {matchData && selectedTab === "kt wiz 경기" && (
+      {ktMatchData && selectedTab === "kt wiz 경기" && (
         <div
-          key={matchData.gmkey}
+          key={ktMatchData.gmkey}
           className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
-            matchData.stadium === "수원" ? "bg-[#f5323250]" : ""
+            ktMatchData.stadium === "수원" ? "bg-[#f5323250]" : ""
           }`}
         >
           {/* 경기 결과 */}
           <div
             className={`absolute top-2 left-2 text-xs text-white py-1 px-2 rounded ${getResultColor(
-              matchData.outcome
+              ktMatchData.outcome
             )}`}
           >
-            {matchData.outcome}
+            {ktMatchData.outcome}
           </div>
 
           {/* 팀 로고 */}
           <img
             src={
-              matchData.home === "KT" ? matchData.visitLogo : matchData.homeLogo
+              ktMatchData.home === "KT"
+                ? ktMatchData.visitLogo
+                : ktMatchData.homeLogo
             }
             alt="team logo"
             className="w-20 h-20 my-6"
@@ -69,13 +74,30 @@ const MatchCalendarCell = ({
 
           {/* 경기 정보 */}
           <span className="text-sm text-wiz-white">
-            {matchData.gtime} {matchData.stadium}
+            {ktMatchData.gtime} {ktMatchData.stadium}
           </span>
-          <div className="text-gray-400">{matchData.broadcast}</div>
+          <div className="text-gray-400">{ktMatchData.broadcast}</div>
         </div>
       )}
 
-      {matchData && selectedTab === "전체 리그" && <div>TODO</div>}
+      {allMatchData && selectedTab === "전체 리그" && (
+        <div className="flex flex-col gap-2 items-center mt-6">
+          {allMatchData.map((data) => {
+            const isKTGame = data.home === "KT" || data.visit === "KT";
+            return (
+              <p
+                key={data.gmkey}
+                className={`${
+                  isKTGame ? "text-[#f53232]" : "text-[#efefef]"
+                } text-md`}
+              >
+                {data.home} {data.homeScore || "-"} : {data.visit}{" "}
+                {data.visitScore || "-"} [{data.stadium}]
+              </p>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

@@ -3,7 +3,10 @@ import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { DayPicker, IconDropdown, IconLeft, IconRight } from "react-day-picker";
 import { Button } from "@/components/ui";
-import { getMonthSchedule } from "../../apis/matchSchedule";
+import {
+  getMonthSchedule,
+  getAllMonthSchedule,
+} from "../../apis/matchSchedule";
 import { MatchCalendarCell } from "./MatchCalendarCell";
 
 export interface GameSchedule {
@@ -34,16 +37,23 @@ const MatchCalendar = () => {
     "kt wiz 경기"
   );
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
-  const [matchData, setMatchData] = useState<GameSchedule[]>();
+  const [ktMatchData, setKTMatchData] = useState<GameSchedule[]>();
+  const [allMatchData, setAllMatchData] = useState<GameSchedule[]>();
 
   useEffect(() => {
     fetchMatchSchedule();
+    console.log("allMatchData ===> ", allMatchData);
   }, [currentMonth]);
 
   const fetchMatchSchedule = async () => {
     const yearMonth = format(currentMonth, "yyyyMM");
-    const data: GameSchedule[] = await getMonthSchedule(yearMonth);
-    setMatchData(data);
+    if (selectedTab === "kt wiz 경기") {
+      const data: GameSchedule[] = await getMonthSchedule(yearMonth);
+      setKTMatchData(data);
+    } else {
+      const data: GameSchedule[] = await getAllMonthSchedule(yearMonth);
+      setAllMatchData(data);
+    }
   };
 
   const calendarHeader = ({ displayMonth }: { displayMonth: Date }) => {
@@ -110,14 +120,22 @@ const MatchCalendar = () => {
 
   const renderCellContent = (date: Date) => {
     const formattedDate = format(date, "yyyyMMdd");
-    const match = matchData?.find(
+    const match = ktMatchData?.find(
       (item) => item.gameDate.toString() === formattedDate
     );
+    const matches = allMatchData?.filter(
+      (item) => item.gameDate.toString() === formattedDate
+    );
+
+    // const matches = allMatchData?.filter(
+    //   (item) => format(new Date(item.gameDate), "yyyyMMdd") === formattedDate
+    // );
 
     return (
       <MatchCalendarCell
         date={date}
-        matchData={match}
+        ktMatchData={match}
+        allMatchData={matches || []}
         selectedTab={selectedTab}
       />
     );
