@@ -14,7 +14,6 @@ const MatchCalendarCell = ({
   allMatchData,
   selectedTab,
 }: MatchCalendarCellProps) => {
-  const isKTGame = ktMatchData?.home === "KT" || ktMatchData?.visit === "KT";
   const day = date.getDay();
 
   const getResultColor = (result: string) => {
