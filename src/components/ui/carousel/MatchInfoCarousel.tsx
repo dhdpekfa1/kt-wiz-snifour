@@ -1,11 +1,16 @@
+import { Card, CardContent } from '@/components/ui';
 import TeamInfo from '@/features/common/TeamInfo';
-import { Card, CardContent } from '../card/card';
+import { getMonthSchedule } from '@/features/game/apis/matchSchedule';
+import { GameSchedule } from '@/features/game/components/calender/MatchCalendar';
+import { useMatchStore } from '@/store/useMatchStore';
+import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  // CarouselPrevious,
-  // CarouselNext,
+  CarouselNext,
+  CarouselPrevious,
 } from './carousel';
 
 const matchMockData = [
@@ -43,6 +48,20 @@ const matchMockData = [
 ];
 
 const MatchInfoCarousel = () => {
+  const [matchData, setMatchData] = useState<GameSchedule[]>();
+  const { currentMonth } = useMatchStore();
+
+  useEffect(() => {
+    const fetchMatchSchedule = async () => {
+      const yearMonth = format(currentMonth, 'yyyyMM');
+
+      const data: GameSchedule[] = await getMonthSchedule(yearMonth);
+      setMatchData(data);
+    };
+    fetchMatchSchedule();
+  }, [currentMonth]);
+
+  console.log('matchData ==> ', matchData);
   return (
     <div className="w-full max-w-2xl min-w-full overflow:hidden">
       <Carousel className="relative max-w-full">
@@ -115,8 +134,8 @@ const MatchInfoCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        {/* <CarouselPrevious className="absolute left-[-28px] top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
-        <CarouselNext className="absolute right-[-24px] top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" /> */}
+        <CarouselPrevious className="absolute left-[-28px] top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
+        <CarouselNext className="absolute right-[-24px] top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
       </Carousel>
     </div>
   );

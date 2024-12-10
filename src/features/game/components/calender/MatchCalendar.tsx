@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui';
+import { useMatchStore } from '@/store/useMatchStore';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
@@ -36,9 +37,10 @@ const MatchCalendar = () => {
   const [selectedTab, setSelectedTab] = useState<'kt wiz 경기' | '전체 리그'>(
     'kt wiz 경기'
   );
-  const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
+  // const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [ktMatchData, setKTMatchData] = useState<GameSchedule[]>();
   const [allMatchData, setAllMatchData] = useState<GameSchedule[]>();
+  const { currentMonth, setCurrentMonth } = useMatchStore();
 
   useEffect(() => {
     const fetchMatchSchedule = async () => {
