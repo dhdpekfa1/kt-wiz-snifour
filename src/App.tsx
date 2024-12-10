@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/Header';
-import { BoxScoreTab, MatchScheduleTab, WatchPointTab } from './features/game';
 import HomePage from './pages/HomePage';
 import PlayerPage from './pages/media/FirstPitch';
 import HighlightPage from './pages/media/Highlight';
@@ -19,6 +18,7 @@ import ParkingPage from './pages/wizPark/ParkingPage';
 
 import NotFoundPage from './pages/NotFoundPage';
 import TeamRankingPage from './pages/game/regular/TeamRankingPage';
+import RegularGamePage from './pages/game/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
 
@@ -47,8 +47,17 @@ function App() {
             {/* Game */}
             <Route
               path="/game/regular/schedule"
-              element={<MatchScheduleTab />}
+              element={<RegularGamePage />}
             />
+            <Route
+              path="/game/regular/boxscore"
+              element={<RegularGamePage />}
+            />
+            <Route
+              path="/game/regular/watchPoint"
+              element={<RegularGamePage />}
+            />
+
             <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
             <Route
               path="/game/regular/ranking/team"
@@ -73,11 +82,6 @@ function App() {
 
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />
-
-            <Route
-              path="/game/regular/watchPoint"
-              element={<WatchPointTab />}
-            />
 
             {/* Player */}
             <Route path="/player/song" element={<CheerSongPage />} />

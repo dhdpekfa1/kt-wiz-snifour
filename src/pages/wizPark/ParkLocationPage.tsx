@@ -83,7 +83,7 @@ function ParkLocationPage() {
               </li>
               <li className="flex">
                 <ArrowBigRightIcon />
-                55분 버스이용 종합운동장 하차 수원역하차 (택시로 20분){' '}
+                55분 버스이용 종합운동장 하차 수원역하차 (택시로 20분)
               </li>
               <li className="flex">
                 <ArrowBigRightIcon />
