@@ -4,7 +4,7 @@ import { getMonthSchedule } from '@/features/game/apis/matchSchedule';
 import { GameSchedule } from '@/features/game/components/calender/MatchCalendar';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format, parse } from 'date-fns';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -15,13 +15,16 @@ import {
 
 const MatchInfoCarousel = () => {
   const [matchData, setMatchData] = useState<GameSchedule[]>([]);
-  const { currentMonth } = useMatchStore();
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  const formatDate = (date: string): string => {
+  const { currentMonth, selectedDate } = useMatchStore();
+
+  const formatDate = useCallback((date: string): string => {
     return format(parse(date, 'yyyyMMdd', new Date()), 'yyyy.MM.dd');
-  };
+  }, []);
 
   useEffect(() => {
+    // 이번 달에 경기가 없을 경우 가장 최신 경기 확인
     const fetchMatchSchedule = async () => {
       let yearMonth = format(currentMonth, 'yyyyMM');
       let retries = 12; // 최대 12번 호출 (1년)
@@ -52,6 +55,25 @@ const MatchInfoCarousel = () => {
     fetchMatchSchedule();
   }, [currentMonth]);
 
+  // 캐러셀 이동
+  useEffect(() => {
+    if (!selectedDate || !carouselRef.current) return;
+
+    const formattedSelectedDate = format(selectedDate, 'yyyy.MM.dd');
+    const selectedIndex = matchData.findIndex(
+      (game) => formatDate(game.displayDate) === formattedSelectedDate
+    );
+
+    if (selectedIndex !== -1) {
+      const carouselWidth = carouselRef.current.offsetWidth;
+      const scrollAmount = carouselWidth * selectedIndex;
+      carouselRef.current.scrollTo({
+        left: scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  }, [selectedDate, matchData, formatDate]);
+
   // 최근 경기 이후 로직
   const today = new Date();
   const hasUpcomingGames = matchData.some(
@@ -60,7 +82,7 @@ const MatchInfoCarousel = () => {
 
   return (
     <div className="w-full max-w-2xl min-w-full overflow:hidden">
-      <Carousel className="relative max-w-full">
+      <Carousel ref={carouselRef} className="relative max-w-full">
         <CarouselContent className="-ml-2">
           {matchData.map((data, index) => (
             <CarouselItem
@@ -96,11 +118,11 @@ const MatchInfoCarousel = () => {
 
                         {/* 스코어, 승패, 경기 정보 버튼 */}
                         <div className="flex flex-col items-center justify-center">
-                          <h4 className="mb-4 font-normal text-xl leading-none text-wiz-white">
+                          <h4 className="mb-4 font-normal text-3xl leading-none text-wiz-white">
                             {data.homeScore} : {data.visitScore}
                           </h4>
                           <div className="flex gap-2">
-                            <p className="mb-4 font-bold leading-none text-wiz-red">
+                            <p className="mb-4 text-lg leading-none text-wiz-red">
                               {data.outcome}
                             </p>
                           </div>
