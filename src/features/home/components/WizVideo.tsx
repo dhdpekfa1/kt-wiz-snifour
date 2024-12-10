@@ -23,7 +23,6 @@ function WizVideo() {
         );
 
         if (status === 200 && data) {
-          console.log(data.data.list);
           setVideos(data.data.list || []);
         }
       } catch (error) {
