@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
@@ -15,7 +15,7 @@ export const getMonthSchedule = async (yearMonth: string) => {
 
     return res.data.data.list;
   } catch (err) {
-    console.error("getMonthSchedule error:", err);
+    console.error('getMonthSchedule error:', err);
     throw err;
   }
 };
@@ -33,7 +33,7 @@ export const getAllMonthSchedule = async (yearMonth: string) => {
 
     return res.data.data.list;
   } catch (err) {
-    console.error("getAllMonthSchedule error:", err);
+    console.error('getAllMonthSchedule error:', err);
     throw err;
   }
 };

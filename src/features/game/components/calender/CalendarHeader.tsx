@@ -1,5 +1,5 @@
-import { format } from "date-fns";
-import { IconLeft, IconRight, IconDropdown } from "react-day-picker";
+import { format } from 'date-fns';
+import { IconDropdown, IconLeft, IconRight } from 'react-day-picker';
 
 interface CalendarHeaderProps {
   displayMonth: Date; // 현재 표시 중인 월
@@ -25,13 +25,13 @@ const CalendarHeader = ({
       </button>
       <div className="relative flex items-center">
         <span className="text-lg font-bold text-wiz-white">
-          {format(displayMonth, "yyyy년 MM월")}
+          {format(displayMonth, 'yyyy년 MM월')}
         </span>
         {/* 드롭다운 버튼 */}
         <select
-          value={format(displayMonth, "yyyy-MM")}
+          value={format(displayMonth, 'yyyy-MM')}
           onChange={(e) => {
-            const [year, month] = e.target.value.split("-");
+            const [year, month] = e.target.value.split('-');
             setCurrentMonth(new Date(Number(year), Number(month) - 1));
           }}
           className="absolute right-0 top-0 text-sm bg-transparent border-none outline-none cursor-pointer w-6 h-6 opacity-0"
@@ -39,8 +39,8 @@ const CalendarHeader = ({
           {Array.from({ length: 16 }, (_, i) => {
             const month = new Date(2024, 6 + i);
             return (
-              <option key={month.getTime()} value={format(month, "yyyy-MM")}>
-                {format(month, "yyyy년 MM월")}
+              <option key={month.getTime()} value={format(month, 'yyyy-MM')}>
+                {format(month, 'yyyy년 MM월')}
               </option>
             );
           })}

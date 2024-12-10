@@ -1,11 +1,11 @@
-import { format } from "date-fns";
-import { GameSchedule } from "./MatchCalendar";
+import { format } from 'date-fns';
+import { GameSchedule } from './MatchCalendar';
 
 interface MatchCalendarCellProps {
   date: Date;
   ktMatchData: GameSchedule | undefined;
   allMatchData: GameSchedule[] | [];
-  selectedTab: "kt wiz 경기" | "전체 리그";
+  selectedTab: 'kt wiz 경기' | '전체 리그';
 }
 
 const MatchCalendarCell = ({
@@ -18,14 +18,14 @@ const MatchCalendarCell = ({
 
   const getResultColor = (result: string) => {
     switch (result) {
-      case "승":
-        return "bg-red-500";
-      case "패":
-        return "bg-gray-600";
-      case "무":
-        return "bg-gray-400";
+      case '승':
+        return 'bg-red-500';
+      case '패':
+        return 'bg-gray-600';
+      case '무':
+        return 'bg-gray-400';
       default:
-        return "";
+        return '';
     }
   };
 
@@ -35,20 +35,20 @@ const MatchCalendarCell = ({
       <div
         className={`absolute top-2 right-2 text-sm font-bold ${
           day === 0
-            ? "text-red-500"
+            ? 'text-red-500'
             : day === 6
-            ? "text-blue-500"
-            : "text-wiz-white"
+              ? 'text-blue-500'
+              : 'text-wiz-white'
         }`}
       >
-        {format(date, "d")}
+        {format(date, 'd')}
       </div>
 
-      {ktMatchData && selectedTab === "kt wiz 경기" && (
+      {ktMatchData && selectedTab === 'kt wiz 경기' && (
         <div
           key={ktMatchData.gmkey}
           className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
-            ktMatchData.stadium === "수원" ? "bg-[#f5323250]" : ""
+            ktMatchData.stadium === '수원' ? 'bg-[#f5323250]' : ''
           }`}
         >
           {/* 경기 결과 */}
@@ -63,7 +63,7 @@ const MatchCalendarCell = ({
           {/* 팀 로고 */}
           <img
             src={
-              ktMatchData.home === "KT"
+              ktMatchData.home === 'KT'
                 ? ktMatchData.visitLogo
                 : ktMatchData.homeLogo
             }
@@ -79,19 +79,19 @@ const MatchCalendarCell = ({
         </div>
       )}
 
-      {allMatchData && selectedTab === "전체 리그" && (
+      {allMatchData && selectedTab === '전체 리그' && (
         <div className="flex flex-col gap-2 items-center mt-6">
           {allMatchData.map((data) => {
-            const isKTGame = data.home === "KT" || data.visit === "KT";
+            const isKTGame = data.home === 'KT' || data.visit === 'KT';
             return (
               <p
                 key={data.gmkey}
                 className={`${
-                  isKTGame ? "text-[#f53232]" : "text-[#efefef]"
+                  isKTGame ? 'text-[#f53232]' : 'text-[#efefef]'
                 } text-md`}
               >
-                {data.home} {data.homeScore || "-"} : {data.visit}{" "}
-                {data.visitScore || "-"} [{data.stadium}]
+                {data.home} {data.homeScore || '-'} : {data.visit}{' '}
+                {data.visitScore || '-'} [{data.stadium}]
               </p>
             );
           })}

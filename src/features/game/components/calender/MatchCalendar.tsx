@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
-import { DayPicker } from "react-day-picker";
-import { Button } from "@/components/ui";
+import { Button } from '@/components/ui';
+import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
+import { useEffect, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 import {
-  getMonthSchedule,
   getAllMonthSchedule,
-} from "../../apis/matchSchedule";
-import { MatchCalendarCell, CalendarHeader } from "./";
+  getMonthSchedule,
+} from '../../apis/matchSchedule';
+import { CalendarHeader, MatchCalendarCell } from './';
 
 export interface GameSchedule {
   broadcast: string; // 방송 정보
@@ -33,30 +33,30 @@ export interface GameSchedule {
 
 const MatchCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [selectedTab, setSelectedTab] = useState<"kt wiz 경기" | "전체 리그">(
-    "kt wiz 경기"
+  const [selectedTab, setSelectedTab] = useState<'kt wiz 경기' | '전체 리그'>(
+    'kt wiz 경기'
   );
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [ktMatchData, setKTMatchData] = useState<GameSchedule[]>();
   const [allMatchData, setAllMatchData] = useState<GameSchedule[]>();
 
   useEffect(() => {
+    const fetchMatchSchedule = async () => {
+      const yearMonth = format(currentMonth, 'yyyyMM');
+      if (selectedTab === 'kt wiz 경기') {
+        const data: GameSchedule[] = await getMonthSchedule(yearMonth);
+        setKTMatchData(data);
+      } else {
+        const data: GameSchedule[] = await getAllMonthSchedule(yearMonth);
+        setAllMatchData(data);
+      }
+    };
+
     fetchMatchSchedule();
   }, [currentMonth, selectedTab]);
 
-  const fetchMatchSchedule = async () => {
-    const yearMonth = format(currentMonth, "yyyyMM");
-    if (selectedTab === "kt wiz 경기") {
-      const data: GameSchedule[] = await getMonthSchedule(yearMonth);
-      setKTMatchData(data);
-    } else {
-      const data: GameSchedule[] = await getAllMonthSchedule(yearMonth);
-      setAllMatchData(data);
-    }
-  };
-
   const renderCellContent = (date: Date) => {
-    const formattedDate = format(date, "yyyyMMdd");
+    const formattedDate = format(date, 'yyyyMMdd');
     const match = ktMatchData?.find(
       (item) => item.gameDate.toString() === formattedDate
     );
@@ -81,21 +81,21 @@ const MatchCalendar = () => {
         <div className="flex gap-2">
           <Button
             className={`text-md px-4 py-2 rounded cursor-pointer border border-wiz-white ${
-              selectedTab === "kt wiz 경기"
-                ? "bg-wiz-red text-white hover:bg-wiz-red"
-                : "bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white"
+              selectedTab === 'kt wiz 경기'
+                ? 'bg-wiz-red text-white hover:bg-wiz-red'
+                : 'bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white'
             }`}
-            onClick={() => setSelectedTab("kt wiz 경기")}
+            onClick={() => setSelectedTab('kt wiz 경기')}
           >
             kt wiz 경기
           </Button>
           <Button
             className={`text-md px-5 py-2 rounded cursor-pointer border border-wiz-white ${
-              selectedTab === "전체 리그"
-                ? "bg-wiz-red text-white hover:bg-wiz-red"
-                : "bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white"
+              selectedTab === '전체 리그'
+                ? 'bg-wiz-red text-white hover:bg-wiz-red'
+                : 'bg-transparent text-wiz-white hover:text-wiz-black hover:bg-wiz-white'
             }`}
-            onClick={() => setSelectedTab("전체 리그")}
+            onClick={() => setSelectedTab('전체 리그')}
           >
             전체 리그
           </Button>
@@ -120,9 +120,9 @@ const MatchCalendar = () => {
         locale={ko}
         className="border border-[#fefefe40] rounded-lg w-full max-w-full mx-auto"
         classNames={{
-          table: "w-full border-collapse",
-          cell: "h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative",
-          day: "h-full w-full text-sm flex items-center justify-center relative",
+          table: 'w-full border-collapse',
+          cell: 'h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative',
+          day: 'h-full w-full text-sm flex items-center justify-center relative',
         }}
         captionLayout="dropdown"
         defaultMonth={new Date()}
@@ -140,16 +140,16 @@ const MatchCalendar = () => {
           Head: () => (
             <thead>
               <tr className="bg-[#35383e]">
-                {["일", "월", "화", "수", "목", "금", "토"].map(
+                {['일', '월', '화', '수', '목', '금', '토'].map(
                   (day, index) => (
                     <th
                       key={day}
                       className={`p-2 font-medium ${
                         index === 0
-                          ? "text-red-500"
+                          ? 'text-red-500'
                           : index === 6
-                          ? "text-blue-500"
-                          : "text-wiz-white"
+                            ? 'text-blue-500'
+                            : 'text-wiz-white'
                       }`}
                     >
                       {day}
@@ -162,9 +162,9 @@ const MatchCalendar = () => {
           DayContent: ({ date }) => (
             <div
               className={`relative w-full h-full bg-[#35383e20] ${
-                format(date, "yyyy-MM-dd") === format(new Date(), "yyyy-MM-dd")
-                  ? "border-2 border-wiz-red"
-                  : ""
+                format(date, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
+                  ? 'border-2 border-wiz-red'
+                  : ''
               }`}
             >
               {renderCellContent(date)}
