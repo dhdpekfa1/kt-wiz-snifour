@@ -2,24 +2,24 @@ import HorizontalArticle from '@/features/media/common/HorizontalArticle';
 import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
 import { usePagination } from '@/features/media/hooks/usePagination';
 import { newsItems } from '@/features/media/mock_data';
-import { useGetNews } from '@/features/media/apis/news.query';
+import { useGetNewsList } from '@/features/media/apis/NewsApi.query';
 
 const itemsPerPage = 10; // 한 페이지당 보여줄 아이템 수 (임시)
 const totalItems = 95; // API에서 받아온 총 아이템 수 (임시)
 
 const NewsContent = () => {
-  // API 연동
-
   const { currentPage, setCurrentPage } = usePagination({
     totalItems,
     itemsPerPage,
   });
 
-  const { data, isLoading } = useGetNews('');
+  const { data, isLoading, error } = useGetNewsList({
+    variables: {
+      searchWord: '빅또리',
+    },
+  });
 
   if (isLoading) return <div>로딩 중...</div>;
-
-  console.log('data:', data);
 
   return (
     <>
