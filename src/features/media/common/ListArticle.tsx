@@ -4,16 +4,16 @@ import { EyeIcon } from 'lucide-react';
 import { Link } from 'react-router';
 import { HorizontalType } from '../mock_data';
 
-type HorizontalArticleProps = Omit<HorizontalType, 'id'> & {
+type ListArticleProps = Omit<HorizontalType, 'id'> & {
   link: string;
 };
 
 // Root 컴포넌트
-const HorizontalArticle = ({
+const ListArticle = ({
   link,
   children,
   className,
-}: Pick<HorizontalArticleProps, 'link'> & {
+}: Pick<ListArticleProps, 'link'> & {
   children: React.ReactNode;
   className?: string;
 }) => {
@@ -32,7 +32,7 @@ const HorizontalArticle = ({
 };
 
 // Thumbnail Container 컴포넌트
-const HorizontalArticleThumbnail = ({
+const ListArticleThumbnail = ({
   thumbnail,
   title,
   className,
@@ -61,7 +61,7 @@ const HorizontalArticleThumbnail = ({
 };
 
 // Content Container 컴포넌트
-const HorizontalArticleContent = ({
+const ListArticleContent = ({
   children,
   className,
 }: { children: React.ReactNode; className?: string }) => {
@@ -73,7 +73,7 @@ const HorizontalArticleContent = ({
 };
 
 // Title 컴포넌트
-const HorizontalArticleTitle = ({
+const ListArticleTitle = ({
   title,
   className,
 }: { title: string; className?: string }) => {
@@ -81,7 +81,7 @@ const HorizontalArticleTitle = ({
 };
 
 // Description 컴포넌트
-const HorizontalArticleDescription = ({
+const ListArticleDescription = ({
   description,
   className,
 }: { description: string; className?: string }) => {
@@ -93,7 +93,7 @@ const HorizontalArticleDescription = ({
 };
 
 // Footer 컴포넌트
-const HorizontalArticleFooter = ({
+const ListArticleFooter = ({
   date,
   views,
   className,
@@ -109,10 +109,10 @@ const HorizontalArticleFooter = ({
   );
 };
 
-HorizontalArticle.Thumbnail = HorizontalArticleThumbnail;
-HorizontalArticle.Content = HorizontalArticleContent;
-HorizontalArticle.Title = HorizontalArticleTitle;
-HorizontalArticle.Description = HorizontalArticleDescription;
-HorizontalArticle.Footer = HorizontalArticleFooter;
+ListArticle.Thumbnail = ListArticleThumbnail;
+ListArticle.Content = ListArticleContent;
+ListArticle.Title = ListArticleTitle;
+ListArticle.Description = ListArticleDescription;
+ListArticle.Footer = ListArticleFooter;
 
-export default HorizontalArticle;
+export default ListArticle;

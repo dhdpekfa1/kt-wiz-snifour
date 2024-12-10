@@ -1,4 +1,4 @@
-import HorizontalArticle from '@/features/media/common/HorizontalArticle';
+import ListArticle from '@/features/media/common/ListArticle';
 import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
 import { usePagination } from '@/features/media/hooks/usePagination';
 import { newsItems2 } from '@/features/media/mock_data';
@@ -18,17 +18,13 @@ const PressContent = () => {
     <>
       {/* 보도자료 컨텐츠 */}
       {newsItems2.map(({ id, title, description, date, views }) => (
-        <HorizontalArticle key={id} link={`/media/wizpress/${id}`}>
-          <HorizontalArticle.Content className="max-w-4xl">
-            <HorizontalArticle.Title title={title} />
-            <HorizontalArticle.Description description={description} />
-            <HorizontalArticle.Footer
-              date={date}
-              views={views}
-              className="mt-4"
-            />
-          </HorizontalArticle.Content>
-        </HorizontalArticle>
+        <ListArticle key={id} link={`/media/wizpress/${id}`}>
+          <ListArticle.Content className="max-w-4xl">
+            <ListArticle.Title title={title} />
+            <ListArticle.Description description={description} />
+            <ListArticle.Footer date={date} views={views} className="mt-4" />
+          </ListArticle.Content>
+        </ListArticle>
       ))}
 
       {/* 페이지네이션 */}

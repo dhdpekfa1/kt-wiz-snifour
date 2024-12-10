@@ -1,4 +1,4 @@
-import HorizontalArticle from '@/features/media/common/HorizontalArticle';
+import ListArticle from '@/features/media/common/ListArticle';
 import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
 import { usePagination } from '@/features/media/hooks/usePagination';
 import { newsItems as firstPitchItems } from '@/features/media/mock_data';
@@ -19,14 +19,14 @@ const FirstPitchContent = () => {
       {/* 시구자 정보 컨텐츠 */}
       {firstPitchItems.map(
         ({ id, thumbnail, title, description, date, views }) => (
-          <HorizontalArticle key={id} link={`/media/firstpitch/${id}`}>
-            <HorizontalArticle.Thumbnail thumbnail={thumbnail} title={title} />
-            <HorizontalArticle.Content>
-              <HorizontalArticle.Title title={title} />
-              <HorizontalArticle.Description description={description} />
-              <HorizontalArticle.Footer date={date} views={views} />
-            </HorizontalArticle.Content>
-          </HorizontalArticle>
+          <ListArticle key={id} link={`/media/firstpitch/${id}`}>
+            <ListArticle.Thumbnail thumbnail={thumbnail} title={title} />
+            <ListArticle.Content>
+              <ListArticle.Title title={title} />
+              <ListArticle.Description description={description} />
+              <ListArticle.Footer date={date} views={views} />
+            </ListArticle.Content>
+          </ListArticle>
         )
       )}
 
