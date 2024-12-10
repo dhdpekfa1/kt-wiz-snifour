@@ -3,7 +3,7 @@ import MediaLayout from '@/features/media/common/MediaLayout';
 import SearchBar from '@/features/media/common/SearchBar';
 import HighlightContent from '@/features/media/components/highlight/HighlightContent';
 
-import '@/features/media/css/media-list-layout.css';
+import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
 import { cn } from '@/lib/utils';
 

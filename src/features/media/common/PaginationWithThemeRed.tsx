@@ -8,7 +8,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui';
 import { cn } from '@/lib/utils';
-import { getPageRange } from '../services/getPageRange';
+import { getPageRange } from '@/features/media/services';
 
 type PaginationProps = {
   currentPage: number;

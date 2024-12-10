@@ -42,14 +42,17 @@ const HorizontalArticleThumbnail = ({
       className={cn(
         'w-full shrink-0 overflow-hidden rounded-lg',
         'md:w-[280px]',
+        'relative aspect-[16/9]',
         className
       )}
     >
       <img
         src={thumbnail || DEFAULT_IMAGE}
         alt={title}
+        loading="lazy"
+        decoding="async"
         className={cn(
-          'w-full aspect-[16/9] object-cover transform',
+          'absolute inset-0 w-full h-full object-cover',
           'thumbnail-animation'
         )}
       />

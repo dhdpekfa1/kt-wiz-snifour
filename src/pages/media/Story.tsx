@@ -6,7 +6,7 @@ import SearchBar from '@/features/media/common/SearchBar';
 
 import StoryContent from '@/features/media/components/story/StoryContent';
 
-import '@/features/media/css/media-list-layout.css';
+import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
 import { cn } from '@/lib/utils';
 

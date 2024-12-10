@@ -7,7 +7,7 @@ import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import { cn } from '@/lib/utils';
 
-import '@/features/media/css/media-list-layout.css';
+import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
 
 const PHOTO_TABS_CONFIG = [

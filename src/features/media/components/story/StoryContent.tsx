@@ -14,7 +14,7 @@ import {
 import { usePagination } from '@/features/media/hooks/usePagination';
 import { storyItems } from '@/features/media/mock_data';
 
-import ListArticle from '@/features/media/common/ListArticle';
+import GridArticle from '@/features/media/common/GridArticle';
 import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
 import PlayButton from '@/features/media/common/PlayButton';
 
@@ -34,16 +34,16 @@ const StoryContent = () => {
   return (
     <>
       {/* 스토리 컨텐츠 */}
-      <div className={cn('media-list-grid')}>
+      <div className={cn('media-grid')}>
         {storyItems.map(({ id, thumbnail, title, date }) => (
-          <ListArticle key={id} className="cursor-pointer">
-            <ListArticle.Media onClick={() => setSelectedId(id)}>
-              <ListArticle.Thumbnail thumbnail={thumbnail} title={title} />
-              <ListArticle.Overlay elements={<PlayButton />} />
-            </ListArticle.Media>
-            <ListArticle.Title title={title} />
-            <ListArticle.Footer date={date} />
-          </ListArticle>
+          <GridArticle key={id} className="cursor-pointer">
+            <GridArticle.Media onClick={() => setSelectedId(id)}>
+              <GridArticle.Thumbnail thumbnail={thumbnail} title={title} />
+              <GridArticle.Overlay elements={<PlayButton />} />
+            </GridArticle.Media>
+            <GridArticle.Title title={title} />
+            <GridArticle.Footer date={date} />
+          </GridArticle>
         ))}
       </div>
 
@@ -76,25 +76,25 @@ const StoryContent = () => {
           {selectedStory && (
             <div className="h-full flex items-center justify-center">
               <div className="relative max-w-5xl w-full mx-8">
-                <ListArticle.Media
+                <GridArticle.Media
                   className="mb-0"
                   onClick={() => setIsPlaying(true)}
                 >
                   {isPlaying ? (
-                    <ListArticle.Video
+                    <GridArticle.Video
                       src={''}
                       poster={selectedStory.thumbnail}
                     />
                   ) : (
                     <>
-                      <ListArticle.Thumbnail
+                      <GridArticle.Thumbnail
                         thumbnail={selectedStory.thumbnail}
                         title={selectedStory.title}
                       />
                       <PlayButton className="absolute left-4 bottom-4" />
                     </>
                   )}
-                </ListArticle.Media>
+                </GridArticle.Media>
 
                 <DialogHeader className="gap-2 mt-4">
                   <DialogTitle className="text-2xl font-bold text-white">

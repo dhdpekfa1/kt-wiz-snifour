@@ -1,7 +1,7 @@
 import { DEFAULT_IMAGE } from '@/constants/default-image';
 import { cn } from '@/lib/utils';
 
-const ListArticle = ({
+const GridArticle = ({
   children,
   className,
 }: {
@@ -12,7 +12,7 @@ const ListArticle = ({
 };
 
 // Media Container 컴포넌트
-const ListArticleMedia = ({
+const GridArticleMedia = ({
   children,
   onClick,
   className,
@@ -39,7 +39,7 @@ const ListArticleMedia = ({
 };
 
 // Thumbnail 컴포넌트
-const ListArticleThumbnail = ({
+const GridArticleThumbnail = ({
   thumbnail,
   title,
   className,
@@ -59,7 +59,7 @@ const ListArticleThumbnail = ({
 };
 
 // Video 컴포넌트
-const ListArticleVideo = ({
+const GridArticleVideo = ({
   src = '',
   poster,
   className,
@@ -81,7 +81,7 @@ const ListArticleVideo = ({
 };
 
 // Video Overlay 컴포넌트
-const ListArticleOverlay = ({ elements }: { elements?: React.ReactNode }) => {
+const GridArticleOverlay = ({ elements }: { elements?: React.ReactNode }) => {
   return (
     <div
       className={cn(
@@ -94,7 +94,7 @@ const ListArticleOverlay = ({ elements }: { elements?: React.ReactNode }) => {
 };
 
 // Title 컴포넌트
-const ListArticleTitle = ({
+const GridArticleTitle = ({
   title,
   className,
 }: { title: string; className?: string }) => {
@@ -102,7 +102,7 @@ const ListArticleTitle = ({
 };
 
 // Footer 컴포넌트
-const ListArticleFooter = ({
+const GridArticleFooter = ({
   date,
   className,
 }: { date: string; className?: string }) => {
@@ -113,11 +113,11 @@ const ListArticleFooter = ({
   );
 };
 
-ListArticle.Media = ListArticleMedia;
-ListArticle.Thumbnail = ListArticleThumbnail;
-ListArticle.Video = ListArticleVideo;
-ListArticle.Overlay = ListArticleOverlay;
-ListArticle.Title = ListArticleTitle;
-ListArticle.Footer = ListArticleFooter;
+GridArticle.Media = GridArticleMedia;
+GridArticle.Thumbnail = GridArticleThumbnail;
+GridArticle.Video = GridArticleVideo;
+GridArticle.Overlay = GridArticleOverlay;
+GridArticle.Title = GridArticleTitle;
+GridArticle.Footer = GridArticleFooter;
 
-export default ListArticle;
+export default GridArticle;

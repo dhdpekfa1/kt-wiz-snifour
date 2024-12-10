@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
-import ListArticle from '@/features/media/common/ListArticle';
+import GridArticle from '@/features/media/common/GridArticle';
 import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
 import Category from './Category';
 
@@ -34,18 +34,18 @@ const PhotoContent = () => {
   return (
     <>
       {/* 포토 컨텐츠 */}
-      <div className={cn('media-list-grid')}>
+      <div className={cn('media-grid')}>
         {photoItems.map(({ id, thumbnail, title, date, catetory }) => (
-          <ListArticle key={id} className="cursor-pointer">
-            <ListArticle.Media onClick={() => setSelectedId(id)}>
-              <ListArticle.Thumbnail thumbnail={thumbnail} title={title} />
-              <ListArticle.Overlay
+          <GridArticle key={id} className="cursor-pointer">
+            <GridArticle.Media onClick={() => setSelectedId(id)}>
+              <GridArticle.Thumbnail thumbnail={thumbnail} title={title} />
+              <GridArticle.Overlay
                 elements={<Category catetory={catetory} />}
               />
-            </ListArticle.Media>
-            <ListArticle.Title title={title} />
-            <ListArticle.Footer date={date} />
-          </ListArticle>
+            </GridArticle.Media>
+            <GridArticle.Title title={title} />
+            <GridArticle.Footer date={date} />
+          </GridArticle>
         ))}
       </div>
 
@@ -71,13 +71,13 @@ const PhotoContent = () => {
           {selectedPhoto && (
             <div className="h-full flex items-center justify-center">
               <div className="relative max-w-5xl w-full mx-8">
-                <ListArticle.Media className="mb-0">
-                  <ListArticle.Thumbnail
+                <GridArticle.Media className="mb-0">
+                  <GridArticle.Thumbnail
                     thumbnail={selectedPhoto.thumbnail}
                     title={selectedPhoto.title}
                     className="!object-contain"
                   />
-                </ListArticle.Media>
+                </GridArticle.Media>
 
                 <div className="bg-gradient-to-t from-black/90 to-transparent">
                   <DialogHeader className="gap-2">
