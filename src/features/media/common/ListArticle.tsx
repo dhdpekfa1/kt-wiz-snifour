@@ -2,9 +2,11 @@ import { DEFAULT_IMAGE } from '@/constants/default-image';
 import { cn } from '@/lib/utils';
 import { EyeIcon } from 'lucide-react';
 import { Link } from 'react-router';
-import { HorizontalType } from '../mock_data';
+import { ListViewType } from '@/features/media/types';
 
-type ListArticleProps = Omit<HorizontalType, 'id'> & {
+import dayjs from 'dayjs';
+
+type ListArticleProps = Omit<ListViewType, 'artcSeq'> & {
   link: string;
 };
 
@@ -33,10 +35,10 @@ const ListArticle = ({
 
 // Thumbnail Container 컴포넌트
 const ListArticleThumbnail = ({
-  thumbnail,
+  imgFilePath,
   title,
   className,
-}: { thumbnail?: string; title: string; className?: string }) => {
+}: { imgFilePath?: string; title: string; className?: string }) => {
   return (
     <div
       className={cn(
@@ -47,7 +49,7 @@ const ListArticleThumbnail = ({
       )}
     >
       <img
-        src={thumbnail || DEFAULT_IMAGE}
+        src={imgFilePath || DEFAULT_IMAGE}
         alt={title}
         loading="lazy"
         decoding="async"
@@ -66,7 +68,7 @@ const ListArticleContent = ({
   className,
 }: { children: React.ReactNode; className?: string }) => {
   return (
-    <div className={cn('flex-1 flex flex-col max-w-2xl', className)}>
+    <div className={cn('flex-1 flex flex-col max-w-3xl py-3', className)}>
       {children}
     </div>
   );
@@ -82,28 +84,37 @@ const ListArticleTitle = ({
 
 // Description 컴포넌트
 const ListArticleDescription = ({
-  description,
+  content,
   className,
-}: { description: string; className?: string }) => {
+}: { content: string; className?: string }) => {
+  const textContent =
+    new DOMParser()
+      .parseFromString(content, 'text/html')
+      .body.textContent?.trim() || 'Content';
+
   return (
-    <p className={cn('text-gray-400 text-sm mb-auto line-clamp-2', className)}>
-      {description}
+    <p
+      className={cn('text-[#6B7280] text-base mb-auto line-clamp-2', className)}
+    >
+      {textContent || 'Content'}
     </p>
   );
 };
 
 // Footer 컴포넌트
 const ListArticleFooter = ({
-  date,
-  views,
+  createdAt,
+  viewCount,
   className,
-}: { date: string; views: number; className?: string }) => {
+}: { createdAt: number; viewCount: number; className?: string }) => {
+  const formattedDate = dayjs(createdAt).format('YYYY.MM.DD');
+
   return (
     <div className={cn('media-article-footer', className)}>
-      <span>{date}</span>
+      <span>{formattedDate}</span>
       <div className={cn('media-article-views')}>
         <EyeIcon className="w-4 h-4" />
-        <span>{views.toLocaleString()}</span>
+        <span>{viewCount.toLocaleString()}</span>
       </div>
     </div>
   );

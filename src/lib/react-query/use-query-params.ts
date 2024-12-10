@@ -7,10 +7,12 @@ import { WrapVariables } from './wrap-variables';
 // Example : const useAnyQuery = ({ options, variables } : UseQueryParams<typeof anyApiFn>) => {...}
 export type UseQueryParams<
   T extends AsyncFn,
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  Error = AxiosError<any>,
+  Error = AxiosError,
   Data = AsyncFnReturn<T>,
-  Variables = Parameter<T>,
+  TransformedData = Data,
 > = {
-  options?: Omit<UseQueryOptions<Data, Error>, 'queryKey' | 'queryFn'>;
-} & WrapVariables<Variables>;
+  options?: Omit<
+    UseQueryOptions<Data, Error, TransformedData>,
+    'queryKey' | 'queryFn'
+  >;
+} & WrapVariables<Parameter<T>>;

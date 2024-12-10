@@ -236,7 +236,6 @@ const Navigation = ({
   );
 };
 
-// Export
 export const MediaDetail = {
   Container: MediaDetailContainer,
   Header,

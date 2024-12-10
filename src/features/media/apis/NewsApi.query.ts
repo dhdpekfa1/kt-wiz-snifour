@@ -2,6 +2,8 @@ import { newsApi } from './NewsApi';
 import { useQuery } from '@tanstack/react-query';
 import { createListViewItem } from '@/features/media/services';
 import { Parameter, isNotNullish, UseQueryParams } from '@/lib';
+import { ListDataType, NewsResponse } from '@/features/media/types';
+import { AxiosError } from 'axios';
 
 //  쿼리 키 정의
 export const NEWS_API_QUERY_KEY = {
@@ -17,21 +19,31 @@ export const NEWS_API_QUERY_KEY = {
 /**
  * [GET] /api/article/newslist?searchWord=
  * @param params 뉴스 목록 조회에 필요한 파라미터
- * @returns 뉴스 목록 데이터와 총 데이터 개수
+ * @returns 리스트 타입으로 변환된 뉴스 목록 데이터와 총 데이터 개수
  */
 export function useGetNewsList(
-  params?: UseQueryParams<typeof newsApi.getList>
+  params?: UseQueryParams<
+    typeof newsApi.getList,
+    AxiosError,
+    NewsResponse, // 실제 응답
+    ListDataType // 변환된 응답
+  >
 ) {
-  return useQuery({
+  return useQuery<NewsResponse, AxiosError, ListDataType>({
     queryKey: NEWS_API_QUERY_KEY.GET_LIST(params?.variables),
     queryFn: async () => {
       const response = await newsApi.getList(params?.variables);
-      return {
-        items: response.list
-          .filter((item) => item.useYn === 'Y')
-          .map(createListViewItem),
-        totalCount: response.searchCount,
-      };
+      return response;
+    },
+    select: (data: NewsResponse): ListDataType => ({
+      list: data.list
+        .filter((item) => item.useYn === 'Y')
+        .map(createListViewItem),
+      searchCount: data.searchCount,
+    }),
+    ...params?.options,
+    ...{
+      keepPreviousData: true, // 페이지 네이션이 있을 경우에는 추가해주세요. 이전 데이터를 유지해줍니다.
     },
   });
 }

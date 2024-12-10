@@ -5,7 +5,7 @@ const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const isDev = import.meta.env.MODE === 'development';
 
 const instance = axios.create({
-  baseURL: API_URL || 'http://localhost:5001',
+  baseURL: API_URL,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',

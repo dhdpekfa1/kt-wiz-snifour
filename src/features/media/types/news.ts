@@ -25,6 +25,8 @@ type NewsResponse = {
 
 type NewsListDto = {
   searchWord?: string;
+  itemCount?: string;
+  pageNum?: string;
 };
 
 type NewsDetailDto = {
