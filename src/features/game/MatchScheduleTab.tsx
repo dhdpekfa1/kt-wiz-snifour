@@ -1,19 +1,19 @@
-import channelsData from "@/assets/data/broadcastChannels.json";
-import MatchInfoCarousel from "@/components/ui/carousel/MatchInfoCarousel";
-import Breadcrumb from "@/features/common/Breadcrumb";
-import { MatchCalendar } from "@/features/game/components/calender";
+import channelsData from '@/assets/data/broadcastChannels.json';
+import MatchInfoCarousel from '@/components/ui/carousel/MatchInfoCarousel';
+import Breadcrumb from '@/features/common/Breadcrumb';
+import { MatchCalendar } from '@/features/game/components/calender';
 
-const MatchSchedulePage = () => {
+const MatchScheduleTab = () => {
   return (
     <div className="w-full flex justify-center my-20">
       <div className="w-full flex flex-col items-center justify-center">
         {/* 경로 */}
         <Breadcrumb
           paths={[
-            { key: "home", label: "Home" },
-            { key: "game", label: "Game" },
-            { key: "regular-season", label: "정규리그" },
-            { key: "schedule", label: "경기 일정", isActive: true },
+            { key: 'home', label: 'Home' },
+            { key: 'game', label: 'Game' },
+            { key: 'regular-season', label: '정규리그' },
+            { key: 'schedule', label: '경기 일정', isActive: true },
           ]}
         />
 
@@ -36,7 +36,7 @@ const MatchSchedulePage = () => {
                   <span key={item.code} className="text-[#fefefe90]">
                     {item.code}
                     <span className="text-[#fefefe50]">({item.name})</span>
-                    {index < channel.items.length - 1 && ", "}
+                    {index < channel.items.length - 1 && ', '}
                   </span>
                 ))}
               </span>
@@ -48,4 +48,4 @@ const MatchSchedulePage = () => {
   );
 };
 
-export default MatchSchedulePage;
+export default MatchScheduleTab;

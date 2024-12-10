@@ -1,27 +1,27 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-import Footer from "./features/common/Footer";
-import Header from "./features/common/Header";
-import HomePage from "./pages/HomePage";
-import PlayerPage from "./pages/media/FirstPitch";
-import HighlightPage from "./pages/media/Highlight";
-import NewsPage from "./pages/media/News";
-import PhotoPage from "./pages/media/Photo";
-import StoryPage from "./pages/media/Story";
+import { BrowserRouter, Route, Routes } from 'react-router';
+import Footer from './features/common/Footer';
+import Header from './features/common/Header';
+import HomePage from './pages/HomePage';
+import PlayerPage from './pages/media/FirstPitch';
+import HighlightPage from './pages/media/Highlight';
+import NewsPage from './pages/media/News';
+import PhotoPage from './pages/media/Photo';
+import StoryPage from './pages/media/Story';
 
-import NewsDetailPage from "./pages/media/id/NewsDetail";
+import NewsDetailPage from './pages/media/id/NewsDetail';
 
-import WallpaperPage from "./pages/ktwiz/WallpaperPage";
-import CheerSongPage from "./pages/player/CheerSongPage";
-import ParkIntroPage from "./pages/wizPark/ParkIntroPage";
-import ParkLocationPage from "./pages/wizPark/ParkLocationPage";
-import ParkingPage from "./pages/wizPark/ParkingPage";
+import WallpaperPage from './pages/ktwiz/WallpaperPage';
+import CheerSongPage from './pages/player/CheerSongPage';
+import ParkIntroPage from './pages/wizPark/ParkIntroPage';
+import ParkLocationPage from './pages/wizPark/ParkLocationPage';
+import ParkingPage from './pages/wizPark/ParkingPage';
 
-import NotFoundPage from "./pages/NotFoundPage";
-import FirstPitchDetailPage from "./pages/media/id/FirstPitchDetail";
-import PressDetailPage from "./pages/media/id/PressDetail";
-import MatchSchedulePage from "./pages/game/MatchSchedulePage";
-import BoxScorePage from "./pages/game/BoxScorePage";
-import WatchPointPage from "./pages/game/WatchPointPage";
+import BoxScoreTab from './features/game/BoxScoreTab';
+import MatchScheduleTab from './features/game/MatchScheduleTab';
+import WatchPointTab from './features/game/WatchPointTab';
+import NotFoundPage from './pages/NotFoundPage';
+import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
+import PressDetailPage from './pages/media/id/PressDetail';
 
 function App() {
   return (
@@ -48,12 +48,12 @@ function App() {
             {/* Game */}
             <Route
               path="/game/regular/schedule"
-              element={<MatchSchedulePage />}
+              element={<MatchScheduleTab />}
             />
-            <Route path="/game/regular/boxscore" element={<BoxScorePage />} />
+            <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
             <Route
               path="/game/regular/watchPoint"
-              element={<WatchPointPage />}
+              element={<WatchPointTab />}
             />
 
             {/* Media */}
