@@ -1,7 +1,7 @@
 import channelsData from '@/assets/data/broadcastChannels.json';
 import MatchInfoCarousel from '@/components/ui/carousel/MatchInfoCarousel';
 import Breadcrumb from '@/features/common/Breadcrumb';
-import MatchCalendar from './components/MatchCalendar';
+import { MatchCalendar } from '@/features/game/components/calender';
 
 const MatchScheduleTab = () => {
   return (
@@ -48,4 +48,4 @@ const MatchScheduleTab = () => {
   );
 };
 
-export { MatchScheduleTab };
+export default MatchScheduleTab;

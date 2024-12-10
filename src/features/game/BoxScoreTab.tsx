@@ -1,13 +1,13 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
-import MatchBoard from './components/MatchBoard';
+import MatchBoard from '@/features/game/components/MatchBoard';
 import {
   BattingRecordTable,
   KeyRecordsTable,
   MatchScoreTable,
   PitchingRecordTable,
-} from './components/table';
-import { mockMatchData } from './components/table/MatchScoreTable';
+} from '@/features/game/components/table';
+import { mockMatchData } from '@/features/game/components/table/MatchScoreTable';
 
 const BoxScoreTab = () => {
   return (
@@ -93,4 +93,4 @@ const BoxScoreTab = () => {
   );
 };
 
-export { BoxScoreTab };
+export default BoxScoreTab;

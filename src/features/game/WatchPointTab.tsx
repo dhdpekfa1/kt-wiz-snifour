@@ -1,8 +1,8 @@
-import Breadcrumb from '../common/Breadcrumb';
-import SubTitle from '../common/SubTitle';
-import MatchBoard from './components/MatchBoard';
-import TeamLineup from './components/TeamLineup';
-import { MatchSummaryTable } from './components/table';
+import Breadcrumb from '@/features/common/Breadcrumb';
+import SubTitle from '@/features/common/SubTitle';
+import MatchBoard from '@/features/game/components/MatchBoard';
+import TeamLineup from '@/features/game/components/TeamLineup';
+import { MatchSummaryTable } from '@/features/game/components/table';
 
 const mockData = {
   teamA: {
@@ -131,4 +131,4 @@ const WatchPointTab = () => {
   );
 };
 
-export { WatchPointTab };
+export default WatchPointTab;

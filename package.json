@@ -51,6 +51,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "biome": "^0.3.3",
     "globals": "^15.12.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.10",
