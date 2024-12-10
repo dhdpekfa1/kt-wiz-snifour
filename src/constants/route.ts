@@ -7,7 +7,8 @@ export enum ApiRoutes {
 
 export enum PageRoutes {
   Home = '/',
-  Media = '/media',
+  News = '/media/wiznews',
+  NewsDetail = '/media/wiznews/:artcSeq',
 }
 
 export const isExistPage = (pathname: string) => {
