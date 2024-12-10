@@ -54,6 +54,7 @@ function App() {
               path="/game/regular/boxscore"
               element={<RegularGamePage />}
             />
+            <Route path="/game/regular/ranking" element={<TeamRankingPage />} />
             <Route
               path="/game/regular/watchPoint"
               element={<RegularGamePage />}
