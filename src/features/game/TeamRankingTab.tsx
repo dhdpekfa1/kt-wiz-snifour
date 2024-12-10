@@ -8,7 +8,7 @@ import {
   TeamVSTable,
 } from '@/features/game/components';
 
-function TeamRankingPage() {
+function TeamRankingTab() {
   return (
     <div className="my-20 text-white">
       <Breadcrumb
@@ -68,4 +68,4 @@ function TeamRankingPage() {
   );
 }
 
-export default TeamRankingPage;
+export { TeamRankingTab };

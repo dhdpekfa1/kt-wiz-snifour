@@ -4,14 +4,19 @@ import Banner from '@/features/common/Banner';
 import { cn } from '@/lib/utils';
 
 import Layout from '@/features/common/Layout';
-import { BoxScoreTab, MatchScheduleTab, WatchPointTab } from '@/features/game';
+import {
+  BoxScoreTab,
+  MatchScheduleTab,
+  TeamRankingTab,
+  WatchPointTab,
+} from '@/features/game';
 
 import '@/features/game/css/game.css';
 
 const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
   { value: 'boxscore', path: '/regular/boxscore' },
-  { value: 'ranking', path: '/regular/ranking' },
+  { value: 'ranking', path: '/regular/ranking/team' },
   { value: 'watchpoint', path: '/regular/watchpoint' },
 ];
 
@@ -89,7 +94,7 @@ function RegularGamePage() {
           <BoxScoreTab />
         </TabsContent>
         <TabsContent value="ranking">
-          <WatchPointTab />
+          <TeamRankingTab />
         </TabsContent>
         <TabsContent value="watchpoint">
           <WatchPointTab />
