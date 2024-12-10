@@ -30,7 +30,7 @@ const MatchCalendarCell = ({
   };
 
   return (
-    <div className="relative w-full h-full p-2 flex flex-col items-center justify-start gap-2">
+    <div className="relative w-full h-full flex flex-col items-center justify-start gap-2">
       {/* 날짜 */}
       <div
         className={`absolute top-2 right-2 text-sm font-bold ${

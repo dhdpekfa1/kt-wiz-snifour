@@ -25,7 +25,7 @@ const TeamInfo = ({
       <img
         src={logoUrl}
         alt="team logo"
-        className={`${isMatchBoard ? 'w-28 h-28' : 'w-20 h-20'}`}
+        className={`${isMatchBoard ? 'w-28 h-28' : 'w-26 h-26'}`}
       />
       {isMatchBoard ? (
         <div>

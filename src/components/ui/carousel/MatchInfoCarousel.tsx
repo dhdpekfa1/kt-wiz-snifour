@@ -3,7 +3,7 @@ import TeamInfo from '@/features/common/TeamInfo';
 import { getMonthSchedule } from '@/features/game/apis/matchSchedule';
 import { GameSchedule } from '@/features/game/components/calender/MatchCalendar';
 import { useMatchStore } from '@/store/useMatchStore';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { useEffect, useState } from 'react';
 import {
   Carousel,
@@ -17,6 +17,10 @@ const MatchInfoCarousel = () => {
   const [matchData, setMatchData] = useState<GameSchedule[]>();
   const { currentMonth, selectedDate } = useMatchStore();
 
+  const formatDate = (date: string): string => {
+    return format(parse(date, 'yyyyMMdd', new Date()), 'yyyy.MM.dd');
+  };
+
   // const displayDate = format(currentMonth, "yyyyMMdd");
 
   useEffect(() => {
@@ -29,8 +33,8 @@ const MatchInfoCarousel = () => {
     fetchMatchSchedule();
   }, [currentMonth]);
 
-  // console.log(displayDate);
-  console.log('matchData ==> ', matchData);
+  console.log(matchData);
+  // console.log('matchData ==> ', matchData);
   console.log('selectedDate ==> ', selectedDate);
 
   return (
@@ -51,7 +55,7 @@ const MatchInfoCarousel = () => {
                       <div className="flex flex-col h-48 items-center justify-between p-2">
                         {/* 날짜 라벨 */}
                         <h4 className="bg-wiz-red text-white px-6 py-1 rounded-full">
-                          {data.displayDate}
+                          {formatDate(data.displayDate)}
                         </h4>
 
                         <div className="flex gap-6 items-center justify-center px-6">
@@ -73,7 +77,7 @@ const MatchInfoCarousel = () => {
                             </h4>
                             <div className="flex gap-2">
                               <p className="mb-4 font-bold leading-none text-wiz-red">
-                                {' 승패 정보'}
+                                {data.outcome}
                               </p>
                             </div>
                             <button
