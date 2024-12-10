@@ -16,9 +16,10 @@ import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
+import { BoxScoreTab } from './features/game';
 import NotFoundPage from './pages/NotFoundPage';
-import TeamRankingPage from './pages/game/regular/TeamRankingPage';
 import RegularGamePage from './pages/game/RegularGamePage';
+import TeamRankingPage from './pages/game/regular/TeamRankingPage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
 
