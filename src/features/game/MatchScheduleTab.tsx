@@ -48,4 +48,4 @@ const MatchScheduleTab = () => {
   );
 };
 
-export default MatchScheduleTab;
+export { MatchScheduleTab };
