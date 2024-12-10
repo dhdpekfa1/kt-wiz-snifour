@@ -33,14 +33,15 @@ export interface GameSchedule {
 }
 
 const MatchCalendar = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  // const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedTab, setSelectedTab] = useState<'kt wiz 경기' | '전체 리그'>(
     'kt wiz 경기'
   );
   // const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [ktMatchData, setKTMatchData] = useState<GameSchedule[]>();
   const [allMatchData, setAllMatchData] = useState<GameSchedule[]>();
-  const { currentMonth, setCurrentMonth } = useMatchStore();
+  const { currentMonth, setCurrentMonth, selectedDate, setSelectedDate } =
+    useMatchStore();
 
   useEffect(() => {
     const fetchMatchSchedule = async () => {

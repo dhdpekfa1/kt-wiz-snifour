@@ -13,43 +13,11 @@ import {
   CarouselPrevious,
 } from './carousel';
 
-const matchMockData = [
-  {
-    date: '2024.10.09',
-    team1: 'LG 트윈스',
-    team1_logo: '/assets/emblems/lgtwins.svg',
-    team1_player: '백승현',
-    team2: 'KT 위즈',
-    team2_logo: '/assets/emblems/ktwiz.svg',
-    team2_player: '박영현',
-    score: '5:6',
-    matchResult: '승',
-  },
-  {
-    date: '2024.10.11',
-    team1: 'KT 위즈',
-    team1_logo: '/assets/emblems/ktwiz.svg',
-    team1_player: '엄상백',
-    team2: '키움',
-    team2_logo: '/assets/emblems/kiwoom.svg',
-    team2_player: '임찬구',
-    score: '1:4',
-    matchResult: '패',
-  },
-  {
-    date: '',
-    team1: '',
-    team2: '',
-    team1_player: '',
-    team2_player: '',
-    score: '',
-    matchResult: '',
-  },
-];
-
 const MatchInfoCarousel = () => {
   const [matchData, setMatchData] = useState<GameSchedule[]>();
-  const { currentMonth } = useMatchStore();
+  const { currentMonth, selectedDate } = useMatchStore();
+
+  // const displayDate = format(currentMonth, "yyyyMMdd");
 
   useEffect(() => {
     const fetchMatchSchedule = async () => {
@@ -61,14 +29,17 @@ const MatchInfoCarousel = () => {
     fetchMatchSchedule();
   }, [currentMonth]);
 
+  // console.log(displayDate);
   console.log('matchData ==> ', matchData);
+  console.log('selectedDate ==> ', selectedDate);
+
   return (
     <div className="w-full max-w-2xl min-w-full overflow:hidden">
       <Carousel className="relative max-w-full">
         <CarouselContent className="-ml-2">
-          {matchMockData.map((data) => (
+          {matchData?.map((data) => (
             <CarouselItem
-              key={data.date}
+              key={data.gameDate}
               className={
                 'pl-1 md:basis-1/2 lg:basis-1/3 transition-transform duration-300 w-fit'
               }
@@ -76,31 +47,33 @@ const MatchInfoCarousel = () => {
               <div className="p-1">
                 <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#5b5f65]">
                   <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-[#35383e]">
-                    {data.date ? (
+                    {data.displayDate ? (
                       <div className="flex flex-col h-48 items-center justify-between p-2">
                         {/* 날짜 라벨 */}
                         <h4 className="bg-wiz-red text-white px-6 py-1 rounded-full">
-                          {data.date}
+                          {data.displayDate}
                         </h4>
 
                         <div className="flex gap-6 items-center justify-center px-6">
                           {/* team1 */}
                           <TeamInfo
                             tabType="MatchScheduleTab"
-                            teamName={data.team1}
-                            logoUrl={data.team1_logo || ''}
-                            player={data.team1_player}
-                            result={'lose'}
+                            teamName={data.home}
+                            logoUrl={data.homeLogo || ''}
+                            player={data.homeKey} // 투수 확인
+                            result={
+                              data.homeScore > data.visitScore ? 'win' : 'lose'
+                            }
                           />
 
                           {/* 스코어, 승패, 경기 정보 버튼 */}
                           <div className="flex flex-col items-center justify-center">
                             <h4 className="mb-4 font-normal text-xl leading-none text-wiz-white">
-                              {data.score}
+                              {data.homeScore} : {data.visitScore}
                             </h4>
                             <div className="flex gap-2">
                               <p className="mb-4 font-bold leading-none text-wiz-red">
-                                {data.matchResult}
+                                {' 승패 정보'}
                               </p>
                             </div>
                             <button
@@ -113,10 +86,12 @@ const MatchInfoCarousel = () => {
                           {/* team2 */}
                           <TeamInfo
                             tabType="MatchScheduleTab"
-                            teamName={data.team2}
-                            logoUrl={data.team2_logo || ''}
-                            player={data.team2_player}
-                            result={'win'}
+                            teamName={data.visit}
+                            logoUrl={data.visitLogo || ''}
+                            player={data.visitKey} // 투수 확인
+                            result={
+                              data.homeScore > data.visitScore ? 'lose' : 'win'
+                            }
                           />
                         </div>
                       </div>
