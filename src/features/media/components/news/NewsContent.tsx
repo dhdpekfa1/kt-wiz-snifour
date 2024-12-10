@@ -2,6 +2,7 @@ import HorizontalArticle from '@/features/media/common/HorizontalArticle';
 import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
 import { usePagination } from '@/features/media/hooks/usePagination';
 import { newsItems } from '@/features/media/mock_data';
+import { useGetNews } from '@/features/media/apis/news.query';
 
 const itemsPerPage = 10; // 한 페이지당 보여줄 아이템 수 (임시)
 const totalItems = 95; // API에서 받아온 총 아이템 수 (임시)
@@ -14,6 +15,12 @@ const NewsContent = () => {
     itemsPerPage,
   });
 
+  const { data, isLoading } = useGetNews('');
+
+  if (isLoading) return <div>로딩 중...</div>;
+
+  console.log('data:', data);
+
   return (
     <>
       {/* 뉴스 컨텐츠 */}
@@ -23,7 +30,11 @@ const NewsContent = () => {
           <HorizontalArticle.Content>
             <HorizontalArticle.Title title={title} />
             <HorizontalArticle.Description description={description} />
-            <HorizontalArticle.Footer date={date} views={views} />
+            <HorizontalArticle.Footer
+              date={date}
+              views={views}
+              className="mt-4"
+            />
           </HorizontalArticle.Content>
         </HorizontalArticle>
       ))}

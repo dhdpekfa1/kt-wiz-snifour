@@ -2,7 +2,6 @@ import Banner from '@/features/common/Banner';
 import MediaLayout from '@/features/media/common/MediaLayout';
 import SearchBar from '@/features/media/common/SearchBar';
 import NewsContent from '@/features/media/components/news/NewsContent';
-import PressContent from '@/features/media/components/news/PressContent';
 
 import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
@@ -11,8 +10,8 @@ import { cn } from '@/lib/utils';
 import '@/features/media/css/media.css';
 
 const NEWS_TABS_CONFIG = [
-  { value: 'news', path: '/wiznews' },
-  { value: 'press', path: '/wizpress' },
+  { value: 'news', path: '/wiznews', label: 'wiz 소식' },
+  { value: 'press', path: '/wizpress', label: 'wiz 보도자료' },
 ];
 
 /** 뉴스 페이지 */
@@ -49,21 +48,16 @@ const NewsPage = () => {
         <div className={cn('media-header')}>
           <div className="media-tabs-wrapper">
             {/* 탭 */}
-            <TabsList className="media-tabs-list">
-              <TabsTrigger
-                value="news"
-                onClick={() => handleTabChange('news')}
-                className={cn('media-tabs-trigger', 'px-6 py-2.5')}
-              >
-                wiz 소식
-              </TabsTrigger>
-              <TabsTrigger
-                value="press"
-                onClick={() => handleTabChange('press')}
-                className={cn('media-tabs-trigger', 'px-6 py-2.5')}
-              >
-                wiz 보도자료
-              </TabsTrigger>
+            <TabsList className={cn('media-tabs-list')}>
+              {NEWS_TABS_CONFIG.map((tab) => (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  className="media-tabs-trigger"
+                >
+                  {tab.label}
+                </TabsTrigger>
+              ))}
             </TabsList>
           </div>
           {/* 검색바 */}
@@ -71,11 +65,8 @@ const NewsPage = () => {
         </div>
 
         {/* 탭 컨텐츠 */}
-        <TabsContent value="news">
+        <TabsContent value={currentTab}>
           <NewsContent />
-        </TabsContent>
-        <TabsContent value="press">
-          <PressContent />
         </TabsContent>
       </Tabs>
     </MediaLayout>
