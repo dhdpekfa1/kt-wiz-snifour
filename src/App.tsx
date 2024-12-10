@@ -16,10 +16,9 @@ import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
-import BoxScoreTab from './features/game/BoxScoreTab';
-import MatchScheduleTab from './features/game/MatchScheduleTab';
-import WatchPointTab from './features/game/WatchPointTab';
 import NotFoundPage from './pages/NotFoundPage';
+import TeamRankingPage from './pages/game/regular/TeamRankingPage';
+import RegularGamePage from './pages/game/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
 
@@ -48,12 +47,20 @@ function App() {
             {/* Game */}
             <Route
               path="/game/regular/schedule"
-              element={<MatchScheduleTab />}
+              element={<RegularGamePage />}
             />
-            <Route path="/game/regular/boxscore" element={<BoxScoreTab />} />
+            <Route
+              path="/game/regular/boxscore"
+              element={<RegularGamePage />}
+            />
             <Route
               path="/game/regular/watchPoint"
-              element={<WatchPointTab />}
+              element={<RegularGamePage />}
+            />
+
+            <Route
+              path="/game/regular/ranking/team"
+              element={<TeamRankingPage />}
             />
 
             {/* Media */}

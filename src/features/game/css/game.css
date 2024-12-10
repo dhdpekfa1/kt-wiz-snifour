@@ -1,0 +1,31 @@
+.container {
+  @apply w-full;
+}
+
+.header {
+  @apply w-full flex flex-col gap-4 mb-8
+           md:flex-row
+           lg:items-center lg:justify-between lg:gap-0;
+}
+.tabs-wrapper {
+  @apply w-full flex;
+}
+
+.tabs-list {
+  @apply w-fit flex justify-start space-x-5 h-14 p-0;
+}
+
+.tabs-trigger {
+  @apply rounded-md
+           text-sm
+           uppercase
+           font-medium
+           transition-colors
+           opacity-50
+           duration-200
+           data-[state=active]:text-white
+           data-[state=active]:bg-wiz-red
+           data-[state=active]:opacity-100
+           hover:opacity-100
+           hover:border-wiz-white;
+}
