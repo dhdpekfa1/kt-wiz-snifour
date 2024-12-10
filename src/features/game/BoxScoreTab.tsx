@@ -93,4 +93,4 @@ const BoxScoreTab = () => {
   );
 };
 
-export default BoxScoreTab;
+export { BoxScoreTab };

@@ -131,4 +131,4 @@ const WatchPointTab = () => {
   );
 };
 
-export default WatchPointTab;
+export { WatchPointTab };
