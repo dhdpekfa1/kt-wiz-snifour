@@ -29,7 +29,7 @@ export const BannerImage = ({ src, alt }: { src: string; alt: string }) => {
     <img
       src={src}
       alt={alt}
-      className={cn('hidden w-full h-[400px] object-cover', 'md:block')}
+      className={cn('hidden w-full h-[300px] object-cover', 'md:block')}
     />
   );
 };
@@ -53,7 +53,7 @@ export const BannerOverlay = ({ children }: BannerOverlayProps) => {
 };
 
 const Banner = ({ children }: { children: ReactNode }) => {
-  return <div className="relative h-[400px]">{children}</div>;
+  return <div className="relative h-[300px]">{children}</div>;
 };
 
 Banner.Heading = BannerHeading;
