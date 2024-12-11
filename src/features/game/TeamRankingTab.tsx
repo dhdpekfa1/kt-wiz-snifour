@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import {
@@ -7,6 +7,7 @@ import {
   TeamRankingTable,
   TeamVSTable,
 } from '@/features/game/components/ranking';
+import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 
 function TeamRankingTab() {
   return (
@@ -27,41 +28,21 @@ function TeamRankingTab() {
       <SubTitle title="2024 시즌 팀 순위" />
       <Tabs defaultValue="team" className="w-full flex flex-col mt-4">
         <TabsList className="w-fit flex items-center gap-4 my-2">
-          <TabsTrigger
-            value="team"
-            className="text-black text-base bg-white rounded"
-          >
-            팀 기록
-          </TabsTrigger>
-          <TabsTrigger
-            value="team-pitcher"
-            className="text-black text-base bg-white rounded"
-          >
-            투수 기록
-          </TabsTrigger>
-          <TabsTrigger
-            value="team-batter"
-            className="text-black text-base bg-white rounded"
-          >
-            타자 기록
-          </TabsTrigger>
-          <TabsTrigger
-            value="team-match-record"
-            className="text-black text-base bg-white rounded"
-          >
-            팀 상대 전적
-          </TabsTrigger>
+          <SubTabsTrigger value="team">팀 기록</SubTabsTrigger>
+          <SubTabsTrigger value="teamPitcher">투수 기록</SubTabsTrigger>
+          <SubTabsTrigger value="teamBatter">타자 기록</SubTabsTrigger>
+          <SubTabsTrigger value="teamMatchRecords">팀 상대 전적</SubTabsTrigger>
         </TabsList>
         <TabsContent value="team" className="w-full">
           <TeamRankingTable />
         </TabsContent>
-        <TabsContent value="team-pitcher" className="w-full">
+        <TabsContent value="teamPitcher" className="w-full">
           <TeamPitcherRankingTable />
         </TabsContent>
-        <TabsContent value="team-batter" className="w-full">
+        <TabsContent value="teamBatter" className="w-full">
           <TeamBatterRankingTable />
         </TabsContent>
-        <TabsContent value="team-match-record" className="w-full">
+        <TabsContent value="teamMatchRecords" className="w-full">
           <TeamVSTable />
         </TabsContent>
       </Tabs>

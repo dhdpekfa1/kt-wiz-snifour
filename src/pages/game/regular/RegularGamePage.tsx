@@ -33,8 +33,8 @@ function RegularGamePage() {
       header={
         <Banner>
           <Banner.Image
-            src="https://placehold.co/1200x200/141414/642521?text=WIZ+PHOTO"
-            alt="KT WIZ GAME"
+            src="https://placehold.co/1200x200/141414/642521?text=WIZ+GAMES"
+            alt="KT WIZ GAMES"
           />
           <Banner.Overlay>
             <Banner.Heading
