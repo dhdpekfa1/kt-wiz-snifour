@@ -39,7 +39,7 @@ function PlayerRankingTable({ data, columns, kt }: PlayerRankingTableProps) {
   });
 
   return (
-    <Table className="rounded-xl overflow-hidden">
+    <Table className="rounded-xl overflow-hidden mt-8">
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id} className="border-none">

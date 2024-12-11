@@ -3,7 +3,10 @@ import axios from 'axios';
 
 import { OverallPitcherRank } from '@/features/common/types/Pitchers';
 import { API_URL } from '@/constants/api-url';
-import { PlayerRankingTable } from '@/features/game/components/ranking';
+import {
+  PlayerRankingTable,
+  PlayerScatterChart,
+} from '@/features/game/components/ranking';
 import { pitcherColumns } from '@/constants/player-rank-colums';
 
 function AllPitcherRankingTab() {
@@ -27,7 +30,12 @@ function AllPitcherRankingTab() {
     getPitcherRanking();
   }, []);
 
-  return <PlayerRankingTable data={ranking} columns={pitcherColumns} />;
+  return (
+    <div className="flex flex-col">
+      <PlayerScatterChart data={ranking} position="pitcher" />
+      <PlayerRankingTable data={ranking} columns={pitcherColumns} />
+    </div>
+  );
 }
 
 export { AllPitcherRankingTab };

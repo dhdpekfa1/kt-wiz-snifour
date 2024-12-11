@@ -11,3 +11,4 @@ export { AllPitcherRankingTab } from './pitcher/AllPitcherRankingTab';
 /** 공통 */
 export { RankingCard } from './common/RankingCard';
 export { PlayerRankingTable } from './common/PlayerRankingTable';
+export { PlayerScatterChart } from './common/PlayerScatterChart';
