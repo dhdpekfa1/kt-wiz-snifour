@@ -16,7 +16,8 @@ function TeamRankingTab() {
           { key: 'home', label: 'Home' },
           { key: 'game', label: 'Game' },
           { key: 'regular', label: '정규 리그' },
-          { key: 'ranking', label: '순위 기록', isActive: true },
+          { key: 'ranking', label: '순위 기록' },
+          { key: 'team', label: '팀 순위', isActive: true },
         ]}
       />
 

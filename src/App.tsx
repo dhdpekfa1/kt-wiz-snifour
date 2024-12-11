@@ -16,7 +16,6 @@ import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
-import { BoxScoreTab } from './features/game';
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
@@ -45,24 +44,7 @@ function App() {
             <Route path="/wizpark/parking" element={<ParkingPage />} />
 
             {/* Game */}
-            <Route
-              path="/game/regular/schedule"
-              element={<RegularGamePage />}
-            />
-            <Route
-              path="/game/regular/boxscore"
-              element={<RegularGamePage />}
-            />
-            
-            <Route
-              path="/game/regular/watchPoint"
-              element={<RegularGamePage />}
-            />
-
-            <Route
-              path="/game/regular/ranking/team"
-              element={<RegularGamePage />}
-            />
+            <Route path="/game/regular/*" element={<RegularGamePage />} />
 
             {/* Media */}
             <Route path="/media/wiznews" element={<NewsPage />} />

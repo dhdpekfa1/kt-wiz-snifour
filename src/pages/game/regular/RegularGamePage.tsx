@@ -7,7 +7,7 @@ import Layout from '@/features/common/Layout';
 import {
   BoxScoreTab,
   MatchScheduleTab,
-  TeamRankingTab,
+  RankingTab,
   WatchPointTab,
 } from '@/features/game';
 
@@ -94,7 +94,7 @@ function RegularGamePage() {
           <BoxScoreTab />
         </TabsContent>
         <TabsContent value="ranking">
-          <TeamRankingTab />
+          <RankingTab />
         </TabsContent>
         <TabsContent value="watchpoint">
           <WatchPointTab />
