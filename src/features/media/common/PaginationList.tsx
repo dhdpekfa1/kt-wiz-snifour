@@ -7,27 +7,20 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui';
+
 import { cn } from '@/lib/utils';
 import { getPageRange } from '@/features/media/services';
+import { PaginationProps } from './Pagination';
 
-type PaginationProps = {
-  currentPage: number;
-  totalItems: number;
-  itemsPerPage: number;
-  onPageChange: (page: number) => void;
-  showPages?: number;
-  className?: string;
-};
-
-const PaginationWithThemeRed = ({
+const PaginationList = ({
   currentPage,
-  totalItems,
-  itemsPerPage,
-  onPageChange,
+  limit = 10,
+  total,
   showPages = 5,
+  onChange,
   className,
 }: PaginationProps) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const totalPages = Math.ceil(total / limit);
   const { start, end } = getPageRange(showPages, currentPage, totalPages);
 
   return (
@@ -36,7 +29,7 @@ const PaginationWithThemeRed = ({
         {/* 이전 페이지 */}
         <PaginationItem>
           <PaginationPrevious
-            onClick={() => onPageChange(currentPage - 1)}
+            onClick={() => onChange(currentPage - 1)}
             className={
               currentPage === 1 ? 'pointer-events-none opacity-50' : ''
             }
@@ -47,7 +40,7 @@ const PaginationWithThemeRed = ({
         {start > 1 && (
           <>
             <PaginationItem>
-              <PaginationLink onClick={() => onPageChange(1)}>1</PaginationLink>
+              <PaginationLink onClick={() => onChange(1)}>1</PaginationLink>
             </PaginationItem>
             {start > 2 && (
               <PaginationItem>
@@ -62,7 +55,7 @@ const PaginationWithThemeRed = ({
           (page) => (
             <PaginationItem key={page}>
               <PaginationLink
-                onClick={() => onPageChange(page)}
+                onClick={() => onChange(page)}
                 className={cn(
                   'transition-colors duration-200',
                   currentPage === page
@@ -85,7 +78,7 @@ const PaginationWithThemeRed = ({
               </PaginationItem>
             )}
             <PaginationItem>
-              <PaginationLink onClick={() => onPageChange(totalPages)}>
+              <PaginationLink onClick={() => onChange(totalPages)}>
                 {totalPages}
               </PaginationLink>
             </PaginationItem>
@@ -95,7 +88,7 @@ const PaginationWithThemeRed = ({
         {/* 다음 페이지 */}
         <PaginationItem>
           <PaginationNext
-            onClick={() => onPageChange(currentPage + 1)}
+            onClick={() => onChange(currentPage + 1)}
             className={
               currentPage === totalPages ? 'pointer-events-none opacity-50' : ''
             }
@@ -106,4 +99,4 @@ const PaginationWithThemeRed = ({
   );
 };
 
-export default PaginationWithThemeRed;
+export default PaginationList;
