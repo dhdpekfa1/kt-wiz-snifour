@@ -3,9 +3,10 @@ import { CarouselCard } from '@/features/game/components';
 import { GameSchedule } from '@/features/game/types';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format, isValid, parse } from 'date-fns';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
@@ -13,13 +14,8 @@ import {
 
 const MatchInfoCarousel = () => {
   const [matchData, setMatchData] = useState<GameSchedule[]>([]);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
   const { currentMonth, selectedDate } = useMatchStore();
-
-  const formatDate = useCallback((date: string): string => {
-    return format(parse(date, 'yyyyMMdd', new Date()), 'yyyy.MM.dd');
-  }, []);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
 
   useEffect(() => {
     // 이번 달에 경기가 없을 경우 가장 최신 경기 확인
@@ -48,33 +44,34 @@ const MatchInfoCarousel = () => {
       }
 
       setMatchData(allMatches);
+
+      // 가장 마지막 경기로 이동
+      if (allMatches.length > 0 && carouselApi) {
+        carouselApi.scrollTo(allMatches.length - 1, true); // 마지막 경기 인덱스로 이동
+      }
     };
 
     fetchMatchSchedule();
-  }, [currentMonth]);
+  }, [currentMonth, carouselApi]);
 
-  // 캐러셀 이동
+  /**  날짜 선택 시 캐러셀 이동 */
   useEffect(() => {
-    if (!selectedDate || !carouselRef.current) return;
+    if (!selectedDate || !carouselApi || matchData.length === 0) return;
+    const formattedSelectedDate = format(selectedDate, 'yyyyMMdd'); // 형식 변환 변환
 
-    const formattedSelectedDate = format(selectedDate, 'yyyy.MM.dd');
+    // matchData에서 formattedSelectedDate와 일치하는 인덱스 찾기
     const selectedIndex = matchData.findIndex(
-      (game) => formatDate(game.displayDate) === formattedSelectedDate
+      (game) => game.gameDate.toString() === formattedSelectedDate
     );
 
     if (selectedIndex !== -1) {
-      const carouselWidth = carouselRef.current.offsetWidth;
-      const scrollAmount = carouselWidth * selectedIndex;
-      carouselRef.current.scrollTo({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
+      carouselApi.scrollTo(selectedIndex, true); // 해당 인덱스로 이동
     }
-  }, [selectedDate, matchData, formatDate]);
+  }, [selectedDate, matchData, carouselApi]);
 
   const today = new Date();
   const hasUpcomingGames = matchData.some((game) => {
-    const gameDateString = game.gameDate?.toString(); // gameDate를 문자열로 변환
+    const gameDateString = game.gameDate?.toString();
     if (!gameDateString) return false;
     const parsedDate = parse(gameDateString, 'yyyyMMdd', new Date());
     return isValid(parsedDate) && parsedDate >= today; // 유효한 날짜인지 확인 후 비교
@@ -82,10 +79,13 @@ const MatchInfoCarousel = () => {
 
   return (
     <div className="w-full max-w-2xl min-w-full overflow:hidden">
-      <Carousel ref={carouselRef} className="relative max-w-full">
+      <Carousel
+        setApi={(api) => setCarouselApi(api)} // Carousel API 저장
+        className="relative max-w-full"
+      >
         <CarouselContent className="-ml-1">
-          {matchData.map((data) => (
-            <CarouselCard key={data.gameDate} data={data} />
+          {matchData.map((data, index) => (
+            <CarouselCard key={`${data.gameDate}-${index}`} data={data} />
           ))}
           {!hasUpcomingGames && <CarouselCard data={null} />}
         </CarouselContent>
