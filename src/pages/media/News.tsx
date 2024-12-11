@@ -1,13 +1,14 @@
-import Banner from '@/features/common/Banner';
-import MediaLayout from '@/features/media/common/MediaLayout';
-import SearchBar from '@/features/media/common/SearchBar';
-import NewsContent from '@/features/media/components/news/NewsContent';
-
-import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import { cn } from '@/lib/utils';
+import { useSearchParams } from 'react-router';
+import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
+
+import Banner from '@/features/common/Banner';
+import SearchBar from '@/features/media/common/SearchBar';
+import NewsContent from '@/features/media/components/news/NewsListView';
 
 import '@/features/media/css/media.css';
+import Layout from '@/features/common/Layout';
 
 const NEWS_TABS_CONFIG = [
   { value: 'news', path: '/wiznews', label: 'wiz 소식' },
@@ -16,14 +17,16 @@ const NEWS_TABS_CONFIG = [
 
 /** 뉴스 페이지 */
 const NewsPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { currentTab, handleTabChange } = useTabFromUrl({
     basePath: '/media',
     tabs: NEWS_TABS_CONFIG,
-    defaultTab: 'news',
+    defaultTab: NEWS_TABS_CONFIG[0].value,
   });
 
   return (
-    <MediaLayout
+    <Layout
       header={
         <Banner>
           <Banner.Image
@@ -61,15 +64,19 @@ const NewsPage = () => {
             </TabsList>
           </div>
           {/* 검색바 */}
-          <SearchBar />
+          <SearchBar
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
         </div>
-
         {/* 탭 컨텐츠 */}
-        <TabsContent value={currentTab}>
-          <NewsContent />
-        </TabsContent>
+        <NewsContent />
       </Tabs>
-    </MediaLayout>
+    </Layout>
   );
 };
 

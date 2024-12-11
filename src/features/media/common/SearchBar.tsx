@@ -4,19 +4,18 @@ import { cn } from '@/lib/utils';
 import { Search as SearchIcon } from 'lucide-react';
 import { useState } from 'react';
 
-const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      console.log('검색:', searchTerm);
-    }
-  };
+const SearchBar = ({ onSubmit }: { onSubmit: (search: string) => void }) => {
+  const [search, setSearch] = useState('');
 
   return (
     <div className={cn('p-0')}>
-      <form onSubmit={handleSubmit} className={cn('flex-1 flex gap-3')}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(search.trim());
+        }}
+        className={cn('flex-1 flex gap-3')}
+      >
         <div className={cn('relative w-full md:w-[300px]')}>
           <Input
             type="text"
@@ -27,8 +26,8 @@ const SearchBar = () => {
               'hover:opacity-100 hover:border-wiz-white',
               'px-8'
             )}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <SearchIcon
             className={cn(
