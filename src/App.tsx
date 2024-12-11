@@ -16,6 +16,7 @@ import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
+import { BoxScoreTab } from './features/game';
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
@@ -52,6 +53,7 @@ function App() {
               path="/game/regular/boxscore"
               element={<RegularGamePage />}
             />
+            
             <Route
               path="/game/regular/watchPoint"
               element={<RegularGamePage />}

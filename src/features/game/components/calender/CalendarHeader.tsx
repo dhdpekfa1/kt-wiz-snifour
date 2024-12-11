@@ -2,8 +2,8 @@ import { format } from 'date-fns';
 import { IconDropdown, IconLeft, IconRight } from 'react-day-picker';
 
 interface CalendarHeaderProps {
-  displayMonth: Date; // 현재 표시 중인 월
-  setCurrentMonth: (date: Date) => void; // 월을 변경하는 함수
+  displayMonth: Date;
+  setCurrentMonth: (date: Date) => void;
 }
 
 const CalendarHeader = ({
@@ -36,8 +36,9 @@ const CalendarHeader = ({
           }}
           className="absolute right-0 top-0 text-sm bg-transparent border-none outline-none cursor-pointer w-6 h-6 opacity-0"
         >
-          {Array.from({ length: 16 }, (_, i) => {
-            const month = new Date(2024, 6 + i);
+          {Array.from({ length: 8 }, (_, i) => {
+            // 시작 월: 2024년 3월 ~ 10월 -> 현재 24년도 리그 일정으로 설정
+            const month = new Date(2024, 2 + i);
             return (
               <option key={month.getTime()} value={format(month, 'yyyy-MM')}>
                 {format(month, 'yyyy년 MM월')}
