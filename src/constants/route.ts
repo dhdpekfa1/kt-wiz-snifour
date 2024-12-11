@@ -1,7 +1,7 @@
 import { match } from 'path-to-regexp';
 
 export enum ApiRoutes {
-  News = 'api/article/newslist',
+  News = 'api/article/newslistpage',
   NewsDetail = 'api/article/newsdetail',
 }
 
