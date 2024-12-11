@@ -6,7 +6,7 @@ import {
   TeamPitcherRankingTable,
   TeamRankingTable,
   TeamVSTable,
-} from '@/features/game/components';
+} from '@/features/game/components/ranking';
 
 function TeamRankingTab() {
   return (
