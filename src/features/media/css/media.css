@@ -15,8 +15,8 @@
   @apply w-fit flex justify-start space-x-5 h-14 !p-0;
 }
 
-.media-content {
-  @apply min-h-[500px];
+.min-height {
+  @apply sm:min-h-[200px] lg:min-h-[500px];
 }
 
 .media-tabs-trigger {
@@ -52,5 +52,6 @@
   @apply group-hover:scale-105 transition-transform duration-300
 }
 
-
-
+.min-height {
+  @apply min-h-[500px]
+}
