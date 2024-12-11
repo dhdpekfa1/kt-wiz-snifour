@@ -52,4 +52,4 @@ function RankingCard({ title, ranking }: RankingCardProps) {
   );
 }
 
-export default RankingCard;
+export { RankingCard };
