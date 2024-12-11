@@ -1,122 +1,96 @@
-import TeamInfo from '@/features/common/TeamInfo';
-import { Card, CardContent } from '../card/card';
+import { getMonthSchedule } from '@/features/game/apis/matchSchedule';
+import { CarouselCard } from '@/features/game/components';
+import { GameSchedule } from '@/features/game/types';
+import { useMatchStore } from '@/store/useMatchStore';
+import { format, isValid, parse } from 'date-fns';
+import { useEffect, useState } from 'react';
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
-  CarouselItem,
-  // CarouselPrevious,
-  // CarouselNext,
+  CarouselNext,
+  CarouselPrevious,
 } from './carousel';
 
-const matchMockData = [
-  {
-    date: '2024.10.09',
-    team1: 'LG 트윈스',
-    team1_logo: '/assets/emblems/lgtwins.svg',
-    team1_player: '백승현',
-    team2: 'KT 위즈',
-    team2_logo: '/assets/emblems/ktwiz.svg',
-    team2_player: '박영현',
-    score: '5:6',
-    matchResult: '승',
-  },
-  {
-    date: '2024.10.11',
-    team1: 'KT 위즈',
-    team1_logo: '/assets/emblems/ktwiz.svg',
-    team1_player: '엄상백',
-    team2: '키움',
-    team2_logo: '/assets/emblems/kiwoom.svg',
-    team2_player: '임찬구',
-    score: '1:4',
-    matchResult: '패',
-  },
-  {
-    date: '',
-    team1: '',
-    team2: '',
-    team1_player: '',
-    team2_player: '',
-    score: '',
-    matchResult: '',
-  },
-];
-
 const MatchInfoCarousel = () => {
+  const [matchData, setMatchData] = useState<GameSchedule[]>([]);
+  const { currentMonth, selectedDate } = useMatchStore();
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+
+  useEffect(() => {
+    // 이번 달에 경기가 없을 경우 가장 최신 경기 확인
+    const fetchMatchSchedule = async () => {
+      let yearMonth = format(currentMonth, 'yyyyMM');
+      let retries = 12; // 최대 12번 호출 (1년)
+      let allMatches: GameSchedule[] = [];
+
+      while (retries > 0) {
+        const data: GameSchedule[] = await getMonthSchedule(yearMonth);
+
+        if (data.length) {
+          allMatches = [...allMatches, ...data];
+          break; // 데이터가 있으면 반복 중지
+        }
+
+        // 이전 달로 이동
+        const currentDate = new Date(
+          parseInt(yearMonth.slice(0, 4)),
+          parseInt(yearMonth.slice(4, 6)) - 1,
+          1
+        );
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        yearMonth = format(currentDate, 'yyyyMM');
+        retries -= 1;
+      }
+
+      setMatchData(allMatches);
+
+      // 가장 마지막 경기로 이동
+      if (allMatches.length > 0 && carouselApi) {
+        carouselApi.scrollTo(allMatches.length - 1, true); // 마지막 경기 인덱스로 이동
+      }
+    };
+
+    fetchMatchSchedule();
+  }, [currentMonth, carouselApi]);
+
+  /**  날짜 선택 시 캐러셀 이동 */
+  useEffect(() => {
+    if (!selectedDate || !carouselApi || matchData.length === 0) return;
+    const formattedSelectedDate = format(selectedDate, 'yyyyMMdd'); // 형식 변환 변환
+
+    // matchData에서 formattedSelectedDate와 일치하는 인덱스 찾기
+    const selectedIndex = matchData.findIndex(
+      (game) => game.gameDate.toString() === formattedSelectedDate
+    );
+
+    if (selectedIndex !== -1) {
+      carouselApi.scrollTo(selectedIndex, true); // 해당 인덱스로 이동
+    }
+  }, [selectedDate, matchData, carouselApi]);
+
+  const today = new Date();
+  const hasUpcomingGames = matchData.some((game) => {
+    const gameDateString = game.gameDate?.toString();
+    if (!gameDateString) return false;
+    const parsedDate = parse(gameDateString, 'yyyyMMdd', new Date());
+    return isValid(parsedDate) && parsedDate >= today; // 유효한 날짜인지 확인 후 비교
+  });
+
   return (
     <div className="w-full max-w-2xl min-w-full overflow:hidden">
-      <Carousel className="relative max-w-full">
-        <CarouselContent className="-ml-2">
-          {matchMockData.map((data) => (
-            <CarouselItem
-              key={data.date}
-              className={
-                'pl-1 md:basis-1/2 lg:basis-1/3 transition-transform duration-300 w-fit'
-              }
-            >
-              <div className="p-1">
-                <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#5b5f65]">
-                  <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-[#35383e]">
-                    {data.date ? (
-                      <div className="flex flex-col h-48 items-center justify-between p-2">
-                        {/* 날짜 라벨 */}
-                        <h4 className="bg-wiz-red text-white px-6 py-1 rounded-full">
-                          {data.date}
-                        </h4>
-
-                        <div className="flex gap-6 items-center justify-center px-6">
-                          {/* team1 */}
-                          <TeamInfo
-                            tabType="MatchScheduleTab"
-                            teamName={data.team1}
-                            logoUrl={data.team1_logo || ''}
-                            player={data.team1_player}
-                            result={'lose'}
-                          />
-
-                          {/* 스코어, 승패, 경기 정보 버튼 */}
-                          <div className="flex flex-col items-center justify-center">
-                            <h4 className="mb-4 font-normal text-xl leading-none text-wiz-white">
-                              {data.score}
-                            </h4>
-                            <div className="flex gap-2">
-                              <p className="mb-4 font-bold leading-none text-wiz-red">
-                                {data.matchResult}
-                              </p>
-                            </div>
-                            <button
-                              type="button"
-                              className="bg-gray-400 text-white rounded-full hover:bg-gray-500 py-1 px-3 w-24"
-                            >
-                              경기 정보
-                            </button>
-                          </div>
-                          {/* team2 */}
-                          <TeamInfo
-                            tabType="MatchScheduleTab"
-                            teamName={data.team2}
-                            logoUrl={data.team2_logo || ''}
-                            player={data.team2_player}
-                            result={'win'}
-                          />
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col gap-5 h-48 items-center p-2">
-                        <div className="top-0 w-full h-7 bg-wiz-black text-white p-1 rounded-2xl" />
-                        <p className="mb-4 text-wiz-white">
-                          예정된 경기가 없습니다.
-                        </p>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
+      <Carousel
+        setApi={(api) => setCarouselApi(api)} // Carousel API 저장
+        className="relative max-w-full"
+      >
+        <CarouselContent className="-ml-1">
+          {matchData.map((data, index) => (
+            <CarouselCard key={`${data.gameDate}-${index}`} data={data} />
           ))}
+          {!hasUpcomingGames && <CarouselCard data={null} />}
         </CarouselContent>
-        {/* <CarouselPrevious className="absolute left-[-28px] top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
-        <CarouselNext className="absolute right-[-24px] top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white  hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" /> */}
+        <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
+        <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
       </Carousel>
     </div>
   );

@@ -25,11 +25,11 @@ const TeamInfo = ({
       <img
         src={logoUrl}
         alt="team logo"
-        className={`${isMatchBoard ? 'w-28 h-28' : 'w-20 h-20'}`}
+        className={`${isMatchBoard ? 'w-28 h-28' : 'w-24 h-auto'}`}
       />
       {isMatchBoard ? (
         <div>
-          <p className="text-center text-2xl text-white font-semibold">
+          <p className="text-center text-2xl text-white font-semibold font-semibold">
             {result && result}
           </p>
           <p
@@ -48,13 +48,13 @@ const TeamInfo = ({
             className={`${
               isMatchBoard
                 ? 'text-[#717781] text-center'
-                : 'text-sm font-medium leading-none text-white'
+                : 'leading-none text-white text-xl'
             }`}
           >
             {teamName}
             {isMatchBoard && stadium ? stadium : ''}
           </p>
-          <p className="mb-4 text-sm text-[#717781] leading-none">
+          <p className="mb-4 text-[#717781] leading-none">
             {result === 'lose' ? 'L' : 'W'}: {player}
           </p>
         </div>
