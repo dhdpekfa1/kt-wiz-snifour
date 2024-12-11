@@ -18,8 +18,7 @@ import ParkingPage from './pages/wizPark/ParkingPage';
 
 import { BoxScoreTab } from './features/game';
 import NotFoundPage from './pages/NotFoundPage';
-import RegularGamePage from './pages/game/RegularGamePage';
-import TeamRankingPage from './pages/game/regular/TeamRankingPage';
+import RegularGamePage from './pages/game/regular/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
 
@@ -54,7 +53,7 @@ function App() {
               path="/game/regular/boxscore"
               element={<RegularGamePage />}
             />
-            <Route path="/game/regular/ranking" element={<TeamRankingPage />} />
+            
             <Route
               path="/game/regular/watchPoint"
               element={<RegularGamePage />}
@@ -62,7 +61,7 @@ function App() {
 
             <Route
               path="/game/regular/ranking/team"
-              element={<TeamRankingPage />}
+              element={<RegularGamePage />}
             />
 
             {/* Media */}
