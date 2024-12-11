@@ -3,6 +3,8 @@ import SubTitle from '@/features/common/SubTitle';
 import MatchBoard from '@/features/game/components/MatchBoard';
 import TeamLineup from '@/features/game/components/TeamLineup';
 import { MatchSummaryTable } from '@/features/game/components/table';
+import { useEffect } from 'react';
+import { getWatchPoint } from './apis';
 
 const mockData = {
   teamA: {
@@ -50,6 +52,16 @@ const WatchPointTab = () => {
     rightField: '홍창기',
     designatedHitter: '이영빈',
     pitcher: '정우영',
+  };
+
+  useEffect(() => {
+    fetchWatchPointData();
+  }, []);
+
+  const fetchWatchPointData = async () => {
+    // TODO: gameDate, gameKey 매개변수 전달 어떻게?
+    const res = await getWatchPoint('20240922', '20240922SKKT0');
+    console.log(res);
   };
 
   return (

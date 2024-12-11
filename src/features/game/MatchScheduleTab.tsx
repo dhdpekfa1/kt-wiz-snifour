@@ -1,7 +1,7 @@
 import channelsData from '@/assets/data/broadcastChannels.json';
-import MatchInfoCarousel from '@/components/ui/carousel/MatchInfoCarousel';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { MatchCalendar } from '@/features/game/components/calender';
+import { MatchInfoCarousel } from '@/features/game/components/carousel';
 
 const MatchScheduleTab = () => {
   return (

@@ -1,8 +1,8 @@
 import { Card, CardContent, CarouselItem } from '@/components/ui';
 import TeamInfo from '@/features/common/TeamInfo';
+import { GameSchedule } from '@/features/game/types/match-schedule';
 import { format, isValid, parse } from 'date-fns';
 import { useCallback } from 'react';
-import { GameSchedule } from '../types';
 
 const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
   const formatDate = useCallback((date: string): string => {
