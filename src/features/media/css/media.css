@@ -12,7 +12,7 @@
 }
 
 .media-tabs-list {
-  @apply w-fit flex justify-start space-x-5 h-14 p-0;
+  @apply w-fit flex justify-start space-x-5 h-14 !p-0;
 }
 
 .media-content {
@@ -21,6 +21,8 @@
 
 .media-tabs-trigger {
   @apply rounded-md
+         !p-2.5
+         !px-4
          text-sm
          uppercase
          font-medium
