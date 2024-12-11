@@ -1,11 +1,11 @@
+import { AxiosError } from 'axios';
 import { newsApi } from './NewsApi';
 import { useQuery } from '@tanstack/react-query';
 import { createListViewItem } from '@/features/media/services';
 import { Parameter, isNotNullish, UseQueryParams } from '@/lib';
 import { ListDataType, NewsResponse } from '@/features/media/types';
-import { AxiosError } from 'axios';
 
-//  쿼리 키 정의
+// 쿼리 키 정의
 export const NEWS_API_QUERY_KEY = {
   /** 뉴스 목록 조회 쿼리 키 생성 */
   GET_LIST: (params?: Parameter<typeof newsApi.getList>) =>
@@ -29,7 +29,7 @@ export function useGetNewsList(
     ListDataType // 변환된 응답
   >
 ) {
-  return useQuery<NewsResponse, AxiosError, ListDataType>({
+  return useQuery({
     queryKey: NEWS_API_QUERY_KEY.GET_LIST(params?.variables),
     queryFn: async () => {
       const response = await newsApi.getList(params?.variables);

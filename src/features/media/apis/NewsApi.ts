@@ -6,7 +6,7 @@ import {
   NewsResponse,
 } from '@/features/media/types/news';
 import { ApiRoutes } from '@/constants/route';
-import { toUrl } from '@/lib/route';
+import { toUrl } from '@/lib/routes';
 import instance from '@/lib/axios/instance';
 
 export class NewsApi {
