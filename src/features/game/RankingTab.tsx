@@ -1,11 +1,12 @@
 import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import {
   BatterRankingTab,
   CrowdRankingTab,
   PitcherRankingTab,
   TeamRankingTab,
 } from '@/features/game';
+import SubTabsTrigger from '../common/SubTabsTrigger';
 
 const REG_TABS_CONFIG = [
   { value: 'team', path: '/ranking/team' },
@@ -25,34 +26,10 @@ function RankingTab() {
     <div>
       <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
         <TabsList>
-          <TabsTrigger
-            value="team"
-            onClick={() => handleTabChange('team')}
-            className="border-b-2 border-b-transparent data-[state=active]:bg-transparent data-[state=active]:border-b-wiz-red px-6 py-2.5"
-          >
-            팀 순위
-          </TabsTrigger>
-          <TabsTrigger
-            value="pitcher"
-            onClick={() => handleTabChange('pitcher')}
-            className="border-b-2 border-b-transparent data-[state=active]:bg-transparent data-[state=active]:border-b-wiz-red px-6 py-2.5"
-          >
-            투수 순위
-          </TabsTrigger>
-          <TabsTrigger
-            value="batter"
-            onClick={() => handleTabChange('batter')}
-            className="border-b-2 border-b-transparent data-[state=active]:bg-transparent data-[state=active]:border-b-wiz-red px-6 py-2.5"
-          >
-            타자 순위
-          </TabsTrigger>
-          <TabsTrigger
-            value="crowd"
-            onClick={() => handleTabChange('crowd')}
-            className="border-b-2 border-b-transparent data-[state=active]:bg-transparent data-[state=active]:border-b-wiz-red px-6 py-2.5"
-          >
-            관중 현황
-          </TabsTrigger>
+          <SubTabsTrigger value="team">팀 순위</SubTabsTrigger>
+          <SubTabsTrigger value="pitcher">투수 순위</SubTabsTrigger>
+          <SubTabsTrigger value="batter">타자 순위</SubTabsTrigger>
+          <SubTabsTrigger value="crowd">관중 현황</SubTabsTrigger>
         </TabsList>
         <TabsContent value="team">
           <TeamRankingTab />
