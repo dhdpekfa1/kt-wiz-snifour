@@ -88,4 +88,6 @@ export interface PitcherERA extends CommonPitcherStats {
 export interface PitcherWins extends PitcherERA {}
 
 // 전체 투수 순위 스탯
-export interface OverallPitcherRank extends PitcherERA {}
+export interface OverallPitcherRank extends PitcherERA {
+  teamName: string;
+}
