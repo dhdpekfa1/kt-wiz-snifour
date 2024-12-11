@@ -1,4 +1,4 @@
-import { getMonthSchedule } from '@/features/game/apis/matchSchedule';
+import { getMonthSchedule } from '@/features/game/apis';
 import { CarouselCard } from '@/features/game/components';
 import { GameSchedule } from '@/features/game/types';
 import { useMatchStore } from '@/store/useMatchStore';
