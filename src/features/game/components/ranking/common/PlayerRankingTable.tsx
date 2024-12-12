@@ -18,14 +18,21 @@ import {
   TableRow,
 } from '@/components/ui';
 import { cn } from '@/lib/utils';
+import { OverallBatterRank } from '@/features/common/types/batters';
 
-interface PlayerRankingTableProps {
-  data: OverallPitcherRank[];
-  columns: ColumnDef<OverallPitcherRank>[];
+type PlayerRank = OverallPitcherRank | OverallBatterRank;
+
+interface PlayerRankingTableProps<T extends PlayerRank> {
+  data: T[];
+  columns: ColumnDef<T>[];
   kt?: boolean;
 }
 
-function PlayerRankingTable({ data, columns, kt }: PlayerRankingTableProps) {
+function PlayerRankingTable<T extends PlayerRank>({
+  data,
+  columns,
+  kt,
+}: PlayerRankingTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const table = useReactTable({
     data,

@@ -5,6 +5,10 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import { RankingCard } from '../common/RankingCard';
 import { API_URL } from '@/constants/api-url';
 import { BatterHR, BatterHra } from '@/features/common/types/batters';
+import { Tabs, TabsContent, TabsList } from '@/components/ui';
+import SubTabsTrigger from '@/features/common/SubTabsTrigger';
+import { KTBatterRankingTab } from './KTBatterRankingTab';
+import { AllBatterRankingTab } from './AllBatterRankingTab';
 
 function BatterRankingTab() {
   const [hraRanking, setHraRanking] = useState<BatterHra[]>([]);
@@ -41,7 +45,7 @@ function BatterRankingTab() {
 
     getBatterHraRanking();
     getBatterHrRanking();
-  });
+  }, []);
 
   if (!hraRanking.length || !hrRanking.length) {
     return null;
@@ -74,6 +78,20 @@ function BatterRankingTab() {
           indicator="hr"
         />
       </div>
+
+      {/* 타자 순위 표 */}
+      <Tabs defaultValue="ktBatters">
+        <TabsList className="my-8">
+          <SubTabsTrigger value="ktBatters">KT Wiz 타자</SubTabsTrigger>
+          <SubTabsTrigger value="allBatters">전체 타자 순위</SubTabsTrigger>
+        </TabsList>
+        <TabsContent value="ktBatters">
+          <KTBatterRankingTab />
+        </TabsContent>
+        <TabsContent value="allBatters">
+          <AllBatterRankingTab />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
