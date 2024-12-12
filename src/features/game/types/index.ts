@@ -25,53 +25,6 @@ export interface TeamStats {
   wra: string; // 승률
 }
 
-export interface TeamPitcherStats {
-  ab: number; // 타수
-  bb: number; // 볼넷
-  bb9: number;
-  bbhp: number; // 사구
-  bk: number; // 보크
-  bs: number; // 블론세이브
-  cg: number;
-  cs: number;
-  er: number; // 자책점
-  era: string; // 평균 자책점
-  err: number;
-  gd: number;
-  gyear: string; // 경기 연도(시즌)
-  h2: number;
-  h3: number;
-  hit: number;
-  hit9: number;
-  hold: number; // 홀드 수
-  hp: number; //
-  hr: number;
-  ib: number; // 고의4구
-  inn: number;
-  iso: string;
-  kk: number; // 탈삼진
-  kk9: number;
-  oavg: string; // 피안타율
-  obp: string;
-  oops: string;
-  oslg: string;
-  pa: number; // 타석
-  qs: number; // QS
-  r: number; // 실점
-  sb: number;
-  sf: number; // 희비
-  sh: number; // 희타
-  sho: number;
-  sv: number; // 세이브 수
-  teamCode: string; // 팀 코드
-  teamName: string; // 팀 이름
-  tugucount: number;
-  tugucountinn: number;
-  whip: string; // WHIP
-  wp: number; // 폭투
-  wra: string;
-}
-
 export interface TeamBatterStats {
   ab: number;
   bb: number; // 볼넷
