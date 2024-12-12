@@ -3,15 +3,25 @@ import { useState } from 'react';
 import SubTitle from '@/features/common/SubTitle';
 import { PitcherERA, PitcherWins } from '@/features/common/types/pitchers';
 import { cn } from '@/lib/utils';
+import { BatterHR, BatterHra } from '@/features/common/types/batters';
 
-type Player = PitcherERA | PitcherWins;
+type PitcherPlayer = PitcherERA | PitcherWins;
+type BatterPlayer = BatterHra | BatterHR;
+type Player = PitcherPlayer | BatterPlayer;
 
 interface RankingCardProps {
   title: string;
-  ranking: Player[];
+  ranking: PitcherPlayer[] | BatterPlayer[];
+  position: 'pitcher' | 'batter';
+  indicator: 'era' | 'w' | 'hra' | 'hr';
 }
 
-function RankingCard({ title, ranking }: RankingCardProps) {
+function RankingCard({
+  title,
+  ranking,
+  position,
+  indicator,
+}: RankingCardProps) {
   const [selectedPlayer, setSelectedPlayer] = useState<Player>(ranking[0]);
 
   const handleSelectPlayer = (player: Player) => {
@@ -43,7 +53,14 @@ function RankingCard({ title, ranking }: RankingCardProps) {
                 <p className="flex items-center">{index + 1}위</p>
                 <p>{player.playerName}</p>
               </div>
-              <p>{player.era}</p>
+              <p>
+                {position === 'pitcher' &&
+                  (indicator === 'era' || indicator === 'w') &&
+                  (player as PitcherPlayer)[indicator]}
+                {position === 'batter' &&
+                  (indicator === 'hra' || indicator === 'hr') &&
+                  (player as BatterPlayer)[indicator]}
+              </p>
             </li>
           ))}
         </ol>
