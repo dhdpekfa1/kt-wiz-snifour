@@ -17,7 +17,7 @@ const renderCells = (
   data: { id: string; value: string | number | undefined }[]
 ) => {
   return data.map((item) => (
-    <TableCell key={item.id} className="text-center border border-[#ddd]">
+    <TableCell key={item.id} className="text-center">
       {item.value ?? '-'}
     </TableCell>
   ));
@@ -46,14 +46,14 @@ const MatchSummaryTable = ({
     { id: 'opponentWinRate', label: '승률' },
   ];
 
-  const tableHeaderClass =
-    'text-center text-wiz-white bg-wiz-red border border-[#ddd]';
-  const tableRowClass = 'hover:bg-[#fefefe40] bg-wiz-black text-wiz-white';
+  const tableHeaderClass = 'text-center bg-wiz-red bg-opacity-70';
+  const tableRowClass =
+    'hover:bg-[#fefefe20] bg-wiz-black text-wiz-white border-wiz-white border-opacity-10';
 
   return (
     <Table className="w-full border-collapse whitespace-nowrap">
       <TableHeader>
-        <TableRow>
+        <TableRow className="font-semibold border-none">
           {headers.map((header) => (
             <TableHead key={header.id} className={tableHeaderClass}>
               {header.label}
@@ -73,9 +73,7 @@ const MatchSummaryTable = ({
               value: parseFloat(homeTeamRank?.wra || '0.000').toFixed(3),
             },
           ])}
-          <TableCell className="text-center font-semibold border border-[#ddd]">
-            시즌 성적
-          </TableCell>
+          <TableCell className="text-center font-semibold">시즌 성적</TableCell>
           {renderCells([
             { id: 'visit-win', value: visitTeamRank?.win },
             { id: 'visit-loss', value: visitTeamRank?.lose },
@@ -101,7 +99,7 @@ const MatchSummaryTable = ({
               ),
             },
           ])}
-          <TableCell className="text-center font-semibold border border-[#ddd]">
+          <TableCell className="text-center font-semibold">
             시즌 상대 전적
           </TableCell>
           {renderCells([
@@ -120,19 +118,11 @@ const MatchSummaryTable = ({
 
         {/* 세 번째 행: 시즌 순위 */}
         <TableRow className={tableRowClass}>
-          <TableCell
-            colSpan={4}
-            className="text-center border border-[#ddd] font-bold"
-          >
+          <TableCell colSpan={4} className="text-center font-bold">
             {homeTeamRank?.rank ? `${homeTeamRank.rank} 위` : '-'}
           </TableCell>
-          <TableCell className="text-center font-semibold border border-[#ddd]">
-            시즌 순위
-          </TableCell>
-          <TableCell
-            colSpan={4}
-            className="text-center border border-[#ddd] font-bold"
-          >
+          <TableCell className="text-center font-semibold">시즌 순위</TableCell>
+          <TableCell colSpan={4} className="text-center font-bold">
             {visitTeamRank?.rank ? `${visitTeamRank.rank} 위` : '-'}
           </TableCell>
         </TableRow>
