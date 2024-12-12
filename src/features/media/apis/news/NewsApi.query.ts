@@ -23,7 +23,7 @@ export const NEWS_API_QUERY_KEY = {
 };
 
 /**
- * [GET] /api/article/newslist?searchWord=
+ * [GET] /api/article/newslistpage?searchWord=NC&itemCount=5&pageNum=2
  * @param params 뉴스 목록 조회에 필요한 파라미터
  * @returns 리스트 타입으로 변환된 뉴스 목록 데이터와 총 데이터 개수
  */
@@ -55,6 +55,11 @@ export function useGetNewsList(
   });
 }
 
+/**
+ * [GET] /api/article/wizpressdetail?artcSeq=189033
+ * @param params 뉴스 상세 조회에 필요한 파라미터
+ * @returns 리스트 타입으로 변환된 뉴스 상세 데이터
+ */
 export function useGetNewsBySeq(
   params: UseQueryParams<
     typeof newsApi.getNewsBySeq,
