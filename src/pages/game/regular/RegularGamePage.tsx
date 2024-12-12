@@ -7,7 +7,7 @@ import Layout from '@/features/common/Layout';
 import {
   BoxScoreTab,
   MatchScheduleTab,
-  TeamRankingTab,
+  RankingTab,
   WatchPointTab,
 } from '@/features/game';
 
@@ -33,8 +33,8 @@ function RegularGamePage() {
       header={
         <Banner>
           <Banner.Image
-            src="https://placehold.co/1200x200/141414/642521?text=WIZ+PHOTO"
-            alt="KT WIZ GAME"
+            src="https://placehold.co/1200x200/141414/642521?text=WIZ+GAMES"
+            alt="KT WIZ GAMES"
           />
           <Banner.Overlay>
             <Banner.Heading
@@ -94,7 +94,7 @@ function RegularGamePage() {
           <BoxScoreTab />
         </TabsContent>
         <TabsContent value="ranking">
-          <TeamRankingTab />
+          <RankingTab />
         </TabsContent>
         <TabsContent value="watchpoint">
           <WatchPointTab />
