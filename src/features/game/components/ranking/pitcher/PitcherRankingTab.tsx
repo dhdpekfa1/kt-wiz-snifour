@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Breadcrumb from '../common/Breadcrumb';
-import { PitcherERA, PitcherWins } from '../common/types/Pitchers';
+import Breadcrumb from '../../../../common/Breadcrumb';
+import { PitcherERA, PitcherWins } from '../../../../common/types/Pitchers';
 import { API_URL } from '@/constants/api-url';
 import {
   AllPitcherRankingTab,
@@ -11,7 +11,7 @@ import {
 } from '@/features/game/components/ranking';
 import { Tabs, TabsContent } from '@/components/ui';
 import { TabsList } from '@radix-ui/react-tabs';
-import SubTabsTrigger from '../common/SubTabsTrigger';
+import SubTabsTrigger from '../../../../common/SubTabsTrigger';
 
 function PitcherRankingTab() {
   const [eraRanking, setEraRanking] = useState<PitcherERA[]>([]);
