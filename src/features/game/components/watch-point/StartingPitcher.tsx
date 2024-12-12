@@ -82,47 +82,49 @@ const StartingPitcher = ({
   ];
 
   return (
-    <Table className="mt-4 w-full">
-      <TableHeader>
-        <TableRow className="text-lg font-semibold bg-wiz-white bg-opacity-30 border-none w-fit">
-          {tableHeaderRow.map((header) => (
-            <TableHead key={header} className="text-center">
-              {header}
-            </TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody className="text-center">
-        <TableRow
-          className={`${
-            homeTeam === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
-          } border-b-wiz-white border-opacity-10`}
-        >
-          {homePitcherStats.map((stat) => (
-            <TableCell
-              key={stat.id}
-              className="text-xs md:text-sm px-2 md:px-4"
-            >
-              {stat.value}
-            </TableCell>
-          ))}
-        </TableRow>
-        <TableRow
-          className={`${
-            visitTeam === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
-          } border-b-wiz-white border-opacity-10`}
-        >
-          {visitPitcherStats.map((stat) => (
-            <TableCell
-              key={stat.id}
-              className="text-xs md:text-sm px-2 md:px-4"
-            >
-              {stat.value}
-            </TableCell>
-          ))}
-        </TableRow>
-      </TableBody>
-    </Table>
+    <div className="overflow-x-auto w-full">
+      <Table className="mt-4 w-full">
+        <TableHeader>
+          <TableRow className="text-sm md:text-lg font-semibold bg-wiz-white bg-opacity-30 border-none">
+            {tableHeaderRow.map((header) => (
+              <TableHead key={header} className="text-center md:px-4">
+                {header}
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody className="text-center">
+          <TableRow
+            className={`${
+              homeTeam === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
+            } border-b-wiz-white border-opacity-10`}
+          >
+            {homePitcherStats.map((stat) => (
+              <TableCell
+                key={stat.id}
+                className="text-xs md:text-sm px-2 md:px-4"
+              >
+                {stat.value}
+              </TableCell>
+            ))}
+          </TableRow>
+          <TableRow
+            className={`${
+              visitTeam === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
+            } border-b-wiz-white border-opacity-10`}
+          >
+            {visitPitcherStats.map((stat) => (
+              <TableCell
+                key={stat.id}
+                className="text-xs md:text-sm px-2 md:px-4"
+              >
+                {stat.value}
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

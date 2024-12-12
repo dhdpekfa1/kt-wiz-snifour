@@ -10,25 +10,6 @@ import {
 } from './components/watch-point';
 import { WatchPointData } from './types/watch-point';
 
-const mockData = {
-  teamA: {
-    wins: 72,
-    losses: 70,
-    draws: 2,
-    winRate: 0.507,
-    seasonResult: '시즌 성적',
-    seasonRank: 5,
-  },
-  teamB: {
-    wins: 76,
-    losses: 66,
-    draws: 2,
-    winRate: 0.535,
-    seasonResult: '시즌 성적',
-    seasonRank: 3,
-  },
-};
-
 const WatchPointTab = () => {
   const [watchData, setWatchData] = useState<WatchPointData>();
   // const [gameDate, setGameDate] = useState("20240922");
@@ -37,8 +18,6 @@ const WatchPointTab = () => {
   useEffect(() => {
     fetchWatchPointData();
   }, []);
-
-  console.log('watchData', watchData);
 
   const fetchWatchPointData = async () => {
     // TODO: gameDate, gameKey 매개변수 state 전달
@@ -78,14 +57,20 @@ const WatchPointTab = () => {
           matchTime={watchData?.gameScore.gtime || ''}
           stadium={watchData?.gameScore.stadium || ''}
           gameTable={
-            <MatchSummaryTable teamA={mockData.teamA} teamB={mockData.teamB} />
+            <MatchSummaryTable
+              homeTeamRank={watchData?.homeTeamRank}
+              visitTeamRank={watchData?.visitTeamRank}
+              homeTeamWinLose={watchData?.homeTeamWinLose}
+              visitTeamWinLose={watchData?.visitTeamWinLose}
+            />
           }
         />
 
-        <div className="flex flex-col">
+        {/* 선발투수 비교 */}
+        <div className="flex flex-col w-full">
           <div className="flex flex-col gap-2 w-full my-10">
             <SubTitle title="선발투수 비교" />
-            <div className="w-full">
+            <div className="w-full flex items-center justify-center">
               <StartingPitcher
                 homeTeam={watchData?.gameScore.home || ''}
                 visitTeam={watchData?.gameScore.visit || ''}

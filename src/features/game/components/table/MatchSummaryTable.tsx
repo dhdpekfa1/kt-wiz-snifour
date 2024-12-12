@@ -6,21 +6,34 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
+import { TeamRank, TeamWinLose } from '../../types/watch-point';
 
-type TeamRecord = {
-  wins: number;
-  losses: number;
-  draws: number;
-  winRate: number;
-  seasonRank: number;
+const calculateWinRate = (win?: number, lose?: number): string => {
+  const rate = (win ?? 0) / ((win ?? 0) + (lose ?? 0) || 1);
+  return parseFloat(rate.toFixed(3)).toString();
 };
 
-type MatchSummaryTableProps = {
-  teamA: TeamRecord;
-  teamB: TeamRecord;
+const renderCells = (
+  data: { id: string; value: string | number | undefined }[]
+) => {
+  return data.map((item) => (
+    <TableCell key={item.id} className="text-center border border-[#ddd]">
+      {item.value ?? '-'}
+    </TableCell>
+  ));
 };
 
-const MatchSummaryTable = ({ teamA, teamB }: MatchSummaryTableProps) => {
+const MatchSummaryTable = ({
+  homeTeamRank,
+  visitTeamRank,
+  homeTeamWinLose,
+  visitTeamWinLose,
+}: {
+  homeTeamRank?: TeamRank;
+  visitTeamRank?: TeamRank;
+  homeTeamWinLose?: TeamWinLose;
+  visitTeamWinLose?: TeamWinLose;
+}) => {
   const headers = [
     { id: 'win', label: '승' },
     { id: 'loss', label: '패' },
@@ -33,15 +46,16 @@ const MatchSummaryTable = ({ teamA, teamB }: MatchSummaryTableProps) => {
     { id: 'opponentWinRate', label: '승률' },
   ];
 
+  const tableHeaderClass =
+    'text-center text-wiz-white bg-wiz-red border border-[#ddd]';
+  const tableRowClass = 'hover:bg-[#fefefe40] bg-wiz-black text-wiz-white';
+
   return (
     <Table className="w-full border-collapse whitespace-nowrap">
       <TableHeader>
         <TableRow>
           {headers.map((header) => (
-            <TableHead
-              key={header.id}
-              className="text-center text-wiz-white bg-wiz-red border border-[#ddd]"
-            >
+            <TableHead key={header.id} className={tableHeaderClass}>
               {header.label}
             </TableHead>
           ))}
@@ -49,60 +63,68 @@ const MatchSummaryTable = ({ teamA, teamB }: MatchSummaryTableProps) => {
       </TableHeader>
       <TableBody>
         {/* 첫 번째 행: 시즌 성적 */}
-        <TableRow className="hover:bg-[#fefefe40] bg-wiz-black text-wiz-white">
-          <TableCell className="text-center border border-[#ddd]">
-            {teamA.wins}
-          </TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            {teamA.losses}
-          </TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            {teamA.draws}
-          </TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            {teamA.winRate.toFixed(3)}
-          </TableCell>
-          <TableCell className="text-center font-semibold border border-[#ddd] align-middle">
+        <TableRow className={tableRowClass}>
+          {renderCells([
+            { id: 'home-win', value: homeTeamRank?.win },
+            { id: 'home-loss', value: homeTeamRank?.lose },
+            { id: 'home-draw', value: homeTeamRank?.drawn },
+            {
+              id: 'home-wra',
+              value: parseFloat(homeTeamRank?.wra || '0.000').toFixed(3),
+            },
+          ])}
+          <TableCell className="text-center font-semibold border border-[#ddd]">
             시즌 성적
           </TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            {teamB.wins}
-          </TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            {teamB.losses}
-          </TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            {teamB.draws}
-          </TableCell>
-          <TableCell className="text-center border border-[#ddd]  min-w-[70px]">
-            {teamB.winRate.toFixed(3)}
-          </TableCell>
+          {renderCells([
+            { id: 'visit-win', value: visitTeamRank?.win },
+            { id: 'visit-loss', value: visitTeamRank?.lose },
+            { id: 'visit-draw', value: visitTeamRank?.drawn },
+            {
+              id: 'visit-wra',
+              value: parseFloat(visitTeamRank?.wra || '0.000').toFixed(3),
+            },
+          ])}
         </TableRow>
+
         {/* 두 번째 행: 시즌 상대 전적 */}
-        <TableRow className="hover:bg-[#fefefe40] bg-wiz-black text-wiz-white">
-          <TableCell className="text-center border border-[#ddd]">7</TableCell>
-          <TableCell className="text-center border border-[#ddd]">9</TableCell>
-          <TableCell className="text-center border border-[#ddd]">0</TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            0.438
-          </TableCell>
+        <TableRow className={tableRowClass}>
+          {renderCells([
+            { id: 'home-vs-win', value: homeTeamWinLose?.win },
+            { id: 'home-vs-loss', value: homeTeamWinLose?.lose },
+            { id: 'home-vs-draw', value: homeTeamWinLose?.drawn },
+            {
+              id: 'home-vs-wra',
+              value: calculateWinRate(
+                homeTeamWinLose?.win,
+                homeTeamWinLose?.lose
+              ),
+            },
+          ])}
           <TableCell className="text-center font-semibold border border-[#ddd]">
             시즌 상대 전적
           </TableCell>
-          <TableCell className="text-center border border-[#ddd]">9</TableCell>
-          <TableCell className="text-center border border-[#ddd]">7</TableCell>
-          <TableCell className="text-center border border-[#ddd]">0</TableCell>
-          <TableCell className="text-center border border-[#ddd]">
-            0.563
-          </TableCell>
+          {renderCells([
+            { id: 'visit-vs-win', value: visitTeamWinLose?.win },
+            { id: 'visit-vs-loss', value: visitTeamWinLose?.lose },
+            { id: 'visit-vs-draw', value: visitTeamWinLose?.drawn },
+            {
+              id: 'visit-vs-wra',
+              value: calculateWinRate(
+                visitTeamWinLose?.win,
+                visitTeamWinLose?.lose
+              ),
+            },
+          ])}
         </TableRow>
+
         {/* 세 번째 행: 시즌 순위 */}
-        <TableRow className="hover:bg-[#fefefe40] bg-wiz-black text-wiz-white">
+        <TableRow className={tableRowClass}>
           <TableCell
             colSpan={4}
             className="text-center border border-[#ddd] font-bold"
           >
-            {teamA.seasonRank} 위
+            {homeTeamRank?.rank ? `${homeTeamRank.rank} 위` : '-'}
           </TableCell>
           <TableCell className="text-center font-semibold border border-[#ddd]">
             시즌 순위
@@ -111,7 +133,7 @@ const MatchSummaryTable = ({ teamA, teamB }: MatchSummaryTableProps) => {
             colSpan={4}
             className="text-center border border-[#ddd] font-bold"
           >
-            {teamB.seasonRank} 위
+            {visitTeamRank?.rank ? `${visitTeamRank.rank} 위` : '-'}
           </TableCell>
         </TableRow>
       </TableBody>
