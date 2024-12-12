@@ -6,14 +6,13 @@ import { Link } from 'react-router';
 // Types
 type MediaDetailHeaderProps = {
   title: string;
-  date: string;
+  createdAt: number;
   views?: number;
 };
 
 type MediaDetailBodyProps = {
-  thumbnail?: string;
+  imgFilePath?: string;
   title: string;
-  description: string;
   content: string;
   tags?: string[];
 };
@@ -21,6 +20,8 @@ type MediaDetailBodyProps = {
 type NavigationConfig = {
   prevLink?: string;
   nextLink?: string;
+  onPrevClick?: () => void;
+  onNextClick?: () => void;
   listButton: {
     onClick: () => void;
     text: React.ReactNode;
@@ -36,60 +37,65 @@ const MediaDetailContainer = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ${className}`}>
+  <div
+    className={`max-w-4xl  mx-auto min-h-[1100px] px-4 sm:px-6 lg:px-8 py-8 ${className}`}
+  >
     {children}
   </div>
 );
 
 // Header Component
-const Header = ({ title, date, views }: MediaDetailHeaderProps) => (
-  <header className="mb-8">
-    <h2 className="text-3xl font-bold text-white mb-4">{title}</h2>
-    <div className="flex items-center gap-4 text-sm text-[#9ca3af]">
-      <time dateTime={date}>{format(new Date(date), 'yyyy년 M월 d일')}</time>
-      <div className="flex items-center gap-1">
-        <EyeIcon className="w-4 h-4" />
-        <span>{views?.toLocaleString() || 0}</span>
+const Header = ({ title, createdAt, views }: MediaDetailHeaderProps) => {
+  return (
+    <header className="mb-8">
+      <h2 className="text-3xl font-bold text-white mb-4">{title}</h2>
+      <div className="flex items-center gap-4 text-sm text-[#9ca3af]">
+        <time dateTime={new Date(createdAt).toISOString()}>
+          {format(new Date(createdAt), 'yyyy년 M월 d일')}
+        </time>
+        <div className="flex items-center gap-1">
+          <EyeIcon className="w-4 h-4" />
+          <span>{views?.toLocaleString() || 0}</span>
+        </div>
       </div>
-    </div>
-  </header>
-);
+    </header>
+  );
+};
 
 // Body Component
-const Body = ({
-  thumbnail,
-  title,
-  description,
-  content,
-  tags,
-}: MediaDetailBodyProps) => (
-  <article className="prose prose-invert max-w-none">
-    {thumbnail && (
-      <img
-        src={thumbnail}
-        alt={title}
-        className="w-full aspect-video object-cover rounded-lg mb-8"
-      />
-    )}
-    <div className="text-[#9ca3af] space-y-6">
-      <p className="text-lg leading-relaxed">{description}</p>
-      {/* TODO: react-html-parser */}
-      <div>{content}</div>
-    </div>
-    {tags && (
-      <div className="mt-8 flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="px-3 py-1 bg-wiz-red/80 text-wiz-white rounded-full text-sm font-light"
-          >
-            #{tag}
-          </span>
-        ))}
+const Body = ({ title, imgFilePath, content, tags }: MediaDetailBodyProps) => {
+  const textContent =
+    new DOMParser()
+      .parseFromString(content, 'text/html')
+      .body.textContent?.trim() || 'Content';
+
+  return (
+    <article className="prose prose-invert max-w-none">
+      {imgFilePath && (
+        <img
+          src={imgFilePath}
+          alt={title}
+          className="w-full aspect-video object-cover rounded-lg mb-8"
+        />
+      )}
+      <div className="text-[#9ca3af] space-y-6">
+        <p className="text-lg leading-relaxed">{textContent}</p>
       </div>
-    )}
-  </article>
-);
+      {tags && (
+        <div className="mt-8 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-3 py-1 bg-wiz-red/80 text-wiz-white rounded-full text-sm font-light"
+            >
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </article>
+  );
+};
 
 // Navigation Components
 const NavigationButton = ({
@@ -141,9 +147,11 @@ const NavigationButton = ({
 const NavigationLink = ({
   to,
   direction,
+  onMouseEnter,
 }: {
   to: string;
   direction: 'prev' | 'next';
+  onMouseEnter?: () => void;
 }) => {
   const commonClasses = `
     group flex items-start gap-2 px-3 py-2 rounded-lg hover:bg-wiz-red transition-colors
@@ -176,6 +184,7 @@ const NavigationLink = ({
       to={to}
       className={commonClasses}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      onMouseEnter={onMouseEnter}
     >
       {content}
     </Link>
@@ -192,6 +201,8 @@ const Navigation = ({
   const {
     prevLink,
     nextLink,
+    onPrevClick,
+    onNextClick,
     listButton,
     validateLink = (link: string | undefined): boolean => {
       if (!link) return false;
@@ -199,7 +210,6 @@ const Navigation = ({
     },
   } = config;
 
-  // 네비게이션 버튼을 표시할지 결정
   const showPrev = prevLink && validateLink(prevLink);
   const showNext = nextLink && validateLink(nextLink);
 
@@ -211,13 +221,21 @@ const Navigation = ({
         <div className="flex gap-2">
           {prevLink &&
             (showPrev ? (
-              <NavigationLink to={prevLink} direction="prev" />
+              <NavigationLink
+                to={prevLink}
+                direction="prev"
+                onMouseEnter={onPrevClick}
+              />
             ) : (
               <NavigationButton direction="prev" disabled={true} />
             ))}
           {nextLink &&
             (showNext ? (
-              <NavigationLink to={nextLink} direction="next" />
+              <NavigationLink
+                to={nextLink}
+                direction="next"
+                onMouseEnter={onNextClick}
+              />
             ) : (
               <NavigationButton direction="next" disabled={true} />
             ))}
