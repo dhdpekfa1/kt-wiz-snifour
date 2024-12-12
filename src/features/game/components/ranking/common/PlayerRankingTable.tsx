@@ -8,7 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { OverallPitcherRank } from '@/features/common/types/Pitchers';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import {
   Table,
   TableBody,

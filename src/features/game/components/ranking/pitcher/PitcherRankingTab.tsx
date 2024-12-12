@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Breadcrumb from '../../../../common/Breadcrumb';
-import { PitcherERA, PitcherWins } from '../../../../common/types/Pitchers';
+import { PitcherERA, PitcherWins } from '../../../../common/types/pitchers';
 import { API_URL } from '@/constants/api-url';
 import {
   AllPitcherRankingTab,

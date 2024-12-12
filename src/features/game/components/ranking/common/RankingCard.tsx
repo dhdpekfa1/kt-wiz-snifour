@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import SubTitle from '@/features/common/SubTitle';
-import { PitcherERA, PitcherWins } from '@/features/common/types/Pitchers';
+import { PitcherERA, PitcherWins } from '@/features/common/types/pitchers';
 import { cn } from '@/lib/utils';
 
 type Player = PitcherERA | PitcherWins;

@@ -41,7 +41,7 @@ export interface CommonPitcherStats {
   wra: string;
 }
 
-// 팀 단위의 투수 순위 스탯
+// 팀 단위의 투수 순위 스탯 - 팀 순위 페이지에서 사용
 export interface TeamPitcherRank extends CommonPitcherStats {
   bbhp: number;
   gd: number;

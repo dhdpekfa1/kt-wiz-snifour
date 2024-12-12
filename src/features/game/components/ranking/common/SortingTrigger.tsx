@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { ArrowUpDown } from 'lucide-react';
 import { Column } from '@tanstack/react-table';
-import { OverallPitcherRank } from '@/features/common/types/Pitchers';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
 
 interface SortingTriggerProps {
   column: Column<OverallPitcherRank, unknown>;

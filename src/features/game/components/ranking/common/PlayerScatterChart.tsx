@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { OverallPitcherRank } from '@/features/common/types/Pitchers';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import {
   CartesianGrid,
   Cell,
