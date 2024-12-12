@@ -22,4 +22,4 @@ function SortingTrigger({ column, children }: SortingTriggerProps) {
   );
 }
 
-export default SortingTrigger;
+export { SortingTrigger };
