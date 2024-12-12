@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { OverallPitcherRank } from '@/features/common/types/Pitchers';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import { API_URL } from '@/constants/api-url';
 import {
   PlayerRankingTable,

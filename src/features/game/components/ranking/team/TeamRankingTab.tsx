@@ -22,8 +22,6 @@ function TeamRankingTab() {
         ]}
       />
 
-      {/* sub navBar */}
-
       {/* 팀 순위 테이블 */}
       <SubTitle title="2024 시즌 팀 순위" />
       <Tabs defaultValue="team" className="w-full flex flex-col mt-4">

@@ -5,7 +5,7 @@ import {
   CrowdRankingTab,
   PitcherRankingTab,
   TeamRankingTab,
-} from '@/features/game';
+} from '@/features/game/components/ranking';
 import SubTabsTrigger from '../common/SubTabsTrigger';
 
 const REG_TABS_CONFIG = [

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Breadcrumb from '../common/Breadcrumb';
-import { PitcherERA, PitcherWins } from '../common/types/Pitchers';
+import Breadcrumb from '../../../../common/Breadcrumb';
+import { PitcherERA, PitcherWins } from '../../../../common/types/pitchers';
 import { API_URL } from '@/constants/api-url';
 import {
   AllPitcherRankingTab,
@@ -11,7 +11,7 @@ import {
 } from '@/features/game/components/ranking';
 import { Tabs, TabsContent } from '@/components/ui';
 import { TabsList } from '@radix-ui/react-tabs';
-import SubTabsTrigger from '../common/SubTabsTrigger';
+import SubTabsTrigger from '../../../../common/SubTabsTrigger';
 
 function PitcherRankingTab() {
   const [eraRanking, setEraRanking] = useState<PitcherERA[]>([]);
@@ -68,8 +68,18 @@ function PitcherRankingTab() {
 
       {/* 투수 랭킹 카드 */}
       <div className="w-full mt-12 bg-wiz-white grid grid-cols-2 rounded-xl">
-        <RankingCard title="평균 자책점 TOP 3" ranking={eraRanking} />
-        <RankingCard title="승리 TOP 3" ranking={winRanking} />
+        <RankingCard
+          title="평균 자책점 TOP 3"
+          ranking={eraRanking}
+          position="pitcher"
+          indicator="era"
+        />
+        <RankingCard
+          title="승리 TOP 3"
+          ranking={winRanking}
+          position="pitcher"
+          indicator="w"
+        />
       </div>
 
       {/* 투수 순위 표 */}

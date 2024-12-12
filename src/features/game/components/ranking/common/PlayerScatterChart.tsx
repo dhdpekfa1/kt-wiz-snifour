@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { OverallPitcherRank } from '@/features/common/types/Pitchers';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import {
   CartesianGrid,
   Cell,
@@ -14,39 +14,58 @@ import CustomTooltip from './CustomTooltip';
 import { Props } from 'recharts/types/container/Surface';
 import { cn } from '@/lib/utils';
 import SubTitle from '@/features/common/SubTitle';
+import { OverallBatterRank } from '@/features/common/types/batters';
 
-interface PlayerScatterChartProps {
-  data: OverallPitcherRank[];
+type PlayerRank = OverallPitcherRank | OverallBatterRank;
+
+interface PlayerScatterChartProps<T extends PlayerRank> {
+  data: T[];
   position: 'pitcher' | 'batter';
 }
 
-interface CellProps {
+interface CellProps<T extends PlayerRank> {
   cx: number;
   cy: number;
-  payload: OverallPitcherRank & { color: string };
+  payload: T & { color: string };
 }
 
-function PlayerScatterChart({ data, position }: PlayerScatterChartProps) {
+function PlayerScatterChart<T extends PlayerRank>({
+  data,
+  position,
+}: PlayerScatterChartProps<T>) {
   const { x, y, xLabel, yLabel } = useMemo(() => {
     return position === 'pitcher'
       ? { x: 'wra', xLabel: '승률', y: 'era', yLabel: '평균자책점' }
-      : { x: 'ops', xLabel: 'OPS', y: 'hra', yLabel: '타율' };
+      : { x: 'hra', xLabel: '타율', y: 'ops', yLabel: 'OPS' };
   }, [position]);
 
   const chartData = useMemo(() => {
-    if (position === 'pitcher') {
-      const filteredData = data
-        .filter((player) => player.gamenum >= 10)
-        .sort(
-          (a, b) =>
-            Number(b.wra) / Number(b.era) - Number(a.wra) / Number(a.era)
-        );
+    const filteredData = data
+      .filter((player) => player.gamenum >= 10)
+      .sort((a, b) => {
+        if (position === 'pitcher') {
+          return (
+            Number((b as OverallPitcherRank).wra) /
+              Number((b as OverallPitcherRank).era) -
+            Number((a as OverallPitcherRank).wra) /
+              Number((a as OverallPitcherRank).era)
+          );
+        }
 
+        return (
+          Number((b as OverallBatterRank).ops) +
+          Number((b as OverallBatterRank).hra) -
+          (Number((a as OverallBatterRank).ops) +
+            Number((a as OverallBatterRank).hra))
+        );
+      });
+
+    if (position === 'pitcher') {
       return filteredData.map((pitcher, index) => {
         const result = {
           ...pitcher,
-          era: Number(pitcher.era),
-          wra: Number(pitcher.wra),
+          era: Number((pitcher as OverallPitcherRank).era),
+          wra: Number((pitcher as OverallPitcherRank).wra),
         };
         if (index < filteredData.length * 0.33) {
           return {
@@ -68,12 +87,34 @@ function PlayerScatterChart({ data, position }: PlayerScatterChartProps) {
     }
 
     if (position === 'batter') {
-      // batter
+      return filteredData.map((batter, index) => {
+        const result = {
+          ...batter,
+          ops: Number((batter as OverallBatterRank).ops),
+          hra: Number((batter as OverallBatterRank).hra),
+        };
+        if (index < filteredData.length * 0.33) {
+          return {
+            ...result,
+            color: 'bg-[#059212]',
+          };
+        }
+        if (index < filteredData.length * 0.66) {
+          return {
+            ...result,
+            color: 'bg-[#ffba08]',
+          };
+        }
+        return {
+          ...result,
+          color: 'bg-gray-500',
+        };
+      });
     }
   }, [data, position]);
 
   const renderImageCell = (props: unknown) => {
-    const { cx, cy, payload } = props as Props & CellProps; // cx와 cy는 점의 좌표, payload는 데이터
+    const { cx, cy, payload } = props as Props & CellProps<T>; // cx와 cy는 점의 좌표, payload는 데이터
     return (
       <foreignObject
         x={cx - 15} // 이미지 위치 (중앙 정렬)

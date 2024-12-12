@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { TeamPitcherRank } from '@/features/common/types/Pitchers';
+import { TeamPitcherRank } from '@/features/common/types/pitchers';
 
 function TeamPitcherRankingTable() {
   const [teamPitcherRanking, setTeamPitcherRanking] = useState<

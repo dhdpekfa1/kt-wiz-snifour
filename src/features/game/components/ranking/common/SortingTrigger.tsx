@@ -2,10 +2,13 @@ import { ReactNode } from 'react';
 
 import { ArrowUpDown } from 'lucide-react';
 import { Column } from '@tanstack/react-table';
-import { OverallPitcherRank } from '@/features/common/types/Pitchers';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { OverallBatterRank } from '@/features/common/types/batters';
 
 interface SortingTriggerProps {
-  column: Column<OverallPitcherRank, unknown>;
+  column:
+    | Column<OverallPitcherRank, unknown>
+    | Column<OverallBatterRank, unknown>;
   children: ReactNode;
 }
 
@@ -22,4 +25,4 @@ function SortingTrigger({ column, children }: SortingTriggerProps) {
   );
 }
 
-export default SortingTrigger;
+export { SortingTrigger };

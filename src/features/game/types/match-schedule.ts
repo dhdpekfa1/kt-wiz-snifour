@@ -25,43 +25,6 @@ export interface TeamStats {
   wra: string; // 승률
 }
 
-export interface TeamBatterStats {
-  ab: number;
-  bb: number; // 볼넷
-  bbhp: number;
-  bbkk: string;
-  bra: string; // 출루율
-  cs: number;
-  der: string;
-  err: number; // 실책
-  gd: number; // 병살
-  gyear: string; // 경기 연도(시즌)
-  h2: number; // 2루타
-  h3: number; // 3루타
-  hit: number; // 안타
-  hp: number; // 사구
-  hr: number; // 홈런
-  hra: string; // 타율
-  hrab: number;
-  ib: number; // 고의4구
-  iso: string;
-  kk: number; // 삼진
-  kkab: number;
-  ops: string; // OPS
-  pa: number;
-  rbi: number; // 타점
-  run: number;
-  sb: number; // 도루
-  sbTryCn: number;
-  sba: string;
-  sf: number;
-  sh: number;
-  slab: number;
-  slg: string; // 장타율
-  teamCode: string; // 팀 코드
-  teamName: 'KT'; // 팀 이름
-}
-
 export interface TeamVS {
   drawn: number;
   lose: number;
