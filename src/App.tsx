@@ -44,7 +44,6 @@ function App() {
             <Route path="/wizpark/parking" element={<ParkingPage />} />
 
             {/* Game */}
-
             <Route path="/game/regular/*" element={<RegularGamePage />} />
 
             {/* Media */}
