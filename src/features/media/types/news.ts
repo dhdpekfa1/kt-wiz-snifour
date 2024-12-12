@@ -19,8 +19,10 @@ type NewsItem = {
 };
 
 type NewsResponse = {
-  list: NewsItem[];
-  searchCount: number;
+  data: {
+    list: NewsItem[];
+    searchCount: number;
+  };
 };
 
 type NewsListDto = {
@@ -33,9 +35,16 @@ type NewsDetailDto = {
   artcSeq: string;
 };
 
+type NewsDetailResponse = {
+  data: {
+    article: NewsItem;
+  };
+};
+
 export {
   type NewsItem,
   type NewsResponse,
-  type NewsDetailDto,
   type NewsListDto,
+  type NewsDetailDto,
+  type NewsDetailResponse,
 };

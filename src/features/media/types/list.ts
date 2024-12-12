@@ -6,7 +6,7 @@ type ListViewType = {
   boardCode: string; // 게시판 코드
   title: string; // 기사 제목
   content: string; // 기사 내용 (HTML 형식)
-  imgFilePath: string; // 이미지 파일 경로
+  imgFilePath?: string; // 이미지 파일 경로
   maxArticlePerPage: number; // 페이지당 최대 기사 수
   totalPage: number; // 전체 페이지 수
   viewCount: number; // 조회 수
@@ -16,7 +16,7 @@ type ListViewType = {
 
 type ListDataType = {
   list: ListViewType[];
-  searchCount: number;
+  searchCount?: number;
 };
 
 export type { ListDataType, ListViewType };
