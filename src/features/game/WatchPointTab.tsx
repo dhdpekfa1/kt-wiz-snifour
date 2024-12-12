@@ -3,7 +3,11 @@ import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
 import { useEffect, useState } from 'react';
 import { getWatchPoint } from './apis';
-import { MatchBoard, TeamLineup } from './components/watch-point';
+import {
+  MatchBoard,
+  StartingPitcher,
+  TeamLineup,
+} from './components/watch-point';
 import { WatchPointData } from './types/watch-point';
 
 const mockData = {
@@ -33,6 +37,8 @@ const WatchPointTab = () => {
   useEffect(() => {
     fetchWatchPointData();
   }, []);
+
+  console.log('watchData', watchData);
 
   const fetchWatchPointData = async () => {
     // TODO: gameDate, gameKey 매개변수 state 전달
@@ -77,10 +83,16 @@ const WatchPointTab = () => {
         />
 
         <div className="flex flex-col">
-          {/* TODO: 선발투수 비교 차트 구현 */}
           <div className="flex flex-col gap-2 w-full my-10">
             <SubTitle title="선발투수 비교" />
-            <div className="w-full">{/*  */}</div>
+            <div className="w-full">
+              <StartingPitcher
+                homeTeam={watchData?.gameScore.home || ''}
+                visitTeam={watchData?.gameScore.visit || ''}
+                homePitcher={watchData?.homePitcher}
+                visitPitcher={watchData?.visitPitcher}
+              />
+            </div>
           </div>
 
           {/* 라인업 */}
