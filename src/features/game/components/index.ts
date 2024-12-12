@@ -1,1 +1,1 @@
-export { CarouselCard } from './CarouselCard';
+export { CarouselCard } from './carousel/CarouselCard';
