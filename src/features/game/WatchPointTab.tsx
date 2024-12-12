@@ -33,7 +33,6 @@ const WatchPointTab = () => {
   useEffect(() => {
     fetchWatchPointData();
   }, []);
-  console.log(watchData?.homeLineup);
 
   const fetchWatchPointData = async () => {
     // TODO: gameDate, gameKey 매개변수 state 전달
@@ -41,6 +40,7 @@ const WatchPointTab = () => {
     setWatchData(res);
   };
 
+  console.log(watchData?.homeLineup);
   return (
     <div className="w-full flex my-20">
       <div className="w-full flex flex-col justify-center items-start">
@@ -87,12 +87,12 @@ const WatchPointTab = () => {
           {/* 라인업 */}
           <div className="flex flex-col gap-2 w-full my-10">
             <SubTitle title="라인업" />
-            <div className="w-full flex items-center justify-between gap-10 px-20 max-md:flex-col">
+            <div className="w-full flex items-center justify-between gap-10 px-20 md:flex-row lg:gap-20 xl:px-40 flex-col">
               <TeamLineup
                 data={watchData?.homeLineup || []}
                 logoUrl={watchData?.gameScore.homeLogo || ''}
               />
-              <h2 className="text-6xl	text-wiz-red font-extrabold mt-20">
+              <h2 className="text-6xl text-wiz-red font-extrabold md:mt-32 mt-10 max-md:ml-24">
                 VS
               </h2>
               <TeamLineup
