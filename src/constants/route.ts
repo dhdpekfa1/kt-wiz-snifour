@@ -5,6 +5,7 @@ export enum ApiRoutes {
   NewsDetail = 'api/article/newsdetail',
   Press = 'api/article/wizpresslistpage',
   PressDetail = 'api/article/wizpressdetail',
+  Highlight = 'api/media/highlightlist',
 }
 
 export enum PageRoutes {
@@ -13,6 +14,7 @@ export enum PageRoutes {
   NewsDetail = '/media/wiznews/:id',
   Press = '/media/wizpress',
   PressDetail = '/media/wizpress/:id',
+  Highlight = '/media/highlight',
 }
 
 export const isExistPage = (pathname: string) => {
