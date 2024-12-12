@@ -12,21 +12,33 @@ import {
 } from '@/features/game';
 
 import '@/features/game/css/game.css';
+import { useNavigate, useParams } from 'react-router';
 
 const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
-  { value: 'boxscore', path: '/regular/boxscore/:gameDate/:gmKey' },
+  { value: 'boxscore', path: '/regular/boxscore' },
   { value: 'ranking', path: '/regular/ranking/team' },
   { value: 'watchpoint', path: '/regular/watchpoint' },
 ];
 
 /** 정규리그 페이지 */
 function RegularGamePage() {
+  const { gameDate, gameKey } = useParams();
+  const navigate = useNavigate();
+
   const { currentTab, handleTabChange } = useTabFromUrl({
     basePath: '/game',
     tabs: REG_TABS_CONFIG,
     defaultTab: 'schedule',
   });
+
+  const handleBoxScoreTabChange = () => {
+    if (gameDate && gameKey) {
+      navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`);
+    } else {
+      handleTabChange('boxscore');
+    }
+  };
 
   return (
     <Layout
@@ -64,7 +76,7 @@ function RegularGamePage() {
               </TabsTrigger>
               <TabsTrigger
                 value="boxscore"
-                onClick={() => handleTabChange('boxscore')}
+                onClick={handleBoxScoreTabChange}
                 className={cn('tabs-trigger', 'px-6 py-2.5')}
               >
                 박스 스코어
