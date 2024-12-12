@@ -37,11 +37,11 @@
 }
 
 .media-article-title {
-  @apply text-xl font-bold text-white mb-2 group-hover:text-wiz-red transition-colors md:text-lg
+  @apply text-xl font-bold text-white group-hover:text-wiz-red transition-colors md:text-lg md:line-clamp-1
 }
 
 .media-article-footer {
-  @apply flex items-center gap-4 text-sm text-[#6B7280]
+  @apply flex gap-4 text-sm  text-[#6B7280]
 }
 
 .media-article-views {

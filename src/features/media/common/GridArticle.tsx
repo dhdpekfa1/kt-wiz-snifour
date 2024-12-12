@@ -1,5 +1,6 @@
-import { DEFAULT_IMAGE } from '@/constants/default-image';
 import { cn } from '@/lib/utils';
+import { EyeIcon } from 'lucide-react';
+import { DEFAULT_IMAGE } from '@/constants/default-image';
 
 const GridArticle = ({
   children,
@@ -40,13 +41,13 @@ const GridArticleMedia = ({
 
 // Thumbnail 컴포넌트
 const GridArticleThumbnail = ({
-  thumbnail,
+  imgFilePath,
   title,
   className,
-}: { thumbnail?: string; title: string; className?: string }) => {
+}: { imgFilePath?: string; title: string; className?: string }) => {
   return (
     <img
-      src={thumbnail || DEFAULT_IMAGE}
+      src={imgFilePath || DEFAULT_IMAGE}
       alt={title}
       className={cn(
         'w-full h-full object-cover transform',
@@ -54,6 +55,7 @@ const GridArticleThumbnail = ({
         className
       )}
       loading="lazy"
+      decoding="async"
     />
   );
 };
@@ -73,7 +75,8 @@ const GridArticleVideo = ({
       src={src}
       poster={poster}
       controls
-      className={cn('absolute inset-0 w-full h-full object-cover', className)}
+      className={cn('w-full h-full object-cover', className)}
+      autoPlay
     >
       <track kind="captions" srcLang="ko" label="한국어" default />
     </video>
@@ -104,11 +107,18 @@ const GridArticleTitle = ({
 // Footer 컴포넌트
 const GridArticleFooter = ({
   date,
+  viewCount,
   className,
-}: { date: string; className?: string }) => {
+}: { date: string; viewCount?: number; className?: string }) => {
   return (
-    <div className={cn('media-article-footer', className)}>
-      <span>{date}</span>
+    <div className={cn('media-article-footer mt-2', className)}>
+      <time>{date}</time>
+      {viewCount && (
+        <div className={cn('media-article-views')}>
+          <EyeIcon className="w-4 h-4" />
+          <span>{viewCount}</span>
+        </div>
+      )}
     </div>
   );
 };

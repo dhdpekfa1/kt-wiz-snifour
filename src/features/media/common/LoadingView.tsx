@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 
 type LoadingViewProps = {
   isLoading: boolean;
+  isError: boolean;
   fallback: React.ReactNode;
   children: React.ReactNode;
   className?: string;
@@ -11,17 +12,20 @@ type LoadingViewProps = {
 
 export const LoadingView = ({
   isLoading,
+  isError,
   fallback,
   children,
   className,
 }: LoadingViewProps) => {
-  if (isLoading) {
+  if (isLoading || isError) {
     return (
-      <div className={cn('w-full transition-all', className)}>
+      <>
         {SKELETON_IDS.map((id) => (
-          <div key={id}>{fallback}</div>
+          <div key={id} className={cn('w-full', className)}>
+            {fallback}
+          </div>
         ))}
-      </div>
+      </>
     );
   }
 
