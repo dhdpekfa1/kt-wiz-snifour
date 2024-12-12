@@ -1,16 +1,14 @@
 import { cn } from '@/lib/utils';
 import { useSearchParams } from 'react-router';
-import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
 
 import Banner from '@/features/common/Banner';
 import SearchBar from '@/features/media/common/SearchBar';
-import NewsContent from '@/features/media/components/news/NewsListView';
-
-import '@/features/media/css/media.css';
 import Layout from '@/features/common/Layout';
+import NewsListView from '@/features/media/components/news/NewsListView';
 
-const NEWS_TABS_CONFIG = [
+export const NEWS_TABS_CONFIG = [
   { value: 'news', path: '/wiznews', label: 'wiz 소식' },
   { value: 'press', path: '/wizpress', label: 'wiz 보도자료' },
 ];
@@ -49,21 +47,20 @@ const NewsPage = () => {
         onValueChange={handleTabChange}
       >
         <div className={cn('media-header')}>
-          <div className="media-tabs-wrapper">
-            {/* 탭 */}
+          <div className={cn('media-tabs-wrapper')}>
             <TabsList className={cn('media-tabs-list')}>
               {NEWS_TABS_CONFIG.map((tab) => (
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  className="media-tabs-trigger"
+                  className={cn('media-tabs-trigger')}
                 >
                   {tab.label}
                 </TabsTrigger>
               ))}
             </TabsList>
           </div>
-          {/* 검색바 */}
+
           <SearchBar
             onSubmit={(searchWord) =>
               setSearchParams({
@@ -73,8 +70,8 @@ const NewsPage = () => {
             }
           />
         </div>
-        {/* 탭 컨텐츠 */}
-        <NewsContent />
+
+        <NewsListView />
       </Tabs>
     </Layout>
   );
