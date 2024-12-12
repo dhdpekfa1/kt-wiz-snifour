@@ -1,6 +1,5 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
-import MatchBoard from '@/features/game/components/MatchBoard';
 import {
   BattingRecordTable,
   KeyRecordsTable,
@@ -8,6 +7,7 @@ import {
   PitchingRecordTable,
 } from '@/features/game/components/table';
 import { mockMatchData } from '@/features/game/components/table/MatchScoreTable';
+import { MatchBoard } from './components/watch-point';
 
 const BoxScoreTab = () => {
   return (

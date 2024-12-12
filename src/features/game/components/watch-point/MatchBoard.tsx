@@ -63,4 +63,4 @@ const MatchBoard = ({
   );
 };
 
-export default MatchBoard;
+export { MatchBoard };

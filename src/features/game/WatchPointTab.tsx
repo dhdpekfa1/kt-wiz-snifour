@@ -1,10 +1,10 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
-import MatchBoard from '@/features/game/components/MatchBoard';
-import TeamLineup from '@/features/game/components/TeamLineup';
 import { MatchSummaryTable } from '@/features/game/components/table';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getWatchPoint } from './apis';
+import { MatchBoard, TeamLineup } from './components/watch-point';
+import { WatchPointData } from './types/watch-point';
 
 const mockData = {
   teamA: {
@@ -26,42 +26,19 @@ const mockData = {
 };
 
 const WatchPointTab = () => {
-  const mock_data1 = {
-    logoUrl: '/assets/emblems/ktwiz.svg',
-    catcher: '장성우',
-    firstBase: '오재일',
-    secondBase: '김상수',
-    thirdBase: '황재균',
-    shortstop: '심우준',
-    leftField: '로하스',
-    centerField: '배정대',
-    rightField: '송민섭',
-    designatedHitter: '강백호',
-    pitcher: '박영현',
-  };
-
-  const mock_data2 = {
-    logoUrl: '/assets/emblems/lgtwins.svg',
-    catcher: '허도환',
-    firstBase: '오스틴',
-    secondBase: '신민재',
-    thirdBase: '문보경',
-    shortstop: '오지환',
-    leftField: '문성주',
-    centerField: '박해민',
-    rightField: '홍창기',
-    designatedHitter: '이영빈',
-    pitcher: '정우영',
-  };
+  const [watchData, setWatchData] = useState<WatchPointData>();
+  // const [gameDate, setGameDate] = useState("20240922");
+  // const [gameKey, setGameKey] = useState("20240922SKKT0");
 
   useEffect(() => {
     fetchWatchPointData();
   }, []);
+  console.log(watchData?.homeLineup);
 
   const fetchWatchPointData = async () => {
-    // TODO: gameDate, gameKey 매개변수 전달 어떻게?
+    // TODO: gameDate, gameKey 매개변수 state 전달
     const res = await getWatchPoint('20240922', '20240922SKKT0');
-    console.log(res);
+    setWatchData(res);
   };
 
   return (
@@ -76,26 +53,25 @@ const WatchPointTab = () => {
             { key: 'box-score', label: '관전 포인트', isActive: true },
           ]}
         />
-
         {/* 경기 정보 보드 */}
         <MatchBoard
           team1Data={{
-            teamName: 'KT',
-            logoUrl: '/assets/emblems/ktwiz.svg',
-            result: 1,
-            stadium: '원정',
-            tabType: 'MatchBoard',
-          }}
-          team2Data={{
-            teamName: 'LG',
-            logoUrl: '/assets/emblems/lgtwins.svg',
-            result: 4,
+            teamName: watchData?.gameScore.home || '',
+            logoUrl: watchData?.gameScore.homeLogo || '',
+            result: watchData?.gameScore.hscore,
             stadium: '홈',
             tabType: 'MatchBoard',
           }}
-          matchDate="2024-12-10"
-          matchTime="18:30"
-          stadium="수원 KT 위즈 파크"
+          team2Data={{
+            teamName: watchData?.gameScore.visit || '',
+            logoUrl: watchData?.gameScore.visitLogo || '',
+            result: watchData?.gameScore.vscore,
+            stadium: '원정',
+            tabType: 'MatchBoard',
+          }}
+          matchDate={watchData?.gameScore.displayDate || ''}
+          matchTime={watchData?.gameScore.gtime || ''}
+          stadium={watchData?.gameScore.stadium || ''}
           gameTable={
             <MatchSummaryTable teamA={mockData.teamA} teamB={mockData.teamB} />
           }
@@ -111,12 +87,18 @@ const WatchPointTab = () => {
           {/* 라인업 */}
           <div className="flex flex-col gap-2 w-full my-10">
             <SubTitle title="라인업" />
-            <div className="w-full flex items-center justify-between gap-10 px-20">
-              <TeamLineup data={mock_data1} />
+            <div className="w-full flex items-center justify-between gap-10 px-20 max-md:flex-col">
+              <TeamLineup
+                data={watchData?.homeLineup || []}
+                logoUrl={watchData?.gameScore.homeLogo || ''}
+              />
               <h2 className="text-6xl	text-wiz-red font-extrabold mt-20">
                 VS
               </h2>
-              <TeamLineup data={mock_data2} />
+              <TeamLineup
+                data={watchData?.visitLineup || []}
+                logoUrl={watchData?.gameScore.visitLogo || ''}
+              />
             </div>
           </div>
 
