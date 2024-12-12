@@ -36,7 +36,7 @@ function PlayerScatterChart<T extends PlayerRank>({
   const { x, y, xLabel, yLabel } = useMemo(() => {
     return position === 'pitcher'
       ? { x: 'wra', xLabel: '승률', y: 'era', yLabel: '평균자책점' }
-      : { x: 'ops', xLabel: 'OPS', y: 'hra', yLabel: '타율' };
+      : { x: 'hra', xLabel: '타율', y: 'ops', yLabel: 'OPS' };
   }, [position]);
 
   const chartData = useMemo(() => {
