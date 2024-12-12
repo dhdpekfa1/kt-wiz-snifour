@@ -2,16 +2,16 @@ import { Lineup } from '@/features/game/types/watch-point';
 
 const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   const positionData: Record<string, { style: string; label: string }> = {
-    '1': { style: 'absolute bottom-40 left-44', label: 'P' },
-    '2': { style: 'absolute bottom-24 left-44', label: '2' },
-    '3': { style: 'absolute bottom-36 right-24', label: '3' },
-    '4': { style: 'absolute bottom-52 right-28', label: '4' },
-    '5': { style: 'absolute bottom-36 left-24', label: '5' },
-    '6': { style: 'absolute bottom-52 left-32', label: '6' },
-    '7': { style: 'absolute top-36 left-16', label: '7' },
-    '8': { style: 'absolute top-32 left-44', label: '8' },
-    '9': { style: 'absolute top-36 right-12', label: '9' },
-    D: { style: 'absolute bottom-20 left-20', label: 'D' },
+    '1': { style: 'absolute bottom-36 left-40', label: 'P' },
+    '2': { style: 'absolute bottom-20 left-40', label: '2' },
+    '3': { style: 'absolute bottom-36 right-12', label: '3' },
+    '4': { style: 'absolute top-44 right-24', label: '4' },
+    '5': { style: 'absolute bottom-36 left-16', label: '5' },
+    '6': { style: 'absolute top-44 left-24', label: '6' },
+    '7': { style: 'absolute top-32 left-16', label: '7' },
+    '8': { style: 'absolute top-28 left-40', label: '8' },
+    '9': { style: 'absolute top-32 right-12', label: '9' },
+    D: { style: 'absolute bottom-20 left-26', label: 'D' },
   };
 
   return (
