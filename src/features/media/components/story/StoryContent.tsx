@@ -15,21 +15,15 @@ import { usePagination } from '@/features/media/hooks/usePagination';
 import { storyItems } from '@/features/media/mock_data';
 
 import GridArticle from '@/features/media/common/GridArticle';
-import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
+import PaginationList from '@/features/media/common/PaginationList';
 import PlayButton from '@/features/media/common/PlayButton';
-
-const itemsPerPage = 10; // 한 페이지당 보여줄 아이템 수 (임시)
-const totalItems = 95; // API에서 받아온 총 아이템 수 (임시)
 
 const StoryContent = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const selectedStory = storyItems.find((item) => item.id === selectedId);
 
-  const { currentPage, setCurrentPage } = usePagination({
-    totalItems,
-    itemsPerPage,
-  });
+  const { pageNum, itemCount, onPagination } = usePagination();
 
   return (
     <>
@@ -38,7 +32,7 @@ const StoryContent = () => {
         {storyItems.map(({ id, thumbnail, title, date }) => (
           <GridArticle key={id} className="cursor-pointer">
             <GridArticle.Media onClick={() => setSelectedId(id)}>
-              <GridArticle.Thumbnail thumbnail={thumbnail} title={title} />
+              <GridArticle.Thumbnail imgFilePath={thumbnail} title={title} />
               <GridArticle.Overlay elements={<PlayButton />} />
             </GridArticle.Media>
             <GridArticle.Title title={title} />
@@ -49,11 +43,11 @@ const StoryContent = () => {
 
       {/* 페이지네이션 */}
 
-      <PaginationWithThemeRed
-        currentPage={currentPage}
-        totalItems={totalItems}
-        itemsPerPage={itemsPerPage}
-        onPageChange={setCurrentPage}
+      <PaginationList
+        currentPage={pageNum}
+        total={100}
+        limit={itemCount}
+        onChange={() => onPagination({ pageNum: '1' })}
         className="mt-14"
       />
 
@@ -88,7 +82,7 @@ const StoryContent = () => {
                   ) : (
                     <>
                       <GridArticle.Thumbnail
-                        thumbnail={selectedStory.thumbnail}
+                        imgFilePath={selectedStory.thumbnail}
                         title={selectedStory.title}
                       />
                       <PlayButton className="absolute left-4 bottom-4" />

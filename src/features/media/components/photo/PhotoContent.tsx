@@ -14,10 +14,9 @@ import { X } from 'lucide-react';
 import { useState } from 'react';
 
 import GridArticle from '@/features/media/common/GridArticle';
-import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
+import PaginationList from '@/features/media/common/PaginationList';
 import Category from './Category';
 
-const itemsPerPage = 10; // 한 페이지당 보여줄 아이템 수 (임시)
 const totalItems = 95; // API에서 받아온 총 아이템 수 (임시)
 
 const PhotoContent = () => {
@@ -26,10 +25,7 @@ const PhotoContent = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const selectedPhoto = photoItems.find((item) => item.id === selectedId);
 
-  const { currentPage, setCurrentPage } = usePagination({
-    totalItems,
-    itemsPerPage,
-  });
+  const { pageNum, itemCount } = usePagination();
 
   return (
     <>
@@ -38,7 +34,7 @@ const PhotoContent = () => {
         {photoItems.map(({ id, thumbnail, title, date, catetory }) => (
           <GridArticle key={id} className="cursor-pointer">
             <GridArticle.Media onClick={() => setSelectedId(id)}>
-              <GridArticle.Thumbnail thumbnail={thumbnail} title={title} />
+              <GridArticle.Thumbnail imgFilePath={thumbnail} title={title} />
               <GridArticle.Overlay
                 elements={<Category catetory={catetory} />}
               />
@@ -49,11 +45,11 @@ const PhotoContent = () => {
         ))}
       </div>
 
-      <PaginationWithThemeRed
-        currentPage={currentPage}
-        totalItems={totalItems}
-        itemsPerPage={itemsPerPage}
-        onPageChange={setCurrentPage}
+      <PaginationList
+        currentPage={pageNum}
+        total={totalItems}
+        limit={itemCount}
+        onChange={() => {}}
         className="mt-14"
       />
 
@@ -73,7 +69,7 @@ const PhotoContent = () => {
               <div className="relative max-w-5xl w-full mx-8">
                 <GridArticle.Media className="mb-0">
                   <GridArticle.Thumbnail
-                    thumbnail={selectedPhoto.thumbnail}
+                    imgFilePath={selectedPhoto.thumbnail}
                     title={selectedPhoto.title}
                     className="!object-contain"
                   />

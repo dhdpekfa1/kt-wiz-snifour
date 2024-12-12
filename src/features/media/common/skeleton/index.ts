@@ -1,4 +1,5 @@
 export * from './ListSkeleton';
+export * from './GridSkeleton';
 
 export const SKELETON_IDS = [
   'skeleton-1',

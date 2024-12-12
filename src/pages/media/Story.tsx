@@ -31,7 +31,7 @@ const StoryPage = () => {
       }
     >
       <div className={cn('media-header', 'justify-end')}>
-        <SearchBar />
+        <SearchBar onSubmit={() => {}} />
       </div>
       <StoryContent />
     </MediaLayout>

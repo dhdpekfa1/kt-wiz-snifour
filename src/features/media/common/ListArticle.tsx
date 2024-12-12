@@ -113,7 +113,7 @@ const ListArticleFooter = ({
       </time>
       <div className={cn('media-article-views')}>
         <EyeIcon className="w-4 h-4" />
-        <span>{viewCount.toLocaleString()}</span>
+        <span>{viewCount}</span>
       </div>
     </div>
   );

@@ -56,6 +56,17 @@ const useNewsListQuery = () => {
     }
   }, [newsListQuery.isSuccess, PressListQuery.isSuccess, currentTab]);
 
+  const isError = useMemo(() => {
+    switch (currentTab) {
+      case NEWS_TABS_CONFIG[0].value:
+        return newsListQuery.isError;
+      case NEWS_TABS_CONFIG[1].value:
+        return PressListQuery.isError;
+      default:
+        throw new Error('invalid tab');
+    }
+  }, [newsListQuery.isError, PressListQuery.isError, currentTab]);
+
   const newsList = useMemo(() => {
     switch (currentTab) {
       case NEWS_TABS_CONFIG[0].value:
@@ -67,7 +78,7 @@ const useNewsListQuery = () => {
     }
   }, [newsListQuery.data, PressListQuery.data, currentTab]);
 
-  return { newsList, isLoading, isSuccess };
+  return { newsList, isLoading, isSuccess, isError };
 };
 
 export default useNewsListQuery;
