@@ -1,11 +1,9 @@
-import { isEmpty } from 'lodash-es';
 import { Button } from '@/components/ui';
 import { useNavigate } from 'react-router';
 import { PageRoutes } from '@/constants/route';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { MediaDetail } from '@/features/media/common/MediaDetail';
 
-import NotFoundPage from '@/pages/NotFoundPage';
 import Layout from '@/features/common/Layout';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 import useNewsDetailQuery from '@/features/media/hooks/useNewsDetailQuery';
@@ -16,23 +14,16 @@ const NewsDetailPage = () => {
   useScrollTo();
 
   const navigate = useNavigate();
-  const { seq, data, prefetchNews, isLoading } = useNewsDetailQuery();
+  const { data, prefetchNews, isLoading, isError } = useNewsDetailQuery();
 
-  if (isLoading) {
+  // MEMO:
+  // 로딩 중일때 스켈레톤이 오히려 사용자 경험에 방해가 되는 것 같아 빈테이너를 반환합니다.
+  // 추후 전역 에러에서 모달 표시만 보여주면 될 것 같아요.
+  if (isLoading || isError || !data) {
     return (
       <Layout>
-        <MediaDetail.Container>로딩중</MediaDetail.Container>
+        <MediaDetail.Container />
       </Layout>
-    );
-  }
-
-  if (!seq || isEmpty(data)) {
-    return (
-      <NotFoundPage
-        title="존재하지 않는 뉴스입니다"
-        buttonText="뉴스 목록으로 돌아가기"
-        redirectUrl={PageRoutes.News}
-      />
     );
   }
 

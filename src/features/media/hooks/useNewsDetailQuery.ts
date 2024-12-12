@@ -14,8 +14,8 @@ const useNewsDetailQuery = () => {
   const { id } = useParams();
   const seq = QueryParser.toString(id);
 
-  const { data, isLoading } = useGetNewsBySeq({
-    variables: { artcSeq: seq as string },
+  const { data, isLoading, isError } = useGetNewsBySeq({
+    variables: { artcSeq: id as string },
     options: {
       enabled: Boolean(seq),
     },
@@ -29,7 +29,7 @@ const useNewsDetailQuery = () => {
     });
   };
 
-  return { seq, data, isLoading, prefetchNews };
+  return { data, isLoading, isError, prefetchNews };
 };
 
 export default useNewsDetailQuery;
