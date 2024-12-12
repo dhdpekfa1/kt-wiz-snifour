@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { apiLogger } from '@/lib';
+import { apiLogger, styledConsole } from '@/lib';
 
 const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const isDev = import.meta.env.MODE === 'development';
@@ -22,7 +22,6 @@ instance.interceptors.request.use(
   (config) => {
     if (isDev) {
       apiLogger({
-        method: 'info',
         status: 'REQUEST',
         reqData: config,
         resData: {
@@ -36,15 +35,7 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
-    if (isDev) {
-      apiLogger({
-        method: 'error',
-        status: 'ERROR',
-        reqData: error.config,
-        resData: error,
-      });
-    }
-    return Promise.reject(error);
+    Promise.reject(error);
   }
 );
 
@@ -54,27 +45,41 @@ instance.interceptors.request.use(
  * - 응답 데이터를 전처리하거나 로깅하는 데 사용됩니다.
  */
 instance.interceptors.response.use(
-  (response) => {
-    if (isDev) {
-      apiLogger({
-        method: 'info',
-        status: response.status,
-        reqData: response.config,
-        resData: response.data,
-      });
-    }
-    return response.data;
+  (res) => {
+    const { status, config: reqData, data: resData } = res;
+    if (isDev) apiLogger({ status, reqData, resData });
+    return res;
   },
-  (error: AxiosError) => {
-    if (isDev) {
-      apiLogger({
+  async (error: AxiosError) => {
+    try {
+      const { response: res, config: reqData } = error || {};
+
+      if (!res?.status) {
+        throw new Error('response status is not exist');
+      }
+
+      const { status } = res;
+
+      // 401 에러 처리 (인증에러)
+
+      // 444 에러처리 등 (토큰 등)
+
+      if (isDev) {
+        apiLogger({ status, reqData, resData: error, method: 'error' });
+      }
+
+      // 여기서 error를 그대로 reject한 후
+      // React Query의 meta에서 AxiosError를 받을 수 있습니다.
+      return Promise.reject(error);
+    } catch (e) {
+      styledConsole({
+        //
         method: 'error',
-        status: error.response?.status ?? 'ERROR',
-        reqData: error.config,
-        resData: error.response?.data,
+        topic: 'UN_HANDLED',
+        title: 'axios-interceptor',
+        data: e,
       });
     }
-    throw error; // 에러를 그대로 반환하여 호출한 쪽에서 처리하도록 합니다.
   }
 );
 

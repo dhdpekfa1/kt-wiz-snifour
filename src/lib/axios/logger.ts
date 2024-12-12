@@ -4,20 +4,19 @@ type ConsoleMethod = 'log' | 'info' | 'warn' | 'error';
 type TopicColor = 'blue' | 'green' | 'yellow' | 'red';
 
 type StyledConsoleArgs = {
-  topic: string;
-  title: string;
-  data?: unknown;
+  topic?: string;
+  title?: string;
+  data: unknown;
   topicColor?: TopicColor;
   method?: ConsoleMethod;
   errors?: unknown;
 };
 
-type ApiLoggerArgs = {
-  method: ConsoleMethod;
+interface ApiLoggerArgs extends Pick<StyledConsoleArgs, 'method'> {
   status: string | number;
   reqData?: AxiosRequestConfig;
   resData: unknown;
-};
+}
 
 /**
  * 스타일이 적용된 콘솔 로그를 출력합니다.
@@ -49,12 +48,9 @@ export function styledConsole({
 /**
  * API 요청/응답 로그를 출력합니다.
  */
-export const apiLogger = ({
-  method = 'info',
-  status,
-  reqData,
-  resData,
-}: ApiLoggerArgs): void => {
+export const apiLogger = (params: ApiLoggerArgs): void => {
+  const { status, reqData, resData } = params;
+
   const isError = typeof status === 'number' && status >= 400;
   const topicColor = isError ? 'red' : 'green';
 
@@ -70,7 +66,6 @@ export const apiLogger = ({
       response: resData,
     },
     topicColor,
-    method,
     errors: isError ? resData : undefined,
   });
 };
