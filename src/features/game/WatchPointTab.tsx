@@ -118,7 +118,7 @@ const WatchPointTab = () => {
             <div className="flex flex-col gap-2 flex-1">
               <SubTitle title="중계 채널" />
               <p className="mb-4 text-wiz-white">
-                SPOTV, SPOTV2, KBS N SPORTS, MBC SPORTS+, SBS SPORTS
+                {watchData?.schedule.current.broadcast}
               </p>
             </div>
 

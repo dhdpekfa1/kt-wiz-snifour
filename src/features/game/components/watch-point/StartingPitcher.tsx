@@ -40,47 +40,49 @@ const StartingPitcher = ({
     '실점',
     '자책점',
   ];
+
   const homePitcherStats = [
-    homeTeam || 'home team',
-    homePitcher?.playerName || 'home player',
-    homePitcher?.era || 0,
-    homePitcher?.start || 0,
-    homePitcher?.w || 0,
-    homePitcher?.l || 0,
-    homePitcher?.sv || 0,
-    homePitcher?.hold || 0,
-    homePitcher?.wra || 0,
-    homePitcher?.innDisplay || 0,
-    homePitcher?.hit || 0,
-    homePitcher?.hr || 0,
-    homePitcher?.bb || 0,
-    homePitcher?.hp || 0,
-    homePitcher?.kk || 0,
-    homePitcher?.r || 0,
-    homePitcher?.er || 0,
+    { id: 'team', value: homeTeam || 'Home Team' },
+    { id: 'name', value: homePitcher?.playerName || 'Home Player' },
+    { id: 'era', value: homePitcher?.era },
+    { id: 'games', value: homePitcher?.start },
+    { id: 'wins', value: homePitcher?.w },
+    { id: 'losses', value: homePitcher?.l },
+    { id: 'saves', value: homePitcher?.sv },
+    { id: 'holds', value: homePitcher?.hold },
+    { id: 'winRate', value: homePitcher?.wra },
+    { id: 'innings', value: homePitcher?.innDisplay },
+    { id: 'hits', value: homePitcher?.hit },
+    { id: 'homeRuns', value: homePitcher?.hr },
+    { id: 'walks', value: homePitcher?.bb },
+    { id: 'hitByPitch', value: homePitcher?.hp },
+    { id: 'strikeouts', value: homePitcher?.kk },
+    { id: 'runs', value: homePitcher?.r },
+    { id: 'earnedRuns', value: homePitcher?.er },
   ];
+
   const visitPitcherStats = [
-    visitTeam || 'visit eam',
-    visitPitcher?.playerName || 'visit player',
-    visitPitcher?.era || 0,
-    visitPitcher?.start || 0,
-    visitPitcher?.w || 0,
-    visitPitcher?.l || 0,
-    visitPitcher?.sv || 0,
-    visitPitcher?.hold || 0,
-    visitPitcher?.wra || 0,
-    visitPitcher?.innDisplay || 0,
-    visitPitcher?.hit || 0,
-    visitPitcher?.hr || 0,
-    visitPitcher?.bb || 0,
-    visitPitcher?.hp || 0,
-    visitPitcher?.kk || 0,
-    visitPitcher?.r || 0,
-    visitPitcher?.er || 0,
+    { id: 'team', value: homeTeam || 'Visit Team' },
+    { id: 'name', value: visitPitcher?.playerName || 'Visit Player' },
+    { id: 'era', value: visitPitcher?.era },
+    { id: 'games', value: visitPitcher?.start },
+    { id: 'wins', value: visitPitcher?.w },
+    { id: 'losses', value: visitPitcher?.l },
+    { id: 'saves', value: visitPitcher?.sv },
+    { id: 'holds', value: visitPitcher?.hold },
+    { id: 'winRate', value: visitPitcher?.wra },
+    { id: 'innings', value: visitPitcher?.innDisplay },
+    { id: 'hits', value: visitPitcher?.hit },
+    { id: 'homeRuns', value: visitPitcher?.hr },
+    { id: 'walks', value: visitPitcher?.bb },
+    { id: 'hitByPitch', value: visitPitcher?.hp },
+    { id: 'strikeouts', value: visitPitcher?.kk },
+    { id: 'runs', value: visitPitcher?.r },
+    { id: 'earnedRuns', value: visitPitcher?.er },
   ];
 
   return (
-    <Table className="mt-4">
+    <Table className="mt-4 w-full">
       <TableHeader>
         <TableRow className="text-lg font-semibold bg-wiz-white bg-opacity-30 border-none w-fit">
           {tableHeaderRow.map((header) => (
@@ -97,8 +99,11 @@ const StartingPitcher = ({
           } border-b-wiz-white border-opacity-10`}
         >
           {homePitcherStats.map((stat) => (
-            <TableCell key={stat} className="text-xs md:text-sm px-2 md:px-4">
-              {stat}
+            <TableCell
+              key={stat.id}
+              className="text-xs md:text-sm px-2 md:px-4"
+            >
+              {stat.value}
             </TableCell>
           ))}
         </TableRow>
@@ -108,8 +113,11 @@ const StartingPitcher = ({
           } border-b-wiz-white border-opacity-10`}
         >
           {visitPitcherStats.map((stat) => (
-            <TableCell key={stat} className="text-xs md:text-sm px-2 md:px-4">
-              {stat}
+            <TableCell
+              key={stat.id}
+              className="text-xs md:text-sm px-2 md:px-4"
+            >
+              {stat.value}
             </TableCell>
           ))}
         </TableRow>
