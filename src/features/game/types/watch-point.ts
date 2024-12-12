@@ -11,7 +11,7 @@ export interface WatchPointData {
   visitTeamWinLose: TeamWinLose;
 }
 
-interface GameScore {
+export interface GameScore {
   bhomeName: string; // 경기 초/말 여부 ("말")
   displayDate: string; // 경기 날짜 및 시간 (표시용)
   endFlag: string; // 경기 종료 상태 플래그
@@ -61,7 +61,7 @@ export interface Lineup {
   weight: string; // 몸무게 (kg)
 }
 
-interface Pitcher {
+export interface Pitcher {
   babip: string; // 타구인플레이 타율
   bb: number; // 볼넷
   bf: number; // 타자 상대 횟수
@@ -111,7 +111,7 @@ interface Pitcher {
   wra: string; // 승률
 }
 
-interface TeamRank {
+export interface TeamRank {
   ab: number; // 타석 수
   bra: string; // 팀 타율
   continue1: string; // 연승/연패 기록 (예: "3승")
@@ -138,7 +138,7 @@ interface TeamRank {
   wra: string; // 승률
 }
 
-interface TeamWinLose {
+export interface TeamWinLose {
   drawn: number; // 무승부 수
   lose: number; // 패배 수
   teamCode: string; // 팀 코드
@@ -147,13 +147,13 @@ interface TeamWinLose {
   win: number; // 승리 수
 }
 
-interface Schedule {
+export interface Schedule {
   current: GameSchedule; // 현재 경기 일정
   next: GameSchedule; // 다음 경기 일정
   prev: GameSchedule; // 이전 경기 일정
 }
 
-interface GameSchedule {
+export interface GameSchedule {
   broadcast: string; // 중계 방송사
   cancelFlag: string; // 경기 취소 여부 (0: 정상, 1: 취소)
   crowdCn: number; // 관중 수
