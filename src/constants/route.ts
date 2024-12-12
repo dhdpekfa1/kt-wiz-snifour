@@ -4,7 +4,7 @@ export enum ApiRoutes {
   News = 'api/article/newslistpage',
   NewsDetail = 'api/article/newsdetail',
   Press = 'api/article/wizpresslistpage',
-  PressDetail = 'api/article/pressdetail',
+  PressDetail = 'api/article/wizpressdetail',
 }
 
 export enum PageRoutes {

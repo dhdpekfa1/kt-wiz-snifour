@@ -22,4 +22,9 @@ export const newsApi = {
     const response = await instance.get(ApiRoutes.Press, { params });
     return response.data;
   },
+
+  getPressBySeq: async (params: NewsDetailDto): Promise<NewsDetailResponse> => {
+    const response = await instance.get(ApiRoutes.PressDetail, { params });
+    return response.data;
+  },
 };

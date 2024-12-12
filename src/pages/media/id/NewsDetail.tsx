@@ -31,7 +31,7 @@ const NewsDetailPage = () => {
     <Layout>
       <MediaDetail.Container>
         <div className="flex items-center justify-between mb-8">
-          <Button onClick={() => navigate('/media/wiznews')} className="px-0">
+          <Button onClick={() => navigate(PageRoutes.News)} className="px-0">
             <ArrowLeftIcon className="w-4 h-4 mr-2" />
             뒤로
           </Button>
