@@ -8,8 +8,28 @@ import {
   PitchingRecordTable,
 } from '@/features/game/components/table';
 import { mockMatchData } from '@/features/game/components/table/MatchScoreTable';
+import { useMatchStore } from '@/store/useMatchStore';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router';
 
 const BoxScoreTab = () => {
+  const { selectedDate, setSelectedDate } = useMatchStore();
+  const { gameDate, gameKey } = useParams<{
+    gameDate: string;
+    gameKey: string;
+  }>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!selectedDate) {
+      setSelectedDate(new Date('2024-10-11'));
+    }
+  }, [selectedDate, setSelectedDate]);
+
+  const handleRouteChange = () => {
+    navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`); // Replace with your desired route
+  };
+
   return (
     <div className="w-full flex justify-center my-20">
       <div className="w-full flex flex-col justify-center items-center">
@@ -43,6 +63,7 @@ const BoxScoreTab = () => {
           matchTime="18:30"
           stadium="수원 KT 위즈 파크"
           gameTable={<MatchScoreTable />}
+          onRouteChange={handleRouteChange}
         />
 
         {/* 주요 기록 */}
