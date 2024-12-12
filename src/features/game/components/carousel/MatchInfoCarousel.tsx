@@ -1,16 +1,16 @@
-import { getMonthSchedule } from '@/features/game/apis/matchSchedule';
-import { CarouselCard } from '@/features/game/components';
-import { GameSchedule } from '@/features/game/types';
-import { useMatchStore } from '@/store/useMatchStore';
-import { format, isValid, parse } from 'date-fns';
-import { useEffect, useState } from 'react';
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
-} from './carousel';
+} from '@/components/ui';
+import { getMonthSchedule } from '@/features/game/apis';
+import { CarouselCard } from '@/features/game/components/carousel';
+import { GameSchedule } from '@/features/game/types/match-schedule';
+import { useMatchStore } from '@/store/useMatchStore';
+import { format, isValid, parse } from 'date-fns';
+import { useEffect, useState } from 'react';
 
 const MatchInfoCarousel = () => {
   const [matchData, setMatchData] = useState<GameSchedule[]>([]);
@@ -96,4 +96,4 @@ const MatchInfoCarousel = () => {
   );
 };
 
-export default MatchInfoCarousel;
+export { MatchInfoCarousel };
