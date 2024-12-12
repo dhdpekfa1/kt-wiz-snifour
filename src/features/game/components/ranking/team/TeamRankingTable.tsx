@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { TeamStats } from '@/features/game/types';
+import { TeamStats } from '@/features/game/types/team-ranking';
 
 function TeamRankingTable() {
   const [ranking, setRanking] = useState<TeamStats[]>([]);

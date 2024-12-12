@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { TeamVS } from '@/features/game/types';
+import { TeamVS } from '@/features/game/types/team-ranking';
 
 interface ArrangedTeamVS {
   [key: string]: {
