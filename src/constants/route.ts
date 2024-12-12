@@ -3,12 +3,16 @@ import { match } from 'path-to-regexp';
 export enum ApiRoutes {
   News = 'api/article/newslistpage',
   NewsDetail = 'api/article/newsdetail',
+  Press = 'api/article/wizpresslistpage',
+  PressDetail = 'api/article/pressdetail',
 }
 
 export enum PageRoutes {
   Home = '/',
   News = '/media/wiznews',
-  NewsDetail = '/media/wiznews/:artcSeq',
+  NewsDetail = '/media/wiznews/:id',
+  Press = '/media/wizpress',
+  PressDetail = '/media/wizpress/:id',
 }
 
 export const isExistPage = (pathname: string) => {
