@@ -1,4 +1,4 @@
-import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import Banner from '@/features/common/Banner';
 import { cn } from '@/lib/utils';
