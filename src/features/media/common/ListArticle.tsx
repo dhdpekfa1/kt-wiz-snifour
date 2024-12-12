@@ -3,8 +3,7 @@ import { cn } from '@/lib/utils';
 import { EyeIcon } from 'lucide-react';
 import { Link } from 'react-router';
 import { ListViewType } from '@/features/media/types';
-
-import dayjs from 'dayjs';
+import { format } from 'date-fns';
 
 type ListArticleProps = Omit<ListViewType, 'artcSeq'> & {
   link: string;
@@ -107,11 +106,11 @@ const ListArticleFooter = ({
   viewCount,
   className,
 }: { createdAt: number; viewCount: number; className?: string }) => {
-  const formattedDate = dayjs(createdAt).format('YYYY.MM.DD');
-
   return (
     <div className={cn('media-article-footer', className)}>
-      <span>{formattedDate}</span>
+      <time dateTime={new Date(createdAt).toISOString()}>
+        {format(new Date(createdAt), 'yyyy년 M월 d일')}
+      </time>
       <div className={cn('media-article-views')}>
         <EyeIcon className="w-4 h-4" />
         <span>{viewCount.toLocaleString()}</span>
