@@ -11,7 +11,8 @@ import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 
 const NewsListView = () => {
   const { pageNum, itemCount, onPagination } = usePagination();
-  const { newsList, isLoading, isSuccess } = useNewsListQuery();
+  const { newsList, isSuccess, isLoading, isError } = useNewsListQuery();
+  const total = newsList?.list[0]?.totalPage;
 
   if (!isLoading && isSuccess && !newsList?.list?.length) {
     return <NotFoundSearchResult />;
@@ -19,12 +20,16 @@ const NewsListView = () => {
 
   return (
     <div className={cn('min-h-[2200px]')}>
-      <LoadingView isLoading={isLoading} fallback={<ListArticleSkeleton />}>
+      <LoadingView
+        isLoading={isLoading}
+        isError={isError}
+        fallback={<ListArticleSkeleton />}
+      >
         <NewsList news={newsList?.list || []} />
         <Pagination
           currentPage={pageNum}
           limit={itemCount}
-          total={newsList?.searchCount || 0}
+          total={total || 0}
           onChange={(page) => onPagination({ pageNum: page.toString() })}
           className="mt-14"
         />
