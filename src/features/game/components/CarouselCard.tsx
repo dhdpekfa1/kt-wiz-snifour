@@ -18,14 +18,8 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
   const handleGameInfoClick = () => {
     if (data) {
       const gameDate = data.gameDate.toString();
-      if (gameDate.includes('202410')) {
-        const updateGameDate = gameDate.replace('2024', '3333');
-        const gmKey = `${updateGameDate}${data.homeKey}${data.visitKey}0`;
-        navigate(`/game/regular/boxscore/${gameDate}/${gmKey}`);
-      } else {
-        const gameKey = `${gameDate}${data.homeKey}${data.visitKey}0`; //gmKey 생성로직
-        navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`);
-      }
+      const gameKey = data.gmkey;
+      navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`);
     }
   };
 
