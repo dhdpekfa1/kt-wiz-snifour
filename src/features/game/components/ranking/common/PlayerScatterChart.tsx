@@ -39,6 +39,8 @@ function PlayerScatterChart<T extends PlayerRank>({
       : { x: 'hra', xLabel: '타율', y: 'ops', yLabel: 'OPS' };
   }, [position]);
 
+  const playerType = useMemo(() => position, [position]);
+
   const chartData = useMemo(() => {
     const filteredData = data
       .filter((player) => player.gamenum >= 10)
@@ -169,7 +171,7 @@ function PlayerScatterChart<T extends PlayerRank>({
           domain={['dataMin', 'auto']}
         />
         <Tooltip
-          content={<CustomTooltip />}
+          content={<CustomTooltip type={playerType} />}
           cursor={{ strokeDasharray: '3 3' }}
         />
         <Scatter
