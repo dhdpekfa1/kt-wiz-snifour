@@ -1,45 +1,25 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
-import { CrowdRank } from '@/features/game/types/crowd-ranking';
-import { API_URL } from '@/constants/api-url';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { CrowdRankingTable } from './CrowdRankingTable';
 import { CrowdRankingChart } from './CrowdRankingChart';
 import SubTitle from '@/features/common/SubTitle';
 import { Select, SelectContent, SelectItem } from '@/components/ui';
-import {
-  SelectGroup,
-  SelectTrigger,
-  SelectValue,
-} from '@radix-ui/react-select';
+import { SelectTrigger } from '@radix-ui/react-select';
 import { seasons } from '@/constants/seasons';
 import { ChevronDown } from 'lucide-react';
+import { useCrowdRank } from '@/assets/hooks/ranking';
 
 function CrowdRankingTab() {
-  const [ranking, setRanking] = useState<CrowdRank[]>([]);
   const [season, setSeason] = useState<string>('2024');
+  const { ranking, loading, error } = useCrowdRank(season);
 
-  useEffect(() => {
-    const getCrowdRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/crowd?gyear=${season}`
-        );
-
-        if (status === 200 && data) {
-          setRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getCrowdRanking();
-  }, [season]);
-
-  if (!ranking) {
+  if (!ranking.length || loading) {
     return null;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
