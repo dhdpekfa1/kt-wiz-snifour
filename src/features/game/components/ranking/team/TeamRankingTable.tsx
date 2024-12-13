@@ -1,6 +1,3 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
 import {
   Table,
   TableBody,
@@ -10,28 +7,19 @@ import {
   TableRow,
 } from '@/components/ui';
 import { TeamStats } from '@/features/game/types/team-ranking';
+import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
 
 function TeamRankingTable() {
-  const [ranking, setRanking] = useState<TeamStats[]>([]);
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+  const { ranking, loading, error } = useTeamRank('team');
 
-  useEffect(() => {
-    const getTeamRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/teamrankbyyear`
-        );
+  if (!ranking.length || loading) {
+    return null;
+  }
 
-        if (status === 200 && data) {
-          setRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
-    getTeamRanking();
-  }, []);
   return (
     <Table className="mt-4">
       <TableHeader>
@@ -50,7 +38,7 @@ function TeamRankingTable() {
         </TableRow>
       </TableHeader>
       <TableBody className="text-center">
-        {ranking.map((team) => (
+        {(ranking as TeamStats[]).map((team) => (
           <TableRow
             key={team.teamCode}
             className={`${

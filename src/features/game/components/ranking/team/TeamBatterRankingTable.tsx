@@ -1,6 +1,3 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
 import {
   Table,
   TableBody,
@@ -10,37 +7,18 @@ import {
   TableRow,
 } from '@/components/ui';
 import { TeamBatterRank } from '@/features/common/types/batters';
+import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
 
 function TeamBatterRankingTable() {
-  const [teamPitcherRanking, setTeamPitcherRanking] = useState<
-    TeamBatterRank[]
-  >([]);
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+  const { ranking, loading, error } = useTeamRank('batter');
 
-  useEffect(() => {
-    const getTeamBatterRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/batting`
-        );
+  if (!ranking.length || loading) {
+    return null;
+  }
 
-        if (status === 200 && data) {
-          const pitcherRanking = data.data.list || [];
-
-          setTeamPitcherRanking(
-            pitcherRanking.sort(
-              (a: TeamBatterRank, b: TeamBatterRank) =>
-                Number(b.hra) - Number(a.hra)
-            )
-          );
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getTeamBatterRanking();
-  }, []);
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <Table className="mt-4">
@@ -66,7 +44,7 @@ function TeamBatterRankingTable() {
         </TableRow>
       </TableHeader>
       <TableBody className="text-center">
-        {teamPitcherRanking.map((team) => (
+        {(ranking as TeamBatterRank[]).map((team) => (
           <TableRow
             key={team.teamCode}
             className={`${
