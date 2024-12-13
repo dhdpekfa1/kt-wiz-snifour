@@ -1,34 +1,20 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { API_URL } from '@/constants/api-url';
 import {
   PlayerRankingTable,
   PlayerScatterChart,
 } from '@/features/game/components/ranking';
 import { pitcherColumns } from '@/constants/player-rank-colums';
+import { usePitcherRank } from '@/assets/hooks/ranking/usePitcherRank';
 
 function AllPitcherRankingTab() {
-  const [ranking, setRanking] = useState<OverallPitcherRank[]>([]);
+  const { ranking, loading, error } = usePitcherRank('all');
 
-  useEffect(() => {
-    const getPitcherRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/total/pitcher?gyear=2024&pname=&sortKey=ERA`
-        );
+  if (!ranking.length || loading) {
+    return null;
+  }
 
-        if (status === 200 && data) {
-          setRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getPitcherRanking();
-  }, []);
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="flex flex-col">

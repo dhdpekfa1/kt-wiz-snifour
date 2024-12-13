@@ -1,9 +1,4 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
 import Breadcrumb from '../../../../common/Breadcrumb';
-import { PitcherERA, PitcherWins } from '../../../../common/types/pitchers';
-import { API_URL } from '@/constants/api-url';
 import {
   AllPitcherRankingTab,
   KTPitcherRankingTab,
@@ -12,46 +7,17 @@ import {
 import { Tabs, TabsContent } from '@/components/ui';
 import { TabsList } from '@radix-ui/react-tabs';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
+import { useTopPitcherRank } from '@/assets/hooks/ranking/useTopPitcherRank';
 
 function PitcherRankingTab() {
-  const [eraRanking, setEraRanking] = useState<PitcherERA[]>([]);
-  const [winRanking, setWinRanking] = useState<PitcherWins[]>([]);
+  const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
 
-  useEffect(() => {
-    const getPitcherEraRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/pitcher/era/top3`
-        );
-
-        if (status === 200 && data) {
-          setEraRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const getPitcherWinRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/pitcher/win/top3`
-        );
-
-        if (status === 200 && data) {
-          setWinRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getPitcherEraRanking();
-    getPitcherWinRanking();
-  }, []);
-
-  if (!eraRanking.length || !winRanking.length) {
+  if (!eraRanking.length || !winRanking.length || loading) {
     return null;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
