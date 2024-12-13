@@ -1,4 +1,4 @@
-import { useTopBatterRank } from '@/assets/hooks/useTopBatterRank';
+import { useTopBatterRank } from '@/assets/hooks/ranking/useTopBatterRank';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { RankingCard } from '../common/RankingCard';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';

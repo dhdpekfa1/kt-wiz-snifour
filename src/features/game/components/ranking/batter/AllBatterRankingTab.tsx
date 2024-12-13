@@ -1,7 +1,7 @@
 import { PlayerScatterChart } from '../common/PlayerScatterChart';
 import { PlayerRankingTable } from '../common/PlayerRankingTable';
 import { batterColumns } from '@/constants/player-rank-colums';
-import { useBatterRank } from '@/assets/hooks/useBatterRank';
+import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
 
 function AllBatterRankingTab() {
   const { ranking, loading, error } = useBatterRank('all');

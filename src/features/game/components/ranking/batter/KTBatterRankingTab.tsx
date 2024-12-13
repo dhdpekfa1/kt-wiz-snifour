@@ -3,7 +3,7 @@ import {
   PlayerScatterChart,
 } from '@/features/game/components/ranking';
 import { batterColumns } from '@/constants/player-rank-colums';
-import { useBatterRank } from '@/assets/hooks/useBatterRank';
+import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
 
 function KTBatterRankingTab() {
   const { ranking, loading, error } = useBatterRank('kt');
