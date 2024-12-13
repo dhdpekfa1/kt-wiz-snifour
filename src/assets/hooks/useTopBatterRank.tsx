@@ -3,7 +3,7 @@ import { BatterHR, BatterHra } from '@/features/common/types/batters';
 import {
   getBatterHraRanking,
   getBatterHrRanking,
-} from '@/features/game/apis/ranking';
+} from '@/features/game/apis/ranking/batter';
 
 export function useTopBatterRank() {
   const [hraRanking, setHraRanking] = useState<BatterHra[]>([]);

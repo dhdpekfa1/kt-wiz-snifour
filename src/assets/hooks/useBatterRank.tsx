@@ -4,7 +4,7 @@ import { OverallBatterRank } from '@/features/common/types/batters';
 import {
   getAllBatterRanking,
   getKTBatterRanking,
-} from '@/features/game/apis/ranking';
+} from '@/features/game/apis/ranking/batter';
 
 export function useBatterRank(domain: 'kt' | 'all') {
   const [ranking, setRanking] = useState<OverallBatterRank[]>([]);
