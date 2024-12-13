@@ -69,14 +69,16 @@ function CrowdRankingTab() {
             </div>
           </SelectTrigger>
           <SelectContent className="w-fit">
-            {seasons.map((year) => (
-              <SelectItem
-                value={year}
-                className="bg-wiz-white focus:bg-wiz-red focus:text-white"
-              >
-                {year}
-              </SelectItem>
-            ))}
+            {seasons
+              .filter((year) => Number(year) > 2018)
+              .map((year) => (
+                <SelectItem
+                  value={year}
+                  className="bg-wiz-white focus:bg-wiz-red focus:text-white"
+                >
+                  {year}
+                </SelectItem>
+              ))}
           </SelectContent>
         </Select>
       </div>
