@@ -1,54 +1,20 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import { useTopBatterRank } from '@/assets/hooks/useTopBatterRank';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { RankingCard } from '../common/RankingCard';
-import { API_URL } from '@/constants/api-url';
-import { BatterHR, BatterHra } from '@/features/common/types/batters';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
 
 function BatterRankingTab() {
-  const [hraRanking, setHraRanking] = useState<BatterHra[]>([]);
-  const [hrRanking, setHrRanking] = useState<BatterHR[]>([]);
+  const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
 
-  useEffect(() => {
-    const getBatterHraRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/batter/hra/top3`
-        );
-
-        if (status === 200 && data) {
-          setHraRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const getBatterHrRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/batter/hr/top3`
-        );
-
-        if (status === 200 && data) {
-          setHrRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getBatterHraRanking();
-    getBatterHrRanking();
-  }, []);
-
-  if (!hraRanking.length || !hrRanking.length) {
+  if (!hraRanking.length || !hrRanking.length || loading) {
     return null;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
