@@ -43,8 +43,6 @@ const CoachDetailPage = () => {
     ));
   };
 
-  // {index > 0 && "-"}
-  // {item}
   return (
     <div className="w-full h-screen pb-30">
       <Breadcrumb
