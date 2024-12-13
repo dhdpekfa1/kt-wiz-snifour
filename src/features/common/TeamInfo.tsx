@@ -3,7 +3,7 @@ export interface TeamData {
   logoUrl: string;
   result?: number | 'lose' | 'win';
   spectators?: number;
-  stadium?: '홈' | '원정'; // BoxScoreTab에서만 사용
+  stadium?: string; // BoxScoreTab에서만 사용
   player?: string; // MatchScheduleTab에서만 사용
   tabType: 'MatchBoard' | 'MatchScheduleTab';
 }

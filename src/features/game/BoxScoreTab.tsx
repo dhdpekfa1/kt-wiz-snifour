@@ -8,27 +8,33 @@ import {
   PitchingRecordTable,
 } from '@/features/game/components/table';
 import { mockMatchData } from '@/features/game/components/table/MatchScoreTable';
-import { useMatchStore } from '@/store/useMatchStore';
-import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { getMatchData } from './apis/boxScore';
+import type { BoxScoreData } from './types/BoxScoreData';
 
 const BoxScoreTab = () => {
-  const { selectedDate, setSelectedDate } = useMatchStore();
-  const { gameDate, gameKey } = useParams<{
-    gameDate: string;
-    gameKey: string;
-  }>();
-  const navigate = useNavigate();
+  const { gameDate, gameKey } = useParams();
+  const [matchData, setMatchData] = useState<BoxScoreData>();
 
   useEffect(() => {
-    if (!selectedDate) {
-      setSelectedDate(new Date('2024-10-11'));
-    }
-  }, [selectedDate, setSelectedDate]);
+    const fetchMatchData = async () => {
+      if (gameDate && gameKey) {
+        try {
+          const data = await getMatchData(gameDate, gameKey);
+          setMatchData(data);
+        } catch (error) {
+          console.error('Error fetching match data:', error);
+        }
+      }
+    };
+    fetchMatchData();
+  }, [gameDate, gameKey]);
 
-  const handleRouteChange = () => {
-    navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`); // Replace with your desired route
-  };
+  /** 데이터 fetch 오류 방지 코드 */
+  if (!matchData) {
+    return <div>데이터를 로딩중입니다..</div>;
+  }
 
   return (
     <div className="w-full flex justify-center my-20">
@@ -46,24 +52,23 @@ const BoxScoreTab = () => {
         {/* 경기 스코어 테이블 */}
         <MatchBoard
           team1Data={{
-            teamName: 'KT',
-            logoUrl: '/assets/emblems/ktwiz.svg',
-            result: 1,
-            stadium: '원정',
+            teamName: matchData.schedule.current.home,
+            logoUrl: matchData.schedule.current.homeLogo,
+            result: matchData.schedule.current.hscore,
+            stadium: matchData.schedule.current.stadium,
             tabType: 'MatchBoard',
           }}
           team2Data={{
-            teamName: 'LG',
-            logoUrl: '/assets/emblems/lgtwins.svg',
-            result: 4,
-            stadium: '홈',
+            teamName: matchData.schedule.current.visit,
+            logoUrl: matchData.schedule.current.visitLogo,
+            result: matchData.schedule.current.vscore,
+            stadium: matchData.schedule.current.stadium,
             tabType: 'MatchBoard',
           }}
-          matchDate="2024-12-10"
-          matchTime="18:30"
-          stadium="수원 KT 위즈 파크"
+          matchDate={matchData.schedule.current.gameDate}
+          matchTime={matchData.schedule.current.gtime}
+          stadium={matchData.schedule.current.stadium}
           gameTable={<MatchScoreTable />}
-          onRouteChange={handleRouteChange}
         />
 
         {/* 주요 기록 */}
