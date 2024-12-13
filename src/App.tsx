@@ -21,6 +21,7 @@ import RegularGamePage from './pages/game/regular/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
 import CoachPage from './pages/player/CoachPage';
+import CoachDetailPage from './pages/player/id/CoachDetailPage';
 
 function App() {
   return (
@@ -69,6 +70,9 @@ function App() {
             {/* Player */}
             <Route path="/player/song" element={<CheerSongPage />} />
             <Route path="/player/coach" element={<CoachPage />} />
+
+            {/* Player 상세 페이지 경로 */}
+            <Route path="/player/coach/detail" element={<CoachDetailPage />} />
           </Routes>
         </div>
         <Footer />
