@@ -1,63 +1,49 @@
+import { useMemo } from 'react';
 import { TooltipProps } from 'recharts';
+import CustomIndicator from './CustomIndicator';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { OverallBatterRank } from '@/features/common/types/batters';
+import { CrowdRank } from '@/features/game/types/crowd-ranking';
 
-interface Payload {
-  playerName: string;
-  era: number;
-  wra: number;
-  gamenum: number;
-  teamName: string;
-  hra: number;
-  ops: number;
+type Payload = OverallPitcherRank & OverallBatterRank & CrowdRank;
+
+interface CustomTooltipProps extends TooltipProps<string, string> {
+  type: string;
 }
 
-function CustomTooltip({ active, payload }: TooltipProps<string, string>) {
+function CustomTooltip({ active, payload, type }: CustomTooltipProps) {
   if (active && payload && payload.length) {
-    const { playerName, era, wra, gamenum, teamName, hra, ops } = payload[0]
-      .payload as Payload;
+    const { playerName, era, wra, gamenum, teamName, hra, ops, crowd } =
+      payload[0].payload as Payload;
+
+    const label = useMemo(() => {
+      if (type === 'pitcher' || type === 'batter') {
+        return `${playerName}(${teamName})`;
+      }
+      return teamName;
+    }, [type, playerName, teamName]);
+
     return (
-      <div className="w-48 bg-white text-black p-2 border rounded shadow-md">
-        <div className="flex items-center justify-between">
-          <p className="font-bold ">
-            {playerName}({teamName})
-          </p>
-          <p className="text-sm">{gamenum}번 출장</p>
+      <div className="w-fit bg-white text-black p-2 border rounded shadow-md">
+        <div className="flex items-center justify-between mb-2 gap-8">
+          <p className="font-bold ">{label}</p>
+          {gamenum && <p className="text-sm">{gamenum}번 출장</p>}
         </div>
-        <div className="flex items-center gap-2">
-          {era && (
-            <>
-              <span className="w-10 text-sm bg-wiz-black text-white rounded text-center">
-                ERA
-              </span>
-              <span>{era}</span>
-            </>
-          )}
-          {hra && (
-            <>
-              <span className="w-10 text-sm bg-wiz-black text-white rounded text-center">
-                타율
-              </span>
-              <span>{hra}</span>
-            </>
-          )}
-        </div>
-        <div className="flex items-center gap-2">
-          {wra && (
-            <>
-              <span className="w-10 text-sm bg-wiz-black text-white rounded text-center">
-                승률
-              </span>
-              <span>{wra}</span>
-            </>
-          )}
-          {ops && (
-            <>
-              <span className="w-10 text-sm bg-wiz-black text-white rounded text-center">
-                OPS
-              </span>
-              <span>{ops}</span>
-            </>
-          )}
-        </div>
+        {type === 'pitcher' && (
+          <>
+            <CustomIndicator indicator="ERA" value={era} />
+            <CustomIndicator indicator="승률" value={wra} />
+          </>
+        )}
+        {type === 'batter' && (
+          <>
+            <CustomIndicator indicator="타율" value={hra} />
+            <CustomIndicator indicator="OPS" value={ops} />
+          </>
+        )}
+        {type === 'crowd' && (
+          <CustomIndicator indicator="관중" value={crowd.toLocaleString()} />
+        )}
       </div>
     );
   }

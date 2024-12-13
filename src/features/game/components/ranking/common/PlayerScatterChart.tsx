@@ -169,7 +169,7 @@ function PlayerScatterChart<T extends PlayerRank>({
           domain={['dataMin', 'auto']}
         />
         <Tooltip
-          content={<CustomTooltip />}
+          content={<CustomTooltip type={position} />}
           cursor={{ strokeDasharray: '3 3' }}
         />
         <Scatter
