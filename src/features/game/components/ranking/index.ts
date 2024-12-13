@@ -18,6 +18,7 @@ export { AllBatterRankingTab } from './batter/AllBatterRankingTab';
 /** 관중 현황 */
 export { CrowdRankingTab } from './crowd/CrowdRankingTab';
 export { CrowdRankingTable } from './crowd/CrowdRankingTable';
+export { CrowdRankingChart } from './crowd/CrowdRankingChart';
 
 /** 공통 */
 export { RankingCard } from './common/RankingCard';

@@ -1,17 +1,11 @@
 import { useMemo } from 'react';
 import { TooltipProps } from 'recharts';
 import CustomIndicator from './CustomIndicator';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { OverallBatterRank } from '@/features/common/types/batters';
+import { CrowdRank } from '@/features/game/types/crowd-ranking';
 
-interface Payload {
-  playerName: string;
-  era: number;
-  wra: number;
-  gamenum: number;
-  teamName: string;
-  hra: number;
-  ops: number;
-  crowd: number;
-}
+type Payload = OverallPitcherRank & OverallBatterRank & CrowdRank;
 
 interface CustomTooltipProps extends TooltipProps<string, string> {
   type: string;

@@ -1,8 +1,3 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-import { CrowdRank } from '@/features/game/types/crowd-ranking';
-import { API_URL } from '@/constants/api-url';
 import {
   Table,
   TableBody,
@@ -11,28 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
+import { CrowdRank } from '@/features/game/types/crowd-ranking';
 
-function CrowdRankingTable() {
-  const [ranking, setRanking] = useState<CrowdRank[]>([]);
+interface CrowdRankingTableProps {
+  data: CrowdRank[];
+}
 
-  useEffect(() => {
-    const getCrowdRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/crowd?gyear=2024`
-        );
-
-        if (status === 200 && data) {
-          setRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getCrowdRanking();
-  }, []);
-
+function CrowdRankingTable({ data }: CrowdRankingTableProps) {
   return (
     <Table className="mt-4">
       <TableHeader>
@@ -45,7 +25,7 @@ function CrowdRankingTable() {
         </TableRow>
       </TableHeader>
       <TableBody className="text-center">
-        {ranking.map((team, index) => (
+        {data.map((team, index) => (
           <TableRow
             key={team.teamCode}
             className={`${
