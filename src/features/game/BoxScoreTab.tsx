@@ -12,13 +12,13 @@ import { useEffect, useState } from 'react';
 import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';
 
-interface Props {
+/*interface Props {
   gameDate: string;
   gameKey: string;
-}
+}*/
 
-const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
-  const [matchData, setMatchData] = useState<BoxScoreData>();
+const BoxScoreTab = () => {
+  const [matchData, setMatchData] = useState<BoxScoreData | null>(null);
   /*const [gmDate, setGmDate] = useState('20241011');
   const [gmKey, setGmKey] = useState('3331011KTLG0');*/
 
@@ -28,17 +28,9 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
 
   /**TODO: gameDate, gameKey 매개변수 state 전달 */
   const fetchMatchData = async () => {
-    const data = await getMatchData('20241011', '3331011KTLG0');
+    const data = await getMatchData('20240910', '20240910NCKT0');
     setMatchData(data);
   };
-
-  if (!matchData) {
-    return (
-      <div>
-        `${gameDate} ${gameKey}`
-      </div>
-    );
-  }
 
   return (
     <div className="w-full flex justify-center my-20">
@@ -56,22 +48,22 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
         {/* 경기 스코어 테이블 */}
         <MatchBoard
           team1Data={{
-            teamName: matchData.schedule.current.home,
-            logoUrl: matchData.schedule.current.homeLogo,
-            result: matchData.schedule.current.hscore,
-            stadium: matchData.schedule.current.stadium,
+            teamName: matchData?.schedule.current.home,
+            logoUrl: matchData?.schedule.current.homeLogo,
+            result: matchData?.schedule.current.hscore,
+            stadium: matchData?.schedule.current.stadium,
             tabType: 'MatchBoard',
           }}
           team2Data={{
-            teamName: matchData.schedule.current.visit,
-            logoUrl: matchData.schedule.current.visitLogo,
-            result: matchData.schedule.current.vscore,
-            stadium: matchData.schedule.current.stadium,
+            teamName: matchData?.schedule.current.visit,
+            logoUrl: matchData?.schedule.current.visitLogo,
+            result: matchData?.schedule.current.vscore,
+            stadium: matchData?.schedule.current.stadium,
             tabType: 'MatchBoard',
           }}
-          matchDate={matchData.schedule.current.gameDate}
-          matchTime={matchData.schedule.current.gtime}
-          stadium={matchData.schedule.current.stadium}
+          matchDate={matchData?.schedule.current.gameDate}
+          matchTime={matchData?.schedule.current.gtime}
+          stadium={matchData?.schedule.current.stadium}
           gameTable={<MatchScoreTable />}
         />
 
