@@ -4,9 +4,9 @@ const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
 export const getMatchData = async (gameDate: string, gmKey: string) => {
   try {
-    const res = await axios.get(`${API_URL}/game/boxscore`, {
-      params: { gameDate, gmKey },
-    });
+    const res = await axios.get(
+      `${API_URL}/game/boxscore/${gameDate}/${gmKey}`
+    );
 
     if (res.status !== 200) {
       throw new Error(`Failed to fetch data. Status code: ${res.status}`);
