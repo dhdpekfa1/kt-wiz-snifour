@@ -5,12 +5,20 @@ import { IconLeft, IconRight } from 'react-day-picker';
 interface MatchBoardProps {
   team1Data: TeamData;
   team2Data: TeamData;
-  matchDate: number | undefined;
+  matchDate: string | undefined;
   matchTime: string | undefined;
   stadium: string | undefined;
   gameTable: ReactNode;
   // leftEvent: MouseEventHandler<HTMLButtonElement>; // 왼쪽 버튼 클릭 핸들러
   // rightEvent: MouseEventHandler<HTMLButtonElement>; // 오른쪽 버튼 클릭 핸들러
+}
+
+function formatchDate(dateStr: string): string {
+  const year = dateStr.slice(0, 4);
+  const month = dateStr.slice(4, 6);
+  const day = dateStr.slice(6, 8);
+
+  return `${year}년 ${Number.parseInt(month)}월 ${Number.parseInt(day)}일`;
 }
 
 const MatchBoard = ({
@@ -39,7 +47,9 @@ const MatchBoard = ({
               <IconLeft />
             </button>
             <div className="relative flex flex-col items-center gap-1">
-              <span className="text-2xl font-semibold">{matchDate}</span>
+              <span className="text-2xl font-semibold">
+                {matchDate ? formatchDate(matchDate) : '데이터없음'}
+              </span>
               <span className="text-center text-[#717781]">
                 {matchTime} | {stadium}
                 {/* TODO: boxscore ? 관중 수 : '' */}

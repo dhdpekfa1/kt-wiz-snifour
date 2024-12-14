@@ -24,14 +24,14 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
     fetchMatchData();
   }, []);
 
-  /**TODO: 최신 경기 날짜 전달 */
+  /**TODO: 최신 경기 날짜 전달 - 오늘 기준으로 경기가 있는 날짜 확인*/
   const fetchMatchData = async () => {
     if (!gameDate && !gameKey) {
-      const data = await getMatchData('20240910', '20240910NCKT0');
+      const data = await getMatchData('20241011', '33331011KTLG0');
       setMatchData(data);
     }
     if (gameDate && gameKey) {
-      const data = await getMatchData(gameDate, gameKey); //10월 api 주소 다름
+      const data = await getMatchData(gameDate, gameKey);
       setMatchData(data);
     }
   };
@@ -65,7 +65,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
             stadium: matchData?.schedule.current.stadium,
             tabType: 'MatchBoard',
           }}
-          matchDate={matchData?.schedule.current.gameDate}
+          matchDate={matchData?.schedule.current.gameDate.toString()}
           matchTime={matchData?.schedule.current.gtime}
           stadium={matchData?.schedule.current.stadium}
           gameTable={<MatchScoreTable />}
