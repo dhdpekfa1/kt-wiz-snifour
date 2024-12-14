@@ -52,17 +52,17 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
         {/* 경기 스코어 테이블 */}
         <MatchBoard
           team1Data={{
-            teamName: matchData?.schedule.current.home,
-            logoUrl: matchData?.schedule.current.homeLogo,
-            result: matchData?.schedule.current.hscore,
-            stadium: matchData?.schedule.current.stadium,
-            tabType: 'MatchBoard',
-          }}
-          team2Data={{
             teamName: matchData?.schedule.current.visit,
             logoUrl: matchData?.schedule.current.visitLogo,
             result: matchData?.schedule.current.vscore,
-            stadium: matchData?.schedule.current.stadium,
+            stadium: '원정',
+            tabType: 'MatchBoard',
+          }}
+          team2Data={{
+            teamName: matchData?.schedule.current.home,
+            logoUrl: matchData?.schedule.current.homeLogo,
+            result: matchData?.schedule.current.hscore,
+            stadium: '홈',
             tabType: 'MatchBoard',
           }}
           matchDate={matchData?.schedule.current.gameDate.toString()}
