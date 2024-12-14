@@ -12,7 +12,7 @@ import {
 } from '@/features/game';
 
 import '@/features/game/css/game.css';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
@@ -24,7 +24,6 @@ const REG_TABS_CONFIG = [
 /** 정규리그 페이지 */
 function RegularGamePage() {
   const { gameDate, gameKey } = useParams();
-  const navigate = useNavigate();
 
   const { currentTab, handleTabChange } = useTabFromUrl({
     basePath: '/game',
@@ -32,12 +31,9 @@ function RegularGamePage() {
     defaultTab: 'schedule',
   });
 
-  const handleBoxScoreTabChange = () => {
-    if (gameDate && gameKey) {
-      navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`);
-    } else {
-      handleTabChange('boxscore');
-    }
+  const boxScoreProps = {
+    gameDate: gameDate || '20241011',
+    gameKey: gameKey || '33331011KTLG0',
   };
 
   return (
@@ -76,7 +72,7 @@ function RegularGamePage() {
               </TabsTrigger>
               <TabsTrigger
                 value="boxscore"
-                onClick={handleBoxScoreTabChange}
+                onClick={() => handleTabChange('boxscore')}
                 className={cn('tabs-trigger', 'px-6 py-2.5')}
               >
                 박스 스코어
@@ -103,7 +99,7 @@ function RegularGamePage() {
           <MatchScheduleTab />
         </TabsContent>
         <TabsContent value="boxscore">
-          <BoxScoreTab />
+          <BoxScoreTab {...boxScoreProps} />
         </TabsContent>
         <TabsContent value="ranking">
           <TeamRankingTab />

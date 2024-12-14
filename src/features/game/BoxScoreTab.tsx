@@ -9,12 +9,15 @@ import {
 } from '@/features/game/components/table';
 import { mockMatchData } from '@/features/game/components/table/MatchScoreTable';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
 import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';
 
-const BoxScoreTab = () => {
-  const { gameDate, gameKey } = useParams();
+interface Props {
+  gameDate: string;
+  gameKey: string;
+}
+
+const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
   const [matchData, setMatchData] = useState<BoxScoreData>();
 
   useEffect(() => {
@@ -31,9 +34,8 @@ const BoxScoreTab = () => {
     fetchMatchData();
   }, [gameDate, gameKey]);
 
-  /** 데이터 fetch 오류 방지 코드 */
   if (!matchData) {
-    return <div>데이터를 로딩중입니다..</div>;
+    return <div>데이터가 없습니다.</div>;
   }
 
   return (
