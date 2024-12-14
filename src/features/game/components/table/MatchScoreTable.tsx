@@ -6,6 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
+import type { BoxScoreData } from '../../types/BoxScoreData';
 
 export const mockMatchData = [
   {
@@ -69,7 +70,11 @@ export const mockMatchData = [
   },
 ];
 
-const MatchScoreTable = () => {
+interface MatchScoreTableProps {
+  data: BoxScoreData | undefined;
+}
+
+const MatchScoreTable = ({ data }: MatchScoreTableProps) => {
   const thead = [
     '팀',
     1,
@@ -108,32 +113,25 @@ const MatchScoreTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
-            {mockMatchData[0].team1}
-          </TableCell>
-          {mockMatchData[0].team1_score.map((score) => (
-            <TableCell
-              key={score.id}
-              className="font-medium border bg-wiz-black border-[#fefefe40] text-center text-wiz-white"
-            >
-              {score.score}
+        {data?.scoreboard.map((team) => (
+          <TableRow key={team.bhomeName}>
+            <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white text-wiz-black">
+              {team.bhomeName}
             </TableCell>
-          ))}
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
-            {mockMatchData[0].team2}
-          </TableCell>
-          {mockMatchData[0].team2_score.map((score) => (
-            <TableCell
-              key={score.id}
-              className="font-medium border border-[#fefefe40] bg-wiz-black text-center text-wiz-white"
-            >
-              {score.score}
-            </TableCell>
-          ))}
-        </TableRow>
+            {Array.from({ length: 15 }, (_, i) => (
+              <TableCell
+                key={`score-${team.bhomeName}-${i + 1}`}
+                className="font-medium border bg-wiz-black border-[#fefefe40] text-center text-wiz-white"
+              >
+                {team[`score${i + 1}`]}
+              </TableCell>
+            ))}
+            <TableCell>{team.run}</TableCell>
+            <TableCell>{team.hit}</TableCell>
+            <TableCell>{team.error}</TableCell>
+            <TableCell>{team.ballfour}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );

@@ -18,7 +18,7 @@ interface Props {
 }
 
 const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
-  const [matchData, setMatchData] = useState<BoxScoreData | null>(null);
+  const [matchData, setMatchData] = useState<BoxScoreData>();
 
   useEffect(() => {
     fetchMatchData();
@@ -68,7 +68,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
           matchDate={matchData?.schedule.current.gameDate.toString()}
           matchTime={matchData?.schedule.current.gtime}
           stadium={matchData?.schedule.current.stadium}
-          gameTable={<MatchScoreTable />}
+          gameTable={<MatchScoreTable data={matchData} />}
         />
 
         {/* 주요 기록 */}

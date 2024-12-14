@@ -119,4 +119,5 @@ interface ScoreboardEntry {
   score10: string;
   score11: string;
   score12: string;
+  [key: `score${number}`]: string;
 }
