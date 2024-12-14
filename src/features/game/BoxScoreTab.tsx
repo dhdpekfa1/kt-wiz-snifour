@@ -19,23 +19,25 @@ interface Props {
 
 const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
   const [matchData, setMatchData] = useState<BoxScoreData>();
+  /*const [gmDate, setGmDate] = useState('20241011');
+  const [gmKey, setGmKey] = useState('3331011KTLG0');*/
 
   useEffect(() => {
-    const fetchMatchData = async () => {
-      if (gameDate && gameKey) {
-        try {
-          const data = await getMatchData(gameDate, gameKey);
-          setMatchData(data);
-        } catch (error) {
-          console.error('Error fetching match data:', error);
-        }
-      }
-    };
     fetchMatchData();
-  }, [gameDate, gameKey]);
+  }, []);
+
+  /**TODO: gameDate, gameKey 매개변수 state 전달 */
+  const fetchMatchData = async () => {
+    const data = await getMatchData('20241011', '3331011KTLG0');
+    setMatchData(data);
+  };
 
   if (!matchData) {
-    return <div>데이터가 없습니다.</div>;
+    return (
+      <div>
+        `${gameDate} ${gameKey}`
+      </div>
+    );
   }
 
   return (

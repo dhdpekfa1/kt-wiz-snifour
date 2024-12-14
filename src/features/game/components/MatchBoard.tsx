@@ -5,9 +5,9 @@ import { IconLeft, IconRight } from 'react-day-picker';
 interface MatchBoardProps {
   team1Data: TeamData;
   team2Data: TeamData;
-  matchDate: number;
-  matchTime: string;
-  stadium: string;
+  matchDate: number | undefined;
+  matchTime: string | undefined;
+  stadium: string | undefined;
   gameTable: ReactNode;
   // leftEvent: MouseEventHandler<HTMLButtonElement>; // 왼쪽 버튼 클릭 핸들러
   // rightEvent: MouseEventHandler<HTMLButtonElement>; // 오른쪽 버튼 클릭 핸들러
