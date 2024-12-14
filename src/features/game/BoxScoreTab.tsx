@@ -12,24 +12,28 @@ import { useEffect, useState } from 'react';
 import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';
 
-/*interface Props {
-  gameDate: string;
-  gameKey: string;
-}*/
+interface Props {
+  gameDate: string | undefined;
+  gameKey: string | undefined;
+}
 
-const BoxScoreTab = () => {
+const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
   const [matchData, setMatchData] = useState<BoxScoreData | null>(null);
-  /*const [gmDate, setGmDate] = useState('20241011');
-  const [gmKey, setGmKey] = useState('3331011KTLG0');*/
 
   useEffect(() => {
     fetchMatchData();
   }, []);
 
-  /**TODO: gameDate, gameKey 매개변수 state 전달 */
+  /**TODO: 최신 경기 날짜 전달 */
   const fetchMatchData = async () => {
-    const data = await getMatchData('20240910', '20240910NCKT0');
-    setMatchData(data);
+    if (!gameDate && !gameKey) {
+      const data = await getMatchData('20240910', '20240910NCKT0');
+      setMatchData(data);
+    }
+    if (gameDate && gameKey) {
+      const data = await getMatchData(gameDate, gameKey); //10월 api 주소 다름
+      setMatchData(data);
+    }
   };
 
   return (
