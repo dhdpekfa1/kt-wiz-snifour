@@ -104,7 +104,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
               title={`${matchData?.schedule.current.visit} 투수 기록`}
             />
             <div className="w-full">
-              <PitchingRecordTable />
+              <PitchingRecordTable data={matchData?.vpitchers} />
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
           <div className="flex flex-col gap-2">
             <SubTitle title={`${matchData?.schedule.current.home} 투수 기록`} />
             <div className="w-full">
-              <PitchingRecordTable />
+              <PitchingRecordTable data={matchData?.hpitchers} />
             </div>
           </div>
         </div>
