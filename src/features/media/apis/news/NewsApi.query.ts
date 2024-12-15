@@ -47,9 +47,6 @@ export function useGetNewsList(
         .map(createListViewItem),
       searchCount: res.data.searchCount,
     }),
-    gcTime: 10 * 60 * 1000, // 캐시타임
-    refetchOnMount: false, // 컴포넌트 마운트 시 쿼리 재요청 여부
-    refetchOnWindowFocus: false, // 창 포커스 시 쿼리 재요청 여부
     placeholderData: keepPreviousData, // 페이지 네이션이 있을 경우에는 추가해주세요. 이전 데이터를 유지해줍니다.
     ...params?.options,
   });
@@ -76,9 +73,6 @@ export function useGetNewsBySeq(
       return response;
     },
     select: (res: NewsDetailResponse) => createListViewItem(res.data.article),
-    gcTime: 10 * 60 * 1000, // 캐시타임
-    refetchOnMount: false, // 컴포넌트 마운트 시 쿼리 재요청 여부
-    refetchOnWindowFocus: false, // 창 포커스 시 쿼리 재요청 여부
     ...params.options,
   });
 }

@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { highlightApi } from './highlightApi';
+import { highlightApi } from './HighlightApi';
 import { useQuery } from '@tanstack/react-query';
 import { Parameter, isNotNullish, UseQueryParams } from '@/lib';
 import { GridDataType, HighlightResponse } from '@/features/media/types';
@@ -36,9 +36,6 @@ export function useGetHighlightList(
         .filter((item) => item.useYn === 'Y')
         .map(createGridViewItem),
     }),
-    gcTime: 10 * 60 * 1000, // 캐시타임
-    refetchOnMount: false, // 컴포넌트 마운트 시 쿼리 재요청 여부
-    refetchOnWindowFocus: false, // 창 포커스 시 쿼리 재요청 여부
     ...params?.options,
   });
 }

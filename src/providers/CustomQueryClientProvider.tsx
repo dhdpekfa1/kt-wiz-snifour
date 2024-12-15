@@ -101,10 +101,13 @@ const CustomQueryClientProvider = ({
       new QueryClient({
         defaultOptions: {
           queries: {
-            /** 개발자 판단하에 설정해주세요 기본값은 0 이며,. */
-            staleTime: 5 * 60 * 1000,
+            /** 개발자 판단하에 설정해주세요 기본값은 0 입니다. */
+            staleTime: 5 * 60 * 1000, // 5분
+            gcTime: 10 * 60 * 1000, // 10분
             /** 개발자 판단하에 설정해주세요 기본값은 3 입니다. */
             retry: 1,
+            refetchOnMount: false, // 컴포넌트 마운트 시 쿼리 재요청 여부
+            refetchOnWindowFocus: false, // 창 포커스 시 쿼리 재요청 여부
           },
         },
         queryCache,
