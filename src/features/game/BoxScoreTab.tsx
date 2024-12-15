@@ -7,7 +7,6 @@ import {
   MatchScoreTable,
   PitchingRecordTable,
 } from '@/features/game/components/table';
-import { mockMatchData } from '@/features/game/components/table/MatchScoreTable';
 import { useEffect, useState } from 'react';
 import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';
@@ -75,31 +74,35 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
           <div className="w-full">
-            <KeyRecordsTable />
+            <KeyRecordsTable data={matchData} />
           </div>
         </div>
         {/* team1 타자 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
-            <SubTitle title={`${mockMatchData[0].team1} 타자 기록`} />
+            <SubTitle
+              title={`${matchData?.schedule.current.visit} 타자 기록`}
+            />
             <div className="w-full">
-              <BattingRecordTable />
+              <BattingRecordTable data={matchData?.vbatters} />
             </div>
           </div>
         </div>
         {/* team2 타자 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
-            <SubTitle title={`${mockMatchData[0].team2} 타자 기록`} />
+            <SubTitle title={`${matchData?.schedule.current.home} 타자 기록`} />
             <div className="w-full">
-              <BattingRecordTable />
+              <BattingRecordTable data={matchData?.hbatters} />
             </div>
           </div>
         </div>
         {/* team1 투수 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
-            <SubTitle title={`${mockMatchData[0].team1} 투수 기록`} />
+            <SubTitle
+              title={`${matchData?.schedule.current.visit} 투수 기록`}
+            />
             <div className="w-full">
               <PitchingRecordTable />
             </div>
@@ -108,7 +111,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
         {/* team2 투수 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
-            <SubTitle title={`${mockMatchData[0].team2} 투수 기록`} />
+            <SubTitle title={`${matchData?.schedule.current.home} 투수 기록`} />
             <div className="w-full">
               <PitchingRecordTable />
             </div>

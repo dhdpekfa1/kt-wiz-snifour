@@ -21,7 +21,7 @@ interface EtcGame {
   seq: number;
 }
 
-interface Batter {
+export interface Batter {
   ab: number;
   accmAb: number;
   accmHit: number;
@@ -48,7 +48,7 @@ interface Batter {
   turn: string;
 }
 
-interface Pitcher {
+export interface Pitcher {
   ab: number;
   accmEr: number;
   accmInn2: number;
