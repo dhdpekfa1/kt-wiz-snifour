@@ -27,11 +27,17 @@ const useNewsListQuery = () => {
   // 뉴스 리스트 조회
   const newsListQuery = useGetNewsList({
     variables,
+    options: {
+      enabled: currentTab === NEWS_TABS_CONFIG[0].value,
+    },
   });
 
   // 보도자료 리스트 조회
   const PressListQuery = useGetPressList({
     variables,
+    options: {
+      enabled: currentTab === NEWS_TABS_CONFIG[1].value,
+    },
   });
 
   const isLoading = useMemo(() => {
