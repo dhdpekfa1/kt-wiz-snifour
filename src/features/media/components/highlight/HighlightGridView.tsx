@@ -16,7 +16,7 @@ import {
   DialogTitle,
 } from '@/components/ui';
 
-const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+const API_URL = 'https://www.ktwiz.co.kr';
 
 const HighlightGridView = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -76,7 +76,7 @@ const HighlightGridView = () => {
               <div className="relative max-w-5xl w-full mx-8">
                 {isPlaying ? (
                   <GridArticle.Video
-                    src={`${API_URL}${selectedHighlight.videoLink}`}
+                    src={`${API_URL}/${selectedHighlight.videoLink}`}
                     poster={selectedHighlight.imgFilePath}
                   />
                 ) : (
