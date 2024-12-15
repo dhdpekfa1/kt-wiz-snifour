@@ -6,9 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import type { BoxScoreData } from '../../types/BoxScoreData';
+import type { MatchDataProps } from '../../types/MatchDataProps';
 
-export const mockMatchData = [
+/*export const mockMatchData = [
   {
     match_date: '2024년 10월 11일',
     match_time: '18:30',
@@ -68,13 +68,9 @@ export const mockMatchData = [
     ],
     team2_betel: '홈',
   },
-];
+];*/
 
-interface MatchScoreTableProps {
-  data: BoxScoreData | undefined;
-}
-
-const MatchScoreTable = ({ data }: MatchScoreTableProps) => {
+const MatchScoreTable = ({ data }: MatchDataProps) => {
   const thead = [
     '팀',
     1,
