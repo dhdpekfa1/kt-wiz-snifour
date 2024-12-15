@@ -20,18 +20,6 @@ const instance = axios.create({
  */
 instance.interceptors.request.use(
   (config) => {
-    if (isDev) {
-      apiLogger({
-        status: 'REQUEST',
-        reqData: config,
-        resData: {
-          url: config.url,
-          method: config.method,
-          params: config.params,
-          data: config.data,
-        },
-      });
-    }
     return config;
   },
   (error) => {
