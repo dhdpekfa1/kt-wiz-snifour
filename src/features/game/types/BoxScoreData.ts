@@ -13,7 +13,7 @@ export interface BoxScoreData {
   vpitchers: Pitcher[];
 }
 
-interface EtcGame {
+export interface EtcGame {
   gday: string;
   gmkey: string;
   how: string;
@@ -75,7 +75,7 @@ export interface Pitcher {
   wls: string;
 }
 
-interface ScheduleInfo {
+export interface ScheduleInfo {
   broadcast: string;
   cancelFlag: string;
   crowdCn: number;
@@ -99,7 +99,7 @@ interface ScheduleInfo {
   vscore: number;
 }
 
-interface ScoreboardEntry {
+export interface ScoreboardEntry {
   ballfour: string;
   bhome: number;
   bhomeName: string;

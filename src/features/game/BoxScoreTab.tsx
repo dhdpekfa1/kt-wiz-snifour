@@ -67,14 +67,14 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
           matchDate={matchData?.schedule.current.gameDate.toString()}
           matchTime={matchData?.schedule.current.gtime}
           stadium={matchData?.schedule.current.stadium}
-          gameTable={<MatchScoreTable data={matchData} />}
+          gameTable={<MatchScoreTable data={matchData?.scoreboard} />}
         />
 
         {/* 주요 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
           <div className="w-full">
-            <KeyRecordsTable data={matchData} />
+            <KeyRecordsTable data={matchData?.etcgames} />
           </div>
         </div>
         {/* team1 타자 기록 */}

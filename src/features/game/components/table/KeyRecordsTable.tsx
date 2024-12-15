@@ -1,9 +1,13 @@
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui';
-import type { MatchDataProps } from '../../types/MatchDataProps';
+import { EtcGame } from '../../types/BoxScoreData';
 
-const KeyRecordsTable = ({ data }: MatchDataProps) => {
+interface KeyRecordsTableProps {
+  data: EtcGame[] | undefined;
+}
+
+const KeyRecordsTable = ({ data }: KeyRecordsTableProps) => {
   const getRecordByHow = (how: string) => {
-    const record = data?.etcgames.find((game) => game.how === how);
+    const record = data?.find((game) => game.how === how);
     return record ? record.result : '';
   };
 
