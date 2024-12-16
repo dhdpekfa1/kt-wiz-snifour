@@ -1,25 +1,19 @@
+import useCoach from '@/assets/hooks/useCoach';
 import Breadcrumb from '@/features/common/Breadcrumb';
-import { getCoach } from '@/features/player/apis';
-import { Coach } from '@/features/player/types/player';
-import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
 
 const CoachDetailPage = () => {
-  const [coachData, setCoachData] = useState<Coach | null>(null);
   const [searchParams] = useSearchParams();
   const pcode = searchParams.get('pcode');
+  const { coachData, loading, error } = useCoach(pcode);
 
-  useEffect(() => {
-    if (pcode) {
-      fetchCoachData(pcode);
-    }
-  }, [pcode]);
+  if (!coachData || loading) {
+    return null;
+  }
 
-  const fetchCoachData = async (pcode: string) => {
-    const res = await getCoach(pcode);
-    setCoachData(res);
-    console.log('coachData', res);
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   // 출신교 데이터 줄바꿈 함수
   const formatCareerInGroups = (career: string | undefined) => {
@@ -98,11 +92,11 @@ const CoachDetailPage = () => {
 
                 <div className="flex">
                   <p className="w-32">출신교</p>
-                  <p className="flex flex-wrap gap-x-2">
+                  <div className="flex flex-wrap gap-x-2">
                     <div className="flex flex-col gap-2">
                       {formatCareerInGroups(coachData?.career)}
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
