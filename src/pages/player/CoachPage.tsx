@@ -1,21 +1,18 @@
+import { useCoachList } from '@/assets/hooks/useCoachList';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SearchBar from '@/features/media/common/SearchBar';
-import { getCoachList } from '@/features/player/apis';
 import { PlayerList } from '@/features/player/components/';
-import { Coach } from '@/features/player/types/player';
-import { useEffect, useState } from 'react';
 
 const CoachPage = () => {
-  const [coachList, setCoachList] = useState<Coach[]>([]);
+  const { coachList, loading, error } = useCoachList();
 
-  useEffect(() => {
-    fetchCoachData();
-  }, []);
+  if (!coachList.length || loading) {
+    return null;
+  }
 
-  const fetchCoachData = async () => {
-    const res = await getCoachList();
-    setCoachList(res);
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
