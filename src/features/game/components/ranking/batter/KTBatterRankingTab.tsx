@@ -1,25 +1,26 @@
-import {
-  PlayerRankingTable,
-  PlayerScatterChart,
-} from '@/features/game/components/ranking';
+import { PlayerScatterChart } from '@/features/game/components/ranking';
 import { batterColumns } from '@/constants/player-rank-colums';
-import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
+// import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
+import SortableTable from '@/features/common/SortableTable';
+import { ktBatter } from '@/assets/data/__test__/mockRanking.json';
 
 function KTBatterRankingTab() {
-  const { ranking, loading, error } = useBatterRank('kt');
+  // const { ranking, loading, error } = useBatterRank('kt');
 
-  if (!ranking.length || loading) {
-    return null;
-  }
+  // if (!ranking.length || loading) {
+  //   return null;
+  // }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+
+  const ranking = ktBatter;
 
   return (
     <div>
       <PlayerScatterChart data={ranking} position="batter" />
-      <PlayerRankingTable data={ranking} columns={batterColumns} kt />
+      <SortableTable data={ranking} columns={batterColumns} domain="kt" />
     </div>
   );
 }

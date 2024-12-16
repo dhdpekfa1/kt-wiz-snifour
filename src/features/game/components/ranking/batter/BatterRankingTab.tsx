@@ -1,21 +1,25 @@
-import { useTopBatterRank } from '@/assets/hooks/ranking/useTopBatterRank';
+// import { useTopBatterRank } from '@/assets/hooks/ranking/useTopBatterRank';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { RankingCard } from '../common/RankingCard';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
+import { hraTop3, hrTop3 } from '@/assets/data/__test__/mockRanking.json';
 
 function BatterRankingTab() {
-  const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
+  // const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
 
-  if (!hraRanking.length || !hrRanking.length || loading) {
-    return null;
-  }
+  // if (!hraRanking.length || !hrRanking.length || loading) {
+  //   return null;
+  // }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+
+  const hraRanking = hraTop3;
+  const hrRanking = hrTop3;
 
   return (
     <div className="my-20">
@@ -30,7 +34,7 @@ function BatterRankingTab() {
       />
 
       {/* 타자 랭킹 카드 */}
-      <div className="w-full mt-12 bg-wiz-white grid grid-cols-2 rounded-xl">
+      <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl">
         <RankingCard
           title="타율 TOP 3"
           ranking={hraRanking}
