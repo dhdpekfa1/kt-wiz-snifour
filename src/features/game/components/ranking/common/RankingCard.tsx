@@ -36,7 +36,7 @@ function RankingCard({
         className="rounded-xl"
       />
       <div className="w-full h-full flex flex-col justify-between py-8">
-        <SubTitle title={title} className="text-black mb-2" />
+        <SubTitle title={title} className="mb-2" />
         <ol className="text-black">
           {ranking.map((player, index) => (
             <li

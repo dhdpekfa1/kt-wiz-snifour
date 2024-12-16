@@ -7,18 +7,21 @@ import {
 import { Tabs, TabsContent } from '@/components/ui';
 import { TabsList } from '@radix-ui/react-tabs';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
-import { useTopPitcherRank } from '@/assets/hooks/ranking/useTopPitcherRank';
+// import { useTopPitcherRank } from '@/assets/hooks/ranking/useTopPitcherRank';
+import { eraTop3, winTop3 } from '@/assets/data/__test__/mockRanking.json';
 
 function PitcherRankingTab() {
-  const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
+  // const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
 
-  if (!eraRanking.length || !winRanking.length || loading) {
-    return null;
-  }
+  // if (!eraRanking.length || !winRanking.length || loading) {
+  //   return null;
+  // }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+  const eraRanking = eraTop3;
+  const winRanking = winTop3;
 
   return (
     <div className="my-20">
@@ -33,7 +36,7 @@ function PitcherRankingTab() {
       />
 
       {/* 투수 랭킹 카드 */}
-      <div className="w-full mt-12 bg-wiz-white grid grid-cols-2 rounded-xl">
+      <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl px-8">
         <RankingCard
           title="평균 자책점 TOP 3"
           ranking={eraRanking}

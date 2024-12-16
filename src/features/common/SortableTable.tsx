@@ -25,13 +25,13 @@ type PlayerRank = OverallPitcherRank | OverallBatterRank;
 interface PlayerRankingTableProps<T extends PlayerRank> {
   data: T[];
   columns: ColumnDef<T>[];
-  kt?: boolean;
+  domain: 'kt' | 'all';
 }
 
-function PlayerRankingTable<T extends PlayerRank>({
+function SortableTable<T extends PlayerRank>({
   data,
   columns,
-  kt,
+  domain,
 }: PlayerRankingTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const table = useReactTable({
@@ -46,10 +46,13 @@ function PlayerRankingTable<T extends PlayerRank>({
   });
 
   return (
-    <Table className="rounded-xl overflow-hidden mt-8">
+    <Table className="mt-4">
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
-          <TableRow key={headerGroup.id} className="border-none">
+          <TableRow
+            key={headerGroup.id}
+            className="text-base font-semibold bg-wiz-white bg-opacity-30 border-none"
+          >
             {headerGroup.headers.map((header) => (
               <TableHead key={header.id} className="text-center px-2">
                 {header.isPlaceholder
@@ -63,18 +66,18 @@ function PlayerRankingTable<T extends PlayerRank>({
           </TableRow>
         ))}
       </TableHeader>
-      <TableBody>
+      <TableBody className="text-center">
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row, index) => (
             <TableRow
               key={row.id}
               data-state={row.getIsSelected() && 'selected'}
               className={cn(
-                'text-center',
-                kt && index < 3
-                  ? 'bg-wiz-red bg-opacity-80 font-bold border-b-red-800'
-                  : 'bg-wiz-white text-black',
-                !kt &&
+                'text-center border-b-wiz-white border-opacity-10',
+                domain === 'kt' &&
+                  index < 3 &&
+                  'bg-wiz-red bg-opacity-70 font-bold',
+                domain === 'all' &&
                   row.original.teamName === 'KT' &&
                   'bg-wiz-red bg-opacity-80 font-bold text-white'
               )}
@@ -96,4 +99,4 @@ function PlayerRankingTable<T extends PlayerRank>({
   );
 }
 
-export { PlayerRankingTable };
+export default SortableTable;
