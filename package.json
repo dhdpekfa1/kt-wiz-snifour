@@ -37,6 +37,7 @@
     "react-dom": "^18.3.1",
     "react-kakao-maps-sdk": "^1.1.27",
     "react-router": "^7.0.2",
+    "react-social-icons": "^6.18.0",
     "recharts": "^2.14.1",
     "shadcn-ui": "^0.9.3",
     "tailwind-merge": "^2.5.5",
