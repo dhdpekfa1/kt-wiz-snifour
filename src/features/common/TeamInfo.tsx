@@ -20,7 +20,9 @@ const TeamInfo = ({
 
   return (
     <div
-      className={`flex flex-col items-center ${isMatchBoard ? '' : 'gap-4'} `}
+      className={`w-full flex flex-col items-center ${
+        isMatchBoard ? '' : 'gap-4'
+      } `}
     >
       <img
         src={logoUrl}
@@ -29,7 +31,7 @@ const TeamInfo = ({
       />
       {isMatchBoard ? (
         <div>
-          <p className="text-center text-2xl text-white font-semibold font-semibold">
+          <p className="text-center text-2xl text-white font-semibold">
             {result && result}
           </p>
           <p

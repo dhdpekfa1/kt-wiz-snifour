@@ -20,6 +20,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
+import CoachPage from './pages/player/CoachPage';
+import CoachDetailPage from './pages/player/id/CoachDetailPage';
 
 function App() {
   return (
@@ -44,24 +46,7 @@ function App() {
             <Route path="/wizpark/parking" element={<ParkingPage />} />
 
             {/* Game */}
-            <Route
-              path="/game/regular/schedule"
-              element={<RegularGamePage />}
-            />
-            <Route
-              path="/game/regular/boxscore"
-              element={<RegularGamePage />}
-            />
-
-            <Route
-              path="/game/regular/watchPoint"
-              element={<RegularGamePage />}
-            />
-
-            <Route
-              path="/game/regular/ranking/team"
-              element={<RegularGamePage />}
-            />
+            <Route path="/game/regular/*" element={<RegularGamePage />} />
 
             {/* Media */}
             <Route path="/media/wiznews" element={<NewsPage />} />
@@ -84,6 +69,10 @@ function App() {
 
             {/* Player */}
             <Route path="/player/song" element={<CheerSongPage />} />
+            <Route path="/player/coach" element={<CoachPage />} />
+
+            {/* Player 상세 페이지 경로 */}
+            <Route path="/player/coach/detail" element={<CoachDetailPage />} />
           </Routes>
         </div>
         <Footer />

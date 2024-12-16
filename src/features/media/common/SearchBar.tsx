@@ -25,7 +25,8 @@ const SearchBar = () => {
               'border border-[#6B7280]/50 rounded-md pr-8 text-sm',
               'placeholder:text-[#c9c9cb] opacity-50',
               'hover:opacity-100 hover:border-wiz-white',
-              'px-8'
+              'px-8',
+              'text-wiz-white'
             )}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

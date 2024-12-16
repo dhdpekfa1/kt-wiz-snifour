@@ -7,7 +7,7 @@ import Layout from '@/features/common/Layout';
 import {
   BoxScoreTab,
   MatchScheduleTab,
-  TeamRankingTab,
+  RankingTab,
   WatchPointTab,
 } from '@/features/game';
 
@@ -17,7 +17,7 @@ import { useParams } from 'react-router';
 const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
   { value: 'boxscore', path: '/regular/boxscore' },
-  { value: 'ranking', path: '/regular/ranking/team' },
+  { value: 'ranking', path: '/regular/ranking' },
   { value: 'watchpoint', path: '/regular/watchpoint' },
 ];
 
@@ -41,8 +41,8 @@ function RegularGamePage() {
       header={
         <Banner>
           <Banner.Image
-            src="https://placehold.co/1200x200/141414/642521?text=WIZ+PHOTO"
-            alt="KT WIZ GAME"
+            src="https://placehold.co/1200x200/141414/642521?text=WIZ+GAMES"
+            alt="KT WIZ GAMES"
           />
           <Banner.Overlay>
             <Banner.Heading
@@ -102,7 +102,7 @@ function RegularGamePage() {
           <BoxScoreTab {...boxScoreProps} />
         </TabsContent>
         <TabsContent value="ranking">
-          <TeamRankingTab />
+          <RankingTab />
         </TabsContent>
         <TabsContent value="watchpoint">
           <WatchPointTab />

@@ -1,12 +1,13 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
-import MatchBoard from '@/features/game/components/MatchBoard';
 import {
   BattingRecordTable,
   KeyRecordsTable,
   MatchScoreTable,
   PitchingRecordTable,
 } from '@/features/game/components/table';
+import { MatchBoard } from './components/watch-point';
+
 import { useEffect, useState } from 'react';
 import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';

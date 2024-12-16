@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { TeamVS } from '@/features/game/types';
+import { TeamVS } from '@/features/game/types/team-ranking';
 
 interface ArrangedTeamVS {
   [key: string]: {
@@ -84,7 +84,7 @@ function TeamVSTable() {
     <Table className="mt-4">
       <TableHeader>
         <TableRow className="font-semibold border-none">
-          <TableHead className="text-center bg-wiz-white bg-opacity-30 ">
+          <TableHead className="text-center bg-wiz-white bg-opacity-30">
             팀명
           </TableHead>
           {vsOrder.map((teamCode) => (

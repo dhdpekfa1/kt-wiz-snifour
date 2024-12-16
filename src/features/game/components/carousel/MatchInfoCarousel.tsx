@@ -1,16 +1,16 @@
-import { getMonthSchedule } from '@/features/game/apis/matchSchedule';
-import { CarouselCard } from '@/features/game/components';
-import type { GameSchedule } from '@/features/game/types';
-import { useMatchStore } from '@/store/useMatchStore';
-import { format, isValid, parse } from 'date-fns';
-import { useEffect, useState } from 'react';
 import {
   Carousel,
-  type CarouselApi,
+  CarouselApi,
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
-} from './carousel';
+} from '@/components/ui';
+import { CarouselCard } from '@/features/game/components';
+import { useMatchStore } from '@/store/useMatchStore';
+import { format, isValid, parse } from 'date-fns';
+import { useEffect, useState } from 'react';
+import { getMonthSchedule } from '../../apis';
+import { GameSchedule } from '../../types/match-schedule';
 
 const MatchInfoCarousel = () => {
   const [matchData, setMatchData] = useState<GameSchedule[]>([]);
@@ -34,8 +34,8 @@ const MatchInfoCarousel = () => {
 
         // 이전 달로 이동
         const currentDate = new Date(
-          Number.parseInt(yearMonth.slice(0, 4)),
-          Number.parseInt(yearMonth.slice(4, 6)) - 1,
+          parseInt(yearMonth.slice(0, 4)),
+          parseInt(yearMonth.slice(4, 6)) - 1,
           1
         );
         currentDate.setMonth(currentDate.getMonth() - 1);
@@ -96,4 +96,4 @@ const MatchInfoCarousel = () => {
   );
 };
 
-export default MatchInfoCarousel;
+export { MatchInfoCarousel };
