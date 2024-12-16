@@ -20,7 +20,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
-import CheerTeamPage from './pages/player/CheerTeamPage';
+import CheerLeaderPage from './pages/player/CheerLeaderPage';
 import CoachPage from './pages/player/CoachPage';
 import CoachDetailPage from './pages/player/id/CoachDetailPage';
 
@@ -71,7 +71,7 @@ function App() {
             {/* Player */}
             <Route path="/player/song" element={<CheerSongPage />} />
             <Route path="/player/coach" element={<CoachPage />} />
-            <Route path="/player/cheer" element={<CheerTeamPage />} />
+            <Route path="/player/cheer" element={<CheerLeaderPage />} />
 
             {/* Player 상세 페이지 경로 */}
             <Route path="/player/coach/detail" element={<CoachDetailPage />} />
