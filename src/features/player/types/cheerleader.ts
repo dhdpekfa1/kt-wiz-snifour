@@ -1,4 +1,4 @@
-export interface CheerLeader {
+export interface Cheerleader {
   imgPath: string;
   leaderBirthDay: string;
   leaderCareer: string;
@@ -6,5 +6,7 @@ export interface CheerLeader {
   leaderLikePlayer: string;
   leaderMotto: string;
   leaderName: string;
+  leaderNickName: string;
+  leaderPosition: string;
   snsId: string;
 }
