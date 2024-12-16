@@ -20,7 +20,7 @@ export const getMonthSchedule = async (yearMonth: string) => {
   }
 };
 
-// 월 전체 스케줄
+// 모든 팀 월 스케줄
 export const getAllMonthSchedule = async (yearMonth: string) => {
   try {
     const res = await axios.get(`${API_URL}/game/allgameschedule`, {
@@ -32,6 +32,22 @@ export const getAllMonthSchedule = async (yearMonth: string) => {
     }
 
     return res.data.data.list;
+  } catch (err) {
+    console.error('getAllMonthSchedule error:', err);
+    throw err;
+  }
+};
+
+// 오늘 스케줄
+export const getTodaySchedule = async () => {
+  try {
+    const res = await axios.get(`${API_URL}/game/dayschedule`);
+
+    if (res.status !== 200) {
+      throw new Error(`Failed to fetch data. Status code: ${res.status}`);
+    }
+
+    return res.data.data;
   } catch (err) {
     console.error('getAllMonthSchedule error:', err);
     throw err;

@@ -9,11 +9,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { TeamBatterStats } from '@/features/game/types';
+import { TeamBatterRank } from '@/features/common/types/batters';
 
 function TeamBatterRankingTable() {
   const [teamPitcherRanking, setTeamPitcherRanking] = useState<
-    TeamBatterStats[]
+    TeamBatterRank[]
   >([]);
   const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
@@ -29,7 +29,7 @@ function TeamBatterRankingTable() {
 
           setTeamPitcherRanking(
             pitcherRanking.sort(
-              (a: TeamBatterStats, b: TeamBatterStats) =>
+              (a: TeamBatterRank, b: TeamBatterRank) =>
                 Number(b.hra) - Number(a.hra)
             )
           );

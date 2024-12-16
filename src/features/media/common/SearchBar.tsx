@@ -24,7 +24,8 @@ const SearchBar = ({ onSubmit }: { onSubmit: (search: string) => void }) => {
               'border border-[#6B7280]/50 rounded-md pr-8 text-sm',
               'placeholder:text-[#c9c9cb] opacity-50',
               'hover:opacity-100 hover:border-wiz-white',
-              'px-8'
+              'px-8',
+              'text-wiz-white'
             )}
             value={search}
             onChange={(e) => setSearch(e.target.value)}

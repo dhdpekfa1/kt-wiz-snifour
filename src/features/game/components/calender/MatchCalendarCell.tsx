@@ -5,14 +5,14 @@ interface MatchCalendarCellProps {
   date: Date;
   ktMatchData: GameSchedule | undefined;
   allMatchData: GameSchedule[] | [];
-  selectedTab: 'kt wiz 경기' | '전체 리그';
+  currentTab: 'ktWiz' | 'allLeague' | string;
 }
 
 const MatchCalendarCell = ({
   date,
   ktMatchData,
   allMatchData,
-  selectedTab,
+  currentTab,
 }: MatchCalendarCellProps) => {
   const day = date.getDay();
 
@@ -30,7 +30,7 @@ const MatchCalendarCell = ({
   };
 
   return (
-    <div className="relative w-full h-full p-2 flex flex-col items-center justify-start gap-2">
+    <div className="relative w-full h-full flex flex-col items-center justify-start gap-2">
       {/* 날짜 */}
       <div
         className={`absolute top-2 right-2 text-sm font-bold ${
@@ -44,7 +44,7 @@ const MatchCalendarCell = ({
         {format(date, 'd')}
       </div>
 
-      {ktMatchData && selectedTab === 'kt wiz 경기' && (
+      {ktMatchData && currentTab === 'ktWiz' && (
         <div
           key={ktMatchData.gmkey}
           className={`relative w-full h-full p-2 flex flex-col items-center justify-start gap-2 ${
@@ -79,7 +79,7 @@ const MatchCalendarCell = ({
         </div>
       )}
 
-      {allMatchData && selectedTab === '전체 리그' && (
+      {allMatchData && currentTab === 'allLeague' && (
         <div className="flex flex-col gap-2 items-center mt-6">
           {allMatchData.map((data) => {
             const isKTGame = data.home === 'KT' || data.visit === 'KT';
