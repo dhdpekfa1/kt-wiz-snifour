@@ -3,39 +3,45 @@ import { TeamVS } from '@/features/game/types/team-ranking';
 import { getTeamVS } from '@/features/game/apis/ranking/team';
 
 interface ArrangedTeamVS {
-  [key: string]: {
-    [vsTeam: string]: { win: number; lose: number; drawn: number };
-  };
+  teamName: string;
+  teamCode: string;
+  [vsTeamCode: string]: { win: number; lose: number; drawn: number } | string;
 }
 
 export function useTeamVS() {
-  const [vs, setVs] = useState<ArrangedTeamVS>({} as ArrangedTeamVS);
+  const [vs, setVs] = useState<ArrangedTeamVS[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   // 팀(key)이 상대팀(vsTeam)을 상대로 어떤 성적을 얻었는지 객체화 하는 함수
-  const arrangeVS = (data: TeamVS[]) => {
-    const teamRecords: ArrangedTeamVS = {};
+  const arrangeVS = (data: TeamVS[]): ArrangedTeamVS[] => {
+    const teamRecords = new Map<string, ArrangedTeamVS>();
 
     for (const vs of data) {
-      if (!teamRecords[vs.teamCode]) {
-        teamRecords[vs.teamCode] = {};
+      if (!teamRecords.get(vs.teamCode)) {
+        teamRecords.set(vs.teamCode, {
+          teamName: vs.teamName,
+          teamCode: vs.teamCode,
+        });
       }
-      teamRecords[vs.teamCode][vs.vsTeamCode] = {
+
+      // biome-ignore lint/style/noNonNullAssertion: <explanation>
+      const teamRecord = teamRecords.get(vs.teamCode)!;
+      teamRecord[vs.vsTeamCode] = {
         win: vs.win,
         lose: vs.lose,
         drawn: vs.drawn,
       };
     }
 
-    return teamRecords;
+    return Array.from(teamRecords.values());
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getTeamVS();
-        const arrangedVS: ArrangedTeamVS = arrangeVS(data);
+        const arrangedVS: ArrangedTeamVS[] = arrangeVS(data);
 
         setVs(arrangedVS);
       } catch (err) {

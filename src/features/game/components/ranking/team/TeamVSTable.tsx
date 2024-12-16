@@ -1,3 +1,5 @@
+// import { useTeamVS } from '@/assets/hooks/ranking/useTeamVS';
+import { teamVS as mockVS } from '@/assets/data/__test__/mockRanking.json';
 import {
   Table,
   TableBody,
@@ -6,22 +8,31 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { useTeamVS } from '@/assets/hooks/ranking/useTeamVS';
-import { teamName } from '@/constants/team-name-by-codes';
+import { vsOrder } from '@/constants/team-vs-order';
 import { cn } from '@/lib/utils';
 
+interface TeamVSResult {
+  win: number | string;
+  lose: number | string;
+  drawn: number | string;
+}
+
+interface ArrangedTeamVS {
+  teamName: string;
+  teamCode: string;
+  [vsTeamCode: string]: { win: number; lose: number; drawn: number } | string;
+}
+
 function TeamVSTable() {
-  const { vs, loading, error } = useTeamVS();
+  // const { vs, loading, error } = useTeamVS();
 
-  const vsOrder = ['KT', 'SS', 'OB', 'LG', 'WO', 'LT', 'SK', 'NC', 'HT', 'HH'];
+  // if (!Object.keys(vs) || loading) {
+  //   return null;
+  // }
 
-  if (!Object.keys(vs) || loading) {
-    return null;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
     <Table className="mt-4">
@@ -30,7 +41,7 @@ function TeamVSTable() {
           <TableHead className="text-center bg-wiz-white bg-opacity-30">
             팀명
           </TableHead>
-          {vsOrder.map((teamCode) => (
+          {vsOrder.map(({ teamCode, teamName }) => (
             <TableHead
               key={`th-${teamCode}`}
               className={cn(
@@ -38,7 +49,7 @@ function TeamVSTable() {
                 teamCode === 'KT' && 'bg-wiz-red bg-opacity-70'
               )}
             >
-              {teamName[teamCode]}
+              {teamName}
               <br />
               (승-패-무)
             </TableHead>
@@ -46,7 +57,7 @@ function TeamVSTable() {
         </TableRow>
       </TableHeader>
       <TableBody className="text-center">
-        {vsOrder.map((teamCode) => (
+        {vsOrder.map(({ teamCode, teamName }, index) => (
           <TableRow
             key={`tr-${teamCode}`}
             className={cn(
@@ -54,24 +65,30 @@ function TeamVSTable() {
               teamCode === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
             )}
           >
-            <TableCell>{teamName[teamCode]}</TableCell>
-            {vsOrder.map((vsTeamCode, index) => {
+            <TableCell>{teamName}</TableCell>
+            {vsOrder.map((vsTeam, vIndex) => {
+              const { win, lose, drawn }: TeamVSResult = ((
+                mockVS as unknown as ArrangedTeamVS[]
+              )[index][vsTeam.teamCode] as TeamVSResult) || {
+                win: '',
+                lose: '',
+                drawn: '',
+              };
+
               return (
                 <TableCell
-                  key={`${teamCode}-${vsTeamCode}`}
-                  className={`${
-                    index === 0 // 각 row의 첫 번째 셀 (= 열이 KT인 경우)
-                      ? teamCode === 'KT'
-                        ? undefined
-                        : 'bg-wiz-red bg-opacity-70 font-bold'
-                      : undefined
-                  }`}
+                  key={`${teamCode}-${vsTeam.teamCode}`}
+                  className={cn(
+                    index > 0 &&
+                      vIndex === 0 &&
+                      'bg-wiz-red bg-opacity-70 font-bold' // 중복 색칠 방지(배경색 투명도가 있기 때문)
+                  )}
                 >
-                  {teamCode === vsTeamCode
-                    ? null
-                    : `${vs[teamCode][vsTeamCode]?.win || 0}-${
-                        vs[teamCode][vsTeamCode]?.lose || 0
-                      }-${vs[teamCode][vsTeamCode]?.drawn || 0}`}
+                  {teamCode !== vsTeam.teamCode && (
+                    <span>
+                      {win}-{lose}-{drawn}
+                    </span>
+                  )}
                 </TableCell>
               );
             })}

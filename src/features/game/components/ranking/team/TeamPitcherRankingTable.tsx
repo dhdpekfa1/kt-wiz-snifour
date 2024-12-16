@@ -1,73 +1,26 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui';
-import { TeamPitcherRank } from '@/features/common/types/pitchers';
-import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
+import { teamPitcherRankColumns } from '@/constants/team-rank-colums';
+import DataTable from '@/features/common/DataTable';
+// import { TeamPitcherRank } from '@/features/common/types/pitchers';
+// import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
+import { teamPitcher as mockRanking } from '@/assets/data/__test__/mockRanking.json';
 
 function TeamPitcherRankingTable() {
-  const { ranking, loading, error } = useTeamRank('pitcher');
+  // const { ranking, loading, error } = useTeamRank('pitcher');
 
-  if (!ranking.length || loading) {
-    return null;
-  }
+  // if (!ranking.length || loading) {
+  //   return null;
+  // }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
-    <Table className="mt-4">
-      <TableHeader>
-        <TableRow className="text-lg font-semibold bg-wiz-white bg-opacity-30 border-none">
-          <TableHead className="text-center">팀명</TableHead>
-          <TableHead className="text-center">ERA</TableHead>
-          <TableHead className="text-center">희타</TableHead>
-          <TableHead className="text-center">희비</TableHead>
-          <TableHead className="text-center">볼넷</TableHead>
-          <TableHead className="text-center">고의4구</TableHead>
-          <TableHead className="text-center">탈삼진</TableHead>
-          <TableHead className="text-center">폭투</TableHead>
-          <TableHead className="text-center">보크</TableHead>
-          <TableHead className="text-center">실점</TableHead>
-          <TableHead className="text-center">자책점</TableHead>
-          <TableHead className="text-center">블론세이브</TableHead>
-          <TableHead className="text-center">WHIP</TableHead>
-          <TableHead className="text-center">피안타율</TableHead>
-          <TableHead className="text-center">QS</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody className="text-center">
-        {(ranking as TeamPitcherRank[]).map((team) => (
-          <TableRow
-            key={team.teamCode}
-            className={`${
-              team.teamCode === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
-            } border-b-wiz-white border-opacity-10`}
-          >
-            <TableCell>{team.teamName}</TableCell>
-            <TableCell>{team.era}</TableCell>
-            <TableCell>{team.sh}</TableCell>
-            <TableCell>{team.sf}</TableCell>
-            <TableCell>{team.bb}</TableCell>
-            <TableCell>{team.ib}</TableCell>
-            <TableCell>{team.kk}</TableCell>
-            <TableCell>{team.wp}</TableCell>
-            <TableCell>{team.bk}</TableCell>
-            <TableCell>{team.r}</TableCell>
-            <TableCell>{team.er}</TableCell>
-            <TableCell>{team.bs}</TableCell>
-            <TableCell>{team.whip}</TableCell>
-            <TableCell>{team.oavg}</TableCell>
-            <TableCell>{team.qs}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <DataTable
+      data={mockRanking}
+      columns={teamPitcherRankColumns}
+      domain="all"
+    />
   );
 }
 
