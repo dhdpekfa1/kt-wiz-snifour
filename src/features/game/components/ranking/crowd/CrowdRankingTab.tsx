@@ -1,26 +1,30 @@
 import { useState } from 'react';
 
 import Breadcrumb from '@/features/common/Breadcrumb';
-import { CrowdRankingTable } from './CrowdRankingTable';
 import { CrowdRankingChart } from './CrowdRankingChart';
 import SubTitle from '@/features/common/SubTitle';
 import { Select, SelectContent, SelectItem } from '@/components/ui';
 import { SelectTrigger } from '@radix-ui/react-select';
 import { seasons } from '@/constants/seasons';
 import { ChevronDown } from 'lucide-react';
-import { useCrowdRank } from '@/assets/hooks/ranking';
+// import { useCrowdRank } from '@/assets/hooks/ranking';
+import { crowd } from '@/assets/data/__test__/mockRanking.json';
+import DataTable from '@/features/common/DataTable';
+import { crowdRankColumns } from '@/constants/crowd-columns';
 
 function CrowdRankingTab() {
   const [season, setSeason] = useState<string>('2024');
-  const { ranking, loading, error } = useCrowdRank(season);
+  // const { ranking, loading, error } = useCrowdRank(season);
 
-  if (!ranking.length || loading) {
-    return null;
-  }
+  // if (!ranking.length || loading) {
+  //   return null;
+  // }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+
+  const ranking = crowd;
 
   return (
     <div className="my-20">
@@ -65,7 +69,8 @@ function CrowdRankingTab() {
 
       <div>
         <CrowdRankingChart data={ranking} />
-        <CrowdRankingTable data={ranking} />
+        {/* <CrowdRankingTable data={ranking} /> */}
+        <DataTable data={ranking} columns={crowdRankColumns} domain="all" />
       </div>
     </div>
   );

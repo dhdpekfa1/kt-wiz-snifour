@@ -2483,5 +2483,67 @@
       "subCn": 9,
       "wrHit": "0.570"
     }
+  ],
+  "crowd": [
+    {
+      "crowd": 15000,
+      "game": 20,
+      "teamCode": "T001",
+      "teamName": "Team A"
+    },
+    {
+      "crowd": 18000,
+      "game": 22,
+      "teamCode": "T002",
+      "teamName": "Team B"
+    },
+    {
+      "crowd": 12000,
+      "game": 18,
+      "teamCode": "T003",
+      "teamName": "Team C"
+    },
+    {
+      "crowd": 20000,
+      "game": 25,
+      "teamCode": "T004",
+      "teamName": "Team D"
+    },
+    {
+      "crowd": 14000,
+      "game": 21,
+      "teamCode": "T005",
+      "teamName": "Team E"
+    },
+    {
+      "crowd": 22000,
+      "game": 26,
+      "teamCode": "T006",
+      "teamName": "Team F"
+    },
+    {
+      "crowd": 17000,
+      "game": 23,
+      "teamCode": "T007",
+      "teamName": "Team G"
+    },
+    {
+      "crowd": 16000,
+      "game": 19,
+      "teamCode": "T008",
+      "teamName": "Team H"
+    },
+    {
+      "crowd": 13000,
+      "game": 17,
+      "teamCode": "T009",
+      "teamName": "Team I"
+    },
+    {
+      "crowd": 19000,
+      "game": 24,
+      "teamCode": "T010",
+      "teamName": "Team J"
+    }
   ]
 }
