@@ -3,14 +3,25 @@ import TeamInfo from '@/features/common/TeamInfo';
 import { GameSchedule } from '@/features/game/types/match-schedule';
 import { format, isValid, parse } from 'date-fns';
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router';
 
 const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
+  const navigate = useNavigate();
+
   const formatDate = useCallback((date: string): string => {
     const parsedDate = parse(date, 'yyyyMMdd', new Date());
     return isValid(parsedDate)
       ? format(parsedDate, 'yyyy.MM.dd')
       : '날짜 정보 없음';
   }, []);
+
+  const handleGameInfoClick = () => {
+    if (data) {
+      const gameDate = data.gameDate.toString();
+      const gameKey = data.gmkey;
+      navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`);
+    }
+  };
 
   return (
     <CarouselItem
@@ -55,6 +66,7 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                     <button
                       type="button"
                       className="bg-gray-400 text-white rounded-full hover:bg-gray-500 py-1 px-3 w-24"
+                      onClick={handleGameInfoClick}
                     >
                       경기 정보
                     </button>

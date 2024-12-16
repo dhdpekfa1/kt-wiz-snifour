@@ -1,23 +1,33 @@
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui';
+import { EtcGame } from '../../types/BoxScoreData';
 
-const KeyRecordsTable = () => {
+interface KeyRecordsTableProps {
+  data: EtcGame[] | undefined;
+}
+
+const KeyRecordsTable = ({ data }: KeyRecordsTableProps) => {
+  const getRecordByHow = (how: string) => {
+    const record = data?.find((game) => game.how === how);
+    return record ? record.result : '';
+  };
+
   return (
     <Table className="whitespace-nowrap">
       <TableBody>
         <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
+          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white text-wiz-black">
             결승타
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            오스틴(1회 1사 1루서 우중간 2루타)
+            {getRecordByHow('결승타')}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
+          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white text-wiz-black">
             2루타
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            오스틴(1회) 김현수(1회)
+            {getRecordByHow('2루타')}
           </TableCell>
         </TableRow>
         <TableRow>
@@ -25,7 +35,7 @@ const KeyRecordsTable = () => {
             실책
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            장성우2(3 7회) 오윤석(8회)
+            {getRecordByHow('실책')}
           </TableCell>
         </TableRow>
         <TableRow>
@@ -33,7 +43,7 @@ const KeyRecordsTable = () => {
             도루
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            신민재(3회) 박해민(7회) 김대원(7회)
+            {getRecordByHow('도루')}
           </TableCell>
         </TableRow>
         <TableRow>
@@ -41,7 +51,7 @@ const KeyRecordsTable = () => {
             도루자
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            최승민(8회)
+            {getRecordByHow('도루자')}
           </TableCell>
         </TableRow>
         <TableRow>
@@ -49,7 +59,7 @@ const KeyRecordsTable = () => {
             주루사
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            강백호(2회)
+            {getRecordByHow('주루사')}
           </TableCell>
         </TableRow>
         <TableRow>
@@ -57,7 +67,7 @@ const KeyRecordsTable = () => {
             병살타
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            황재균(9회)
+            {getRecordByHow('병살타')}
           </TableCell>
         </TableRow>
         <TableRow>
@@ -65,7 +75,7 @@ const KeyRecordsTable = () => {
             심판
           </TableCell>
           <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            전일수 이기중 나광남 박종철 문동균 김정국
+            {getRecordByHow('심판')}
           </TableCell>
         </TableRow>
       </TableBody>

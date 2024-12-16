@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import {
   ColumnDef,
+  SortingState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
+import { useState } from 'react';
 
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import {
   Table,
   TableBody,
@@ -17,8 +16,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { cn } from '@/lib/utils';
 import { OverallBatterRank } from '@/features/common/types/batters';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { cn } from '@/lib/utils';
 
 type PlayerRank = OverallPitcherRank | OverallBatterRank;
 

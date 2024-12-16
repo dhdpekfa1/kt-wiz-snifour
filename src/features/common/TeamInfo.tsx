@@ -1,9 +1,9 @@
 export interface TeamData {
-  teamName: string;
-  logoUrl: string;
+  teamName: string | undefined;
+  logoUrl: string | undefined;
   result?: number | 'lose' | 'win';
   spectators?: number;
-  stadium?: '홈' | '원정'; // BoxScoreTab에서만 사용
+  stadium?: string; // BoxScoreTab에서만 사용
   player?: string; // MatchScheduleTab에서만 사용
   tabType: 'MatchBoard' | 'MatchScheduleTab';
 }

@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import { API_URL } from '@/constants/api-url';
+import { batterColumns } from '@/constants/player-rank-colums';
+import { OverallBatterRank } from '@/features/common/types/batters';
 import {
   PlayerRankingTable,
   PlayerScatterChart,
 } from '@/features/game/components/ranking';
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { batterColumns } from '@/constants/player-rank-colums';
 
 function KTBatterRankingTab() {
   const [ranking, setRanking] = useState<OverallBatterRank[]>([]);

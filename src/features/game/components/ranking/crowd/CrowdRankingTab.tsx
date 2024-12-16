@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-import { CrowdRank } from '@/features/game/types/crowd-ranking';
-import { API_URL } from '@/constants/api-url';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import { CrowdRankingTable } from './CrowdRankingTable';
-import { CrowdRankingChart } from './CrowdRankingChart';
-import SubTitle from '@/features/common/SubTitle';
 import { Select, SelectContent, SelectItem } from '@/components/ui';
-import {
-  SelectGroup,
-  SelectTrigger,
-  SelectValue,
-} from '@radix-ui/react-select';
+import { API_URL } from '@/constants/api-url';
 import { seasons } from '@/constants/seasons';
+import Breadcrumb from '@/features/common/Breadcrumb';
+import SubTitle from '@/features/common/SubTitle';
+import { CrowdRank } from '@/features/game/types/crowd-ranking';
+import { SelectTrigger } from '@radix-ui/react-select';
 import { ChevronDown } from 'lucide-react';
+import { CrowdRankingChart } from './CrowdRankingChart';
+import { CrowdRankingTable } from './CrowdRankingTable';
 
 function CrowdRankingTab() {
   const [ranking, setRanking] = useState<CrowdRank[]>([]);
