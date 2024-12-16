@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import SubTitle from '@/features/common/SubTitle';
+import { BatterHR, BatterHra } from '@/features/common/types/batters';
 import { PitcherERA, PitcherWins } from '@/features/common/types/pitchers';
 import { cn } from '@/lib/utils';
-import { BatterHR, BatterHra } from '@/features/common/types/batters';
 
 type PitcherPlayer = PitcherERA | PitcherWins;
 type BatterPlayer = BatterHra | BatterHR;

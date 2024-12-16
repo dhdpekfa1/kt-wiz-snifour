@@ -3,9 +3,9 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import { RankingCard } from '../common/RankingCard';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
-import { KTBatterRankingTab } from './KTBatterRankingTab';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
 import { hraTop3, hrTop3 } from '@/assets/data/__test__/mockRanking.json';
+import { KTBatterRankingTab } from './KTBatterRankingTab';
 
 function BatterRankingTab() {
   // const { hraRanking, hrRanking, loading, error } = useTopBatterRank();

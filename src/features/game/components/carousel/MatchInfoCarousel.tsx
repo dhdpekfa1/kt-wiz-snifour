@@ -5,12 +5,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui';
-import { getMonthSchedule } from '@/features/game/apis';
-import { CarouselCard } from '@/features/game/components/carousel';
-import { GameSchedule } from '@/features/game/types/match-schedule';
+import { CarouselCard } from '@/features/game/components';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format, isValid, parse } from 'date-fns';
 import { useEffect, useState } from 'react';
+import { getMonthSchedule } from '../../apis';
+import { GameSchedule } from '../../types/match-schedule';
 
 const MatchInfoCarousel = () => {
   const [matchData, setMatchData] = useState<GameSchedule[]>([]);
