@@ -6,14 +6,6 @@ import { PlayerList } from '@/features/player/components/';
 const CoachPage = () => {
   const { coachList, loading, error } = useCoachList();
 
-  if (!coachList.length || loading) {
-    return null;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   const handleSubmit = () => {
     console.log('TODO: 이벤트 구현');
   };
@@ -29,7 +21,11 @@ const CoachPage = () => {
           { key: 'coach', label: '코치', isActive: true },
         ]}
       />
-      <PlayerList playerList={coachList} endpoint={'coach'} />
+      <PlayerList
+        playerList={error ? [] : coachList}
+        endpoint="coach"
+        loading={loading}
+      />
     </div>
   );
 };
