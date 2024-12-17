@@ -1,4 +1,4 @@
-import useKakaoLoader from '@/assets/hooks/useKakaoLoader';
+import useKakaoLoader from '@/hooks/useKakaoLoader';
 import {
   // biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
   Map,

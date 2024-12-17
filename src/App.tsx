@@ -18,7 +18,6 @@ import ParkingPage from './pages/wizPark/ParkingPage';
 
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
-import FirstPitchDetailPage from './pages/media/id/FirstPitchDetail';
 import PressDetailPage from './pages/media/id/PressDetail';
 import CoachPage from './pages/player/CoachPage';
 import CoachDetailPage from './pages/player/id/CoachDetailPage';
@@ -59,10 +58,6 @@ function App() {
             {/* Media 상세 */}
             <Route path="/media/wiznews/:id" element={<NewsDetailPage />} />
             <Route path="/media/wizpress/:id" element={<PressDetailPage />} />
-            <Route
-              path="/media/firstpitch/:id"
-              element={<FirstPitchDetailPage />}
-            />
 
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />

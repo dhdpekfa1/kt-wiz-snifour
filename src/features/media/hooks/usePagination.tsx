@@ -1,49 +1,38 @@
-import { useState } from 'react';
+import { useSearchParams } from 'react-router';
+import { useCallback, useMemo } from 'react';
+import { isNotNullish, QueryParser } from '@/lib';
 
-type UsePaginationProps = {
-  totalItems: number;
-  itemsPerPage: number;
-  initialPage?: number;
+type PaginationParams = {
+  pageNum?: string;
+  itemCount?: string;
 };
 
-type UsePaginationReturn = {
-  currentPage: number;
-  totalPages: number;
-  itemsPerPage: number;
-  setCurrentPage: (page: number) => void;
-  nextPage: () => void;
-  prevPage: () => void;
-  offset: number;
-};
+export const usePagination = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-export const usePagination = ({
-  totalItems,
-  itemsPerPage,
-  initialPage = 1,
-}: UsePaginationProps): UsePaginationReturn => {
-  const [currentPage, setCurrentPage] = useState(initialPage); // 현재 페이지
-  const totalPages = Math.ceil(totalItems / itemsPerPage); // 총 페이지 수
+  // 현재 쿼리 파라미터 파싱
+  const params = useMemo(() => {
+    return {
+      pageNum: QueryParser.toNumber(searchParams.get('pageNum')) ?? 1,
+      itemCount: QueryParser.toNumber(searchParams.get('itemCount')) ?? 10,
+    };
+  }, [searchParams]);
 
-  // 다음 페이지로 이동
-  const nextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
+  // 페이지네이션 파라미터 업데이트
+  const onPagination = useCallback(
+    (newParams: Partial<PaginationParams>) => {
+      const updatedSearchParams = new URLSearchParams(searchParams);
 
-  // 이전 페이지로 이동
-  const prevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
+      for (const [key, value] of Object.entries(newParams)) {
+        if (isNotNullish(value)) {
+          updatedSearchParams.set(key, value.toString());
+        }
+      }
 
-  // 현재 페이지에 해당하는 아이템 범위
-  const offset = (currentPage - 1) * itemsPerPage;
+      setSearchParams(updatedSearchParams);
+    },
+    [searchParams, setSearchParams]
+  );
 
-  return {
-    currentPage,
-    totalPages,
-    itemsPerPage,
-    setCurrentPage,
-    nextPage,
-    prevPage,
-    offset,
-  };
+  return { ...params, onPagination };
 };

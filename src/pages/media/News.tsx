@@ -1,30 +1,30 @@
-import Banner from '@/features/common/Banner';
-import MediaLayout from '@/features/media/common/MediaLayout';
-import SearchBar from '@/features/media/common/SearchBar';
-import NewsContent from '@/features/media/components/news/NewsContent';
-import PressContent from '@/features/media/components/news/PressContent';
-
-import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import { cn } from '@/lib/utils';
+import { useSearchParams } from 'react-router';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
 
-import '@/features/media/css/media.css';
+import Banner from '@/features/common/Banner';
+import SearchBar from '@/features/media/common/SearchBar';
+import Layout from '@/features/common/Layout';
+import NewsListView from '@/features/media/components/news/NewsListView';
 
-const NEWS_TABS_CONFIG = [
-  { value: 'news', path: '/wiznews' },
-  { value: 'press', path: '/wizpress' },
+export const NEWS_TABS_CONFIG = [
+  { value: 'news', path: '/wiznews', label: 'wiz 소식' },
+  { value: 'press', path: '/wizpress', label: 'wiz 보도자료' },
 ];
 
 /** 뉴스 페이지 */
 const NewsPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { currentTab, handleTabChange } = useTabFromUrl({
     basePath: '/media',
     tabs: NEWS_TABS_CONFIG,
-    defaultTab: 'news',
+    defaultTab: NEWS_TABS_CONFIG[0].value,
   });
 
   return (
-    <MediaLayout
+    <Layout
       header={
         <Banner>
           <Banner.Image
@@ -47,38 +47,33 @@ const NewsPage = () => {
         onValueChange={handleTabChange}
       >
         <div className={cn('media-header')}>
-          <div className="media-tabs-wrapper">
-            {/* 탭 */}
-            <TabsList className="media-tabs-list">
-              <TabsTrigger
-                value="news"
-                onClick={() => handleTabChange('news')}
-                className={cn('media-tabs-trigger', 'px-6 py-2.5')}
-              >
-                wiz 소식
-              </TabsTrigger>
-              <TabsTrigger
-                value="press"
-                onClick={() => handleTabChange('press')}
-                className={cn('media-tabs-trigger', 'px-6 py-2.5')}
-              >
-                wiz 보도자료
-              </TabsTrigger>
+          <div className={cn('media-tabs-wrapper')}>
+            <TabsList className={cn('media-tabs-list')}>
+              {NEWS_TABS_CONFIG.map((tab) => (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  className={cn('media-tabs-trigger')}
+                >
+                  {tab.label}
+                </TabsTrigger>
+              ))}
             </TabsList>
           </div>
-          {/* 검색바 */}
-          <SearchBar />
+
+          <SearchBar
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
         </div>
 
-        {/* 탭 컨텐츠 */}
-        <TabsContent value="news">
-          <NewsContent />
-        </TabsContent>
-        <TabsContent value="press">
-          <PressContent />
-        </TabsContent>
+        <NewsListView />
       </Tabs>
-    </MediaLayout>
+    </Layout>
   );
 };
 

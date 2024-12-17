@@ -1,94 +1,74 @@
 import { DEFAULT_IMAGE } from '@/constants/default-image';
 import { cn } from '@/lib/utils';
+import { EyeIcon } from 'lucide-react';
+import { Link } from 'react-router';
+import { ListViewType } from '@/features/media/types';
+import { format } from 'date-fns';
 
+type ListArticleProps = Omit<ListViewType, 'artcSeq'> & {
+  link: string;
+};
+
+// Root 컴포넌트
 const ListArticle = ({
+  link,
   children,
   className,
-}: {
+}: Pick<ListArticleProps, 'link'> & {
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <article className={cn('group', className)}>{children}</article>;
+  return (
+    <article
+      className={cn(
+        'border-b border-[#6B7280] border-opacity-20 last:border-b-0 py-6 first:pt-0 last:pb-0 hover:border-wiz-red transition-colors duration-300',
+        className
+      )}
+    >
+      <Link to={link} className={cn('group')}>
+        <div className={cn('flex flex-col md:flex-row gap-6')}>{children}</div>
+      </Link>
+    </article>
+  );
 };
 
-// Media Container 컴포넌트
-const ListArticleMedia = ({
-  children,
-  onClick,
+// Thumbnail Container 컴포넌트
+const ListArticleThumbnail = ({
+  imgFilePath,
+  title,
   className,
-}: { children: React.ReactNode; onClick?: () => void; className?: string }) => {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      onClick?.();
-    }
-  };
-
+}: { imgFilePath?: string; title: string; className?: string }) => {
   return (
     <div
       className={cn(
-        'relative aspect-video overflow-hidden rounded-lg mb-4',
+        'w-full shrink-0 overflow-hidden rounded-lg',
+        'md:w-[280px]',
+        'relative aspect-[16/9]',
         className
       )}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
     >
-      {children}
+      <img
+        src={imgFilePath || DEFAULT_IMAGE}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        className={cn(
+          'absolute inset-0 w-full h-full object-cover',
+          'thumbnail-animation'
+        )}
+      />
     </div>
   );
 };
 
-// Thumbnail 컴포넌트
-const ListArticleThumbnail = ({
-  thumbnail,
-  title,
+// Content Container 컴포넌트
+const ListArticleContent = ({
+  children,
   className,
-}: { thumbnail?: string; title: string; className?: string }) => {
+}: { children: React.ReactNode; className?: string }) => {
   return (
-    <img
-      src={thumbnail || DEFAULT_IMAGE}
-      alt={title}
-      className={cn(
-        'w-full h-full object-cover transform',
-        'thumbnail-animation',
-        className
-      )}
-      loading="lazy"
-    />
-  );
-};
-
-// Video 컴포넌트
-const ListArticleVideo = ({
-  src = '',
-  poster,
-  className,
-}: {
-  src: string;
-  poster?: string;
-  className?: string;
-}) => {
-  return (
-    <video
-      src={src}
-      poster={poster}
-      controls
-      className={cn('absolute inset-0 w-full h-full object-cover', className)}
-    >
-      <track kind="captions" srcLang="ko" label="한국어" default />
-    </video>
-  );
-};
-
-// Video Overlay 컴포넌트
-const ListArticleOverlay = ({ elements }: { elements?: React.ReactNode }) => {
-  return (
-    <div
-      className={cn(
-        'absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all duration-300'
-      )}
-    >
-      <div className="absolute left-4 bottom-4">{elements}</div>
+    <div className={cn('flex-1 flex flex-col max-w-3xl py-3', className)}>
+      {children}
     </div>
   );
 };
@@ -101,23 +81,48 @@ const ListArticleTitle = ({
   return <h3 className={cn('media-article-title', className)}>{title}</h3>;
 };
 
+// Description 컴포넌트
+const ListArticleDescription = ({
+  content,
+  className,
+}: { content: string; className?: string }) => {
+  const textContent =
+    new DOMParser()
+      .parseFromString(content, 'text/html')
+      .body.textContent?.trim() || 'Content';
+
+  return (
+    <p
+      className={cn('text-[#6B7280] text-base mb-auto line-clamp-2', className)}
+    >
+      {textContent || 'Content'}
+    </p>
+  );
+};
+
 // Footer 컴포넌트
 const ListArticleFooter = ({
-  date,
+  createdAt,
+  viewCount,
   className,
-}: { date: string; className?: string }) => {
+}: { createdAt: number; viewCount: number; className?: string }) => {
   return (
     <div className={cn('media-article-footer', className)}>
-      <span>{date}</span>
+      <time dateTime={new Date(createdAt).toISOString()}>
+        {format(new Date(createdAt), 'yyyy년 M월 d일')}
+      </time>
+      <div className={cn('media-article-views')}>
+        <EyeIcon className="w-4 h-4" />
+        <span>{viewCount}</span>
+      </div>
     </div>
   );
 };
 
-ListArticle.Media = ListArticleMedia;
 ListArticle.Thumbnail = ListArticleThumbnail;
-ListArticle.Video = ListArticleVideo;
-ListArticle.Overlay = ListArticleOverlay;
+ListArticle.Content = ListArticleContent;
 ListArticle.Title = ListArticleTitle;
+ListArticle.Description = ListArticleDescription;
 ListArticle.Footer = ListArticleFooter;
 
 export default ListArticle;

@@ -27,7 +27,7 @@ const FirstPitchPage = () => {
       }
     >
       <div className={cn('media-header', 'justify-end')}>
-        <SearchBar />
+        <SearchBar onSubmit={() => {}} />
       </div>
       <FirstPitchContent />
     </MediaLayout>

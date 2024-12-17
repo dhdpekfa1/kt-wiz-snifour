@@ -13,11 +13,10 @@ import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
-import ListArticle from '@/features/media/common/ListArticle';
-import PaginationWithThemeRed from '@/features/media/common/PaginationWithThemeRed';
+import GridArticle from '@/features/media/common/GridArticle';
+import PaginationList from '@/features/media/common/PaginationList';
 import Category from './Category';
 
-const itemsPerPage = 10; // 한 페이지당 보여줄 아이템 수 (임시)
 const totalItems = 95; // API에서 받아온 총 아이템 수 (임시)
 
 const PhotoContent = () => {
@@ -26,34 +25,31 @@ const PhotoContent = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const selectedPhoto = photoItems.find((item) => item.id === selectedId);
 
-  const { currentPage, setCurrentPage } = usePagination({
-    totalItems,
-    itemsPerPage,
-  });
+  const { pageNum, itemCount } = usePagination();
 
   return (
     <>
       {/* 포토 컨텐츠 */}
-      <div className={cn('media-list-grid')}>
+      <div className={cn('media-grid')}>
         {photoItems.map(({ id, thumbnail, title, date, catetory }) => (
-          <ListArticle key={id} className="cursor-pointer">
-            <ListArticle.Media onClick={() => setSelectedId(id)}>
-              <ListArticle.Thumbnail thumbnail={thumbnail} title={title} />
-              <ListArticle.Overlay
+          <GridArticle key={id} className="cursor-pointer">
+            <GridArticle.Media onClick={() => setSelectedId(id)}>
+              <GridArticle.Thumbnail imgFilePath={thumbnail} title={title} />
+              <GridArticle.Overlay
                 elements={<Category catetory={catetory} />}
               />
-            </ListArticle.Media>
-            <ListArticle.Title title={title} />
-            <ListArticle.Footer date={date} />
-          </ListArticle>
+            </GridArticle.Media>
+            <GridArticle.Title title={title} />
+            <GridArticle.Footer date={date} />
+          </GridArticle>
         ))}
       </div>
 
-      <PaginationWithThemeRed
-        currentPage={currentPage}
-        totalItems={totalItems}
-        itemsPerPage={itemsPerPage}
-        onPageChange={setCurrentPage}
+      <PaginationList
+        currentPage={pageNum}
+        total={totalItems}
+        limit={itemCount}
+        onChange={() => {}}
         className="mt-14"
       />
 
@@ -71,13 +67,13 @@ const PhotoContent = () => {
           {selectedPhoto && (
             <div className="h-full flex items-center justify-center">
               <div className="relative max-w-5xl w-full mx-8">
-                <ListArticle.Media className="mb-0">
-                  <ListArticle.Thumbnail
-                    thumbnail={selectedPhoto.thumbnail}
+                <GridArticle.Media className="mb-0">
+                  <GridArticle.Thumbnail
+                    imgFilePath={selectedPhoto.thumbnail}
                     title={selectedPhoto.title}
                     className="!object-contain"
                   />
-                </ListArticle.Media>
+                </GridArticle.Media>
 
                 <div className="bg-gradient-to-t from-black/90 to-transparent">
                   <DialogHeader className="gap-2">

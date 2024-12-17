@@ -1,3 +1,4 @@
+import { isNullish } from '@/lib';
 import { startTransition, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -34,10 +35,9 @@ export const useTabFromUrl = ({
       // 탭이 없으면 기본 탭으로 리다이렉트
       if (!targetTab) {
         const firstTab = tabs.at(0);
-        if (!firstTab?.path) {
+        if (isNullish(firstTab?.path)) {
           return;
         }
-
         const fallbackPath = `${basePath}${firstTab.path}`;
         navigate(fallbackPath, { replace: true });
         return;
@@ -46,7 +46,7 @@ export const useTabFromUrl = ({
       // 탭이 있으면 탭 경로로 리다이렉트
       startTransition(() => {
         const newPath = `${basePath}${targetTab.path}`;
-        navigate(newPath);
+        navigate(newPath, { preventScrollReset: true });
       });
     },
     [basePath, navigate, tabs]
