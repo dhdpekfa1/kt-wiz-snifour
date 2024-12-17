@@ -65,6 +65,10 @@ function CheerleaderPage() {
                   </div>
                   <div className="mt-4 flex flex-col gap-2">
                     <div className="flex items-baseline gap-4">
+                      <p className="font-semibold text-lg">생년월일</p>
+                      <p>{cheerleader.leaderBirthDay}</p>
+                    </div>
+                    <div className="flex items-baseline gap-4">
                       <p className="font-semibold text-lg">포지션</p>
                       <p>{cheerleader.leaderPosition}</p>
                     </div>
