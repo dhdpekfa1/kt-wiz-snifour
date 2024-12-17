@@ -64,7 +64,7 @@ const MatchCalendar = () => {
         defaultValue={currentTab}
         onValueChange={handleTabChange}
       >
-        <div className="flex justify-between items-center border-b pb-3 mb-5">
+        <div className="flex justify-between items-center pb-3 mb-5 mt-10">
           {/* 탭 */}
           <TabsList className="media-tabs-list">
             {GAME_TABS_CONFIG.map((tab) => (
