@@ -131,7 +131,7 @@ function Header() {
                 {menu.sub.map((subMenu) => (
                   <li
                     key={`sub-${subMenu.title}`}
-                    className="py-1 cursor-pointer"
+                    className="py-1 cursor-pointer hover:text-wiz-red"
                   >
                     <Link to={subMenu.link}>{subMenu.title}</Link>
                   </li>
