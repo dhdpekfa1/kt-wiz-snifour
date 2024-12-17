@@ -29,7 +29,7 @@ function CheerleaderPage() {
         paths={[
           { key: 'home', label: 'Home' },
           { key: 'player', label: 'Player' },
-          { key: 'wiz-player', label: 'Wiz Plyer' },
+          { key: 'wiz-player', label: 'Wiz Player' },
           { key: 'coach', label: '응원단', isActive: true },
         ]}
       />
