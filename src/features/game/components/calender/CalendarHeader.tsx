@@ -32,9 +32,6 @@ const CalendarHeader = ({
 
       {/* 월 표시 및 드롭다운 */}
       <div className="relative flex items-center">
-        {/* <span className="text-lg font-bold text-wiz-white">
-          {format(displayMonth, "yyyy년 MM월")}
-        </span> */}
         <CustomSelect
           type="year-month"
           data={months}
