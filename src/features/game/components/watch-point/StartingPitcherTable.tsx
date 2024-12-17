@@ -15,7 +15,7 @@ interface StartingPitcherProps {
   visitPitcher?: Pitcher;
 }
 
-const StartingPitcher = ({
+const StartingPitcherTable = ({
   homeTeam = '',
   visitTeam = '',
   homePitcher,
@@ -128,4 +128,4 @@ const StartingPitcher = ({
   );
 };
 
-export { StartingPitcher };
+export { StartingPitcherTable };

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { getWatchPoint } from './apis';
 import {
   MatchBoard,
-  StartingPitcher,
+  StartingPitcherTable,
   TeamLineup,
 } from './components/watch-point';
 import { WatchPointData } from './types/watch-point';
@@ -71,7 +71,7 @@ const WatchPointTab = () => {
           <div className="flex flex-col gap-2 w-full my-10">
             <SubTitle title="선발투수 비교" />
             <div className="w-full flex items-center justify-center">
-              <StartingPitcher
+              <StartingPitcherTable
                 homeTeam={watchData?.gameScore.home || ''}
                 visitTeam={watchData?.gameScore.visit || ''}
                 homePitcher={watchData?.homePitcher}
