@@ -24,10 +24,12 @@ import CoachDetailPage from './pages/player/id/CoachDetailPage';
 import PitcherPage from './pages/player/PitcherPage';
 import PlayerDetailPage from './pages/player/id/PlayerDetailPage';
 import BatterPage from './pages/player/BatterPage';
+import ScrollToTop from './features/common/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="w-full bg-wiz-black flex flex-col items-center">
         <Header />
         {/*
