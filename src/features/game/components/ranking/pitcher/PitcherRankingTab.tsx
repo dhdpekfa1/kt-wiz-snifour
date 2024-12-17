@@ -1,8 +1,3 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
-import { Tabs, TabsContent } from '@/components/ui';
-import { API_URL } from '@/constants/api-url';
 import {
   AllPitcherRankingTab,
   KTPitcherRankingTab,
@@ -11,48 +6,22 @@ import {
 import { TabsList } from '@radix-ui/react-tabs';
 import Breadcrumb from '../../../../common/Breadcrumb';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
-import { PitcherERA, PitcherWins } from '../../../../common/types/pitchers';
+// import { useTopPitcherRank } from '@/assets/hooks/ranking/useTopPitcherRank';
+import { eraTop3, winTop3 } from '@/assets/data/__test__/mockRanking.json';
+import { Tabs, TabsContent } from '@/components/ui';
 
 function PitcherRankingTab() {
-  const [eraRanking, setEraRanking] = useState<PitcherERA[]>([]);
-  const [winRanking, setWinRanking] = useState<PitcherWins[]>([]);
+  // const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
 
-  useEffect(() => {
-    const getPitcherEraRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/pitcher/era/top3`
-        );
+  // if (!eraRanking.length || !winRanking.length || loading) {
+  //   return null;
+  // }
 
-        if (status === 200 && data) {
-          setEraRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const getPitcherWinRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/pitcher/win/top3`
-        );
-
-        if (status === 200 && data) {
-          setWinRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getPitcherEraRanking();
-    getPitcherWinRanking();
-  }, []);
-
-  if (!eraRanking.length || !winRanking.length) {
-    return null;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+  const eraRanking = eraTop3;
+  const winRanking = winTop3;
 
   return (
     <div className="my-20">
@@ -67,7 +36,7 @@ function PitcherRankingTab() {
       />
 
       {/* 투수 랭킹 카드 */}
-      <div className="w-full mt-12 bg-wiz-white grid grid-cols-2 rounded-xl">
+      <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl px-8">
         <RankingCard
           title="평균 자책점 TOP 3"
           ranking={eraRanking}

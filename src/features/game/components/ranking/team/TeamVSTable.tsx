@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
-
+// import { useTeamVS } from '@/assets/hooks/ranking/useTeamVS';
+import { teamVS as mockVS } from '@/assets/data/__test__/mockRanking.json';
 import {
   Table,
   TableBody,
@@ -9,76 +8,31 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { TeamVS } from '@/features/game/types/team-ranking';
+import { vsOrder } from '@/constants/team-vs-order';
+import { cn } from '@/lib/utils';
+
+interface TeamVSResult {
+  win: number | string;
+  lose: number | string;
+  drawn: number | string;
+}
 
 interface ArrangedTeamVS {
-  [key: string]: {
-    [vsteam: string]: { win: number; lose: number; drawn: number };
-  };
+  teamName: string;
+  teamCode: string;
+  [vsTeamCode: string]: { win: number; lose: number; drawn: number } | string;
 }
 
 function TeamVSTable() {
-  const [vs, setVs] = useState<TeamVS[]>([]);
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
-  const vsOrder = ['KT', 'SS', 'OB', 'LG', 'WO', 'LT', 'SK', 'NC', 'HT', 'HH'];
-  const teamName: { [key: string]: string } = {
-    KT: 'KT',
-    SS: '삼성',
-    OB: '두산',
-    LG: 'LG',
-    WO: '키움',
-    LT: '롯데',
-    SK: 'SSG',
-    NC: 'NC',
-    HT: 'KIA',
-    HH: '한화',
-  };
+  // const { vs, loading, error } = useTeamVS();
 
-  const arrangeVS = (data: TeamVS[]) => {
-    const teamRecords: {
-      [key: string]: {
-        [vsteam: string]: { win: number; lose: number; drawn: number };
-      };
-    } = {};
+  // if (!Object.keys(vs) || loading) {
+  //   return null;
+  // }
 
-    for (const vs of data) {
-      if (!teamRecords[vs.teamCode]) {
-        teamRecords[vs.teamCode] = {};
-      }
-      teamRecords[vs.teamCode][vs.vsTeamCode] = {
-        win: vs.win,
-        lose: vs.lose,
-        drawn: vs.drawn,
-      };
-    }
-
-    return teamRecords;
-  };
-
-  const arrangedVS: ArrangedTeamVS = useMemo(
-    () => arrangeVS(vs),
-    [vs, arrangeVS]
-  );
-
-  useEffect(() => {
-    const getTeamVS = async () => {
-      try {
-        const { data, status } = await axios.get(`${API_URL}/game/rank/teamvs`);
-
-        if (status === 200 && data) {
-          setVs(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getTeamVS();
-  }, []);
-
-  if (Object.keys(arrangedVS).length === 0) {
-    return <div>로딩 중...</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
     <Table className="mt-4">
@@ -87,16 +41,15 @@ function TeamVSTable() {
           <TableHead className="text-center bg-wiz-white bg-opacity-30">
             팀명
           </TableHead>
-          {vsOrder.map((teamCode) => (
+          {vsOrder.map(({ teamCode, teamName }) => (
             <TableHead
               key={`th-${teamCode}`}
-              className={`text-center ${
-                teamCode === 'KT'
-                  ? 'bg-wiz-red bg-opacity-70'
-                  : 'bg-wiz-white bg-opacity-30'
-              } `}
+              className={cn(
+                'text-center bg-wiz-white bg-opacity-30',
+                teamCode === 'KT' && 'bg-wiz-red bg-opacity-70'
+              )}
             >
-              {teamName[teamCode]}
+              {teamName}
               <br />
               (승-패-무)
             </TableHead>
@@ -104,35 +57,41 @@ function TeamVSTable() {
         </TableRow>
       </TableHeader>
       <TableBody className="text-center">
-        {vsOrder.map((teamCode) => (
+        {vsOrder.map(({ teamCode, teamName }, index) => (
           <TableRow
             key={`tr-${teamCode}`}
-            className={`${
+            className={cn(
+              'border-b-wiz-white border-opacity-10',
               teamCode === 'KT' && 'bg-wiz-red bg-opacity-70 font-bold'
-            } border-b-wiz-white border-opacity-10`}
+            )}
           >
-            <TableCell>{teamName[teamCode]}</TableCell>
-            {arrangedVS[teamCode] &&
-              vsOrder.map((vsTeamCode, index) => {
-                return (
-                  <TableCell
-                    key={`${teamCode}-${vsTeamCode}`}
-                    className={`${
-                      index === 0
-                        ? teamCode === 'KT'
-                          ? undefined
-                          : 'bg-wiz-red bg-opacity-70 font-bold'
-                        : undefined
-                    }`}
-                  >
-                    {teamCode === vsTeamCode
-                      ? null
-                      : `${arrangedVS[teamCode][vsTeamCode]?.win || 0}-${
-                          arrangedVS[teamCode][vsTeamCode]?.lose || 0
-                        }-${arrangedVS[teamCode][vsTeamCode]?.drawn || 0}`}
-                  </TableCell>
-                );
-              })}
+            <TableCell>{teamName}</TableCell>
+            {vsOrder.map((vsTeam, vIndex) => {
+              const { win, lose, drawn }: TeamVSResult = ((
+                mockVS as unknown as ArrangedTeamVS[]
+              )[index][vsTeam.teamCode] as TeamVSResult) || {
+                win: '',
+                lose: '',
+                drawn: '',
+              };
+
+              return (
+                <TableCell
+                  key={`${teamCode}-${vsTeam.teamCode}`}
+                  className={cn(
+                    index > 0 &&
+                      vIndex === 0 &&
+                      'bg-wiz-red bg-opacity-70 font-bold' // 중복 색칠 방지(배경색 투명도가 있기 때문)
+                  )}
+                >
+                  {teamCode !== vsTeam.teamCode && (
+                    <span>
+                      {win}-{lose}-{drawn}
+                    </span>
+                  )}
+                </TableCell>
+              );
+            })}
           </TableRow>
         ))}
       </TableBody>

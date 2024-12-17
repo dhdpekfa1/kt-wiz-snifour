@@ -1,55 +1,25 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
-import { Tabs, TabsContent, TabsList } from '@/components/ui';
-import { API_URL } from '@/constants/api-url';
+// import { useTopBatterRank } from '@/assets/hooks/ranking/useTopBatterRank';
 import Breadcrumb from '@/features/common/Breadcrumb';
-import SubTabsTrigger from '@/features/common/SubTabsTrigger';
-import { BatterHR, BatterHra } from '@/features/common/types/batters';
 import { RankingCard } from '../common/RankingCard';
+import { Tabs, TabsContent, TabsList } from '@/components/ui';
+import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
+import { hraTop3, hrTop3 } from '@/assets/data/__test__/mockRanking.json';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
 
 function BatterRankingTab() {
-  const [hraRanking, setHraRanking] = useState<BatterHra[]>([]);
-  const [hrRanking, setHrRanking] = useState<BatterHR[]>([]);
+  // const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
 
-  useEffect(() => {
-    const getBatterHraRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/batter/hra/top3`
-        );
+  // if (!hraRanking.length || !hrRanking.length || loading) {
+  //   return null;
+  // }
 
-        if (status === 200 && data) {
-          setHraRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
-    const getBatterHrRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/batter/hr/top3`
-        );
-
-        if (status === 200 && data) {
-          setHrRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getBatterHraRanking();
-    getBatterHrRanking();
-  }, []);
-
-  if (!hraRanking.length || !hrRanking.length) {
-    return null;
-  }
+  const hraRanking = hraTop3;
+  const hrRanking = hrTop3;
 
   return (
     <div className="my-20">
@@ -64,7 +34,7 @@ function BatterRankingTab() {
       />
 
       {/* 타자 랭킹 카드 */}
-      <div className="w-full mt-12 bg-wiz-white grid grid-cols-2 rounded-xl">
+      <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl">
         <RankingCard
           title="타율 TOP 3"
           ranking={hraRanking}

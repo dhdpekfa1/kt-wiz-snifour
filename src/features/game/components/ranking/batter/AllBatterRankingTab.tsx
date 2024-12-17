@@ -1,37 +1,26 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
-import { API_URL } from '@/constants/api-url';
-import { batterColumns } from '@/constants/player-rank-colums';
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { PlayerRankingTable } from '../common/PlayerRankingTable';
 import { PlayerScatterChart } from '../common/PlayerScatterChart';
+import { batterColumns } from '@/constants/player-rank-colums';
+// import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
+import { allBatter } from '@/assets/data/__test__/mockRanking.json';
+import SortableTable from '@/features/common/SortableTable';
 
 function AllBatterRankingTab() {
-  const [ranking, setRanking] = useState<OverallBatterRank[]>([]);
+  // const { ranking, loading, error } = useBatterRank('all');
 
-  useEffect(() => {
-    const getAllBatterRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/total/batter?gyear=2024&pname&sortKey=HRA`
-        );
+  // if (!ranking.length || loading) {
+  //   return null;
+  // }
 
-        if (status === 200 && data) {
-          setRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
-    getAllBatterRanking();
-  }, []);
+  const ranking = allBatter;
 
   return (
     <div className="flex flex-col">
       <PlayerScatterChart data={ranking} position="batter" />
-      <PlayerRankingTable data={ranking} columns={batterColumns} />
+      <SortableTable data={ranking} columns={batterColumns} domain="all" />
     </div>
   );
 }

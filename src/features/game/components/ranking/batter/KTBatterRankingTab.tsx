@@ -1,39 +1,26 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
-import { API_URL } from '@/constants/api-url';
+import { PlayerScatterChart } from '@/features/game/components/ranking';
 import { batterColumns } from '@/constants/player-rank-colums';
-import { OverallBatterRank } from '@/features/common/types/batters';
-import {
-  PlayerRankingTable,
-  PlayerScatterChart,
-} from '@/features/game/components/ranking';
+// import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
+import SortableTable from '@/features/common/SortableTable';
+import { ktBatter } from '@/assets/data/__test__/mockRanking.json';
 
 function KTBatterRankingTab() {
-  const [ranking, setRanking] = useState<OverallBatterRank[]>([]);
+  // const { ranking, loading, error } = useBatterRank('kt');
 
-  useEffect(() => {
-    const getKTBatterRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/rank/kt/batter?gyear=2024&pname=&sortKey=HRA`
-        ); // 모든 kt 타자 데이터 페칭
+  // if (!ranking.length || loading) {
+  //   return null;
+  // }
 
-        if (status === 200 && data) {
-          setRanking(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
-    getKTBatterRanking();
-  }, []);
+  const ranking = ktBatter;
 
   return (
     <div>
       <PlayerScatterChart data={ranking} position="batter" />
-      <PlayerRankingTable data={ranking} columns={batterColumns} kt />
+      <SortableTable data={ranking} columns={batterColumns} domain="kt" />
     </div>
   );
 }
