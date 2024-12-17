@@ -16,13 +16,13 @@ import {
 import { cn } from '@/lib/utils';
 
 interface TypeHasTeamName {
-  teamName: string;
+  team: string;
 }
 
 interface DataTableProps<TData extends TypeHasTeamName> {
   data: TData[];
   columns: ColumnDef<TData>[];
-  domain: 'kt' | 'all';
+  domain?: 'kt' | 'all';
 }
 
 function DataTable<TData extends TypeHasTeamName>({
@@ -61,7 +61,7 @@ function DataTable<TData extends TypeHasTeamName>({
             className={cn(
               'border-b-wiz-white border-opacity-10',
               domain === 'all' &&
-                row.original.teamName === 'KT' &&
+                row.original.team === 'KT' &&
                 'bg-wiz-red bg-opacity-70 border-b-wiz-red'
             )}
           >
