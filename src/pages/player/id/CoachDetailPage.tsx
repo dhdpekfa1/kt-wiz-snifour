@@ -1,4 +1,4 @@
-import useCoach from '@/assets/hooks/useCoach';
+import useCoach from '@/features/game/hooks/useCoach';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { useSearchParams } from 'react-router';
 

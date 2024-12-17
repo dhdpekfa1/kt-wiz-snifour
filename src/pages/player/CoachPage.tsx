@@ -1,4 +1,4 @@
-import { useCoachList } from '@/assets/hooks/useCoachList';
+import { useCoachList } from '@/features/game/hooks/useCoachList';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components/';

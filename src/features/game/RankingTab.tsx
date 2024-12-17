@@ -1,4 +1,4 @@
-import { useTabFromUrl } from '@/assets/hooks/useTabFromUrl';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import {
   BatterRankingTab,
