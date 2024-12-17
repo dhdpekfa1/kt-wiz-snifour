@@ -23,6 +23,7 @@ import CoachPage from './pages/player/CoachPage';
 import CoachDetailPage from './pages/player/id/CoachDetailPage';
 import PitcherPage from './pages/player/PitcherPage';
 import PlayerDetailPage from './pages/player/id/PlayerDetailPage';
+import BatterPage from './pages/player/BatterPage';
 
 function App() {
   return (
@@ -67,6 +68,9 @@ function App() {
             {/* Player */}
             <Route path="/player/coach" element={<CoachPage />} />
             <Route path="/player/pitcher" element={<PitcherPage />} />
+            <Route path="/player/catcher" element={<BatterPage />} />
+            <Route path="/player/infielder" element={<BatterPage />} />
+            <Route path="/player/outfielder" element={<BatterPage />} />
             <Route path="/player/song" element={<CheerSongPage />} />
 
             {/* Player 상세 페이지 경로 */}
