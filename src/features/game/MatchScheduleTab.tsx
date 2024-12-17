@@ -8,14 +8,7 @@ const MatchScheduleTab = () => {
     <div className="w-full flex justify-center my-20">
       <div className="w-full flex flex-col items-center justify-center">
         {/* 경로 */}
-        <Breadcrumb
-          paths={[
-            { key: 'home', label: 'Home' },
-            { key: 'game', label: 'Game' },
-            { key: 'regular-season', label: '정규리그' },
-            { key: 'schedule', label: '경기 일정', isActive: true },
-          ]}
-        />
+        <Breadcrumb />
 
         {/* 경기 정보 */}
         <MatchInfoCarousel />

@@ -7,13 +7,7 @@ import { ArrowBigRightIcon } from 'lucide-react';
 function ParkLocationPage() {
   return (
     <div className="flex flex-col items-center gap-10 my-20 mx-20 bg-wiz-black text-wiz-white">
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'wizpark', label: 'Wiz Park' },
-          { key: 'wizpark-road', label: '찾아오기', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
       <WizParkMap />
       <div className="flex flex-col items-center">
         <p className="text-xl font-semibold">

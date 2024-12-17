@@ -1,17 +1,51 @@
+import { PAGE_URLS } from '@/constants/urls';
 import { HomeIcon } from 'lucide-react';
 import { ReactNode } from 'react';
 import { IconRight } from 'react-day-picker';
+import { useLocation } from 'react-router';
 
+type UrlStructure = {
+  name: string;
+  sub?: { [key: string]: UrlStructure };
+};
 interface BreadcrumbProps {
-  paths: {
-    key: string;
-    label: string;
-    isActive?: boolean;
-  }[];
   leftComponent?: ReactNode;
 }
 
-const Breadcrumb = ({ paths, leftComponent = null }: BreadcrumbProps) => {
+const getLabel = (paths: string[], currentPath: string) => {
+  let current: { [key: string]: UrlStructure } = PAGE_URLS;
+  for (const path of paths) {
+    console.log(current[path].name, currentPath);
+    if (path !== currentPath && current[path].sub) {
+      current = current[path].sub;
+    } else if (path !== currentPath && !current[path].sub) {
+      return null;
+    } else {
+      return current[path].name;
+    }
+  }
+  return null;
+};
+
+const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
+  // url 파싱
+  const { pathname } = useLocation();
+  const paths = pathname.split('?')[0].split('/').slice(1);
+
+  // url 매핑
+  const mappedPaths = [
+    { key: 'home', label: 'Home', isActive: false },
+    ...paths.map((path, index) => ({
+      key: path,
+      label: getLabel(paths, path),
+      isActive: index === paths.length - 1,
+    })),
+  ];
+
+  // url label이 null인 것 필터링
+  const filteredPaths = mappedPaths.filter((path) => path.label);
+  filteredPaths[filteredPaths.length - 1].isActive = true;
+
   return (
     <div className="flex flex-col gap-2 mt-6 mb-4 w-full">
       <div
@@ -22,17 +56,19 @@ const Breadcrumb = ({ paths, leftComponent = null }: BreadcrumbProps) => {
         {leftComponent && (
           <div className="flex items-center gap-2">{leftComponent}</div>
         )}
-        <span className="flex items-center gap-2 text-sm font-light text-wiz-white">
-          <HomeIcon />
-          {paths.map((path) => (
+        <span className="flex items-center text-sm font-light text-wiz-white">
+          <HomeIcon className="mr-2 h-5" />
+          {filteredPaths.map((path, index) => (
             <span
               key={path.key}
               className={`flex items-center ${
                 path.isActive ? 'text-wiz-red' : ''
               }`}
             >
-              {path.label}
-              {path.key !== paths[paths.length - 1].key && <IconRight />}
+              {path.label as string}
+              {index < filteredPaths.length - 1 && (
+                <IconRight className="h-3 mx-2" />
+              )}
             </span>
           ))}
         </span>

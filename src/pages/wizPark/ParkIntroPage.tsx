@@ -10,14 +10,7 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 function ParkIntroPage() {
   return (
     <div className="flex flex-col items-center my-20 mx-20 justify-center bg-wiz-black">
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'wizpark', label: 'Wiz Park' },
-          { key: 'suwon-kt-wizpark', label: '수원 KT Wiz Park' },
-          { key: 'wizpark-intro', label: '구장 소개', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
       {/* biome-ignore lint/a11y/useAltText: <explanation> */}
       <img src="/assets/ktwizpark.jpg" className="w-3/5 h-2/3" />
       <Card className="h-1/3 w-[75%] px-8 pb-8 flex flex-col items-center border-none shadow-none text-wiz-white">

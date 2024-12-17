@@ -25,15 +25,7 @@ function PitcherRankingTab() {
 
   return (
     <div className="my-20">
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'game', label: 'Game' },
-          { key: 'regular', label: '정규 리그' },
-          { key: 'ranking', label: '순위 기록' },
-          { key: 'pitcher', label: '투수 순위', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
 
       {/* 투수 랭킹 카드 */}
       <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl px-8">

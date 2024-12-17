@@ -5,13 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 function WallpaperPage() {
   return (
     <div className="my-20 text-white">
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'ktwiz', label: 'KT Wiz' },
-          { key: 'wallpaper', label: '월페이퍼', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
       <div className="flex items-center justify-center py-4 gap-8 text-3xl">
         <button
           type="button"

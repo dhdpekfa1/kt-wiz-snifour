@@ -7,13 +7,7 @@ import { Link } from 'react-router';
 function ParkingPage() {
   return (
     <div className="my-20 text-white">
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'wizpark', label: 'Wiz Park' },
-          { key: 'parking', label: '주차 예약', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
 
       <div>
         <SubTitle title="주차 예약 안내" />
