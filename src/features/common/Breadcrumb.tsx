@@ -15,7 +15,6 @@ interface BreadcrumbProps {
 const getLabel = (paths: string[], currentPath: string) => {
   let current: { [key: string]: UrlStructure } = PAGE_URLS;
   for (const path of paths) {
-    console.log(current[path].name, currentPath);
     if (path !== currentPath && current[path].sub) {
       current = current[path].sub;
     } else if (path !== currentPath && !current[path].sub) {
@@ -31,6 +30,15 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
   // url 파싱
   const { pathname } = useLocation();
   const paths = pathname.split('?')[0].split('/').slice(1);
+
+  // 타자의 경우 pathname에 batter가 포함되지 않으므로 '타자'가 생략된다. 그러므로 추가한다.
+  if (
+    paths.includes('catcher') ||
+    paths.includes('infielder') ||
+    paths.includes('outfielder')
+  ) {
+    paths.splice(paths.length - 1, 0, 'batter');
+  }
 
   // url 매핑
   const mappedPaths = [

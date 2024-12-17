@@ -142,14 +142,19 @@ export const PAGE_URLS: { [key: string]: UrlStructure } = {
       pitcher: {
         name: '투수',
       },
-      catcher: {
-        name: '포수',
-      },
-      infielder: {
-        name: '내야수',
-      },
-      outfielder: {
-        name: '외야수',
+      batter: {
+        name: '타자',
+        sub: {
+          catcher: {
+            name: '포수',
+          },
+          infielder: {
+            name: '내야수',
+          },
+          outfielder: {
+            name: '외야수',
+          },
+        },
       },
       cheer: {
         name: '응원단',
