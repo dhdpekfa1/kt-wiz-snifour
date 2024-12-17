@@ -29,7 +29,7 @@ const getLabel = (paths: string[], currentPath: string) => {
 const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
   // url 파싱
   const { pathname } = useLocation();
-  const paths = pathname.split('?')[0].split('/').slice(1);
+  let paths: string[] = pathname.split('?')[0].split('/').slice(1);
 
   // 타자의 경우 pathname에 batter가 포함되지 않으므로 '타자'가 생략된다. 그러므로 추가한다.
   if (
@@ -37,7 +37,14 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
     paths.includes('infielder') ||
     paths.includes('outfielder')
   ) {
-    paths.splice(paths.length - 1, 0, 'batter');
+    paths = paths.reduce((acc: string[], path: string) => {
+      // 'catcher', 'infielder', 'outfielder'가 나오면 그 앞에 'batter'를 추가
+      if (['catcher', 'infielder', 'outfielder'].includes(path)) {
+        acc.push('batter'); // 'batter' 추가
+      }
+      acc.push(path); // 현재 경로 요소 추가
+      return acc;
+    }, []);
   }
 
   // url 매핑

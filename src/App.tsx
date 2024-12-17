@@ -79,6 +79,10 @@ function App() {
               path="/player/pitcher/detail/:id"
               element={<PlayerDetailPage />}
             />
+            <Route
+              path="/player/catcher/detail/:id"
+              element={<PlayerDetailPage />}
+            />
           </Routes>
         </div>
         <Footer />
