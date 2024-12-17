@@ -22,6 +22,7 @@ export interface EtcGame {
 }
 
 export interface Batter {
+  team?: string;
   ab: number;
   accmAb: number;
   accmHit: number;
