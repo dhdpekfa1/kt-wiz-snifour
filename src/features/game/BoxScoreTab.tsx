@@ -12,89 +12,6 @@ import { useEffect, useState } from 'react';
 import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';
 
-import type { Batter } from './types/BoxScoreData';
-
-export const mockBatters: Batter[] = [
-  {
-    ab: 4,
-    accmAb: 20,
-    accmHit: 8,
-    changeinn: '4회',
-    gday: '20240601',
-    gmkey: 'KTSSG20240601',
-    hit: 2,
-    inn1: '안타',
-    inn2: '',
-    inn3: '삼진',
-    inn4: '',
-    inn5: '볼넷',
-    inn6: '',
-    inn7: '2루타',
-    inn8: '',
-    inn9: '',
-    name: '박병호',
-    oneturn: '1회',
-    pcode: 'KT001',
-    position: '1루수',
-    rbi: 1,
-    run: 1,
-    tb: '2',
-    turn: '1',
-  },
-  {
-    ab: 3,
-    accmAb: 18,
-    accmHit: 6,
-    changeinn: '3회',
-    gday: '20240601',
-    gmkey: 'KTSSG20240601',
-    hit: 1,
-    inn1: '볼넷',
-    inn2: '아웃',
-    inn3: '',
-    inn4: '안타',
-    inn5: '',
-    inn6: '아웃',
-    inn7: '',
-    inn8: '',
-    inn9: '',
-    name: '최정',
-    oneturn: '2회',
-    pcode: 'SSG001',
-    position: '3루수',
-    rbi: 0,
-    run: 0,
-    tb: '1',
-    turn: '2',
-  },
-  {
-    ab: 4,
-    accmAb: 25,
-    accmHit: 10,
-    changeinn: '6회',
-    gday: '20240601',
-    gmkey: 'KTSSG20240601',
-    hit: 3,
-    inn1: '홈런',
-    inn2: '',
-    inn3: '삼진',
-    inn4: '안타',
-    inn5: '',
-    inn6: '',
-    inn7: '2루타',
-    inn8: '',
-    inn9: '',
-    name: '이정후',
-    oneturn: '3회',
-    pcode: 'KT002',
-    position: '중견수',
-    rbi: 2,
-    run: 1,
-    tb: '4',
-    turn: '3',
-  },
-];
-
 interface Props {
   gameDate: string | undefined;
   gameKey: string | undefined;
@@ -171,8 +88,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
             />
 
             <div className="w-full">
-              {/* <BattingRecordTable data={matchData?.hbatters} /> */}
-              <BattingRecordTable data={mockBatters} />
+              <BattingRecordTable data={matchData?.hbatters} />
             </div>
           </div>
         </div>
@@ -198,7 +114,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
               } 투수 기록`}
             />
             <div className="w-full">
-              <PitchingRecordTable data={matchData?.vpitchers} />
+              <PitchingRecordTable data={matchData?.hpitchers} />
             </div>
           </div>
         </div>
@@ -211,7 +127,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
               } 투수 기록`}
             />
             <div className="w-full">
-              <PitchingRecordTable data={matchData?.hpitchers} />
+              <PitchingRecordTable data={matchData?.vpitchers} />
             </div>
           </div>
         </div>
