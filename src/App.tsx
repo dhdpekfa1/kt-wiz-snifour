@@ -19,6 +19,7 @@ import ParkingPage from './pages/wizPark/ParkingPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
+import CheerleaderPage from './pages/player/CheerleaderPage';
 import CoachPage from './pages/player/CoachPage';
 import CoachDetailPage from './pages/player/id/CoachDetailPage';
 
@@ -65,6 +66,7 @@ function App() {
             {/* Player */}
             <Route path="/player/song" element={<CheerSongPage />} />
             <Route path="/player/coach" element={<CoachPage />} />
+            <Route path="/player/cheer" element={<CheerleaderPage />} />
 
             {/* Player 상세 페이지 경로 */}
             <Route path="/player/coach/detail" element={<CoachDetailPage />} />
