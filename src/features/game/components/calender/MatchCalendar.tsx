@@ -4,7 +4,7 @@ import {
   MatchCalendarCell,
 } from '@/features/game//components/calender';
 import { getAllMonthSchedule, getMonthSchedule } from '@/features/game/apis';
-import { GameSchedule } from '@/features/game/types';
+import { GameSchedule } from '@/features/game/types/match-schedule';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
