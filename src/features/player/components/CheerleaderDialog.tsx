@@ -14,14 +14,14 @@ interface cheerleaderDialogProps {
 }
 
 function CheerleaderDialog({ data }: cheerleaderDialogProps) {
-  /* TODO: 데이터 props 로 받아와서 추가
   const dialogContentItems = [
-    { label: '생년월일', prop: cheerleader.leaderBirthday },
-    { label: '포지션' },
-    { label: '닉네임' },
-    { label: '좋아하는 선수' },
-    { lable: '모토' },
-  ];*/
+    { label: '생년월일', prop: data.leaderBirthDay },
+    { label: '포지션', prop: data.leaderPosition },
+    { label: '닉네임', prop: data.leaderNickName },
+    { label: '좋아하는 선수', prop: data.leaderLikePlayer },
+    { lable: '모토', prop: data.leaderMotto },
+  ];
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -53,29 +53,13 @@ function CheerleaderDialog({ data }: cheerleaderDialogProps) {
                 />
               </div>
             </DialogHeader>
-            {/** TODO: 반복문 쓰기 */}
             <div className="mt-4 flex flex-col gap-2">
-              <div className="flex items-baseline gap-4">
-                <p className="font-semibold text-lg">생년월일</p>
-                <p>{data.leaderBirthDay}</p>
-              </div>
-
-              <div className="flex items-baseline gap-4">
-                <p className="font-semibold text-lg">포지션</p>
-                <p>{data.leaderPosition}</p>
-              </div>
-              <div className="flex items-baseline gap-4">
-                <p className="font-semibold text-lg ">닉네임</p>
-                <p>{data.leaderNickName}</p>
-              </div>
-              <div className="flex items-baseline gap-4">
-                <p className="font-semibold text-lg ">좋아하는 선수</p>
-                <p>{data.leaderLikePlayer}</p>
-              </div>
-              <div className="flex items-baseline gap-4">
-                <p className="font-semibold text-lg ">모토</p>
-                <p>{data.leaderMotto}</p>
-              </div>
+              {dialogContentItems.map((item) => (
+                <div className="flex items-baseline gap-4" key={item.label}>
+                  <p className="font-semibold text-lg">{item.label}</p>
+                  <p>{item.prop}</p>
+                </div>
+              ))}
               <div className="mt-1">
                 <p className="font-semibold text-lg mb-1">경력</p>
                 <Separator className="w-full h-0.5 bg-wiz-red mb-2" />
