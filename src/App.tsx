@@ -78,11 +78,11 @@ function App() {
             {/* Player 상세 페이지 경로 */}
             <Route path="/player/coach/detail" element={<CoachDetailPage />} />
             <Route
-              path="/player/pitcher/detail/:id"
+              path="/player/pitcher/detail"
               element={<PlayerDetailPage />}
             />
             <Route
-              path="/player/catcher/detail/:id"
+              path="/player/catcher/detail"
               element={<PlayerDetailPage />}
             />
           </Routes>
