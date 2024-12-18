@@ -21,11 +21,8 @@ const CoachPage = () => {
             alt="KT WIZ Coach"
           />
           <Banner.Overlay>
-            <Banner.Heading
-              title="코칭 스텝"
-              subtitle="최고의 kt wiz 코칭스텝을 소개합니다."
-            />
-            <Banner.Description description="" />
+            <Banner.Heading title="KT WIZ 선수단" subtitle="코칭 스텝" />
+            <Banner.Description description="최고의 kt wiz 코칭스텝을 소개합니다." />
           </Banner.Overlay>
         </Banner>
       }
