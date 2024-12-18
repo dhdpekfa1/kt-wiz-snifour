@@ -9,7 +9,7 @@ import {
 
 function IksanParkMap() {
   useKakaoLoader();
-  const position = { lat: 35.967842, lng: 127.0075477 };
+  const position = { lat: 35.96755, lng: 127.0063 };
 
   return (
     <>

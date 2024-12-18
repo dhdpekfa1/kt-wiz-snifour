@@ -39,7 +39,7 @@ function ParkLocationPage() {
             경기도 수원시 장안구 경수대로 893(조원동) 수원 케이티 위즈 파크
           </p>
           <p>(구 : 경기도 수원시 장안구 조원동 775)</p>
-          <Button className="bg-wiz-red rounded-xl h-10 mt-3 flex items-center justify-center">
+          <Button className="bg-wiz-white text-wiz-red rounded-xl w-fit h-10 mt-3 flex items-center justify-center hover:bg-wiz-red hover:text-wiz-white">
             <a
               href="https://map.kakao.com/link/to/수원 KT 위즈파크,37.299759,127.009781"
               target="_blank"
