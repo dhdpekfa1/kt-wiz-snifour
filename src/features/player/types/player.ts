@@ -30,4 +30,9 @@ export interface Player extends PlayerBase {
   rank: number;
   rankName: string;
   hasFanpage: string;
+  engName?: string;
+  birth?: string;
+  height?: string;
+  weight?: string;
+  career?: string;
 }

@@ -1,32 +1,47 @@
-function PlayerProfile() {
+import { formatDate } from '@/lib/utils';
+import { Player } from '../types/player';
+import { SeasonSummary } from '../types/record';
+
+interface PlayerProfileProps {
+  player: Player;
+  seasonSummary: SeasonSummary;
+}
+
+function PlayerProfile({ player }: PlayerProfileProps) {
   return (
     <div className="w-1/4 flex flex-col">
-      <div className="w-full h-[17rem] bg-wiz-white rounded-xl">image</div>
+      <div className="w-full h-[17rem] bg-wiz-white rounded-xl">
+        <img src={player.mobilePlayerImg} alt="" />
+      </div>
       <div className="flex flex-col gap-2 py-4">
         <div className="mb-4">
           <div className="flex justify-between text-2xl font-bold">
-            <span>선수 이름</span>
-            <span>No.99</span>
+            <span>{player.playerName}</span>
+            <span>No.{player.backnum}</span>
           </div>
-          <span className="text-neutral-400">Player Name</span>
+          <span className="text-neutral-400">{player.engName}</span>
         </div>
         <div className="flex justify-between">
           <span>포지션</span>
-          <span>투수</span>
+          <span>{player.position}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>투타</span>
+          <span>{player.hittype}</span>
         </div>
         <div className="flex justify-between">
           <span>생년월일</span>
-          <span>2024.12.17</span>
+          <span>{formatDate(player.birth)}</span>
         </div>
         <div className="flex justify-between">
           <span>체격</span>
-          <span>188cm / 80kg</span>
+          <span>
+            {player.height}cm / {player.weight}kg
+          </span>
         </div>
         <div className="flex justify-between">
           <span>출신교</span>
-          <span className="max-w-48 text-right word-wrap">
-            OOO초-OOO중-OOOO고-OOO대
-          </span>
+          <span className="max-w-52 text-right word-wrap">{player.career}</span>
         </div>
       </div>
       <div>
