@@ -1,5 +1,5 @@
+import { GameSchedule } from '@/features/game/types/match-schedule';
 import { format } from 'date-fns';
-import { GameSchedule } from './MatchCalendar';
 
 interface MatchCalendarCellProps {
   date: Date;

@@ -11,73 +11,33 @@ const KeyRecordsTable = ({ data }: KeyRecordsTableProps) => {
     return record ? record.result : '';
   };
 
+  const tableRows = [
+    { label: '결승타' },
+    { label: '2루타' },
+    { label: '실책' },
+    { label: '도루' },
+    { label: '도루자' },
+    { label: '주루사' },
+    { label: '병살타' },
+    { label: '심판' },
+  ];
+
   return (
     <Table className="whitespace-nowrap">
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white text-wiz-black">
-            결승타
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('결승타')}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white text-wiz-black">
-            2루타
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('2루타')}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40]  text-center bg-wiz-white">
-            실책
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('실책')}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
-            도루
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('도루')}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
-            도루자
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('도루자')}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
-            주루사
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('주루사')}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
-            병살타
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('병살타')}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white">
-            심판
-          </TableCell>
-          <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-[#35383e]">
-            {getRecordByHow('심판')}
-          </TableCell>
-        </TableRow>
+        {tableRows.map((row) => (
+          <TableRow
+            key={row.label}
+            className="text-base font-semibold border-none"
+          >
+            <TableCell className="font-medium border border-[#fefefe40] text-center  text-wiz-white bg-wiz-white bg-opacity-30">
+              {row.label}
+            </TableCell>
+            <TableCell className="font-medium border border-[#fefefe40] w-full text-wiz-white bg-wiz-black">
+              {getRecordByHow(row.label)}
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
