@@ -18,7 +18,7 @@ const CoachPage = () => {
         <Banner>
           <Banner.Image
             src="https://placehold.co/1200x200/141414/642521?text=COACHING+STEP"
-            alt="KT WIZ GAMES"
+            alt="KT WIZ Coach"
           />
           <Banner.Overlay>
             <Banner.Heading
