@@ -25,7 +25,7 @@ function BatterPage() {
           alt="KT WIZ 타자"
         />
         <Banner.Overlay>
-          <Banner.Heading title="타자" />
+          <Banner.Heading title="KT Wiz 선수단" subtitle="타자" />
           <Banner.Description description="KT Wiz의 자랑스런 '첫 번째 선수단'을 소개합니다." />
         </Banner.Overlay>
       </Banner>
