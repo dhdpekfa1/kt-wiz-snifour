@@ -1,4 +1,6 @@
+import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
+import Layout from '@/features/common/Layout';
 import { useCoachList } from '@/features/game/hooks/useCoachList';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components/';
@@ -11,7 +13,20 @@ const CoachPage = () => {
   };
 
   return (
-    <div>
+    <Layout
+      header={
+        <Banner>
+          <Banner.Image
+            src="https://placehold.co/1200x200/141414/642521?text=COACHING+STEP"
+            alt="KT WIZ Coach"
+          />
+          <Banner.Overlay>
+            <Banner.Heading title="KT WIZ 선수단" subtitle="코칭 스텝" />
+            <Banner.Description description="최고의 kt wiz 코칭스텝을 소개합니다." />
+          </Banner.Overlay>
+        </Banner>
+      }
+    >
       <Breadcrumb
         leftComponent={<SearchBar onSubmit={handleSubmit} />}
         paths={[
@@ -26,7 +41,7 @@ const CoachPage = () => {
         endpoint="coach"
         loading={loading}
       />
-    </div>
+    </Layout>
   );
 };
 
