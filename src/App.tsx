@@ -20,9 +20,9 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
 import CoachPage from './pages/player/CoachPage';
-import CoachDetailPage from './pages/player/id/CoachDetailPage';
+import CoachDetailPage from './pages/player/detail/CoachDetailPage';
 import PitcherPage from './pages/player/PitcherPage';
-import PlayerDetailPage from './pages/player/id/PlayerDetailPage';
+import PlayerDetailPage from './pages/player/detail/PlayerDetailPage';
 import BatterPage from './pages/player/BatterPage';
 import ScrollToTop from './features/common/ScrollToTop';
 
