@@ -22,6 +22,7 @@ import PressDetailPage from './pages/media/id/PressDetail';
 import CheerleaderPage from './pages/player/CheerleaderPage';
 import CoachPage from './pages/player/CoachPage';
 import CoachDetailPage from './pages/player/id/CoachDetailPage';
+import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
             <Route path="/wizpark/location" element={<ParkLocationPage />} />
             <Route path="/wizpark/parking" element={<ParkingPage />} />
+            <Route path="/wizpark/iksan" element={<IksanStadiumPage />} />
 
             {/* Game */}
             <Route path="/game/regular/*" element={<RegularGamePage />} />
