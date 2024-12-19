@@ -33,10 +33,12 @@ export interface YearRecord extends CommonRecord {
   teamName: string;
   wCg: number;
   wra: string;
+  l: number;
 }
 
 export interface SeasonSummary extends CommonRecord {
   babip: string;
+  era: string;
   bs: number;
   err: number;
   fip: string;

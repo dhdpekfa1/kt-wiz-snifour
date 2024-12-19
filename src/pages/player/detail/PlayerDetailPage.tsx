@@ -2,9 +2,9 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { PlayerProfile, PlayerRecordChart } from '@/features/player/components';
 import { data } from '@/assets/data/__test__/pitcher/엄상백.json';
+import { RecentRecord, YearRecord } from '@/features/player/types/record';
 
 function PlayerDetailPage() {
-  console.log(data);
   return (
     <div className="my-20 text-white">
       <Breadcrumb />
@@ -19,11 +19,12 @@ function PlayerDetailPage() {
           />
           {/* 경기 기록 */}
           <div className="flex-1 flex flex-col items-center gap-4">
-            <PlayerRecordChart
-              title="최근 5경기"
-              data={data.recentgamerecordlist}
+            <PlayerRecordChart.Recent
+              data={data.recentgamerecordlist as RecentRecord[]}
             />
-            <PlayerRecordChart title="통산 기록" data={data.yearrecordlist} />
+            <PlayerRecordChart.Year
+              data={data.yearrecordlist as YearRecord[]}
+            />
           </div>
         </div>
         {/* 표 */}

@@ -44,7 +44,7 @@ function DataTable<TData extends TypeHasTeamName>({
             className="text-base font-semibold bg-wiz-white bg-opacity-30 border-none"
           >
             {headerGroup.headers.map((header) => (
-              <TableHead key={header.id} className="text-center">
+              <TableHead key={header.id} className="text-center p-1">
                 {flexRender(
                   header.column.columnDef.header,
                   header.getContext()
