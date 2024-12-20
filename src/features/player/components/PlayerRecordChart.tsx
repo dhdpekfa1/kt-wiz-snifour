@@ -108,6 +108,7 @@ function RecentRecordChart({ data }: RecentRecordChartProps) {
 
 function YearRecordChart({ data }: YearRecordChartProps) {
   const [config, setConfig] = useState<Config>(yearPitcherConfig);
+  const [chartType, setChartType] = useState<string>('bar');
 
   const handleConfig = (dataKey: keyof Config) => {
     setConfig((prev) => {
@@ -130,10 +131,37 @@ function YearRecordChart({ data }: YearRecordChartProps) {
     <PlayerRecordChart>
       <div className="flex items-center justify-between">
         <SubTitle title="통산 기록" className="text-lg" />
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            className={cn(
+              'bg-white text-black px-2 py-1 text-sm rounded',
+              chartType === 'bar' && 'text-white bg-wiz-red'
+            )}
+            onClick={() => setChartType('bar')}
+          >
+            막대 차트
+          </button>
+          <button
+            type="button"
+            className={cn(
+              'bg-white text-black px-2 py-1 text-sm rounded',
+              chartType === 'line' && 'text-white bg-wiz-red'
+            )}
+            onClick={() => setChartType('line')}
+          >
+            선 차트
+          </button>
+        </div>
       </div>
       {/* 차트 */}
       <div className="w-full">
-        <CustomBarChart data={data} config={config} XAxisKey="gyear" />
+        {chartType === 'bar' && (
+          <CustomBarChart data={data} config={config} XAxisKey="gyear" />
+        )}
+        {chartType === 'line' && (
+          <CustomLineChart data={data} config={config} XAxisKey="gyear" />
+        )}
       </div>
       <div className="flex flex-col items-center justify-center gap-2">
         <div className="flex items-center justify-center gap-4">
