@@ -3,6 +3,11 @@ import SubTitle from '@/features/common/SubTitle';
 import { PlayerProfile, PlayerRecordChart } from '@/features/player/components';
 import { data } from '@/assets/data/__test__/pitcher/엄상백.json';
 import { RecentRecord, YearRecord } from '@/features/player/types/record';
+import DataTable from '@/features/common/DataTable';
+import {
+  seasonOneColumns,
+  seasonTwoColumns,
+} from '@/constants/columns/season-summary-columns';
 
 function PlayerDetailPage() {
   return (
@@ -30,6 +35,8 @@ function PlayerDetailPage() {
         {/* 표 */}
         <div className="w-full">
           <SubTitle title="정규 리그 기록" />
+          <DataTable data={[data.seasonsummary]} columns={seasonOneColumns} />
+          <DataTable data={[data.seasonsummary]} columns={seasonTwoColumns} />
         </div>
       </div>
     </div>

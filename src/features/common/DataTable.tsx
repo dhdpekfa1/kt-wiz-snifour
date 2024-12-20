@@ -19,17 +19,13 @@ interface TypeHasTeamName {
   team?: string;
 }
 
-interface DataTableProps<TData extends TypeHasTeamName> {
+interface DataTableProps<TData> {
   data: TData[];
   columns: ColumnDef<TData>[];
   domain?: 'kt' | 'all';
 }
 
-function DataTable<TData extends TypeHasTeamName>({
-  data,
-  columns,
-  domain,
-}: DataTableProps<TData>) {
+function DataTable<TData>({ data, columns, domain }: DataTableProps<TData>) {
   const table = useReactTable({
     data,
     columns,
@@ -61,7 +57,7 @@ function DataTable<TData extends TypeHasTeamName>({
             className={cn(
               'border-b-wiz-white border-opacity-10',
               domain === 'all' &&
-                row.original.team === 'KT' &&
+                (row.original as TData & TypeHasTeamName).team === 'KT' &&
                 'bg-wiz-red bg-opacity-70 border-b-wiz-red'
             )}
           >
