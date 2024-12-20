@@ -1,4 +1,4 @@
-import { battingRecordColumns } from '@/constants/batting-record-columns';
+import { battingRecordColumns } from '@/constants/columns/batting-record-columns';
 import DataTable from '@/features/common/DataTable';
 import type { Batter } from '../../types/BoxScoreData';
 

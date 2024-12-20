@@ -1,5 +1,5 @@
 import { PlayerScatterChart } from '@/features/game/components/ranking';
-import { pitcherColumns } from '@/constants/player-rank-colums';
+import { pitcherColumns } from '@/constants/columns/player-rank-colums';
 // import { usePitcherRank } from '@/assets/hooks/ranking/usePitcherRank';
 import { ktPitcher } from '@/assets/data/__test__/mockRanking.json';
 import SortableTable from '@/features/common/SortableTable';

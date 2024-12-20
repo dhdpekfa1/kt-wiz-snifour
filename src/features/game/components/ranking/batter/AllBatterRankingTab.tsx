@@ -1,5 +1,5 @@
 import { PlayerScatterChart } from '../common/PlayerScatterChart';
-import { batterColumns } from '@/constants/player-rank-colums';
+import { batterColumns } from '@/constants/columns/player-rank-colums';
 // import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
 import { allBatter } from '@/assets/data/__test__/mockRanking.json';
 import SortableTable from '@/features/common/SortableTable';

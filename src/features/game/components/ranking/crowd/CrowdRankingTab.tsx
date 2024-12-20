@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 // import { useCrowdRank } from '@/assets/hooks/ranking';
 import { crowd } from '@/assets/data/__test__/mockRanking.json';
-import { crowdRankColumns } from '@/constants/crowd-columns';
+import { crowdRankColumns } from '@/constants/columns/crowd-columns';
 import { seasons } from '@/constants/seasons';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import CustomSelect from '@/features/common/CustomSelect.tsx';
