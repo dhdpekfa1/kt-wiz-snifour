@@ -26,16 +26,24 @@ interface CustomTooltipProps extends TooltipProps<string, string> {
   dataKey: string;
 }
 
-function CustomTooltip({ active, payload, dataKey }: CustomTooltipProps) {
+function CustomTooltip({
+  active,
+  payload,
+  label,
+  dataKey,
+}: CustomTooltipProps) {
   if (active && payload && payload.length) {
     const value = payload[0].value;
 
     return (
-      <div className="bg-white flex items-center gap-2 rounded p-2">
-        <span className="w-fit text-sm bg-wiz-black text-white rounded text-center px-2 py-1">
-          {dataKey}
-        </span>
-        <span className="text-black">{value}</span>
+      <div className="min-w-24 bg-white flex flex-col gap-2 rounded p-2">
+        <h3 className="text-black font-bold text-base">{label}</h3>
+        <div className="flex items-center justify-between gap-2">
+          <span className="w-fit text-sm bg-wiz-black text-white rounded text-center px-2 py-1">
+            {dataKey}
+          </span>
+          <span className="text-black">{value}</span>
+        </div>
       </div>
     );
   }
