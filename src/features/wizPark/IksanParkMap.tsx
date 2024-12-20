@@ -7,9 +7,9 @@ import {
   ZoomControl,
 } from 'react-kakao-maps-sdk';
 
-function WizParkMap() {
+function IksanParkMap() {
   useKakaoLoader();
-  const position = { lat: 37.299759, lng: 127.009781 };
+  const position = { lat: 35.96755, lng: 127.0063 };
 
   return (
     <>
@@ -32,4 +32,4 @@ function WizParkMap() {
   );
 }
 
-export default WizParkMap;
+export default IksanParkMap;

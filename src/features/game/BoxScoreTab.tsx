@@ -75,19 +75,26 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
             <SubTitle
-              title={`${matchData?.schedule.current.visit} 타자 기록`}
+              title={`${
+                matchData?.schedule.current.home || 'Home Team'
+              } 타자 기록`}
             />
+
             <div className="w-full">
-              <BattingRecordTable data={matchData?.vbatters} />
+              <BattingRecordTable data={matchData?.hbatters} />
             </div>
           </div>
         </div>
         {/* team2 타자 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
-            <SubTitle title={`${matchData?.schedule.current.home} 타자 기록`} />
+            <SubTitle
+              title={`${
+                matchData?.schedule.current.visit || 'Visit Team'
+              } 타자 기록`}
+            />
             <div className="w-full">
-              <BattingRecordTable data={matchData?.hbatters} />
+              <BattingRecordTable data={matchData?.vbatters} />
             </div>
           </div>
         </div>
@@ -95,19 +102,25 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
             <SubTitle
-              title={`${matchData?.schedule.current.visit} 투수 기록`}
+              title={`${
+                matchData?.schedule.current.home || 'Home Team'
+              } 투수 기록`}
             />
             <div className="w-full">
-              <PitchingRecordTable data={matchData?.vpitchers} />
+              <PitchingRecordTable data={matchData?.hpitchers} />
             </div>
           </div>
         </div>
         {/* team2 투수 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <div className="flex flex-col gap-2">
-            <SubTitle title={`${matchData?.schedule.current.home} 투수 기록`} />
+            <SubTitle
+              title={`${
+                matchData?.schedule.current.visit || 'Visit Team'
+              } 투수 기록`}
+            />
             <div className="w-full">
-              <PitchingRecordTable data={matchData?.hpitchers} />
+              <PitchingRecordTable data={matchData?.vpitchers} />
             </div>
           </div>
         </div>

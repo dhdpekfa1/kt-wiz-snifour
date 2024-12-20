@@ -1,4 +1,3 @@
-import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import {
   BatterRankingTab,
@@ -6,6 +5,7 @@ import {
   PitcherRankingTab,
   TeamRankingTab,
 } from '@/features/game/components/ranking';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import SubTabsTrigger from '../common/SubTabsTrigger';
 
 const REG_TABS_CONFIG = [

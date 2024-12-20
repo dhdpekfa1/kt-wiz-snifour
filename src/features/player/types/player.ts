@@ -22,6 +22,7 @@ export interface Coach extends PlayerBase {
   heightWeight: string;
   career: string;
   birth: string;
+  engName: string;
 }
 
 // 선수
