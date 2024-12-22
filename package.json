@@ -12,9 +12,13 @@
     "prepare": "husky && husky install"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["biome check --apply", "biome format --write"]
+    "*.{js,jsx,ts,tsx}": [
+      "biome check --apply",
+      "biome format --write"
+    ]
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-select": "^2.1.2",

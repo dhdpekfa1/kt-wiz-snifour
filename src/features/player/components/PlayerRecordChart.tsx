@@ -5,6 +5,7 @@ import { RecentRecord, YearRecord } from '../types/record';
 import CustomBarChart from '@/features/common/CustomBarChart';
 import CustomLineChart from '@/features/common/CustomLineChart';
 import { cn } from '@/lib/utils';
+import { RecordTableAccordion } from './RecordTableAccordion';
 
 interface Config {
   [key: string]: {
@@ -43,7 +44,9 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
   return (
     <div className="w-full bg-wiz-white bg-opacity-10 rounded-xl px-4 pt-4 pb-8">
       <div className="flex items-center justify-between">
-        <SubTitle title={title} className="text-lg" />
+        <div className="flex items-center gap-4">
+          <SubTitle title={title} className="text-lg" />
+        </div>
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -92,6 +95,7 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
         <div className="text-xs text-neutral-400">
           해당 라벨을 클릭하여 데이터 표시 정보를 변경할 수 있습니다.
         </div>
+        <RecordTableAccordion data={data} />
       </div>
     </div>
   );
