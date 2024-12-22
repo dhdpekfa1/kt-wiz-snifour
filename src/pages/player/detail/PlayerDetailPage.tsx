@@ -8,6 +8,10 @@ import {
   seasonOneColumns,
   seasonTwoColumns,
 } from '@/constants/columns/season-summary-columns';
+import {
+  recentPitcherConfig,
+  yearPitcherConfig,
+} from '@/constants/chart-config';
 
 function PlayerDetailPage() {
   return (
@@ -24,11 +28,15 @@ function PlayerDetailPage() {
           />
           {/* 경기 기록 */}
           <div className="flex-1 flex flex-col items-center gap-4">
-            <PlayerRecordChart.Recent
+            <PlayerRecordChart
+              title="최근 5경기"
               data={data.recentgamerecordlist as RecentRecord[]}
+              config={recentPitcherConfig}
             />
-            <PlayerRecordChart.Year
+            <PlayerRecordChart
+              title="통산 기록"
               data={data.yearrecordlist as YearRecord[]}
+              config={yearPitcherConfig}
             />
           </div>
         </div>
