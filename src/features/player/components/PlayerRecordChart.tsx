@@ -25,6 +25,14 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
   const [chartType, setChartType] = useState<string>('bar');
 
   const handleConfig = (dataKey: keyof Config) => {
+    const currentConfig = Object.keys(chartConfig).filter(
+      (key) => chartConfig[key].isActive
+    )[0];
+
+    if (currentConfig === dataKey) {
+      return;
+    }
+
     setChartConfig((prev) => {
       // 모든 항목을 비활성화한 뒤 클릭한 버튼만 활성화
       const newConfig = Object.keys(prev).reduce((acc, key) => {
@@ -80,7 +88,7 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
       </div>
       <div className="flex flex-col items-center justify-center gap-2">
         <div className="flex items-center justify-center gap-4">
-          {Object.entries(config).map(([dataKey, value]) => (
+          {Object.entries(chartConfig).map(([dataKey, value]) => (
             // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
             <div
               key={dataKey}
