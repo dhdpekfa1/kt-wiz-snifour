@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
-import Header from './features/common/Header';
+import Header from './features/common/header/Header';
 import HomePage from './pages/HomePage';
 import PlayerPage from './pages/media/FirstPitch';
 import HighlightPage from './pages/media/Highlight';
