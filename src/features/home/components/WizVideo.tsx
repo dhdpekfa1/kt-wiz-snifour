@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui';
 import { Video } from '../types';
+import { cn } from '@/lib/utils';
 
 function WizVideo() {
   const [videos, setVideos] = useState<Video[]>([]);
@@ -40,24 +41,38 @@ function WizVideo() {
   return (
     <Card className="w-full border-none shadow-none flex flex-col items-center">
       <CardHeader className="w-full px-0">
-        <CardTitle className="text-wiz-white">wiz Video</CardTitle>
+        <CardTitle className={cn('text-wiz-white text-lg', 'lg:text-2xl')}>
+          wiz Video
+        </CardTitle>
       </CardHeader>
       <CardContent className="w-full px-0">
         <div className="w-full h-fit bg-gray-200 rounded-3xl overflow-hidden">
           <img src={videos[0].imgFilePath} alt={videos[0].artcTitle} />
         </div>
-        <div className="w-full grid grid-cols-4 gap-4 py-4">
+        <div
+          className={cn('w-full grid grid-cols-2 gap-4 py-4', 'lg:grid-cols-4')}
+        >
           {videos.slice(1).map((vid) => (
-            <div className="flex flex-col gap-2 relative bg-white rounded-xl overflow-hidden">
-              <div className="w-full h-40 bg-gray-500">
+            <div className="flex flex-col gap-2 bg-white rounded-xl overflow-hidden">
+              <div className="w-full h-fit bg-gray-500">
                 <img src={vid.imgFilePath} alt={vid.artcTitle} />
               </div>
-              <div className="absolute top-1 right-1 bg-black text-white text-xs px-2 py-1 rounded-xl bg-gradient-to-r from-[#f53232] via-[#cc65de] to-[#2ab2c6]">
-                하이라이트
-              </div>
-              <div className="flex flex-col px-2 py-1 gap-8">
-                <p className="font-semibold text-base">{vid.artcTitle}</p>
-                <p className="text-xs text-gray-400 self-end">
+              <div className="h-full flex flex-col justify-between px-2 py-1 gap-4 md:gap-8">
+                <p
+                  className={cn(
+                    'font-semibold text-xs',
+                    'md:text-sm',
+                    'lg:text-base'
+                  )}
+                >
+                  {vid.artcTitle}
+                </p>
+                <p
+                  className={cn(
+                    'text-gray-400 self-end text-[0.6rem]',
+                    'lg:text-xs'
+                  )}
+                >
                   {vid.contentsDate}
                 </p>
               </div>
@@ -68,7 +83,10 @@ function WizVideo() {
       <CardFooter>
         <Link
           to="/media/highlight"
-          className="border-2 px-4 py-2 rounded bg-white"
+          className={cn(
+            'border-2 rounded bg-white text-xs px-2 py-1',
+            'lg:text-base lg:px-4 lg:py-2'
+          )}
         >
           더 많은 영상보기
         </Link>
