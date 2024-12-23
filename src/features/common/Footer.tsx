@@ -2,7 +2,12 @@ import { cn } from '@/lib/utils';
 
 function Footer() {
   return (
-    <div className={cn('w-full border-t flex justify-center py-7 bg-white')}>
+    <div
+      className={cn(
+        'w-full border-t flex justify-center py-7 bg-white pb-16',
+        'md:pb-0'
+      )}
+    >
       <div
         className={cn(
           'w-full flex flex-col justify-between px-4',
