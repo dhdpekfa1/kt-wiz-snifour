@@ -15,7 +15,10 @@ import '@/features/game/css/game.css';
 
 const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
-  { value: 'boxscore', path: '/regular/boxscore' },
+  {
+    value: 'boxscore',
+    paths: ['/regular/boxscore', '/regular/boxscore/:gameDate/:gameKey'],
+  },
   { value: 'ranking', path: '/regular/ranking' },
   { value: 'watchpoint', path: '/regular/watchPoint' },
 ];
