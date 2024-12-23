@@ -1,6 +1,6 @@
 import { Card, CardContent, CarouselItem } from '@/components/ui';
 import TeamInfo from '@/features/common/TeamInfo';
-import { GameSchedule } from '@/features/game/types/match-schedule';
+import type { GameSchedule } from '@/features/game/types/match-schedule';
 import { format, isValid, parse } from 'date-fns';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
@@ -17,9 +17,9 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
 
   const handleGameInfoClick = () => {
     if (data) {
-      const gameDate = data.gameDate.toString();
-      const gameKey = data.gmkey;
-      navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`);
+      navigate('/game/regular/boxscore', {
+        state: { gameDate: data.gameDate.toString(), gameKey: data.gmkey },
+      });
     }
   };
 
