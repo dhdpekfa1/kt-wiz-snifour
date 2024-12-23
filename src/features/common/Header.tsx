@@ -1,65 +1,9 @@
+import { navMenus } from '@/constants/nav-menus';
 import { cn } from '@/lib/utils';
 import { AlignJustify } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 
-const navMenus = [
-  {
-    title: 'KT Wiz',
-    sub: [
-      { title: 'kt wiz는?', link: '/ktwiz/about' },
-      { title: '구단 BI', link: '/ktwiz/bi/symbol' },
-      { title: '회원 정책', link: '/ktwiz/policy/regular' },
-      { title: '월페이퍼', link: '/ktwiz/wallpaper' },
-    ],
-  },
-  {
-    title: 'Wiz Park',
-    sub: [
-      { title: '수원 kt wiz park', link: '/wizpark/intro' },
-      { title: '주차 예약', link: '/wizpark/parking' },
-      { title: '찾아오기', link: '/wizpark/location' },
-      { title: '익산야구장', link: '/wizpark/iksan' },
-    ],
-  },
-  {
-    title: 'Game',
-    sub: [
-      { title: '정규리그', link: '/game/regular/schedule' },
-      { title: '퓨처스리그', link: '/game/futures/schedule' },
-    ],
-  },
-  {
-    title: 'Player',
-    sub: [
-      { title: '코칭스텝', link: '/player/coach' },
-      { title: '투수', link: '/player/pitcher' },
-      { title: '타자', link: '/player/catcher' },
-      { title: '응원단', link: '/player/cheer' },
-      { title: '응원가', link: '/player/song' },
-    ],
-  },
-  {
-    title: 'Media',
-    sub: [
-      { title: 'wiz 뉴스', link: '/media/wiznews' },
-      { title: 'wiz 스토리', link: '/media/wizstory' },
-      { title: 'wiz 포토', link: '/media/photos/1' },
-      { title: '시구자 정보', link: '/media/firstpitch' },
-      { title: '하이라이트', link: '/media/highlight' },
-      { title: 'Live 영상', link: '/media/live/pts' },
-    ],
-  },
-  { title: 'Shop', link: 'https://www.ktwizstore.co.kr/', sub: [] },
-  {
-    title: '티켓구매',
-    sub: [
-      { title: '티켓예매', link: '/ticket/reservation' },
-      { title: '단체관람', link: '/ticket/group' },
-      { title: '입장 및 좌석 정보', link: '/ticket/seatmap' },
-    ],
-  },
-];
 function WebHeader({ className }: { className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -148,12 +92,98 @@ function WebHeader({ className }: { className?: string }) {
   );
 }
 
+function Sidebar({
+  className,
+  open,
+  onClose,
+}: {
+  className?: string;
+  open: boolean;
+  onClose: () => void;
+}) {
+  const sideBarRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sideBarRef.current &&
+        !sideBarRef.current?.contains(event.target as Node)
+      ) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
+
+  return (
+    <div className="h-screen">
+      <div
+        ref={sideBarRef}
+        className={cn(
+          'fixed top-0 left-0 bg-black text-white w-2/3 h-full overflow-y-scroll px-4 my-4 z-20 text-sm transition-all duration-300',
+          'md:w-1/3',
+          open ? 'transform-x-0' : '-translate-x-full',
+          className
+        )}
+      >
+        <Link
+          to="/"
+          className="block w-full rounded py-1 hover:bg-wiz-white hover:bg-opacity-10"
+          onClick={onClose}
+        >
+          홈으로
+        </Link>
+        {navMenus.map((group) => (
+          <div key={group.title} className="my-8">
+            <h4 className="text-wiz-red my-2">{group.title}</h4>
+            {group.title === 'Shop' && (
+              <Link
+                to="https://www.ktwizstore.co.kr/"
+                className="block rounded w-full py-1 hover:bg-wiz-white hover:bg-opacity-10"
+                onClick={onClose}
+              >
+                바로가기
+              </Link>
+            )}
+            <ul className="flex flex-col gap-2">
+              {group.sub.map((menu) => (
+                <Link
+                  to={menu.link}
+                  className="rounded py-1 hover:bg-wiz-white hover:bg-opacity-10"
+                  onClick={onClose}
+                >
+                  {menu.title}
+                </Link>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      {/* 사이드바 외부 배경 */}
+      {open && (
+        <div className="absolute bg-black bg-opacity-50 top-0 left-0 w-screen h-screen" />
+      )}
+    </div>
+  );
+}
+
 function MobileHeader() {
   const navigate = useNavigate();
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+
+  const handleSidebarClose = () => setSideBarOpen(false);
 
   return (
     <div className="w-screen h-12 lg:hidden flex items-center justify-center fixed top-0 z-10 bg-black">
-      <AlignJustify className="text-white absolute top-3 left-3 w-4" />
+      <Sidebar open={sideBarOpen} onClose={handleSidebarClose} />
+      <AlignJustify
+        className="text-white absolute top-3 left-4 w-4"
+        onClick={() => setSideBarOpen((prev) => !prev)}
+      />
       <img
         src="/assets/img-logo.svg"
         alt=""
@@ -164,6 +194,7 @@ function MobileHeader() {
     </div>
   );
 }
+
 function Header() {
   return (
     <>
