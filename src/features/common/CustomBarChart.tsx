@@ -1,9 +1,13 @@
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { RecentRecord, YearRecord } from '../player/types/record';
 import { ChartContainer } from '@/components/ui/chart';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import {
+  RecentRecord,
+  SeasonPitcher,
+  YearRecord,
+} from '../player/types/record';
 
 interface CustomBarChartProps {
-  data: RecentRecord[] | YearRecord[];
+  data: RecentRecord[] | YearRecord[] | SeasonPitcher[];
   config: {
     [key: string]: {
       label: string;

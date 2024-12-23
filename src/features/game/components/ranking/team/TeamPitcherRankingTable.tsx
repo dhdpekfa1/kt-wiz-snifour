@@ -1,9 +1,15 @@
 // import { TeamPitcherRank } from '@/features/common/types/pitchers';
-// import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
+// import { useTeamRank } from "@/features/game/hooks/ranking/useTeamRank";
 import { teamPitcher as mockRanking } from '@/assets/data/__test__/mockRanking.json';
+import data from '@/assets/data/__test__/season-team-rank/seasonPitcher.json';
+import { TeamRankingPitcherConfig } from '@/constants/chart-config';
 import { teamPitcherRankColumns } from '@/constants/columns/team-rank-colums';
+import CustomBarChart from '@/features/common/CustomBarChart';
 import DataTable from '@/features/common/DataTable';
+import { SeasonPitcher } from '@/features/player/types/record';
 import { useState } from 'react';
+
+const seasonPitcherData: SeasonPitcher[] = data.data.list;
 
 function TeamPitcherRankingTable() {
   const [selectedTab, setSelectedTab] = useState<'table' | 'chart'>('table');
@@ -47,7 +53,11 @@ function TeamPitcherRankingTable() {
           domain="all"
         />
       ) : (
-        <div>check</div>
+        <CustomBarChart
+          data={seasonPitcherData}
+          config={TeamRankingPitcherConfig}
+          XAxisKey={'teamName'}
+        />
       )}
     </div>
   );
