@@ -1,4 +1,4 @@
-import { teamPitcherRankColumns } from '@/constants/team-rank-colums';
+import { teamPitcherRankColumns } from '@/constants/columns/team-rank-colums';
 import DataTable from '@/features/common/DataTable';
 // import { TeamPitcherRank } from '@/features/common/types/pitchers';
 // import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';

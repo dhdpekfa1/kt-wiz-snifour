@@ -59,3 +59,9 @@ export {
   DialogClose,
 } from './dialog/dialog';
 export { Calendar } from './calendar/calendar';
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './accordion/accordion';

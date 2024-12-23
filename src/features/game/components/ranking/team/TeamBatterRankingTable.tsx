@@ -1,7 +1,7 @@
 // import { TeamBatterRank } from '@/features/common/types/batters';
 // import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
 import DataTable from '@/features/common/DataTable';
-import { teamBatterRankColumns } from '@/constants/team-rank-colums';
+import { teamBatterRankColumns } from '@/constants/columns/team-rank-colums';
 import { teamBatter as mockRanking } from '@/assets/data/__test__/mockRanking.json';
 
 function TeamBatterRankingTable() {

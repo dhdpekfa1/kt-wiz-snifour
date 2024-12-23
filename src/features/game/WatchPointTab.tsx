@@ -29,14 +29,7 @@ const WatchPointTab = () => {
     <div className="w-full flex my-20">
       <div className="w-full flex flex-col justify-center items-start">
         {/* 경로 */}
-        <Breadcrumb
-          paths={[
-            { key: 'home', label: 'Home' },
-            { key: 'game', label: 'Game' },
-            { key: 'regular-season', label: '정규리그' },
-            { key: 'box-score', label: '관전 포인트', isActive: true },
-          ]}
-        />
+        <Breadcrumb />
         {/* 경기 정보 보드 */}
         <MatchBoard
           team1Data={{

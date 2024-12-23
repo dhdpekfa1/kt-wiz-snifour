@@ -8,9 +8,11 @@ const SubTitle = ({
   className?: string;
 }) => {
   return (
-    <div className={cn('flex items-center gap-2 text-white', className || '')}>
+    <div
+      className={cn('flex items-center gap-2 text-white text-2xl', className)}
+    >
       <div className="h-4 w-1 bg-[#ec0a0b]" />
-      <h4 className="font-semibold text-2xl">{title}</h4>
+      <h4 className="font-semibold">{title}</h4>
     </div>
   );
 };

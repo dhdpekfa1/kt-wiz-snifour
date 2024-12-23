@@ -21,13 +21,18 @@ import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
 import CheerleaderPage from './pages/player/CheerleaderPage';
 import CoachPage from './pages/player/CoachPage';
-import CoachDetailPage from './pages/player/id/CoachDetailPage';
+import CoachDetailPage from './pages/player/detail/CoachDetailPage';
+import PitcherPage from './pages/player/PitcherPage';
+import PlayerDetailPage from './pages/player/detail/PlayerDetailPage';
+import BatterPage from './pages/player/BatterPage';
+import ScrollToTop from './features/common/ScrollToTop';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="w-full bg-wiz-black flex flex-col items-center">
+      <ScrollToTop />
+      <div className="w-full bg-wiz-black flex flex-col items-center relative">
         <Header />
         {/*
           데스크탑 -> 1240px (padding 포함, 실제컨텐츠 1200px),
@@ -66,15 +71,34 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
 
             {/* Player */}
-            <Route path="/player/song" element={<CheerSongPage />} />
             <Route path="/player/coach" element={<CoachPage />} />
+            <Route path="/player/pitcher" element={<PitcherPage />} />
+            <Route path="/player/catcher" element={<BatterPage />} />
+            <Route path="/player/infielder" element={<BatterPage />} />
+            <Route path="/player/outfielder" element={<BatterPage />} />
+            <Route path="/player/song" element={<CheerSongPage />} />
             <Route path="/player/cheer" element={<CheerleaderPage />} />
 
             {/* Player 상세 페이지 경로 */}
             <Route path="/player/coach/detail" element={<CoachDetailPage />} />
+            <Route
+              path="/player/pitcher/detail"
+              element={<PlayerDetailPage />}
+            />
+            <Route
+              path="/player/catcher/detail"
+              element={<PlayerDetailPage />}
+            />
           </Routes>
         </div>
         <Footer />
+        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+        <div
+          onClick={() => window.scrollTo(0, 0)}
+          className="w-12 h-12 rounded-full bg-white border fixed bottom-2 left-2 flex items-center justify-center text-center cursor-pointer text-sm font-semibold"
+        >
+          TOP▲
+        </div>
       </div>
     </BrowserRouter>
   );

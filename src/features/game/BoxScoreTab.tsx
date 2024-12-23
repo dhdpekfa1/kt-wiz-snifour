@@ -40,14 +40,7 @@ const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
     <div className="w-full flex justify-center my-20">
       <div className="w-full flex flex-col justify-center items-center">
         {/* 경로 */}
-        <Breadcrumb
-          paths={[
-            { key: 'home', label: 'Home' },
-            { key: 'game', label: 'Game' },
-            { key: 'regular-season', label: '정규리그' },
-            { key: 'box-score', label: '박스 스코어', isActive: true },
-          ]}
-        />
+        <Breadcrumb />
 
         {/* 경기 스코어 테이블 */}
         <MatchBoard

@@ -48,15 +48,9 @@ k t wi z 강 백 호
 
 function CheerSongPage() {
   return (
-    <div className="w-[1200px]">
+    <div className="my-20">
       {/* breadcrumbs */}
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'player', label: 'Player' },
-          { key: 'cheer-song', label: '응원가', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
 
       {/* tabs - 구단 응원가, 선수 응원가 */}
       <Tabs defaultValue="team" className="w-full flex flex-col items-center">

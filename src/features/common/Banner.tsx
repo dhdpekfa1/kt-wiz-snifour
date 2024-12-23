@@ -11,7 +11,7 @@ export const BannerDescription = ({ description }: BannerDescriptionProps) => {
 
 type BannerHeadingProps = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
 };
 
 export const BannerHeading = ({ title, subtitle }: BannerHeadingProps) => {

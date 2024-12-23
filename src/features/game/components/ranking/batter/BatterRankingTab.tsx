@@ -23,15 +23,7 @@ function BatterRankingTab() {
 
   return (
     <div className="my-20">
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'game', label: 'Game' },
-          { key: 'regular', label: '정규 리그' },
-          { key: 'ranking', label: '순위 기록' },
-          { key: 'batter', label: '타자 순위', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
 
       {/* 타자 랭킹 카드 */}
       <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl">

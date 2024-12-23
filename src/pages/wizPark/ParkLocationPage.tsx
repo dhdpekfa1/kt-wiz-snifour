@@ -26,13 +26,7 @@ function ParkLocationPage() {
       }
     >
       <div className="flex flex-col items-center text-wiz-white">
-        <Breadcrumb
-          paths={[
-            { key: 'home', label: 'Home' },
-            { key: 'wizpark', label: 'Wiz Park' },
-            { key: 'wizpark-road', label: '찾아오기', isActive: true },
-          ]}
-        />
+        <Breadcrumb />
         <WizParkMap />
         <div className="flex flex-col items-center my-8 gap-2">
           <p className="text-xl font-semibold">

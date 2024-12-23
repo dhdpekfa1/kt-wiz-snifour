@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(dateString: string) {
+export function formatDate(dateString: string | undefined) {
   if (!dateString) return;
 
   const year = dateString.slice(0, 4);

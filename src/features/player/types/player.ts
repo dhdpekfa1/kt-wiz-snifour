@@ -1,37 +1,39 @@
-interface BasePlayer {
+// 공통 속성만 포함하는 기본 인터페이스
+interface PlayerBase {
   backnum: string;
-  birth: string;
-  career: string;
-  career2?: string;
-  engName: string;
+  energybar: number;
+  energybarName: string;
   gyear: string;
-  height: string;
+  hittype: string;
   mobilePlayerImg: string;
   mobilePlayerImg1: string;
   mobilePlayerImg2: string;
+  pcode: string;
   playerName: string;
   playerPrvwImg: string;
-  playerPrvwImg1: string;
-  playerPrvwImg2?: string;
-  playerPrvwImg3?: string;
   position: string;
-  teamCode: string;
   teamName: string;
-  weight: string;
-  hittype: string;
-  pcode: string;
 }
 
-// 코치 타입
-export interface Coach extends BasePlayer {
+// 감독 (hasFanpage 제외)
+export interface Coach extends PlayerBase {
+  position: '감독';
+  height: string;
   heightWeight: string;
+  career: string;
+  birth: string;
+  engName: string;
 }
 
-export interface Player extends BasePlayer {
-  energybar: number;
-  energybarName: string;
-  money: string;
-  promise: string;
+// 선수
+export interface Player extends PlayerBase {
+  position: string;
   rank: number;
   rankName: string;
+  hasFanpage: string;
+  engName?: string;
+  birth?: string;
+  height?: string;
+  weight?: string;
+  career?: string;
 }

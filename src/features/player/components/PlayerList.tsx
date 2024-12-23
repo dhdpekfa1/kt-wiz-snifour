@@ -57,9 +57,7 @@ const PlayerList = ({ playerList, endpoint, loading }: PlayerListProps) => {
               <img
                 src={player.playerPrvwImg}
                 alt={player.playerName}
-                width={150}
-                height={200}
-                className="w-full h-auto object-cover"
+                className="w-full aspect-square object-cover"
               />
             </div>
           ))}

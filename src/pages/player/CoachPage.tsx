@@ -27,15 +27,7 @@ const CoachPage = () => {
         </Banner>
       }
     >
-      <Breadcrumb
-        leftComponent={<SearchBar onSubmit={handleSubmit} />}
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'player', label: 'Player' },
-          { key: 'wiz-player', label: 'Wiz Plyer' },
-          { key: 'coach', label: '코치', isActive: true },
-        ]}
-      />
+      <Breadcrumb leftComponent={<SearchBar onSubmit={handleSubmit} />} />
       <PlayerList
         playerList={error ? [] : coachList}
         endpoint="coach"

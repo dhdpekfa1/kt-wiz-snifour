@@ -1,4 +1,4 @@
-import { pitchingRecordColumns } from '@/constants/pitching-record-columns';
+import { pitchingRecordColumns } from '@/constants/columns/pitching-record-columns';
 import DataTable from '@/features/common/DataTable';
 import type { Pitcher } from '../../types/BoxScoreData';
 

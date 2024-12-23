@@ -18,7 +18,7 @@ const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
   { value: 'boxscore', path: '/regular/boxscore' },
   { value: 'ranking', path: '/regular/ranking' },
-  { value: 'watchpoint', path: '/regular/watchpoint' },
+  { value: 'watchpoint', path: '/regular/watchPoint' },
 ];
 
 /** 정규리그 페이지 */

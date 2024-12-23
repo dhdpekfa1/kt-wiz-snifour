@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 // import { useCrowdRank } from '@/assets/hooks/ranking';
 import { crowd } from '@/assets/data/__test__/mockRanking.json';
-import { crowdRankColumns } from '@/constants/crowd-columns';
+import { crowdRankColumns } from '@/constants/columns/crowd-columns';
 import { seasons } from '@/constants/seasons';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import CustomSelect from '@/features/common/CustomSelect.tsx';
@@ -26,15 +26,7 @@ function CrowdRankingTab() {
 
   return (
     <div className="my-20">
-      <Breadcrumb
-        paths={[
-          { key: 'home', label: 'Home' },
-          { key: 'game', label: 'Game' },
-          { key: 'regular', label: '정규 리그' },
-          { key: 'ranking', label: '순위 기록' },
-          { key: 'crowd', label: '관중 현황', isActive: true },
-        ]}
-      />
+      <Breadcrumb />
 
       <div className="flex items-center justify-between">
         <SubTitle title={`${season} 시즌 누적 관중`} className="my-6" />
