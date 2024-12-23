@@ -152,7 +152,7 @@ function MobileHeader() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-12 lg:hidden flex items-center justify-center fixed top-0 z-10 bg-black">
+    <div className="w-screen h-12 lg:hidden flex items-center justify-center fixed top-0 z-10 bg-black">
       <AlignJustify className="text-white absolute top-3 left-3 w-4" />
       <img
         src="/assets/img-logo.svg"
