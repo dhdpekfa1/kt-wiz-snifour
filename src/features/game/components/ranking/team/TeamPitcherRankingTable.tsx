@@ -6,6 +6,7 @@ import { TeamRankingPitcherConfig } from '@/constants/chart-config';
 import { teamPitcherRankColumns } from '@/constants/columns/team-rank-colums';
 import CustomBarChart from '@/features/common/CustomBarChart';
 import DataTable from '@/features/common/DataTable';
+import { Config } from '@/features/player/components/PlayerRecordChart';
 import { SeasonPitcher } from '@/features/player/types/record';
 import { useState } from 'react';
 
@@ -13,6 +14,9 @@ const seasonPitcherData: SeasonPitcher[] = data.data.list;
 
 function TeamPitcherRankingTable() {
   const [selectedTab, setSelectedTab] = useState<'table' | 'chart'>('table');
+  const [chartConfig, setChartConfig] = useState<Config>(
+    TeamRankingPitcherConfig
+  );
 
   // const { ranking, loading, error } = useTeamRank('pitcher');
 
@@ -23,6 +27,31 @@ function TeamPitcherRankingTable() {
   // if (error) {
   //   return <div>{error}</div>;
   // }
+
+  const handleConfig = (dataKey: keyof Config) => {
+    const currentConfig = Object.keys(chartConfig).filter(
+      (key) => chartConfig[key].isActive
+    )[0];
+
+    if (currentConfig === dataKey) {
+      return;
+    }
+
+    setChartConfig((prev) => {
+      // 모든 항목을 비활성화한 뒤 클릭한 버튼만 활성화
+      const newConfig = Object.keys(prev).reduce((acc, key) => {
+        acc[key] = { ...prev[key], isActive: false }; // 모든 항목 비활성화
+        return acc;
+      }, {} as Config);
+
+      // 클릭한 버튼만 활성화
+      newConfig[dataKey] = {
+        ...prev[dataKey],
+        isActive: !prev[dataKey].isActive,
+      };
+      return newConfig;
+    });
+  };
 
   return (
     <div>
@@ -53,11 +82,28 @@ function TeamPitcherRankingTable() {
           domain="all"
         />
       ) : (
-        <CustomBarChart
-          data={seasonPitcherData}
-          config={TeamRankingPitcherConfig}
-          XAxisKey={'teamName'}
-        />
+        <div>
+          <CustomBarChart
+            data={seasonPitcherData}
+            config={chartConfig}
+            XAxisKey={'teamName'}
+          />
+          <div className="flex items-center justify-center gap-4">
+            {Object.entries(TeamRankingPitcherConfig).map(
+              ([dataKey, value]) => (
+                // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+                <div
+                  key={dataKey}
+                  className=" text-white px-2 py-1 rounded text-sm cursor-pointer"
+                  style={{ background: value.isActive ? value.color : 'gray' }}
+                  onClick={() => handleConfig(dataKey)}
+                >
+                  {value.label}
+                </div>
+              )
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

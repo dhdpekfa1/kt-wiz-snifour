@@ -97,14 +97,13 @@ export const yearPitcherConfig = {
   },
 };
 
-// TODO: 데이터 바인딩 확인 필요
 export const TeamRankingPitcherConfig = {
-  a: {
+  ab: {
     label: '희타',
     color: colorSet[0],
     isActive: false,
   },
-  b: {
+  bb9: {
     label: '희비',
     color: colorSet[1],
     isActive: false,
@@ -114,7 +113,7 @@ export const TeamRankingPitcherConfig = {
     color: colorSet[2],
     isActive: false,
   },
-  c: {
+  bbhp: {
     label: '고의 4구',
     color: colorSet[3],
     isActive: false,
@@ -129,17 +128,17 @@ export const TeamRankingPitcherConfig = {
     color: colorSet[5],
     isActive: false,
   },
-  d: {
+  wp: {
     label: '폭투',
     color: colorSet[6],
     isActive: false,
   },
-  e: {
+  bk: {
     label: '보크',
     color: colorSet[7],
     isActive: false,
   },
-  f: {
+  r: {
     label: '실점',
     color: colorSet[8],
     isActive: false,
@@ -149,24 +148,24 @@ export const TeamRankingPitcherConfig = {
     color: colorSet[9],
     isActive: false,
   },
-  x: {
+  bs: {
     label: '블론세이브',
-    color: colorSet[10],
+    color: colorSet[0],
     isActive: true,
   },
-  y: {
+  whip: {
     label: 'WHIP',
-    color: colorSet[0],
+    color: colorSet[1],
     isActive: false,
   },
   hit: {
     label: '피안타율',
-    color: colorSet[1],
+    color: colorSet[2],
     isActive: false,
   },
-  r: {
+  qs: {
     label: 'QS',
-    color: colorSet[2],
+    color: colorSet[3],
     isActive: false,
   },
 };
