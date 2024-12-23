@@ -1,5 +1,7 @@
+import { cn } from '@/lib/utils';
+import { AlignJustify } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const navMenus = [
   {
@@ -58,15 +60,16 @@ const navMenus = [
     ],
   },
 ];
-
-function Header() {
+function WebHeader({ className }: { className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`w-screen fixed top-0 z-10 ${
-        isHovered ? 'bg-white h-96' : 'bg-black h-28 overflow-hidden'
-      } text-white flex flex-col justify-between items-center transition-all duration-150 origin-top`}
+      className={cn(
+        'w-screen fixed top-0 z-10 text-white hidden lg:flex flex-col justify-between items-center transition-all duration-150 origin-top',
+        isHovered ? 'bg-white h-96' : 'bg-black h-28 overflow-hidden',
+        className
+      )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -142,6 +145,31 @@ function Header() {
         </div>
       </div>
     </div>
+  );
+}
+
+function MobileHeader() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="w-full h-12 lg:hidden flex items-center justify-center fixed top-0 z-10 bg-black">
+      <AlignJustify className="text-white absolute top-3 left-3 w-4" />
+      <img
+        src="/assets/img-logo.svg"
+        alt=""
+        className="h-8 my-1 cursor-pointer"
+        onClick={() => navigate('/')}
+        onKeyUp={() => navigate('/')}
+      />
+    </div>
+  );
+}
+function Header() {
+  return (
+    <>
+      <WebHeader />
+      <MobileHeader />
+    </>
   );
 }
 

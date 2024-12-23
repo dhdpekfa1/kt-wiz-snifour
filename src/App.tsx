@@ -38,7 +38,7 @@ function App() {
           데스크탑 -> 1240px (padding 포함, 실제컨텐츠 1200px),
           모바일 -> 100%
         */}
-        <div className="w-full mt-28 px-5 lg:max-w-[1240px]">
+        <div className="w-full mt-8 lg:mt-28 px-5 lg:max-w-[1240px]">
           <Routes>
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
