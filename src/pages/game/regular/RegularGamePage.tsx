@@ -12,7 +12,6 @@ import {
 } from '@/features/game';
 
 import '@/features/game/css/game.css';
-import { Route, Routes } from 'react-router';
 
 const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
@@ -92,10 +91,7 @@ function RegularGamePage() {
           <MatchScheduleTab />
         </TabsContent>
         <TabsContent value="boxscore">
-          <Routes>
-            <Route path="/" element={<BoxScoreTab />} />
-            <Route path="/:gameDate/:gameKey" element={<BoxScoreTab />} />
-          </Routes>
+          <BoxScoreTab />
         </TabsContent>
         <TabsContent value="ranking">
           <RankingTab />

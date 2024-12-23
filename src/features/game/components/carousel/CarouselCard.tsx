@@ -16,10 +16,11 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
   }, []);
 
   const handleGameInfoClick = () => {
+    console.log('data:', data);
     if (data) {
-      navigate('/game/regular/boxscore', {
-        state: { gameDate: data.gameDate.toString(), gameKey: data.gmkey },
-      });
+      navigate(
+        `/game/regular/boxscore/${data.gameDate.toString()}/${data.gmkey}`
+      );
     }
   };
 

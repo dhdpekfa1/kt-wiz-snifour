@@ -9,13 +9,12 @@ import {
 import { MatchBoard } from './components/watch-point';
 
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+import { useParams } from 'react-router';
 import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';
 
 const BoxScoreTab = () => {
-  const location = useLocation();
-  const { gameDate, gameKey } = location.state;
+  const { gameDate, gameKey } = useParams();
   const [matchData, setMatchData] = useState<BoxScoreData>();
 
   useEffect(() => {
