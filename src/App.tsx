@@ -8,9 +8,9 @@ import NewsPage from './pages/media/News';
 import PhotoPage from './pages/media/Photo';
 import StoryPage from './pages/media/Story';
 
-import NewsDetailPage from './pages/media/id/NewsDetail';
-
+import TeamIntroduce from './pages/ktwiz/TeamIntroduce';
 import WallpaperPage from './pages/ktwiz/WallpaperPage';
+import NewsDetailPage from './pages/media/id/NewsDetail';
 import CheerSongPage from './pages/player/CheerSongPage';
 import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
@@ -39,7 +39,7 @@ function App() {
 
             {/* KT Wiz */}
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
-
+            <Route path="/ktwiz/about" element={<TeamIntroduce />} />
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
             <Route path="/wizpark/location" element={<ParkLocationPage />} />
