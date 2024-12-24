@@ -2,7 +2,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
+import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const size = ['1024x768', '1280x1024', '1680x1050', '1920x1080'];
 
 function WallpaperPage() {
   return (
@@ -20,84 +23,69 @@ function WallpaperPage() {
         </Banner>
       }
     >
-      <div className="my-20 text-white">
+      <div className="text-white">
         <Breadcrumb />
-        <div className="flex items-center justify-center py-4 gap-8 text-3xl">
+        <div
+          className={cn(
+            'flex items-center justify-center py-2 gap-4 text-base',
+            'md:gap-6',
+            'lg:text-2xl lg:gap-8 lg:py-4'
+          )}
+        >
           <button
             type="button"
-            className="bg-wiz-white bg-opacity-10 rounded-full p-2"
+            className={cn('bg-wiz-white bg-opacity-10 rounded-full', 'lg:p-1')}
           >
-            <ChevronLeft />
+            <ChevronLeft className={cn('w-4 h-4', 'lg:w-6 lg:h-6')} />
           </button>
           2024년 12월
           <button
             type="button"
-            className="bg-wiz-white bg-opacity-10 rounded-full p-2"
+            className="bg-wiz-white bg-opacity-10 rounded-full p-1"
           >
-            <ChevronRight />
+            <ChevronRight className={cn('w-4 h-4', 'lg:w-6 lg:h-6')} />
           </button>
         </div>
 
         <div>
-          <Tabs
-            defaultValue="calendar"
-            className="w-full flex flex-col items-center"
-          >
-            <TabsList className="w-fit flex items-center gap-4 my-2">
-              <TabsTrigger
-                value="calendar"
-                className="text-black text-lg bg-white rounded"
-              >
-                달력형
-              </TabsTrigger>
-              <TabsTrigger
-                value="paper"
-                className="text-black text-lg bg-white rounded"
-              >
-                일반형
-              </TabsTrigger>
+          <Tabs defaultValue="calendar" className="flex flex-col items-center">
+            <TabsList className="justify-center">
+              <TabsTrigger value="calendar">달력형</TabsTrigger>
+              <TabsTrigger value="paper">일반형</TabsTrigger>
             </TabsList>
-            <TabsContent value="calendar" className="w-full">
-              <div className="px-16 pt-4 pb-8">
-                <img
-                  src="/assets/wallpaper/calendar-1920x1080.png"
-                  alt="wallpaper-calendar"
-                />
-              </div>
+            <TabsContent value="calendar">
+              <img
+                src="/assets/wallpaper/calendar-1920x1080.png"
+                alt="wallpaper-calendar"
+              />
             </TabsContent>
-            <TabsContent value="paper" className="w-full">
-              <div className="px-16 pt-4 pb-8">
-                <img
-                  src="/assets/wallpaper/paper-1920x1080.jpg"
-                  alt="wallpaper-paper"
-                />
-              </div>
+            <TabsContent value="paper">
+              <img
+                src="/assets/wallpaper/paper-1920x1080.jpg"
+                alt="wallpaper-paper"
+              />
             </TabsContent>
-            <div className="flex items-center gap-4">
-              <button
-                type="button"
-                className="bg-wiz-white bg-opacity-10 text-lg px-4 py-2 rounded"
-              >
-                1024x768
-              </button>
-              <button
-                type="button"
-                className="bg-wiz-white bg-opacity-10 text-lg px-4 py-2 rounded"
-              >
-                1280x1024
-              </button>
-              <button
-                type="button"
-                className="bg-wiz-white bg-opacity-10 text-lg px-4 py-2 rounded"
-              >
-                1680x1050
-              </button>
-              <button
-                type="button"
-                className="bg-wiz-white bg-opacity-10 text-lg px-4 py-2 rounded"
-              >
-                1920x1080
-              </button>
+
+            {/* 다운로드 버튼 */}
+            <div
+              className={cn(
+                'mt-4 max-w-full flex items-center gap-2',
+                'md:gap-4',
+                'lg:mt-6'
+              )}
+            >
+              {size.map((item) => (
+                <button
+                  type="button"
+                  className={cn(
+                    'bg-wiz-white bg-opacity-10 rounded text-xs px-2 py-1',
+                    'md:text-base md:px-3 py-1.5',
+                    'lg:text-lg lg:px-4 lg:py-2'
+                  )}
+                >
+                  {item}
+                </button>
+              ))}
             </div>
           </Tabs>
         </div>
