@@ -99,7 +99,7 @@ export const yearPitcherConfig = {
 
 // TODO: 해당 데이터 맞는지 확인 후 수정 필요(ab, bb9 등)
 export const TeamRankingPitcherConfig = {
-  ab: {
+  sh: {
     label: '희타',
     color: colorSet[0],
     isActive: true,
@@ -171,85 +171,85 @@ export const TeamRankingPitcherConfig = {
   },
 };
 
-// TODO: 해당 데이터 맞는지 확인 후 수정 필요(ab, bb9 등)
+// TODO: 해당 데이터 맞는지 확인 후 수정 필요
 export const TeamRankingBatterConfig = {
-  ab: {
-    label: '타율',
+  hit: {
+    label: '안타',
     color: colorSet[0],
     isActive: true,
   },
-  hit: {
-    label: '안타',
-    color: colorSet[1],
-    isActive: false,
-  },
   h2: {
     label: '2루타',
-    color: colorSet[2],
+    color: colorSet[1],
     isActive: false,
   },
   h3: {
     label: '3루타',
-    color: colorSet[3],
+    color: colorSet[2],
     isActive: false,
   },
   hr: {
     label: '홈런',
-    color: colorSet[4],
+    color: colorSet[3],
     isActive: false,
   },
   rbi: {
     label: '타점',
-    color: colorSet[5],
+    color: colorSet[4],
     isActive: false,
   },
   sb: {
     label: '도루',
-    color: colorSet[6],
+    color: colorSet[5],
     isActive: false,
   },
   bb: {
     label: '볼넷',
-    color: colorSet[7],
+    color: colorSet[6],
     isActive: false,
   },
-  ibr: {
+  ib: {
     label: '고의 4구',
-    color: colorSet[8],
+    color: colorSet[7],
     isActive: false,
   },
   hp: {
     label: '사구',
-    color: colorSet[9],
+    color: colorSet[8],
     isActive: false,
   },
   kk: {
     label: '삼진',
-    color: colorSet[0],
+    color: colorSet[9],
     isActive: false,
   },
   gd: {
     label: '병살',
-    color: colorSet[1],
+    color: colorSet[0],
     isActive: false,
   },
   slg: {
     label: '장타율',
-    color: colorSet[2],
+    color: colorSet[1],
     isActive: false,
   },
   bra: {
     label: '출루율',
-    color: colorSet[3],
+    color: colorSet[2],
     isActive: false,
   },
   err: {
     label: '실책',
-    color: colorSet[4],
+    color: colorSet[3],
     isActive: false,
   },
   ops: {
     label: 'OPS',
+    color: colorSet[4],
+    isActive: false,
+  },
+  hra: {
+    label: '타율',
     color: colorSet[5],
     isActive: false,
   },

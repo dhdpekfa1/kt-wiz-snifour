@@ -2,12 +2,13 @@ import { ChartContainer } from '@/components/ui/chart';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import {
   RecentRecord,
+  SeasonBatter,
   SeasonPitcher,
   YearRecord,
 } from '../player/types/record';
 
 interface CustomBarChartProps {
-  data: RecentRecord[] | YearRecord[] | SeasonPitcher[];
+  data: RecentRecord[] | YearRecord[] | SeasonPitcher[] | SeasonBatter[];
   config: {
     [key: string]: {
       label: string;

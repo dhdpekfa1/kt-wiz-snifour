@@ -72,8 +72,7 @@ export interface SeasonSummary extends CommonRecord {
 export interface SeasonPitcher
   extends Omit<CommonRecord, 'inn2' | 'innDisplay' | 'wl' | 'w'> {
   ab: number;
-  // dd9: number;
-  // n: number;
+  dd9?: number;
   bbhp: number;
   bk: number;
   bs: number;
@@ -118,7 +117,7 @@ export interface SeasonBatter
   bbkk: string;
   bra: string;
   cs: number;
-  ber: string;
+  ber?: string;
   err: number;
   gd: number;
   gyear: string;
