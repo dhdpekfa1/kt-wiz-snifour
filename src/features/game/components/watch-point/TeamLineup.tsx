@@ -23,13 +23,14 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
           positionData[player.pos] ? (
             <div
               key={player.pcode}
-              className={`border border-l-2 border-l-wiz-red bg-wiz-white w-fit px-2 rounded ${
+              className={`border border-l-2 border-l-wiz-red bg-wiz-white w-fit h-fit px-2 rounded ${
                 positionData[player.pos].style
               }`}
             >
-              <p className="text-wiz-black">
-                {positionData[player.pos].label}. {player.playerName}
-              </p>
+              <div className="flex text-wiz-black">
+                <p>{positionData[player.pos].label}.</p>
+                <p className="break-words max-w-[6ch]">{player.playerName}</p>
+              </div>
             </div>
           ) : null
         )}
