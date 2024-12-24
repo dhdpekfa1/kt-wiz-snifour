@@ -31,17 +31,21 @@ function ParkingPage() {
         <div>
           <SubTitle title="주차 예약 안내" />
 
-          <div className="text-center text-3xl my-4">
-            <h3>수원종합운동장 (수원 kt wiz park 포함) 주차장은</h3>
+          <div className="text-center text-3xl my-4 max-sm:text-lg max-sm:text-start">
+            <h3>수원종합운동장 주차장은</h3>
             <h3 className="mt-2">
               <strong className="text-wiz-red">
                 프로야구 경기일에만 주차예약제
               </strong>
               가 시행됩니다.
             </h3>
-            <p className="mt-6 text-base text-gray-300">
+            <p className="mt-6 text-base text-gray-300  max-sm:text-sm max-sm:break-keeps">
               <span className="font-bold">사전 예약차량만 주차가 가능</span>
-              하며, 경기시간 2시간 전부터 주차가 가능합니다.
+              하며, 경기시간 2시간 전부터 주차 가능합니다.
+            </p>
+            <p className="text-base text-center text-gray-300 max-sm:text-sm flex items-center justify-center gap-1 max-sm:justify-start">
+              <p className="text-wiz-red text-base text-center">*</p>수원 kt wiz
+              park 동일
             </p>
           </div>
         </div>
@@ -57,12 +61,12 @@ function ParkingPage() {
         <div>
           <SubTitle title="예약 방법" />
 
-          <div className="grid grid-cols-3 gap-4 pt-4">
+          <div className="grid grid-cols-1 gap-4 pt-4 xl:grid-cols-3">
             <Card className="rounded-xl bg-wiz-white text-black">
               <CardHeader>
                 <CardTitle>홈페이지</CardTitle>
               </CardHeader>
-              <CardContent className="mt-2 flex flex-col items-start gap-8">
+              <CardContent className="mt-2 flex flex-col items-start gap-2 lg:gap-8">
                 <p>
                   kt wiz, 수원종합운동장 홈페이지를 통한
                   <br />
@@ -70,7 +74,7 @@ function ParkingPage() {
                 </p>
                 <Link
                   to="https://suwonparkingbaseball.or.kr/suwonwps/EgovPageLink.do?link=main/menu/prs/ParkingReservationPrivacy"
-                  className="bg-wiz-red px-4 py-2 rounded self-center text-white"
+                  className="bg-wiz-red px-4 py-2 rounded self-center text-white lg:text-md md:text-sm text-xs"
                   target="_blank"
                 >
                   홈페이지 바로 가기
@@ -84,7 +88,7 @@ function ParkingPage() {
               </CardHeader>
               <CardContent>
                 <div className="mt-2">
-                  <p className="mt-1 mb-11">수원종합운동장</p>
+                  <p className="mt-1 mb-2 lg-mg-11">수원종합운동장</p>
                   <p className="flex items-center gap-2">
                     <PhoneCall className="w-4" /> 031-240-2720
                   </p>
