@@ -89,7 +89,7 @@ function TeamPitcherRankingTable() {
             XAxisKey={'teamName'}
           />
           <div
-            className="flex items-center justify-start gap-2 overflow-x-auto scroll-smooth"
+            className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto scroll-smooth"
             style={{ scrollPaddingLeft: '16px' }}
           >
             {Object.entries(chartConfig).map(([dataKey, value]) => (
