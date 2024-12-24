@@ -3,11 +3,8 @@ import TeamInfo from '@/features/common/TeamInfo';
 import type { GameSchedule } from '@/features/game/types/match-schedule';
 import { format, isValid, parse } from 'date-fns';
 import { useCallback } from 'react';
-import { useNavigate } from 'react-router';
 
 const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
-  const navigate = useNavigate();
-
   const formatDate = useCallback((date: string): string => {
     const parsedDate = parse(date, 'yyyyMMdd', new Date());
     return isValid(parsedDate)
@@ -18,9 +15,9 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
   const handleGameInfoClick = () => {
     console.log('data:', data);
     if (data) {
-      navigate(
-        `/game/regular/boxscore/${data.gameDate.toString()}/${data.gmkey}`
-      );
+      window.location.href = `/game/regular/boxscore/${data.gameDate.toString()}/${
+        data.gmkey
+      }`; //상위 컴포넌트 강제 리렌더링
     }
   };
 

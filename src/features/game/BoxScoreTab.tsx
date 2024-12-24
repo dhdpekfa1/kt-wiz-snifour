@@ -14,24 +14,29 @@ import { getMatchData } from './apis/boxScore';
 import type { BoxScoreData } from './types/BoxScoreData';
 
 const BoxScoreTab = () => {
-  const { gameDate, gameKey } = useParams();
+  const { gameDate, gameKey } = useParams<{
+    gameDate: string;
+    gameKey: string;
+  }>();
   const [matchData, setMatchData] = useState<BoxScoreData>();
 
   useEffect(() => {
-    fetchMatchData();
-  }, []);
+    const fetchMatchData = async () => {
+      if (!gameDate && !gameKey) {
+        const data = await getMatchData(
+          '20241011',
+          '33331011KTLG0'
+        ); /**TODO: 최신 경기 날짜 전달 - 오늘 기준으로 경기가 있는 날짜 확인*/
+        setMatchData(data);
+      }
+      if (gameDate && gameKey) {
+        const data = await getMatchData(gameDate, gameKey);
+        setMatchData(data);
+      }
+    };
 
-  /**TODO: 최신 경기 날짜 전달 - 오늘 기준으로 경기가 있는 날짜 확인*/
-  const fetchMatchData = async () => {
-    if (!gameDate && !gameKey) {
-      const data = await getMatchData('20241011', '33331011KTLG0');
-      setMatchData(data);
-    }
-    if (gameDate && gameKey) {
-      const data = await getMatchData(gameDate, gameKey);
-      setMatchData(data);
-    }
-  };
+    fetchMatchData();
+  }, [gameDate, gameKey]);
 
   return (
     <div className="w-full flex justify-center my-20">
