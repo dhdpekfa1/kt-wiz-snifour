@@ -6,7 +6,17 @@ type BannerDescriptionProps = {
 };
 
 export const BannerDescription = ({ description }: BannerDescriptionProps) => {
-  return <p className={cn('text-gray-300 max-w-xl')}>{description}</p>;
+  return (
+    <p
+      className={cn(
+        'text-gray-300 max-w-xl mt-1 text-xs',
+        'md:mt-2 md:text-sm',
+        'lg:mt-4 lg:text-base'
+      )}
+    >
+      {description}
+    </p>
+  );
 };
 
 type BannerHeadingProps = {
@@ -16,7 +26,13 @@ type BannerHeadingProps = {
 
 export const BannerHeading = ({ title, subtitle }: BannerHeadingProps) => {
   return (
-    <h2 className={cn('text-4xl font-bold text-white mb-4')}>
+    <h2
+      className={cn(
+        'text-2xl font-bold text-white',
+        'md:text-3xl',
+        'lg:text-4xl'
+      )}
+    >
       {title}
       <br />
       <span className="text-wiz-red">{subtitle}</span>
@@ -29,7 +45,11 @@ export const BannerImage = ({ src, alt }: { src: string; alt: string }) => {
     <img
       src={src}
       alt={alt}
-      className={cn('hidden w-full h-[300px] object-cover', 'md:block')}
+      className={cn(
+        'w-full h-28 object-cover absolute top-1/2 left-0 -translate-y-1/2',
+        'md:block md:h-60',
+        'lg:h-[300px]'
+      )}
     />
   );
 };
@@ -53,7 +73,11 @@ export const BannerOverlay = ({ children }: BannerOverlayProps) => {
 };
 
 const Banner = ({ children }: { children: ReactNode }) => {
-  return <div className="relative h-[300px]">{children}</div>;
+  return (
+    <div className={cn('relative h-36', 'md:h-52', 'lg:h-[300px]')}>
+      {children}
+    </div>
+  );
 };
 
 Banner.Heading = BannerHeading;
