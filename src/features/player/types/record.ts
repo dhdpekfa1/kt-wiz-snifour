@@ -110,3 +110,36 @@ export interface SeasonPitcher
   wp: number;
   wra: string;
 }
+
+export interface SeasonBatter
+  extends Pick<CommonRecord, 'bb' | 'hit' | 'hp' | 'hr' | 'kk'> {
+  ab: number;
+  bbhp: number;
+  bbkk: string;
+  bra: string;
+  cs: number;
+  ber: string;
+  err: number;
+  gd: number;
+  gyear: string;
+  h2: number;
+  h3: number;
+  hra: string;
+  hrab: number;
+  ib: number;
+  iso: string;
+  kkab: number;
+  ops: string;
+  pa: number;
+  rbi: number;
+  run: number;
+  sb: number;
+  sbTryCn: number;
+  sba: string;
+  sf: number;
+  sh: number;
+  slab: number;
+  slg: string;
+  teamCode: string;
+  teamName: string;
+}
