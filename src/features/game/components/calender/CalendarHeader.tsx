@@ -16,7 +16,7 @@ const CalendarHeader = ({
   );
 
   return (
-    <div className="flex justify-center items-center gap-10 px-4 py-4 bg-[#35383e]">
+    <div className="flex justify-center items-center gap-10 px-4 py-4 bg-wiz-white bg-opacity-10">
       {/* 이전 버튼 */}
       <button
         onClick={() => {
@@ -25,7 +25,7 @@ const CalendarHeader = ({
           );
         }}
         type="button"
-        className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
+        className="flex items-center justify-center text-lg font-bold text-wiz-white bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
       >
         <IconLeft />
       </button>
@@ -51,7 +51,7 @@ const CalendarHeader = ({
             new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1)
           );
         }}
-        className="flex items-center justify-center text-lg font-bold text-wiz-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
+        className="flex items-center justify-center text-lg font-bold text-wiz-white bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
       >
         <IconRight />
       </button>

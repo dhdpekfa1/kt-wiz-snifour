@@ -39,7 +39,7 @@ const CalenderBody = ({ renderCellContent }: CalenderBodyProps) => {
         ),
         Head: () => (
           <thead>
-            <tr className="bg-[#35383e]">
+            <tr className="bg-wiz-white bg-opacity-10">
               {['일', '월', '화', '수', '목', '금', '토'].map((day, index) => (
                 <th
                   key={day}

@@ -28,10 +28,10 @@ const MatchBoard = ({
   matchTime,
   stadium,
   gameTable,
-  //
-}: MatchBoardProps) => {
+}: //
+MatchBoardProps) => {
   return (
-    <div className="w-full flex items-center justify-between px-8 py-6 gap-4 bg-[#35383e] rounded">
+    <div className="w-full flex items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded">
       {/* team1 */}
       <TeamInfo {...team1Data} />
 
@@ -42,7 +42,7 @@ const MatchBoard = ({
             <button
               //onClick={() => onRouteChange}
               type="button"
-              className="flex items-center justify-center text-lg font-semibold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
+              className="flex items-center justify-center text-lg font-semibold text-white  bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
             >
               <IconLeft />
             </button>
@@ -58,7 +58,7 @@ const MatchBoard = ({
             <button
               type="button"
               //onClick={() => onRouteChange}
-              className="flex items-center justify-center text-lg font-bold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
+              className="flex items-center justify-center text-lg font-bold text-white  bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
             >
               <IconRight />
             </button>

@@ -17,7 +17,7 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   return (
     <div className="flex flex-col items-center gap-4 max-lg:flex-row">
       <img src={logoUrl} alt="team logo" className="w-32 h-32" />
-      <div className="w-[380px] relative mt-2 p-10 bg-[#35383e] rounded-xl">
+      <div className="w-[380px] relative mt-2 p-10  bg-wiz-white bg-opacity-10 rounded-xl">
         <img src="/assets/ground.png" alt="diamond" className="w-full h-auto" />
         {data.map((player) =>
           positionData[player.pos] ? (

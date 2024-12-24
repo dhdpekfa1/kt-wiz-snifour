@@ -30,8 +30,8 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
       }
     >
       <div className="p-1">
-        <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#5b5f65]">
-          <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-[#35383e]">
+        <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#35383e]">
+          <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-wiz-white bg-opacity-10">
             {data ? (
               <div className="flex flex-col h-48 items-center justify-between p-2">
                 {/* 날짜 라벨 */}
