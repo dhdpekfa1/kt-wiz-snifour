@@ -46,8 +46,8 @@ export const BannerImage = ({ src, alt }: { src: string; alt: string }) => {
       src={src}
       alt={alt}
       className={cn(
-        'w-full h-28 object-cover absolute top-1/2 left-0 -translate-y-1/2',
-        'md:block md:h-60',
+        'w-full h-20 object-cover absolute top-1/2 left-0 -translate-y-1/2',
+        'md:block md:h-48',
         'lg:h-[300px]'
       )}
     />
