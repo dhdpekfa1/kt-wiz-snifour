@@ -67,7 +67,7 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
               fill={`var(--color-${dataKey})`}
               radius={3}
               maxBarSize={40}
-              label={{ position: 'top' }}
+              label={{ position: 'top', fontSize: fontSize }}
             />
           ) : null
         )}
