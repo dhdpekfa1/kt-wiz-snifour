@@ -88,7 +88,10 @@ function TeamPitcherRankingTable() {
             config={chartConfig}
             XAxisKey={'teamName'}
           />
-          <div className="flex items-center justify-center gap-2 overflow-scroll">
+          <div
+            className="flex items-center justify-start gap-2 overflow-x-auto scroll-smooth"
+            style={{ scrollPaddingLeft: '16px' }}
+          >
             {Object.entries(chartConfig).map(([dataKey, value]) => (
               // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
               <div
