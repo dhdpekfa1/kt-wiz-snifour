@@ -65,7 +65,7 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                     </p>
                     <button
                       type="button"
-                      className="bg-gray-400 text-white rounded-full hover:bg-gray-500 py-1 px-3 w-24"
+                      className="bg-wiz-white bg-opacity-20 text-white rounded-full hover:bg-opacity-30 py-1 px-3 w-24"
                       onClick={handleGameInfoClick}
                     >
                       경기 정보
