@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import SubTitle from '@/features/common/SubTitle';
-import { RecentRecord, YearRecord } from '../types/record';
 import CustomBarChart from '@/features/common/CustomBarChart';
 import CustomLineChart from '@/features/common/CustomLineChart';
+import SubTitle from '@/features/common/SubTitle';
 import { cn } from '@/lib/utils';
+import { RecentRecord, YearRecord } from '../types/record';
 import { RecordTableAccordion } from './RecordTableAccordion';
 
-interface Config {
+export interface Config {
   [key: string]: {
     label: string;
     color: string;
