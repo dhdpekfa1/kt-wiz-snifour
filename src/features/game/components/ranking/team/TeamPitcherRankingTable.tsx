@@ -88,20 +88,21 @@ function TeamPitcherRankingTable() {
             config={chartConfig}
             XAxisKey={'teamName'}
           />
-          <div className="flex items-center justify-center gap-4">
-            {Object.entries(TeamRankingPitcherConfig).map(
-              ([dataKey, value]) => (
-                // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-                <div
-                  key={dataKey}
-                  className=" text-white px-2 py-1 rounded text-sm cursor-pointer"
-                  style={{ background: value.isActive ? value.color : 'gray' }}
-                  onClick={() => handleConfig(dataKey)}
-                >
-                  {value.label}
-                </div>
-              )
-            )}
+          <div className="flex items-center justify-center gap-2 overflow-scroll">
+            {Object.entries(chartConfig).map(([dataKey, value]) => (
+              // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+              <div
+                key={dataKey}
+                className="text-white px-2 py-1 rounded text-sm cursor-pointer"
+                style={{
+                  background: value.isActive ? value.color : 'gray',
+                  whiteSpace: 'nowrap',
+                }}
+                onClick={() => handleConfig(dataKey)}
+              >
+                {value.label}
+              </div>
+            ))}
           </div>
         </div>
       )}

@@ -97,11 +97,12 @@ export const yearPitcherConfig = {
   },
 };
 
+// TODO: 해당 데이터 맞는지 확인 후 수정 필요(ab, bb9 등)
 export const TeamRankingPitcherConfig = {
   ab: {
     label: '희타',
     color: colorSet[0],
-    isActive: false,
+    isActive: true,
   },
   bb9: {
     label: '희비',
@@ -151,7 +152,7 @@ export const TeamRankingPitcherConfig = {
   bs: {
     label: '블론세이브',
     color: colorSet[0],
-    isActive: true,
+    isActive: false,
   },
   whip: {
     label: 'WHIP',
