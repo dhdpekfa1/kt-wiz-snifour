@@ -1,24 +1,24 @@
-// import { TeamPitcherRank } from '@/features/common/types/pitchers';
-// import { useTeamRank } from "@/features/game/hooks/ranking/useTeamRank";
-import { teamPitcher as mockRanking } from '@/assets/data/__test__/mockRanking.json';
-import data from '@/assets/data/__test__/season-team-rank/seasonPitcher.json';
-import { TeamRankingPitcherConfig } from '@/constants/chart-config';
-import { teamPitcherRankColumns } from '@/constants/columns/team-rank-colums';
+import { teamBatter as mockRanking } from '@/assets/data/__test__/mockRanking.json';
+import data from '@/assets/data/__test__/season-team-rank/seasonBatter.json';
+import { TeamRankingBatterConfig } from '@/constants/chart-config';
+import { teamBatterRankColumns } from '@/constants/columns/team-rank-colums';
 import CustomBarChart from '@/features/common/CustomBarChart';
+// import { TeamBatterRank } from '@/features/common/types/batters';
+// import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
 import DataTable from '@/features/common/DataTable';
 import { Config } from '@/features/player/components/PlayerRecordChart';
-import { SeasonPitcher } from '@/features/player/types/record';
+import { SeasonBatter } from '@/features/player/types/record';
 import { useState } from 'react';
 
-const seasonPitcherData: SeasonPitcher[] = data.data.list;
+const seasonBatterData: SeasonBatter[] = data.data.list;
 
-function TeamPitcherRankingTable() {
+function TeamBatterRankingView() {
   const [selectedTab, setSelectedTab] = useState<'table' | 'chart'>('table');
   const [chartConfig, setChartConfig] = useState<Config>(
-    TeamRankingPitcherConfig
+    TeamRankingBatterConfig
   );
 
-  // const { ranking, loading, error } = useTeamRank('pitcher');
+  // const { ranking, loading, error } = useTeamRank('batter');
 
   // if (!ranking.length || loading) {
   //   return null;
@@ -78,13 +78,13 @@ function TeamPitcherRankingTable() {
       {selectedTab === 'table' ? (
         <DataTable
           data={mockRanking}
-          columns={teamPitcherRankColumns}
+          columns={teamBatterRankColumns}
           domain="all"
         />
       ) : (
         <div>
           <CustomBarChart
-            data={seasonPitcherData}
+            data={seasonBatterData}
             config={chartConfig}
             XAxisKey={'teamName'}
           />
@@ -113,4 +113,4 @@ function TeamPitcherRankingTable() {
   );
 }
 
-export { TeamPitcherRankingTable };
+export { TeamBatterRankingView };
