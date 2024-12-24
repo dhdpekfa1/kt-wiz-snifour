@@ -88,18 +88,14 @@ function TeamPitcherRankingView() {
             config={chartConfig}
             XAxisKey={'teamName'}
           />
-          <div
-            className="flex items-center justify-start md:justify-center gap-2 overflow-x-auto scroll-smooth"
-            style={{ scrollPaddingLeft: '16px' }}
-          >
+          <div className="flex flex-wrap items-center justify-start lg:justify-center gap-2 overflow-x-auto scroll-smooth">
             {Object.entries(chartConfig).map(([dataKey, value]) => (
               // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
               <div
                 key={dataKey}
-                className="text-white px-2 py-1 rounded text-sm cursor-pointer"
+                className="text-white px-2 py-1 rounded max-sm:text-xs text-sm cursor-pointer whitespace-nowrap"
                 style={{
                   background: value.isActive ? value.color : 'gray',
-                  whiteSpace: 'nowrap',
                 }}
                 onClick={() => handleConfig(dataKey)}
               >
