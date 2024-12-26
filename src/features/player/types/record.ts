@@ -69,47 +69,6 @@ export interface SeasonSummary extends CommonRecord {
   wra: string;
 }
 
-export interface SeasonPitcher
-  extends Omit<CommonRecord, 'inn2' | 'innDisplay' | 'wl' | 'w'> {
-  ab: number;
-  dd9?: number;
-  bbhp: number;
-  bk: number;
-  bs: number;
-  cg: number;
-  cs: number;
-  err: number;
-  era: string;
-  gd: number;
-  gyear: string;
-  h2: number;
-  h3: number;
-  hit9: number;
-  hold: number;
-  ib: number;
-  inn: number;
-  iso: string;
-  kk9: number;
-  oavg: string;
-  obp: string;
-  oops: string;
-  oslg: string;
-  pa: number;
-  qs: number;
-  sb: number;
-  sf: number;
-  sh: number;
-  sho: number;
-  sv: number;
-  teamCode: string;
-  teamName: string;
-  tugucount: number;
-  tugucountinn: number;
-  whip: string;
-  wp: number;
-  wra: string;
-}
-
 export interface SeasonBatter
   extends Pick<CommonRecord, 'bb' | 'hit' | 'hp' | 'hr' | 'kk'> {
   ab: number;

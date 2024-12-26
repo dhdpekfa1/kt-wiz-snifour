@@ -1,10 +1,10 @@
 import CustomBarChart from '@/features/common/CustomBarChart';
 import DataTable from '@/features/common/DataTable';
+import { TeamPitcherRank } from '@/features/common/types/pitchers';
 import { Config } from '@/features/player/components/PlayerRecordChart';
 import {
   RecentRecord,
   SeasonBatter,
-  SeasonPitcher,
   YearRecord,
 } from '@/features/player/types/record';
 import { ColumnDef } from '@tanstack/react-table';
@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 interface TeamRankingViewProps<T> {
   tableData: T[];
-  chartData: RecentRecord[] | YearRecord[] | SeasonPitcher[] | SeasonBatter[];
+  chartData: RecentRecord[] | YearRecord[] | TeamPitcherRank[] | SeasonBatter[];
   columns: ColumnDef<T>[];
   chartConfig: Config;
   domain: 'kt' | 'all' | undefined;
