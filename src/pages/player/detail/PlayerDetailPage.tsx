@@ -13,6 +13,7 @@ import {
   yearPitcherConfig,
 } from '@/constants/chart-config';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
+import { cn } from '@/lib/utils';
 
 function PlayerDetailPage() {
   const { position } = useParams();
@@ -30,12 +31,18 @@ function PlayerDetailPage() {
   }
 
   return (
-    <div className="my-20 text-white">
+    <div className={cn('text-white', 'md:my-10', 'lg:my-20')}>
       <Breadcrumb />
 
-      <div className="w-full flex flex-col items-center gap-8 bg-wiz-white bg-opacity-10 rounded-xl p-8 mt-12">
+      <div
+        className={cn(
+          'w-full flex flex-col items-center gap-8 bg-wiz-white bg-opacity-10 rounded-xl p-4',
+          'md:p-6 md:mt-4',
+          'lg:p-8 lg:mt-6'
+        )}
+      >
         {/* 대시보드 */}
-        <div className="w-full flex gap-8">
+        <div className={cn('w-full flex flex-col gap-8', 'lg:flex-row')}>
           {/* 프로필 */}
           <PlayerProfile
             player={player.gameplayer}

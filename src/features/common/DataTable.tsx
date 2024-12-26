@@ -16,7 +16,6 @@ import {
 import { cn } from '@/lib/utils';
 
 interface TypeHasTeamName {
-  team?: string;
   teamName?: string;
 }
 
@@ -43,7 +42,7 @@ function DataTable<TData>({ data, columns, domain }: DataTableProps<TData>) {
             {headerGroup.headers.map((header) => (
               <TableHead
                 key={header.id}
-                className="text-center p-1 whitespace-nowrap"
+                className="text-center whitespace-nowrap"
               >
                 {flexRender(
                   header.column.columnDef.header,
@@ -60,10 +59,9 @@ function DataTable<TData>({ data, columns, domain }: DataTableProps<TData>) {
             key={row.id}
             className={cn(
               'border-b-wiz-white border-opacity-10 whitespace-nowrap',
-              (domain === 'all' &&
-                (row.original as TData & TypeHasTeamName).team === 'KT') ||
-                ((row.original as TData & TypeHasTeamName).teamName === 'KT' &&
-                  'bg-wiz-red bg-opacity-70 border-b-wiz-red')
+              domain === 'all' &&
+                (row.original as TData & TypeHasTeamName).teamName === 'KT' &&
+                'bg-wiz-red bg-opacity-70 border-b-wiz-red'
             )}
           >
             {row.getVisibleCells().map((cell) => (
