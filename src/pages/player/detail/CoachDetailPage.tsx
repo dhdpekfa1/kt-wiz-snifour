@@ -1,5 +1,5 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
-import useCoach from '@/features/game/hooks/useCoach';
+import useCoach from '@/features/player/hooks/useCoach';
 import { useSearchParams } from 'react-router';
 
 const CoachDetailPage = () => {
