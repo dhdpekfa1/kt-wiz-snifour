@@ -2,6 +2,8 @@ import { ChartContainer } from '@/components/ui/chart';
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { RecentRecord, YearRecord } from '../player/types/detail';
+import { TeamPitcherRank } from './types/pitchers';
+import { TeamBatterRank } from './types/batters';
 
 interface Config {
   [key: string]: {
@@ -10,8 +12,10 @@ interface Config {
     isActive: boolean;
   };
 }
+
+type Data = RecentRecord | YearRecord | TeamPitcherRank | TeamBatterRank;
 interface CustomBarChartProps {
-  data: RecentRecord[] | YearRecord[];
+  data: Data[];
   config: Config;
   XAxisKey: string;
 }
@@ -60,10 +64,7 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
             () => {
               const max = Math.max(
                 ...data.map(
-                  (item: RecentRecord | YearRecord) =>
-                    item[
-                      activeKey as keyof (RecentRecord | YearRecord)
-                    ] as number
+                  (item: Data) => item[activeKey as keyof Data] as number
                 )
               ); // dataMax를 사용했더니 제대로 max 값을 찾지 못하는 버그가 있어 직접 계산
               return max === 0 ? 5 : (max * 1.1).toFixed(2); // 최대값에 여유를 두고 10% 확대
