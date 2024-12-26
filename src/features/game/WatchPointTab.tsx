@@ -1,29 +1,29 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
-import { useEffect, useState } from 'react';
-import { getWatchPoint } from './apis';
+// import { useState } from "react";
 import {
   MatchBoard,
   StartingPitcherTable,
   TeamLineup,
 } from './components/watch-point';
-import { WatchPointData } from './types/watch-point';
+import useWatchPoint from './hooks/watch-point/useWatchPoint';
 
 const WatchPointTab = () => {
-  const [watchData, setWatchData] = useState<WatchPointData>();
   // const [gameDate, setGameDate] = useState("20240922");
   // const [gameKey, setGameKey] = useState("20240922SKKT0");
+  const { watchData, loading, error } = useWatchPoint(
+    '20240922',
+    '20240922SKKT0'
+  );
 
-  useEffect(() => {
-    fetchWatchPointData();
-  }, []);
+  if (!watchData || loading) {
+    return null;
+  }
 
-  const fetchWatchPointData = async () => {
-    // TODO: gameDate, gameKey 매개변수 state 전달
-    const res = await getWatchPoint('20240922', '20240922SKKT0');
-    setWatchData(res);
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="w-full flex my-20">
