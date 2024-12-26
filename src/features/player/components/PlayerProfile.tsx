@@ -18,15 +18,13 @@ function PlayerProfile({ player, seasonSummary }: PlayerProfileProps) {
             <span>{player.playerName}</span>
             <span>No.{player.backnum}</span>
           </div>
-          <span className="text-neutral-400">{player.engName}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>포지션</span>
-          <span>{player.position}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>투타</span>
-          <span>{player.hittype}</span>
+          <div className="text-neutral-400 flex items-center justify-between">
+            <span>{player.engName}</span>
+            <div className="flex items-center gap-1">
+              <span>{player.position}</span>
+              <span>({player.hittype})</span>
+            </div>
+          </div>
         </div>
         <div className="flex justify-between">
           <span>생년월일</span>
