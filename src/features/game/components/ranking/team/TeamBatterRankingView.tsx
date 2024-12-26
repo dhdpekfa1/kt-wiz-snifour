@@ -22,7 +22,7 @@ function TeamBatterRankingView() {
       chartData={ranking as TeamBatterRank[]}
       columns={teamBatterRankColumns}
       chartConfig={TeamRankingBatterConfig}
-      domain="kt"
+      domain="all"
     />
   );
 }

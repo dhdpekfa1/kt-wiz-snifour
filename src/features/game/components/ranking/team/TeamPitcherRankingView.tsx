@@ -21,7 +21,7 @@ function TeamPitcherRankingView() {
       chartData={ranking as TeamPitcherRank[]}
       columns={teamPitcherRankColumns}
       chartConfig={TeamRankingPitcherConfig}
-      domain="kt"
+      domain="all"
     />
   );
 }
