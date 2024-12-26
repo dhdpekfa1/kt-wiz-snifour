@@ -64,6 +64,7 @@ function Sidebar({
             <ul className="flex flex-col gap-2">
               {group.sub.map((menu) => (
                 <Link
+                  key={menu.link}
                   to={menu.link}
                   className="rounded py-1 hover:bg-wiz-white hover:bg-opacity-10"
                   onClick={onClose}

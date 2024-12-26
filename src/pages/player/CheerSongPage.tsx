@@ -1,4 +1,5 @@
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
+import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { Song, SongBoard } from '@/features/song';
 import { TabsContent } from '@radix-ui/react-tabs';
@@ -48,25 +49,25 @@ k t wi z 강 백 호
 
 function CheerSongPage() {
   return (
-    <div className="my-20">
+    <div>
+      <Banner>
+        <Banner.Image
+          src="https://placehold.co/1200x200/141414/642521?text=CHEER+SONGS"
+          alt="KT WIZ 응원가"
+        />
+        <Banner.Overlay>
+          <Banner.Heading title="KT WIZ 응원가" />
+          <Banner.Description description="KT Wiz의 응원가를 소개합니다." />
+        </Banner.Overlay>
+      </Banner>
       {/* breadcrumbs */}
       <Breadcrumb />
 
       {/* tabs - 구단 응원가, 선수 응원가 */}
-      <Tabs defaultValue="team" className="w-full flex flex-col items-center">
-        <TabsList className="w-fit flex items-center gap-4 my-2">
-          <TabsTrigger
-            value="team"
-            className="text-black text-lg bg-white rounded"
-          >
-            구단 응원가
-          </TabsTrigger>
-          <TabsTrigger
-            value="player"
-            className="text-black text-lg bg-white rounded"
-          >
-            선수 응원가
-          </TabsTrigger>
+      <Tabs defaultValue="team" className="flex flex-col items-center">
+        <TabsList className="w-full justify-center">
+          <TabsTrigger value="team">구단 응원가</TabsTrigger>
+          <TabsTrigger value="player">선수 응원가</TabsTrigger>
         </TabsList>
         <TabsContent value="team" className="w-full">
           <SongBoard song={teamSong} />

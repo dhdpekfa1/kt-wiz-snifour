@@ -1,4 +1,5 @@
 import { PAGE_URLS } from '@/constants/urls';
+import { cn } from '@/lib/utils';
 import { HomeIcon } from 'lucide-react';
 import { ReactNode } from 'react';
 import { IconRight } from 'react-day-picker';
@@ -62,33 +63,33 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
   filteredPaths[filteredPaths.length - 1].isActive = true;
 
   return (
-    <div className="flex flex-col gap-2 mt-6 mb-4 w-full">
-      <div
-        className={`flex items-center ${
-          leftComponent ? 'justify-between' : 'justify-end'
-        }`}
-      >
-        {leftComponent && (
-          <div className="flex items-center gap-2">{leftComponent}</div>
-        )}
-        <span className="flex items-center text-sm font-light text-wiz-white">
-          <HomeIcon className="mr-2 h-5" />
-          {filteredPaths.map((path, index) => (
-            <span
-              key={path.key}
-              className={`flex items-center ${
-                path.isActive ? 'text-wiz-red' : ''
-              }`}
-            >
-              {path.label as string}
-              {index < filteredPaths.length - 1 && (
-                <IconRight className="h-3 mx-2" />
-              )}
-            </span>
-          ))}
-        </span>
-      </div>
-      <div className="w-full h-[2px] bg-wiz-red" />
+    <div
+      className={cn(
+        'w-full mt-6 mb-4 pb-2 border-b-2 border-wiz-red flex items-center',
+        leftComponent ? 'justify-between' : 'justify-end'
+      )}
+    >
+      {leftComponent && (
+        <div className="flex items-center gap-2">{leftComponent}</div>
+      )}
+      <span className="flex items-center font-light text-wiz-white">
+        <HomeIcon className={cn('mr-1 h-3', 'lg:mr-2 lg:h-4')} />
+        {filteredPaths.map((path, index) => (
+          <span
+            key={path.key}
+            className={cn(
+              'flex items-center text-xs',
+              'lg:text-sm',
+              path.isActive && 'text-wiz-red'
+            )}
+          >
+            {path.label}
+            {index < filteredPaths.length - 1 && (
+              <IconRight className={cn('h-2 mx-1', 'lg:h-3 lg:mx-2')} />
+            )}
+          </span>
+        ))}
+      </span>
     </div>
   );
 };
