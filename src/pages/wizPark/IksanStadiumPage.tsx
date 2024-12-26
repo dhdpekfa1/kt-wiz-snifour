@@ -24,20 +24,14 @@ function IksanStadiumPage() {
       }
     >
       <div className="flex flex-col">
-        <Breadcrumb
-          paths={[
-            { key: 'home', label: 'Home' },
-            { key: 'wizpark', label: 'Wiz Park' },
-            { key: 'wizpark-road', label: '익산 야구장', isActive: true },
-          ]}
-        />
+        <Breadcrumb />
 
         <SubTitle title="퓨쳐스리그가 펼쳐지는 익산 야구장" />
         <div className="flex gap-4 mt-4">
           <div className="w-1/2 border h-[350px] border-gray-400">사진1</div>
           <div className="w-1/2 border border-gray-400">사진2</div>
         </div>
-        <div className="flex gap-1 mt-2 mb-8 p-3 bg-[#35383e] text-lg">
+        <div className="flex gap-1 mt-2 mb-8 p-3 bg-wiz-white bg-opacity-10 text-lg whitespace-nowrap">
           <p className="font-semibold">규격</p>
           <p> : 좌우 98m, 중앙 : 121m / </p>
           <p className="font-semibold">관람석</p>

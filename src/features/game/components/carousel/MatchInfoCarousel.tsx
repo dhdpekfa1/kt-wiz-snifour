@@ -89,8 +89,8 @@ const MatchInfoCarousel = () => {
           ))}
           {!hasUpcomingGames && <CarouselCard data={null} />}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-gray-600 text-white hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
-        <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gray-600 text-white hover:bg-[#222] hover:text-wiz-white p-2 rounded-full" />
+        <CarouselPrevious className="absolute border-none left-0 top-1/2 -translate-y-1/2 z-30 text-white hover:text-wiz-white hover:text-opacity-80 p-4 rounded-full" />
+        <CarouselNext className="absolute border-none  right-0 top-1/2 -translate-y-1/2 z-20 text-white hover:text-wiz-white hover:text-opacity-80 p-4 rounded-full" />
       </Carousel>
     </div>
   );
