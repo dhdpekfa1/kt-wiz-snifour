@@ -51,9 +51,9 @@ const MatchSummaryTable = ({
     parseFloat(rate || '0.000').toFixed(3);
 
   const tableHeaderClass =
-    'text-center bg-wiz-red bg-opacity-90 sm:text-[8px] md:text-xs';
+    'text-center bg-wiz-red bg-opacity-90 text-xs lg:text-base';
   const tableRowClass =
-    'hover:bg-wiz-white hover:bg-opacity-5 bg-wiz-black text-wiz-white border-wiz-white border-opacity-10 sm:text-[10px] md:text-xs';
+    'hover:bg-wiz-white hover:bg-opacity-5 bg-wiz-black text-wiz-white border-wiz-white border-opacity-10 text-xs lg:text-base';
 
   return (
     <Table className="w-full border-collapse whitespace-nowrap overflow-x-scroll">
@@ -106,7 +106,7 @@ const MatchSummaryTable = ({
               ),
             },
           ])}
-          <TableCell className="text-center font-semibold">
+          <TableCell className="text-center font-semibold text-xs lg:text-base">
             시즌 상대 전적
           </TableCell>
           {renderCells([
@@ -125,11 +125,19 @@ const MatchSummaryTable = ({
 
         {/* 세 번째 행: 시즌 순위 */}
         <TableRow className={tableRowClass}>
-          <TableCell colSpan={4} className="text-center font-bold">
+          <TableCell
+            colSpan={4}
+            className="text-center font-bold text-xs lg:text-base"
+          >
             {homeTeamRank?.rank ? `${homeTeamRank.rank} 위` : '-'}
           </TableCell>
-          <TableCell className="text-center font-semibold">시즌 순위</TableCell>
-          <TableCell colSpan={4} className="text-center font-bold">
+          <TableCell className="text-center font-semibold text-xs lg:text-base">
+            시즌 순위
+          </TableCell>
+          <TableCell
+            colSpan={4}
+            className="text-center font-bold text-xs lg:text-base"
+          >
             {visitTeamRank?.rank ? `${visitTeamRank.rank} 위` : '-'}
           </TableCell>
         </TableRow>
