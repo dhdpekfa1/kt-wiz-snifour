@@ -1,13 +1,9 @@
 import { ChartContainer } from '@/components/ui/chart';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import {
-  RecentRecord,
-  SeasonPitcher,
-  YearRecord,
-} from '../player/types/record';
+import { RecentRecord, YearRecord } from '../player/types/detail';
 
 interface CustomBarChartProps {
-  data: RecentRecord[] | YearRecord[] | SeasonPitcher[];
+  data: RecentRecord[] | YearRecord[];
   config: {
     [key: string]: {
       label: string;
@@ -27,7 +23,7 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
         <YAxis
           tickLine={false}
           axisLine={false}
-          domain={['auto', (dataMax: number) => dataMax * 1.1]}
+          domain={[0, (dataMax: number) => (dataMax * 1.1).toFixed(2)]}
         />
         {Object.entries(config).map(([dataKey, value]) =>
           value.isActive ? (

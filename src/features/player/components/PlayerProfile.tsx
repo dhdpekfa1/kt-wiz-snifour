@@ -1,17 +1,16 @@
 import { formatDate } from '@/lib/utils';
-import { Player } from '../types/player';
-import { SeasonSummary } from '../types/record';
+import { PlayerBase, SeasonSummaryBase } from '../types/detail';
 
 interface PlayerProfileProps {
-  player: Player;
-  seasonSummary: SeasonSummary;
+  player: PlayerBase;
+  seasonSummary: SeasonSummaryBase;
 }
 
 function PlayerProfile({ player, seasonSummary }: PlayerProfileProps) {
   return (
     <div className="w-1/4 flex flex-col">
-      <div className="w-full h-[17rem] bg-wiz-white rounded-xl">
-        <img src={player.mobilePlayerImg} alt="" />
+      <div className="w-full h-[17rem] bg-wiz-white rounded-xl overflow-hidden">
+        <img src={player.playerPrvwImg} alt="" className="w-full" />
       </div>
       <div className="flex flex-col gap-2 py-4">
         <div className="mb-4">
@@ -40,8 +39,12 @@ function PlayerProfile({ player, seasonSummary }: PlayerProfileProps) {
           </span>
         </div>
         <div className="flex justify-between">
-          <span>출신교</span>
-          <span className="max-w-48 text-right word-wrap">
+          <span>연봉</span>
+          <span>{player.promise}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>출신</span>
+          <span className="max-w-56 text-right break-keep">
             {player.career?.split('-').join(' - ')}
           </span>
         </div>

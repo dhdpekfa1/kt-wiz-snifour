@@ -10,7 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui';
-import { RecentRecord, YearRecord } from '../types/record';
+import { RecentRecord, YearRecord } from '../types/detail';
 
 interface RecordTableAccordionProps {
   data: RecentRecord[] | YearRecord[];

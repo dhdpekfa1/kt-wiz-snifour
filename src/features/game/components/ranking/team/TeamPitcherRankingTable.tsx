@@ -7,7 +7,7 @@ import { teamPitcherRankColumns } from '@/constants/columns/team-rank-colums';
 import CustomBarChart from '@/features/common/CustomBarChart';
 import DataTable from '@/features/common/DataTable';
 import { Config } from '@/features/player/components/PlayerRecordChart';
-import { SeasonPitcher } from '@/features/player/types/record';
+import { SeasonPitcher } from '@/features/player/types/detail';
 import { useState } from 'react';
 
 const seasonPitcherData: SeasonPitcher[] = data.data.list;

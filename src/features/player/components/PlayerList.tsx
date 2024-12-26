@@ -1,4 +1,4 @@
-import { Coach, Player } from '@/features/player/types/player';
+import { Coach, Player } from '@/features/player/types/list';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router';
 

@@ -1,4 +1,4 @@
-import { RecentRecord, YearRecord } from '@/features/player/types/record';
+import { YearRecord, RecentRecord } from '@/features/player/types/detail';
 import { ColumnDef } from '@tanstack/react-table';
 
 export const recentRecordColumns: ColumnDef<RecentRecord>[] = [
@@ -28,7 +28,9 @@ export const recentRecordColumns: ColumnDef<RecentRecord>[] = [
     accessorKey: 'era',
     header: '평균자책점',
     cell: (info) =>
-      ((9 * info.row.original.er) / info.row.original.inn2).toFixed(2),
+      !info.row.original.er || !info.row.original.inn2
+        ? null
+        : ((9 * info.row.original.er) / info.row.original.inn2).toFixed(2),
   },
   {
     accessorKey: 'pa',

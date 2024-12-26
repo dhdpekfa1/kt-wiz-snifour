@@ -1,6 +1,6 @@
 import { ChartContainer } from '@/components/ui/chart';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
-import { RecentRecord, YearRecord } from '../player/types/record';
+import { RecentRecord, YearRecord } from '../player/types/detail';
 
 interface CustomLineChartProps {
   data: RecentRecord[] | YearRecord[];
