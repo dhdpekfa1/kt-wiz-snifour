@@ -3,7 +3,7 @@ import DataTable from '@/features/common/DataTable';
 import { TeamBatterRank } from '@/features/common/types/batters';
 import { TeamPitcherRank } from '@/features/common/types/pitchers';
 import { Config } from '@/features/player/components/PlayerRecordChart';
-import { RecentRecord, YearRecord } from '@/features/player/types/record';
+import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { ColumnDef } from '@tanstack/react-table';
 import { useState } from 'react';
 

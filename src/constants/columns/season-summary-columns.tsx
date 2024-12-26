@@ -1,7 +1,7 @@
-import { SeasonSummary } from '@/features/player/types/record';
+import { SeasonSummaryBase } from '@/features/player/types/detail';
 import { ColumnDef } from '@tanstack/react-table';
 
-export const seasonOneColumns: ColumnDef<SeasonSummary>[] = [
+export const seasonOneColumns: ColumnDef<SeasonSummaryBase>[] = [
   { accessorKey: 'era', header: '평균자책점' },
   { accessorKey: 'gamenum', header: '경기 수' },
   { accessorKey: 'wCg', header: '완투' },
@@ -18,7 +18,7 @@ export const seasonOneColumns: ColumnDef<SeasonSummary>[] = [
   { accessorKey: 'hr', header: '피홈런' },
   { accessorKey: 'era', header: 'IP/G' }, // ? 무슨지표?
 ];
-export const seasonTwoColumns: ColumnDef<SeasonSummary>[] = [
+export const seasonTwoColumns: ColumnDef<SeasonSummaryBase>[] = [
   { accessorKey: 'sf', header: '희비' },
   { accessorKey: 'sh', header: '희타' },
   { accessorKey: 'bb', header: '볼넷' },
