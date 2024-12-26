@@ -15,8 +15,6 @@ function TeamPitcherRankingView() {
     return <div>{error}</div>;
   }
 
-  console.log('ranking', ranking);
-
   return (
     <TeamRankingView
       tableData={ranking as TeamPitcherRank[]}

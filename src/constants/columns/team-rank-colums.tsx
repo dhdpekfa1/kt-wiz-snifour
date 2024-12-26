@@ -126,10 +126,6 @@ export const teamBatterRankColumns: ColumnDef<TeamBatterRank>[] = [
     header: '팀명',
   },
   {
-    accessorKey: 'hra',
-    header: '타율',
-  },
-  {
     accessorKey: 'hit',
     header: '안타',
   },
@@ -188,5 +184,9 @@ export const teamBatterRankColumns: ColumnDef<TeamBatterRank>[] = [
   {
     accessorKey: 'ops',
     header: 'OPS',
+  },
+  {
+    accessorKey: 'hra',
+    header: '타율',
   },
 ];

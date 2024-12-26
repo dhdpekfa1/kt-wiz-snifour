@@ -1,18 +1,19 @@
 import CustomBarChart from '@/features/common/CustomBarChart';
 import DataTable from '@/features/common/DataTable';
+import { TeamBatterRank } from '@/features/common/types/batters';
 import { TeamPitcherRank } from '@/features/common/types/pitchers';
 import { Config } from '@/features/player/components/PlayerRecordChart';
-import {
-  RecentRecord,
-  SeasonBatter,
-  YearRecord,
-} from '@/features/player/types/record';
+import { RecentRecord, YearRecord } from '@/features/player/types/record';
 import { ColumnDef } from '@tanstack/react-table';
 import { useState } from 'react';
 
 interface TeamRankingViewProps<T> {
   tableData: T[];
-  chartData: RecentRecord[] | YearRecord[] | TeamPitcherRank[] | SeasonBatter[];
+  chartData:
+    | RecentRecord[]
+    | YearRecord[]
+    | TeamPitcherRank[]
+    | TeamBatterRank[];
   columns: ColumnDef<T>[];
   chartConfig: Config;
   domain: 'kt' | 'all' | undefined;
