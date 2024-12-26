@@ -24,34 +24,25 @@ function IksanStadiumPage() {
       }
     >
       <div className="flex flex-col">
-        <Breadcrumb
-          paths={[
-            { key: 'home', label: 'Home' },
-            { key: 'wizpark', label: 'Wiz Park' },
-            { key: 'wizpark-road', label: '익산 야구장', isActive: true },
-          ]}
-        />
+        <Breadcrumb />
 
         <SubTitle title="퓨쳐스리그가 펼쳐지는 익산 야구장" />
         <div className="flex gap-4 mt-4">
-          <div className="w-1/2 border h-[350px] border-gray-400">사진1</div>
-          <div className="w-1/2 border border-gray-400">사진2</div>
+          <div className="w-1/2 sm:h-[250px] md:h-[350px] h-[180px] border border-wiz-white border-opacity-30">
+            사진1
+          </div>
+          <div className="w-1/2 sm:h-[250px] md:h-[350px] h-[180px] border border-wiz-white border-opacity-30">
+            사진2
+          </div>
         </div>
-        <div className="flex gap-1 mt-2 mb-8 p-3 bg-[#35383e] text-lg">
-          <p className="font-semibold">규격</p>
-          <p> : 좌우 98m, 중앙 : 121m / </p>
-          <p className="font-semibold">관람석</p>
-          <p> : 740석 / </p>
-          <p className="font-semibold">본부석</p>
-          <p> : 덕아웃 / </p>
-          <p className="font-semibold">전광판</p>
-          <p> :전자식 / </p>
-          <p className="font-semibold">펜스</p>
-          <p> :고정식 / </p>
-          <p className="font-semibold">건립</p>
-          <p> 2011년 6월 / </p>
-          <p className="font-semibold">그라운드</p>
-          <p> : 인조잔디 </p>
+        <div className="flex gap-1 mt-2 mb-8 p-3 bg-wiz-white bg-opacity-10 text-lg overflow-x-scroll whitespace-nowrap">
+          <p className="font-semibold">규격</p>: 좌우 98m, 중앙 : 121m /
+          <p className="font-semibold">관람석</p>: 740석 /
+          <p className="font-semibold">본부석</p>: 덕아웃 /
+          <p className="font-semibold">전광판</p>:전자식 /
+          <p className="font-semibold">펜스</p>:고정식 /
+          <p className="font-semibold">건립</p>2011년 6월 /
+          <p className="font-semibold">그라운드</p>: 인조잔디
         </div>
 
         <SubTitle title="오시는 길" />
@@ -83,24 +74,25 @@ function IksanStadiumPage() {
                 버스
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex  gap-8">
-              <div className="w-1/2 flex  flex-col gap-6">
-                <div>
+            <CardContent className="grid gap-8 md:grid-cols-2 sm:grid-cols-1">
+              {/* <CardContent className="flex gap-8"> */}
+              <div className="flex flex-col gap-6 w-full">
+                <div className="mt-2 md:mt-0">
                   <p className="text-xl font-semibold pb-3">
                     익산 공설 운동장 하차
                   </p>
-                  <p className="flex items-center gap-3">
+                  <p className="flex items-center gap-3 break-keep">
                     <Button className="bg-green-500 h-6 border-none rounded-xl hover:bg-green-500">
                       일반
                     </Button>
                     102-1, 102-2, 103, 103-1
                   </p>
                 </div>
-                <div>
+                <div className="mt-2">
                   <p className="text-xl font-semibold pb-3">
                     종합경기장. 파출소 옆 하차
                   </p>
-                  <p className="flex gap-3">
+                  <p className="flex gap-3 break-keep">
                     <Button className="bg-green-500 h-6 border-none rounded-xl hover:bg-green-500">
                       일반
                     </Button>
@@ -108,7 +100,7 @@ function IksanStadiumPage() {
                     64, 65, 65-1, 102-1, 102-2, 03, 105
                   </p>
 
-                  <p className="flex items-center gap-3">
+                  <p className="flex items-center gap-3 break-keep">
                     <Button className="bg-blue-700 h-6 border-none rounded-xl hover:bg-blue-700">
                       좌석
                     </Button>
@@ -116,23 +108,23 @@ function IksanStadiumPage() {
                   </p>
                 </div>
               </div>
-              <div className="w-1/2 flex  flex-col gap-6">
-                <div>
+              <div className="flex  flex-col gap-6 w-full">
+                <div className="mt-2 md:mt-0">
                   <p className="text-xl font-semibold pb-3">
                     이리팔봉초등학교 하차
                   </p>
-                  <p className="flex items-center gap-3">
+                  <p className="flex items-center gap-3 break-keep">
                     <Button className="bg-green-500 h-6 border-none rounded-xl hover:bg-green-500">
                       일반
                     </Button>
                     40, 55, 56, 58, 102-2, 103
                   </p>
                 </div>
-                <div>
+                <div className="mt-2">
                   <p className="text-xl font-semibold pb-3">
                     팔봉동사무소 하차
                   </p>
-                  <p className="flex gap-3">
+                  <p className="flex gap-3 break-keep">
                     <Button className="bg-green-500 h-6 border-none rounded-xl hover:bg-green-500">
                       일반
                     </Button>
@@ -140,7 +132,7 @@ function IksanStadiumPage() {
                     63-1, 64, 65, 65-1, 103
                   </p>
 
-                  <p className="flex items-center gap-3">
+                  <p className="flex items-center gap-3 break-keep">
                     <Button className="bg-blue-700 h-6 border-none rounded-xl hover:bg-blue-700">
                       좌석
                     </Button>
