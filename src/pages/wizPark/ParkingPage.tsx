@@ -20,7 +20,7 @@ function ParkingPage() {
               title="Parking Reservations"
               subtitle="주차 예약 안내"
             />
-            <Banner.Description description="수원 kt wiz park 주자 예약에 대해 상세하게 알려드립니다." />
+            <Banner.Description description="수원 kt wiz park 주차 예약에 대해 상세하게 알려드립니다." />
           </Banner.Overlay>
         </Banner>
       }
