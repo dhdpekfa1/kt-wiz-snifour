@@ -13,14 +13,6 @@ interface MatchBoardProps {
   // rightEvent: MouseEventHandler<HTMLButtonElement>; // 오른쪽 버튼 클릭 핸들러
 }
 
-function formatchDate(dateStr: string): string {
-  const year = dateStr.slice(0, 4);
-  const month = dateStr.slice(4, 6);
-  const day = dateStr.slice(6, 8);
-
-  return `${year}년 ${Number.parseInt(month)}월 ${Number.parseInt(day)}일`;
-}
-
 const MatchBoard = ({
   team1Data,
   team2Data,
@@ -28,10 +20,10 @@ const MatchBoard = ({
   matchTime,
   stadium,
   gameTable,
-}: //
-MatchBoardProps) => {
+}: MatchBoardProps) => {
+  console.log(matchDate);
   return (
-    <div className="w-full flex items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded">
+    <div className="w-full flex items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded overflow-x-scroll">
       {/* team1 */}
       <TeamInfo {...team1Data} />
 
@@ -42,25 +34,24 @@ MatchBoardProps) => {
             <button
               //onClick={() => onRouteChange}
               type="button"
-              className="flex items-center justify-center text-lg font-semibold text-white  bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
+              className="flex items-center justify-center text-lg font-semibold text-white  bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
             >
-              <IconLeft />
+              <IconLeft className="w-2/5 h-auto" />
             </button>
             <div className="relative flex flex-col items-center gap-1">
-              <span className="text-2xl font-semibold">
-                {matchDate ? formatchDate(matchDate) : '데이터없음'}
+              <span className="text-lg md:text-xl lg:text-2xl font-semibold">
+                {matchDate ? matchDate : '정보 없음'}
               </span>
-              <span className="text-center text-[#717781]">
+              <span className="text-center text-wiz-white text-opacity-50 text-sm md:text-md lg:text-lg">
                 {matchTime} | {stadium}
-                {/* TODO: boxscore ? 관중 수 : '' */}
               </span>
             </div>
             <button
               type="button"
               //onClick={() => onRouteChange}
-              className="flex items-center justify-center text-lg font-bold text-white  bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
+              className="flex items-center justify-center text-lg font-semibold text-white  bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
             >
-              <IconRight />
+              <IconRight className="w-2/5 h-auto" />
             </button>
           </div>
         </div>
