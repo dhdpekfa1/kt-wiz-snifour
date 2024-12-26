@@ -17,19 +17,20 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   return (
     <div className="flex flex-col items-center gap-4 max-lg:flex-row">
       <img src={logoUrl} alt="team logo" className="w-32 h-32" />
-      <div className="w-[380px] relative mt-2 p-10 bg-[#35383e] rounded-xl">
+      <div className="w-[380px] relative mt-2 p-10  bg-wiz-white bg-opacity-10 rounded-xl">
         <img src="/assets/ground.png" alt="diamond" className="w-full h-auto" />
         {data.map((player) =>
           positionData[player.pos] ? (
             <div
               key={player.pcode}
-              className={`border border-l-2 border-l-wiz-red bg-wiz-white w-fit px-2 rounded ${
+              className={`border border-l-2 border-l-wiz-red bg-wiz-white w-fit h-fit px-2 rounded ${
                 positionData[player.pos].style
               }`}
             >
-              <p className="text-wiz-black">
-                {positionData[player.pos].label}. {player.playerName}
-              </p>
+              <div className="flex text-wiz-black">
+                <p>{positionData[player.pos].label}.</p>
+                <p className="break-words max-w-[6ch]">{player.playerName}</p>
+              </div>
             </div>
           ) : null
         )}

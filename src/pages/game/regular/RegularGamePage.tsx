@@ -1,6 +1,6 @@
-import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import Banner from '@/features/common/Banner';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';
 
 import Layout from '@/features/common/Layout';

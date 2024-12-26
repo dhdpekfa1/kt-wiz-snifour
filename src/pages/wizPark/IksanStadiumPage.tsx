@@ -44,7 +44,6 @@ function IksanStadiumPage() {
           <p className="font-semibold">건립</p>2011년 6월 /
           <p className="font-semibold">그라운드</p>: 인조잔디
         </div>
-
         <SubTitle title="오시는 길" />
         <IksanParkMap />
         <div className="flex flex-col justify-between mt-6 mb-12">
