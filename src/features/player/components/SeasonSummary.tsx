@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { SeasonSummaryBase } from '../types/detail';
 import { Progress } from '@/components/ui/progress';
+import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 
 const indicators: {
   accessorKey: keyof SeasonSummaryBase;
@@ -39,11 +40,20 @@ const indicators: {
 
 interface SeasonSummaryProps {
   data: SeasonSummaryBase;
-  maxStats: { [key: keyof SeasonSummaryBase | string]: number };
 }
 
-function SeasonSummary({ data, maxStats }: SeasonSummaryProps) {
-  const ipg = Number((Number(data.inn2) / Number(data.gamenum)).toFixed(3));
+function SeasonSummary({ data }: SeasonSummaryProps) {
+  const { maxStats } = useMaxStatsStore();
+  const ipg =
+    Number(data.gamenum) > 0
+      ? Number((Number(data.inn2) / Number(data.gamenum)).toFixed(3))
+      : 0;
+  console.log({ maxStats, data });
+
+  if (!maxStats) {
+    return null;
+  }
+
   return (
     <div
       className={cn(
@@ -62,13 +72,16 @@ function SeasonSummary({ data, maxStats }: SeasonSummaryProps) {
             value={
               maxStats[accessorKey] > 0
                 ? Math.round(
-                    (Number(data[accessorKey]) / maxStats[accessorKey]) * 100
+                    ((Number(data[accessorKey]) || 0) / maxStats[accessorKey]) *
+                      100
                   )
                 : 0
             }
             className="text-white w-[75%] h-1"
           />
-          <p className="text-base md:text-lg lg:text-xl">{data[accessorKey]}</p>
+          <p className="text-base md:text-lg lg:text-xl">
+            {data[accessorKey] || 0}
+          </p>
         </div>
       ))}
       <div className="flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 rounded-xl border border-wiz-red border-opacity-20 aspect-square">

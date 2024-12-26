@@ -3,6 +3,7 @@ import { getPlayer } from '../apis/player';
 import { Player } from '../types/detail';
 import { getKTPitcherRanking } from '@/features/game/apis/ranking/pitcher';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 
 export const usePlayer = (
   position: string | undefined,
@@ -11,7 +12,7 @@ export const usePlayer = (
   const [player, setPlayer] = useState<Player | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [maxStats, setMaxStats] = useState({});
+  const { maxStats, setMaxStats } = useMaxStatsStore();
 
   if (!position) {
     return { player: null, loading: false, error: 'position이 없습니다.' };
@@ -62,8 +63,6 @@ export const usePlayer = (
             results.kbb = Math.max(results.kbb, Number(player.kkbb));
           }
 
-          console.log(results);
-
           setMaxStats(results);
         }
       } catch (err) {
@@ -75,8 +74,10 @@ export const usePlayer = (
     };
 
     fetchData();
-    findMaxStats(position);
-  }, [position, pcode]);
+    if (!maxStats) {
+      findMaxStats(position);
+    }
+  }, [position, pcode, maxStats, setMaxStats]);
 
-  return { player, maxStats, loading, error };
+  return { player, loading, error };
 };

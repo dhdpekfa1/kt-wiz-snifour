@@ -19,7 +19,7 @@ function PlayerDetailPage() {
   const [searchParams] = useSearchParams();
   const pcode = searchParams.get('pcode');
 
-  const { player, maxStats, error } = usePlayer(position, pcode);
+  const { player, error } = usePlayer(position, pcode);
 
   if (!player) {
     return <div>선수 정보가 없습니다.</div>;
@@ -75,7 +75,7 @@ function PlayerDetailPage() {
           <p className="text-sm text-neutral-400 my-1">
             팀 대비 비교 성적입니다.
           </p>
-          <SeasonSummary data={player.seasonsummary} maxStats={maxStats} />
+          <SeasonSummary data={player.seasonsummary} />
         </div>
       </div>
     </div>
