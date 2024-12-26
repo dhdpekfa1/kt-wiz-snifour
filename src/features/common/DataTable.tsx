@@ -59,7 +59,7 @@ function DataTable<TData>({ data, columns, domain }: DataTableProps<TData>) {
           <TableRow
             key={row.id}
             className={cn(
-              'border-b-wiz-white border-opacity-10',
+              'border-b-wiz-white border-opacity-10 whitespace-nowrap',
               (domain === 'all' &&
                 (row.original as TData & TypeHasTeamName).team === 'KT') ||
                 ((row.original as TData & TypeHasTeamName).teamName === 'KT' &&
