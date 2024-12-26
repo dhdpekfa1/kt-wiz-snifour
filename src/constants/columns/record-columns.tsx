@@ -76,11 +76,6 @@ export const yearMatchColumns: ColumnDef<YearRecord>[] = [
     header: '시즌',
   },
   {
-    accessorKey: 'teamName',
-    header: '팀',
-    cell: (info) => info.getValue() as string,
-  },
-  {
     accessorKey: 'gamenum',
     header: '경기',
   },
@@ -114,11 +109,6 @@ export const yearRecordColumns: ColumnDef<YearRecord>[] = [
   {
     accessorKey: 'gyear',
     header: '시즌',
-  },
-  {
-    accessorKey: 'teamName',
-    header: '팀',
-    cell: (info) => info.getValue() as string,
   },
   {
     accessorKey: 'era',

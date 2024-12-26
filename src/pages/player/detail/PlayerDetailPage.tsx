@@ -3,7 +3,6 @@ import { useParams, useSearchParams } from 'react-router';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { PlayerProfile, PlayerRecordChart } from '@/features/player/components';
-import { GameRecord, SeasonSummaryBase } from '@/features/player/types/detail';
 import DataTable from '@/features/common/DataTable';
 import {
   seasonOneColumns,
@@ -45,13 +44,21 @@ function PlayerDetailPage() {
           {/* 경기 기록 */}
           <div className="flex-1 flex flex-col items-center gap-4">
             <PlayerRecordChart
-              title="최근 5경기"
-              data={player.recentgamerecordlist as GameRecord[]}
+              title={
+                player.recentgamerecordlist.length > 0
+                  ? '정규 리그 최근 5경기'
+                  : '퓨처스 리그 최근 5경기'
+              }
+              data={
+                player.recentgamerecordlist.length > 0
+                  ? player.recentgamerecordlist
+                  : player.recentgamerecordlistfutures
+              }
               config={recentPitcherConfig}
             />
             <PlayerRecordChart
-              title="통산 기록"
-              data={player.yearrecordlist as SeasonSummaryBase[]}
+              title="정규 리그 통산 기록"
+              data={player.yearrecordlist}
               config={yearPitcherConfig}
             />
           </div>
