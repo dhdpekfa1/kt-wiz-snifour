@@ -1,8 +1,8 @@
 /** 팀 순위 */
 export { TeamRankingTab } from './team/TeamRankingTab';
 export { TeamRankingTable } from './team/TeamRankingTable';
-export { TeamPitcherRankingTable } from './team/TeamPitcherRankingTable';
-export { TeamBatterRankingTable } from './team/TeamBatterRankingTable';
+export { TeamBatterRankingView } from './team/TeamBatterRankingView';
+export { TeamPitcherRankingView } from './team/TeamPitcherRankingView';
 export { TeamVSTable } from './team/TeamVSTable';
 
 /** 투수 순위 */

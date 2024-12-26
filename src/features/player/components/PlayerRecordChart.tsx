@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { RecentRecord, YearRecord } from '../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
 
+// TODO: 타입 분리
 export interface Config {
   [key: string]: {
     label: string;

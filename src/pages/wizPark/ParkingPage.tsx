@@ -21,7 +21,7 @@ function ParkingPage() {
               title="Parking Reservations"
               subtitle="주차 예약 안내"
             />
-            <Banner.Description description="수원 kt wiz park 주자 예약에 대해 상세하게 알려드립니다." />
+            <Banner.Description description="수원 kt wiz park 주차 예약에 대해 상세하게 알려드립니다." />
           </Banner.Overlay>
         </Banner>
       }
@@ -54,7 +54,11 @@ function ParkingPage() {
               )}
             >
               <span className="font-bold">사전 예약차량만 주차가 가능</span>
-              하며, 경기시간 2시간 전부터 주차가 가능합니다.
+              하며, 경기시간 2시간 전부터 주차 가능합니다.
+            </p>
+            <p className="text-base text-center text-gray-300 max-sm:text-sm flex items-center justify-center gap-1 max-sm:justify-start">
+              <p className="text-wiz-red text-base text-center">*</p>수원 kt wiz
+              park 동일
             </p>
           </div>
         </div>
@@ -71,7 +75,6 @@ function ParkingPage() {
 
         <div>
           <SubTitle title="예약 방법" />
-
           <p className="text-neutral-400 break-keep text-xs md:text-sm lg:text-base lg:mt-2">
             ※ 예약 제외 차량: 25인승 소형버스 이상 및 장애인 차량 (입차 시
             요금만 납부)
@@ -115,7 +118,7 @@ function ParkingPage() {
               </CardHeader>
               <CardContent>
                 <div className="mt-2">
-                  <p className="mt-1 mb-11">수원종합운동장</p>
+                  <p className="mt-1 mb-2 lg-mg-11">수원종합운동장</p>
                   <p className="flex items-center gap-2">
                     <PhoneCall className="w-4" /> 031-240-2720
                   </p>
