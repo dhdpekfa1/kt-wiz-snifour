@@ -28,8 +28,8 @@ function ParkLocationPage() {
       <div className="flex flex-col items-center text-wiz-white">
         <Breadcrumb />
         <WizParkMap />
-        <div className="flex flex-col items-center my-8 gap-2">
-          <p className="text-xl font-semibold">
+        <div className="flex flex-col items-center my-8 gap-2 break-keep md:text-xl ">
+          <p className="font-semibold">
             경기도 수원시 장안구 경수대로 893(조원동) 수원 케이티 위즈 파크
           </p>
           <p>(구 : 경기도 수원시 장안구 조원동 775)</p>
@@ -41,18 +41,18 @@ function ParkLocationPage() {
               className="flex gap-1 items-center"
             >
               <MapPin />
-              <span className="text-xl">빠른길찾기</span>
+              <span className="md:text-xl">빠른길찾기</span>
             </a>
           </Button>
         </div>
-        <div className="flex gap-5 w-full">
+        <div className="flex gap-5 w-full flex-col md:flex-row">
           <Card className="rounded-3xl w-full">
             <CardHeader>
               <CardTitle>버스 이용 시</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="flex flex-col gap-3">
-                <li className="flex items-center gap-3">
+                <li className="flex items-start gap-3">
                   <Button className="bg-green-500 h-6 border-none rounded-xl hover:bg-green-500">
                     일반
                   </Button>
@@ -84,24 +84,25 @@ function ParkLocationPage() {
               <CardTitle>지하철 이용시</CardTitle>
             </CardHeader>
             <CardContent>
-              <h1 className="text-xl font-medium bg-wiz-red rounded-lg px-2 py-1">
+              <h1 className="text-xl font-bold mb-2 relative z-0">
+                <div className="absolute bottom-0 left-0 w-full h-1/2 bg-wiz-red bg-opacity-50 -z-10" />
                 화서역 하차
               </h1>
               <ul className="mt-3 flex flex-col gap-2">
                 <li className="flex">
-                  <ArrowBigRightIcon />
+                  <ArrowBigRightIcon className="w-6 h-6" />
                   택시로 10분
                 </li>
-                <li className="flex">
-                  <ArrowBigRightIcon />
+                <li className="flex break-keep">
+                  <ArrowBigRightIcon className="w-6 h-6" />
                   37, 39번 버스이용: 수성중 사거리 하차 후 도보 3분
                 </li>
-                <li className="flex">
-                  <ArrowBigRightIcon />
+                <li className="flex break-keep">
+                  <ArrowBigRightIcon className="w-6 h-6" />
                   55분 버스이용 종합운동장 하차 수원역하차 (택시로 20분)
                 </li>
-                <li className="flex">
-                  <ArrowBigRightIcon />
+                <li className="flex break-keep">
+                  <ArrowBigRightIcon className="w-6 h-6" />
                   1번, 5번, 8번 버스이용: 수성중 사거리 하차 후 도보 3분
                 </li>
               </ul>
