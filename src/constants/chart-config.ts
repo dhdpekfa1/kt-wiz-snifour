@@ -97,76 +97,80 @@ export const yearPitcherConfig = {
   },
 };
 
-// TODO: 해당 데이터 맞는지 확인 후 수정 필요(ab, bb9 등)
 export const TeamRankingPitcherConfig = {
-  sh: {
-    label: '희타',
+  era: {
+    label: 'ERA',
     color: colorSet[0],
     isActive: true,
   },
-  bb9: {
-    label: '희비',
+  sh: {
+    label: '희타',
     color: colorSet[1],
+    isActive: false,
+  },
+  sf: {
+    label: '희비',
+    color: colorSet[2],
     isActive: false,
   },
   bb: {
     label: '볼넷',
-    color: colorSet[2],
+    color: colorSet[3],
     isActive: false,
   },
-  bbhp: {
+  ib: {
     label: '고의 4구',
-    color: colorSet[3],
+    color: colorSet[4],
     isActive: false,
   },
   hp: {
     label: '사구',
-    color: colorSet[4],
+    color: colorSet[5],
     isActive: false,
   },
   kk: {
     label: '탈삼진',
-    color: colorSet[5],
+    color: colorSet[6],
     isActive: false,
   },
   wp: {
     label: '폭투',
-    color: colorSet[6],
+    color: colorSet[7],
     isActive: false,
   },
   bk: {
     label: '보크',
-    color: colorSet[7],
+    color: colorSet[8],
     isActive: false,
   },
   r: {
     label: '실점',
-    color: colorSet[8],
+    color: colorSet[9],
     isActive: false,
   },
   er: {
     label: '자책점',
-    color: colorSet[9],
+    color: colorSet[0],
     isActive: false,
   },
   bs: {
     label: '블론세이브',
-    color: colorSet[0],
+    color: colorSet[1],
     isActive: false,
   },
   whip: {
     label: 'WHIP',
-    color: colorSet[1],
+    color: colorSet[2],
     isActive: false,
   },
-  hit: {
+  oavg: {
     label: '피안타율',
-    color: colorSet[2],
+    color: colorSet[3],
     isActive: false,
   },
   qs: {
     label: 'QS',
-    color: colorSet[3],
+    color: colorSet[4],
     isActive: false,
   },
 };

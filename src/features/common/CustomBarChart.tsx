@@ -1,15 +1,12 @@
 import { ChartContainer } from '@/components/ui/chart';
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import {
-  RecentRecord,
-  SeasonBatter,
-  SeasonPitcher,
-  YearRecord,
-} from '../player/types/record';
+import { RecentRecord, YearRecord } from '../player/types/record';
+import { TeamBatterRank } from './types/batters';
+import { TeamPitcherRank } from './types/pitchers';
 
 interface CustomBarChartProps {
-  data: RecentRecord[] | YearRecord[] | SeasonPitcher[] | SeasonBatter[];
+  data: RecentRecord[] | YearRecord[] | TeamPitcherRank[] | TeamBatterRank[];
   config: {
     [key: string]: {
       label: string;
