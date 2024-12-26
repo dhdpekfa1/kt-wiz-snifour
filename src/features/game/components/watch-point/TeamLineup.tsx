@@ -4,7 +4,7 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   const positionData: Record<string, { style: string; label: string }> = {
     '1': {
       style:
-        'absolute top-44 left-32  md:top-52 md:left-40 lg:bottom-44 lg:left-40',
+        'absolute top-40 left-32  md:top-52 md:left-40 lg:bottom-44 lg:left-40',
       label: 'P',
     },
     '2': {

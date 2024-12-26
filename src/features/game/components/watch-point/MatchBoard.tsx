@@ -63,7 +63,7 @@ const MatchBoard = ({
         </div>
 
         {/* 큰 화면 레이아웃 */}
-        <div className="hidden sm:flex items-center justify-between px-8 py-6 gap-4 rounded">
+        <div className="hidden sm:flex items-center justify-between px-8 py-6 gap-4 rounded overflow-x-scroll">
           {/* team1 */}
           <TeamInfo {...team1Data} />
           {/* 경기 테이블 */}
