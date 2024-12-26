@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import { SeasonSummaryBase } from '../types/detail';
 import { Progress } from '@/components/ui/progress';
 import { useMaxStatsStore } from '@/store/useMaxStatsStore';
+import { useParams } from 'react-router';
 
 const indicators: {
   accessorKey: keyof SeasonSummaryBase;
@@ -18,7 +19,6 @@ const indicators: {
   { accessorKey: 'wra', header: '승률' },
   { accessorKey: 'tugucount', header: '타자' }, // ? 중복?
   { accessorKey: 'tugucount', header: '투구 수' },
-  { accessorKey: 'innDisplay', header: '이닝' },
   { accessorKey: 'hit', header: '피안타' },
   { accessorKey: 'hr', header: '피홈런' },
   { accessorKey: 'sf', header: '희비' },
@@ -44,6 +44,7 @@ interface SeasonSummaryProps {
 
 function SeasonSummary({ data }: SeasonSummaryProps) {
   const { maxStats } = useMaxStatsStore();
+  const { position } = useParams();
   const ipg =
     Number(data.gamenum) > 0
       ? Number((Number(data.inn2) / Number(data.gamenum)).toFixed(3))
@@ -84,14 +85,32 @@ function SeasonSummary({ data }: SeasonSummaryProps) {
           </p>
         </div>
       ))}
-      <div className="flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 rounded-xl border border-wiz-red border-opacity-20 aspect-square">
-        <p className="font-bold text-xs md:text-sm">IP/G</p>
-        <Progress
-          value={maxStats.ipg > 0 ? Math.round((ipg / maxStats.ipg) * 100) : 0}
-          className="text-white w-[75%] h-1"
-        />
-        <p className="text-base md:text-lg lg:text-xl">{ipg}</p>
-      </div>
+      {position === 'pitcher' && (
+        <>
+          <div className="flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 rounded-xl border border-wiz-red border-opacity-20 aspect-square">
+            <p className="font-bold text-xs md:text-sm">이닝</p>
+            <Progress
+              value={
+                maxStats.inn2 > 0
+                  ? Math.round((Number(data.inn2) / maxStats.inn2) * 100)
+                  : 0
+              }
+              className="text-white w-[75%] h-1"
+            />
+            <p className="text-base md:text-lg lg:text-xl">{data.innDisplay}</p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 rounded-xl border border-wiz-red border-opacity-20 aspect-square">
+            <p className="font-bold text-xs md:text-sm">IP/G</p>
+            <Progress
+              value={
+                maxStats.ipg > 0 ? Math.round((ipg / maxStats.ipg) * 100) : 0
+              }
+              className="text-white w-[75%] h-1"
+            />
+            <p className="text-base md:text-lg lg:text-xl">{ipg}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }
