@@ -1,112 +1,125 @@
-export interface CommonRecord {
-  bb: number;
-  er: number;
-  hit: number;
-  hp: number;
-  hr: number;
-  inn2: number;
-  innDisplay: string;
-  kk: number;
-  r: number;
-  sv: number;
-  wl: string;
-  w: number;
-}
-
-export interface RecentRecord extends CommonRecord {
+export interface GameRecord {
   displayDate: string;
   matchTeamCode: string;
   matchTeamName: string;
-  oavg: string;
-  pa: number;
+  bb: number;
+  hit: number;
+  hr: number;
+  hp: number;
+  r: number;
+  sv: number;
+  wl: string;
   wls: string;
+  oavg?: string; // 투수만 있는 필드
+  inn2?: number; // 투수만 있는 필드
+  innDisplay?: string; // 투수만 있는 필드
+  kk?: number; // 투수만 있는 필드
+  pa?: number; // 투수만 있는 필드
+  // 타자 관련 추가 필드
+  ab?: number;
+  bra?: string;
+  rbi?: number;
+  run?: number;
+  sb?: number;
+  gd?: number;
+  h2?: number;
+  h3?: number;
+  hra?: string;
 }
 
-export interface YearRecord extends CommonRecord {
-  bf: number;
-  era: string;
-  gamenum: number;
+export interface PlayerBase {
+  backnum: string;
+  birth: string;
+  bloodGroups: string;
+  bornPlace: string;
+  career: string;
+  career2: string;
+  debutYear: string;
+  energybar: number;
+  energybarName: string;
+  engName: string;
   gyear: string;
-  hold: number;
-  sho: number;
-  teamCode: string;
-  teamName: string;
-  wCg: number;
-  wra: string;
-  l: number;
-}
-
-export interface SeasonSummary extends CommonRecord {
-  babip: string;
-  era: string;
-  bs: number;
-  err: number;
-  fip: string;
-  fo: number;
-  gamenum: number;
-  go: number;
-  havg: string;
-  ib: number;
-  kbb: string;
-  l: number;
-  oavg: string;
+  hasFanpage: string;
+  height: string;
+  hittype: string;
+  mobilePlayerImg: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  money: string;
   pcode: string;
   playerName: string;
-  qs: number;
-  qsPlus: number;
-  ravg: string;
-  sf: number;
-  sh: number;
-  sho: number;
-  start: number;
-  svo: number;
-  tugucount: number;
-  turfSave: number;
-  war: string;
-  whip: string;
-  winShares: string;
-  wp: number;
-  wra: string;
+  playerPrvwImg: string;
+  playerPrvwImg1: string;
+  playerPrvwImg2: string;
+  playerPrvwImg3: string;
+  position: string;
+  position2: string;
+  promise: string;
+  rank: number;
+  rankName: string;
+  teamCode: string;
+  teamName: string;
+  weight: string;
 }
 
-export interface SeasonPitcher
-  extends Omit<CommonRecord, 'inn2' | 'innDisplay' | 'wl' | 'w'> {
+export interface SeasonSummaryBase {
   ab: number;
-  // dd9: number;
-  // n: number;
-  bbhp: number;
-  bk: number;
-  bs: number;
-  cg: number;
+  babip: string;
+  bb: number;
+  bbkk: string;
+  bra: string;
   cs: number;
-  err: number;
-  era: string;
+  finalHit: number;
+  gamenum: number;
   gd: number;
   gyear: string;
   h2: number;
   h3: number;
-  hit9: number;
-  hold: number;
+  hit: number;
+  hp: number;
+  hr: number;
+  hra: string;
   ib: number;
-  inn: number;
-  iso: string;
-  kk9: number;
-  oavg: string;
-  obp: string;
-  oops: string;
-  oslg: string;
+  kk: number;
+  ops: string;
+  opsPlus: string;
   pa: number;
-  qs: number;
+  pcode: string;
+  rbi: number;
+  run: number;
   sb: number;
+  sbTryCn: number;
+  sba: string;
   sf: number;
   sh: number;
-  sho: number;
-  sv: number;
-  teamCode: string;
-  teamName: string;
-  tugucount: number;
-  tugucountinn: number;
-  whip: string;
-  wp: number;
-  wra: string;
+  slg: string;
+  spHra: string;
+  war: string;
+  winShares: string;
+  woba: string;
+  wraa: string;
+  xbhrun: string;
+}
+
+export interface Player {
+  gameplayer: PlayerBase;
+  recentgamerecordlist: GameRecord[];
+  recentgamerecordlistfutures: GameRecord[];
+  seasonsummary: SeasonSummaryBase;
+  seasonsummaryfutures: SeasonSummaryBase;
+  yearrecordlist: SeasonSummaryBase[];
+}
+
+export interface Pitcher extends Player {
+  recentgamerecordlist: GameRecord[];
+  recentgamerecordlistfutures: GameRecord[];
+  seasonsummary: SeasonSummaryBase;
+  seasonsummaryfutures: SeasonSummaryBase;
+}
+
+export interface Batter extends Player {
+  recentgamerecordlist: GameRecord[];
+  recentgamerecordlistfutures: GameRecord[];
+  seasonsummary: SeasonSummaryBase;
+  seasonsummaryfutures: SeasonSummaryBase;
 }
