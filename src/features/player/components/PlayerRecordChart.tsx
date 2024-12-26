@@ -4,7 +4,7 @@ import CustomBarChart from '@/features/common/CustomBarChart';
 import CustomLineChart from '@/features/common/CustomLineChart';
 import SubTitle from '@/features/common/SubTitle';
 import { cn } from '@/lib/utils';
-import { RecentRecord, YearRecord } from '../types/record';
+import { RecentRecord, YearRecord } from '../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
 
 // TODO: 타입 분리
@@ -79,33 +79,49 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
           </button>
         </div>
       </div>
-      <div className="w-full">
-        {chartType === 'bar' && (
-          <CustomBarChart data={data} config={chartConfig} XAxisKey="gyear" />
-        )}
-        {chartType === 'line' && (
-          <CustomLineChart data={data} config={chartConfig} XAxisKey="gyear" />
-        )}
-      </div>
-      <div className="flex flex-col items-center justify-center gap-2">
-        <div className="flex items-center justify-center gap-4">
-          {Object.entries(chartConfig).map(([dataKey, value]) => (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-            <div
-              key={dataKey}
-              className="text-white px-2 py-1 rounded text-sm cursor-pointer"
-              style={{ background: value.isActive ? value.color : 'gray' }}
-              onClick={() => handleConfig(dataKey)}
-            >
-              {value.label}
+      {data.length === 0 ? (
+        <div className="w-full h-72 flex items-center justify-center">
+          데이터가 존재하지 않습니다.
+        </div>
+      ) : (
+        <>
+          <div className="w-full">
+            {chartType === 'bar' && (
+              <CustomBarChart
+                data={data}
+                config={chartConfig}
+                XAxisKey="gyear"
+              />
+            )}
+            {chartType === 'line' && (
+              <CustomLineChart
+                data={data}
+                config={chartConfig}
+                XAxisKey="gyear"
+              />
+            )}
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-4">
+              {Object.entries(chartConfig).map(([dataKey, value]) => (
+                // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+                <div
+                  key={dataKey}
+                  className="text-white px-2 py-1 rounded text-sm cursor-pointer"
+                  style={{ background: value.isActive ? value.color : 'gray' }}
+                  onClick={() => handleConfig(dataKey)}
+                >
+                  {value.label}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="text-xs text-neutral-400">
-          해당 라벨을 클릭하여 데이터 표시 정보를 변경할 수 있습니다.
-        </div>
-        <RecordTableAccordion data={data} />
-      </div>
+            <div className="text-xs text-neutral-400">
+              해당 라벨을 클릭하여 데이터 표시 정보를 변경할 수 있습니다.
+            </div>
+            <RecordTableAccordion data={data} />
+          </div>
+        </>
+      )}
     </div>
   );
 }

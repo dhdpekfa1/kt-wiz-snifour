@@ -1,5 +1,5 @@
 import { getCoach } from '@/features/player/apis';
-import { Coach } from '@/features/player/types/player';
+import { Coach } from '@/features/player/types/list';
 import { useEffect, useState } from 'react';
 
 const useCoach = (pcode: string | null) => {
