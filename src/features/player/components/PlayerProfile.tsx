@@ -1,11 +1,15 @@
 import { cn } from '@/lib/utils';
-import { PlayerBase, SeasonSummaryBase } from '../types/detail';
+import {
+  BatterSeasonSummaryBase,
+  PitcherSeasonSummaryBase,
+  PlayerBase,
+} from '../types/detail';
 import PlayerInfo from './profile/PlayerInfo';
 import LeagueRecord from './profile/LeagueRecord';
 
 interface PlayerProfileProps {
   player: PlayerBase;
-  seasonSummary: SeasonSummaryBase;
+  seasonSummary: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
 }
 
 function PlayerProfile({ player, seasonSummary }: PlayerProfileProps) {

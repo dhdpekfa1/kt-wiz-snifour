@@ -23,18 +23,19 @@ interface PlayerRecordChartProps {
 }
 
 function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
+  console.log({ data, config });
   const [chartConfig, setChartConfig] = useState<Config>(config);
   const [chartType, setChartType] = useState<string>('bar');
+  const [currentConfig, setCurrentConfig] = useState<keyof Config>(
+    Object.keys(chartConfig)[0]
+  );
 
   const handleConfig = (dataKey: keyof Config) => {
-    const currentConfig = Object.keys(chartConfig).filter(
-      (key) => chartConfig[key].isActive
-    )[0];
-
     if (currentConfig === dataKey) {
       return;
     }
 
+    setCurrentConfig(dataKey);
     setChartConfig((prev) => {
       // 모든 항목을 비활성화한 뒤 클릭한 버튼만 활성화
       const newConfig = Object.keys(prev).reduce((acc, key) => {

@@ -9,6 +9,11 @@ const colorSet = [
   '#ffddd2',
   '#a7c957',
   '#f27059',
+  '#94d2bd',
+  '#38b000',
+  '#3a0ca3',
+  '#5e503f',
+  '#c71c6c',
 ];
 
 export const recentPitcherConfig = {
@@ -171,6 +176,167 @@ export const TeamRankingPitcherConfig = {
   qs: {
     label: 'QS',
     color: colorSet[4],
+    isActive: false,
+  },
+};
+
+export const recentBatterConfig = {
+  hra: {
+    label: '타율',
+    color: colorSet[0],
+    isActive: true,
+  },
+  ab: {
+    label: '타수',
+    color: colorSet[1],
+    isActive: false,
+  },
+  run: {
+    label: '득점',
+    color: colorSet[2],
+    isActive: false,
+  },
+  hit: {
+    label: '안타',
+    color: colorSet[3],
+    isActive: false,
+  },
+  h2: {
+    label: '2루타',
+    color: colorSet[4],
+    isActive: false,
+  },
+  h3: {
+    label: '3루타',
+    color: colorSet[5],
+    isActive: false,
+  },
+  hr: {
+    label: '홈런',
+    color: colorSet[6],
+    isActive: false,
+  },
+  rbi: {
+    label: '타점',
+    color: colorSet[7],
+    isActive: false,
+  },
+  sb: {
+    label: '도루',
+    color: colorSet[8],
+    isActive: false,
+  },
+  cs: {
+    label: '도실',
+    color: colorSet[9],
+    isActive: false,
+  },
+  bb: {
+    label: '볼넷',
+    color: colorSet[10],
+    isActive: false,
+  },
+  hp: {
+    label: '사구',
+    color: colorSet[11],
+    isActive: false,
+  },
+  kk: {
+    label: '삼진',
+    color: colorSet[12],
+    isActive: false,
+  },
+  gd: {
+    label: '병살',
+    color: colorSet[13],
+    isActive: false,
+  },
+};
+
+export const yearBatterConfig = {
+  hra: {
+    label: '타율',
+    color: colorSet[0],
+    isActive: true,
+  },
+  gamenum: {
+    label: '경기',
+    color: colorSet[1],
+    isActive: false,
+  },
+  ab: {
+    label: '타수',
+    color: colorSet[2],
+    isActive: false,
+  },
+  run: {
+    label: '득점',
+    color: colorSet[3],
+    isActive: false,
+  },
+  hit: {
+    label: '안타',
+    color: colorSet[4],
+    isActive: false,
+  },
+  h2: {
+    label: '2루타',
+    color: colorSet[5],
+    isActive: false,
+  },
+  h3: {
+    label: '3루타',
+    color: colorSet[6],
+    isActive: false,
+  },
+  hr: {
+    label: '홈런',
+    color: colorSet[7],
+    isActive: false,
+  },
+  rbi: {
+    label: '타점',
+    color: colorSet[8],
+    isActive: false,
+  },
+  sb: {
+    label: '도루',
+    color: colorSet[8],
+    isActive: false,
+  },
+  cs: {
+    label: '도실',
+    color: colorSet[8],
+    isActive: false,
+  },
+  bb: {
+    label: '볼넷',
+    color: colorSet[8],
+    isActive: false,
+  },
+  hp: {
+    label: '사구',
+    color: colorSet[8],
+    isActive: false,
+  },
+  kk: {
+    label: '삼진',
+    color: colorSet[8],
+    isActive: false,
+  },
+  gd: {
+    label: '병살',
+    color: colorSet[8],
+    isActive: false,
+  },
+  slg: {
+    label: '장타율',
+    color: colorSet[8],
+    isActive: false,
+  },
+  bra: {
+    label: '출루율',
+    color: colorSet[8],
     isActive: false,
   },
 };

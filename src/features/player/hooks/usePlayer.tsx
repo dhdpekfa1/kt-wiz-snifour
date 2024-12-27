@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { getPlayer } from '../apis/player';
-import { Player } from '../types/detail';
 import { getKTPitcherRanking } from '@/features/game/apis/ranking/pitcher';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import { useMaxStatsStore } from '@/store/useMaxStatsStore';
+import { usePlayerStore } from '@/store/usePlayerStore';
 
 export const usePlayer = (
   position: string | undefined,
   pcode: string | null
 ) => {
-  const [player, setPlayer] = useState<Player | null>(null);
+  const { player, setPlayer } = usePlayerStore();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { maxStats, setMaxStats } = useMaxStatsStore();
@@ -77,7 +77,7 @@ export const usePlayer = (
     if (!maxStats) {
       findMaxStats(position);
     }
-  }, [position, pcode, maxStats, setMaxStats]);
+  }, [position, pcode, maxStats, setMaxStats, setPlayer]);
 
   return { player, loading, error };
 };

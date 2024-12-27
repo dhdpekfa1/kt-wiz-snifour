@@ -8,7 +8,9 @@ import {
   SeasonSummary,
 } from '@/features/player/components';
 import {
+  recentBatterConfig,
   recentPitcherConfig,
+  yearBatterConfig,
   yearPitcherConfig,
 } from '@/constants/chart-config';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
@@ -60,12 +62,18 @@ function PlayerDetailPage() {
                   ? player.recentgamerecordlist
                   : player.recentgamerecordlistfutures
               }
-              config={recentPitcherConfig}
+              config={
+                position === 'pitcher'
+                  ? recentPitcherConfig
+                  : recentBatterConfig
+              }
             />
             <PlayerRecordChart
               title="정규 리그 통산 기록"
               data={player.yearrecordlist}
-              config={yearPitcherConfig}
+              config={
+                position === 'pitcher' ? yearPitcherConfig : yearBatterConfig
+              }
             />
           </div>
         </div>
