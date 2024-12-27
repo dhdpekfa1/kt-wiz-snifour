@@ -2,7 +2,7 @@ import { getCoachList } from '@/features/player/apis';
 import { Coach } from '@/features/player/types/list';
 import { useEffect, useState } from 'react';
 
-export const useCoachList = () => {
+const useCoachList = () => {
   const [coachList, setCoachList] = useState<Coach[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -26,3 +26,5 @@ export const useCoachList = () => {
 
   return { coachList, loading, error };
 };
+
+export default useCoachList;
