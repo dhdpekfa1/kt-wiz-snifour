@@ -19,13 +19,13 @@ const MatchCalendarCell = ({
   const getResultColor = (result: string) => {
     switch (result) {
       case '승':
-        return 'bg-wiz-red bg-opacity-80';
+        return 'bg-red-500';
       case '패':
-        return 'bg-wiz-white bg-opacity-20';
+        return 'bg-gray-700';
       case '무':
-        return 'bg-wiz-white bg-opacity-50';
+        return 'bg-gray-500';
       case '취':
-        return 'bg-wiz-white bg-opacity-5';
+        return 'border border-wiz-white border-rounded border-opacity-30';
 
       default:
         return '';
@@ -36,7 +36,7 @@ const MatchCalendarCell = ({
     <div className="relative w-full h-full flex flex-col items-center justify-start gap-2">
       {/* 날짜 */}
       <div
-        className={`absolute top-2 right-2 text-sm font-bold ${
+        className={`absolute top-2 right-2 text-[10px] md:text-sm lg:text-base font-bold ${
           day === 0
             ? 'text-red-500'
             : day === 6
@@ -56,7 +56,7 @@ const MatchCalendarCell = ({
         >
           {/* 경기 결과 */}
           <div
-            className={`absolute left-1 md:top-2 md:left-2 text-xs text-wiz-white py-1 px-2 rounded ${getResultColor(
+            className={`absolute left-1 md:top-2 md:left-2 text-[10px] md:text-xs text-wiz-white px-1 md:py-1 md:px-2 rounded ${getResultColor(
               ktMatchData.outcome
             )}`}
           >

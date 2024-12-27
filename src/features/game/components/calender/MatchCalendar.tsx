@@ -81,15 +81,9 @@ const MatchCalendar = () => {
             ))}
           </TabsList>
           <div className="flex gap-2 text-xs md:text-sm lg:text-base text-white">
-            <span className="px-2 lg:px-3 py-2 rounded bg-wiz-red bg-opacity-80">
-              승
-            </span>
-            <span className="px-2 lg:px-3 py-2  rounded bg-wiz-white bg-opacity-20">
-              패
-            </span>
-            <span className="px-2 lg:px-3 py-2  rounded bg-wiz-white bg-opacity-50">
-              무
-            </span>
+            <span className="px-2 lg:px-3 py-2 rounded bg-red-500">승</span>
+            <span className="px-2 lg:px-3 py-2  rounded bg-gray-700">패</span>
+            <span className="px-2 lg:px-3 py-2  rounded bg-gray-500">무</span>
           </div>
         </div>
         {/* 탭 컨텐츠 */}
