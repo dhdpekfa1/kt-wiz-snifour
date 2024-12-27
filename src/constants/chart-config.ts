@@ -14,6 +14,8 @@ const colorSet = [
   '#3a0ca3',
   '#5e503f',
   '#c71c6c',
+  '#0052cc',
+  '#cc3b14',
 ];
 
 export const recentPitcherConfig = {
@@ -301,42 +303,42 @@ export const yearBatterConfig = {
   },
   sb: {
     label: '도루',
-    color: colorSet[8],
+    color: colorSet[9],
     isActive: false,
   },
   cs: {
     label: '도실',
-    color: colorSet[8],
+    color: colorSet[10],
     isActive: false,
   },
   bb: {
     label: '볼넷',
-    color: colorSet[8],
+    color: colorSet[11],
     isActive: false,
   },
   hp: {
     label: '사구',
-    color: colorSet[8],
+    color: colorSet[12],
     isActive: false,
   },
   kk: {
     label: '삼진',
-    color: colorSet[8],
+    color: colorSet[13],
     isActive: false,
   },
   gd: {
     label: '병살',
-    color: colorSet[8],
+    color: colorSet[14],
     isActive: false,
   },
   slg: {
     label: '장타율',
-    color: colorSet[8],
+    color: colorSet[15],
     isActive: false,
   },
   bra: {
     label: '출루율',
-    color: colorSet[8],
+    color: colorSet[16],
     isActive: false,
   },
 };
