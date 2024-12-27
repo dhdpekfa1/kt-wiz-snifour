@@ -37,6 +37,22 @@ const BoxScoreTab = () => {
     fetchMatchData();
   }, [gameDate, gameKey]);
 
+  const handleDateChange = async (direction: 'prev' | 'next') => {
+    if (matchData) {
+      if (direction === 'prev') {
+        const prevDate = matchData.schedule.prev.gameDate.toString();
+        const prevKey = matchData.schedule.prev.gmkey;
+        const data = await getMatchData(prevDate, prevKey);
+        setMatchData(data);
+      } else {
+        const nextDate = matchData?.schedule.next.gameDate.toString();
+        const nextKey = matchData?.schedule.next.gmkey;
+        const data = await getMatchData(nextDate, nextKey);
+        setMatchData(data);
+      }
+    }
+  }; //TODO: 버튼을 눌렀을 때 url이 바뀌도록 해야함
+
   return (
     <div className="w-full flex justify-center my-20">
       <div className="w-full flex flex-col justify-center items-center">
@@ -63,6 +79,8 @@ const BoxScoreTab = () => {
           matchTime={matchData?.schedule.current.gtime}
           stadium={matchData?.schedule.current.stadium}
           gameTable={<MatchScoreTable data={matchData?.scoreboard} />}
+          crowd={matchData?.schedule.current.crowdCn}
+          onDateChange={handleDateChange}
         />
 
         {/* 주요 기록 */}

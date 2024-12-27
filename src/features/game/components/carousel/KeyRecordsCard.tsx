@@ -38,7 +38,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
         <Card
           // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           key={index}
-          className="hover:bg-wiz-red rounded-lg"
+          className="hover:scale-105 transition-transform ease-in-out duration-500 rounded-lg"
         >
           <CardHeader className="text-xl font-semibold">{row.label}</CardHeader>
           <CardContent className="flex flex-col items-center justify-start">

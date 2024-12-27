@@ -9,8 +9,8 @@ interface MatchBoardProps {
   matchTime: string | undefined;
   stadium: string | undefined;
   gameTable: ReactNode;
-  // leftEvent: MouseEventHandler<HTMLButtonElement>; // 왼쪽 버튼 클릭 핸들러
-  // rightEvent: MouseEventHandler<HTMLButtonElement>; // 오른쪽 버튼 클릭 핸들러
+  crowd: number | undefined;
+  onDateChange: (direction: 'prev' | 'next') => void;
 }
 
 function formatchDate(dateStr: string): string {
@@ -28,7 +28,8 @@ const MatchBoard = ({
   matchTime,
   stadium,
   gameTable,
-  //
+  crowd,
+  onDateChange,
 }: MatchBoardProps) => {
   return (
     <div className="w-full flex items-center justify-between px-8 py-6 gap-4 bg-[#35383e] rounded">
@@ -40,7 +41,7 @@ const MatchBoard = ({
         <div>
           <div className="flex justify-center items-center gap-10 text-white px-4 py-4">
             <button
-              //onClick={() => onRouteChange}
+              onClick={() => onDateChange('prev')}
               type="button"
               className="flex items-center justify-center text-lg font-semibold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
             >
@@ -51,13 +52,12 @@ const MatchBoard = ({
                 {matchDate ? formatchDate(matchDate) : '데이터없음'}
               </span>
               <span className="text-center text-[#717781]">
-                {matchTime} | {stadium}
-                {/* TODO: boxscore ? 관중 수 : '' */}
+                {matchTime} | {stadium} | 관중: {crowd?.toLocaleString()}명
               </span>
             </div>
             <button
               type="button"
-              //onClick={() => onRouteChange}
+              onClick={() => onDateChange('next')}
               className="flex items-center justify-center text-lg font-bold text-white bg-slate-500 w-10 h-10 rounded hover:bg-slate-400"
             >
               <IconRight />
