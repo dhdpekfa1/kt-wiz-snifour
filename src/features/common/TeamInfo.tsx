@@ -4,7 +4,6 @@ export interface TeamData {
   result?: number | 'lose' | 'win';
   spectators?: number;
   stadium?: string; // BoxScoreTab에서만 사용
-  player?: string; // MatchScheduleTab에서만 사용
   tabType: 'MatchBoard' | 'MatchScheduleTab';
 }
 
@@ -13,7 +12,6 @@ const TeamInfo = ({
   logoUrl,
   result,
   stadium,
-  player,
   tabType,
 }: TeamData) => {
   const isMatchBoard = tabType === 'MatchBoard';
@@ -28,7 +26,6 @@ const TeamInfo = ({
         src={logoUrl}
         alt="team logo"
         className={`${
-          // TODO: w-24 h-auto md:w-28 lg:w-32 크기 확인
           isMatchBoard ? 'w-24 h-auto md:w-28 lg:w-32 ' : 'w-24 h-auto'
         }`}
       />
@@ -58,9 +55,6 @@ const TeamInfo = ({
           >
             {teamName}
             {isMatchBoard && stadium ? stadium : ''}
-          </p>
-          <p className="mb-4 text-wiz-white text-opacity-30 leading-none">
-            {result === 'lose' ? 'L' : 'W'}: {player}
           </p>
         </div>
       )}

@@ -30,7 +30,7 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
       }
     >
       <div className="p-1">
-        <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#35383e]">
+        <Card className="min-w-80 w-full rounded border-wiz-white border-opacity-10 shadow-wiz-white">
           <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-wiz-white bg-opacity-10">
             {data ? (
               <div className="flex flex-col h-48 items-center justify-between p-2">
@@ -51,7 +51,6 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                     tabType="MatchScheduleTab"
                     teamName={data.home}
                     logoUrl={data.homeLogo || ''}
-                    player={data.homeKey}
                     result={data.homeScore > data.visitScore ? 'win' : 'lose'}
                   />
 
@@ -76,7 +75,6 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                     tabType="MatchScheduleTab"
                     teamName={data.visit}
                     logoUrl={data.visitLogo || ''}
-                    player={data.visitKey}
                     result={data.homeScore > data.visitScore ? 'lose' : 'win'}
                   />
                 </div>
