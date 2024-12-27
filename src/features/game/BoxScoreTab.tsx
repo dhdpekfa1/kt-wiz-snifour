@@ -7,10 +7,7 @@ import {
   PitchingRecordTable,
 } from '@/features/game/components/table';
 import { MatchBoard } from './components/watch-point';
-
-import { useEffect, useState } from 'react';
-import { getMatchData } from './apis/boxScore';
-import type { BoxScoreData } from './types/BoxScoreData';
+import useBoxScore from './hooks/boxscore/useBoxscore';
 
 interface Props {
   gameDate: string | undefined;
@@ -18,23 +15,15 @@ interface Props {
 }
 
 const BoxScoreTab = ({ gameDate, gameKey }: Props) => {
-  const [matchData, setMatchData] = useState<BoxScoreData>();
+  const { boxData: matchData, loading, error } = useBoxScore(gameDate, gameKey);
 
-  useEffect(() => {
-    fetchMatchData();
-  }, []);
+  if (!matchData || loading) {
+    return null;
+  }
 
-  /**TODO: 최신 경기 날짜 전달 - 오늘 기준으로 경기가 있는 날짜 확인*/
-  const fetchMatchData = async () => {
-    if (!gameDate && !gameKey) {
-      const data = await getMatchData('20241011', '33331011KTLG0');
-      setMatchData(data);
-    }
-    if (gameDate && gameKey) {
-      const data = await getMatchData(gameDate, gameKey);
-      setMatchData(data);
-    }
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="w-full flex justify-center my-20">
