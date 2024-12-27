@@ -21,7 +21,7 @@ const CalenderBody = ({ renderCellContent }: CalenderBodyProps) => {
       className="border border-[#fefefe40] rounded-lg w-full max-w-full mx-auto"
       classNames={{
         table: 'w-full border-collapse',
-        cell: 'h-fit md:h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative',
+        cell: 'h-[120px] md:h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative',
         day: 'h-full w-full text-sm flex items-center justify-center relative',
       }}
       captionLayout="dropdown"
