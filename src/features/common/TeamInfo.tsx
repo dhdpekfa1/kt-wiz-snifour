@@ -27,21 +27,24 @@ const TeamInfo = ({
       <img
         src={logoUrl}
         alt="team logo"
-        className={`${isMatchBoard ? 'w-28 h-28' : 'w-24 h-auto'}`}
+        className={`${
+          // TODO: w-24 h-auto md:w-28 lg:w-32 크기 확인
+          isMatchBoard ? 'w-24 h-auto md:w-28 lg:w-32 ' : 'w-24 h-auto'
+        }`}
       />
       {isMatchBoard ? (
         <div>
-          <p className="text-center text-2xl text-white font-semibold">
+          <p className="text-center md:text:lg lg:text-2xl text-white font-semibold">
             {result && result}
           </p>
           <p
             className={`${
               isMatchBoard
-                ? 'text-[#717781] text-center'
-                : 'text-sm font-medium leading-none text-white'
+                ? 'text-wiz-white text-opacity-30 text-center text-sm md:text:md lg:text-lg'
+                : 'text-xs md:text-sm font-medium leading-none text-white'
             }`}
           >
-            {teamName} ({isMatchBoard && stadium ? stadium : `관중: ${2000}명`})
+            {teamName}({isMatchBoard && stadium ? stadium : `관중: ${2000}명`})
           </p>
         </div>
       ) : (
@@ -49,14 +52,14 @@ const TeamInfo = ({
           <p
             className={`${
               isMatchBoard
-                ? 'text-[#717781] text-center'
+                ? 'text-wiz-white text-opacity-30 text-center'
                 : 'leading-none text-white text-xl'
             }`}
           >
             {teamName}
             {isMatchBoard && stadium ? stadium : ''}
           </p>
-          <p className="mb-4 text-[#717781] leading-none">
+          <p className="mb-4 text-wiz-white text-opacity-30 leading-none">
             {result === 'lose' ? 'L' : 'W'}: {player}
           </p>
         </div>

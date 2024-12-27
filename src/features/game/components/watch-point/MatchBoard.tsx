@@ -13,14 +13,6 @@ interface MatchBoardProps {
   // rightEvent: MouseEventHandler<HTMLButtonElement>; // 오른쪽 버튼 클릭 핸들러
 }
 
-function formatchDate(dateStr: string): string {
-  const year = dateStr.slice(0, 4);
-  const month = dateStr.slice(4, 6);
-  const day = dateStr.slice(6, 8);
-
-  return `${year}년 ${Number.parseInt(month)}월 ${Number.parseInt(day)}일`;
-}
-
 const MatchBoard = ({
   team1Data,
   team2Data,
@@ -28,48 +20,58 @@ const MatchBoard = ({
   matchTime,
   stadium,
   gameTable,
-}: //
-MatchBoardProps) => {
+}: MatchBoardProps) => {
+  console.log(matchDate);
   return (
-    <div className="w-full flex items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded">
-      {/* team1 */}
-      <TeamInfo {...team1Data} />
-
+    <div className="w-full flex flex-col items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded overflow-hidden">
       {/* 날짜 헤더 */}
-      <div>
-        <div>
-          <div className="flex justify-center items-center gap-10 text-white px-4 py-4">
-            <button
-              //onClick={() => onRouteChange}
-              type="button"
-              className="flex items-center justify-center text-lg font-semibold text-white  bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
-            >
-              <IconLeft />
-            </button>
-            <div className="relative flex flex-col items-center gap-1">
-              <span className="text-2xl font-semibold">
-                {matchDate ? formatchDate(matchDate) : '데이터없음'}
-              </span>
-              <span className="text-center text-[#717781]">
-                {matchTime} | {stadium}
-                {/* TODO: boxscore ? 관중 수 : '' */}
-              </span>
-            </div>
-            <button
-              type="button"
-              //onClick={() => onRouteChange}
-              className="flex items-center justify-center text-lg font-bold text-white  bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
-            >
-              <IconRight />
-            </button>
+      <div className="flex justify-center items-center gap-6 md:gap-10 text-white px-4 py-4">
+        <button
+          type="button"
+          className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
+        >
+          <IconLeft className="w-2/5 h-auto" />
+        </button>
+        <div className="relative flex flex-col items-center md:gap-1">
+          <span className="text-lg md:text-xl lg:text-2xl font-semibold">
+            {matchDate || '정보 없음'}
+          </span>
+          <span className="text-center text-wiz-white text-opacity-50 text-sm md:text-md lg:text-lg">
+            {matchTime} | {stadium}
+          </span>
+        </div>
+        <button
+          type="button"
+          className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
+        >
+          <IconRight className="w-2/5 h-auto" />
+        </button>
+      </div>
+
+      {/* MatchBoard 메인 콘텐츠 */}
+      <div className="w-full">
+        {/* 작은 화면 레이아웃 */}
+        <div className="flex flex-col items-center justify-center gap-4 sm:hidden">
+          <div className="flex flex-row items-center justify-between gap-6">
+            {/* team1 */}
+            <TeamInfo {...team1Data} />
+            {/* team2 */}
+            <TeamInfo {...team2Data} />
           </div>
+          {/* 경기 테이블 */}
+          <div className="w-full">{gameTable}</div>
         </div>
 
-        {/* 경기 테이블 */}
-        {gameTable}
+        {/* 큰 화면 레이아웃 */}
+        <div className="hidden sm:flex items-center justify-between px-8 py-6 gap-4 rounded overflow-x-scroll">
+          {/* team1 */}
+          <TeamInfo {...team1Data} />
+          {/* 경기 테이블 */}
+          <div>{gameTable}</div>
+          {/* team2 */}
+          <TeamInfo {...team2Data} />
+        </div>
       </div>
-      {/* team2 */}
-      <TeamInfo {...team2Data} />
     </div>
   );
 };
