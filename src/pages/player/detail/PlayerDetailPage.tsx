@@ -32,7 +32,7 @@ function PlayerDetailPage() {
   }
 
   return (
-    <div className={cn('text-white', 'md:my-10', 'lg:my-20')}>
+    <div className={cn('w-full text-white', 'md:my-10', 'lg:my-20')}>
       <Breadcrumb />
 
       <div
@@ -48,9 +48,10 @@ function PlayerDetailPage() {
           <PlayerProfile
             player={player.gameplayer}
             seasonSummary={player.seasonsummary}
+            className="w-80"
           />
           {/* 경기 기록 */}
-          <div className="flex-1 flex flex-col items-center gap-4">
+          <div className="max-w-[calc(100%-20rem)] flex flex-col items-center gap-4">
             <PlayerRecordChart
               title={
                 player.recentgamerecordlist.length > 0

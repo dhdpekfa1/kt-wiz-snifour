@@ -10,14 +10,20 @@ import LeagueRecord from './profile/LeagueRecord';
 interface PlayerProfileProps {
   player: PlayerBase;
   seasonSummary: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
+  className: string;
 }
 
-function PlayerProfile({ player, seasonSummary }: PlayerProfileProps) {
+function PlayerProfile({
+  player,
+  seasonSummary,
+  className,
+}: PlayerProfileProps) {
   return (
     <div
       className={cn(
-        'w-full h-full flex flex-row gap-4',
-        'lg:w-1/4 lg:flex-col'
+        'h-full flex flex-row gap-4',
+        'lg:w-1/4 lg:flex-col',
+        className
       )}
     >
       {/* 선수 이미지 */}
