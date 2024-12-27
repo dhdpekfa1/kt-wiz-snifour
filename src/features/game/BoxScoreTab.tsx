@@ -5,16 +5,11 @@ import {
   MatchScoreTable,
   PitchingRecordTable,
 } from '@/features/game/components/table';
-import { MatchBoard } from './components/watch-point';
-
-import { Button } from '@/components/ui';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getMatchData } from './apis/boxScore';
-import {
-  KeyRecordsCarousel,
-  tableRows,
-} from './components/carousel/KeyRecordsCarousel';
+import KeyRecordsCard from './components/carousel/KeyRecordsCard';
+import { MatchBoard } from './components/watch-point';
 import type { BoxScoreData } from './types/BoxScoreData';
 
 const BoxScoreTab = () => {
@@ -73,13 +68,8 @@ const BoxScoreTab = () => {
         {/* 주요 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
-          <div className="w-full flex flex-col items-center gap-3">
-            <KeyRecordsCarousel data={matchData?.etcgames} />
-            <div className="flex">
-              {tableRows.map((row) => (
-                <Button>{row.label}</Button>
-              ))}
-            </div>
+          <div className="w-full items-center mt-4">
+            <KeyRecordsCard data={matchData?.etcgames} />
           </div>
         </div>
         {/* team1 타자 기록 */}
