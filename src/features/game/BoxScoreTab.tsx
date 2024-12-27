@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getMatchData } from './apis/boxScore';
-import KeyRecordsCard from './components/carousel/KeyRecordsCard';
+import KeyRecordsCard from './components/card/KeyRecordsCard';
 import { MatchBoard } from './components/watch-point';
 import type { BoxScoreData } from './types/BoxScoreData';
 
@@ -37,21 +37,19 @@ const BoxScoreTab = () => {
     fetchMatchData();
   }, [gameDate, gameKey]);
 
-  const handleDateChange = async (direction: 'prev' | 'next') => {
+  const handleDateChange = (direction: 'prev' | 'next') => {
     if (matchData) {
       if (direction === 'prev') {
         const prevDate = matchData.schedule.prev.gameDate.toString();
         const prevKey = matchData.schedule.prev.gmkey;
-        const data = await getMatchData(prevDate, prevKey);
-        setMatchData(data);
+        window.location.href = `/game/regular/boxscore/${prevDate}/${prevKey}`;
       } else {
         const nextDate = matchData?.schedule.next.gameDate.toString();
         const nextKey = matchData?.schedule.next.gmkey;
-        const data = await getMatchData(nextDate, nextKey);
-        setMatchData(data);
+        window.location.href = `/game/regular/boxscore/${nextDate}/${nextKey}`;
       }
     }
-  }; //TODO: 버튼을 눌렀을 때 url이 바뀌도록 해야함
+  };
 
   return (
     <div className="w-full flex justify-center my-20">

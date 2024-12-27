@@ -13,7 +13,6 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
   }, []);
 
   const handleGameInfoClick = () => {
-    console.log('data:', data);
     if (data) {
       window.location.href = `/game/regular/boxscore/${data.gameDate.toString()}/${
         data.gmkey
