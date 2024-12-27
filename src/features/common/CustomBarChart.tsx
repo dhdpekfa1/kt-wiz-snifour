@@ -25,14 +25,17 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
     (key) => config[key].isActive
   )[0];
   const [fontSize, setFontSize] = useState('16px');
+  const [maxBarSize, setMaxBarSize] = useState(40);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         // 모바일 화면 크기 기준
         setFontSize('10px');
+        setMaxBarSize(18);
       } else {
         setFontSize('16px');
+        setMaxBarSize(40);
       }
     };
 
@@ -59,6 +62,7 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
         <YAxis
           tickLine={false}
           axisLine={false}
+          tick={{ fontSize }}
           domain={[
             0,
             () => {
@@ -76,8 +80,8 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
           dataKey={activeKey}
           fill={`var(--color-${activeKey})`}
           radius={3}
-          maxBarSize={40}
-          label={{ position: 'top' }}
+          maxBarSize={maxBarSize}
+          label={{ position: 'top', fontSize }}
         />
       </BarChart>
     </ChartContainer>

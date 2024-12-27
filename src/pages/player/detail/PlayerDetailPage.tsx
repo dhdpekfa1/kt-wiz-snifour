@@ -2,17 +2,17 @@ import { useParams, useSearchParams } from 'react-router';
 
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
-import { PlayerProfile, PlayerRecordChart } from '@/features/player/components';
-import DataTable from '@/features/common/DataTable';
 import {
-  seasonOneColumns,
-  seasonTwoColumns,
-} from '@/constants/columns/season-summary-columns';
+  PlayerProfile,
+  PlayerRecordChart,
+  SeasonSummary,
+} from '@/features/player/components';
 import {
   recentPitcherConfig,
   yearPitcherConfig,
 } from '@/constants/chart-config';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
+import { cn } from '@/lib/utils';
 
 function PlayerDetailPage() {
   const { position } = useParams();
@@ -30,12 +30,18 @@ function PlayerDetailPage() {
   }
 
   return (
-    <div className="my-20 text-white">
+    <div className={cn('text-white', 'md:my-10', 'lg:my-20')}>
       <Breadcrumb />
 
-      <div className="w-full flex flex-col items-center gap-8 bg-wiz-white bg-opacity-10 rounded-xl p-8 mt-12">
+      <div
+        className={cn(
+          'w-full flex flex-col items-center gap-8 rounded-xl',
+          'md:mt-4',
+          'lg:mt-6'
+        )}
+      >
         {/* 대시보드 */}
-        <div className="w-full flex gap-8">
+        <div className={cn('w-full flex flex-col gap-8', 'lg:flex-row')}>
           {/* 프로필 */}
           <PlayerProfile
             player={player.gameplayer}
@@ -66,8 +72,10 @@ function PlayerDetailPage() {
         {/* 표 */}
         <div className="w-full">
           <SubTitle title="정규 리그 기록" />
-          <DataTable data={[player.seasonsummary]} columns={seasonOneColumns} />
-          <DataTable data={[player.seasonsummary]} columns={seasonTwoColumns} />
+          <p className="text-sm text-neutral-400 my-1">
+            팀 대비 비교 성적입니다.
+          </p>
+          <SeasonSummary data={player.seasonsummary} />
         </div>
       </div>
     </div>
