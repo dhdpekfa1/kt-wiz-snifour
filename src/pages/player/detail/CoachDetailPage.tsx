@@ -1,6 +1,5 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import useCoach from '@/features/player/hooks/useCoach';
-import { cn } from '@/lib/utils';
 import { useSearchParams } from 'react-router';
 
 const CoachDetailPage = () => {
@@ -22,38 +21,24 @@ const CoachDetailPage = () => {
       <div className="md:w-full">
         {/* md 이하일 때 */}
         <div className="block md:hidden text-xl rounded-lg p-2">
-          <div
-            className={cn(
-              'w-full h-fit aspect-square bg-wiz-white rounded-xl overflow-hidden'
-            )}
-          >
+          <div className="w-full h-fit aspect-square bg-wiz-white rounded-xl overflow-hidden">
             <img
               src={coachData.playerPrvwImg}
               alt={`${coachData.playerName} profile`}
               className="w-full"
             />
           </div>
-          <div className={cn('w-full h-full flex items-center mt-2')}>
+          <div className="w-full h-full flex items-center mt-2">
             {/* 선수 프로필 */}
-            <div className={cn('w-full h-full flex flex-col gap-2')}>
+            <div className="w-full h-full flex flex-col gap-2">
               {/* 이름, 포지션 */}
               <div className="w-full h-full flex flex-col justify-between">
                 <div className="mb-4">
-                  <div
-                    className={cn(
-                      'flex justify-between text-xl font-bold text-wiz-white'
-                    )}
-                  >
+                  <div className="flex justify-between text-xl font-bold text-wiz-white">
                     <span>{coachData.playerName}</span>
                     <span className="text-wiz-red">No.{coachData.backnum}</span>
                   </div>
-                  <div
-                    className={cn(
-                      'text-neutral-400 flex items-center justify-between text-xs',
-                      'md:text-sm',
-                      'lg:text-base'
-                    )}
-                  >
+                  <div className="text-neutral-400 flex items-center justify-between text-xs">
                     <span>{coachData.engName}</span>
                     <div className="flex items-center gap-1">
                       <span>{coachData.position}</span>
