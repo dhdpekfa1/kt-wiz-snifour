@@ -7,6 +7,7 @@ import Breadcrumb from '../../../../common/Breadcrumb';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
 import { Tabs, TabsList, TabsContent } from '@/components/ui';
 import { useTopPitcherRank } from '@/features/game/hooks/ranking/useTopPitcherRank';
+import { cn } from '@/lib/utils';
 
 function PitcherRankingTab() {
   const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
@@ -24,7 +25,12 @@ function PitcherRankingTab() {
       <Breadcrumb />
 
       {/* 투수 랭킹 카드 */}
-      <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl px-8">
+      <div
+        className={cn(
+          'w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-1 rounded-xl p-8 gap-4',
+          'lg:grid-cols-2'
+        )}
+      >
         <RankingCard
           title="평균 자책점 TOP 3"
           ranking={eraRanking}

@@ -5,6 +5,7 @@ import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
 import { useTopBatterRank } from '@/features/game/hooks/ranking';
+import { cn } from '@/lib/utils';
 
 function BatterRankingTab() {
   const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
@@ -22,7 +23,12 @@ function BatterRankingTab() {
       <Breadcrumb />
 
       {/* 타자 랭킹 카드 */}
-      <div className="w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-2 rounded-xl">
+      <div
+        className={cn(
+          'w-full mt-12 bg-wiz-white bg-opacity-10 grid grid-cols-1 rounded-xl p-8 gap-4',
+          'lg:grid-cols-2'
+        )}
+      >
         <RankingCard
           title="타율 TOP 3"
           ranking={hraRanking}

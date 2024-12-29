@@ -57,7 +57,8 @@ function SortableTable<T extends PlayerRank>({
               <TableHead
                 key={header.id}
                 className={cn(
-                  'text-center break-keep px-6',
+                  'text-center break-keep py-2 px-6',
+                  'md:text-sm md:px-6 md:py-2',
                   'lg:text-sm lg:p-2'
                 )}
               >
@@ -91,7 +92,11 @@ function SortableTable<T extends PlayerRank>({
               {row.getVisibleCells().map((cell) => (
                 <TableCell
                   key={cell.id}
-                  className={cn('px-2', 'lg:py-3 lg:text-sm')}
+                  className={cn(
+                    'px-2',
+                    'md:text-sm md:py-2',
+                    'lg:py-3 lg:text-sm'
+                  )}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
