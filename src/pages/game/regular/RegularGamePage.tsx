@@ -54,40 +54,32 @@ function RegularGamePage() {
         </Banner>
       }
     >
-      <Tabs
-        className="container"
-        defaultValue={currentTab}
-        onValueChange={handleTabChange}
-      >
-        <div className={cn('header')}>
+      <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
+        <div className={cn('')}>
           {/* 탭 */}
-          <div className="tabs-wrapper">
-            <TabsList className="tabs-list">
+          <div>
+            <TabsList>
               <TabsTrigger
                 value="schedule"
                 onClick={() => handleTabChange('schedule')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
               >
                 경기 일정
               </TabsTrigger>
               <TabsTrigger
                 value="boxscore"
                 onClick={() => handleTabChange('boxscore')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
               >
                 박스 스코어
               </TabsTrigger>
               <TabsTrigger
                 value="ranking"
                 onClick={() => handleTabChange('ranking')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
               >
                 순위 기록
               </TabsTrigger>
               <TabsTrigger
                 value="watchpoint"
                 onClick={() => handleTabChange('watchpoint')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
               >
                 관전 포인트
               </TabsTrigger>

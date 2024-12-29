@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { TabsTrigger } from '@radix-ui/react-tabs';
+import { cn } from '@/lib/utils';
 
 interface SubTabsTriggerProps {
   children: ReactNode;
@@ -11,7 +12,11 @@ function SubTabsTrigger({ children, value }: SubTabsTriggerProps) {
   return (
     <TabsTrigger
       value={value}
-      className="border-b-2 border-b-transparent data-[state=active]:bg-transparent data-[state=active]:border-b-wiz-red px-6 py-2.5 text-sm whitespace-nowrap"
+      className={cn(
+        'border-b-2 border-b-transparent data-[state=active]:bg-transparent data-[state=active]:border-b-wiz-red  whitespace-nowrap px-2 py-1 text-[0.6rem]',
+        'md:px-3 py-1.5 md:text-xs',
+        'lg:px-6 lg:py-2.5 lg:text-sm'
+      )}
     >
       {children}
     </TabsTrigger>
