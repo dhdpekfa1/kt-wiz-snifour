@@ -21,7 +21,7 @@ function PlayerDetailPage() {
   const [searchParams] = useSearchParams();
   const pcode = searchParams.get('pcode');
 
-  const { player, error } = usePlayer(position, pcode);
+  const { player, loading, error } = usePlayer(position, pcode);
 
   if (!player) {
     return <div>선수 정보가 없습니다.</div>;
@@ -63,6 +63,7 @@ function PlayerDetailPage() {
                   ? recentPitcherConfig
                   : recentBatterConfig
               }
+              loading={loading}
             />
             <PlayerRecordChart
               title="정규 리그 통산 기록"
@@ -70,6 +71,7 @@ function PlayerDetailPage() {
               config={
                 position === 'pitcher' ? yearPitcherConfig : yearBatterConfig
               }
+              loading={loading}
             />
           </div>
         </div>
@@ -79,7 +81,7 @@ function PlayerDetailPage() {
           <p className="text-sm text-neutral-400 my-1">
             팀 대비 비교 성적입니다.
           </p>
-          <SeasonSummary data={player.seasonsummary} />
+          <SeasonSummary />
         </div>
       </div>
     </div>

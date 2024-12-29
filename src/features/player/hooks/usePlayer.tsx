@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { getPlayer } from '../apis/player';
 import { getKTPitcherRanking } from '@/features/game/apis/ranking/pitcher';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 import { usePlayerStore } from '@/store/usePlayerStore';
 import { getKTBatterRanking } from '@/features/game/apis/ranking/batter';
 
@@ -10,9 +9,15 @@ export const usePlayer = (
   position: string | undefined,
   pcode: string | null
 ) => {
-  const { player, loading, error, setPlayer, setLoading, setError } =
-    usePlayerStore();
-  const { setMaxStats } = useMaxStatsStore();
+  const {
+    player,
+    loading,
+    error,
+    setPlayer,
+    setLoading,
+    setError,
+    setMaxStats,
+  } = usePlayerStore();
 
   if (!position) {
     return { player: null, loading: false, error: 'position이 없습니다.' };

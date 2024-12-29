@@ -27,6 +27,10 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
   const [fontSize, setFontSize] = useState('16px');
   const [maxBarSize, setMaxBarSize] = useState(40);
 
+  if (!data) {
+    return null;
+  }
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {

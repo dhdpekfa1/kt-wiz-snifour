@@ -3,9 +3,9 @@ import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
 } from '../types/detail';
-import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 import { useParams } from 'react-router';
 import { StatCard } from './StatCard';
+import { usePlayerStore } from '@/store/usePlayerStore';
 
 interface Indicators {
   pitcher: {
@@ -80,21 +80,30 @@ const indicators: Indicators = {
   ],
 };
 
-interface SeasonSummaryProps {
-  data: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
-}
-
 function calculateIPG(inn: number, gamenum: number) {
   return gamenum > 0 ? Number((inn / gamenum).toFixed(3)) : 0;
 }
 
-function SeasonSummary({ data }: SeasonSummaryProps) {
-  const { maxStats } = useMaxStatsStore();
+function SeasonSummary() {
   const { position } = useParams();
   const role = position === 'pitcher' ? 'pitcher' : 'batter';
+  const { player, loading, maxStats } = usePlayerStore();
 
-  if (!data || !maxStats) {
+  if (loading) {
     return <div className="text-center">데이터를 불러오는 중입니다...</div>;
+  }
+  const data = player?.seasonsummary;
+
+  if (!data) {
+    return (
+      <div className="font-bold text-center my-4">
+        정규 리그 데이터가 없습니다.
+      </div>
+    );
+  }
+
+  if (!maxStats) {
+    return <div className="text-center">팀 성적 계산 중입니다...</div>;
   }
 
   const indicatorsForRole = indicators[role];

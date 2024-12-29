@@ -21,6 +21,10 @@ function CustomLineChart({ data, config, XAxisKey }: CustomLineChartProps) {
   )[0];
   const [fontSize, setFontSize] = useState('16px');
 
+  if (!data) {
+    return null;
+  }
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {

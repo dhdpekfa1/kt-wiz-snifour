@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { RecentRecord, YearRecord } from '../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
 import ChartLabelList from '@/features/common/ChartLabelList';
+import Skeleton from 'react-loading-skeleton';
 
 // TODO: 타입 분리
 export interface Config {
@@ -20,14 +21,24 @@ interface PlayerRecordChartProps {
   title: string;
   data: RecentRecord[] | YearRecord[];
   config: Config;
+  loading: boolean;
 }
 
-function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
+function PlayerRecordChart({
+  title,
+  data,
+  config,
+  loading,
+}: PlayerRecordChartProps) {
   const [chartConfig, setChartConfig] = useState<Config>(config);
   const [chartType, setChartType] = useState<string>('bar');
   const [currentConfig, setCurrentConfig] = useState<keyof Config>(
     Object.keys(chartConfig)[0]
   );
+
+  if (!data) {
+    return <div>데이터가 존재하지 않습니다.</div>;
+  }
 
   const handleConfig = (dataKey: keyof Config) => {
     if (currentConfig === dataKey) {
@@ -85,11 +96,13 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
           </button>
         </div>
       </div>
-      {data.length === 0 ? (
+      {loading && <Skeleton className="w-full h-72" />}
+      {!loading && data.length === 0 && (
         <div className="w-full h-72 flex items-center justify-center">
           데이터가 존재하지 않습니다.
         </div>
-      ) : (
+      )}
+      {!loading && data.length > 0 && (
         <>
           <div className="w-full">
             {chartType === 'bar' && (
