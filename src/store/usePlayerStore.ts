@@ -6,9 +6,9 @@ interface PlayerStoreState {
   loading: boolean;
   error: string | null;
   maxStats: null | { [key: string]: number };
-  setPlayer: (data: Player) => void;
+  setPlayer: (data: Player | null) => void;
   setLoading: (status: boolean) => void;
-  setError: (error: string) => void;
+  setError: (error: string | null) => void;
   setMaxStats: (stats: { [key: string]: number }) => void;
 }
 

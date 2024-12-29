@@ -28,6 +28,10 @@ export const usePlayer = (
   }
 
   useEffect(() => {
+    setPlayer(null);
+    setLoading(true);
+    setError(null);
+
     const fetchData = async () => {
       try {
         const data = await getPlayer(position, pcode);
