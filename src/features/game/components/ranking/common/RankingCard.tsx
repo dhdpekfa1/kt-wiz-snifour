@@ -44,7 +44,7 @@ function RankingCard({
               onClick={() => handleSelectPlayer(player)}
               onKeyDown={() => handleSelectPlayer(player)}
               className={cn(
-                'bg-white mt-4 px-4 py-2 rounded shadow-sm flex items-center justify-between transition-transform duration-300',
+                'bg-white mt-4 px-4 py-2 rounded shadow-sm flex items-center justify-between transition-transform duration-300 cursor-pointer hover:scale-105',
                 player.pcode === selectedPlayer.pcode &&
                   'bg-wiz-red text-white font-bold scale-105'
               )}

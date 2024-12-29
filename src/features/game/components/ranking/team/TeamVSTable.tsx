@@ -1,5 +1,3 @@
-// import { useTeamVS } from '@/assets/hooks/ranking/useTeamVS';
-import { teamVS as mockVS } from '@/assets/data/__test__/mockRanking.json';
 import {
   Table,
   TableBody,
@@ -9,6 +7,7 @@ import {
   TableRow,
 } from '@/components/ui';
 import { vsOrder } from '@/constants/team-vs-order';
+import { useTeamVS } from '@/features/game/hooks/ranking/useTeamVS';
 import { cn } from '@/lib/utils';
 
 interface TeamVSResult {
@@ -24,15 +23,15 @@ interface ArrangedTeamVS {
 }
 
 function TeamVSTable() {
-  // const { vs, loading, error } = useTeamVS();
+  const { vs, loading, error } = useTeamVS();
 
-  // if (!Object.keys(vs) || loading) {
-  //   return null;
-  // }
+  if (!Object.keys(vs) || loading) {
+    return null;
+  }
 
-  // if (error) {
-  //   return <div>{error}</div>;
-  // }
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <Table className="mt-4">
@@ -68,7 +67,7 @@ function TeamVSTable() {
             <TableCell>{teamName}</TableCell>
             {vsOrder.map((vsTeam, vIndex) => {
               const { win, lose, drawn }: TeamVSResult = ((
-                mockVS as unknown as ArrangedTeamVS[]
+                vs as ArrangedTeamVS[]
               )[index][vsTeam.teamCode] as TeamVSResult) || {
                 win: '',
                 lose: '',

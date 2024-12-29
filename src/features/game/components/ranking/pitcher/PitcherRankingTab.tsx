@@ -3,25 +3,21 @@ import {
   KTPitcherRankingTab,
   RankingCard,
 } from '@/features/game/components/ranking';
-import { TabsList } from '@radix-ui/react-tabs';
 import Breadcrumb from '../../../../common/Breadcrumb';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
-// import { useTopPitcherRank } from '@/assets/hooks/ranking/useTopPitcherRank';
-import { eraTop3, winTop3 } from '@/assets/data/__test__/mockRanking.json';
-import { Tabs, TabsContent } from '@/components/ui';
+import { Tabs, TabsList, TabsContent } from '@/components/ui';
+import { useTopPitcherRank } from '@/features/game/hooks/ranking/useTopPitcherRank';
 
 function PitcherRankingTab() {
-  // const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
+  const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
 
-  // if (!eraRanking.length || !winRanking.length || loading) {
-  //   return null;
-  // }
+  if (!eraRanking.length || !winRanking.length || loading) {
+    return null;
+  }
 
-  // if (error) {
-  //   return <div>{error}</div>;
-  // }
-  const eraRanking = eraTop3;
-  const winRanking = winTop3;
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="my-20">

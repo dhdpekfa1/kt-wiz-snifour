@@ -51,7 +51,7 @@ export const teamRankColums: ColumnDef<TeamStats>[] = [
   },
 ];
 
-// 팀 순위 - 투수 기록록
+// 팀 순위 - 투수 기록
 export const teamPitcherRankColumns: ColumnDef<TeamPitcherRank>[] = [
   {
     accessorKey: 'teamName',

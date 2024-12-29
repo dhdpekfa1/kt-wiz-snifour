@@ -1,25 +1,21 @@
-// import { useTopBatterRank } from '@/assets/hooks/ranking/useTopBatterRank';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { RankingCard } from '../common/RankingCard';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
-import { hraTop3, hrTop3 } from '@/assets/data/__test__/mockRanking.json';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
+import { useTopBatterRank } from '@/features/game/hooks/ranking';
 
 function BatterRankingTab() {
-  // const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
+  const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
 
-  // if (!hraRanking.length || !hrRanking.length || loading) {
-  //   return null;
-  // }
+  if (!hraRanking.length || !hrRanking.length || loading) {
+    return null;
+  }
 
-  // if (error) {
-  //   return <div>{error}</div>;
-  // }
-
-  const hraRanking = hraTop3;
-  const hrRanking = hrTop3;
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="my-20">
