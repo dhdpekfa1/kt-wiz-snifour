@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getPlayer } from '../apis/player';
 import { getKTPitcherRanking } from '@/features/game/apis/ranking/pitcher';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
@@ -10,9 +10,8 @@ export const usePlayer = (
   position: string | undefined,
   pcode: string | null
 ) => {
-  const { player, setPlayer } = usePlayerStore();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { player, loading, error, setPlayer, setLoading, setError } =
+    usePlayerStore();
   const { setMaxStats } = useMaxStatsStore();
 
   if (!position) {
@@ -37,7 +36,7 @@ export const usePlayer = (
     };
 
     fetchData();
-  }, [position, pcode, setPlayer]);
+  }, [position, pcode, setPlayer, setError, setLoading]);
 
   useEffect(() => {
     // KT 선수들의 성적 최대값값
@@ -84,7 +83,7 @@ export const usePlayer = (
     };
 
     findMaxStats(position);
-  }, [position, setMaxStats]);
+  }, [position, setMaxStats, setLoading, setError]);
 
   return { player, loading, error };
 };

@@ -42,16 +42,11 @@ function PlayerDetailPage() {
           'lg:mt-6'
         )}
       >
-        {/* 대시보드 */}
         <div className={cn('w-full flex flex-col gap-8', 'lg:flex-row')}>
           {/* 프로필 */}
-          <PlayerProfile
-            player={player.gameplayer}
-            seasonSummary={player.seasonsummary}
-            className="w-80"
-          />
+          <PlayerProfile className="w-full lg:w-80" />
           {/* 경기 기록 */}
-          <div className="w-[calc(100%-21rem)] flex flex-col items-center gap-4">
+          <div className="w-full flex flex-col items-center gap-4 lg:w-[calc(100%-22rem)]">
             <PlayerRecordChart
               title={
                 player.recentgamerecordlist.length > 0

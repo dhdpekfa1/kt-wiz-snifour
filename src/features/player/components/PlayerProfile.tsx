@@ -1,27 +1,23 @@
 import { cn } from '@/lib/utils';
-import {
-  BatterSeasonSummaryBase,
-  PitcherSeasonSummaryBase,
-  PlayerBase,
-} from '../types/detail';
 import PlayerInfo from './profile/PlayerInfo';
 import LeagueRecord from './profile/LeagueRecord';
+import { usePlayerStore } from '@/store/usePlayerStore';
+import { PlayerProfileSkeleton } from './skeletons/PlayerProfileSkeleton';
 
 interface PlayerProfileProps {
-  player: PlayerBase;
-  seasonSummary: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
   className: string;
 }
 
-function PlayerProfile({
-  player,
-  seasonSummary,
-  className,
-}: PlayerProfileProps) {
+function PlayerProfile({ className }: PlayerProfileProps) {
+  const { player, loading } = usePlayerStore();
+  if (loading) {
+    return <PlayerProfileSkeleton />;
+  }
+
   return (
     <div
       className={cn(
-        'h-full flex flex-row gap-4',
+        'w-full h-full flex flex-row gap-4',
         'lg:w-1/4 lg:flex-col',
         className
       )}
@@ -33,15 +29,15 @@ function PlayerProfile({
           'lg:w-full'
         )}
       >
-        <img src={player.playerPrvwImg} alt="" className="w-full" />
+        <img src={player?.gameplayer.playerPrvwImg} alt="" className="w-full" />
       </div>
       <div className={cn('w-2/3 h-full flex items-center', 'lg:w-full')}>
         {/* 선수 프로필 */}
         <div className={cn('w-full h-full flex flex-col gap-2')}>
           {/* 이름, 포지션 */}
-          <PlayerInfo data={player} />
+          <PlayerInfo />
           {/* 정규 리그 성적 */}
-          <LeagueRecord data={seasonSummary} />
+          <LeagueRecord />
         </div>
       </div>
     </div>
