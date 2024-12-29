@@ -51,7 +51,7 @@ function PlayerDetailPage() {
             className="w-80"
           />
           {/* 경기 기록 */}
-          <div className="max-w-[calc(100%-20rem)] flex flex-col items-center gap-4">
+          <div className="w-[calc(100%-21rem)] flex flex-col items-center gap-4">
             <PlayerRecordChart
               title={
                 player.recentgamerecordlist.length > 0

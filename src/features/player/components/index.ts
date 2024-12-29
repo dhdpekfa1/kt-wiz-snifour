@@ -3,3 +3,4 @@ export { PlayerProfile } from './PlayerProfile';
 export { PlayerRecordChart } from './PlayerRecordChart';
 export { RecordTableAccordion } from './RecordTableAccordion';
 export { SeasonSummary } from './SeasonSummary';
+export { StatCard } from './StatCard';

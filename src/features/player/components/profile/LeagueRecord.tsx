@@ -19,8 +19,6 @@ function LeagueRecord({ data }: LeagueRecordProps) {
   const { position } = useParams();
   const role = position === 'pitcher' ? 'pitcher' : 'batter';
 
-  console.log(data);
-
   const season: Season = {
     pitcher: [
       { label: '평균자책점', key: 'era' },
@@ -35,6 +33,16 @@ function LeagueRecord({ data }: LeagueRecordProps) {
       { label: '홈런', key: 'hr' },
     ],
   };
+
+  if (!data) {
+    return (
+      <div>
+        <h4 className="text-base font-bold mt-2">
+          데이터를 불러오는 중입니다...
+        </h4>
+      </div>
+    );
+  }
 
   return (
     <div>

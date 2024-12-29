@@ -23,7 +23,6 @@ interface PlayerRecordChartProps {
 }
 
 function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
-  console.log({ data, config });
   const [chartConfig, setChartConfig] = useState<Config>(config);
   const [chartType, setChartType] = useState<string>('bar');
   const [currentConfig, setCurrentConfig] = useState<keyof Config>(

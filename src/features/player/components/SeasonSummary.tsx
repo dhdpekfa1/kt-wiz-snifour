@@ -1,59 +1,107 @@
 import { cn } from '@/lib/utils';
-import { SeasonSummaryBase } from '../types/detail';
-import { Progress } from '@/components/ui/progress';
+import {
+  BatterSeasonSummaryBase,
+  PitcherSeasonSummaryBase,
+} from '../types/detail';
 import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 import { useParams } from 'react-router';
+import { StatCard } from './StatCard';
 
-const indicators: {
-  accessorKey: keyof SeasonSummaryBase;
-  header: string;
-}[] = [
-  { accessorKey: 'era', header: '평균자책점' },
-  { accessorKey: 'gamenum', header: '경기 수' },
-  { accessorKey: 'wCg', header: '완투' },
-  { accessorKey: 'sho', header: '완봉' },
-  { accessorKey: 'w', header: '승' },
-  { accessorKey: 'l', header: '패' },
-  { accessorKey: 'sv', header: '세이브' },
-  { accessorKey: 'hold', header: '홀드' },
-  { accessorKey: 'wra', header: '승률' },
-  { accessorKey: 'tugucount', header: '타자' }, // ? 중복?
-  { accessorKey: 'tugucount', header: '투구 수' },
-  { accessorKey: 'hit', header: '피안타' },
-  { accessorKey: 'hr', header: '피홈런' },
-  { accessorKey: 'sf', header: '희비' },
-  { accessorKey: 'sh', header: '희타' },
-  { accessorKey: 'bb', header: '볼넷' },
-  { accessorKey: 'ib', header: '고의4구' },
-  { accessorKey: 'hp', header: '사구' },
-  { accessorKey: 'kk', header: '탈삼진' },
-  { accessorKey: 'wp', header: '폭투' },
-  { accessorKey: 'bk', header: '보크' },
-  { accessorKey: 'r', header: '실점' },
-  { accessorKey: 'er', header: '자책점' },
-  { accessorKey: 'bs', header: '블론세이브' },
-  { accessorKey: 'whip', header: 'WHIP' },
-  { accessorKey: 'oavg', header: '피안타율' },
-  { accessorKey: 'qs', header: 'QS' },
-  { accessorKey: 'kbb', header: 'K/BB' },
-];
+interface Indicators {
+  pitcher: {
+    accessorKey: keyof PitcherSeasonSummaryBase;
+    header: string;
+  }[];
+  batter: {
+    accessorKey: keyof BatterSeasonSummaryBase;
+    header: string;
+  }[];
+}
+
+const indicators: Indicators = {
+  pitcher: [
+    { accessorKey: 'era', header: '평균자책점' },
+    { accessorKey: 'gamenum', header: '경기 수' },
+    { accessorKey: 'wCg', header: '완투' },
+    { accessorKey: 'sho', header: '완봉' },
+    { accessorKey: 'w', header: '승' },
+    { accessorKey: 'l', header: '패' },
+    { accessorKey: 'sv', header: '세이브' },
+    { accessorKey: 'hold', header: '홀드' },
+    { accessorKey: 'wra', header: '승률' },
+    { accessorKey: 'bf', header: '타자' },
+    { accessorKey: 'tugucount', header: '투구 수' },
+    { accessorKey: 'hit', header: '피안타' },
+    { accessorKey: 'hr', header: '피홈런' },
+    { accessorKey: 'sf', header: '희비' },
+    { accessorKey: 'sh', header: '희타' },
+    { accessorKey: 'bb', header: '볼넷' },
+    { accessorKey: 'ib', header: '고의4구' },
+    { accessorKey: 'hp', header: '사구' },
+    { accessorKey: 'kk', header: '탈삼진' },
+    { accessorKey: 'wp', header: '폭투' },
+    { accessorKey: 'bk', header: '보크' },
+    { accessorKey: 'r', header: '실점' },
+    { accessorKey: 'er', header: '자책점' },
+    { accessorKey: 'bs', header: '블론세이브' },
+    { accessorKey: 'whip', header: 'WHIP' },
+    { accessorKey: 'oavg', header: '피안타율' },
+    { accessorKey: 'qs', header: 'QS' },
+    { accessorKey: 'kbb', header: 'K/BB' },
+  ],
+  batter: [
+    { accessorKey: 'hra', header: '타율' },
+    { accessorKey: 'gamenum', header: '경기' },
+    { accessorKey: 'pa', header: '타석' },
+    { accessorKey: 'ab', header: '타수' },
+    { accessorKey: 'run', header: '득점' },
+    { accessorKey: 'hit', header: '안타' },
+    { accessorKey: 'h2', header: '2루타' },
+    { accessorKey: 'h3', header: '3루타' },
+    { accessorKey: 'hr', header: '홈런' },
+    { accessorKey: 'rbi', header: '타점' },
+    { accessorKey: 'sb', header: '도루' },
+    { accessorKey: 'cs', header: '도실' },
+    { accessorKey: 'sf', header: '희타' },
+    { accessorKey: 'sh', header: '희비' },
+    { accessorKey: 'bb', header: '볼넷' },
+    { accessorKey: 'ib', header: '고의4구' },
+    { accessorKey: 'hp', header: '사구' },
+    { accessorKey: 'kk', header: '삼진' },
+    { accessorKey: 'gd', header: '병살' },
+    { accessorKey: 'slg', header: '장타율' },
+    { accessorKey: 'bra', header: '출루율' },
+    // { accessorKey: 'kbb', header: '실책' },
+    { accessorKey: 'sba', header: '도루성공률' },
+    { accessorKey: 'bbkk', header: 'BB/K' },
+    { accessorKey: 'xbhrun', header: '장타/안타' },
+    { accessorKey: 'ops', header: 'OPS' },
+    { accessorKey: 'spHra', header: '득점권타율' },
+  ],
+};
 
 interface SeasonSummaryProps {
-  data: SeasonSummaryBase;
+  data: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
+}
+
+function calculateIPG(inn: number, gamenum: number) {
+  return gamenum > 0 ? Number((inn / gamenum).toFixed(3)) : 0;
 }
 
 function SeasonSummary({ data }: SeasonSummaryProps) {
   const { maxStats } = useMaxStatsStore();
   const { position } = useParams();
-  const ipg =
-    Number(data.gamenum) > 0
-      ? Number((Number(data.inn2) / Number(data.gamenum)).toFixed(3))
-      : 0;
-  console.log({ maxStats, data });
+  const role = position === 'pitcher' ? 'pitcher' : 'batter';
 
-  if (!maxStats) {
-    return null;
+  if (!data || !maxStats) {
+    return <div className="text-center">데이터를 불러오는 중입니다...</div>;
   }
+
+  const indicatorsForRole = indicators[role];
+  const isPitcher = role === 'pitcher';
+  const ipg = isPitcher
+    ? calculateIPG(data.gamenum, (data as PitcherSeasonSummaryBase).inn2)
+    : 0;
 
   return (
     <div
@@ -63,52 +111,54 @@ function SeasonSummary({ data }: SeasonSummaryProps) {
         'lg:grid-cols-10 lg:gap-4'
       )}
     >
-      {indicators.map(({ accessorKey, header }) => (
-        <div
-          key={accessorKey}
-          className="flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 rounded-xl border border-wiz-red border-opacity-20 aspect-square"
-        >
-          <p className="font-bold text-xs md:text-sm">{header}</p>
-          <Progress
-            value={
-              maxStats[accessorKey] > 0
+      {indicatorsForRole.map(({ accessorKey, header }) => {
+        const statValue =
+          role === 'pitcher'
+            ? (data as PitcherSeasonSummaryBase)[
+                accessorKey as keyof PitcherSeasonSummaryBase
+              ] || 0
+            : (data as BatterSeasonSummaryBase)[
+                accessorKey as keyof BatterSeasonSummaryBase
+              ] || 0;
+
+        const progressValue =
+          maxStats[accessorKey] > 0
+            ? Math.round((Number(statValue) / maxStats[accessorKey]) * 100)
+            : 0;
+
+        return (
+          <StatCard
+            key={accessorKey}
+            header={header}
+            value={statValue}
+            progress={progressValue}
+          />
+        );
+      })}
+
+      {/* 지표가 없어 추가 계산이 필요한 부분 */}
+      {isPitcher && (
+        <>
+          <StatCard
+            header="이닝"
+            value={(data as PitcherSeasonSummaryBase).innDisplay}
+            progress={
+              maxStats.inn2 > 0
                 ? Math.round(
-                    ((Number(data[accessorKey]) || 0) / maxStats[accessorKey]) *
+                    (Number((data as PitcherSeasonSummaryBase).inn2) /
+                      maxStats.inn2) *
                       100
                   )
                 : 0
             }
-            className="text-white w-[75%] h-1"
           />
-          <p className="text-base md:text-lg lg:text-xl">
-            {data[accessorKey] || 0}
-          </p>
-        </div>
-      ))}
-      {position === 'pitcher' && (
-        <>
-          <div className="flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 rounded-xl border border-wiz-red border-opacity-20 aspect-square">
-            <p className="font-bold text-xs md:text-sm">이닝</p>
-            <Progress
-              value={
-                maxStats.inn2 > 0
-                  ? Math.round((Number(data.inn2) / maxStats.inn2) * 100)
-                  : 0
-              }
-              className="text-white w-[75%] h-1"
-            />
-            <p className="text-base md:text-lg lg:text-xl">{data.innDisplay}</p>
-          </div>
-          <div className="flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 rounded-xl border border-wiz-red border-opacity-20 aspect-square">
-            <p className="font-bold text-xs md:text-sm">IP/G</p>
-            <Progress
-              value={
-                maxStats.ipg > 0 ? Math.round((ipg / maxStats.ipg) * 100) : 0
-              }
-              className="text-white w-[75%] h-1"
-            />
-            <p className="text-base md:text-lg lg:text-xl">{ipg}</p>
-          </div>
+          <StatCard
+            header="IP/G"
+            value={ipg}
+            progress={
+              maxStats.ipg > 0 ? Math.round((ipg / maxStats.ipg) * 100) : 0
+            }
+          />
         </>
       )}
     </div>
