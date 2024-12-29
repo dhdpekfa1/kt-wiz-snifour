@@ -71,8 +71,8 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
             0,
             () => {
               const max = Math.max(
-                ...data.map(
-                  (item: Data) => item[activeKey as keyof Data] as number
+                ...data.map((item: Data) =>
+                  Number(item[activeKey as keyof Data])
                 )
               ); // dataMax를 사용했더니 제대로 max 값을 찾지 못하는 버그가 있어 직접 계산
               return max === 0 ? 5 : (max * 1.1).toFixed(2); // 최대값에 여유를 두고 10% 확대
