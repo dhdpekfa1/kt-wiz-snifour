@@ -46,7 +46,7 @@ const LoginPage = () => {
     >
       <Breadcrumb />
       <div className="flex items-center flex-col my-10 md:my-20">
-        <Card className="w-full md:w-1/2 lg:1/3 border-wiz-white border-opacity-50">
+        <Card className="w-full md:w-1/2 lg:1/3 border-wiz-white border-opacity-50 shadow-lg shadow-wiz-red">
           <CardHeader>
             <CardTitle className="text-xl md:text-2xl text-center">
               로그인
@@ -117,7 +117,7 @@ const LoginPage = () => {
           </CardContent>
           <CardFooter className="flex flex-col mt-6 gap-2">
             <Button
-              className="w-full m text-white bg-wiz-red bg-opacity-50 hover:bg-wiz-red hover:bg-opacity-70"
+              className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
               onClick={handleLogin}
             >
               로그인

@@ -38,7 +38,7 @@ const SignupPage = () => {
     >
       <Breadcrumb />
       <div className="flex items-center flex-col my-10 md:my-20">
-        <Card className="w-full">
+        <Card className="w-full border-wiz-white border-opacity-50 shadow-lg shadow-wiz-red">
           <CardHeader>
             <CardTitle className="text-xl md:text-2xl text-center">
               회원가입
