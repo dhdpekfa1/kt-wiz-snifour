@@ -1,9 +1,5 @@
 import { useParams, useSearchParams } from 'react-router';
 
-import {
-  recentPitcherConfig,
-  yearPitcherConfig,
-} from '@/constants/chart-config';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import {
@@ -11,6 +7,12 @@ import {
   PlayerRecordChart,
   SeasonSummary,
 } from '@/features/player/components';
+import {
+  recentBatterConfig,
+  recentPitcherConfig,
+  yearBatterConfig,
+  yearPitcherConfig,
+} from '@/constants/chart-config';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
 
@@ -19,7 +21,7 @@ function PlayerDetailPage() {
   const [searchParams] = useSearchParams();
   const pcode = searchParams.get('pcode');
 
-  const { player, error } = usePlayer(position, pcode);
+  const { player, loading, error } = usePlayer(position, pcode);
 
   if (!player) {
     return <div>선수 정보가 없습니다.</div>;
@@ -30,7 +32,7 @@ function PlayerDetailPage() {
   }
 
   return (
-    <div className={cn('text-white', 'md:my-10', 'lg:my-20')}>
+    <div className={cn('w-full text-white', 'md:my-10', 'lg:my-20')}>
       <Breadcrumb />
 
       <div
@@ -40,15 +42,11 @@ function PlayerDetailPage() {
           'lg:mt-6'
         )}
       >
-        {/* 대시보드 */}
         <div className={cn('w-full flex flex-col gap-8', 'lg:flex-row')}>
           {/* 프로필 */}
-          <PlayerProfile
-            player={player.gameplayer}
-            seasonSummary={player.seasonsummary}
-          />
+          <PlayerProfile className="w-full lg:w-80" />
           {/* 경기 기록 */}
-          <div className="flex-1 flex flex-col items-center gap-4">
+          <div className="w-full flex flex-col items-center gap-4 lg:w-[calc(100%-22rem)]">
             <PlayerRecordChart
               title={
                 player.recentgamerecordlist.length > 0
@@ -60,12 +58,20 @@ function PlayerDetailPage() {
                   ? player.recentgamerecordlist
                   : player.recentgamerecordlistfutures
               }
-              config={recentPitcherConfig}
+              config={
+                position === 'pitcher'
+                  ? recentPitcherConfig
+                  : recentBatterConfig
+              }
+              loading={loading}
             />
             <PlayerRecordChart
               title="정규 리그 통산 기록"
               data={player.yearrecordlist}
-              config={yearPitcherConfig}
+              config={
+                position === 'pitcher' ? yearPitcherConfig : yearBatterConfig
+              }
+              loading={loading}
             />
           </div>
         </div>
@@ -75,7 +81,7 @@ function PlayerDetailPage() {
           <p className="text-sm text-neutral-400 my-1">
             팀 대비 비교 성적입니다.
           </p>
-          <SeasonSummary data={player.seasonsummary} />
+          <SeasonSummary />
         </div>
       </div>
     </div>

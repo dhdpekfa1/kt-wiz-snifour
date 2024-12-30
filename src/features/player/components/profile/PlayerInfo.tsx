@@ -1,11 +1,14 @@
 import { cn, formatDate } from '@/lib/utils';
-import { PlayerBase } from '../../types/detail';
+import { usePlayerStore } from '@/store/usePlayerStore';
 
-interface PlayerInfoProps {
-  data: PlayerBase;
-}
+function PlayerInfo() {
+  const { player } = usePlayerStore();
+  if (!player) {
+    return <div>데이터가 존재하지 않습니다.</div>;
+  }
 
-function PlayerInfo({ data }: PlayerInfoProps) {
+  const data = player?.gameplayer;
+
   const info = [
     { label: '생년월일', content: `${formatDate(data.birth)}` },
     { label: '체격', content: `${data.height}cm / ${data.weight}kg` },

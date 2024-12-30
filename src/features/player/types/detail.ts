@@ -63,79 +63,117 @@ export interface PlayerBase {
   weight: string;
 }
 
-export interface SeasonSummaryBase {
-  ab: number;
-  babip: string;
-  bb: number;
-  bf: number;
-  bk: number;
-  bs: number;
-  er: number;
-  era: string;
-  err: number;
-  fip: string;
-  fo: number;
-  gamenum: number;
-  go: number;
-  gyear: string;
-  havg: string;
-  hit: number;
-  hold: number;
-  hp: number;
-  hr: number;
-  ib: number;
-  inn2: number;
-  innDisplay: string;
-  kbb: string;
-  kk: number;
-  l: number;
-  oavg: string;
-  pcode: string;
-  playerName: string;
-  qs: number;
-  qsPlus: number;
-  r: number;
-  ravg: string;
-  sf: number;
-  sh: number;
-  sho: number;
-  start: number;
-  sv: number;
-  svo: number;
-  tugucount: number;
-  turfSave: number;
-  w: number;
-  wCg: number;
-  war: string;
-  whip: string;
-  winShares: string;
-  wl: string;
-  wp: number;
-  wra: string;
+export interface PitcherSeasonSummaryBase {
+  ab?: number; // 타자에만 존재하는 필드 (타자의 경우 사용하지 않음)
+  babip: string; // BABIP (Batting Average on Balls In Play)
+  bb: number; // 볼넷
+  bf: number; // 타자에게 투구한 수
+  bk: number; // 폭투
+  bs: number; // 블론 세이브
+  er: number; // 자책점
+  era: string; // 방어율 (ERA)
+  err: number; // 오류
+  fip: string; // FIP (Fielding Independent Pitching)
+  fo: number; // 병살타 유도
+  gamenum: number; // 게임 수
+  go: number; // 땅볼 유도
+  gyear: string; // 연도
+  havg?: string; // 타율 (타자에만 존재하는 필드)
+  hit: number; // 피안타
+  hold: number; // 홀드
+  hp: number; // 몸에 맞은 공
+  hr: number; // 홈런
+  ib: number; // 고의 사구
+  inn2: number; // 이닝 2차
+  innDisplay: string; // 이닝 디스플레이
+  kbb: string; // K/BB 비율
+  kk: number; // 삼진
+  l: number; // 패배
+  oavg: string; // 상대 타율
+  pcode: string; // 선수 코드
+  qs: number; // 품질 시작 수
+  qsPlus: number; // 품질 시작 + 수
+  r: number; // 실점
+  ravg: string; // 상대 평균 타율
+  sf: number; // 희생 플라이
+  sh: number; // 희생 번트
+  sho: number; // 완봉
+  start: number; // 선발 등판 횟수
+  sv: number; // 세이브
+  svo: number; // 세이브 기회
+  tugucount: number; // 투구 수
+  turfSave: number; // 구원 세이브
+  w: number; // 승리
+  wCg: number; // 완투 승리
+  war: string; // WAR (Wins Above Replacement)
+  whip: string; // WHIP (Walks + Hits per Inning Pitched)
+  winShares: string; // Win Shares
+  wl: string; // 승/패 기록
+  wp: number; // 폭투
+  wra: string; // WRA (Weighted Run Average)
+}
+
+export interface BatterSeasonSummaryBase {
+  ab: number; // 타수
+  babip: string; // BABIP (Batting Average on Balls In Play)
+  bb: number; // 볼넷
+  bbkk: string; // BB/K 비율
+  bra: string; // 배팅 성공률
+  cs: number; // 도루 실패
+  finalHit: number; // 최종 안타
+  gamenum: number; // 게임 수
+  gd: number; // 안타 이닝
+  gyear: string; // 연도
+  h2: number; // 2루타 수
+  h3: number; // 3루타 수
+  hit: number; // 안타 수
+  hp: number; // 몸에 맞은 공
+  hr: number; // 홈런 수
+  hra: string; // 홈런 비율
+  ib: number; // 고의사구
+  kk: number; // 삼진 수
+  ops: string; // OPS (On-base Plus Slugging)
+  opsPlus: string; // OPS+
+  pa: number; // 타석 수
+  rbi: number; // 타점
+  run: number; // 득점
+  sb: number; // 도루 수
+  sbTryCn: number; // 도루 시도 횟수
+  sba: string; // 도루 성공률
+  sf: number; // 희생 플라이
+  sh: number; // 희생 번트
+  slg: string; // SLG (Slugging Percentage)
+  spHra: string; // 특정 타율
+  war: string; // WAR (Wins Above Replacement)
+  winShares: string; // Win Shares
+  woba: string; // wOBA (Weighted On-Base Average)
+  wrHit: string; // Hit Weighted Runs
+  xbhrun: string; // Extra base hit 비율
 }
 
 export interface Player {
   gameplayer: PlayerBase;
   recentgamerecordlist: GameRecord[];
   recentgamerecordlistfutures: GameRecord[];
-  seasonsummary: SeasonSummaryBase;
-  seasonsummaryfutures: SeasonSummaryBase;
-  yearrecordlist: SeasonSummaryBase[];
+  seasonsummary: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
+  seasonsummaryfutures: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
+  yearrecordlist: (PitcherSeasonSummaryBase | BatterSeasonSummaryBase)[];
 }
 
 export interface Pitcher extends Player {
   recentgamerecordlist: GameRecord[];
   recentgamerecordlistfutures: GameRecord[];
-  seasonsummary: SeasonSummaryBase;
-  seasonsummaryfutures: SeasonSummaryBase;
+  seasonsummary: PitcherSeasonSummaryBase;
+  seasonsummaryfutures: PitcherSeasonSummaryBase;
 }
 
-export interface Catcher extends Player {
+export interface Batter extends Player {
   recentgamerecordlist: GameRecord[];
   recentgamerecordlistfutures: GameRecord[];
-  seasonsummary: SeasonSummaryBase;
-  seasonsummaryfutures: SeasonSummaryBase;
+  seasonsummary: BatterSeasonSummaryBase;
+  seasonsummaryfutures: BatterSeasonSummaryBase;
 }
 
+export type SeasonSummary = PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
 export type RecentRecord = GameRecord;
-export type YearRecord = SeasonSummaryBase;
+export type YearRecord = PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
