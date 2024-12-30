@@ -56,7 +56,10 @@ function WizGallery() {
         <Carousel className="w-full">
           <CarouselContent>
             {photos.map((photo) => (
-              <CarouselItem className={cn('md:basis-1/2', 'lg:basis-1/3')}>
+              <CarouselItem
+                key={photo.artcSeq}
+                className={cn('md:basis-1/2', 'lg:basis-1/3')}
+              >
                 <div className="h-[36rem] rounded-xl overflow-hidden relative">
                   <img
                     src={photo.imgFilePath}
