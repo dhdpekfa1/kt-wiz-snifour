@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { PlayerBase, SeasonSummaryBase } from '../types/detail';
-import PlayerInfo from './profile/PlayerInfo';
 import LeagueRecord from './profile/LeagueRecord';
+import PlayerInfo from './profile/PlayerInfo';
 
 interface PlayerProfileProps {
   player: PlayerBase;

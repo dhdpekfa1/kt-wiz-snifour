@@ -1,7 +1,7 @@
 import { ChartContainer } from '@/components/ui/chart';
+import { useEffect, useState } from 'react';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 import { RecentRecord, YearRecord } from '../player/types/detail';
-import { useEffect, useState } from 'react';
 
 interface CustomLineChartProps {
   data: RecentRecord[] | YearRecord[];

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import { TeamRank } from '../types';
 import { cn } from '@/lib/utils';
+import { TeamRank } from '../types';
 
 function TeamRanking() {
   const [ranking, setRanking] = useState<TeamRank>({} as TeamRank);

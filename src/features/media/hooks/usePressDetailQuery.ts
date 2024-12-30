@@ -1,7 +1,7 @@
-import { QueryParser } from '@/lib';
-import { useParams } from 'react-router';
-import { useQueryClient } from '@tanstack/react-query';
 import { newsApi } from '@/features/media/apis/news/NewsApi';
+import { QueryParser } from '@/lib';
+import { useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router';
 
 import {
   PRESS_API_QUERY_KEY,

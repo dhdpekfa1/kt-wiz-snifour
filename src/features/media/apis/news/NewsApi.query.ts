@@ -1,15 +1,15 @@
-import { AxiosError } from 'axios';
-import { newsApi } from './NewsApi';
-import { useQuery } from '@tanstack/react-query';
-import { keepPreviousData } from '@tanstack/react-query';
 import { createListViewItem } from '@/features/media/services';
-import { Parameter, isNotNullish, UseQueryParams } from '@/lib';
 import {
   ListDataType,
-  NewsResponse,
-  NewsDetailResponse,
   ListViewType,
+  NewsDetailResponse,
+  NewsResponse,
 } from '@/features/media/types';
+import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
+import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { newsApi } from './NewsApi';
 
 // 쿼리 키 정의
 export const NEWS_API_QUERY_KEY = {

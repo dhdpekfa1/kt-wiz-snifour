@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { API_URL } from '@/constants/api-url';
+import axios from 'axios';
 
 export const getBatterHraRanking = async () => {
   try {

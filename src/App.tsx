@@ -15,13 +15,14 @@ import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
+import ScrollToTop from './features/common/ScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
-import ScrollToTop from './features/common/ScrollToTop';
-import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
-import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
+
 import PlayerListPage from './pages/player/PlayerListPage';
+import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
+import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
 function App() {
   return (
@@ -49,6 +50,10 @@ function App() {
 
             {/* Game */}
             <Route path="/game/regular/*" element={<RegularGamePage />} />
+            <Route
+              path="/game/regular/boxscore/:gameDate/:gameKey"
+              element={<RegularGamePage />}
+            />
 
             {/* Player */}
             <Route path="/player/:position" element={<PlayerListPage />} />

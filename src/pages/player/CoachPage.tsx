@@ -1,9 +1,9 @@
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
-import useCoachList from '@/features/player/hooks/useCoachList';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components/';
+import useCoachList from '@/features/player/hooks/useCoachList';
 
 const CoachPage = () => {
   const { coachList, loading, error } = useCoachList();

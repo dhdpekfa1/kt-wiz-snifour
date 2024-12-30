@@ -2,8 +2,8 @@ import { ChartContainer } from '@/components/ui/chart';
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { RecentRecord, YearRecord } from '../player/types/detail';
-import { TeamPitcherRank } from './types/pitchers';
 import { TeamBatterRank } from './types/batters';
+import { TeamPitcherRank } from './types/pitchers';
 
 interface Config {
   [key: string]: {

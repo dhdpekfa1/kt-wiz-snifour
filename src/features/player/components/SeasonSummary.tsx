@@ -1,8 +1,8 @@
-import { cn } from '@/lib/utils';
-import { SeasonSummaryBase } from '../types/detail';
 import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
 import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 import { useParams } from 'react-router';
+import { SeasonSummaryBase } from '../types/detail';
 
 const indicators: {
   accessorKey: keyof SeasonSummaryBase;
