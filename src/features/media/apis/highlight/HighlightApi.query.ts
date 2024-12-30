@@ -1,9 +1,9 @@
-import { AxiosError } from 'axios';
-import { highlightApi } from './HighlightApi';
-import { useQuery } from '@tanstack/react-query';
-import { Parameter, isNotNullish, UseQueryParams } from '@/lib';
 import { GridDataType, HighlightResponse } from '@/features/media/types';
+import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
+import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { createGridViewItem } from '../../services/grid-mapper.service';
+import { highlightApi } from './HighlightApi';
 
 // 쿼리 키 정의
 export const HIGHLIGHT_API_QUERY_KEY = {

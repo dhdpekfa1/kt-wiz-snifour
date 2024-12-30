@@ -18,10 +18,10 @@ const CalenderBody = ({ renderCellContent }: CalenderBodyProps) => {
       selected={selectedDate}
       onSelect={setSelectedDate}
       locale={ko}
-      className="border border-[#fefefe40] rounded-lg w-full max-w-full mx-auto"
+      className="border border-[#fefefe40] rounded-lg w-full max-w-full mx-auto  overflow-hidden"
       classNames={{
-        table: 'w-full border-collapse',
-        cell: 'h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative',
+        table: 'w-full border-collapse overflow-hidden',
+        cell: 'h-[120px] md:h-[180px] w-[160px] text-center p-0 border border-[#fefefe40] relative',
         day: 'h-full w-full text-sm flex items-center justify-center relative',
       }}
       captionLayout="dropdown"
@@ -43,7 +43,7 @@ const CalenderBody = ({ renderCellContent }: CalenderBodyProps) => {
               {['일', '월', '화', '수', '목', '금', '토'].map((day, index) => (
                 <th
                   key={day}
-                  className={`p-2 font-medium ${
+                  className={`p-2 font-medium text-xs text-md:sm lg:text-base ${
                     index === 0
                       ? 'text-red-500'
                       : index === 6
@@ -59,7 +59,7 @@ const CalenderBody = ({ renderCellContent }: CalenderBodyProps) => {
         ),
         DayContent: ({ date }) => (
           <div
-            className={`relative w-full h-full bg-[#35383e20] ${
+            className={`relative w-full h-full bg-wiz-white bg-opacity-5 ${
               format(date, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
                 ? 'border-2 border-wiz-red'
                 : ''

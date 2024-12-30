@@ -1,4 +1,3 @@
-import DataTable from '@/features/common/DataTable';
 import {
   recentBatterRecordColumns,
   recentPitcherRecordColumns,
@@ -11,9 +10,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui';
-import { RecentRecord, YearRecord } from '../types/detail';
+import DataTable from '@/features/common/DataTable';
 import { cn } from '@/lib/utils';
 import { useParams } from 'react-router';
+import { RecentRecord, YearRecord } from '../types/detail';
 
 interface RecordTableAccordionProps {
   data: RecentRecord[] | YearRecord[];

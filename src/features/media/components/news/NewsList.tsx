@@ -1,5 +1,5 @@
-import { ListViewType } from '@/features/media/types';
 import ListArticle from '@/features/media/common/ListArticle';
+import { ListViewType } from '@/features/media/types';
 import { useLocation } from 'react-router';
 
 type NewsListProps = {

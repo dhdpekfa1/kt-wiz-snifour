@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
+import ChartLabelList from '@/features/common/ChartLabelList';
 import CustomBarChart from '@/features/common/CustomBarChart';
 import CustomLineChart from '@/features/common/CustomLineChart';
 import SubTitle from '@/features/common/SubTitle';
 import { cn } from '@/lib/utils';
 import { RecentRecord, YearRecord } from '../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
-import ChartLabelList from '@/features/common/ChartLabelList';
 import Skeleton from 'react-loading-skeleton';
 
 // TODO: 타입 분리

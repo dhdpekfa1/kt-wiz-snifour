@@ -58,8 +58,10 @@ function TeamRankingView<T>({
       <div className="flex items-center gap-2 justify-end">
         <button
           type="button"
-          className={`text-center w-12 bg-white text-black px-2 py-1 text-sm rounded ${
-            selectedTab === 'table' ? 'bg-wiz-red text-wiz-white' : 'bg-white'
+          className={`text-center w-12 bg-white text-wiz-white px-2 py-1 text-sm rounded ${
+            selectedTab === 'table'
+              ? 'bg-wiz-red text-wiz-white'
+              : 'bg-white bg-opacity-10'
           }`}
           onClick={() => setSelectedTab('table')}
         >
@@ -67,8 +69,10 @@ function TeamRankingView<T>({
         </button>
         <button
           type="button"
-          className={`text-center w-12 bg-white text-black px-2 py-1 text-sm rounded ${
-            selectedTab === 'chart' ? 'bg-wiz-red text-wiz-white' : 'bg-white'
+          className={`text-center w-12 bg-white text-wiz-white px-2 py-1 text-sm rounded ${
+            selectedTab === 'chart'
+              ? 'bg-wiz-red text-wiz-white'
+              : 'bg-white bg-opacity-10'
           }`}
           onClick={() => setSelectedTab('chart')}
         >

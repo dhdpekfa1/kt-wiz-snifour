@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { TeamVS } from '@/features/game/types/team-ranking';
 import { getTeamVS } from '@/features/game/apis/ranking/team';
+import { TeamVS } from '@/features/game/types/team-ranking';
+import { useEffect, useState } from 'react';
 
 interface ArrangedTeamVS {
   teamName: string;

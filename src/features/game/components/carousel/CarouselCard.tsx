@@ -1,13 +1,10 @@
 import { Card, CardContent, CarouselItem } from '@/components/ui';
 import TeamInfo from '@/features/common/TeamInfo';
-import { GameSchedule } from '@/features/game/types/match-schedule';
+import type { GameSchedule } from '@/features/game/types/match-schedule';
 import { format, isValid, parse } from 'date-fns';
 import { useCallback } from 'react';
-import { useNavigate } from 'react-router';
 
 const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
-  const navigate = useNavigate();
-
   const formatDate = useCallback((date: string): string => {
     const parsedDate = parse(date, 'yyyyMMdd', new Date());
     return isValid(parsedDate)
@@ -17,9 +14,9 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
 
   const handleGameInfoClick = () => {
     if (data) {
-      const gameDate = data.gameDate.toString();
-      const gameKey = data.gmkey;
-      navigate(`/game/regular/boxscore/${gameDate}/${gameKey}`);
+      window.location.href = `/game/regular/boxscore/${data.gameDate.toString()}/${
+        data.gmkey
+      }`; //상위 컴포넌트 강제 리렌더링
     }
   };
 
@@ -30,7 +27,7 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
       }
     >
       <div className="p-1">
-        <Card className="min-w-80 w-full rounded border-[#35383e] shadow-[#35383e]">
+        <Card className="min-w-80 w-full rounded border-wiz-white border-opacity-10 shadow-wiz-white">
           <CardContent className="flex flex-col gap-2 items-center justify-between p-5 bg-wiz-white bg-opacity-10">
             {data ? (
               <div className="flex flex-col h-48 items-center justify-between p-2">
@@ -51,7 +48,6 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                     tabType="MatchScheduleTab"
                     teamName={data.home}
                     logoUrl={data.homeLogo || ''}
-                    player={data.homeKey}
                     result={data.homeScore > data.visitScore ? 'win' : 'lose'}
                   />
 
@@ -76,7 +72,6 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                     tabType="MatchScheduleTab"
                     teamName={data.visit}
                     logoUrl={data.visitLogo || ''}
-                    player={data.visitKey}
                     result={data.homeScore > data.visitScore ? 'lose' : 'win'}
                   />
                 </div>

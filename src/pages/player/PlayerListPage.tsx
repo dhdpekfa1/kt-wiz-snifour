@@ -1,9 +1,9 @@
 import { useParams } from 'react-router';
-import CoachPage from './CoachPage';
-import PitcherPage from './PitcherPage';
 import BatterPage from './BatterPage';
 import CheerSongPage from './CheerSongPage';
 import CheerleaderPage from './CheerleaderPage';
+import CoachPage from './CoachPage';
+import PitcherPage from './PitcherPage';
 
 function PlayerListPage() {
   const { position } = useParams();

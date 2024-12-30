@@ -1,6 +1,6 @@
+import { cn } from '@/lib/utils';
 import React from 'react';
 import { SKELETON_IDS } from './skeleton';
-import { cn } from '@/lib/utils';
 
 type LoadingViewProps = {
   isLoading: boolean;

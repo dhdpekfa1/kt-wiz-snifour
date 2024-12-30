@@ -24,7 +24,7 @@ const CustomSelect = ({ type, data, value, onChange }: CustomSelectProps) => {
         } w-fit`}
       >
         <div
-          className={`flex items-center gap-1 ${
+          className={`flex items-center text-base md:text-2xl gap-1 ${
             type === 'year' ? 'text-black' : 'text-wiz-white'
           }`}
         >
@@ -43,7 +43,7 @@ const CustomSelect = ({ type, data, value, onChange }: CustomSelectProps) => {
               type === 'year'
                 ? 'bg-wiz-white hover:bg-gray-100 focus:bg-wiz-red focus:text-white'
                 : 'bg-white hover:bg-gray-200 focus:bg-wiz-red focus:text-white'
-            }`}
+            } text-xs md:text-base`}
           >
             {type === 'year'
               ? `${item}`

@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
 import { PitcherERA, PitcherWins } from '@/features/common/types/pitchers';
 import {
   getPitcherEraRanking,
   getPitcherWinRanking,
 } from '@/features/game/apis/ranking/pitcher';
+import { useEffect, useState } from 'react';
 
 export function useTopPitcherRank() {
   const [eraRanking, setEraRanking] = useState<PitcherERA[]>([]);

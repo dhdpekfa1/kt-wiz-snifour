@@ -1,10 +1,10 @@
+import { hrTop3, hraTop3 } from '@/assets/data/__test__/mockRanking.json';
+import { Tabs, TabsContent, TabsList } from '@/components/ui';
 // import { useTopBatterRank } from '@/assets/hooks/ranking/useTopBatterRank';
 import Breadcrumb from '@/features/common/Breadcrumb';
-import { RankingCard } from '../common/RankingCard';
-import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
+import { RankingCard } from '../common/RankingCard';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
-import { hraTop3, hrTop3 } from '@/assets/data/__test__/mockRanking.json';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
 
 function BatterRankingTab() {

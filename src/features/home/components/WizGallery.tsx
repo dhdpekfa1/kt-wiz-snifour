@@ -13,8 +13,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui';
-import { Photo } from '../types';
 import { cn } from '@/lib/utils';
+import { Photo } from '../types';
 
 function WizGallery() {
   const [photos, setPhotos] = useState<Photo[]>([]);
