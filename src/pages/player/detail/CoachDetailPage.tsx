@@ -84,7 +84,7 @@ const CoachDetailPage = () => {
           <div className="w-full px-10 py-20">
             <div className="flex flex-row items-start gap-10">
               <div className="flex flex-col gap-10 text-wiz-black">
-                {/* 이름 */}
+                {/* 이름, 포지션 */}
                 <div className="flex flex-col gap-4">
                   <div className="flex gap-8">
                     <h2 className="md:text-4xl lg:text-6xl font-bold">
@@ -100,25 +100,25 @@ const CoachDetailPage = () => {
                   </div>
                 </div>
 
-                {/* 설명 */}
+                {/* 생년월일, 체격, 연봉, 출신 */}
                 <div className="flex flex-col gap-4 md:text-xl lg:text-2xl">
-                  <div className="flex">
+                  <div className="flex items-start">
                     <p className="md:w-28 lg:w-32">투타</p>
                     <p>{coachData?.hittype}</p>
                   </div>
-                  <div className="flex">
-                    <p className="md:w-28 w-32">생년월일</p>
+                  <div className="flex items-start">
+                    <p className="md:w-28 lg:w-32">생년월일</p>
                     <p>{coachData?.birth}</p>
                   </div>
                   <div className="flex">
-                    <p className="md:w-28 w-32">체격</p>
+                    <p className="md:w-28 lg:w-32">체격</p>
                     <p>{coachData?.heightWeight}</p>
                   </div>
 
-                  <div className="flex">
-                    <p className="md:w-28 w-32">출신교</p>
-                    <div className="flex flex-wrap gap-x-2">
-                      <div className="flex flex-col gap-2 max-w-[70%] text-center break-keep">
+                  <div className="flex items-start">
+                    <p className="md:w-28 lg:w-32">출신교</p>
+                    <div className="flex flex-wrap">
+                      <div className="flex flex-col max-w-[70%] break-keep">
                         {coachData.career?.split('-').join(' - ')}
                       </div>
                     </div>
