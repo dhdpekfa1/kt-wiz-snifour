@@ -21,7 +21,7 @@ function PitcherRankingTab() {
   }
 
   return (
-    <div className="my-20">
+    <div>
       <Breadcrumb />
 
       {/* 투수 랭킹 카드 */}

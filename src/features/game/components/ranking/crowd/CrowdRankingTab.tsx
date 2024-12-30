@@ -22,7 +22,7 @@ function CrowdRankingTab() {
   }
 
   return (
-    <div className="my-20">
+    <div>
       <Breadcrumb />
 
       <div className="flex items-center justify-between">

@@ -19,7 +19,7 @@ function BatterRankingTab() {
   }
 
   return (
-    <div className="my-20">
+    <div>
       <Breadcrumb />
 
       {/* 타자 랭킹 카드 */}
