@@ -1,13 +1,13 @@
 import { cn } from '@/lib/utils';
 
 import { LoadingView } from '@/features/media/common/LoadingView';
-import { usePagination } from '@/features/media/hooks/usePagination';
 import { ListArticleSkeleton } from '@/features/media/common/skeleton';
+import { usePagination } from '@/features/media/hooks/usePagination';
 
-import NewsList from './NewsList';
+import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import Pagination from '@/features/media/common/Pagination';
 import useNewsListQuery from '@/features/media/hooks/useNewsListQuery';
-import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
+import NewsList from './NewsList';
 
 const NewsListView = () => {
   const { pageNum, itemCount, onPagination } = usePagination();

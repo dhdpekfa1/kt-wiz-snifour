@@ -1,8 +1,8 @@
-import { PlayerScatterChart } from '@/features/game/components/ranking';
+import { ktBatter } from '@/assets/data/__test__/mockRanking.json';
 import { batterColumns } from '@/constants/columns/player-rank-colums';
 // import { useBatterRank } from '@/assets/hooks/ranking/useBatterRank';
 import SortableTable from '@/features/common/SortableTable';
-import { ktBatter } from '@/assets/data/__test__/mockRanking.json';
+import { PlayerScatterChart } from '@/features/game/components/ranking';
 
 function KTBatterRankingTab() {
   // const { ranking, loading, error } = useBatterRank('kt');

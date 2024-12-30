@@ -1,9 +1,9 @@
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { getKTPitcherRanking } from '@/features/game/apis/ranking/pitcher';
+import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 import { useEffect, useState } from 'react';
 import { getPlayer } from '../apis/player';
 import { Player } from '../types/detail';
-import { getKTPitcherRanking } from '@/features/game/apis/ranking/pitcher';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { useMaxStatsStore } from '@/store/useMaxStatsStore';
 
 export const usePlayer = (
   position: string | undefined,

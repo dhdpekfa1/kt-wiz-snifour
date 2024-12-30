@@ -1,17 +1,17 @@
-import DataTable from '@/features/common/DataTable';
-import {
-  recentRecordColumns,
-  yearMatchColumns,
-  yearRecordColumns,
-} from '@/constants/columns/record-columns';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui';
-import { RecentRecord, YearRecord } from '../types/detail';
+import {
+  recentRecordColumns,
+  yearMatchColumns,
+  yearRecordColumns,
+} from '@/constants/columns/record-columns';
+import DataTable from '@/features/common/DataTable';
 import { cn } from '@/lib/utils';
+import { RecentRecord, YearRecord } from '../types/detail';
 
 interface RecordTableAccordionProps {
   data: RecentRecord[] | YearRecord[];

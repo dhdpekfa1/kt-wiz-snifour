@@ -20,16 +20,9 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
 
-import BatterPage from './pages/player/BatterPage';
-import CheerleaderPage from './pages/player/CheerleaderPage';
-import CoachPage from './pages/player/CoachPage';
-import PitcherPage from './pages/player/PitcherPage';
-import CoachDetailPage from './pages/player/detail/CoachDetailPage';
-import PlayerDetailPage from './pages/player/detail/PlayerDetailPage';
-
-import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
-import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import PlayerListPage from './pages/player/PlayerListPage';
+import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
+import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
 function App() {
   return (

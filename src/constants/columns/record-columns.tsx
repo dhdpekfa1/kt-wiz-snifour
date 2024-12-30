@@ -1,4 +1,4 @@
-import { YearRecord, RecentRecord } from '@/features/player/types/detail';
+import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { ColumnDef } from '@tanstack/react-table';
 
 export const recentRecordColumns: ColumnDef<RecentRecord>[] = [

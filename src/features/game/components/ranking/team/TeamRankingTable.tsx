@@ -1,8 +1,8 @@
+import { team as mockRanking } from '@/assets/data/__test__/mockRanking.json';
 // import { TeamStats } from '@/features/game/types/team-ranking';
 // import { useTeamRank } from '@/assets/hooks/ranking/useTeamRank';
 import { teamRankColums } from '@/constants/columns/team-rank-colums';
 import DataTable from '@/features/common/DataTable';
-import { team as mockRanking } from '@/assets/data/__test__/mockRanking.json';
 
 function TeamRankingTable() {
   // const { ranking, loading, error } = useTeamRank('team');

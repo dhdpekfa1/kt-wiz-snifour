@@ -9,8 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui';
-import { Video } from '../types';
 import { cn } from '@/lib/utils';
+import { Video } from '../types';
 
 function WizVideo() {
   const [videos, setVideos] = useState<Video[]>([]);
