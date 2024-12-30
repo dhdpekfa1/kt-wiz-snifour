@@ -23,12 +23,9 @@ const MatchBoard = ({
   crowd,
   onDateChange,
 }: MatchBoardProps) => {
-  console.log(matchDate);
   return (
     <div className="w-full flex flex-col items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded overflow-hidden">
       {/* 날짜 헤더 */}
-      <div>
-        <div>
       <div className="flex justify-center items-center gap-6 md:gap-10 text-white px-4 py-4">
         <button
           type="button"
@@ -42,7 +39,7 @@ const MatchBoard = ({
             {matchDate || '정보 없음'}
           </span>
           <span className="text-center text-wiz-white text-opacity-50 text-sm md:text-md lg:text-lg">
-            {matchTime} | {stadium}  | 관중: {crowd?.toLocaleString()}명
+            {matchTime} | {stadium} | 관중: {crowd?.toLocaleString()}명
           </span>
         </div>
         <button
