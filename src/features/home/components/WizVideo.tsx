@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 import {
   Card,
@@ -15,9 +15,10 @@ import { Video } from '../types';
 function WizVideo() {
   const [videos, setVideos] = useState<Video[]>([]);
   const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getMainHightVideos = async () => {
+    const getMainHighlightVideos = async () => {
       try {
         const { data, status } = await axios.get(
           `${API_URL}/media/highlightlist?count=5`
@@ -31,7 +32,7 @@ function WizVideo() {
       }
     };
 
-    getMainHightVideos();
+    getMainHighlightVideos();
   }, []);
 
   if (videos.length === 0) {
@@ -47,13 +48,24 @@ function WizVideo() {
       </CardHeader>
       <CardContent className="w-full px-0">
         <div className="w-full h-fit bg-gray-200 rounded-3xl overflow-hidden">
-          <img src={videos[0].imgFilePath} alt={videos[0].artcTitle} />
+          <iframe
+            title={videos[0].artcTitle}
+            src={`https://www.ktwiz.co.kr/${videos[0].videoLink}`}
+            className="w-full aspect-video"
+          />
         </div>
         <div
           className={cn('w-full grid grid-cols-2 gap-4 py-4', 'lg:grid-cols-4')}
         >
           {videos.slice(1).map((vid) => (
-            <div className="flex flex-col gap-2 bg-white rounded-xl overflow-hidden">
+            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+            <div
+              key={vid.artcSeq}
+              className="flex flex-col gap-2 bg-white rounded-xl overflow-hidden cursor-pointer"
+              onClick={() => {
+                navigate(`/media/highlight/${vid.artcSeq}`);
+              }}
+            >
               <div className="w-full h-fit bg-gray-500">
                 <img src={vid.imgFilePath} alt={vid.artcTitle} />
               </div>
