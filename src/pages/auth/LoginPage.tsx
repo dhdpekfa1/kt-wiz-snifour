@@ -14,6 +14,7 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>('');
@@ -23,13 +24,8 @@ const LoginPage = () => {
 
   const togglePassword = () => setShowPassword((prevState) => !prevState);
 
-  const handleMoveRegistration = () => {
-    console.log('TODO: 회원가입 페이지로 이동');
-  };
-
   const handleLogin = () => {
-    console.log('로그인 시도', { email, password, saveId });
-    // `saveId` 상태에 따라 추가 로직 구현 가능
+    console.log('로그인', { email, password, saveId });
   };
 
   return (
@@ -42,7 +38,7 @@ const LoginPage = () => {
           />
           <Banner.Overlay>
             <Banner.Heading title="Login" subtitle="kt wiz의 가족" />
-            <Banner.Description description="로그인 후 kt wiz 사이트를 더욱 다양하게 이용해 보세요. 더욱 다양하게 이용해 보세요." />
+            <Banner.Description description="로그인 후 kt wiz 사이트를 더욱 다양하게 이용해 보세요." />
           </Banner.Overlay>
         </Banner>
       }
@@ -120,12 +116,9 @@ const LoginPage = () => {
             </Button>
             <div className="mt-4 text-center text-sm">
               계정이 없으신가요?
-              <Button
-                onClick={handleMoveRegistration}
-                className="underline text-sm ml-1"
-              >
+              <Link to="/join" className="underline text-sm ml-1">
                 회원가입
-              </Button>
+              </Link>
             </div>
           </CardFooter>
         </Card>

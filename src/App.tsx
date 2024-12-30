@@ -20,6 +20,7 @@ import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
 
 import LoginPage from './pages/auth/LoginPage';
+import SignupPage from './pages/auth/SignupPage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
 import HighlightDetailPage from './pages/media/id/HighlightDetail';
 import PlayerListPage from './pages/player/PlayerListPage';
@@ -41,6 +42,7 @@ function App() {
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/join" element={<SignupPage />} />
 
             {/* KT Wiz */}
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
