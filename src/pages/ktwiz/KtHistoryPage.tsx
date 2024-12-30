@@ -29,9 +29,9 @@ const KtHistoryPage = () => {
           <Banner.Overlay>
             <Banner.Heading
               title="KT WIZ는?"
-              subtitle="한국 프로야구의 10번째 심장 kt wiz를 소개합니다!"
+              subtitle="한국 프로야구의 10번째 심장"
             />
-            <Banner.Description description="" />
+            <Banner.Description description=" kt wiz를 소개합니다!" />
           </Banner.Overlay>
         </Banner>
       }
