@@ -58,7 +58,11 @@ function WizGallery() {
             {photos.map((photo) => (
               <CarouselItem
                 key={photo.artcSeq}
-                className={cn('md:basis-1/2', 'lg:basis-1/3')}
+                className={cn(
+                  'transition-all hover:scale-105',
+                  'md:basis-1/2',
+                  'lg:basis-1/3'
+                )}
               >
                 <div className="h-[36rem] rounded-xl overflow-hidden relative">
                   <img
