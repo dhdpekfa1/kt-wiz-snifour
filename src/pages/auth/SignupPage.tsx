@@ -49,10 +49,8 @@ const SignupPage = () => {
                 className="w-20 md:w-28 lg:w-30 h-auto m-6"
                 alt="kt logo"
               />
-              <span>
-                kt wiz에 가입하여 티켓예매, 경기상세기록 등 다양한 서비스를
-              </span>
-              <span> 편리하게 이용해보세요.</span>
+              <span>kt wiz에 가입하여 티켓예매, 경기상세기록 등</span>
+              <span>다양한 서비스를 편리하게 이용해보세요.</span>
               <div className="mt-4 text-center text-[10px] md:text-xs lg:text-sm text-wiz-white text-opacity-50">
                 이미 계정이 있으신가요?
                 <Link
