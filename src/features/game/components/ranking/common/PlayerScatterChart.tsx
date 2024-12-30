@@ -173,8 +173,10 @@ function PlayerScatterChart<T extends PlayerRank>({
   return (
     <div>
       <SubTitle title={`${xLabel}과 ${yLabel} 비교`} />
-      <div className="text-neutral-500 my-4">
-        <p className={cn('my-1')}>10경기 이상 출장한 선수만 표시합니다.</p>
+      <div className="text-neutral-500 mb-1 md:mb-2 lg:mb-4">
+        <p className={cn('text-xs md:text-sm lg:text-base')}>
+          10경기 이상 출장한 선수만 표시합니다.
+        </p>
         <div className="flex items-center gap-4 text-xs md:text-sm lg:text-base">
           <div className="flex items-center gap-1">
             <div
