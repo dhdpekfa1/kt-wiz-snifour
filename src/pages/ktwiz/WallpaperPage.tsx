@@ -17,8 +17,8 @@ function WallpaperPage() {
             alt="Wallpapers"
           />
           <Banner.Overlay>
-            <Banner.Heading title="Wallpaper" subtitle="TODO" />
-            <Banner.Description description="" />
+            <Banner.Heading title="Wallpaper" subtitle="" />
+            <Banner.Description description="kt wiz 팬들을 위한 월페이퍼 다운로드 서비스" />
           </Banner.Overlay>
         </Banner>
       }
