@@ -1,29 +1,29 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
-import { useEffect, useState } from 'react';
-import { getWatchPoint } from './apis';
+// import { useState } from "react";
 import {
   MatchBoard,
   StartingPitcherTable,
   TeamLineup,
 } from './components/watch-point';
-import { WatchPointData } from './types/watch-point';
+import useWatchPoint from './hooks/watch-point/useWatchPoint';
 
 const WatchPointTab = () => {
-  const [watchData, setWatchData] = useState<WatchPointData>();
   // const [gameDate, setGameDate] = useState("20240922");
   // const [gameKey, setGameKey] = useState("20240922SKKT0");
+  const { watchData, loading, error } = useWatchPoint(
+    '20240922',
+    '20240922SKKT0'
+  );
 
-  useEffect(() => {
-    fetchWatchPointData();
-  }, []);
+  if (!watchData || loading) {
+    return null;
+  }
 
-  const fetchWatchPointData = async () => {
-    // TODO: gameDate, gameKey 매개변수 state 전달
-    const res = await getWatchPoint('20240922', '20240922SKKT0');
-    setWatchData(res);
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="w-full flex my-20">
@@ -76,12 +76,12 @@ const WatchPointTab = () => {
           {/* 라인업 */}
           <div className="flex flex-col gap-2 w-full my-10">
             <SubTitle title="라인업" />
-            <div className="w-full flex items-center justify-between gap-10 px-20 lg:flex-row sm:gap-0 md:gap-0 lg:gap-20 xl:px-20 flex-col">
+            <div className="w-full flex items-center justify-between gap-8 lg:flex-row sm:gap-0 lg:gap-10 flex-col">
               <TeamLineup
                 data={watchData?.homeLineup || []}
                 logoUrl={watchData?.gameScore.homeLogo || ''}
               />
-              <h2 className="text-6xl text-wiz-red font-extrabold lg:mt-44 md:mt-6 md:mb-2 sm:mb-6 sm:ml-32 mt-10 lg:ml-0 ">
+              <h2 className="text-3xl lg:text-4xl text-wiz-red font-extrabold lg:ml-0 lg:mt-16 md:mt-6 md:mb-2 sm:mb-6 sm:ml-32">
                 VS
               </h2>
               <TeamLineup
@@ -91,11 +91,11 @@ const WatchPointTab = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between w-full my-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full my-10 gap-6">
             {/* 중계 채널 */}
             <div className="flex flex-col gap-2 flex-1">
               <SubTitle title="중계 채널" />
-              <p className="mb-4 text-wiz-white">
+              <p className="mb-4 text-wiz-white text-sm md:text-base">
                 {watchData?.schedule.current.broadcast}
               </p>
             </div>
@@ -103,7 +103,7 @@ const WatchPointTab = () => {
             {/* 홈구장 날씨 */}
             <div className="flex flex-col gap-2 flex-1">
               <SubTitle title="홈구장 날씨" />
-              <p className="mb-4 text-wiz-white">
+              <p className="mb-4 text-wiz-white text-sm md:text-base">
                 * 경기 당일 날씨만 제공됩니다.
               </p>
             </div>

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
-import Header from './features/common/Header';
+import Header from './features/common/header/Header';
 import HomePage from './pages/HomePage';
 import PlayerPage from './pages/media/FirstPitch';
 import HighlightPage from './pages/media/Highlight';
@@ -11,7 +11,6 @@ import StoryPage from './pages/media/Story';
 import TeamIntroduce from './pages/ktwiz/TeamIntroduce';
 import WallpaperPage from './pages/ktwiz/WallpaperPage';
 import NewsDetailPage from './pages/media/id/NewsDetail';
-import CheerSongPage from './pages/player/CheerSongPage';
 import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
@@ -20,13 +19,17 @@ import ScrollToTop from './features/common/ScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
+
 import BatterPage from './pages/player/BatterPage';
 import CheerleaderPage from './pages/player/CheerleaderPage';
 import CoachPage from './pages/player/CoachPage';
 import PitcherPage from './pages/player/PitcherPage';
 import CoachDetailPage from './pages/player/detail/CoachDetailPage';
 import PlayerDetailPage from './pages/player/detail/PlayerDetailPage';
+
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
+import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
+import PlayerListPage from './pages/player/PlayerListPage';
 
 function App() {
   return (
@@ -38,7 +41,7 @@ function App() {
           데스크탑 -> 1240px (padding 포함, 실제컨텐츠 1200px),
           모바일 -> 100%
         */}
-        <div className="w-full mt-28 px-5 lg:max-w-[1240px]">
+        <div className="w-full mt-12 lg:mt-28 px-5 lg:max-w-[1240px]">
           <Routes>
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
@@ -59,6 +62,15 @@ function App() {
               element={<RegularGamePage />}
             />
 
+            {/* Player */}
+            <Route path="/player/:position" element={<PlayerListPage />} />
+
+            {/* Player 상세 페이지 경로 */}
+            <Route
+              path="/player/:position/detail"
+              element={<TeamMemberDetailPage />}
+            />
+
             {/* Media */}
             <Route path="/media/wiznews" element={<NewsPage />} />
             <Route path="/media/wizpress" element={<NewsPage />} />
@@ -73,26 +85,6 @@ function App() {
 
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />
-
-            {/* Player */}
-            <Route path="/player/coach" element={<CoachPage />} />
-            <Route path="/player/pitcher" element={<PitcherPage />} />
-            <Route path="/player/catcher" element={<BatterPage />} />
-            <Route path="/player/infielder" element={<BatterPage />} />
-            <Route path="/player/outfielder" element={<BatterPage />} />
-            <Route path="/player/song" element={<CheerSongPage />} />
-            <Route path="/player/cheer" element={<CheerleaderPage />} />
-
-            {/* Player 상세 페이지 경로 */}
-            <Route path="/player/coach/detail" element={<CoachDetailPage />} />
-            <Route
-              path="/player/pitcher/detail"
-              element={<PlayerDetailPage />}
-            />
-            <Route
-              path="/player/catcher/detail"
-              element={<PlayerDetailPage />}
-            />
           </Routes>
         </div>
         <Footer />

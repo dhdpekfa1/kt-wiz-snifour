@@ -1,11 +1,15 @@
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import { PlayerList } from '@/features/player/components';
-import data from '@/assets/data/__test__/pitcherlist.json';
-import { Player } from '@/features/player/types/player';
+import { usePlayerList } from '@/features/player/hooks/usePlayerList';
 
 function PitcherPage() {
-  const playerList: Player[] = data as Player[];
+  const { playerList, loading, error } = usePlayerList('pitcher');
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div>
       <Banner>
@@ -22,7 +26,11 @@ function PitcherPage() {
       <div className="my-20">
         <Breadcrumb />
         {/* 투수 리스트 */}
-        <PlayerList playerList={playerList} endpoint="pitcher" />
+        <PlayerList
+          playerList={playerList}
+          endpoint="pitcher"
+          loading={loading}
+        />
       </div>
     </div>
   );

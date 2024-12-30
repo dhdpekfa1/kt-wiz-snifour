@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
-import SubTitle from '@/features/common/SubTitle';
-import { RecentRecord, YearRecord } from '../types/record';
 import CustomBarChart from '@/features/common/CustomBarChart';
 import CustomLineChart from '@/features/common/CustomLineChart';
+import SubTitle from '@/features/common/SubTitle';
 import { cn } from '@/lib/utils';
+import { RecentRecord, YearRecord } from '../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
+import ChartLabelList from '@/features/common/ChartLabelList';
 
-interface Config {
+// TODO: 타입 분리
+export interface Config {
   [key: string]: {
     label: string;
     color: string;
@@ -51,15 +53,19 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
 
   return (
     <div className="w-full bg-wiz-white bg-opacity-10 rounded-xl px-4 pt-4 pb-8">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <SubTitle title={title} className="text-lg" />
-        </div>
+      <div
+        className={cn(
+          'flex flex-col ',
+          'md:flex-row md:items-center md:justify-between'
+        )}
+      >
+        <SubTitle title={title} className="text-lg" />
         <div className="flex items-center gap-2">
           <button
             type="button"
             className={cn(
-              'bg-white text-black px-2 py-1 text-sm rounded',
+              'bg-white text-black px-1 py-0.5 my-2 text-xs rounded',
+              'md:px-2 md:py-1 md:text-sm',
               chartType === 'bar' && 'text-white bg-wiz-red'
             )}
             onClick={() => setChartType('bar')}
@@ -69,7 +75,8 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
           <button
             type="button"
             className={cn(
-              'bg-white text-black px-2 py-1 text-sm rounded',
+              'bg-white text-black px-1 py-0.5 my-2 text-xs rounded',
+              'md:px-2 md:py-1 md:text-sm',
               chartType === 'line' && 'text-white bg-wiz-red'
             )}
             onClick={() => setChartType('line')}
@@ -78,33 +85,37 @@ function PlayerRecordChart({ title, data, config }: PlayerRecordChartProps) {
           </button>
         </div>
       </div>
-      <div className="w-full">
-        {chartType === 'bar' && (
-          <CustomBarChart data={data} config={chartConfig} XAxisKey="gyear" />
-        )}
-        {chartType === 'line' && (
-          <CustomLineChart data={data} config={chartConfig} XAxisKey="gyear" />
-        )}
-      </div>
-      <div className="flex flex-col items-center justify-center gap-2">
-        <div className="flex items-center justify-center gap-4">
-          {Object.entries(chartConfig).map(([dataKey, value]) => (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-            <div
-              key={dataKey}
-              className="text-white px-2 py-1 rounded text-sm cursor-pointer"
-              style={{ background: value.isActive ? value.color : 'gray' }}
-              onClick={() => handleConfig(dataKey)}
-            >
-              {value.label}
+      {data.length === 0 ? (
+        <div className="w-full h-72 flex items-center justify-center">
+          데이터가 존재하지 않습니다.
+        </div>
+      ) : (
+        <>
+          <div className="w-full">
+            {chartType === 'bar' && (
+              <CustomBarChart
+                data={data}
+                config={chartConfig}
+                XAxisKey="gyear"
+              />
+            )}
+            {chartType === 'line' && (
+              <CustomLineChart
+                data={data}
+                config={chartConfig}
+                XAxisKey="gyear"
+              />
+            )}
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <ChartLabelList config={chartConfig} onClick={handleConfig} />
+            <div className="text-xs text-neutral-400 break-keep text-center">
+              해당 라벨을 클릭하여 데이터 표시 정보를 변경할 수 있습니다.
             </div>
-          ))}
-        </div>
-        <div className="text-xs text-neutral-400">
-          해당 라벨을 클릭하여 데이터 표시 정보를 변경할 수 있습니다.
-        </div>
-        <RecordTableAccordion data={data} />
-      </div>
+            <RecordTableAccordion data={data} />
+          </div>
+        </>
+      )}
     </div>
   );
 }

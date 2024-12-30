@@ -10,7 +10,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui';
-import { RecentRecord, YearRecord } from '../types/record';
+import { RecentRecord, YearRecord } from '../types/detail';
+import { cn } from '@/lib/utils';
 
 interface RecordTableAccordionProps {
   data: RecentRecord[] | YearRecord[];
@@ -27,7 +28,12 @@ function RecordTableAccordion({ data }: RecordTableAccordionProps) {
     <Accordion type="multiple" className="w-full">
       {!isRecentRecord(data) && (
         <AccordionItem value="match-table">
-          <AccordionTrigger className="text-neutral-400 hover:text-white">
+          <AccordionTrigger
+            className={cn(
+              'text-neutral-400 hover:text-white text-sm',
+              'lg:text-base'
+            )}
+          >
             경기표 보기
           </AccordionTrigger>
           <AccordionContent>
@@ -36,7 +42,12 @@ function RecordTableAccordion({ data }: RecordTableAccordionProps) {
         </AccordionItem>
       )}
       <AccordionItem value="record-table">
-        <AccordionTrigger className="text-neutral-400 hover:text-white">
+        <AccordionTrigger
+          className={cn(
+            'text-neutral-400 hover:text-white text-sm',
+            'lg:text-base'
+          )}
+        >
           기록표 보기
         </AccordionTrigger>
         <AccordionContent>

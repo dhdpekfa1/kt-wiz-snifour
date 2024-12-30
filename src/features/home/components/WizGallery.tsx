@@ -14,6 +14,7 @@ import {
   CarouselItem,
 } from '@/components/ui';
 import { Photo } from '../types';
+import { cn } from '@/lib/utils';
 
 function WizGallery() {
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -44,7 +45,9 @@ function WizGallery() {
   return (
     <Card className="w-full border-none shadow-none flex flex-col items-center pb-8">
       <CardHeader className="w-full px-0">
-        <CardTitle className="text-wiz-white">wiz Gallery</CardTitle>
+        <CardTitle className={cn('text-wiz-white text-lg', 'lg:text-2xl')}>
+          wiz Gallery
+        </CardTitle>
         <CardDescription className="text-gray-400">
           좌우 스크롤을 통해 사진을 볼 수 있습니다.
         </CardDescription>
@@ -53,7 +56,7 @@ function WizGallery() {
         <Carousel className="w-full">
           <CarouselContent>
             {photos.map((photo) => (
-              <CarouselItem className="basis-1/3">
+              <CarouselItem className={cn('md:basis-1/2', 'lg:basis-1/3')}>
                 <div className="h-[36rem] rounded-xl overflow-hidden relative">
                   <img
                     src={photo.imgFilePath}
@@ -74,7 +77,10 @@ function WizGallery() {
       <CardFooter>
         <Link
           to="/media/photos/1"
-          className="border-2 px-4 py-2 rounded bg-white"
+          className={cn(
+            'border-2 rounded bg-white text-xs px-2 py-1',
+            'lg:text-base lg:px-4 lg:py-2'
+          )}
         >
           더 많은 사진보기
         </Link>
