@@ -9,6 +9,7 @@ import {
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
+import { Link } from 'react-router';
 
 const SignupPage = () => {
   // 일반 가입
@@ -52,6 +53,15 @@ const SignupPage = () => {
                 kt wiz에 가입하여 티켓예매, 경기상세기록 등 다양한 서비스를
               </span>
               <span> 편리하게 이용해보세요.</span>
+              <div className="mt-4 text-center text-[10px] md:text-xs lg:text-sm text-wiz-white text-opacity-50">
+                이미 계정이 있으신가요?
+                <Link
+                  to="/login"
+                  className="underline ml-1 text-wiz-white text-opacity-80"
+                >
+                  로그인
+                </Link>
+              </div>
             </CardDescription>
           </CardHeader>
           <CardContent className="flex gap-2 md:gap-6">

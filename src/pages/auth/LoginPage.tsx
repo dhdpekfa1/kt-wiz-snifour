@@ -2,6 +2,7 @@ import {
   Button,
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -45,11 +46,18 @@ const LoginPage = () => {
     >
       <Breadcrumb />
       <div className="flex items-center flex-col my-10 md:my-20">
-        <Card className="w-full md:w-1/2 lg:1/3">
+        <Card className="w-full md:w-1/2 lg:1/3 border-wiz-white border-opacity-50">
           <CardHeader>
             <CardTitle className="text-xl md:text-2xl text-center">
-              Login
+              로그인
             </CardTitle>
+            <CardDescription className="flex flex-col items-center justify-center text-xs md:text-base lg:text-xl">
+              <img
+                src="/assets/emblems/ktwiz.svg"
+                className="w-20 md:w-28 lg:w-30 h-auto m-6"
+                alt="kt logo"
+              />
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-4">
@@ -114,14 +122,15 @@ const LoginPage = () => {
             >
               로그인
             </Button>
-            <div className="mt-4 text-center text-sm">
-              계정이 없으신가요?
-              <Link to="/join" className="underline text-sm ml-1">
-                회원가입
-              </Link>
-            </div>
           </CardFooter>
         </Card>
+        <div className="flex items-center gap-4 text-[10px] md:text-xs lg:text-sm text-wiz-white mt-8">
+          <Link to={'/findid'}>아이디 찾기</Link>
+          <div className="text-wiz-white text-opacity-40">|</div>
+          <Link to={'findpw'}>비밀번호 찾기</Link>
+          <div className="text-wiz-white text-opacity-40">|</div>
+          <Link to="/join">회원가입</Link>
+        </div>
       </div>
     </Layout>
   );
