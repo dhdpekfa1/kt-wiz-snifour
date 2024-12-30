@@ -67,7 +67,7 @@ function WizGallery() {
                     className="w-auto h-full object-cover object-center"
                   />
                   <div className="h-full w-full absolute top-0 left-0 flex flex-col items-center justify-end">
-                    <h3 className="w-full text-center text-white font-bold text-2xl z-10 pb-12 bg-gradient-to-t from-black to-transparent">
+                    <h3 className="w-full text-center text-white font-bold text-2xl z-10 pb-12 bg-gradient-to-t from-black to-transparent break-keep">
                       {photo.artcTitle}
                     </h3>
                   </div>
@@ -81,7 +81,7 @@ function WizGallery() {
         <Link
           to="/media/photos/1"
           className={cn(
-            'border-2 rounded bg-white text-xs px-2 py-1',
+            'rounded bg-white bg-opacity-10 text-white hover:bg-opacity-100 hover:text-black text-xs px-2 py-1 transition-colors duration-300',
             'lg:text-base lg:px-4 lg:py-2'
           )}
         >

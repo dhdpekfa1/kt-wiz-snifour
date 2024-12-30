@@ -61,7 +61,7 @@ function WizVideo() {
             // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
             <div
               key={vid.artcSeq}
-              className="flex flex-col gap-2 bg-white rounded-xl overflow-hidden cursor-pointer"
+              className="flex flex-col gap-2 bg-white bg-opacity-10 rounded-xl overflow-hidden cursor-pointer text-white transition-all hover:scale-105 duration-300"
               onClick={() => {
                 navigate(`/media/highlight/${vid.artcSeq}`);
               }}
@@ -81,7 +81,7 @@ function WizVideo() {
                 </p>
                 <p
                   className={cn(
-                    'text-gray-400 self-end text-[0.6rem]',
+                    'text-neutral-400 self-end text-[0.6rem]',
                     'lg:text-xs'
                   )}
                 >
@@ -96,7 +96,7 @@ function WizVideo() {
         <Link
           to="/media/highlight"
           className={cn(
-            'border-2 rounded bg-white text-xs px-2 py-1',
+            'rounded bg-white bg-opacity-10 text-white text-xs px-2 py-1 hover:bg-opacity-100 hover:text-black transition-colors duration-300',
             'lg:text-base lg:px-4 lg:py-2'
           )}
         >
