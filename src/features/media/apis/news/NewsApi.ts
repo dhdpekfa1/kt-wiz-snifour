@@ -1,11 +1,11 @@
-import instance from '@/lib/axios/instance';
 import { ApiRoutes } from '@/constants/route';
 import {
   NewsDetailDto,
+  NewsDetailResponse,
   NewsListDto,
   NewsResponse,
-  NewsDetailResponse,
 } from '@/features/media/types';
+import instance from '@/lib/axios/instance';
 
 export const newsApi = {
   getNewsList: async (params?: NewsListDto): Promise<NewsResponse> => {

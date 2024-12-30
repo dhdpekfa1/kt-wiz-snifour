@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { API_URL } from '@/constants/api-url';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import axios from 'axios';
 
 export const getPitcherEraRanking = async () => {
   try {

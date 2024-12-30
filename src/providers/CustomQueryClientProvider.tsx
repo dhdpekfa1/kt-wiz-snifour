@@ -8,8 +8,8 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { MetaProps } from '@/lib/react-query/declaration';
 import useHandleError from '@/hooks/useHandleError';
+import { MetaProps } from '@/lib/react-query/declaration';
 
 type CustomQueryClientProviderProps = {
   children: JSX.Element;

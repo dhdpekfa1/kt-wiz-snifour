@@ -1,9 +1,9 @@
 import { DEFAULT_IMAGE } from '@/constants/default-image';
+import { ListViewType } from '@/features/media/types';
 import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
 import { EyeIcon } from 'lucide-react';
 import { Link } from 'react-router';
-import { ListViewType } from '@/features/media/types';
-import { format } from 'date-fns';
 
 type ListArticleProps = Omit<ListViewType, 'artcSeq'> & {
   link: string;

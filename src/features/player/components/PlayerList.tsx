@@ -1,4 +1,4 @@
-import { Coach, Player } from '@/features/player/types/player';
+import { Coach, Player } from '@/features/player/types/list';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router';
 
@@ -50,7 +50,7 @@ const PlayerList = ({ playerList, endpoint, loading }: PlayerListProps) => {
               role="button"
               aria-label={`Player ${player.playerName}, No.${player.backnum}`}
             >
-              <div className="absolute top-2 right-2 text-right text-wiz-red font-bold">
+              <div className="absolute top-2 right-2 text-right text-wiz-red font-bold text-xs md:text-base lg:text-lg">
                 <p>No.{player.backnum}</p>
                 <p className="text-wiz-black">{player.playerName}</p>
               </div>

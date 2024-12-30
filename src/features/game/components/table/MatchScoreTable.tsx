@@ -39,12 +39,9 @@ const MatchScoreTable = ({ data }: MatchScoreTableProps) => {
   return (
     <Table>
       <TableHeader>
-        <TableRow>
+        <TableRow className="border-none">
           {thead.map((item) => (
-            <TableHead
-              key={item}
-              className="bg-wiz-red text-white border border-[#fefefe40] text-center"
-            >
+            <TableHead key={item} className="bg-wiz-red text-white text-center">
               {item}
             </TableHead>
           ))}
@@ -52,15 +49,15 @@ const MatchScoreTable = ({ data }: MatchScoreTableProps) => {
       </TableHeader>
       <TableBody>
         {data?.map((team) => (
-          <TableRow key={team.bhomeName}>
-            <TableCell className="font-medium border border-[#fefefe40] text-center bg-wiz-white text-wiz-black">
+          <TableRow
+            key={team.bhomeName}
+            className="border-none font-medium bg-black text-center text-wiz-white"
+          >
+            <TableCell className="font-medium text-center bg-[#fefefe50] text-wiz-white">
               {team.bhomeName}
             </TableCell>
             {Array.from({ length: 15 }, (_, i) => (
-              <TableCell
-                key={`score-${team.bhomeName}-${i + 1}`}
-                className="font-medium border bg-wiz-black border-[#fefefe40] text-center text-wiz-white"
-              >
+              <TableCell key={`score-${team.bhomeName}-${i + 1}`}>
                 {team[`score${i + 1}`]}
               </TableCell>
             ))}

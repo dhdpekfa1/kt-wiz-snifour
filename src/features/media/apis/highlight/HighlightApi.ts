@@ -1,6 +1,6 @@
-import instance from '@/lib/axios/instance';
 import { ApiRoutes } from '@/constants/route';
-import { HighlightResponse, HighlightListDto } from '@/features/media/types';
+import { HighlightListDto, HighlightResponse } from '@/features/media/types';
+import instance from '@/lib/axios/instance';
 
 export const highlightApi = {
   getHighlightList: async (

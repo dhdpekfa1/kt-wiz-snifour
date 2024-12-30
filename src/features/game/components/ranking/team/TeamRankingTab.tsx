@@ -3,8 +3,8 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import SubTitle from '@/features/common/SubTitle';
 import {
-  TeamBatterRankingTable,
-  TeamPitcherRankingTable,
+  TeamBatterRankingView,
+  TeamPitcherRankingView,
   TeamRankingTable,
   TeamVSTable,
 } from '@/features/game/components/ranking';
@@ -27,10 +27,10 @@ function TeamRankingTab() {
           <TeamRankingTable />
         </TabsContent>
         <TabsContent value="teamPitcher" className="w-full">
-          <TeamPitcherRankingTable />
+          <TeamPitcherRankingView />
         </TabsContent>
         <TabsContent value="teamBatter" className="w-full">
-          <TeamBatterRankingTable />
+          <TeamBatterRankingView />
         </TabsContent>
         <TabsContent value="teamMatchRecords" className="w-full">
           <TeamVSTable />

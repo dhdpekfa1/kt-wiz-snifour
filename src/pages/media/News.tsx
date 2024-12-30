@@ -1,11 +1,11 @@
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';
 import { useSearchParams } from 'react-router';
-import { useTabFromUrl } from '@/hooks/useTabFromUrl';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
 
 import Banner from '@/features/common/Banner';
-import SearchBar from '@/features/media/common/SearchBar';
 import Layout from '@/features/common/Layout';
+import SearchBar from '@/features/media/common/SearchBar';
 import NewsListView from '@/features/media/components/news/NewsListView';
 
 export const NEWS_TABS_CONFIG = [

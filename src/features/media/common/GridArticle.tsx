@@ -1,6 +1,6 @@
+import { DEFAULT_IMAGE } from '@/constants/default-image';
 import { cn } from '@/lib/utils';
 import { EyeIcon } from 'lucide-react';
-import { DEFAULT_IMAGE } from '@/constants/default-image';
 
 const GridArticle = ({
   children,

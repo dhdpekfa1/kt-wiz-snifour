@@ -1,8 +1,8 @@
-import DataTable from '@/features/common/DataTable';
 import {
-  recentRecordColumns,
-  yearMatchColumns,
-  yearRecordColumns,
+  recentBatterRecordColumns,
+  recentPitcherRecordColumns,
+  yearBatterRecordColumns,
+  yearPitcherRecordColumns,
 } from '@/constants/columns/record-columns';
 import {
   Accordion,
@@ -10,13 +10,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui';
-import { RecentRecord, YearRecord } from '../types/record';
+import DataTable from '@/features/common/DataTable';
+import { cn } from '@/lib/utils';
+import { useParams } from 'react-router';
+import { RecentRecord, YearRecord } from '../types/detail';
 
 interface RecordTableAccordionProps {
   data: RecentRecord[] | YearRecord[];
 }
 
 function RecordTableAccordion({ data }: RecordTableAccordionProps) {
+  const { position } = useParams();
   const isRecentRecord = (
     data: RecentRecord[] | YearRecord[]
   ): data is RecentRecord[] => {
@@ -25,25 +29,34 @@ function RecordTableAccordion({ data }: RecordTableAccordionProps) {
 
   return (
     <Accordion type="multiple" className="w-full">
-      {!isRecentRecord(data) && (
-        <AccordionItem value="match-table">
-          <AccordionTrigger className="text-neutral-400 hover:text-white">
-            경기표 보기
-          </AccordionTrigger>
-          <AccordionContent>
-            <DataTable data={data} columns={yearMatchColumns} />
-          </AccordionContent>
-        </AccordionItem>
-      )}
       <AccordionItem value="record-table">
-        <AccordionTrigger className="text-neutral-400 hover:text-white">
+        <AccordionTrigger
+          className={cn(
+            'text-neutral-400 hover:text-white text-sm',
+            'lg:text-base'
+          )}
+        >
           기록표 보기
         </AccordionTrigger>
         <AccordionContent>
           {isRecentRecord(data) ? (
-            <DataTable data={data} columns={recentRecordColumns} />
+            <DataTable
+              data={data}
+              columns={
+                position === 'pitcher'
+                  ? recentPitcherRecordColumns
+                  : recentBatterRecordColumns
+              }
+            />
           ) : (
-            <DataTable data={data} columns={yearRecordColumns} />
+            <DataTable
+              data={data}
+              columns={
+                position === 'pitcher'
+                  ? yearPitcherRecordColumns
+                  : yearBatterRecordColumns
+              }
+            />
           )}
         </AccordionContent>
       </AccordionItem>

@@ -1,4 +1,4 @@
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import { MatchInfoType } from '../types';
 
 interface RecentMatchesProps {
@@ -7,12 +7,18 @@ interface RecentMatchesProps {
 
 function RecentMatches({ matches }: RecentMatchesProps) {
   return (
-    <div className="h-full">
-      <h3 className="px-2 py-1 font-bold">금주의 다른 경기</h3>
-      <ul className="h-[69%] flex flex-col items-center overflow-y-scroll">
+    <div className="w-full h-full md:h-[75%]">
+      <h3 className={cn('h-6 px-2 py-1 font-bold text-sm', 'lg:text-base')}>
+        금주의 다른 경기
+      </h3>
+      <ul
+        className={cn(
+          'h-[calc(100%-24px)] flex flex-col items-center overflow-y-scroll'
+        )}
+      >
         {matches.map((match) => (
           <li key={match.gmkey} className="w-full p-2 border-b ">
-            <p className="font-semibold text-xs mb-1">
+            <p className={cn('font-semibold mb-1 text-[0.6rem]', 'lg:text-xs')}>
               {formatDate(match.displayDate)}
             </p>
             <div className="flex items-center justify-between">

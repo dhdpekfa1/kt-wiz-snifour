@@ -1,7 +1,7 @@
-import { ColumnDef } from '@tanstack/react-table';
-import { TeamStats } from '@/features/game/types/team-ranking';
-import { TeamPitcherRank } from '@/features/common/types/pitchers';
 import { TeamBatterRank } from '@/features/common/types/batters';
+import { TeamPitcherRank } from '@/features/common/types/pitchers';
+import { TeamStats } from '@/features/game/types/team-ranking';
+import { ColumnDef } from '@tanstack/react-table';
 
 // 팀 순위 - 팀 기록
 export const teamRankColums: ColumnDef<TeamStats>[] = [
@@ -78,6 +78,10 @@ export const teamPitcherRankColumns: ColumnDef<TeamPitcherRank>[] = [
     header: '고의4구',
   },
   {
+    accessorKey: 'hp',
+    header: '사구',
+  },
+  {
     accessorKey: 'kk',
     header: '탈삼진',
   },
@@ -120,10 +124,6 @@ export const teamBatterRankColumns: ColumnDef<TeamBatterRank>[] = [
   {
     accessorKey: 'teamName',
     header: '팀명',
-  },
-  {
-    accessorKey: 'hra',
-    header: '타율',
   },
   {
     accessorKey: 'hit',
@@ -184,5 +184,9 @@ export const teamBatterRankColumns: ColumnDef<TeamBatterRank>[] = [
   {
     accessorKey: 'ops',
     header: 'OPS',
+  },
+  {
+    accessorKey: 'hra',
+    header: '타율',
   },
 ];

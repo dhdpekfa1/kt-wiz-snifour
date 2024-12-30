@@ -1,7 +1,7 @@
-import { RecentRecord, YearRecord } from '@/features/player/types/record';
+import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { ColumnDef } from '@tanstack/react-table';
 
-export const recentRecordColumns: ColumnDef<RecentRecord>[] = [
+export const recentPitcherRecordColumns: ColumnDef<RecentRecord>[] = [
   {
     accessorKey: 'displayDate',
     header: '일자',
@@ -28,7 +28,9 @@ export const recentRecordColumns: ColumnDef<RecentRecord>[] = [
     accessorKey: 'era',
     header: '평균자책점',
     cell: (info) =>
-      ((9 * info.row.original.er) / info.row.original.inn2).toFixed(2),
+      !info.row.original.er || !info.row.original.inn2
+        ? null
+        : ((9 * info.row.original.er) / info.row.original.inn2).toFixed(2),
   },
   {
     accessorKey: 'pa',
@@ -68,15 +70,14 @@ export const recentRecordColumns: ColumnDef<RecentRecord>[] = [
   },
 ];
 
-export const yearMatchColumns: ColumnDef<YearRecord>[] = [
+export const yearPitcherRecordColumns: ColumnDef<YearRecord>[] = [
   {
     accessorKey: 'gyear',
     header: '시즌',
   },
   {
-    accessorKey: 'teamName',
-    header: '팀',
-    cell: (info) => info.getValue() as string,
+    accessorKey: 'era',
+    header: '평균자책점',
   },
   {
     accessorKey: 'gamenum',
@@ -106,23 +107,6 @@ export const yearMatchColumns: ColumnDef<YearRecord>[] = [
     accessorKey: 'hold',
     header: '홀드',
   },
-];
-
-export const yearRecordColumns: ColumnDef<YearRecord>[] = [
-  {
-    accessorKey: 'gyear',
-    header: '시즌',
-  },
-  {
-    accessorKey: 'teamName',
-    header: '팀',
-    cell: (info) => info.getValue() as string,
-  },
-  {
-    accessorKey: 'era',
-    header: '평균자책점',
-  },
-
   {
     accessorKey: 'wra',
     header: '승률',
@@ -163,5 +147,147 @@ export const yearRecordColumns: ColumnDef<YearRecord>[] = [
   {
     accessorKey: 'er',
     header: '자책점',
+  },
+];
+
+export const recentBatterRecordColumns: ColumnDef<RecentRecord>[] = [
+  {
+    accessorKey: 'displayDate',
+    header: '일자',
+  },
+  {
+    accessorKey: 'matchTeamName',
+    header: '상대',
+  },
+  {
+    accessorKey: 'hra',
+    header: '타율',
+  },
+  {
+    accessorKey: 'ab',
+    header: '타수',
+  },
+  {
+    accessorKey: 'run',
+    header: '득점',
+  },
+  {
+    accessorKey: 'hit',
+    header: '안타',
+  },
+  {
+    accessorKey: 'h2',
+    header: '2루타',
+  },
+  {
+    accessorKey: 'h3',
+    header: '3루타',
+  },
+  {
+    accessorKey: 'hr',
+    header: '홈런',
+  },
+  {
+    accessorKey: 'rbi',
+    header: '타점',
+  },
+  {
+    accessorKey: 'sb',
+    header: '도루',
+  },
+  {
+    accessorKey: 'cs',
+    header: '도실',
+  },
+  {
+    accessorKey: 'bb',
+    header: '볼넷',
+  },
+  {
+    accessorKey: 'hp',
+    header: '사구',
+  },
+  {
+    accessorKey: 'kk',
+    header: '삼진',
+  },
+  {
+    accessorKey: 'gd',
+    header: '병살',
+  },
+];
+
+export const yearBatterRecordColumns: ColumnDef<YearRecord>[] = [
+  {
+    accessorKey: 'gyear',
+    header: '시즌',
+  },
+  {
+    accessorKey: 'hra',
+    header: '타율',
+  },
+  {
+    accessorKey: 'gamenum',
+    header: '경기',
+  },
+  {
+    accessorKey: 'ab',
+    header: '타수',
+  },
+  {
+    accessorKey: 'run',
+    header: '득점',
+  },
+  {
+    accessorKey: 'hit',
+    header: '안타',
+  },
+  {
+    accessorKey: 'h2',
+    header: '2루타',
+  },
+  {
+    accessorKey: 'h3',
+    header: '3루타',
+  },
+  {
+    accessorKey: 'hr',
+    header: '홈런',
+  },
+  {
+    accessorKey: 'rbi',
+    header: '타점',
+  },
+  {
+    accessorKey: 'sb',
+    header: '도루',
+  },
+  {
+    accessorKey: 'cs',
+    header: '도실',
+  },
+  {
+    accessorKey: 'bb',
+    header: '볼넷',
+  },
+  {
+    accessorKey: 'hp',
+    header: '사구',
+  },
+  {
+    accessorKey: 'kk',
+    header: '삼진',
+  },
+  {
+    accessorKey: 'gd',
+    header: '병살',
+  },
+  {
+    accessorKey: 'slg',
+    header: '장타율',
+  },
+  {
+    accessorKey: 'bra',
+    header: '출루율',
   },
 ];
