@@ -1,11 +1,11 @@
 import { match } from 'path-to-regexp';
 
 export enum ApiRoutes {
-  News = 'api/article/newslistpage',
-  NewsDetail = 'api/article/newsdetail',
-  Press = 'api/article/wizpresslistpage',
-  PressDetail = 'api/article/wizpressdetail',
-  Highlight = 'api/media/highlightlist',
+  News = 'article/newslistpage',
+  NewsDetail = 'article/newsdetail',
+  Press = 'article/wizpresslistpage',
+  PressDetail = 'article/wizpressdetail',
+  Highlight = 'media/highlightlist',
 }
 
 export enum PageRoutes {
