@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getMatchData } from '../../apis/boxscore/boxscore';
-import { BoxScoreData } from '../../types/BoxScoreData';
+import { BoxscoreData } from '../../types/BoxscoreData';
 
 const useBoxscore = (gameDate = '20241011', gmkey = '33331011KTLG0') => {
-  const [boxData, setBoxData] = useState<BoxScoreData>();
+  const [boxData, setBoxData] = useState<BoxscoreData>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

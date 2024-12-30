@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader } from '@/components/ui';
-import { EtcGame } from '../../types/BoxScoreData';
+import usePlayerImage from '../../hooks/boxscore/usePlayerImage';
+import { EtcGame } from '../../types/BoxscoreData';
 
 interface KeyRecordsTableProps {
   data: EtcGame[] | undefined;
@@ -22,6 +23,16 @@ const getRecordByHow = (how: string, data: EtcGame[] | undefined) => {
 };
 
 function KeyRecordsCard({ data }: KeyRecordsTableProps) {
+  const { playerImage, loading, error } = usePlayerImage('LG', '오스틴');
+
+  if (!playerImage || loading) {
+    return null;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   const seperatePlayers = (str: string): string[] => {
     const pattern = /[^\s]+\([^\)]+\)/g;
     return str.match(pattern) || [str];
@@ -46,7 +57,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
               <div className="flex gap-2">
                 {row.label !== '심판' && player.length > 0 ? (
                   <img
-                    src="/assets/players/강백호.webp"
+                    src={`${playerImage}`}
                     className="w-8 rounded-full"
                     alt={`${player}`}
                   />
