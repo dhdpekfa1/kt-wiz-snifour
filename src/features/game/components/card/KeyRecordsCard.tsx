@@ -48,7 +48,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
                   <img
                     src="/assets/players/강백호.webp"
                     className="w-8 rounded-full"
-                    alt="팀로고"
+                    alt={`${player}`}
                   />
                 ) : (
                   ''

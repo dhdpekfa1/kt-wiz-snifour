@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getMatchData } from '../../apis/boxScore';
+import { getMatchData } from '../../apis/boxscore/boxscore';
 import { BoxScoreData } from '../../types/BoxScoreData';
 
-const useBoxScore = (gameDate = '20241011', gmkey = '33331011KTLG0') => {
+const useBoxscore = (gameDate = '20241011', gmkey = '33331011KTLG0') => {
   const [boxData, setBoxData] = useState<BoxScoreData>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,4 +27,4 @@ const useBoxScore = (gameDate = '20241011', gmkey = '33331011KTLG0') => {
   return { boxData, loading, error };
 };
 
-export default useBoxScore;
+export default useBoxscore;

@@ -8,15 +8,15 @@ import {
 import { useParams } from 'react-router';
 import KeyRecordsCard from './components/card/KeyRecordsCard';
 import { MatchBoard } from './components/watch-point';
-import useBoxScore from './hooks/boxscore/useBoxScore';
+import useBoxscore from './hooks/boxscore/useBoxscore';
 
-const BoxScoreTab = () => {
+const BoxscoreTab = () => {
   const { gameDate, gameKey } = useParams<{
     gameDate: string;
     gameKey: string;
   }>();
 
-  const { boxData: matchData, loading, error } = useBoxScore(gameDate, gameKey);
+  const { boxData: matchData, loading, error } = useBoxscore(gameDate, gameKey);
 
   if (!matchData || loading) {
     return null;
@@ -135,4 +135,4 @@ const BoxScoreTab = () => {
   );
 };
 
-export { BoxScoreTab };
+export { BoxscoreTab };
