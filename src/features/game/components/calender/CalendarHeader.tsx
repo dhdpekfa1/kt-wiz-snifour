@@ -25,9 +25,9 @@ const CalendarHeader = ({
           );
         }}
         type="button"
-        className="flex items-center justify-center text-lg font-bold text-wiz-white bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
+        className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
       >
-        <IconLeft />
+        <IconLeft className="w-2/5 h-auto" />
       </button>
 
       {/* 월 표시 및 드롭다운 */}
@@ -51,9 +51,9 @@ const CalendarHeader = ({
             new Date(displayMonth.getFullYear(), displayMonth.getMonth() + 1)
           );
         }}
-        className="flex items-center justify-center text-lg font-bold text-wiz-white bg-wiz-white bg-opacity-30 w-10 h-10 rounded hover:bg-slate-400"
+        className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
       >
-        <IconRight />
+        <IconRight className="w-2/5 h-auto" />
       </button>
     </div>
   );

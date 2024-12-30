@@ -1,11 +1,11 @@
+import { useGetHighlightList } from '@/features/media/apis/highlight/HighlightApi.query';
+import GridArticle from '@/features/media/common/GridArticle';
+import { LoadingView } from '@/features/media/common/LoadingView';
+import PlayButton from '@/features/media/common/PlayButton';
+import { GridArticleSkeleton } from '@/features/media/common/skeleton';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import PlayButton from '@/features/media/common/PlayButton';
-import GridArticle from '@/features/media/common/GridArticle';
-import { LoadingView } from '@/features/media/common/LoadingView';
-import { GridArticleSkeleton } from '@/features/media/common/skeleton';
-import { useGetHighlightList } from '@/features/media/apis/highlight/HighlightApi.query';
 
 import {
   Dialog,

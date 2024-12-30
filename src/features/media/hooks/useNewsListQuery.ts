@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
-import { QueryParser } from '@/lib';
 import { useGetNewsList } from '@/features/media/apis/news/NewsApi.query';
 import { useGetPressList } from '@/features/media/apis/news/PressApi.query';
+import { QueryParser } from '@/lib';
+import { useMemo } from 'react';
 
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { NEWS_TABS_CONFIG } from '@/pages/media/News';

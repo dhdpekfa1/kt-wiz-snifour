@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { TeamBatterRank } from '@/features/common/types/batters';
+import { TeamPitcherRank } from '@/features/common/types/pitchers';
 import {
   getTeamBattingRanking,
   getTeamPitchingRanking,
   getTeamRanking,
 } from '@/features/game/apis/ranking/team';
 import { TeamStats } from '@/features/game/types/team-ranking';
-import { TeamPitcherRank } from '@/features/common/types/pitchers';
-import { TeamBatterRank } from '@/features/common/types/batters';
+import { useEffect, useState } from 'react';
 
 export function useTeamRank(type: 'team' | 'pitcher' | 'batter') {
   const [ranking, setRanking] = useState<

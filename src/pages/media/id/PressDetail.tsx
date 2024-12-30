@@ -1,13 +1,13 @@
 import Layout from '@/features/common/Layout';
-import useScrollTo from '@/features/media/hooks/useScrollTo';
 import usePressDetailQuery from '@/features/media/hooks/usePressDetailQuery';
+import useScrollTo from '@/features/media/hooks/useScrollTo';
 
-import { toUrl } from '@/lib';
 import { Button } from '@/components/ui';
-import { useNavigate } from 'react-router';
-import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
-import { MediaDetail } from '@/features/media/common/MediaDetail';
 import { PageRoutes } from '@/constants/route';
+import { MediaDetail } from '@/features/media/common/MediaDetail';
+import { toUrl } from '@/lib';
+import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 /** 보도자료 상세 페이지 */
 const PressDetailPage = () => {

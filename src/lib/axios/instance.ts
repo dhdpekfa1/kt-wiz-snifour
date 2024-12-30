@@ -1,5 +1,5 @@
-import axios, { AxiosError } from 'axios';
 import { apiLogger, styledConsole } from '@/lib';
+import axios, { AxiosError } from 'axios';
 
 const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const isDev = import.meta.env.MODE === 'development';

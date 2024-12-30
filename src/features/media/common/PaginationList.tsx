@@ -8,8 +8,8 @@ import {
   PaginationPrevious,
 } from '@/components/ui';
 
-import { cn } from '@/lib/utils';
 import { getPageRange } from '@/features/media/services';
+import { cn } from '@/lib/utils';
 import { PaginationProps } from './Pagination';
 
 const PaginationList = ({

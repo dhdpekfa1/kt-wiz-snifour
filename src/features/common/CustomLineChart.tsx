@@ -1,7 +1,7 @@
 import { ChartContainer } from '@/components/ui/chart';
+import { useEffect, useState } from 'react';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 import { RecentRecord, YearRecord } from '../player/types/detail';
-import { useEffect, useState } from 'react';
 
 interface CustomLineChartProps {
   data: RecentRecord[] | YearRecord[];
@@ -20,6 +20,10 @@ function CustomLineChart({ data, config, XAxisKey }: CustomLineChartProps) {
     (key) => config[key].isActive
   )[0];
   const [fontSize, setFontSize] = useState('16px');
+
+  if (!data) {
+    return null;
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,11 +63,8 @@ function CustomLineChart({ data, config, XAxisKey }: CustomLineChartProps) {
             0,
             () => {
               const max = Math.max(
-                ...data.map(
-                  (item: RecentRecord | YearRecord) =>
-                    item[
-                      activeKey as keyof (RecentRecord | YearRecord)
-                    ] as number
+                ...data.map((item: RecentRecord | YearRecord) =>
+                  Number(item[activeKey as keyof (RecentRecord | YearRecord)])
                 )
               ); // dataMax를 사용했더니 제대로 max 값을 찾지 못하는 버그가 있어 직접 계산
               return max === 0 ? 5 : (max * 1.1).toFixed(2); // 최대값에 여유를 두고 10% 확대

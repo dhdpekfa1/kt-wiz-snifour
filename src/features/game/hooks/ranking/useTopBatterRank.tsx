@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
 import { BatterHR, BatterHra } from '@/features/common/types/batters';
 import {
-  getBatterHraRanking,
   getBatterHrRanking,
+  getBatterHraRanking,
 } from '@/features/game/apis/ranking/batter';
+import { useEffect, useState } from 'react';
 
 export function useTopBatterRank() {
   const [hraRanking, setHraRanking] = useState<BatterHra[]>([]);

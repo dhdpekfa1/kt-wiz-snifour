@@ -11,29 +11,24 @@ import {
 } from '@/features/game';
 
 import '@/features/game/css/game.css';
-import { useParams } from 'react-router';
 
 const REG_TABS_CONFIG = [
   { value: 'schedule', path: '/regular/schedule' },
-  { value: 'boxscore', path: '/regular/boxscore' },
+  {
+    value: 'boxscore',
+    paths: ['/regular/boxscore', '/regular/boxscore/:gameDate/:gameKey'],
+  },
   { value: 'ranking', path: '/regular/ranking' },
   { value: 'watchpoint', path: '/regular/watchPoint' },
 ];
 
 /** 정규리그 페이지 */
 function RegularGamePage() {
-  const { gameDate, gameKey } = useParams();
-
   const { currentTab, handleTabChange } = useTabFromUrl({
     basePath: '/game',
     tabs: REG_TABS_CONFIG,
     defaultTab: 'schedule',
   });
-
-  const boxScoreProps = {
-    gameDate: gameDate,
-    gameKey: gameKey,
-  };
 
   return (
     <Layout
@@ -88,7 +83,7 @@ function RegularGamePage() {
           <MatchScheduleTab />
         </TabsContent>
         <TabsContent value="boxscore">
-          <BoxScoreTab {...boxScoreProps} />
+          <BoxScoreTab />
         </TabsContent>
         <TabsContent value="ranking">
           <RankingTab />
