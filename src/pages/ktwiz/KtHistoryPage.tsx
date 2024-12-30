@@ -11,11 +11,11 @@ const WIZ_TABS_CONFIG = [
   { value: 'history', path: '/history' },
 ];
 
-const KtHistory = () => {
+const KtHistoryPage = () => {
   const { currentTab, handleTabChange } = useTabFromUrl({
     basePath: '/ktwiz',
     tabs: WIZ_TABS_CONFIG,
-    defaultTab: 'about',
+    defaultTab: 'history',
   });
 
   return (
@@ -24,7 +24,7 @@ const KtHistory = () => {
         <Banner>
           <Banner.Image
             src="https://placehold.co/1200x200/141414/642521?text=KT+WIZ"
-            alt="KT 소개?"
+            alt="KT 소개"
           />
           <Banner.Overlay>
             <Banner.Heading
@@ -74,4 +74,4 @@ const KtHistory = () => {
   );
 };
 
-export default KtHistory;
+export default KtHistoryPage;

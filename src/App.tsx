@@ -19,7 +19,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
 
-import KtHistory from './pages/ktwiz/KtHistory';
+import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
@@ -41,7 +41,9 @@ function App() {
 
             {/* KT Wiz */}
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
-            <Route path="/ktwiz/about" element={<KtHistory />} />
+            <Route path="/ktwiz/about" element={<KtHistoryPage />} />
+            <Route path="/ktwiz/history" element={<KtHistoryPage />} />
+
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
             <Route path="/wizpark/location" element={<ParkLocationPage />} />
