@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-// import { useCrowdRank } from '@/assets/hooks/ranking';
-import { crowd } from '@/assets/data/__test__/mockRanking.json';
 import { crowdRankColumns } from '@/constants/columns/crowd-columns';
 import { seasons } from '@/constants/seasons';
 import Breadcrumb from '@/features/common/Breadcrumb';
@@ -9,23 +7,22 @@ import CustomSelect from '@/features/common/CustomSelect.tsx';
 import DataTable from '@/features/common/DataTable';
 import SubTitle from '@/features/common/SubTitle';
 import { CrowdRankingChart } from './CrowdRankingChart';
+import { useCrowdRank } from '@/features/game/hooks/ranking';
 
 function CrowdRankingTab() {
   const [season, setSeason] = useState<string>('2024');
-  // const { ranking, loading, error } = useCrowdRank(season);
+  const { ranking, loading, error } = useCrowdRank(season);
 
-  // if (!ranking.length || loading) {
-  //   return null;
-  // }
+  if (!ranking.length || loading) {
+    return null;
+  }
 
-  // if (error) {
-  //   return <div>{error}</div>;
-  // }
-
-  const ranking = crowd;
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
-    <div className="my-20">
+    <div>
       <Breadcrumb />
 
       <div className="flex items-center justify-between">
@@ -42,7 +39,6 @@ function CrowdRankingTab() {
 
       <div>
         <CrowdRankingChart data={ranking} />
-        {/* <CrowdRankingTable data={ranking} /> */}
         <DataTable data={ranking} columns={crowdRankColumns} domain="all" />
       </div>
     </div>

@@ -11,7 +11,7 @@ import {
 
 function TeamRankingTab() {
   return (
-    <div className="my-20 text-white">
+    <div className="text-white">
       <Breadcrumb />
 
       {/* 팀 순위 테이블 */}

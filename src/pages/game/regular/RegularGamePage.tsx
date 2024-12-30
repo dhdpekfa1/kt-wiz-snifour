@@ -1,7 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import Banner from '@/features/common/Banner';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
-import { cn } from '@/lib/utils';
 
 import Layout from '@/features/common/Layout';
 import {
@@ -49,45 +48,35 @@ function RegularGamePage() {
         </Banner>
       }
     >
-      <Tabs
-        className="container"
-        defaultValue={currentTab}
-        onValueChange={handleTabChange}
-      >
-        <div className={cn('header')}>
-          {/* 탭 */}
-          <div className="tabs-wrapper">
-            <TabsList className="tabs-list">
-              <TabsTrigger
-                value="schedule"
-                onClick={() => handleTabChange('schedule')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
-              >
-                경기 일정
-              </TabsTrigger>
-              <TabsTrigger
-                value="boxscore"
-                onClick={() => handleTabChange('boxscore')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
-              >
-                박스 스코어
-              </TabsTrigger>
-              <TabsTrigger
-                value="ranking"
-                onClick={() => handleTabChange('ranking')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
-              >
-                순위 기록
-              </TabsTrigger>
-              <TabsTrigger
-                value="watchpoint"
-                onClick={() => handleTabChange('watchpoint')}
-                className={cn('tabs-trigger', 'px-6 py-2.5')}
-              >
-                관전 포인트
-              </TabsTrigger>
-            </TabsList>
-          </div>
+      <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
+        {/* 탭 */}
+        <div>
+          <TabsList>
+            <TabsTrigger
+              value="schedule"
+              onClick={() => handleTabChange('schedule')}
+            >
+              경기 일정
+            </TabsTrigger>
+            <TabsTrigger
+              value="boxscore"
+              onClick={() => handleTabChange('boxscore')}
+            >
+              박스 스코어
+            </TabsTrigger>
+            <TabsTrigger
+              value="ranking"
+              onClick={() => handleTabChange('ranking')}
+            >
+              순위 기록
+            </TabsTrigger>
+            <TabsTrigger
+              value="watchpoint"
+              onClick={() => handleTabChange('watchpoint')}
+            >
+              관전 포인트
+            </TabsTrigger>
+          </TabsList>
         </div>
         {/* 탭 컨텐츠 */}
         <TabsContent value="schedule">

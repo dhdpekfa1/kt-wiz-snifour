@@ -51,10 +51,17 @@ function SortableTable<T extends PlayerRank>({
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow
             key={headerGroup.id}
-            className="text-base font-semibold bg-wiz-white bg-opacity-30 border-none"
+            className="font-semibold bg-wiz-white bg-opacity-30 border-none"
           >
             {headerGroup.headers.map((header) => (
-              <TableHead key={header.id} className="text-center px-2">
+              <TableHead
+                key={header.id}
+                className={cn(
+                  'text-center break-keep py-2 px-6',
+                  'md:text-sm md:px-6 md:py-2',
+                  'lg:text-sm lg:p-2'
+                )}
+              >
                 {header.isPlaceholder
                   ? null
                   : flexRender(
@@ -83,7 +90,14 @@ function SortableTable<T extends PlayerRank>({
               )}
             >
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id} className="px-2">
+                <TableCell
+                  key={cell.id}
+                  className={cn(
+                    'px-2',
+                    'md:text-sm md:py-2',
+                    'lg:py-3 lg:text-sm'
+                  )}
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}

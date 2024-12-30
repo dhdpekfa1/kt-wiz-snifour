@@ -29,22 +29,29 @@ function RankingCard({
   };
 
   return (
-    <div className="p-4 flex items-center gap-4">
+    <div
+      className={cn(
+        'flex flex-col items-center',
+        'md:p-4 md:flex-row md:gap-8',
+        'lg:gap-4'
+      )}
+    >
       <img
         src={selectedPlayer.playerPrvwImg}
         alt={selectedPlayer.playerName}
-        className="rounded-xl"
+        className={cn('rounded-xl w-1/2', '')}
       />
-      <div className="w-full h-full flex flex-col justify-between py-8">
-        <SubTitle title={title} className="mb-2" />
-        <ol className="text-black">
+      <div className="w-full h-full flex flex-col gap-2 mt-4">
+        <SubTitle title={title} className={cn('')} />
+        <ol className="text-black flex flex-col justify-center">
           {ranking.map((player, index) => (
             <li
               key={player.pcode}
               onClick={() => handleSelectPlayer(player)}
               onKeyDown={() => handleSelectPlayer(player)}
               className={cn(
-                'bg-white mt-4 px-4 py-2 rounded shadow-sm flex items-center justify-between transition-transform duration-300',
+                'bg-white mt-2 px-2 py-1 rounded shadow-sm flex items-center justify-between transition-transform duration-300 cursor-pointer hover:scale-105 text-sm',
+                'md:px-4 md:py-2 md:text-base md:mt-4',
                 player.pcode === selectedPlayer.pcode &&
                   'bg-wiz-red text-white font-bold scale-105'
               )}
