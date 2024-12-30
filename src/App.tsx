@@ -8,6 +8,7 @@ import NewsPage from './pages/media/News';
 import PhotoPage from './pages/media/Photo';
 import StoryPage from './pages/media/Story';
 
+import TeamHistory from './pages/ktwiz/TeamHistory';
 import TeamIntroduce from './pages/ktwiz/TeamIntroduce';
 import WallpaperPage from './pages/ktwiz/WallpaperPage';
 import NewsDetailPage from './pages/media/id/NewsDetail';
@@ -16,16 +17,16 @@ import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
+import ScrollToTop from './features/common/ScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
+import BatterPage from './pages/player/BatterPage';
 import CheerleaderPage from './pages/player/CheerleaderPage';
 import CoachPage from './pages/player/CoachPage';
-import CoachDetailPage from './pages/player/detail/CoachDetailPage';
 import PitcherPage from './pages/player/PitcherPage';
+import CoachDetailPage from './pages/player/detail/CoachDetailPage';
 import PlayerDetailPage from './pages/player/detail/PlayerDetailPage';
-import BatterPage from './pages/player/BatterPage';
-import ScrollToTop from './features/common/ScrollToTop';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             {/* KT Wiz */}
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
             <Route path="/ktwiz/about" element={<TeamIntroduce />} />
+            <Route path="/ktwiz/history" element={<TeamHistory />} />
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
             <Route path="/wizpark/location" element={<ParkLocationPage />} />
