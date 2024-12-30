@@ -1,6 +1,6 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 
-const TeamHistory = (): JSX.Element => {
+const TeamHistoryTab = (): JSX.Element => {
   const timelineData = [
     {
       year: '2013',
@@ -132,4 +132,4 @@ Kt wiz 위안부 피해 할머니(이옥선, 박옥선) 시구/시타 및 후원
   );
 };
 
-export default TeamHistory;
+export { TeamHistoryTab };
