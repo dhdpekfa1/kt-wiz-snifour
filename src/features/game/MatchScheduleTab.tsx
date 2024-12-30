@@ -15,7 +15,7 @@ const MatchScheduleTab = () => {
         {/* 달력 */}
         <MatchCalendar />
         {/* 중계 채널 정보 */}
-        <div className="w-full flex-col gap-2 hidden lg:flex">
+        <div className="w-full flex-col gap-2 hidden md:flex md:text-sm lg:text-base">
           {channelsData.channels.map((channel) => (
             <div
               className="flex items-start justify-start w-full"
