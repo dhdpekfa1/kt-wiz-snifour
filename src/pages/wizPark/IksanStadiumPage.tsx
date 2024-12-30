@@ -50,7 +50,7 @@ function IksanStadiumPage() {
             <p className="text-xl font-semibold">
               전라북도 익산시 무왕로 1397 익산 야구장
             </p>
-            <Button className="bg-wiz-white text-wiz-red rounded-lg md:rounded-xl w-fit px-2 md:px-4 h-8 md:h-10 md:mt-3 flex items-center justify-center hover:bg-wiz-red hover:text-wiz-white">
+            <Button className="bg-wiz-white bg-opacity-10 text-wiz-whites rounded-lg md:rounded-xl w-fit px-2 md:px-4 h-8 md:h-10 md:mt-3 flex items-center justify-center hover:bg-wiz-red hover:text-wiz-white">
               <a
                 href="https://map.kakao.com/link/to/익산 야구장,35.96755,127.0063"
                 target="_blank"

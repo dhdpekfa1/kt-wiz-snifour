@@ -1,24 +1,9 @@
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui';
-import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
 
-const TeamIntroduce = () => {
+const TeamIntroduceTab = () => {
   return (
-    <Layout
-      header={
-        <Banner>
-          <Banner.Image
-            src="https://placehold.co/1200x200/141414/642521?text=COACHING+STEP"
-            alt="KT WIZ Coach"
-          />
-          <Banner.Overlay>
-            <Banner.Heading title="KT WIZ는?" subtitle="KT WIZ 소개" />
-            <Banner.Description description="한국 프로야구의 '10번째 심장' kt wiz를 소개합니다." />
-          </Banner.Overlay>
-        </Banner>
-      }
-    >
+    <div>
       <Breadcrumb />
       {/* biome-ignore lint/a11y/useAltText: <explanation> */}
       <img
@@ -110,8 +95,8 @@ const TeamIntroduce = () => {
           </Card>
         </CardContent>
       </div>
-    </Layout>
+    </div>
   );
 };
 
-export default TeamIntroduce;
+export { TeamIntroduceTab };
