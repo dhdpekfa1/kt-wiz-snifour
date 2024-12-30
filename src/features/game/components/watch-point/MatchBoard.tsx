@@ -13,6 +13,14 @@ interface MatchBoardProps {
   onDateChange: (direction: 'prev' | 'next') => void;
 }
 
+function formatDate(dateStr: string): string {
+  const year = dateStr.slice(0, 4);
+  const month = dateStr.slice(4, 6);
+  const day = dateStr.slice(6, 8);
+
+  return `${year}년 ${parseInt(month)}월 ${parseInt(day)}일`;
+}
+
 const MatchBoard = ({
   team1Data,
   team2Data,
@@ -36,7 +44,7 @@ const MatchBoard = ({
         </button>
         <div className="relative flex flex-col items-center md:gap-1">
           <span className="text-lg md:text-xl lg:text-2xl font-semibold">
-            {matchDate || '정보 없음'}
+            {matchDate ? formatDate(matchDate) : '정보 없음'}
           </span>
           <span className="text-center text-wiz-white text-opacity-50 text-sm md:text-md lg:text-lg">
             {matchTime} | {stadium} | 관중: {crowd?.toLocaleString()}명
