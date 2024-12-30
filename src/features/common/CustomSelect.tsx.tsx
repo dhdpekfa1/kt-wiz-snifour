@@ -4,6 +4,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from '@/components/ui';
+import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 
 interface CustomSelectProps {
@@ -17,33 +18,29 @@ const CustomSelect = ({ type, data, value, onChange }: CustomSelectProps) => {
   return (
     <Select onValueChange={onChange} defaultValue={value}>
       <SelectTrigger
-        className={`${
+        className={cn(
+          'w-fit h-8 text-xs md:text-sm',
           type === 'year'
-            ? 'bg-wiz-white rounded pl-4 pr-2 py-1 text-black'
-            : 'bg-transparent border-none cursor-pointer text-xl font-bold'
-        } w-fit`}
+            ? 'bg-wiz-white rounded text-black'
+            : 'bg-transparent border-none text-base md:text-lg lg:text-xl font-bold'
+        )}
       >
-        <div
-          className={`flex items-center gap-1 ${
-            type === 'year' ? 'text-black' : 'text-wiz-white'
-          }`}
-        >
-          {type === 'year'
-            ? `${value} 시즌`
-            : format(new Date(value), 'yyyy년 MM월')}
-        </div>
+        {type === 'year'
+          ? `${value} 시즌`
+          : format(new Date(value), 'yyyy년 MM월')}
       </SelectTrigger>
 
-      <SelectContent className="w-fit">
+      <SelectContent>
         {data.map((item) => (
           <SelectItem
             key={item}
             value={item}
-            className={`${
+            className={cn(
+              'text-xs md:text-sm pl-8',
               type === 'year'
                 ? 'bg-wiz-white hover:bg-gray-100 focus:bg-wiz-red focus:text-white'
                 : 'bg-white hover:bg-gray-200 focus:bg-wiz-red focus:text-white'
-            }`}
+            )}
           >
             {type === 'year'
               ? `${item}`

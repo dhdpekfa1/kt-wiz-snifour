@@ -25,7 +25,7 @@ function CrowdRankingChart({ data }: CrowdRankingChartProps) {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         // 모바일 화면 크기 기준
-        setFontSize('10px');
+        setFontSize('8px');
       } else {
         setFontSize('16px');
       }
