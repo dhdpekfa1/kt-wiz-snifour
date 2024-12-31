@@ -16,60 +16,52 @@ import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
+
 import AgreementItem from './AgreementItem';
 import { signupSchema } from './schemas/signupSchema';
-import {
-  AgreementData,
-  AgreementsType,
-  agreements as initialAgreements,
-} from './types/agreements';
+import { AgreementData, AgreementsType } from './types/agreements';
 
+// JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
 
+// 폼 데이터 타입 정의
 export type SignupFormValues = z.infer<typeof signupSchema>;
 
 const SignupForm = () => {
-  const [agreements, setAgreements] =
-    useState<AgreementsType>(initialAgreements);
-  const [allAgreed, setAllAgreed] = useState(false);
-
   const {
-    register,
+    control,
     handleSubmit,
+    register,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
+    defaultValues: {
+      agreements: {
+        termsOfService: false,
+        personalInfo: false,
+        locationInfo: false,
+        thirdParty: false,
+        marketing: false,
+      },
+    },
   });
 
-  // 개별 체크박스 변경 핸들러
-  const handleCheckboxChange = (key: keyof typeof agreements) => {
-    setAgreements((prev) => {
-      const updatedAgreements = { ...prev, [key]: !prev[key] };
-      setAllAgreed(Object.values(updatedAgreements).every((value) => value));
-      return updatedAgreements;
-    });
-  };
+  const agreements = watch('agreements');
 
   // 전체 동의 체크박스 변경 핸들러
   const handleAllAgreedChange = () => {
-    const newState = !allAgreed;
-    setAllAgreed(newState);
-    setAgreements((prev) => {
-      const updatedAgreements = Object.keys(prev).reduce(
-        (acc, key) => {
-          acc[key as keyof typeof prev] = newState;
-          return acc;
-        },
-        {} as typeof agreements
-      );
-      return updatedAgreements;
-    });
+    const newState = !Object.values(agreements).every(Boolean); // 전체 동의 상태 반전
+    for (const key of Object.keys(agreements) as (keyof AgreementsType)[]) {
+      setValue(`agreements.${key}`, newState);
+    }
   };
 
   const onSubmit = (data: SignupFormValues) => {
+    const { agreements } = data;
     if (
       !agreements.termsOfService ||
       !agreements.personalInfo ||
@@ -78,7 +70,7 @@ const SignupForm = () => {
       alert('필수 약관에 동의해야 회원가입이 가능합니다.');
       return;
     }
-    console.log('회원가입 데이터:', { ...data, agreements });
+    console.log('회원가입 데이터:', data);
     // 회원가입 API 호출 로직 추가
   };
 
@@ -154,7 +146,6 @@ const SignupForm = () => {
                   </p>
                 )}
               </div>
-
               {/* 비밀번호 확인 */}
               <div className="flex flex-col gap-2">
                 <Label className="text-sm md:text-lg" htmlFor="confirmPassword">
@@ -181,6 +172,7 @@ const SignupForm = () => {
                 <Input
                   id="nickname"
                   type="text"
+                  autoComplete="off"
                   placeholder="닉네임을 입력하세요."
                   {...register('nickname')}
                   className="text-xs md:text-sm bg-wiz-black text-wiz-white"
@@ -193,23 +185,29 @@ const SignupForm = () => {
               </div>
 
               {/* 약관 동의 */}
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 {agreementData.map((item) => (
-                  <AgreementItem
+                  <Controller
                     key={item.id}
-                    id={item.id}
-                    label={item.label}
-                    required={item.required}
-                    description={item.description}
-                    checked={agreements[item.id as keyof AgreementsType]}
-                    onChange={handleCheckboxChange}
+                    name={`agreements.${item.id}` as const}
+                    control={control}
+                    render={({ field }) => (
+                      <AgreementItem
+                        id={item.id as keyof AgreementsType}
+                        label={item.label}
+                        required={item.required}
+                        description={item.description}
+                        checked={field.value}
+                        onChange={() => field.onChange(!field.value)}
+                      />
+                    )}
                   />
                 ))}
               </div>
               <div className="flex items-center gap-2 bg-wiz-white bg-opacity-20 p-3 rounded-md">
                 <Checkbox
                   id="allAgreed"
-                  checked={allAgreed}
+                  checked={Object.values(agreements).every(Boolean)}
                   onCheckedChange={handleAllAgreedChange}
                 />
                 <Label
@@ -219,7 +217,6 @@ const SignupForm = () => {
                   모든 약관에 동의합니다.
                 </Label>
               </div>
-              {/* 제출 버튼 */}
               <CardFooter className="flex flex-col mt-6 gap-2">
                 <Button
                   className="w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"

@@ -15,6 +15,13 @@ export const signupSchema = z
       .string()
       .min(2, '닉네임은 최소 2자 이상이어야 합니다.')
       .max(8, '닉네임은 8자를 초과할 수 없습니다.'),
+    agreements: z.object({
+      termsOfService: z.boolean(),
+      personalInfo: z.boolean(),
+      locationInfo: z.boolean(),
+      thirdParty: z.boolean(),
+      marketing: z.boolean(),
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],

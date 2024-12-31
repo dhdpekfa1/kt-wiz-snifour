@@ -21,7 +21,7 @@ interface AgreementItemProps {
 const AgreementItem = ({
   id,
   label,
-  // required,
+  required,
   description,
   checked,
   onChange,
@@ -42,17 +42,31 @@ const AgreementItem = ({
         >
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <span className="cursor-pointer">{label}</span>
+              <span className="cursor-pointer flex items-center gap-1">
+                {label}
+                {required ? (
+                  <span className="text-xs text-wiz-red">[필수]</span>
+                ) : (
+                  <span className="text-xs text-wiz-white text-opacity-20">
+                    [선택]
+                  </span>
+                )}
+              </span>
             </DialogTrigger>
-            <DialogContent className="w-[90%] lg:w-[50%] max-h-[80%] h-fit overflow-scroll bg-wiz-black text-wiz-white rounded-md border-none">
-              <DialogTitle>약관 내용</DialogTitle>
+            <DialogContent
+              className="w-[90%] lg:w-[50%] max-h-[80%] h-fit overflow-scroll bg-wiz-black text-wiz-white rounded-md border-none shadow-md shadow-wiz-red"
+              style={{ whiteSpace: 'pre-wrap' }}
+            >
+              <DialogTitle className="text-base md:text-lg">
+                약관 내용
+              </DialogTitle>
               <p className="text-sm md:text-base">
                 {description || '약관 내용이 없습니다.'}
               </p>
             </DialogContent>
           </Dialog>
         </Label>
-        {/* {required && <p className="text-xs text-gray-500">* 필수 약관</p>} */}
+        {/**/}
       </div>
     </div>
   );
