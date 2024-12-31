@@ -54,13 +54,13 @@ const SignupPage = () => {
           </CardHeader>
           <CardContent className="flex gap-2 md:gap-6">
             <Link
-              className="flex items-center justify-center rounded-md w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70 h-[100px] md:h-[150px] lg:h-[220px] md:text-lg lg:text-2xl"
+              className="flex items-center justify-center rounded-md w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70 h-[100px] md:h-[150px] lg:h-[220px] text-sm md:text-lg lg:text-2xl"
               to={'/join/step'}
             >
               일반 회원가입
             </Link>
             <Link
-              className="flex items-center justify-center rounded-md w-full m text-white bg-wiz-white bg-opacity-50 hover:bg-wiz-white hover:bg-opacity-30 h-[100px] md:h-[150px] lg:h-[220px] md:text-lg lg:text-2xl"
+              className="flex items-center justify-center rounded-md w-full m text-white bg-wiz-white bg-opacity-50 hover:bg-wiz-white hover:bg-opacity-30 h-[100px] md:h-[150px] lg:h-[220px] text-sm  md:text-lg lg:text-2xl"
               to={'/join/step'}
             >
               14세 미만 회원가입
