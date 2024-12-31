@@ -139,6 +139,7 @@ const SignupForm = () => {
                   placeholder="비밀번호를 입력하세요."
                   {...register('password')}
                   className="text-xs md:text-sm"
+                  autoComplete="new-password"
                 />
                 {errors.password && (
                   <p className="text-red-500 text-xs mt-1">
@@ -156,6 +157,7 @@ const SignupForm = () => {
                   placeholder="비밀번호를 다시 입력하세요."
                   {...register('confirmPassword')}
                   className="text-xs md:text-sm"
+                  autoComplete="new-password"
                 />
                 {errors.confirmPassword && (
                   <p className="text-red-500 text-xs mt-1">

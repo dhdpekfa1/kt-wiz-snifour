@@ -2,6 +2,7 @@ import {
   Checkbox,
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   DialogTrigger,
   Label,
@@ -65,6 +66,9 @@ const AgreementItem = ({
                   <span className="text-wiz-white text-opacity-20">[선택]</span>
                 )}
               </DialogTitle>
+              <DialogDescription className="text-wiz-white text-opacity-30">
+                약관 내용
+              </DialogDescription>
               <p className="text-sm md:text-base">
                 {description || '약관 내용이 없습니다.'}
               </p>
