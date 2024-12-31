@@ -49,20 +49,26 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
 
     const { playerImage } = usePlayerImage(team, name);
     return (
-      <img src={playerImage} alt={name} className="w-7 h-9 rounded-full" />
+      <img
+        src={playerImage}
+        alt={name}
+        className="w-6 h-8 sm:w-7 sm:h-9 rounded-full"
+      />
     );
   };
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {tableRows.map((row, index) => (
         <Card
           // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           key={index}
           className="hover:scale-105 transition-transform ease-in-out duration-500 rounded-lg"
         >
-          <CardContent className="flex flex-col justify-start">
-            <h1 className="text-xl font-semibold mb-3">{row.label}</h1>
+          <CardContent className="flex flex-col justify-start p-3 sm:p-4">
+            <h1 className="md:text-lg lg:text-xl font-semibold mb-2 sm:mb-3">
+              {row.label}
+            </h1>
             {seperateRecords(getRecordByHow(row.label, data.etcgames)).map(
               (record) => (
                 <div className="flex gap-2 items-center">
@@ -72,12 +78,16 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
                       )
                     : ''}
                   {row.label === '결승타' ? (
-                    <div className="text-base flex flex-col">
-                      <span>{record.substring(0, record.indexOf('('))}</span>
-                      <span>{record.substring(record.indexOf('('))}</span>
+                    <div className="sm:text-base flex flex-col">
+                      <span className="text-sm sm:text-base">
+                        {record.substring(0, record.indexOf('('))}
+                      </span>
+                      <span className="text-sm sm:text-base">
+                        {record.substring(record.indexOf('('))}
+                      </span>
                     </div>
                   ) : (
-                    <span>{record}</span>
+                    <span className="text-sm sm:text-base">{record}</span>
                   )}
                 </div>
               )
