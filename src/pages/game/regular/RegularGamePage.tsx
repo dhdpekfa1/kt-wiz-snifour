@@ -4,7 +4,7 @@ import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 
 import Layout from '@/features/common/Layout';
 import {
-  BoxScoreTab,
+  BoxscoreTab,
   MatchScheduleTab,
   RankingTab,
   WatchPointTab,
@@ -83,7 +83,7 @@ function RegularGamePage() {
           <MatchScheduleTab />
         </TabsContent>
         <TabsContent value="boxscore">
-          <BoxScoreTab />
+          <BoxscoreTab />
         </TabsContent>
         <TabsContent value="ranking">
           <RankingTab />

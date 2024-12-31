@@ -1,8 +1,9 @@
-import { Card, CardContent, CardHeader } from '@/components/ui';
-import { EtcGame } from '../../types/BoxScoreData';
+import { Card, CardContent } from '@/components/ui';
+import { usePlayerImage } from '../../hooks/boxscore/usePlayerImage';
+import { BoxscoreData, EtcGame } from '../../types/BoxscoreData';
 
 interface KeyRecordsTableProps {
-  data: EtcGame[] | undefined;
+  data: BoxscoreData;
 }
 
 export const tableRows = [
@@ -22,40 +23,75 @@ const getRecordByHow = (how: string, data: EtcGame[] | undefined) => {
 };
 
 function KeyRecordsCard({ data }: KeyRecordsTableProps) {
-  const seperatePlayers = (str: string): string[] => {
+  const seperateRecords = (str: string): string[] => {
     const pattern = /[^\s]+\([^\)]+\)/g;
     return str.match(pattern) || [str];
   };
 
-  /*const setBorderImg = (name: string):string => {
-    const data = fetchPlayerData();
-    if(data.includes(name)) return borderimg
-  }*/
+  const handlerPlayerImage = (name: string) => {
+    let team: string | undefined;
+
+    // 홈 팀 타자, 투수 확인
+    if (
+      data.hbatters.find((batter) => batter.name === name) ||
+      data.vbatters.find((batter) => batter.name === name)
+    ) {
+      team = data.schedule.current.home;
+    }
+
+    // 원정 팀 타자, 투수 확인
+    if (
+      data.vbatters.find((batter) => batter.name === name) ||
+      data.vpitchers.find((pitcher) => pitcher.name === name)
+    ) {
+      team = data.schedule.current.visit;
+    }
+
+    const { playerImage } = usePlayerImage(team, name);
+    return (
+      <img
+        src={playerImage}
+        alt={name}
+        className="w-6 h-8 sm:w-7 sm:h-9 rounded-full"
+      />
+    );
+  };
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {tableRows.map((row, index) => (
         <Card
           // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           key={index}
           className="hover:scale-105 transition-transform ease-in-out duration-500 rounded-lg"
         >
-          <CardHeader className="text-xl font-semibold">{row.label}</CardHeader>
-          <CardContent className="flex flex-col items-center justify-start">
-            {seperatePlayers(getRecordByHow(row.label, data)).map((player) => (
-              <div className="flex gap-2">
-                {row.label !== '심판' && player.length > 0 ? (
-                  <img
-                    src="/assets/players/강백호.webp"
-                    className="w-8 rounded-full"
-                    alt="팀로고"
-                  />
-                ) : (
-                  ''
-                )}
-                <span className="text-base">{player}</span>
-              </div>
-            ))}
+          <CardContent className="flex flex-col justify-start p-3 sm:p-4">
+            <h1 className="md:text-lg lg:text-xl font-semibold mb-2 sm:mb-3">
+              {row.label}
+            </h1>
+            {seperateRecords(getRecordByHow(row.label, data.etcgames)).map(
+              (record) => (
+                <div className="flex gap-2 items-center">
+                  {row.label !== '심판' && record.length > 0
+                    ? handlerPlayerImage(
+                        record.substring(0, record.indexOf('('))
+                      )
+                    : ''}
+                  {row.label === '결승타' ? (
+                    <div className="sm:text-base flex flex-col">
+                      <span className="text-sm sm:text-base">
+                        {record.substring(0, record.indexOf('('))}
+                      </span>
+                      <span className="text-sm sm:text-base">
+                        {record.substring(record.indexOf('('))}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-sm sm:text-base">{record}</span>
+                  )}
+                </div>
+              )
+            )}
           </CardContent>
         </Card>
       ))}
