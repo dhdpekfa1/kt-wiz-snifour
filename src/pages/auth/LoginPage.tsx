@@ -16,7 +16,7 @@ import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { z } from 'zod';
@@ -29,13 +29,31 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
 
+  // 로컬 스토리지에서 이메일 불러오기
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('savedEmail');
+    if (savedEmail) {
+      setValue('email', savedEmail);
+      setSaveId(true); // 체크박스도 활성화
+    }
+  }, [setValue]);
+
   const onSubmit = (data: LoginFormValues) => {
     console.log('로그인 데이터:', { ...data, saveId });
+
+    // 이메일 저장 체크 상태에 따라 로컬 스토리지 처리
+    if (saveId) {
+      localStorage.setItem('savedEmail', data.email); // 이메일 저장
+    } else {
+      localStorage.removeItem('savedEmail'); // 이메일 삭제
+    }
+
     // 로그인 API 호출 로직 추가
   };
 
@@ -116,7 +134,7 @@ const LoginPage = () => {
                   htmlFor="saveId"
                   className="text-xs md:text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  아이디 저장
+                  이메일 저장
                 </Label>
               </div>
               <CardFooter className="flex flex-col mt-6 gap-2">
@@ -131,7 +149,7 @@ const LoginPage = () => {
           </CardContent>
         </Card>
         <div className="flex items-center gap-4 text-[10px] md:text-xs lg:text-sm text-wiz-white mt-8">
-          <Link to={'/findid'}>아이디 찾기</Link>
+          <Link to={'/findid'}>이메일 찾기</Link>
           <div className="text-wiz-white text-opacity-40">|</div>
           <Link to={'findpw'}>비밀번호 찾기</Link>
           <div className="text-wiz-white text-opacity-40">|</div>
