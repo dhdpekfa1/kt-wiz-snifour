@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 
 import { useGetHighlightList } from '@/features/media/apis/highlight/HighlightApi.query';
 import GridArticle from '@/features/media/common/GridArticle';
@@ -9,8 +9,13 @@ import { cn } from '@/lib/utils';
 
 const HighlightGridView = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { data, isLoading, isError } = useGetHighlightList({
-    variables: { searchWord: '', itemCount: 12, pageNum: 1 },
+    variables: {
+      searchWord: searchParams.get('searchWord') || '',
+      itemCount: 12,
+      pageNum: 1,
+    },
   });
 
   return (

@@ -2,10 +2,22 @@ import { Button } from '@/components/ui';
 import { Input } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { Search as SearchIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
 
-const SearchBar = ({ onSubmit }: { onSubmit: (search: string) => void }) => {
-  const [search, setSearch] = useState('');
+const SearchBar = ({
+  value,
+  onSubmit,
+}: {
+  value?: string;
+  onSubmit: (search: string) => void;
+}) => {
+  const [search, setSearch] = useState(value || '');
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    setSearch(searchParams.get('searchWord') || '');
+  }, [searchParams]);
 
   return (
     <div className={cn('p-0')}>
