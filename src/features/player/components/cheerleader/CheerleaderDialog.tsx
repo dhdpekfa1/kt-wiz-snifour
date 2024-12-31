@@ -7,7 +7,7 @@ import {
 } from '@/components/ui';
 import { Separator } from '@radix-ui/react-select';
 import { SocialIcon } from 'react-social-icons';
-import type { Cheerleader } from '../types/cheerleader';
+import type { Cheerleader } from '../../types/cheerleader';
 
 interface cheerleaderDialogProps {
   data: Cheerleader;
@@ -19,7 +19,7 @@ function CheerleaderDialog({ data }: cheerleaderDialogProps) {
     { label: '포지션', prop: data.leaderPosition },
     { label: '닉네임', prop: data.leaderNickName },
     { label: '좋아하는 선수', prop: data.leaderLikePlayer },
-    { lable: '모토', prop: data.leaderMotto },
+    { label: '모토', prop: data.leaderMotto },
   ];
 
   return (
