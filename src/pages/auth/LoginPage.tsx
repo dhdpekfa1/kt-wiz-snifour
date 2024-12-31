@@ -81,9 +81,10 @@ const LoginPage = () => {
                 <Input
                   id="email"
                   type="email"
+                  autoComplete="off"
                   placeholder="이메일을 입력하세요."
                   {...register('email')}
-                  className="text-xs md:text-sm"
+                  className="text-xs md:text-sm bg-wiz-black text-wiz-white"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-xs mt-1">
@@ -100,7 +101,11 @@ const LoginPage = () => {
                 {...register('password')}
                 className="text-xs md:text-sm"
               />
-
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.password.message}
+                </p>
+              )}
               <div className="flex items-center gap-2">
                 <Checkbox
                   id="saveId"
