@@ -26,8 +26,26 @@ type HighlightResponse = {
   };
 };
 
-type HighlightListDto = {
-  count: string;
+type HighlightDetailResponse = {
+  data: {
+    article: HighlightItem;
+  };
 };
 
-export { type HighlightItem, type HighlightResponse, type HighlightListDto };
+type HighlightListDto = {
+  searchWord: string;
+  itemCount: number;
+  pageNum: number;
+};
+
+type HighlightDetailDto = {
+  artcSeq: string;
+};
+
+export {
+  type HighlightItem,
+  type HighlightResponse,
+  type HighlightListDto,
+  type HighlightDetailDto,
+  type HighlightDetailResponse,
+};

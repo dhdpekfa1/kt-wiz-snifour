@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 const HighlightGridView = () => {
   const navigate = useNavigate();
   const { data, isLoading, isError } = useGetHighlightList({
-    variables: { count: '10' },
+    variables: { searchWord: '', itemCount: 12, pageNum: 1 },
   });
 
   return (
@@ -23,12 +23,14 @@ const HighlightGridView = () => {
         >
           {data?.list?.map(
             ({ artcSeq, imgFilePath, title, contentsDate, viewCount }) => (
-              <GridArticle key={artcSeq} className="cursor-pointer">
-                <GridArticle.Media
-                  onClick={() => {
-                    navigate(`/media/highlight/${artcSeq}`);
-                  }}
-                >
+              <GridArticle
+                key={artcSeq}
+                onClick={() => {
+                  navigate(`/media/highlight/${artcSeq}`);
+                }}
+                className="cursor-pointer"
+              >
+                <GridArticle.Media>
                   <GridArticle.Thumbnail
                     imgFilePath={imgFilePath}
                     title={title}
