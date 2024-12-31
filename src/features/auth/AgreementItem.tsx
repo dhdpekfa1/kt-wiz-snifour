@@ -12,6 +12,7 @@ import { AgreementsType } from './types/agreements';
 interface AgreementItemProps {
   id: keyof AgreementsType;
   label: string;
+  title: string;
   required: boolean;
   description: string;
   checked: boolean;
@@ -21,6 +22,7 @@ interface AgreementItemProps {
 const AgreementItem = ({
   id,
   label,
+  title,
   required,
   description,
   checked,
@@ -58,7 +60,10 @@ const AgreementItem = ({
               style={{ whiteSpace: 'pre-wrap' }}
             >
               <DialogTitle className="text-base md:text-lg">
-                약관 내용
+                {title}{' '}
+                {!required && (
+                  <span className="text-wiz-white text-opacity-20">[선택]</span>
+                )}
               </DialogTitle>
               <p className="text-sm md:text-base">
                 {description || '약관 내용이 없습니다.'}

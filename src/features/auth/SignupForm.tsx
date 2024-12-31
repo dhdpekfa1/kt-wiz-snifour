@@ -195,6 +195,7 @@ const SignupForm = () => {
                       <AgreementItem
                         id={item.id as keyof AgreementsType}
                         label={item.label}
+                        title={item.title}
                         required={item.required}
                         description={item.description}
                         checked={field.value}

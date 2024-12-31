@@ -21,6 +21,7 @@ export type AgreementData = AgreementDataItem[];
 export interface AgreementDataItem {
   id: keyof AgreementsType;
   label: string;
+  title: string;
   required: boolean;
   description: string;
 }
