@@ -19,11 +19,13 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetail';
 
+import LoginPage from './pages/auth/LoginPage';
+import SignupPage from './pages/auth/SignupPage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
+import HighlightDetailPage from './pages/media/id/HighlightDetail';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
-import HighlightDetailPage from './pages/media/id/HighlightDetail';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
           <Routes>
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/join" element={<SignupPage />} />
 
             {/* KT Wiz */}
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />

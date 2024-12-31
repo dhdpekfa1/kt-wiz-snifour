@@ -65,3 +65,5 @@ export {
   AccordionTrigger,
   AccordionContent,
 } from './accordion/accordion';
+export { Label } from './label/label';
+export { Checkbox } from './checkbox/checkbox';
