@@ -74,7 +74,7 @@ const BoxscoreTab = () => {
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
           <div className="w-full items-center mt-4">
-            <KeyRecordsCard data={matchData?.etcgames} />
+            <KeyRecordsCard data={matchData} />
           </div>
         </div>
         {/* team1 타자 기록 */}

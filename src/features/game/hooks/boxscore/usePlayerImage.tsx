@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getPlayerImage } from '../../apis/boxscore/player-image';
 
-const usePlayerImage = (team: string, name: string) => {
+const usePlayerImage = (team: string | undefined, name: string) => {
   const [playerImage, setPlayerImage] = useState<string>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
