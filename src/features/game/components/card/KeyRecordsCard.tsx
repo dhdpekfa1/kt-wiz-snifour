@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui';
-import usePlayerImage from '../../hooks/boxscore/usePlayerImage';
+import { usePlayerImage } from '../../hooks/boxscore/usePlayerImage';
 import { BoxscoreData, EtcGame } from '../../types/BoxscoreData';
 
 interface KeyRecordsTableProps {

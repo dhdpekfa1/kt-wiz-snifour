@@ -1,6 +1,5 @@
+import { API_URL } from '@/constants/api-url';
 import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
 export const getPlayerImage = async (team: string, name: string) => {
   try {
