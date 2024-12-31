@@ -1,5 +1,6 @@
 export interface Cheerleader {
-  imgPath: string;
+  imgPrvwPath: string;
+  titleImgPath: string;
   leaderBirthDay: string;
   leaderCareer: string;
   leaderEngName: string;
