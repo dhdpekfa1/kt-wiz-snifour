@@ -9,24 +9,34 @@ import {
   Checkbox,
   Input,
   Label,
+  PasswordInput,
 } from '@/components/ui';
+import { loginSchema } from '@/features/auth/schemas/loginSchema';
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
-import { Eye, EyeOff } from 'lucide-react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
+import { z } from 'zod';
+
+type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
   const [saveId, setSaveId] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const togglePassword = () => setShowPassword((prevState) => !prevState);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const handleLogin = () => {
-    console.log('로그인', { email, password, saveId });
+  const onSubmit = (data: LoginFormValues) => {
+    console.log('로그인 데이터:', { ...data, saveId });
+    // 로그인 API 호출 로직 추가
   };
 
   return (
@@ -60,7 +70,10 @@ const LoginPage = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-4">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-4"
+            >
               <div className="flex flex-col gap-2">
                 <Label className="text-sm md:text-lg" htmlFor="email">
                   이메일
@@ -69,37 +82,25 @@ const LoginPage = () => {
                   id="email"
                   type="email"
                   placeholder="이메일을 입력하세요."
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
+                  {...register('email')}
                   className="text-xs md:text-sm"
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
-              <div className="relative flex flex-col gap-2">
-                <Label className="text-sm md:text-lg" htmlFor="password">
-                  비밀번호
-                </Label>
-                <Input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="비밀번호를 입력하세요."
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="text-xs md:text-sm"
-                />
-                <Button
-                  size="icon"
-                  className="absolute top-1/2 right-2 -translate-y-1/5 bg-transparent hover:bg-transparent"
-                  onClick={togglePassword}
-                >
-                  {showPassword ? (
-                    <Eye className="h-5 w-5 text-muted-foreground" />
-                  ) : (
-                    <EyeOff className="h-5 w-5 text-muted-foreground" />
-                  )}
-                </Button>
-              </div>
+              <Label className="text-sm md:text-lg" htmlFor="password">
+                비밀번호
+              </Label>
+              <PasswordInput
+                id="password"
+                placeholder="비밀번호를 입력하세요."
+                {...register('password')}
+                className="text-xs md:text-sm"
+              />
+
               <div className="flex items-center gap-2">
                 <Checkbox
                   id="saveId"
@@ -113,16 +114,16 @@ const LoginPage = () => {
                   아이디 저장
                 </Label>
               </div>
-            </div>
+              <CardFooter className="flex flex-col mt-6 gap-2">
+                <Button
+                  className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
+                  type="submit"
+                >
+                  로그인
+                </Button>
+              </CardFooter>
+            </form>
           </CardContent>
-          <CardFooter className="flex flex-col mt-6 gap-2">
-            <Button
-              className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
-              onClick={handleLogin}
-            >
-              로그인
-            </Button>
-          </CardFooter>
         </Card>
         <div className="flex items-center gap-4 text-[10px] md:text-xs lg:text-sm text-wiz-white mt-8">
           <Link to={'/findid'}>아이디 찾기</Link>
