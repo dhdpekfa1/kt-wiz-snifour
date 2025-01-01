@@ -8,7 +8,7 @@ import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import { GridArticleSkeleton } from '../../common/skeleton';
 import { LoadingView } from '../../common/LoadingView';
 
-const StoryContent = () => {
+const StoryGridView = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const {
@@ -59,4 +59,4 @@ const StoryContent = () => {
   );
 };
 
-export default StoryContent;
+export default StoryGridView;
