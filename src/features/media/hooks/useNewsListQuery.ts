@@ -4,7 +4,7 @@ import { QueryParser } from '@/lib';
 import { useMemo } from 'react';
 
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
-import { NEWS_TABS_CONFIG } from '@/pages/media/News';
+import { NEWS_TABS_CONFIG } from '@/pages/media/NewsPage';
 import { useSearchParams } from 'react-router';
 import { usePagination } from './usePagination';
 

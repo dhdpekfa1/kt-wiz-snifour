@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import { cn } from '@/lib/utils';
 
 import GridArticle from '@/features/media/common/GridArticle';
@@ -10,6 +10,7 @@ import { LoadingView } from '../../common/LoadingView';
 
 const StoryContent = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const {
     data: storyList,
     isLoading,
@@ -28,34 +29,33 @@ const StoryContent = () => {
   }
 
   return (
-    <>
-      {/* 스토리 컨텐츠 */}
-      <LoadingView
-        isLoading={isLoading}
-        isError={isError}
-        fallback={<GridArticleSkeleton />}
-      >
-        <div className={cn('media-grid')}>
-          {storyList?.list?.map(
-            ({ artcSeq, imgFilePath, title, contentsDate }) => (
-              <GridArticle key={artcSeq} className="cursor-pointer">
-                <GridArticle.Media>
-                  <GridArticle.Thumbnail
-                    imgFilePath={imgFilePath}
-                    title={title}
-                  />
-                  <GridArticle.Overlay elements={<PlayButton />} />
-                </GridArticle.Media>
-                <GridArticle.Title title={title} />
-                <GridArticle.Footer date={contentsDate} />
-              </GridArticle>
-            )
-          )}
-        </div>
-      </LoadingView>
-
-      {/* 페이지네이션 */}
-    </>
+    <LoadingView
+      isLoading={isLoading}
+      isError={isError}
+      fallback={<GridArticleSkeleton />}
+    >
+      <div className={cn('media-grid')}>
+        {storyList?.list?.map(
+          ({ artcSeq, imgFilePath, title, contentsDate }) => (
+            <GridArticle
+              key={artcSeq}
+              className="cursor-pointer"
+              onClick={() => navigate(`/media/wizstory/${artcSeq}`)}
+            >
+              <GridArticle.Media>
+                <GridArticle.Thumbnail
+                  imgFilePath={imgFilePath}
+                  title={title}
+                />
+                <GridArticle.Overlay elements={<PlayButton />} />
+              </GridArticle.Media>
+              <GridArticle.Title title={title} />
+              <GridArticle.Footer date={contentsDate} />
+            </GridArticle>
+          )
+        )}
+      </div>
+    </LoadingView>
   );
 };
 
