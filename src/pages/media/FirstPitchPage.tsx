@@ -1,13 +1,16 @@
 import Banner from '@/features/common/Banner';
+import Breadcrumb from '@/features/common/Breadcrumb';
 import MediaLayout from '@/features/media/common/MediaLayout';
 import SearchBar from '@/features/media/common/SearchBar';
-import FirstPitchContent from '@/features/media/components/firstPitch/FirstPitchContent';
+import FirstPitchListView from '@/features/media/components/firstPitch/FirstPitchListView';
 
 import '@/features/media/css/media.css';
-import { cn } from '@/lib/utils';
+import { useSearchParams } from 'react-router';
 
 /** 시구자 정보 페이지 */
 const FirstPitchPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <MediaLayout
       header={
@@ -26,10 +29,20 @@ const FirstPitchPage = () => {
         </Banner>
       }
     >
-      <div className={cn('media-header', 'justify-end')}>
-        <SearchBar onSubmit={() => {}} />
-      </div>
-      <FirstPitchContent />
+      <Breadcrumb
+        leftComponent={
+          <SearchBar
+            value={searchParams.get('searchWord') || ''}
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
+        }
+      />
+      <FirstPitchListView />
     </MediaLayout>
   );
 };

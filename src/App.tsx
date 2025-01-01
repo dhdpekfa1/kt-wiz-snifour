@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/header/Header';
 import HomePage from './pages/HomePage';
-import PlayerPage from './pages/media/FirstPitchPage';
 import HighlightPage from './pages/media/HighlightPage';
 import NewsPage from './pages/media/NewsPage';
 import PhotoPage from './pages/media/PhotoPage';
@@ -27,6 +26,7 @@ import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 import StoryDetailPage from './pages/media/id/StoryDetailPage';
+import FirstPitchPage from './pages/media/FirstPitchPage';
 
 function App() {
   return (
@@ -76,7 +76,7 @@ function App() {
             <Route path="/media/wiznews" element={<NewsPage />} />
             <Route path="/media/wizpress" element={<NewsPage />} />
             <Route path="/media/wizstory" element={<StoryPage />} />
-            <Route path="/media/firstpitch" element={<PlayerPage />} />
+            <Route path="/media/firstpitch" element={<FirstPitchPage />} />
             <Route path="/media/highlight" element={<HighlightPage />} />
 
             {/* Media 상세 */}
