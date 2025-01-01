@@ -6,8 +6,8 @@ import { usePagination } from '@/features/media/hooks/usePagination';
 
 import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import Pagination from '@/features/media/common/Pagination';
-import useNewsListQuery from '@/features/media/hooks/useNewsListQuery';
 import NewsList from './NewsList';
+import useNewsListQuery from '../../hooks/news/useNewsListQuery';
 
 const NewsListView = () => {
   const { pageNum, itemCount, onPagination } = usePagination();

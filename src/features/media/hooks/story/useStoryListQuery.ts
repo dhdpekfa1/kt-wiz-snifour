@@ -3,9 +3,9 @@ import { useSearchParams } from 'react-router';
 import {
   STORY_API_QUERY_KEY,
   useGetStoryList,
-} from '../apis/story/StoryApi.query';
+} from '@/features/media/apis/story/StoryApi.query';
 import { useQueryClient } from '@tanstack/react-query';
-import { storyApi } from '../apis/story/StoryApi';
+import { storyApi } from '@/features/media/apis/story/StoryApi';
 
 const useStoryListQuery = () => {
   const [searchParams] = useSearchParams();

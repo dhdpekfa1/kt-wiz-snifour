@@ -4,8 +4,8 @@ import { useParams } from 'react-router';
 import {
   HIGHLIGHT_API_QUERY_KEY,
   useGetHighlightDetail,
-} from '../apis/highlight/HighlightApi.query';
-import { highlightApi } from '../apis/highlight/HighlightApi';
+} from '@/features/media/apis/highlight/HighlightApi.query';
+import { highlightApi } from '@/features/media/apis/highlight/HighlightApi';
 
 const useHighLightDetailQuery = () => {
   const queryClient = useQueryClient();

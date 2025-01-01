@@ -6,7 +6,7 @@ import PlayButton from '@/features/media/common/PlayButton';
 import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import { GridArticleSkeleton } from '../../common/skeleton';
 import { LoadingView } from '../../common/LoadingView';
-import useStoryListQuery from '../../hooks/useStoryListQuery';
+import useStoryListQuery from '../../hooks/story/useStoryListQuery';
 
 const StoryGridView = () => {
   const navigate = useNavigate();

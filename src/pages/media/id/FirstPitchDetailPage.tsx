@@ -11,7 +11,7 @@ import { toUrl } from '@/lib';
 import Breadcrumb from '@/features/common/Breadcrumb';
 
 /** 뉴스 상세 페이지 */
-const NewsDetailPage = () => {
+const FirstPitchDetailPage = () => {
   useScrollTo();
 
   const navigate = useNavigate();
@@ -71,4 +71,4 @@ const NewsDetailPage = () => {
   );
 };
 
-export default NewsDetailPage;
+export default FirstPitchDetailPage;

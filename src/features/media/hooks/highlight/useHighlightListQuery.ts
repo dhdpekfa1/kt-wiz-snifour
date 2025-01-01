@@ -3,12 +3,12 @@ import { useSearchParams } from 'react-router';
 import { useQueryClient } from '@tanstack/react-query';
 
 import {
-  FIRSTPITCH_API_QUERY_KEY,
-  useGetFirstPitchList,
-} from '../apis/firstPitch/firstPitchApi.query';
-import { firstPitchApi } from '../apis/firstPitch/firstPitchApi';
+  HIGHLIGHT_API_QUERY_KEY,
+  useGetHighlightList,
+} from '@/features/media/apis/highlight/HighlightApi.query';
+import { highlightApi } from '@/features/media/apis/highlight/HighlightApi';
 
-const useFirstPitchListQuery = () => {
+const useHighlightListQuery = () => {
   const [searchParams] = useSearchParams();
   const queryClient = useQueryClient();
 
@@ -18,37 +18,31 @@ const useFirstPitchListQuery = () => {
     searchWord: QueryParser.toString(searchParams.get('searchWord')) ?? '',
   };
 
-  // 시구자 리스트 조회
+  // 하이라이트 리스트 조회
   const {
-    data: firstPitchList,
+    data: highlightList,
     isError,
     isLoading,
     isSuccess,
-  } = useGetFirstPitchList({
+  } = useGetHighlightList({
     variables,
   });
 
-  const prefetchFirstPitchList = () => {
+  const prefetchNewsList = () => {
     queryClient.prefetchQuery({
-      queryKey: FIRSTPITCH_API_QUERY_KEY.GET_LIST({
+      queryKey: HIGHLIGHT_API_QUERY_KEY.GET_LIST({
         ...variables,
         pageNum: variables.pageNum + 1,
       }),
       queryFn: () =>
-        firstPitchApi.getFirstPitchList({
+        highlightApi.getHighlightList({
           ...variables,
           pageNum: variables.pageNum + 1,
         }),
     });
   };
 
-  return {
-    firstPitchList,
-    isError,
-    isLoading,
-    isSuccess,
-    prefetchFirstPitchList,
-  };
+  return { highlightList, isError, isLoading, isSuccess, prefetchNewsList };
 };
 
-export default useFirstPitchListQuery;
+export default useHighlightListQuery;

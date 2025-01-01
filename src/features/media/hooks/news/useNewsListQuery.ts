@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { NEWS_TABS_CONFIG } from '@/pages/media/NewsPage';
 import { useSearchParams } from 'react-router';
-import { usePagination } from './usePagination';
+import { usePagination } from '@/features/media/hooks/usePagination';
 
 const useNewsListQuery = () => {
   const { currentTab } = useTabFromUrl({

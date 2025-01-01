@@ -3,7 +3,7 @@ import { PageRoutes } from '@/constants/route';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import { MediaDetail } from '@/features/media/common/MediaDetail';
-import useHighLightDetailQuery from '@/features/media/hooks/useHighLightDetailQuery';
+import useHighLightDetailQuery from '@/features/media/hooks/highlight/useHighLightDetailQuery';
 import { toUrl } from '@/lib';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';

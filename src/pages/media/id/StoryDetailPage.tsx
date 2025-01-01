@@ -4,7 +4,7 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 
 import { MediaDetail } from '@/features/media/common/MediaDetail';
-import useStoryDetailQuery from '@/features/media/hooks/useStoryDetailQuery';
+import useStoryDetailQuery from '@/features/media/hooks/story/useStoryDetailQuery';
 import { toUrl } from '@/lib';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';

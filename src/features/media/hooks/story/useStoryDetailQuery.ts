@@ -4,8 +4,8 @@ import { useParams } from 'react-router';
 import {
   STORY_API_QUERY_KEY,
   useGetStoryDetail,
-} from '../apis/story/StoryApi.query';
-import { storyApi } from '../apis/story/StoryApi';
+} from '@/features/media/apis/story/StoryApi.query';
+import { storyApi } from '@/features/media/apis/story/StoryApi';
 
 const useStoryDetailQuery = () => {
   const queryClient = useQueryClient();

@@ -1,6 +1,6 @@
 import ListArticle from '@/features/media/common/ListArticle';
 import { usePagination } from '@/features/media/hooks/usePagination';
-import useFirstPitchListQuery from '../../hooks/useFirstPitchListQuery';
+import useFirstPitchListQuery from '../../hooks/firstPitch/useFirstPitchListQuery';
 import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import { cn } from '@/lib/utils';
 import { LoadingView } from '../../common/LoadingView';

@@ -6,7 +6,7 @@ import PlayButton from '@/features/media/common/PlayButton';
 import { GridArticleSkeleton } from '@/features/media/common/skeleton';
 import { cn } from '@/lib/utils';
 import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
-import useHighlightListQuery from '../../hooks/useHighlightListQuery';
+import useHighlightListQuery from '../../hooks/highlight/useHighlightListQuery';
 
 const HighlightGridView = () => {
   const navigate = useNavigate();
