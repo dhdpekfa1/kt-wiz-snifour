@@ -26,6 +26,7 @@ import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
+import StoryDetailPage from './pages/media/id/StoryDetailPage';
 
 function App() {
   return (
@@ -81,7 +82,7 @@ function App() {
             {/* Media 상세 */}
             <Route path="/media/wiznews/:id" element={<NewsDetailPage />} />
             <Route path="/media/wizpress/:id" element={<PressDetailPage />} />
-            <Route path="/media/wizstory/:id" element={<PressDetailPage />} />
+            <Route path="/media/wizstory/:id" element={<StoryDetailPage />} />
             <Route path="/media/photos/:id" element={<PhotoPage />} />
             <Route
               path="/media/highlight/:id"

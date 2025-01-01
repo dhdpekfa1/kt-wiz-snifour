@@ -23,8 +23,6 @@ function HighlightDetailPage() {
     return <div>에러가 발생했습니다.</div>;
   }
 
-  console.log(data);
-
   return (
     <div className="text-white">
       <Breadcrumb />
