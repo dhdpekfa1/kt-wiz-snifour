@@ -172,25 +172,15 @@ export const PAGE_URLS: { [key: string]: UrlStructure } = {
     sub: {
       wiznews: {
         name: 'wiz 뉴스',
-        sub: {
-          wiznews: {
-            name: 'wiz 소식',
-          },
-          wizpress: {
-            name: 'wiz 보도자료',
-          },
-        },
+      },
+      wizpress: {
+        name: 'wiz 보도자료',
       },
       wizstory: {
         name: 'wiz 스토리',
       },
       firstpitch: {
         name: '시구자 정보',
-        sub: {
-          detailed: {
-            name: '상세 보기',
-          },
-        },
       },
       photos: {
         name: 'wiz 포토',

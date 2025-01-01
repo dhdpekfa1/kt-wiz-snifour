@@ -13,18 +13,32 @@ interface BreadcrumbProps {
   leftComponent?: ReactNode;
 }
 
-const getLabel = (paths: string[], currentPath: string) => {
-  let current: { [key: string]: UrlStructure } = PAGE_URLS;
-  for (const path of paths) {
-    if (path !== currentPath && current[path].sub) {
-      current = current[path].sub;
-    } else if (path !== currentPath && !current[path].sub) {
-      return null;
-    } else {
-      return current[path].name;
+const getLabel = (paths: string[], pathToFind: string) => {
+  const findPathInStructure = (current: UrlStructure): string | null => {
+    // 하위 구조(sub)가 존재하는 경우 재귀적으로 탐색
+    if (current.sub) {
+      for (const key in current.sub) {
+        // 현재 경로가 pathToFind와 일치하면 name 반환
+        if (key === pathToFind) {
+          return current.sub[key].name;
+        }
+        const result = findPathInStructure(current.sub[key]);
+        if (result) return result; // 일치하는 경로를 찾으면 반환
+      }
     }
+
+    // 일치하는 경로가 없으면 null 반환
+    return null;
+  };
+
+  if (!paths.length) return null; // 경로가 비어 있는 경우 null 반환
+  const rootPath = paths[0]; // 첫 번째 경로 가져오기
+  const rootStructure = PAGE_URLS[rootPath];
+  if (rootPath === pathToFind) {
+    return rootStructure.name;
   }
-  return null;
+  if (!rootStructure) return null; // 최상위 경로를 찾지 못한 경우 null 반환
+  return findPathInStructure(rootStructure);
 };
 
 const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
