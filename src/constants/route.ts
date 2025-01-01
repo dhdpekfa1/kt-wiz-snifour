@@ -8,6 +8,8 @@ export enum ApiRoutes {
   PressDetail = '/article/wizpressdetail',
   Highlight = '/article/wizhighlightlistpage',
   HighlightDetail = '/article/wizhighlightdetail',
+  Story = '/article/wizstorylistpage',
+  StoryDetail = '/article/wizstorydetail',
 }
 
 // page routes: 페이지 경로 (TODO: 페이지 경로 업데이트)
@@ -19,6 +21,8 @@ export enum PageRoutes {
   PressDetail = '/media/wizpress/:id',
   Highlight = '/media/highlight',
   HighlightDetail = '/media/highlight/:id',
+  Story = '/media/wizstory',
+  StoryDetail = '/media/wizstory/:id',
 }
 
 // 현재 경로의 페이지가 존재하는지 확인하는 함수
