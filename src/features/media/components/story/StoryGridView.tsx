@@ -1,28 +1,16 @@
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { cn } from '@/lib/utils';
 
 import GridArticle from '@/features/media/common/GridArticle';
 import PlayButton from '@/features/media/common/PlayButton';
-import { useGetStoryList } from '../../apis/story/StoryApi.query';
 import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import { GridArticleSkeleton } from '../../common/skeleton';
 import { LoadingView } from '../../common/LoadingView';
+import useStoryListQuery from '../../hooks/useStoryListQuery';
 
 const StoryGridView = () => {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const {
-    data: storyList,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useGetStoryList({
-    variables: {
-      searchWord: searchParams.get('searchWord') || '',
-      itemCount: 12,
-      pageNum: 1,
-    },
-  });
+  const { storyList, isLoading, isError, isSuccess } = useStoryListQuery();
 
   if (!isLoading && isSuccess && !storyList?.list?.length) {
     return <NotFoundSearchResult />;

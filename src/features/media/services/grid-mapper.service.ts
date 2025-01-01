@@ -1,9 +1,11 @@
-import { GridViewType, HighlightItem } from '@/features/media/types';
+import { GridViewType, HighlightListItem } from '@/features/media/types';
 import { StoryItem } from '../types/story';
 import { format } from 'date-fns';
 
 // GridViewType으로 변환하는 팩토리 함수
-const createGridViewItem = (item: HighlightItem | StoryItem): GridViewType => ({
+const createGridViewItem = (
+  item: HighlightListItem | StoryItem
+): GridViewType => ({
   artcSeq: item.artcSeq,
   refSeq: 'refSeq' in item ? item.refSeq : 0,
   nextSeq: item.artcNextSeq,

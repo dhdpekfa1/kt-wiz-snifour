@@ -15,6 +15,7 @@ type MediaDetailBodyProps = {
   title: string;
   content: string;
   tags?: string[];
+  videoLink?: string;
 };
 
 type NavigationConfig = {
@@ -63,11 +64,17 @@ const Header = ({ title, createdAt, views }: MediaDetailHeaderProps) => {
 };
 
 // Body Component
-const Body = ({ title, imgFilePath, content, tags }: MediaDetailBodyProps) => {
+const Body = ({
+  title,
+  imgFilePath,
+  content,
+  tags,
+  videoLink,
+}: MediaDetailBodyProps) => {
   const textContent =
     new DOMParser()
       .parseFromString(content, 'text/html')
-      .body.textContent?.trim() || 'Content';
+      .body.textContent?.trim() || '';
 
   return (
     <article className="prose prose-invert max-w-none">
@@ -78,7 +85,18 @@ const Body = ({ title, imgFilePath, content, tags }: MediaDetailBodyProps) => {
           className="w-full aspect-video object-cover rounded-lg mb-8"
         />
       )}
-      <div className="text-[#9ca3af] space-y-6">
+      {videoLink && (
+        <iframe
+          title="title"
+          src={
+            videoLink.includes('youtube')
+              ? videoLink
+              : `https://www.ktwiz.co.kr/${videoLink}`
+          }
+          className="w-full aspect-video"
+        />
+      )}
+      <div className="text-[#9ca3af] my-4">
         <p className="text-lg leading-relaxed">{textContent}</p>
       </div>
       {tags && (
@@ -206,7 +224,11 @@ const Navigation = ({
     listButton,
     validateLink = (link: string | undefined): boolean => {
       if (!link) return false;
-      return link.trim() !== '' && !link.includes('undefined');
+      return (
+        link.trim() !== '' &&
+        !link.includes('undefined') &&
+        !!Number(link.split('/').slice(-1)[0])
+      );
     },
   } = config;
 

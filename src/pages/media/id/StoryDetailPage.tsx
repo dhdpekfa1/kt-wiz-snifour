@@ -1,57 +1,76 @@
+import { Button } from '@/components/ui';
+import { PageRoutes } from '@/constants/route';
 import Breadcrumb from '@/features/common/Breadcrumb';
-import { useGetStoryDetail } from '@/features/media/apis/story/StoryApi.query';
-import { format } from 'date-fns';
-import { EyeIcon } from 'lucide-react';
-import { useParams } from 'react-router';
+import Layout from '@/features/common/Layout';
+
+import { MediaDetail } from '@/features/media/common/MediaDetail';
+import useStoryDetailQuery from '@/features/media/hooks/useStoryDetailQuery';
+import { toUrl } from '@/lib';
+import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router';
 
 function StoryDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   if (!id) {
     return <div>Highlight ID가 없습니다. 올바른 URL로 접근해 주세요.</div>;
   }
 
-  const { data, isLoading, isError } = useGetStoryDetail({
-    variables: { artcSeq: id },
-  });
+  const { data, isLoading, isError, prefetchStory } = useStoryDetailQuery();
 
-  if (isLoading) {
-    return <div>데이터 로딩 중입니다...</div>;
-  }
-
-  if (isError) {
-    return <div>에러가 발생했습니다.</div>;
+  if (isLoading || isError || !data) {
+    return (
+      <Layout>
+        <MediaDetail.Container />
+      </Layout>
+    );
   }
 
   return (
-    <div className="text-white">
+    <Layout>
       <Breadcrumb />
+      <MediaDetail.Container>
+        <div className="flex items-center justify-between mb-8">
+          <Button onClick={() => navigate(PageRoutes.Story)} className="px-0">
+            <ArrowLeftIcon className="w-4 h-4 mr-2" />
+            뒤로
+          </Button>
+        </div>
 
-      <div className="h-full flex items-center justify-center py-8">
-        {data && (
-          <div className="relative max-w-5xl w-full mx-8">
-            <div className="mb-8">
-              <h3 className="text-xl font-bold">{data.artcTitle}</h3>
-              <div className="text-sm text-neutral-400 flex items-center gap-2">
-                <p>{format(new Date(data.regDttm || ''), 'yyyy-MM-dd')}</p>
-                <div className="flex items-center gap-1">
-                  <EyeIcon className="w-4 h-4" />
-                  <span>{data.viewCnt}</span>
-                </div>
-              </div>
-            </div>
-            <iframe
-              title={data.artcTitle}
-              src={data.videoLink}
-              className="w-full aspect-video"
-            />
-            <p className="text-center my-4 text-neutral-400">
-              {data.artcContents}
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
+        <MediaDetail.Header
+          title={data.artcTitle}
+          createdAt={data.regDttm}
+          views={data.viewCnt}
+        />
+        <MediaDetail.Body
+          title={data.artcTitle}
+          videoLink={data.videoLink}
+          content={data.artcContents}
+        />
+        <MediaDetail.Navigation
+          config={{
+            prevLink: toUrl(PageRoutes.StoryDetail, {
+              id: data.artcPrevSeq.toString(),
+            }),
+            nextLink: toUrl(PageRoutes.StoryDetail, {
+              id: data.artcNextSeq.toString(),
+            }),
+            onPrevClick: () => prefetchStory(data.artcPrevSeq),
+            onNextClick: () => prefetchStory(data.artcNextSeq),
+            listButton: {
+              onClick: () => navigate('/media/wizstory'),
+              text: (
+                <>
+                  <ListOrderedIcon className="w-4 h-4 mr-2" />
+                  <span>목록으로</span>
+                </>
+              ),
+            },
+          }}
+        />
+      </MediaDetail.Container>
+    </Layout>
   );
 }
 
