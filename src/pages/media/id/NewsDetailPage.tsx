@@ -8,6 +8,7 @@ import Layout from '@/features/common/Layout';
 import useNewsDetailQuery from '@/features/media/hooks/useNewsDetailQuery';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { toUrl } from '@/lib';
+import Breadcrumb from '@/features/common/Breadcrumb';
 
 /** 뉴스 상세 페이지 */
 const NewsDetailPage = () => {
@@ -29,6 +30,7 @@ const NewsDetailPage = () => {
 
   return (
     <Layout>
+      <Breadcrumb />
       <MediaDetail.Container>
         <div className="flex items-center justify-between mb-8">
           <Button onClick={() => navigate(PageRoutes.News)} className="px-0">

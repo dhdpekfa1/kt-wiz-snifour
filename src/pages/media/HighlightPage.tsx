@@ -6,7 +6,7 @@ import HighlightGridView from '@/features/media/components/highlight/HighlightGr
 
 import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
-import { cn } from '@/lib/utils';
+import Breadcrumb from '@/features/common/Breadcrumb';
 
 /** 하이라이트 페이지 */
 const HighlightPage = () => {
@@ -27,17 +27,19 @@ const HighlightPage = () => {
         </Banner>
       }
     >
-      <div className={cn('media-header', 'justify-end')}>
-        <SearchBar
-          value={searchParams.get('searchWord') || ''}
-          onSubmit={(searchWord) =>
-            setSearchParams({
-              ...Object.fromEntries(searchParams.entries()),
-              searchWord,
-            })
-          }
-        />
-      </div>
+      <Breadcrumb
+        leftComponent={
+          <SearchBar
+            value={searchParams.get('searchWord') || ''}
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
+        }
+      />
       <HighlightGridView />
     </MediaLayout>
   );

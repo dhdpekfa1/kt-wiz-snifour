@@ -8,6 +8,7 @@ import { MediaDetail } from '@/features/media/common/MediaDetail';
 import { toUrl } from '@/lib';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
+import Breadcrumb from '@/features/common/Breadcrumb';
 
 /** 보도자료 상세 페이지 */
 const PressDetailPage = () => {
@@ -29,6 +30,7 @@ const PressDetailPage = () => {
 
   return (
     <Layout>
+      <Breadcrumb />
       <MediaDetail.Container>
         <div className="flex items-center justify-between mb-8">
           <Button onClick={() => navigate(PageRoutes.Press)} className="px-0">

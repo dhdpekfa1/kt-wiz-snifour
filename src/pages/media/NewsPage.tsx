@@ -7,6 +7,7 @@ import Banner from '@/features/common/Banner';
 import Layout from '@/features/common/Layout';
 import SearchBar from '@/features/media/common/SearchBar';
 import NewsListView from '@/features/media/components/news/NewsListView';
+import Breadcrumb from '@/features/common/Breadcrumb';
 
 export const NEWS_TABS_CONFIG = [
   { value: 'news', path: '/wiznews', label: 'wiz 소식' },
@@ -60,17 +61,20 @@ const NewsPage = () => {
               ))}
             </TabsList>
           </div>
-
-          <SearchBar
-            onSubmit={(searchWord) =>
-              setSearchParams({
-                ...Object.fromEntries(searchParams.entries()),
-                searchWord,
-              })
-            }
-          />
         </div>
-
+        <Breadcrumb
+          leftComponent={
+            <SearchBar
+              value={searchParams.get('searchWord') || ''}
+              onSubmit={(searchWord) =>
+                setSearchParams({
+                  ...Object.fromEntries(searchParams.entries()),
+                  searchWord,
+                })
+              }
+            />
+          }
+        />
         <NewsListView />
       </Tabs>
     </Layout>
