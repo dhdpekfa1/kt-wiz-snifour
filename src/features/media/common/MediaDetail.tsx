@@ -95,7 +95,9 @@ const Body = ({
         />
       )}
       <div className="text-[#9ca3af] my-4">
-        <div className="text-lg leading-relaxed">{contentNodes}</div>
+        <div className="text-lg leading-relaxed text-center break-keep">
+          {contentNodes}
+        </div>
       </div>
       {tags && (
         <div className="mt-8 flex flex-wrap gap-2">

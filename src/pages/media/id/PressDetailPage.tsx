@@ -1,5 +1,5 @@
 import Layout from '@/features/common/Layout';
-import usePressDetailQuery from '@/features/media/hooks/usePressDetailQuery';
+import usePressDetailQuery from '@/features/media/hooks/news/usePressDetailQuery';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 
 import { Button } from '@/components/ui';

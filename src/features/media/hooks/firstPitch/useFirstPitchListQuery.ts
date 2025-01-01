@@ -14,7 +14,7 @@ const useFirstPitchListQuery = () => {
 
   const variables = {
     pageNum: QueryParser.toNumber(searchParams.get('pageNum')) ?? 1,
-    itemCount: 12,
+    itemCount: 10,
     searchWord: QueryParser.toString(searchParams.get('searchWord')) ?? '',
   };
 

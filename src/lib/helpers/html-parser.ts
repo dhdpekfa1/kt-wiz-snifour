@@ -13,9 +13,13 @@ export const htmlToNode = (htmlText: string) => {
       case Node.ELEMENT_NODE: {
         const { tagName, attributes, childNodes } = node;
         const props: React.HTMLAttributes<HTMLElement> = {};
+        const tag = tagName.toLowerCase();
 
         // attribute를 props로 복사 (style은 제외)
         for (const attr of attributes) {
+          if (tag === 'font') {
+            continue;
+          }
           if (attr.name === 'style' || attr.name === 'class') {
             continue;
           }
@@ -33,7 +37,7 @@ export const htmlToNode = (htmlText: string) => {
         );
 
         return createElement(
-          tagName.toLowerCase(),
+          tag === 'font' ? 'span' : tag,
           {
             ...props,
             key: Math.random(),

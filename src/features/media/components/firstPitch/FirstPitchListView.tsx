@@ -5,7 +5,7 @@ import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import { cn } from '@/lib/utils';
 import { LoadingView } from '../../common/LoadingView';
 import { ListArticleSkeleton } from '../../common/skeleton';
-import Pagination from '@/features/media/common/Pagination';
+import PaginationList from '../../common/PaginationList';
 
 const FirstPitchListView = () => {
   const { pageNum, itemCount, onPagination } = usePagination();
@@ -52,7 +52,7 @@ const FirstPitchListView = () => {
               </ListArticle>
             )
           )}
-          <Pagination
+          <PaginationList
             currentPage={pageNum}
             limit={itemCount}
             total={total || 0}

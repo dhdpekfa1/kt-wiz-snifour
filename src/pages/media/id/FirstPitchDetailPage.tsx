@@ -5,17 +5,18 @@ import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 import Layout from '@/features/common/Layout';
-import useNewsDetailQuery from '@/features/media/hooks/news/useNewsDetailQuery';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { toUrl } from '@/lib';
 import Breadcrumb from '@/features/common/Breadcrumb';
+import useFirstPitchDetailQuery from '@/features/media/hooks/firstPitch/useFirstPitchDetailQuery';
 
 /** 뉴스 상세 페이지 */
 const FirstPitchDetailPage = () => {
   useScrollTo();
 
   const navigate = useNavigate();
-  const { data, prefetchNews, isLoading, isError } = useNewsDetailQuery();
+  const { data, prefetchFirstPitch, isLoading, isError } =
+    useFirstPitchDetailQuery();
 
   // MEMO:
   // 로딩 중일때 스켈레톤이 오히려 사용자 경험에 방해가 되는 것 같아 빈테이너를 반환합니다.
@@ -40,21 +41,21 @@ const FirstPitchDetailPage = () => {
         </div>
 
         <MediaDetail.Header
-          title={data.title}
-          createdAt={data.createdAt}
-          views={data.viewCount}
+          title={data.artcTitle}
+          createdAt={data.regDttm}
+          views={data.viewCnt}
         />
-        <MediaDetail.Body title={data.title} content={data.content} />
+        <MediaDetail.Body title={data.artcTitle} content={data.artcContents} />
         <MediaDetail.Navigation
           config={{
             prevLink: toUrl(PageRoutes.NewsDetail, {
-              id: data.prevSeq.toString(),
+              id: data.artcPrevSeq.toString(),
             }),
             nextLink: toUrl(PageRoutes.NewsDetail, {
-              id: data.nextSeq.toString(),
+              id: data.artcNextSeq.toString(),
             }),
-            onPrevClick: () => prefetchNews(data.prevSeq),
-            onNextClick: () => prefetchNews(data.nextSeq),
+            onPrevClick: () => prefetchFirstPitch(data.artcPrevSeq),
+            onNextClick: () => prefetchFirstPitch(data.artcNextSeq),
             listButton: {
               onClick: () => navigate('/media/wiznews'),
               text: (

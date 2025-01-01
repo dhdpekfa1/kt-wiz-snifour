@@ -27,6 +27,7 @@ import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 import StoryDetailPage from './pages/media/id/StoryDetailPage';
 import FirstPitchPage from './pages/media/FirstPitchPage';
+import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 
 function App() {
   return (
@@ -87,6 +88,10 @@ function App() {
             <Route
               path="/media/highlight/:id"
               element={<HighlightDetailPage />}
+            />
+            <Route
+              path="/media/firstpitch/:id"
+              element={<FirstPitchDetailPage />}
             />
 
             {/* 404 */}
