@@ -44,11 +44,7 @@ const NewsDetailPage = () => {
           createdAt={data.createdAt}
           views={data.viewCount}
         />
-        <MediaDetail.Body
-          title={data.title}
-          imgFilePath={data.imgFilePath}
-          content={data.content}
-        />
+        <MediaDetail.Body title={data.title} content={data.content} />
         <MediaDetail.Navigation
           config={{
             prevLink: toUrl(PageRoutes.NewsDetail, {

@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui';
+import { htmlToNode } from '@/lib/helpers/html-parser';
 import { format } from 'date-fns';
 import { ArrowLeftIcon, ArrowRightIcon, EyeIcon } from 'lucide-react';
 import { Link } from 'react-router';
@@ -71,10 +72,7 @@ const Body = ({
   tags,
   videoLink,
 }: MediaDetailBodyProps) => {
-  const textContent =
-    new DOMParser()
-      .parseFromString(content, 'text/html')
-      .body.textContent?.trim() || '';
+  const contentNodes = htmlToNode(content);
 
   return (
     <article className="prose prose-invert max-w-none">
@@ -97,7 +95,7 @@ const Body = ({
         />
       )}
       <div className="text-[#9ca3af] my-4">
-        <p className="text-lg leading-relaxed">{textContent}</p>
+        <div className="text-lg leading-relaxed">{contentNodes}</div>
       </div>
       {tags && (
         <div className="mt-8 flex flex-wrap gap-2">
