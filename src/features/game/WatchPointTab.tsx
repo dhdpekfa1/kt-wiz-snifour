@@ -86,6 +86,8 @@ const WatchPointTab = () => {
             />
           }
           onDateChange={handleDateChange}
+          disablePrev={!watchData.schedule.prev}
+          disableNext={!watchData.schedule.next}
         />
 
         {/* 선발투수 비교 */}

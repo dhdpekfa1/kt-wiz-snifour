@@ -11,6 +11,8 @@ interface MatchBoardProps {
   gameTable: ReactNode;
   crowd?: number;
   onDateChange: (direction: 'prev' | 'next') => void;
+  disablePrev?: boolean;
+  disableNext?: boolean;
 }
 
 const MatchBoard = ({
@@ -22,6 +24,8 @@ const MatchBoard = ({
   gameTable,
   crowd,
   onDateChange,
+  disablePrev = false,
+  disableNext = false,
 }: MatchBoardProps) => {
   return (
     <div className="w-full flex flex-col items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded overflow-hidden">
@@ -29,8 +33,13 @@ const MatchBoard = ({
       <div className="flex justify-center items-center gap-6 md:gap-10 text-white px-4 py-4">
         <button
           type="button"
+          disabled={disablePrev}
           onClick={() => onDateChange('prev')}
-          className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
+          className={`flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded ${
+            disablePrev
+              ? 'opacity-30 cursor-not-allowed'
+              : 'hover:bg-wiz-white hover:bg-opacity-20'
+          }`}
         >
           <IconLeft className="w-2/5 h-auto" />
         </button>
@@ -46,7 +55,12 @@ const MatchBoard = ({
         <button
           type="button"
           onClick={() => onDateChange('next')}
-          className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
+          disabled={disableNext}
+          className={`flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded ${
+            disableNext
+              ? 'opacity-30'
+              : 'hover:bg-wiz-white hover:bg-opacity-20'
+          }`}
         >
           <IconRight className="w-2/5 h-auto" />
         </button>
