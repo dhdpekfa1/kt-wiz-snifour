@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   CardDescription,
@@ -12,15 +11,6 @@ import Layout from '@/features/common/Layout';
 import { Link } from 'react-router';
 
 const SignupPage = () => {
-  // 일반 가입
-  const handleBasic = () => {
-    console.log('TODO');
-  };
-  //14세 미만
-  const handleUnder = () => {
-    console.log('TODO');
-  };
-
   return (
     <Layout
       header={
@@ -63,18 +53,18 @@ const SignupPage = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex gap-2 md:gap-6">
-            <Button
-              className="w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70 h-[100px] md:h-[150px] lg:h-[220px] md:text-lg lg:text-2xl"
-              onClick={handleBasic}
+            <Link
+              className="flex items-center justify-center rounded-md w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70 h-[100px] md:h-[150px] lg:h-[220px] text-sm md:text-lg lg:text-2xl"
+              to={'/join/step'}
             >
               일반 회원가입
-            </Button>
-            <Button
-              className="w-full m text-white bg-wiz-white bg-opacity-50 hover:bg-wiz-white hover:bg-opacity-30 h-[100px] md:h-[150px] lg:h-[220px] md:text-lg lg:text-2xl"
-              onClick={handleUnder}
+            </Link>
+            <Link
+              className="flex items-center justify-center rounded-md w-full m text-white bg-wiz-white bg-opacity-50 hover:bg-wiz-white hover:bg-opacity-30 h-[100px] md:h-[150px] lg:h-[220px] text-sm  md:text-lg lg:text-2xl"
+              to={'/join/step'}
             >
               14세 미만 회원가입
-            </Button>
+            </Link>
           </CardContent>
           <div className="flex flex-col mt-6 gap-2 bg-wiz-white bg-opacity-10 m-5 p-4 rounded-md">
             <div className="flex flex-col break-keep text-sm md:text-base lg:text-lg">
