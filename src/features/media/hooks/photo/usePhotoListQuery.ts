@@ -13,7 +13,7 @@ const usePhotoListQuery = () => {
   const startDate = QueryParser.toString(searchParams.get('startDate')) ?? '';
   const endDate = QueryParser.toString(searchParams.get('endDate')) ?? '';
 
-  const variables: PhotoListDto = { type, itemCount: 6 };
+  const variables: PhotoListDto = { type, itemCount: 6, pageNum: 1 };
   if (searchWord) {
     variables.searchWord = searchWord;
   }

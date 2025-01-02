@@ -27,6 +27,7 @@ type PhotoListDto = {
   itemCount?: number;
   startDate?: string;
   endDate?: string;
+  pageNum?: number;
 };
 
 type PhotoResponse = {
