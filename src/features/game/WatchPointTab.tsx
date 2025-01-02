@@ -1,6 +1,7 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
+import { useEffect, useState } from 'react';
 import {
   MatchBoard,
   StartingPitcherTable,
@@ -15,30 +16,40 @@ const WatchPointTab = () => {
     loading: recentLoading,
     error: recentError,
   } = useRecentMatches();
-  const { watchData, loading, error } = useWatchPoint(
-    String(recentMatchData?.gameDate),
-    String(recentMatchData?.gmkey)
-  );
+  const [gameDate, setGameDate] = useState(String(recentMatchData?.gameDate));
+  const [gameKey, setGameKey] = useState(String(recentMatchData?.gmkey));
 
-  if (!recentMatchData || recentLoading || !watchData || loading) {
-    return null;
+  const { watchData, loading, error } = useWatchPoint(gameDate, gameKey);
+
+  useEffect(() => {
+    if (recentMatchData) {
+      setGameDate(String(recentMatchData.gameDate));
+      setGameKey(String(recentMatchData.gmkey));
+    }
+  }, [recentMatchData]);
+
+  if (
+    recentLoading ||
+    !recentMatchData ||
+    !gameDate ||
+    !gameKey ||
+    loading ||
+    !watchData
+  ) {
+    return <div>Loading...</div>;
   }
 
   if (recentError || error) {
     return <div>{recentError ? recentError : error}</div>;
   }
-  console.log(watchData.schedule);
-
   // 날짜 변경 핸들러
   const handleDateChange = (direction: 'prev' | 'next') => {
     if (direction === 'prev' && watchData.schedule.prev) {
-      console.log('이전 경기:', watchData.schedule.prev.gameDate);
-      console.log('이전 경기:', watchData.schedule.prev.gmkey);
-      // 이전 경기 데이터 업데이트
+      setGameDate(String(watchData.schedule.prev.gameDate));
+      setGameKey(String(watchData.schedule.prev.gmkey));
     } else if (direction === 'next' && watchData.schedule.next) {
-      console.log('다음 경기:', watchData.schedule.next.gameDate);
-      console.log('다음 경기:', watchData.schedule.next.gmkey);
-      // 다음 경기 데이터 업데이트
+      setGameDate(String(watchData.schedule.next.gameDate));
+      setGameKey(String(watchData.schedule.next.gmkey));
     }
   };
 
