@@ -1,29 +1,46 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
-// import { useState } from "react";
 import {
   MatchBoard,
   StartingPitcherTable,
   TeamLineup,
 } from './components/watch-point';
+import useRecentMatches from './hooks/watch-point/useRecentMatches';
 import useWatchPoint from './hooks/watch-point/useWatchPoint';
 
 const WatchPointTab = () => {
-  // const [gameDate, setGameDate] = useState("20240922");
-  // const [gameKey, setGameKey] = useState("20240922SKKT0");
+  const {
+    recentMatchData,
+    loading: recentLoading,
+    error: recentError,
+  } = useRecentMatches();
   const { watchData, loading, error } = useWatchPoint(
-    '20240922',
-    '20240922SKKT0'
+    String(recentMatchData?.gameDate),
+    String(recentMatchData?.gmkey)
   );
 
-  if (!watchData || loading) {
+  if (!recentMatchData || recentLoading || !watchData || loading) {
     return null;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (recentError || error) {
+    return <div>{recentError ? recentError : error}</div>;
   }
+  console.log(watchData.schedule);
+
+  // 날짜 변경 핸들러
+  const handleDateChange = (direction: 'prev' | 'next') => {
+    if (direction === 'prev' && watchData.schedule.prev) {
+      console.log('이전 경기:', watchData.schedule.prev.gameDate);
+      console.log('이전 경기:', watchData.schedule.prev.gmkey);
+      // 이전 경기 데이터 업데이트
+    } else if (direction === 'next' && watchData.schedule.next) {
+      console.log('다음 경기:', watchData.schedule.next.gameDate);
+      console.log('다음 경기:', watchData.schedule.next.gmkey);
+      // 다음 경기 데이터 업데이트
+    }
+  };
 
   return (
     <div className="w-full flex my-20">
@@ -57,6 +74,7 @@ const WatchPointTab = () => {
               visitTeamWinLose={watchData?.visitTeamWinLose}
             />
           }
+          onDateChange={handleDateChange}
         />
 
         {/* 선발투수 비교 */}
