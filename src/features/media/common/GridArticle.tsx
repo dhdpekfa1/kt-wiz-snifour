@@ -121,6 +121,21 @@ const GridArticleTitle = ({
   return <h3 className={cn('media-article-title', className)}>{title}</h3>;
 };
 
+// SubTitle 컴포넌트
+const GridArticleSubTitle = ({
+  title,
+  className,
+}: {
+  title: string;
+  className?: string;
+}) => {
+  return (
+    <h4 className={cn('media-article-title', 'text-base', className)}>
+      {title}
+    </h4>
+  );
+};
+
 // Footer 컴포넌트
 const GridArticleFooter = ({
   date,
@@ -149,6 +164,7 @@ GridArticle.Thumbnail = GridArticleThumbnail;
 GridArticle.Video = GridArticleVideo;
 GridArticle.Overlay = GridArticleOverlay;
 GridArticle.Title = GridArticleTitle;
+GridArticle.SubTitle = GridArticleSubTitle;
 GridArticle.Footer = GridArticleFooter;
 
 export default GridArticle;

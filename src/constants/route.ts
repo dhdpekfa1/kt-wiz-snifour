@@ -12,6 +12,9 @@ export enum ApiRoutes {
   StoryDetail = '/article/wizstorydetail',
   FirstPitch = '/article/wizfirstpitchlistpage',
   FirstPitchDetail = '/article/wizfirstpitchdetail',
+  GamePhoto = '/article/wizphotolist1page',
+  TrainingPhoto = '/article/wizphotolist2page',
+  EventPhoto = '/article/wizphotolist3page',
 }
 
 // page routes: 페이지 경로 (TODO: 페이지 경로 업데이트)
@@ -27,6 +30,9 @@ export enum PageRoutes {
   StoryDetail = '/media/wizstory/:id',
   FirstPitch = '/media/firstpitch',
   FirstPitchDetail = '/media/firstpitch/:id',
+  GamePhoto = '/media/photos/1',
+  TrainingPhoto = '/media/photos/2',
+  EventPhoto = '/media/photos/3',
 }
 
 // 현재 경로의 페이지가 존재하는지 확인하는 함수
