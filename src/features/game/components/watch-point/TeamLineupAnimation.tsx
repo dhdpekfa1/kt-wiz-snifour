@@ -11,7 +11,7 @@ const TeamLineupAnimation = ({
   delay: number; // 각 요소의 지연 시간
 }) => {
   const { ref, inView } = useInView({
-    // triggerOnce: true, // 한 번만 실행 -> false로 설정할 경우 매번 실행(기본값 false)
+    triggerOnce: true, // 한 번만 실행 -> false로 설정할 경우 매번 실행(기본값 false)
     threshold: 0.1, // 요소가 10% 보이면 트리거
   });
 
