@@ -14,7 +14,7 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
     },
     '3': {
       style:
-        'absolute top-44 right-16 md:top-56 md:right-20 lg:bottom-44 lg:right-24',
+        'absolute top-44 right-16 md:top-56 md:right-16 lg:bottom-44 lg:right-20',
       label: '3',
     },
     '4': {
@@ -54,7 +54,7 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 md:flex-row">
+    <div className="flex flex-col items-center gap-4 md:flex-row lg:flex-col">
       <img src={logoUrl} alt="team logo" className="w-24 h-auto" />
       <div className="w-[300px] md:w-[380px] relative mt-2 p-10  bg-wiz-white bg-opacity-10 rounded-xl">
         <img src="/assets/ground.png" alt="diamond" className="w-full h-auto" />
