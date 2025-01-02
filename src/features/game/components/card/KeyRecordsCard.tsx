@@ -59,10 +59,10 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {tableRows.map((row, index) => (
+      {tableRows.map((row) => (
         <Card
           // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-          key={index}
+          key={row.label}
           className="hover:scale-105 transition-transform ease-in-out duration-500 rounded-lg"
         >
           <CardContent className="flex flex-col justify-start p-3 sm:p-4">
