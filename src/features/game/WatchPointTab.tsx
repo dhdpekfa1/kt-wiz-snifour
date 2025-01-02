@@ -4,7 +4,7 @@ import { MatchSummaryTable } from '@/features/game/components/table';
 import { useEffect, useState } from 'react';
 import { MatchBoard } from './components/common';
 import { StartingPitcherTable, TeamLineup } from './components/watch-point';
-import useRecentMatches from './hooks/watch-point/useRecentMatches';
+import useRecentMatches from './hooks/common/useRecentMatches';
 import useWatchPoint from './hooks/watch-point/useWatchPoint';
 
 const WatchPointTab = () => {
