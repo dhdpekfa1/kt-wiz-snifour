@@ -7,7 +7,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui';
-import { Separator } from '@radix-ui/react-select';
 import { SocialIcon } from 'react-social-icons';
 import type { Cheerleader } from '../../types/cheerleader';
 
@@ -41,35 +40,38 @@ function CheerleaderDialog({ data }: cheerleaderDialogProps) {
       </DialogTrigger>
       <DialogContent
         style={{ backgroundImage: `url(${data.titleImgPath})` }}
-        className="sm:max-w-[830px] h-[450px] text-wiz-black flex flex-col items-end"
+        className="w-[80%] sm:max-w-[700px] md:max-w-[710px] h-[320px] sm:h-[410px] text-wiz-black justify-start sm:justify-end p-3 rounded-md"
       >
-        <div className="m-4">
-          <DialogHeader>
-            <p className="text-wiz-red font-bold">{data.leaderPosition}</p>
+        <div className="mt-8 mx-4 sm:mt-10 lg:m-10">
+          <DialogHeader className="flex flex-col items-start">
+            <p className="text-wiz-white sm:text-wiz-red font-bold">
+              {data.leaderPosition}
+            </p>
             <div className="flex gap-4 items-center">
-              <DialogTitle className="text-2xl font-bold">
+              <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-bold">
                 {data.leaderName}
               </DialogTitle>
               <SocialIcon
                 target="_blank"
                 url={`https://www.instagram.com/${data.snsId}/`}
-                style={{ height: 35, width: 35 }}
+                style={{ height: 30, width: 30 }}
+                className="sm:h-[35px] sm:w-[35px]"
               />
             </div>
-            <p className="text-xl text-gray-400">{data.leaderEngName}</p>
+            <p className="text-lg sm:text-xl text-gray-400">
+              {data.leaderEngName}
+            </p>
           </DialogHeader>
-          <DialogDescription className="mt-4 flex flex-col gap-2 bg-wiz-white p-3 rounded-md">
+          <DialogDescription className="my-4 p-4 flex flex-col gap-2 bg-wiz-white rounded-md">
             {dialogContentItems.map((item) => (
-              <div className="flex items-baseline gap-4" key={item.label}>
-                <p className="font-semibold text-lg">{item.label}</p>
+              <div
+                className="flex items-baseline gap-2 text-xs sm:text-sm lg:text-base"
+                key={item.label}
+              >
+                <p className="font-semibold">{item.label}</p>
                 <p className="font-medium">{item.prop}</p>
               </div>
             ))}
-            <div className="mt-1">
-              <p className="font-semibold text-lg mb-1">경력</p>
-              <Separator className="w-full h-0.5 bg-wiz-red mb-2" />
-              <p className="font-medium">{data.leaderCareer}</p>
-            </div>
           </DialogDescription>
         </div>
       </DialogContent>
