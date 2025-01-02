@@ -39,6 +39,7 @@ const BoxscoreTab = () => {
       }
     }
   };
+  console.log('matchData', matchData.schedule);
 
   return (
     <div className="w-full flex justify-center my-20">
@@ -68,6 +69,8 @@ const BoxscoreTab = () => {
           gameTable={<MatchScoreTable data={matchData?.scoreboard} />}
           crowd={matchData?.schedule.current.crowdCn}
           onDateChange={handleDateChange}
+          disablePrev={!matchData.schedule.prev}
+          disableNext={!matchData.schedule.next}
         />
 
         {/* 주요 기록 */}
