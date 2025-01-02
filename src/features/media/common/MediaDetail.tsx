@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui';
+import { htmlToNode } from '@/lib/helpers/html-parser';
 import { format } from 'date-fns';
 import { ArrowLeftIcon, ArrowRightIcon, EyeIcon } from 'lucide-react';
 import { Link } from 'react-router';
@@ -15,6 +16,7 @@ type MediaDetailBodyProps = {
   title: string;
   content: string;
   tags?: string[];
+  videoLink?: string;
 };
 
 type NavigationConfig = {
@@ -38,7 +40,7 @@ const MediaDetailContainer = ({
   className?: string;
 }) => (
   <div
-    className={`max-w-4xl  mx-auto min-h-[1100px] px-4 sm:px-6 lg:px-8 py-8 ${className}`}
+    className={`w-full mx-auto min-h-[1100px] px-4 sm:px-6 lg:px-8 py-8 ${className}`}
   >
     {children || null}
   </div>
@@ -63,11 +65,14 @@ const Header = ({ title, createdAt, views }: MediaDetailHeaderProps) => {
 };
 
 // Body Component
-const Body = ({ title, imgFilePath, content, tags }: MediaDetailBodyProps) => {
-  const textContent =
-    new DOMParser()
-      .parseFromString(content, 'text/html')
-      .body.textContent?.trim() || 'Content';
+const Body = ({
+  title,
+  imgFilePath,
+  content,
+  tags,
+  videoLink,
+}: MediaDetailBodyProps) => {
+  const contentNodes = htmlToNode(content);
 
   return (
     <article className="prose prose-invert max-w-none">
@@ -78,8 +83,21 @@ const Body = ({ title, imgFilePath, content, tags }: MediaDetailBodyProps) => {
           className="w-full aspect-video object-cover rounded-lg mb-8"
         />
       )}
-      <div className="text-[#9ca3af] space-y-6">
-        <p className="text-lg leading-relaxed">{textContent}</p>
+      {videoLink && (
+        <iframe
+          title="title"
+          src={
+            videoLink.includes('youtube')
+              ? videoLink
+              : `https://www.ktwiz.co.kr/${videoLink}`
+          }
+          className="w-full aspect-video"
+        />
+      )}
+      <div className="text-[#9ca3af] my-4">
+        <div className="text-lg leading-relaxed text-center break-keep">
+          {contentNodes}
+        </div>
       </div>
       {tags && (
         <div className="mt-8 flex flex-wrap gap-2">
@@ -206,7 +224,11 @@ const Navigation = ({
     listButton,
     validateLink = (link: string | undefined): boolean => {
       if (!link) return false;
-      return link.trim() !== '' && !link.includes('undefined');
+      return (
+        link.trim() !== '' &&
+        !link.includes('undefined') &&
+        !!Number(link.split('/').slice(-1)[0])
+      );
     },
   } = config;
 

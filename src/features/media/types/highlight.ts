@@ -1,4 +1,4 @@
-type HighlightItem = {
+type HighlightListItem = {
   artcNextSeq: number; // 다음 기사 순번 (현재는 0으로 설정)
   artcPrevSeq: number; // 이전 기사 순번 (현재는 0으로 설정)
   artcSeq: number; // 기사 고유 번호
@@ -20,14 +20,53 @@ type HighlightItem = {
   videoLink: string; // 영상 링크
 };
 
+type HighlightItem = {
+  artcContents: string;
+  artcNextSeq: number;
+  artcPrevSeq: number;
+  artcSeq: number;
+  artcTitle: string;
+  boardCatSeq: number;
+  boardCode: string;
+  delYn: string;
+  imgFilePath: string;
+  maxArticlePerPage: number;
+  regDttm: number;
+  regr: string;
+  updDttm: number;
+  updr: string;
+  useYn: string;
+  videoLink: string;
+  viewCnt: number;
+};
+
 type HighlightResponse = {
   data: {
-    list: HighlightItem[];
+    list: HighlightListItem[];
+  };
+};
+
+type HighlightDetailResponse = {
+  data: {
+    article: HighlightItem;
   };
 };
 
 type HighlightListDto = {
-  count: string;
+  searchWord: string;
+  itemCount: number;
+  pageNum: number;
 };
 
-export { type HighlightItem, type HighlightResponse, type HighlightListDto };
+type HighlightDetailDto = {
+  artcSeq: string;
+};
+
+export {
+  type HighlightListItem,
+  type HighlightItem,
+  type HighlightResponse,
+  type HighlightListDto,
+  type HighlightDetailDto,
+  type HighlightDetailResponse,
+};

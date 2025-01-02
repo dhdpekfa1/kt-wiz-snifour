@@ -1,17 +1,18 @@
+import { useSearchParams } from 'react-router';
+
 import Banner from '@/features/common/Banner';
-
 import MediaLayout from '@/features/media/common/MediaLayout';
-
 import SearchBar from '@/features/media/common/SearchBar';
-
-import StoryContent from '@/features/media/components/story/StoryContent';
 
 import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
-import { cn } from '@/lib/utils';
+import Breadcrumb from '@/features/common/Breadcrumb';
+import StoryGridView from '@/features/media/components/story/StoryGridView';
 
 /** 스토리 페이지 */
 const StoryPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <MediaLayout
       header={
@@ -30,10 +31,21 @@ const StoryPage = () => {
         </Banner>
       }
     >
-      <div className={cn('media-header', 'justify-end')}>
-        <SearchBar onSubmit={() => {}} />
-      </div>
-      <StoryContent />
+      <Breadcrumb
+        leftComponent={
+          <SearchBar
+            value={searchParams.get('searchWord') || ''}
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
+        }
+      />
+
+      <StoryGridView />
     </MediaLayout>
   );
 };

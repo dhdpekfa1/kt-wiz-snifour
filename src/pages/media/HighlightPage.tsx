@@ -1,12 +1,17 @@
+import { useSearchParams } from 'react-router';
 import Banner from '@/features/common/Banner';
 import MediaLayout from '@/features/media/common/MediaLayout';
+import SearchBar from '@/features/media/common/SearchBar';
 import HighlightGridView from '@/features/media/components/highlight/HighlightGridView';
 
 import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
+import Breadcrumb from '@/features/common/Breadcrumb';
 
 /** 하이라이트 페이지 */
 const HighlightPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <MediaLayout
       header={
@@ -22,6 +27,19 @@ const HighlightPage = () => {
         </Banner>
       }
     >
+      <Breadcrumb
+        leftComponent={
+          <SearchBar
+            value={searchParams.get('searchWord') || ''}
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
+        }
+      />
       <HighlightGridView />
     </MediaLayout>
   );

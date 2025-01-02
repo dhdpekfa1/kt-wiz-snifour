@@ -1,9 +1,13 @@
-import { GridViewType, HighlightItem } from '@/features/media/types';
+import { GridViewType, HighlightListItem } from '@/features/media/types';
+import { StoryItem } from '../types/story';
+import { format } from 'date-fns';
 
 // GridViewType으로 변환하는 팩토리 함수
-const createGridViewItem = (item: HighlightItem): GridViewType => ({
+const createGridViewItem = (
+  item: HighlightListItem | StoryItem
+): GridViewType => ({
   artcSeq: item.artcSeq,
-  refSeq: item.refSeq,
+  refSeq: 'refSeq' in item ? item.refSeq : 0,
   nextSeq: item.artcNextSeq,
   prevSeq: item.artcPrevSeq,
   boardSeq: item.boardCatSeq,
@@ -13,7 +17,10 @@ const createGridViewItem = (item: HighlightItem): GridViewType => ({
   maxArticlePerPage: item.maxArticlePerPage,
   totalPage: item.totalPage,
   viewCount: item.viewCnt,
-  contentsDate: item.contentsDate,
+  contentsDate:
+    'contentsDate' in item
+      ? item.contentsDate
+      : format(new Date(item.regDttm), 'yyyy-MM-dd'),
   videoLink: item.videoLink,
   createdAt: item.regDttm,
   updatedAt: item.updDttm,

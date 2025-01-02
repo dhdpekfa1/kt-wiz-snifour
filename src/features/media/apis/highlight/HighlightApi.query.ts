@@ -1,4 +1,9 @@
-import { GridDataType, HighlightResponse } from '@/features/media/types';
+import {
+  GridDataType,
+  HighlightDetailResponse,
+  HighlightItem,
+  HighlightResponse,
+} from '@/features/media/types';
 import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -10,6 +15,8 @@ export const HIGHLIGHT_API_QUERY_KEY = {
   /** 하이라이트 목록 조회 쿼리 키 생성 */
   GET_LIST: (params?: Parameter<typeof highlightApi.getHighlightList>) =>
     ['highlight-list', params].filter(isNotNullish),
+  GET_DETAIL: (params?: Parameter<typeof highlightApi.getHighlightDetail>) =>
+    ['highlight-detail', params].filter(isNotNullish),
 };
 
 /**
@@ -36,6 +43,27 @@ export function useGetHighlightList(
         .filter((item) => item.useYn === 'Y')
         .map(createGridViewItem),
     }),
+    ...params?.options,
+  });
+}
+
+export function useGetHighlightDetail(
+  params?: UseQueryParams<
+    typeof highlightApi.getHighlightDetail,
+    AxiosError,
+    HighlightDetailResponse, // 실제 응답
+    HighlightItem // 변환된 응답
+  >
+) {
+  return useQuery({
+    queryKey: HIGHLIGHT_API_QUERY_KEY.GET_DETAIL(params?.variables),
+    queryFn: async () => {
+      const response = await highlightApi.getHighlightDetail(params?.variables);
+      return response;
+    },
+    select: (res: HighlightDetailResponse): HighlightItem => {
+      return res.data.article;
+    },
     ...params?.options,
   });
 }

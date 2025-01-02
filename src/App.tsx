@@ -2,14 +2,13 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/header/Header';
 import HomePage from './pages/HomePage';
-import PlayerPage from './pages/media/FirstPitch';
-import HighlightPage from './pages/media/Highlight';
-import NewsPage from './pages/media/News';
-import PhotoPage from './pages/media/Photo';
-import StoryPage from './pages/media/Story';
+import HighlightPage from './pages/media/HighlightPage';
+import NewsPage from './pages/media/NewsPage';
+import PhotoPage from './pages/media/PhotoPage';
+import StoryPage from './pages/media/StoryPage';
 
 import WallpaperPage from './pages/ktwiz/WallpaperPage';
-import NewsDetailPage from './pages/media/id/NewsDetail';
+import NewsDetailPage from './pages/media/id/NewsDetailPage';
 import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
@@ -17,16 +16,19 @@ import ParkingPage from './pages/wizPark/ParkingPage';
 import ScrollToTop from './features/common/ScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
-import PressDetailPage from './pages/media/id/PressDetail';
+import PressDetailPage from './pages/media/id/PressDetailPage';
 
 import SignupForm from './features/auth/SignupForm';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
-import HighlightDetailPage from './pages/media/id/HighlightDetail';
+import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
+import StoryDetailPage from './pages/media/id/StoryDetailPage';
+import FirstPitchPage from './pages/media/FirstPitchPage';
+import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 
 function App() {
   return (
@@ -77,16 +79,21 @@ function App() {
             <Route path="/media/wiznews" element={<NewsPage />} />
             <Route path="/media/wizpress" element={<NewsPage />} />
             <Route path="/media/wizstory" element={<StoryPage />} />
-            <Route path="/media/firstpitch" element={<PlayerPage />} />
+            <Route path="/media/firstpitch" element={<FirstPitchPage />} />
             <Route path="/media/highlight" element={<HighlightPage />} />
 
             {/* Media 상세 */}
             <Route path="/media/wiznews/:id" element={<NewsDetailPage />} />
             <Route path="/media/wizpress/:id" element={<PressDetailPage />} />
+            <Route path="/media/wizstory/:id" element={<StoryDetailPage />} />
             <Route path="/media/photos/:id" element={<PhotoPage />} />
             <Route
               path="/media/highlight/:id"
               element={<HighlightDetailPage />}
+            />
+            <Route
+              path="/media/firstpitch/:id"
+              element={<FirstPitchDetailPage />}
             />
 
             {/* 404 */}

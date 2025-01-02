@@ -1,17 +1,21 @@
 import { useNavigate } from 'react-router';
 
-import { useGetHighlightList } from '@/features/media/apis/highlight/HighlightApi.query';
 import GridArticle from '@/features/media/common/GridArticle';
 import { LoadingView } from '@/features/media/common/LoadingView';
 import PlayButton from '@/features/media/common/PlayButton';
 import { GridArticleSkeleton } from '@/features/media/common/skeleton';
 import { cn } from '@/lib/utils';
+import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
+import useHighlightListQuery from '../../hooks/highlight/useHighlightListQuery';
 
 const HighlightGridView = () => {
   const navigate = useNavigate();
-  const { data, isLoading, isError } = useGetHighlightList({
-    variables: { count: '10' },
-  });
+  const { highlightList, isLoading, isError, isSuccess } =
+    useHighlightListQuery();
+
+  if (!isLoading && isSuccess && !highlightList?.list?.length) {
+    return <NotFoundSearchResult />;
+  }
 
   return (
     <>
@@ -21,14 +25,16 @@ const HighlightGridView = () => {
           isError={isError}
           fallback={<GridArticleSkeleton />}
         >
-          {data?.list?.map(
+          {highlightList?.list?.map(
             ({ artcSeq, imgFilePath, title, contentsDate, viewCount }) => (
-              <GridArticle key={artcSeq} className="cursor-pointer">
-                <GridArticle.Media
-                  onClick={() => {
-                    navigate(`/media/highlight/${artcSeq}`);
-                  }}
-                >
+              <GridArticle
+                key={artcSeq}
+                onClick={() => {
+                  navigate(`/media/highlight/${artcSeq}`);
+                }}
+                className="cursor-pointer"
+              >
+                <GridArticle.Media>
                   <GridArticle.Thumbnail
                     imgFilePath={imgFilePath}
                     title={title}
