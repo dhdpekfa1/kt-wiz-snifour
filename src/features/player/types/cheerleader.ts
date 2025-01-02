@@ -9,5 +9,6 @@ export interface Cheerleader {
   leaderName: string;
   leaderNickName: string;
   leaderPosition: string;
+  leaderHeight: string;
   snsId: string;
 }
