@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { format, subDays } from 'date-fns';
 
 import {
@@ -20,15 +20,33 @@ interface DateRangePickerProps {
 }
 
 export function DateRangePicker({ className }: DateRangePickerProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [date, setDate] = useState<DateRange | undefined>({
     from: subDays(new Date(), 7),
     to: new Date(),
   });
-  const [_searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const startDate = searchParams.get('startDate');
+    const endDate = searchParams.get('endDate');
+
+    if (!startDate && !endDate) {
+      setDate({
+        from: subDays(new Date(), 7),
+        to: new Date(),
+      });
+    }
+    if (startDate) {
+      setDate({
+        from: new Date(startDate),
+        to: endDate ? new Date(endDate) : new Date(),
+      });
+    }
+  }, [searchParams]);
 
   const handleSubmitDate = () => {
     if (!date || !date.from) return;
-    console.log(date);
+
     const { from, to } = date;
     const startDate = format(from, 'yyyy-MM-dd');
     const endDate = format(to || from, 'yyyy-MM-dd');

@@ -21,14 +21,6 @@ const PhotoContent = () => {
   // API 연동
   const { photoList, isLoading, isSuccess, isError } = usePhotoListQuery();
 
-  if (!isLoading && isSuccess && !photoList) {
-    return <div>데이터가 없습니다.</div>;
-  }
-
-  if (!isLoading && isSuccess && !photoList?.list.length) {
-    return <NotFoundSearchResult />;
-  }
-
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const selectedPhoto = photoList?.list.find(
     (item) => item.artcSeq === selectedId
@@ -37,33 +29,37 @@ const PhotoContent = () => {
   return (
     <div>
       {/* 포토 컨텐츠 */}
-      <div className={cn('media-grid')}>
-        <LoadingView
-          isLoading={isLoading}
-          isError={isError}
-          fallback={<GridArticleSkeleton />}
-        >
-          {photoList?.list?.map((item) => (
-            <GridArticle
-              key={item.artcSeq}
-              className="cursor-pointer"
-              onClick={() => {
-                setSelectedId(item.artcSeq);
-              }}
-            >
-              <GridArticle.Media>
-                <GridArticle.Thumbnail
-                  imgFilePath={item.imgFilePath}
-                  title={item.title}
-                />
-              </GridArticle.Media>
-              <GridArticle.Title title={item.title} />
-              <GridArticle.SubTitle title={item.subTitle} />
-              <GridArticle.Footer date={item.contentsDate} />
-            </GridArticle>
-          ))}
-        </LoadingView>
-      </div>
+      {!isLoading && isSuccess && !photoList?.list.length ? (
+        <NotFoundSearchResult />
+      ) : (
+        <div className={cn('media-grid')}>
+          <LoadingView
+            isLoading={isLoading}
+            isError={isError}
+            fallback={<GridArticleSkeleton />}
+          >
+            {photoList?.list?.map((item) => (
+              <GridArticle
+                key={item.artcSeq}
+                className="cursor-pointer"
+                onClick={() => {
+                  setSelectedId(item.artcSeq);
+                }}
+              >
+                <GridArticle.Media>
+                  <GridArticle.Thumbnail
+                    imgFilePath={item.imgFilePath}
+                    title={item.title}
+                  />
+                </GridArticle.Media>
+                <GridArticle.Title title={item.title} />
+                <GridArticle.SubTitle title={item.subTitle} />
+                <GridArticle.Footer date={item.contentsDate} />
+              </GridArticle>
+            ))}
+          </LoadingView>
+        </div>
+      )}
 
       {/* 팝업 */}
       <Dialog
