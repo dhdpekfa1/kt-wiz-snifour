@@ -174,3 +174,37 @@ export interface GameSchedule {
   visitKey: string; // 원정팀 코드
   vscore: number; // 원정팀 점수
 }
+
+// 최근 경기
+export interface RecentMatches {
+  displayDate: string;
+  game: string;
+  gameDate: number;
+  gday: number;
+  gmkey: string;
+  gmonth: number;
+  gtime: string;
+  gyear: string;
+  home: string;
+  homeDecision: string;
+  homeDecisionPitcher: string;
+  homeFullname: string;
+  homeKey: string;
+  homeLogo: string;
+  homeScore: 4;
+  homeStarter: string;
+  matchTeamCode: string;
+  matchTeamName: string;
+  outcome: string;
+  stadium: string;
+  stadiumKey: string;
+  status: string;
+  visit: string;
+  visitDecision: string;
+  visitDecisionPitcher: string;
+  visitFullname: string;
+  visitKey: string;
+  visitLogo: string;
+  visitScore: 1;
+  visitStarter: string;
+}

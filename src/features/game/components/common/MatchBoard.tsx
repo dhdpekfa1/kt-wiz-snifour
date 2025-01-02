@@ -9,16 +9,10 @@ interface MatchBoardProps {
   matchTime: string | undefined;
   stadium: string | undefined;
   gameTable: ReactNode;
-  crowd: number | undefined;
+  crowd?: number;
   onDateChange: (direction: 'prev' | 'next') => void;
-}
-
-function formatDate(dateStr: string): string {
-  const year = dateStr.slice(0, 4);
-  const month = dateStr.slice(4, 6);
-  const day = dateStr.slice(6, 8);
-
-  return `${year}년 ${parseInt(month)}월 ${parseInt(day)}일`;
+  disablePrev?: boolean;
+  disableNext?: boolean;
 }
 
 const MatchBoard = ({
@@ -30,6 +24,8 @@ const MatchBoard = ({
   gameTable,
   crowd,
   onDateChange,
+  disablePrev = false,
+  disableNext = false,
 }: MatchBoardProps) => {
   return (
     <div className="w-full flex flex-col items-center justify-between px-8 py-6 gap-4 bg-wiz-white bg-opacity-10 rounded overflow-hidden">
@@ -37,23 +33,34 @@ const MatchBoard = ({
       <div className="flex justify-center items-center gap-6 md:gap-10 text-white px-4 py-4">
         <button
           type="button"
+          disabled={disablePrev}
           onClick={() => onDateChange('prev')}
-          className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
+          className={`flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded ${
+            disablePrev
+              ? 'opacity-30 cursor-not-allowed'
+              : 'hover:bg-wiz-white hover:bg-opacity-20'
+          }`}
         >
           <IconLeft className="w-2/5 h-auto" />
         </button>
         <div className="relative flex flex-col items-center md:gap-1">
           <span className="text-lg md:text-xl lg:text-2xl font-semibold">
-            {matchDate ? formatDate(matchDate) : '정보 없음'}
+            {matchDate || '정보 없음'}
           </span>
           <span className="text-center text-wiz-white text-opacity-50 text-sm md:text-md lg:text-lg">
-            {matchTime} | {stadium} | 관중: {crowd?.toLocaleString()}명
+            {matchTime} | {stadium}
+            {crowd && ` | 관중: ${crowd?.toLocaleString()}명`}
           </span>
         </div>
         <button
           type="button"
           onClick={() => onDateChange('next')}
-          className="flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded hover:bg-wiz-white hover:bg-opacity-20"
+          disabled={disableNext}
+          className={`flex items-center justify-center text-lg font-semibold text-white bg-wiz-white bg-opacity-30 w-8 h-8 md:w-10 md:h-10 rounded ${
+            disableNext
+              ? 'opacity-30'
+              : 'hover:bg-wiz-white hover:bg-opacity-20'
+          }`}
         >
           <IconRight className="w-2/5 h-auto" />
         </button>
