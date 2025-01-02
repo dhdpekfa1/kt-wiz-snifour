@@ -1,15 +1,15 @@
 import {
-  recentBatterRecordColumns,
-  recentPitcherRecordColumns,
-  yearBatterRecordColumns,
-  yearPitcherRecordColumns,
-} from '@/constants/columns/record-columns';
-import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui';
+import {
+  recentBatterRecordColumns,
+  recentPitcherRecordColumns,
+  yearBatterRecordColumns,
+  yearPitcherRecordColumns,
+} from '@/constants/columns/record-columns';
 import DataTable from '@/features/common/DataTable';
 import { cn } from '@/lib/utils';
 import { useParams } from 'react-router';

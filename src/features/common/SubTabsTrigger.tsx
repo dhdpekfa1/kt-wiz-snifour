@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
-import { TabsTrigger } from '@radix-ui/react-tabs';
 import { cn } from '@/lib/utils';
+import { TabsTrigger } from '@radix-ui/react-tabs';
 
 interface SubTabsTriggerProps {
   children: ReactNode;

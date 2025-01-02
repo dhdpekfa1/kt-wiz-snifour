@@ -1,11 +1,11 @@
+import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
+import { useTopBatterRank } from '@/features/game/hooks/ranking';
+import { cn } from '@/lib/utils';
 import { RankingCard } from '../common/RankingCard';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
-import { useTopBatterRank } from '@/features/game/hooks/ranking';
-import { cn } from '@/lib/utils';
-import { Tabs, TabsContent, TabsList } from '@/components/ui';
 
 function BatterRankingTab() {
   const { hraRanking, hrRanking, loading, error } = useTopBatterRank();

@@ -69,7 +69,7 @@ function CheerleaderDialog({ data }: cheerleaderDialogProps) {
                 key={item.label}
               >
                 <p className="font-semibold">{item.label}</p>
-                <p className="font-medium">{item.prop}</p>
+                <p className="font-normal">{item.prop}</p>
               </div>
             ))}
           </DialogDescription>

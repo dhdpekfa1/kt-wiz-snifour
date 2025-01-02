@@ -5,9 +5,9 @@ import CustomBarChart from '@/features/common/CustomBarChart';
 import CustomLineChart from '@/features/common/CustomLineChart';
 import SubTitle from '@/features/common/SubTitle';
 import { cn } from '@/lib/utils';
+import Skeleton from 'react-loading-skeleton';
 import { RecentRecord, YearRecord } from '../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
-import Skeleton from 'react-loading-skeleton';
 
 // TODO: 타입 분리
 export interface Config {

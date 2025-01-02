@@ -1,11 +1,11 @@
 import { cn } from '@/lib/utils';
+import { usePlayerStore } from '@/store/usePlayerStore';
+import { useParams } from 'react-router';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
 } from '../types/detail';
-import { useParams } from 'react-router';
 import { StatCard } from './StatCard';
-import { usePlayerStore } from '@/store/usePlayerStore';
 
 interface Indicators {
   pitcher: {
