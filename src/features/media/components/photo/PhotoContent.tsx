@@ -7,51 +7,63 @@ import {
   DialogTitle,
 } from '@/components/ui';
 
-import { usePagination } from '@/features/media/hooks/usePagination';
-import { photoItems } from '@/features/media/mock_data';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
 import GridArticle from '@/features/media/common/GridArticle';
-import PaginationList from '@/features/media/common/PaginationList';
-import Category from './Category';
-
-const totalItems = 95; // API에서 받아온 총 아이템 수 (임시)
+import usePhotoListQuery from '../../hooks/photo/usePhotoListQuery';
+import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
+import { LoadingView } from '../../common/LoadingView';
+import { GridArticleSkeleton } from '../../common/skeleton';
 
 const PhotoContent = () => {
   // API 연동
+  const { photoList, isLoading, isSuccess, isError } = usePhotoListQuery();
+
+  if (!isLoading && isSuccess && !photoList) {
+    return <div>데이터가 없습니다.</div>;
+  }
+
+  if (!isLoading && isSuccess && !photoList?.list.length) {
+    return <NotFoundSearchResult />;
+  }
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const selectedPhoto = photoItems.find((item) => item.id === selectedId);
-
-  const { pageNum, itemCount } = usePagination();
+  const selectedPhoto = photoList?.list.find(
+    (item) => item.artcSeq === selectedId
+  );
 
   return (
-    <>
+    <div>
       {/* 포토 컨텐츠 */}
       <div className={cn('media-grid')}>
-        {photoItems.map(({ id, thumbnail, title, date, catetory }) => (
-          <GridArticle key={id} className="cursor-pointer">
-            <GridArticle.Media onClick={() => setSelectedId(id)}>
-              <GridArticle.Thumbnail imgFilePath={thumbnail} title={title} />
-              <GridArticle.Overlay
-                elements={<Category catetory={catetory} />}
-              />
-            </GridArticle.Media>
-            <GridArticle.Title title={title} />
-            <GridArticle.Footer date={date} />
-          </GridArticle>
-        ))}
+        <LoadingView
+          isLoading={isLoading}
+          isError={isError}
+          fallback={<GridArticleSkeleton />}
+        >
+          {photoList?.list?.map((item) => (
+            <GridArticle
+              key={item.artcSeq}
+              className="cursor-pointer"
+              onClick={() => {
+                setSelectedId(item.artcSeq);
+              }}
+            >
+              <GridArticle.Media>
+                <GridArticle.Thumbnail
+                  imgFilePath={item.imgFilePath}
+                  title={item.title}
+                />
+              </GridArticle.Media>
+              <GridArticle.Title title={item.title} />
+              <GridArticle.SubTitle title={item.subTitle} />
+              <GridArticle.Footer date={item.contentsDate} />
+            </GridArticle>
+          ))}
+        </LoadingView>
       </div>
-
-      <PaginationList
-        currentPage={pageNum}
-        total={totalItems}
-        limit={itemCount}
-        onChange={() => {}}
-        className="mt-14"
-      />
 
       {/* 팝업 */}
       <Dialog
@@ -65,11 +77,11 @@ const PhotoContent = () => {
           </DialogClose>
 
           {selectedPhoto && (
-            <div className="h-full flex items-center justify-center">
+            <div className="h-full flex items-center justify-center relative">
               <div className="relative max-w-5xl w-full mx-8">
                 <GridArticle.Media className="mb-0">
                   <GridArticle.Thumbnail
-                    imgFilePath={selectedPhoto.thumbnail}
+                    imgFilePath={selectedPhoto.imgFilePath}
                     title={selectedPhoto.title}
                     className="!object-contain"
                   />
@@ -78,11 +90,13 @@ const PhotoContent = () => {
                 <div className="bg-gradient-to-t from-black/90 to-transparent">
                   <DialogHeader className="gap-2">
                     <DialogTitle className="text-2xl font-bold text-white">
-                      {selectedPhoto.title}
+                      <p>{selectedPhoto.title}</p>
+                      <p className="text-xl text-gray-400">
+                        {selectedPhoto.subTitle}
+                      </p>
                     </DialogTitle>
                     <DialogDescription className="flex items-center gap-4 text-[#6b7280]">
-                      <span>{selectedPhoto.date}</span>
-                      <Category catetory={selectedPhoto.catetory} />
+                      <p>{selectedPhoto.contentsDate}</p>
                     </DialogDescription>
                   </DialogHeader>
                 </div>
@@ -91,7 +105,7 @@ const PhotoContent = () => {
           )}
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 };
 
