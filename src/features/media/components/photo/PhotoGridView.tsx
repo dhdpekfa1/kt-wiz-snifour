@@ -17,7 +17,7 @@ import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import { LoadingView } from '../../common/LoadingView';
 import { GridArticleSkeleton } from '../../common/skeleton';
 
-const PhotoContent = () => {
+const PhotoGridView = () => {
   // API 연동
   const { photoList, isLoading, isSuccess, isError } = usePhotoListQuery();
 
@@ -105,4 +105,4 @@ const PhotoContent = () => {
   );
 };
 
-export default PhotoContent;
+export default PhotoGridView;

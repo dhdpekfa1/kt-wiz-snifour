@@ -1,6 +1,6 @@
 import Banner from '@/features/common/Banner';
 import MediaLayout from '@/features/media/common/MediaLayout';
-import PhotoContent from '@/features/media/components/photo/PhotoContent';
+import PhotoGridView from '@/features/media/components/photo/PhotoGridView';
 import PhotoFilter from '@/features/media/components/photo/PhotoFilter';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
@@ -84,13 +84,13 @@ const PhotoPage = () => {
         </div>
         {/* 포토 컨텐츠 */}
         <TabsContent value="game">
-          <PhotoContent />
+          <PhotoGridView />
         </TabsContent>
         <TabsContent value="training">
-          <PhotoContent />
+          <PhotoGridView />
         </TabsContent>
         <TabsContent value="event">
-          <PhotoContent />
+          <PhotoGridView />
         </TabsContent>
       </Tabs>
     </MediaLayout>
