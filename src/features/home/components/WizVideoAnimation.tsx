@@ -17,7 +17,7 @@ const WizVideoAnimation: React.FC<WizVideoAnimationProps> = ({
 }) => {
   const { ref, inView } = useInView({
     threshold: 0.1, // 10% 화면에 들어오면 트리거
-    // triggerOnce: true, // 한 번만 실행
+    triggerOnce: true, // 한 번만 실행
   });
 
   return (
