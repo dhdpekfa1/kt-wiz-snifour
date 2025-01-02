@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui';
-import { CarouselCard } from '@/features/game/components';
+import { CarouselCard } from '@/features/game/components/carousel';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format, isValid, parse } from 'date-fns';
 import { useEffect, useState } from 'react';

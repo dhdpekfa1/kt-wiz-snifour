@@ -2,11 +2,8 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
 import { useEffect, useState } from 'react';
-import {
-  MatchBoard,
-  StartingPitcherTable,
-  TeamLineup,
-} from './components/watch-point';
+import { MatchBoard } from './components/common';
+import { StartingPitcherTable, TeamLineup } from './components/watch-point';
 import useRecentMatches from './hooks/watch-point/useRecentMatches';
 import useWatchPoint from './hooks/watch-point/useWatchPoint';
 

@@ -7,7 +7,7 @@ import {
 } from '@/features/game/components/table';
 import { useParams } from 'react-router';
 import KeyRecordsCard from './components/card/KeyRecordsCard';
-import { MatchBoard } from './components/watch-point';
+import { MatchBoard } from './components/common';
 import useBoxscore from './hooks/boxscore/useBoxscore';
 
 const BoxscoreTab = () => {
