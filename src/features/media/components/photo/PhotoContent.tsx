@@ -96,7 +96,7 @@ const PhotoContent = () => {
                       </p>
                     </DialogTitle>
                     <DialogDescription className="flex items-center gap-4 text-[#6b7280]">
-                      <p>{selectedPhoto.contentsDate}</p>
+                      {selectedPhoto.contentsDate}
                     </DialogDescription>
                   </DialogHeader>
                 </div>
