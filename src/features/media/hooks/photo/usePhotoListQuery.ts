@@ -27,9 +27,18 @@ const usePhotoListQuery = () => {
     isError,
     isLoading,
     isSuccess,
+    hasNextPage,
+    fetchNextPage,
   } = useGetPhotoList({ variables });
 
-  return { photoList, isError, isLoading, isSuccess };
+  return {
+    photoList,
+    isError,
+    isLoading,
+    isSuccess,
+    hasNextPage,
+    fetchNextPage,
+  };
 };
 
 export default usePhotoListQuery;

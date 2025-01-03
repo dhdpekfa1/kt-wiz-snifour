@@ -16,20 +16,33 @@ import usePhotoListQuery from '../../hooks/photo/usePhotoListQuery';
 import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
 import { LoadingView } from '../../common/LoadingView';
 import { GridArticleSkeleton } from '../../common/skeleton';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const PhotoGridView = () => {
   // API 연동
-  const { photoList, isLoading, isSuccess, isError } = usePhotoListQuery();
+  const {
+    photoList,
+    isLoading,
+    isSuccess,
+    isError,
+    hasNextPage,
+    fetchNextPage,
+  } = usePhotoListQuery();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const selectedPhoto = photoList?.list.find(
-    (item) => item.artcSeq === selectedId
-  );
+
+  const selectedPhoto = photoList?.pages
+    .flatMap((page) => page)
+    .find((item) => item.artcSeq === selectedId);
+
+  const handleLoadMore = () => {
+    fetchNextPage();
+  };
 
   return (
-    <div>
+    <InfiniteScroll hasMore={hasNextPage} loadMore={handleLoadMore}>
       {/* 포토 컨텐츠 */}
-      {!isLoading && isSuccess && !photoList?.list.length ? (
+      {!isLoading && isSuccess && !photoList?.pages.length ? (
         <NotFoundSearchResult />
       ) : (
         <div className={cn('media-grid')}>
@@ -38,25 +51,27 @@ const PhotoGridView = () => {
             isError={isError}
             fallback={<GridArticleSkeleton />}
           >
-            {photoList?.list?.map((item) => (
-              <GridArticle
-                key={item.artcSeq}
-                className="cursor-pointer"
-                onClick={() => {
-                  setSelectedId(item.artcSeq);
-                }}
-              >
-                <GridArticle.Media>
-                  <GridArticle.Thumbnail
-                    imgFilePath={item.imgFilePath}
-                    title={item.title}
-                  />
-                </GridArticle.Media>
-                <GridArticle.Title title={item.title} />
-                <GridArticle.SubTitle title={item.subTitle} />
-                <GridArticle.Footer date={item.contentsDate} />
-              </GridArticle>
-            ))}
+            {photoList?.pages?.map((page) =>
+              page.map((item) => (
+                <GridArticle
+                  key={item.artcSeq}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setSelectedId(item.artcSeq);
+                  }}
+                >
+                  <GridArticle.Media>
+                    <GridArticle.Thumbnail
+                      imgFilePath={item.imgFilePath}
+                      title={item.title}
+                    />
+                  </GridArticle.Media>
+                  <GridArticle.Title title={item.title} />
+                  <GridArticle.SubTitle title={item.subTitle} />
+                  <GridArticle.Footer date={item.contentsDate} />
+                </GridArticle>
+              ))
+            )}
           </LoadingView>
         </div>
       )}
@@ -101,7 +116,7 @@ const PhotoGridView = () => {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </InfiniteScroll>
   );
 };
 

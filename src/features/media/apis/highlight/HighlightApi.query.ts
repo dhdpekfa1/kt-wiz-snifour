@@ -50,7 +50,7 @@ export function useGetHighlightList(
     QueryKey, // TQueryKey
     number // TPageParam
   >({
-    queryKey: HIGHLIGHT_API_QUERY_KEY.GET_LIST(params?.variables),
+    queryKey: HIGHLIGHT_API_QUERY_KEY.GET_LIST(params.variables),
     queryFn: async ({ pageParam }): Promise<HighlightResponse> => {
       const response = await highlightApi.getHighlightList({
         ...params.variables,
