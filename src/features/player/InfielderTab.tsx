@@ -1,20 +1,12 @@
-import { useSearchParams } from 'react-router';
 import Breadcrumb from '../common/Breadcrumb';
 import SearchBar from '../media/common/SearchBar';
 import { PlayerList } from './components';
 import NotFonudSearch from './components/NotFonudSearch';
-import { usePlayerList } from './hooks/usePlayerList';
+import { usePlayerSearch } from './hooks/usePlayerSearch';
 
 function InfielderTab() {
-  const { playerList, loading, error } = usePlayerList('infielder');
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const searchWord = searchParams.get('searchWord') || '';
-
-  // 검색 결과 필터링
-  const filteredInfielderList = playerList.filter((player) =>
-    player.playerName.toLowerCase().includes(searchWord.toLowerCase())
-  );
+  const { filteredPlayerList, loading, error, searchWord, handleSearch } =
+    usePlayerSearch('infielder');
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -23,23 +15,13 @@ function InfielderTab() {
   return (
     <>
       <Breadcrumb
-        leftComponent={
-          <SearchBar
-            value={searchParams.get('searchWord') || ''}
-            onSubmit={(searchWord) =>
-              setSearchParams({
-                ...Object.fromEntries(searchParams.entries()),
-                searchWord,
-              })
-            }
-          />
-        }
+        leftComponent={<SearchBar value={searchWord} onSubmit={handleSearch} />}
       />
-      {!loading && !error && filteredInfielderList.length === 0 ? (
+      {!loading && !error && filteredPlayerList.length === 0 ? (
         <NotFonudSearch />
       ) : (
         <PlayerList
-          playerList={error ? [] : filteredInfielderList}
+          playerList={error ? [] : filteredPlayerList}
           endpoint="infielder"
           loading={loading}
         />
