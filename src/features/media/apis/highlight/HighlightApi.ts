@@ -9,13 +9,13 @@ import instance from '@/lib/axios/instance';
 
 export const highlightApi = {
   getHighlightList: async (
-    params?: HighlightListDto
+    params: HighlightListDto
   ): Promise<HighlightResponse> => {
     const response = await instance.get(ApiRoutes.Highlight, { params });
     return response.data;
   },
   getHighlightDetail: async (
-    params?: HighlightDetailDto
+    params: HighlightDetailDto
   ): Promise<HighlightDetailResponse> => {
     const response = await instance.get(ApiRoutes.HighlightDetail, { params });
     return response.data;
