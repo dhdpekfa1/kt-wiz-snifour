@@ -1,13 +1,13 @@
 import { useParams } from 'react-router';
 
 import { cn } from '@/lib/utils';
+import { usePlayerStore } from '@/store/usePlayerStore';
+import Skeleton from 'react-loading-skeleton';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
   SeasonSummary,
 } from '../../types/detail';
-import Skeleton from 'react-loading-skeleton';
-import { usePlayerStore } from '@/store/usePlayerStore';
 
 interface Season {
   pitcher: { label: string; key: keyof PitcherSeasonSummaryBase }[];

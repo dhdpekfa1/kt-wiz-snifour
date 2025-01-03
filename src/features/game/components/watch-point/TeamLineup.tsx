@@ -1,4 +1,5 @@
 import { Lineup } from '@/features/game/types/watch-point';
+import { TeamLineupAnimation } from './TeamLineupAnimation';
 
 const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   const positionData: Record<string, { style: string; label: string }> = {
@@ -14,7 +15,7 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
     },
     '3': {
       style:
-        'absolute top-44 right-16 md:top-56 md:right-20 lg:bottom-44 lg:right-24',
+        'absolute top-44 right-16 md:top-56 md:right-16 lg:bottom-44 lg:right-20',
       label: '3',
     },
     '4': {
@@ -56,23 +57,16 @@ const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   return (
     <div className="flex flex-col items-center gap-4 md:flex-row">
       <img src={logoUrl} alt="team logo" className="w-24 h-auto" />
-      <div className="w-[300px] md:w-[380px] relative mt-2 p-10  bg-wiz-white bg-opacity-10 rounded-xl">
+      <div className="w-[300px] md:w-[380px] relative mt-2 p-10 bg-wiz-white bg-opacity-10 rounded-xl">
         <img src="/assets/ground.png" alt="diamond" className="w-full h-auto" />
-        {data.map((player) =>
-          positionData[player.pos] ? (
-            <div
-              key={player.pcode}
-              className={`border border-l-2 border-l-wiz-red bg-wiz-white w-fit h-fit px-2 rounded ${
-                positionData[player.pos].style
-              }`}
-            >
-              <div className="flex text-wiz-black text-[10px] md:text-sm lg:text-xs">
-                <p>{positionData[player.pos].label}.</p>
-                <p className="break-words max-w-[6ch]">{player.playerName}</p>
-              </div>
-            </div>
-          ) : null
-        )}
+        {data.map((player, index) => (
+          <TeamLineupAnimation
+            key={player.pcode}
+            player={player}
+            position={positionData[player.pos]}
+            delay={index * 15}
+          />
+        ))}
       </div>
     </div>
   );

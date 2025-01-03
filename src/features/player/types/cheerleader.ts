@@ -1,5 +1,6 @@
 export interface Cheerleader {
-  imgPath: string;
+  imgPrvwPath: string;
+  titleImgPath: string;
   leaderBirthDay: string;
   leaderCareer: string;
   leaderEngName: string;
@@ -8,5 +9,6 @@ export interface Cheerleader {
   leaderName: string;
   leaderNickName: string;
   leaderPosition: string;
+  leaderHeight: string;
   snsId: string;
 }

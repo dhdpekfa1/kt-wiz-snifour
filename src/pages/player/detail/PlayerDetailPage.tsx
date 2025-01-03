@@ -1,5 +1,11 @@
 import { useParams, useSearchParams } from 'react-router';
 
+import {
+  recentBatterConfig,
+  recentPitcherConfig,
+  yearBatterConfig,
+  yearPitcherConfig,
+} from '@/constants/chart-config';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import {
@@ -7,12 +13,6 @@ import {
   PlayerRecordChart,
   SeasonSummary,
 } from '@/features/player/components';
-import {
-  recentBatterConfig,
-  recentPitcherConfig,
-  yearBatterConfig,
-  yearPitcherConfig,
-} from '@/constants/chart-config';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
 
