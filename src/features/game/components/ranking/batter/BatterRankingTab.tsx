@@ -8,14 +8,19 @@ import { AllBatterRankingTab } from './AllBatterRankingTab';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
 
 function BatterRankingTab() {
-  const { hraRanking, hrRanking, loading, error } = useTopBatterRank();
+  const { hraRanking, hrRanking, isLoading, error, isError } =
+    useTopBatterRank();
 
-  if (!hraRanking.length || !hrRanking.length || loading) {
+  if (!hraRanking?.length || !hrRanking?.length) {
     return null;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  if (isError) {
+    return <div>{error?.toString()}</div>;
   }
 
   return (

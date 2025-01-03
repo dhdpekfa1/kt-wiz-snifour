@@ -1,36 +1,28 @@
-import { BatterHR, BatterHra } from '@/features/common/types/batters';
 import {
-  getBatterHrRanking,
-  getBatterHraRanking,
-} from '@/features/game/apis/ranking/batter';
-import { useEffect, useState } from 'react';
+  useGetBatterHraTop3,
+  useGetBatterHrTop3,
+} from '../../apis/ranking/rankingApi.query';
 
 export function useTopBatterRank() {
-  const [hraRanking, setHraRanking] = useState<BatterHra[]>([]);
-  const [hrRanking, setHrRanking] = useState<BatterHR[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    data: hraRanking,
+    isLoading: isHraLoading,
+    isError: isHraError,
+    error: hraError,
+  } = useGetBatterHraTop3();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [hraData, hrData] = await Promise.all([
-          getBatterHraRanking(),
-          getBatterHrRanking(),
-        ]);
+  const {
+    data: hrRanking,
+    isLoading: isHrLoading,
+    isError: isHrError,
+    error: hrError,
+  } = useGetBatterHrTop3();
 
-        setHraRanking(hraData);
-        setHrRanking(hrData);
-      } catch (err) {
-        console.error(err);
-        setError('데이터를 가져오는 중 오류가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return { hraRanking, hrRanking, loading, error };
+  return {
+    hraRanking,
+    hrRanking,
+    isLoading: isHraLoading || isHrLoading,
+    isError: isHraError || isHrError,
+    error: hraError || hrError,
+  };
 }

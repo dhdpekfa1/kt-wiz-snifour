@@ -50,8 +50,8 @@ export interface TeamPitcherRank extends CommonPitcherStats {
   teamName: string;
 }
 
-// 투수의 평균자책점(ERA)에 관한 스탯
-export interface PitcherERA extends CommonPitcherStats {
+// 전체 투수 스탯
+export interface OverallPitcherRank extends CommonPitcherStats {
   bf: number;
   cba: string;
   dpp: string;
@@ -82,12 +82,5 @@ export interface PitcherERA extends CommonPitcherStats {
   svo: number;
   w: number;
   wCg: number;
-}
-
-// 승리 수와 관련된 스탯
-export interface PitcherWins extends PitcherERA {}
-
-// 전체 투수 순위 스탯
-export interface OverallPitcherRank extends PitcherERA {
   teamName: string;
 }

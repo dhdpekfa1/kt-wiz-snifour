@@ -85,7 +85,7 @@ function SortableTable<T extends PlayerRank>({
                   index < 3 &&
                   'bg-wiz-red bg-opacity-70 font-bold',
                 domain === 'all' &&
-                  row.original.teamName === 'KT' &&
+                  row.original.teamName.toLowerCase() === 'kt' &&
                   'bg-wiz-red bg-opacity-80 font-bold text-white'
               )}
             >

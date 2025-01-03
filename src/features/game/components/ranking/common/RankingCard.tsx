@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import SubTitle from '@/features/common/SubTitle';
-import { BatterHR, BatterHra } from '@/features/common/types/batters';
-import { PitcherERA, PitcherWins } from '@/features/common/types/pitchers';
+import { OverallBatterRank } from '@/features/common/types/batters';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import { cn } from '@/lib/utils';
 
-type PitcherPlayer = PitcherERA | PitcherWins;
-type BatterPlayer = BatterHra | BatterHR;
+type PitcherPlayer = OverallPitcherRank;
+type BatterPlayer = OverallBatterRank;
 type Player = PitcherPlayer | BatterPlayer;
 
 interface RankingCardProps {

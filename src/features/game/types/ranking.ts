@@ -1,3 +1,4 @@
+import { OverallBatterRank } from '@/features/common/types/batters';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
 
 type RankingDto = {
@@ -6,10 +7,16 @@ type RankingDto = {
   sortKey?: string;
 };
 
-type RankingResponse = {
+type PitcherRankingResponse = {
   data: {
     list: OverallPitcherRank[];
   };
 };
 
-export type { RankingDto, RankingResponse };
+type BatterRankingResponse = {
+  data: {
+    list: OverallBatterRank[];
+  };
+};
+
+export type { RankingDto, PitcherRankingResponse, BatterRankingResponse };
