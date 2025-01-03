@@ -17,7 +17,6 @@ const CoachPage = () => {
     coach.playerName.toLowerCase().includes(searchWord.toLowerCase())
   );
 
-  console.log(coachList[0]);
   return (
     <Layout
       header={
