@@ -6,8 +6,8 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import CustomSelect from '@/features/common/CustomSelect.tsx';
 import DataTable from '@/features/common/DataTable';
 import SubTitle from '@/features/common/SubTitle';
-import { CrowdRankingChart } from './CrowdRankingChart';
 import { useCrowdRank } from '@/features/game/hooks/ranking';
+import { CrowdRankingChart } from './CrowdRankingChart';
 
 function CrowdRankingTab() {
   const [season, setSeason] = useState<string>('2024');
