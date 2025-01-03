@@ -79,7 +79,7 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
   return (
     <div
       className={cn(
-        'w-full mt-6 mb-4 pb-2 border-b-2 border-wiz-red flex flex-col md:flex-row md:items-center',
+        'w-full mt-6 mb-4 pb-2 border-b-2 border-wiz-red flex flex-col md:flex-row md:items-end',
         leftComponent ? 'md:justify-between' : 'justify-end'
       )}
     >

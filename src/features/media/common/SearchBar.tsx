@@ -44,7 +44,8 @@ const SearchBar = ({
           />
           <SearchIcon
             className={cn(
-              'absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500'
+              'absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500',
+              'w-3.5 md:w-4 h-auto'
             )}
             size={18}
           />
@@ -55,7 +56,9 @@ const SearchBar = ({
             'shrink-0 rounded-md bg-wiz-white/10 text-white text-center hover:bg-wiz-white/20 transition-colors'
           )}
         >
-          <span className={cn('px-1', 'text-wiz-white/80 text-xs md:text-sm')}>
+          <span
+            className={cn('md:px-1', 'text-wiz-white/80 text-xs md:text-sm')}
+          >
             검색
           </span>
         </Button>
