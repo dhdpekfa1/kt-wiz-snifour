@@ -2,14 +2,13 @@ import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import SearchBar from '@/features/media/common/SearchBar';
+import NotFonudSearch from '@/features/player/components/NotFonudSearch';
 import CheerleaderDialog from '@/features/player/components/cheerleader/CheerleaderDialog';
 import useCheerleaderList from '@/features/player/hooks/useCheerleaderList';
-import Skeleton from 'react-loading-skeleton';
 import { useSearchParams } from 'react-router';
 
 function CheerleaderPage() {
   const { cheerleaderList, loading, error } = useCheerleaderList();
-  const skeletonItems = Array.from({ length: 16 });
 
   if (error) return <div>{error}</div>;
 
@@ -50,25 +49,21 @@ function CheerleaderPage() {
           />
         }
       />
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-        {!cheerleaderList || loading
-          ? // 로딩 중일 때 스켈레톤
-            skeletonItems.map(() => (
-              <div
-                key={Math.random()}
-                className="relative bg-gray-200 animate-pulse rounded-lg shadow-md"
-              >
-                <Skeleton height={200} width="100%" />
-              </div>
-            ))
-          : // 컴포넌트
-            filteredCheerleaderList.map((cheerleader) => (
-              <CheerleaderDialog
-                data={cheerleader}
-                key={cheerleader.leaderName}
-              />
-            ))}
-      </div>
+      {filteredCheerleaderList.length === 0 && !error && !loading ? (
+        // 검색 결과 없음
+        <NotFonudSearch />
+      ) : (
+        // 컴포넌트
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+          {filteredCheerleaderList.map((cheerleader) => (
+            <CheerleaderDialog
+              data={cheerleader}
+              key={cheerleader.leaderName}
+              loading={loading}
+            />
+          ))}
+        </div>
+      )}
     </Layout>
   );
 }
