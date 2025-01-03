@@ -52,7 +52,7 @@ function PitcherPage() {
       ) : (
         <PlayerList
           playerList={error ? [] : filteredPlayerList}
-          endpoint="coach"
+          endpoint="pitcher"
           loading={loading}
         />
       )}
