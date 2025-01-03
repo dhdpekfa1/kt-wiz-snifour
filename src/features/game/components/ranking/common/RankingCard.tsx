@@ -22,6 +22,10 @@ function RankingCard({
   position,
   indicator,
 }: RankingCardProps) {
+  if (!ranking.length) {
+    return null;
+  }
+
   const [selectedPlayer, setSelectedPlayer] = useState<Player>(ranking[0]);
 
   const handleSelectPlayer = (player: Player) => {

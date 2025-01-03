@@ -10,14 +10,19 @@ import Breadcrumb from '../../../../common/Breadcrumb';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
 
 function PitcherRankingTab() {
-  const { eraRanking, winRanking, loading, error } = useTopPitcherRank();
+  const { eraRanking, winRanking, isLoading, error, isError } =
+    useTopPitcherRank();
 
-  if (!eraRanking.length || !winRanking.length || loading) {
+  if (!eraRanking?.length || !winRanking?.length) {
     return null;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  if (isError) {
+    return <div>{error?.toString()}</div>;
   }
 
   return (
@@ -33,13 +38,13 @@ function PitcherRankingTab() {
       >
         <RankingCard
           title="평균 자책점 TOP 3"
-          ranking={eraRanking}
+          ranking={eraRanking || []}
           position="pitcher"
           indicator="era"
         />
         <RankingCard
           title="승리 TOP 3"
-          ranking={winRanking}
+          ranking={winRanking || []}
           position="pitcher"
           indicator="w"
         />
