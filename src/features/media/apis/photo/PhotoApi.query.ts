@@ -23,7 +23,7 @@ export function useGetPhotoList(
     AxiosError,
     PhotoResponse, // 실제 응답
     GridInfiniteQueryResult, // 변환된 응답
-    number
+    number // pageParams 타입
   >
 ) {
   return useInfiniteQuery({
