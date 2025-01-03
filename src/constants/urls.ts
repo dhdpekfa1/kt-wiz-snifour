@@ -242,10 +242,5 @@ export const PAGE_URLS: { [key: string]: UrlStructure } = {
   },
   join: {
     name: '회원가입',
-    sub: {
-      step: {
-        name: '회원가입 단계',
-      },
-    },
   },
 };
