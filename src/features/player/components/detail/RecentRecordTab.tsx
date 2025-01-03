@@ -17,13 +17,17 @@ function RecentRecordTab() {
   }
 
   return (
-    <div className="w-full bg-wiz-white bg-opacity-10 rounded-xl px-4 pb-4">
+    <div className="w-full bg-wiz-white bg-opacity-10 rounded-xl">
       <Tabs defaultValue="regular">
-        <TabsList>
-          <SubTabsTrigger value="regular">정규 리그</SubTabsTrigger>
-          <SubTabsTrigger value="futures">퓨처스 리그</SubTabsTrigger>
+        <TabsList className="px-4">
+          <SubTabsTrigger value="regular" className="text-sm">
+            정규 리그
+          </SubTabsTrigger>
+          <SubTabsTrigger value="futures" className="text-sm">
+            퓨처스 리그
+          </SubTabsTrigger>
         </TabsList>
-        <TabsContent value="regular">
+        <TabsContent value="regular" className="pb-4">
           <PlayerRecordChart
             title={'정규 리그 최근 5경기'}
             data={player.recentgamerecordlist}
@@ -31,9 +35,10 @@ function RecentRecordTab() {
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
             }
             loading={loading}
+            className="bg-opacity-0"
           />
         </TabsContent>
-        <TabsContent value="futures">
+        <TabsContent value="futures" className="pb-4">
           <PlayerRecordChart
             title={'퓨처스 리그 최근 5경기'}
             data={player.recentgamerecordlistfutures}
@@ -41,6 +46,7 @@ function RecentRecordTab() {
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
             }
             loading={loading}
+            className="bg-opacity-0"
           />
         </TabsContent>
       </Tabs>

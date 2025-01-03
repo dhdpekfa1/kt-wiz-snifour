@@ -51,6 +51,7 @@ function PlayerDetailPage() {
                 position === 'pitcher' ? yearPitcherConfig : yearBatterConfig
               }
               loading={loading}
+              className="pt-4"
             />
           </div>
         </div>
