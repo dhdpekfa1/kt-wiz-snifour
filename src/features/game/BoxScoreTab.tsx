@@ -5,6 +5,7 @@ import {
   MatchScoreTable,
   PitchingRecordTable,
 } from '@/features/game/components/table';
+import { formatDate } from '@/lib/utils';
 import { useParams } from 'react-router';
 import KeyRecordsCard from './components/card/KeyRecordsCard';
 import { MatchBoard } from './components/common';
@@ -63,7 +64,9 @@ const BoxscoreTab = () => {
             stadium: '홈',
             tabType: 'MatchBoard',
           }}
-          matchDate={matchData?.schedule.current.gameDate.toString()}
+          matchDate={formatDate(
+            matchData?.schedule.current.gameDate.toString()
+          )}
           matchTime={matchData?.schedule.current.gtime}
           stadium={matchData?.schedule.current.stadium}
           gameTable={<MatchScoreTable data={matchData?.scoreboard} />}
