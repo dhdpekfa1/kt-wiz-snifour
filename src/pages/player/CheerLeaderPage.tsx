@@ -1,15 +1,26 @@
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
+import SearchBar from '@/features/media/common/SearchBar';
 import CheerleaderDialog from '@/features/player/components/cheerleader/CheerleaderDialog';
 import useCheerleaderList from '@/features/player/hooks/useCheerleaderList';
 import Skeleton from 'react-loading-skeleton';
+import { useSearchParams } from 'react-router';
 
 function CheerleaderPage() {
   const { cheerleaderList, loading, error } = useCheerleaderList();
   const skeletonItems = Array.from({ length: 16 });
 
   if (error) return <div>{error}</div>;
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchWord = searchParams.get('searchWord') || '';
+
+  // 검색 결과 필터링
+  const filteredCheerleaderList = cheerleaderList.filter((cheerleader) =>
+    cheerleader.leaderName.toLowerCase().includes(searchWord.toLowerCase())
+  );
 
   return (
     <Layout
@@ -26,7 +37,19 @@ function CheerleaderPage() {
         </Banner>
       }
     >
-      <Breadcrumb />
+      <Breadcrumb
+        leftComponent={
+          <SearchBar
+            value={searchParams.get('searchWord') || ''}
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
+        }
+      />
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {!cheerleaderList || loading
           ? // 로딩 중일 때 스켈레톤
@@ -39,7 +62,7 @@ function CheerleaderPage() {
               </div>
             ))
           : // 컴포넌트
-            cheerleaderList.map((cheerleader) => (
+            filteredCheerleaderList.map((cheerleader) => (
               <CheerleaderDialog
                 data={cheerleader}
                 key={cheerleader.leaderName}

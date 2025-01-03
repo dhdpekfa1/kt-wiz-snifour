@@ -3,6 +3,7 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components/';
+import NotFonudSearch from '@/features/player/components/NotFonudSearch';
 import useCoachList from '@/features/player/hooks/useCoachList';
 import { useSearchParams } from 'react-router';
 
@@ -26,7 +27,7 @@ const CoachPage = () => {
             alt="KT WIZ Coach"
           />
           <Banner.Overlay>
-            <Banner.Heading title="KT WIZ 선수단" subtitle="코칭 스텝" />
+            <Banner.Heading title="KT Wiz 선수단" subtitle="코칭 스텝" />
             <Banner.Description description="최고의 kt wiz 코칭스텝을 소개합니다." />
           </Banner.Overlay>
         </Banner>
@@ -46,9 +47,7 @@ const CoachPage = () => {
         }
       />
       {!loading && !error && filteredCoachList.length === 0 ? (
-        <p className="h-screen text-wiz-white font-bold text-center pt-4 text-xs md:text-base lg:text-xl">
-          검색 결과가 없습니다.
-        </p>
+        <NotFonudSearch />
       ) : (
         <PlayerList
           playerList={error ? [] : filteredCoachList}

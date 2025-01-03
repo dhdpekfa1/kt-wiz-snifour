@@ -2,6 +2,7 @@ import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components';
+import NotFonudSearch from '@/features/player/components/NotFonudSearch';
 import { usePlayerList } from '@/features/player/hooks/usePlayerList';
 import { useSearchParams } from 'react-router';
 
@@ -46,9 +47,7 @@ function PitcherPage() {
         }
       />
       {!loading && !error && filteredPlayerList.length === 0 ? (
-        <p className="h-screen text-wiz-white font-bold text-center pt-4 text-xs md:text-base lg:text-xl">
-          검색 결과가 없습니다.
-        </p>
+        <NotFonudSearch />
       ) : (
         <PlayerList
           playerList={error ? [] : filteredPlayerList}

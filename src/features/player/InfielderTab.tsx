@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router';
 import Breadcrumb from '../common/Breadcrumb';
 import SearchBar from '../media/common/SearchBar';
 import { PlayerList } from './components';
+import NotFonudSearch from './components/NotFonudSearch';
 import { usePlayerList } from './hooks/usePlayerList';
 
 function InfielderTab() {
@@ -35,9 +36,7 @@ function InfielderTab() {
         }
       />
       {!loading && !error && filteredInfielderList.length === 0 ? (
-        <p className="h-screen text-wiz-white font-bold text-center pt-4 text-xs md:text-base lg:text-xl">
-          검색 결과가 없습니다.
-        </p>
+        <NotFonudSearch />
       ) : (
         <PlayerList
           playerList={error ? [] : filteredInfielderList}
