@@ -1,5 +1,5 @@
 import {
-  GridViewType,
+  GridInfiniteQueryResult,
   HighlightDetailResponse,
   HighlightItem,
   HighlightResponse,
@@ -20,11 +20,6 @@ import { AxiosError } from 'axios';
 import { createGridViewItem } from '../../services/grid-mapper.service';
 import { highlightApi } from './HighlightApi';
 
-type CustomInfiniteQueryResult = {
-  pages: GridViewType[][];
-  pageParams: number[];
-};
-
 // 쿼리 키 정의
 export const HIGHLIGHT_API_QUERY_KEY = {
   /** 하이라이트 목록 조회 쿼리 키 생성 */
@@ -44,14 +39,14 @@ export function useGetHighlightList(
     typeof highlightApi.getHighlightList,
     AxiosError,
     HighlightResponse, // 실제 응답
-    CustomInfiniteQueryResult, // 변환된 응답
+    GridInfiniteQueryResult, // 변환된 응답
     number // pageParams 타입
   >
 ) {
   return useInfiniteQuery<
     HighlightResponse, // TQueryFnData
     AxiosError, // TError
-    CustomInfiniteQueryResult, // TData
+    GridInfiniteQueryResult, // TData
     QueryKey, // TQueryKey
     number // TPageParam
   >({
@@ -71,7 +66,7 @@ export function useGetHighlightList(
     },
     select: (
       data: InfiniteData<HighlightResponse, number>
-    ): CustomInfiniteQueryResult => {
+    ): GridInfiniteQueryResult => {
       return {
         pages: data.pages.map((page) => {
           return page.data.list
