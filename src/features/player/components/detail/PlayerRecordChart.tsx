@@ -6,7 +6,7 @@ import CustomLineChart from '@/features/common/CustomLineChart';
 import SubTitle from '@/features/common/SubTitle';
 import { cn } from '@/lib/utils';
 import Skeleton from 'react-loading-skeleton';
-import { RecentRecord, YearRecord } from '../types/detail';
+import { RecentRecord, YearRecord } from '../../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
 
 // TODO: 타입 분리
