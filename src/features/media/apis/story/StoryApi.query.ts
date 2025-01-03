@@ -1,6 +1,15 @@
-import { GridDataType } from '@/features/media/types';
-import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
-import { useQuery } from '@tanstack/react-query';
+import { GridInfiniteQueryResult } from '@/features/media/types';
+import {
+  Parameter,
+  UseInfiniteQueryParams,
+  UseQueryParams,
+  isNotNullish,
+} from '@/lib';
+import {
+  InfiniteData,
+  useInfiniteQuery,
+  useQuery,
+} from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { createGridViewItem } from '../../services/grid-mapper.service';
 import { storyApi } from './StoryApi';
@@ -12,7 +21,7 @@ import {
 
 // 쿼리 키 정의
 export const STORY_API_QUERY_KEY = {
-  /** 하이라이트 목록 조회 쿼리 키 생성 */
+  /** 스토리 목록 조회 쿼리 키 생성 */
   GET_LIST: (params?: Parameter<typeof storyApi.getStoryList>) =>
     ['story-list', params].filter(isNotNullish),
   GET_DETAIL: (params?: Parameter<typeof storyApi.getStoryBySeq>) =>
@@ -21,28 +30,45 @@ export const STORY_API_QUERY_KEY = {
 
 /**
  * [GET] /api/article/highlightlist?count=
- * @param params 하이라이트 목록 조회에 필요한 파라미터
- * @returns 그리드 타입으로 변환된 뉴스 목록 데이터와 총 데이터 개수
+ * @param params 스토리 목록 조회에 필요한 파라미터
+ * @returns 그리드 타입으로 변환된 스토리 목록 데이터와 총 데이터 개수
  */
 export function useGetStoryList(
-  params?: UseQueryParams<
+  params?: UseInfiniteQueryParams<
     typeof storyApi.getStoryList,
     AxiosError,
     StoryResponse, // 실제 응답
-    GridDataType // 변환된 응답
+    GridInfiniteQueryResult, // 변환된 응답
+    number // pageParams 타입
   >
 ) {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: STORY_API_QUERY_KEY.GET_LIST(params?.variables),
-    queryFn: async () => {
-      const response = await storyApi.getStoryList(params?.variables);
+    queryFn: async ({ pageParam }) => {
+      const response = await storyApi.getStoryList({
+        ...params?.variables,
+        pageNum: pageParam,
+      });
       return response;
     },
-    select: (res: StoryResponse): GridDataType => ({
-      list: res.data.list
-        .filter((item) => item.useYn === 'Y')
-        .map(createGridViewItem),
-    }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return allPages.length < lastPage.data.list[0].totalPage
+        ? allPages.length + 1
+        : undefined;
+    },
+    select: (
+      data: InfiniteData<StoryResponse, number>
+    ): GridInfiniteQueryResult => {
+      return {
+        pages: data.pages.map((page) => {
+          return page.data.list
+            .filter((item) => item.useYn === 'Y')
+            .map(createGridViewItem);
+        }),
+        pageParams: data.pageParams as number[],
+      };
+    },
     ...params?.options,
   });
 }
