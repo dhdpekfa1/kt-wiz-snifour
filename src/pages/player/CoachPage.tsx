@@ -4,14 +4,20 @@ import Layout from '@/features/common/Layout';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components/';
 import useCoachList from '@/features/player/hooks/useCoachList';
+import { useSearchParams } from 'react-router';
 
 const CoachPage = () => {
   const { coachList, loading, error } = useCoachList();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleSubmit = () => {
-    console.log('TODO: 이벤트 구현');
-  };
+  const searchWord = searchParams.get('searchWord') || '';
 
+  // 검색 결과 필터링
+  const filteredCoachList = coachList.filter((coach) =>
+    coach.playerName.toLowerCase().includes(searchWord.toLowerCase())
+  );
+
+  console.log(coachList[0]);
   return (
     <Layout
       header={
@@ -27,12 +33,30 @@ const CoachPage = () => {
         </Banner>
       }
     >
-      <Breadcrumb leftComponent={<SearchBar onSubmit={handleSubmit} />} />
-      <PlayerList
-        playerList={error ? [] : coachList}
-        endpoint="coach"
-        loading={loading}
+      <Breadcrumb
+        leftComponent={
+          <SearchBar
+            value={searchParams.get('searchWord') || ''}
+            onSubmit={(searchWord) =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                searchWord,
+              })
+            }
+          />
+        }
       />
+      {!loading && !error && filteredCoachList.length === 0 ? (
+        <p className="h-screen text-wiz-white font-bold text-center pt-4 text-xs md:text-base lg:text-xl">
+          검색 결과가 없습니다.
+        </p>
+      ) : (
+        <PlayerList
+          playerList={error ? [] : filteredCoachList}
+          endpoint="coach"
+          loading={loading}
+        />
+      )}
     </Layout>
   );
 };
