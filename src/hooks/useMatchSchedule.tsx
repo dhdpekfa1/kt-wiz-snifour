@@ -6,13 +6,12 @@ import { useEffect, useState } from 'react';
 
 interface UseMatchScheduleParams {
   currentMonth: Date; // Mon Apr 01 2024 00:00:00 GMT+0900 (한국 표준시)
-  maxRetries?: number;
   carouselApi?: CarouselApi | null;
 }
 
+// TODO: 리액트 쿼리 프리패치 사용
 export const useMatchSchedule = ({
   currentMonth,
-  maxRetries = 12,
   carouselApi,
 }: UseMatchScheduleParams) => {
   const [matchData, setMatchData] = useState<GameSchedule[]>([]);
@@ -23,36 +22,38 @@ export const useMatchSchedule = ({
     const fetchMatchSchedule = async () => {
       setIsLoading(true);
       setError(null);
-      let yearMonth = format(currentMonth, 'yyyyMM');
-      let retries = maxRetries;
+      const yearMonth = format(currentMonth, 'yyyyMM');
       let allMatches: GameSchedule[] = [];
 
       // 이번 달에 경기가 없을 경우 가장 최신 경기 확인
       try {
-        while (retries > 0) {
-          const data: GameSchedule[] = await getMonthSchedule(yearMonth);
+        // 현재 달 데이터 가져오기
+        const currentData: GameSchedule[] = await getMonthSchedule(yearMonth);
+        allMatches = [...currentData];
 
-          if (data.length) {
-            allMatches = [...allMatches, ...data];
-            break; // 데이터가 있으면 반복 중지
-          }
+        // 이전 달 데이터 가져오기
+        const prevMonth = new Date(currentMonth);
+        prevMonth.setMonth(prevMonth.getMonth() - 1);
+        const prevData: GameSchedule[] = await getMonthSchedule(
+          format(prevMonth, 'yyyyMM')
+        );
+        allMatches = [...prevData, ...allMatches];
 
-          // 이전 달로 이동 최대 12번 호출
-          const currentDate = new Date(
-            parseInt(yearMonth.slice(0, 4)),
-            parseInt(yearMonth.slice(4, 6)) - 1,
-            1
-          );
-          currentDate.setMonth(currentDate.getMonth() - 1);
-          yearMonth = format(currentDate, 'yyyyMM');
-          retries -= 1;
-        }
+        // 다음 달 데이터 가져오기
+        const nextMonth = new Date(currentMonth);
+        nextMonth.setMonth(nextMonth.getMonth() + 1);
+        const nextData: GameSchedule[] = await getMonthSchedule(
+          format(nextMonth, 'yyyyMM')
+        );
+        allMatches = [...allMatches, ...nextData];
 
-        // 가장 마지막 경기로 이동
-        if (carouselApi && allMatches.length > 0) {
-          carouselApi.scrollTo(allMatches.length - 1, true); // 마지막 경기 인덱스로 이동
-        }
         setMatchData(allMatches);
+
+        // 현재 달 데이터에서 첫 번째 경기로 이동
+        if (carouselApi && currentData.length > 0) {
+          const firstGameIndex = prevData.length; // 이전 달 데이터 개수만큼 이동
+          carouselApi.scrollTo(firstGameIndex, true);
+        }
       } catch (err) {
         setError(err as Error);
       } finally {
@@ -61,7 +62,7 @@ export const useMatchSchedule = ({
     };
 
     fetchMatchSchedule();
-  }, [currentMonth, maxRetries, carouselApi]);
+  }, [currentMonth, carouselApi]);
 
   return { matchData, isLoading, error };
 };
