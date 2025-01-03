@@ -20,7 +20,7 @@ function CatcherTab() {
   }
 
   return (
-    <div>
+    <>
       <Breadcrumb
         leftComponent={
           <SearchBar
@@ -45,7 +45,7 @@ function CatcherTab() {
           loading={loading}
         />
       )}
-    </div>
+    </>
   );
 }
 
