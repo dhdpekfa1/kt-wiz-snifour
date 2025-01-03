@@ -14,6 +14,7 @@ function InfielderTab() {
   const filteredInfielderList = playerList.filter((player) =>
     player.playerName.toLowerCase().includes(searchWord.toLowerCase())
   );
+
   if (error) {
     return <div>Error: {error}</div>;
   }
