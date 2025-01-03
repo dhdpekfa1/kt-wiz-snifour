@@ -80,9 +80,14 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
     <div
       className={cn(
         'w-full mt-6 mb-4 pb-2 border-b-2 border-wiz-red flex flex-col md:flex-row md:items-center',
-        leftComponent ? 'md:justify-between justify-start' : 'justify-end'
+        leftComponent ? 'md:justify-between' : 'justify-end'
       )}
     >
+      {/* md 이상에서 브래드크럼 좌측에 표시되는 leftComponent */}
+      {leftComponent && (
+        <div className="hidden md:flex items-center gap-2">{leftComponent}</div>
+      )}
+
       {/* Breadcrumb */}
       <span className="flex items-center font-light text-wiz-white whitespace-wraps">
         <HomeIcon className={cn('mr-1 h-3', 'lg:mr-2 lg:h-4')} />
@@ -105,7 +110,7 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
 
       {/* sm 이하에서 브래드크럼 아래에 표시되는 leftComponent */}
       {leftComponent && (
-        <div className="flex items-center gap-2 mt-4 md:mt-0 md:ml-4">
+        <div className="flex items-center gap-2 mt-4 md:mt-0 md:ml-4 md:hidden">
           {leftComponent}
         </div>
       )}
