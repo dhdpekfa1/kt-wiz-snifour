@@ -7,7 +7,7 @@ import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
   SeasonSummary,
-} from '../../types/detail';
+} from '../../../types/detail';
 
 interface Season {
   pitcher: { label: string; key: keyof PitcherSeasonSummaryBase }[];

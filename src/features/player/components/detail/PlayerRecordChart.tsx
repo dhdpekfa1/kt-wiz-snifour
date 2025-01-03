@@ -6,7 +6,7 @@ import CustomLineChart from '@/features/common/CustomLineChart';
 import SubTitle from '@/features/common/SubTitle';
 import { cn } from '@/lib/utils';
 import Skeleton from 'react-loading-skeleton';
-import { RecentRecord, YearRecord } from '../types/detail';
+import { RecentRecord, YearRecord } from '../../types/detail';
 import { RecordTableAccordion } from './RecordTableAccordion';
 
 // TODO: 타입 분리
@@ -22,6 +22,7 @@ interface PlayerRecordChartProps {
   data: RecentRecord[] | YearRecord[];
   config: Config;
   loading: boolean;
+  className?: string;
 }
 
 function PlayerRecordChart({
@@ -29,6 +30,7 @@ function PlayerRecordChart({
   data,
   config,
   loading,
+  className,
 }: PlayerRecordChartProps) {
   const [chartConfig, setChartConfig] = useState<Config>(config);
   const [chartType, setChartType] = useState<string>('bar');
@@ -63,7 +65,12 @@ function PlayerRecordChart({
   };
 
   return (
-    <div className="w-full bg-wiz-white bg-opacity-10 rounded-xl px-4 pt-4 pb-8">
+    <div
+      className={cn(
+        'w-full bg-wiz-white bg-opacity-10 rounded-xl px-4 pb-8',
+        className
+      )}
+    >
       <div
         className={cn(
           'flex flex-col ',
