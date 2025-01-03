@@ -5,7 +5,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
   Checkbox,
   Input,
   Label,
@@ -76,9 +75,6 @@ const LoginPage = () => {
       <div className="flex items-center flex-col my-10 md:my-20">
         <Card className="w-full md:w-1/2 lg:1/3 border-wiz-white border-opacity-50 shadow-lg shadow-wiz-red">
           <CardHeader>
-            <CardTitle className="text-xl md:text-2xl text-center">
-              로그인
-            </CardTitle>
             <CardDescription className="flex flex-col items-center justify-center text-xs md:text-base lg:text-xl">
               <img
                 src="/assets/emblems/ktwiz.svg"
