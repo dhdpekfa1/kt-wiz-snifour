@@ -11,6 +11,7 @@ import {
 } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { Video } from '../types';
+import { WizVideoAnimation } from './WizVideoAnimation';
 
 function WizVideo() {
   const [videos, setVideos] = useState<Video[]>([]);
@@ -57,38 +58,13 @@ function WizVideo() {
         <div
           className={cn('w-full grid grid-cols-2 gap-4 py-4', 'lg:grid-cols-4')}
         >
-          {videos.slice(1).map((vid) => (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-            <div
+          {videos.slice(1).map((vid, index) => (
+            <WizVideoAnimation
               key={vid.artcSeq}
-              className="flex flex-col gap-2 bg-white bg-opacity-10 rounded-xl overflow-hidden cursor-pointer text-white transition-all hover:scale-105 duration-300"
-              onClick={() => {
-                navigate(`/media/highlight/${vid.artcSeq}`);
-              }}
-            >
-              <div className="w-full h-fit bg-gray-500">
-                <img src={vid.imgFilePath} alt={vid.artcTitle} />
-              </div>
-              <div className="h-full flex flex-col justify-between px-2 py-1 gap-4 md:gap-8">
-                <p
-                  className={cn(
-                    'font-semibold text-xs',
-                    'md:text-sm',
-                    'lg:text-base'
-                  )}
-                >
-                  {vid.artcTitle}
-                </p>
-                <p
-                  className={cn(
-                    'text-neutral-400 self-end text-[0.6rem]',
-                    'lg:text-xs'
-                  )}
-                >
-                  {vid.contentsDate}
-                </p>
-              </div>
-            </div>
+              vid={vid}
+              index={index}
+              navigate={navigate}
+            />
           ))}
         </div>
       </CardContent>
