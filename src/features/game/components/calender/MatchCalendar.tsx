@@ -65,7 +65,6 @@ const MatchCalendar = () => {
                 onClick={() =>
                   handleTabChange(tab.value as "ktWiz" | "allLeague")
                 }
-                className="media-tabs-trigger px-6 py-2.5"
               >
                 {tab.label}
               </TabsTrigger>
