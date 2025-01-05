@@ -15,7 +15,7 @@ import {
 import { cn } from '@/lib/utils';
 function TeamVSTable() {
   const { vs, isLoading, isError, error } = useTeamVS();
-  console.log(vs);
+
   if (isLoading) {
     return <div>loading...</div>;
   }
