@@ -1,31 +1,31 @@
-import axios from "axios";
-import { API_URL } from "@/constants/api-url";
-
-// 공통 API 요청 함수
-const fetchApi = async (url: string, params?: Record<string, string>) => {
-  try {
-    const res = await axios.get(`${API_URL}${url}`, { params });
-
-    if (res.status !== 200) {
-      throw new Error(`Failed to fetch data. Status code: ${res.status}`);
-    }
-
-    return res.data.data.list;
-  } catch (err) {
-    console.error(`API fetch error on ${url}:`, err);
-    throw err;
-  }
-};
+import instance from '@/lib/axios/instance';
+import { ApiRoutes } from '@/constants/route';
+import { GameScheduleResponse } from '@/features/game/types/match-schedule';
 
 export const scheduleApi = {
   // 월 스케줄
-  getMonthSchedule: (yearMonth: string) =>
-    fetchApi("/game/monthschedule", { yearMonth }),
+  getMonthSchedule: async (
+    yearMonth: string
+  ): Promise<GameScheduleResponse> => {
+    const response = await instance.get(ApiRoutes.GameSchedule, {
+      params: { yearMonth },
+    });
+    return response.data;
+  },
 
   // 모든 팀 월 스케줄
-  getAllMonthSchedule: (yearMonth: string) =>
-    fetchApi("/game/allgameschedule", { yearMonth }),
+  getAllMonthSchedule: async (
+    yearMonth: string
+  ): Promise<GameScheduleResponse> => {
+    const response = await instance.get(ApiRoutes.AllGameSchedule, {
+      params: { yearMonth },
+    });
+    return response.data;
+  },
 
   // 오늘 스케줄
-  getTodaySchedule: () => fetchApi("/game/dayschedule"),
+  getTodaySchedule: async (): Promise<GameScheduleResponse> => {
+    const response = await instance.get(ApiRoutes.TodayGameSchedule);
+    return response.data;
+  },
 };
