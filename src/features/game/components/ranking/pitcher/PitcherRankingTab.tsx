@@ -70,7 +70,12 @@ function PitcherRankingTab() {
       </div>
 
       {/* 투수 순위 표 */}
-      <Tabs defaultValue="ktPitchers">
+      <Tabs
+        defaultValue="ktPitchers"
+        onValueChange={() => {
+          setSearchParams({ gyear: searchParams.get('gyear') || '' });
+        }}
+      >
         <TabsList className="my-8">
           <SubTabsTrigger value="ktPitchers">KT Wiz 투수</SubTabsTrigger>
           <SubTabsTrigger value="allPitchers">전체 투수 순위</SubTabsTrigger>

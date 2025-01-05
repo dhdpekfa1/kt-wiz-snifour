@@ -72,7 +72,12 @@ function BatterRankingTab() {
       </div>
 
       {/* 타자 순위 표 */}
-      <Tabs defaultValue="ktBatters">
+      <Tabs
+        defaultValue="ktBatters"
+        onValueChange={() => {
+          setSearchParams({ gyear: searchParams.get('gyear') || '' });
+        }}
+      >
         <TabsList className="my-8">
           <SubTabsTrigger value="ktBatters">KT Wiz 타자</SubTabsTrigger>
           <SubTabsTrigger value="allBatters">전체 타자 순위</SubTabsTrigger>
