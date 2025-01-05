@@ -1,13 +1,17 @@
-import { TeamVS } from '@/features/game/types/team-ranking';
-
-interface ArrangedTeamVS {
+import { TeamVS } from '../types/ranking';
+export interface TeamVSResult {
+  win: number;
+  lose: number;
+  drawn: number;
+}
+export interface ArrangedTeamVS {
   teamName: string;
   teamCode: string;
-  [vsTeamCode: string]: { win: number; lose: number; drawn: number } | string;
+  [vsTeamCode: string]: TeamVSResult | string;
 }
 
 // 팀(key)이 상대팀(vsTeam)을 상대로 어떤 성적을 얻었는지 객체화 하는 함수
-export const arrangeVS = (data: TeamVS[]): ArrangedTeamVS[] => {
+export const arrangeVS = (data: TeamVS[]): Map<string, ArrangedTeamVS> => {
   const teamRecords = new Map<string, ArrangedTeamVS>();
 
   for (const vs of data) {
@@ -27,5 +31,5 @@ export const arrangeVS = (data: TeamVS[]): ArrangedTeamVS[] => {
     };
   }
 
-  return Array.from(teamRecords.values());
+  return teamRecords;
 };

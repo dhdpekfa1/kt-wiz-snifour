@@ -1,7 +1,6 @@
 import { teamRankColums } from '@/constants/columns/team-rank-colums';
 import DataTable from '@/features/common/DataTable';
 import { useTeamRank } from '@/features/game/hooks/ranking/useTeamRank';
-import { TeamStats } from '@/features/game/types/team-ranking';
 
 function TeamRankingTable() {
   const { ranking, isLoading, isError, error } = useTeamRank('team');
@@ -30,13 +29,7 @@ function TeamRankingTable() {
     );
   }
 
-  return (
-    <DataTable
-      data={ranking as TeamStats[]}
-      columns={teamRankColums}
-      domain="all"
-    />
-  );
+  return <DataTable data={ranking} columns={teamRankColums} domain="all" />;
 }
 
 export { TeamRankingTable };

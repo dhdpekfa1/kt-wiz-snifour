@@ -3,13 +3,16 @@ import { rankingApi } from './rankingApi';
 import { AxiosError } from 'axios';
 import {
   BatterRankingResponse,
+  CrowdRank,
+  CrowdRankingResponse,
   PitcherRankingResponse,
+  TeamRankingResponse,
+  TeamStats,
 } from '../../types/ranking';
-import { useQuery } from '@tanstack/react-query';
+import { QueryKey, useQuery } from '@tanstack/react-query';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import { OverallBatterRank } from '@/features/common/types/batters';
 import { arrangeVS } from '../../services/arrange-vs.service';
-import { CrowdRank, CrowdRankingResponse } from '../../types/crowd-ranking';
 
 // 랭킹 쿼리 키
 export const RANKING_API_QUERY_KEY = {
@@ -66,7 +69,7 @@ export function useGetTeamRanking() {
 }
 
 export function useGetTeamRankingByPitcher() {
-  return useQuery({
+  return useQuery<TeamRankingResponse, AxiosError, TeamStats[], QueryKey>({
     queryKey: RANKING_API_QUERY_KEY.GET_TEAM_RANKING_BY_PITCHER(),
     queryFn: async () => {
       const response = await rankingApi.getTeamRankByPitcher();
@@ -79,7 +82,7 @@ export function useGetTeamRankingByPitcher() {
 }
 
 export function useGetTeamRankingByBatter() {
-  return useQuery({
+  return useQuery<TeamRankingResponse, AxiosError, TeamStats[], QueryKey>({
     queryKey: RANKING_API_QUERY_KEY.GET_TEAM_RANKING_BY_BATTER(),
     queryFn: async () => {
       const response = await rankingApi.getTeamRankByBatter();
