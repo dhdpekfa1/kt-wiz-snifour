@@ -1,36 +1,28 @@
-import { PitcherERA, PitcherWins } from '@/features/common/types/pitchers';
 import {
-  getPitcherEraRanking,
-  getPitcherWinRanking,
-} from '@/features/game/apis/ranking/pitcher';
-import { useEffect, useState } from 'react';
+  useGetPitcherEraTop3,
+  useGetPitcherWinTop3,
+} from '../../apis/ranking/rankingApi.query';
 
 export function useTopPitcherRank() {
-  const [eraRanking, setEraRanking] = useState<PitcherERA[]>([]);
-  const [winRanking, setWinRanking] = useState<PitcherWins[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    data: eraRanking,
+    isLoading: isEraLoading,
+    isError: isEraError,
+    error: eraError,
+  } = useGetPitcherEraTop3();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [eraData, winData] = await Promise.all([
-          getPitcherEraRanking(),
-          getPitcherWinRanking(),
-        ]);
+  const {
+    data: winRanking,
+    isLoading: isWinLoading,
+    isError: isWinError,
+    error: winError,
+  } = useGetPitcherWinTop3();
 
-        setEraRanking(eraData);
-        setWinRanking(winData);
-      } catch (err) {
-        console.error(err);
-        setError('데이터를 가져오는 중 오류가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return { eraRanking, winRanking, loading, error };
+  return {
+    eraRanking,
+    winRanking,
+    isLoading: isEraLoading || isWinLoading,
+    isError: isEraError || isWinError,
+    error: eraError || winError,
+  };
 }
