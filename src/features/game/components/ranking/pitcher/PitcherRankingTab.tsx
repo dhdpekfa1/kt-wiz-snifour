@@ -13,10 +13,6 @@ function PitcherRankingTab() {
   const { eraRanking, winRanking, isLoading, error, isError } =
     useTopPitcherRank();
 
-  if (!eraRanking?.length || !winRanking?.length) {
-    return null;
-  }
-
   if (isLoading) {
     return <div>loading...</div>;
   }

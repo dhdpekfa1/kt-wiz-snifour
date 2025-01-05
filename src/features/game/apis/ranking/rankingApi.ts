@@ -9,12 +9,16 @@ import { ApiRoutes } from '@/constants/route';
 // ranking api
 export const rankingApi = {
   // 투수
-  getPitcherEraTop3: async (): Promise<PitcherRankingResponse> => {
-    const response = await instance.get(ApiRoutes.PitcherEraTop3);
+  getPitcherEraTop3: async (
+    params?: RankingDto
+  ): Promise<PitcherRankingResponse> => {
+    const response = await instance.get(ApiRoutes.PitcherEraTop3, { params });
     return response.data;
   },
-  getPitcherWinTop3: async (): Promise<PitcherRankingResponse> => {
-    const response = await instance.get(ApiRoutes.PitcherWinTop3);
+  getPitcherWinTop3: async (
+    params?: RankingDto
+  ): Promise<PitcherRankingResponse> => {
+    const response = await instance.get(ApiRoutes.PitcherWinTop3, { params });
     return response.data;
   },
   getKTPitcherRanking: async (
@@ -30,12 +34,16 @@ export const rankingApi = {
     return response.data;
   },
   // 타자
-  getBatterHraTop3: async (): Promise<BatterRankingResponse> => {
-    const response = await instance.get(ApiRoutes.BatterHraTop3);
+  getBatterHraTop3: async (
+    params?: RankingDto
+  ): Promise<BatterRankingResponse> => {
+    const response = await instance.get(ApiRoutes.BatterHraTop3, { params });
     return response.data;
   },
-  getBatterHrTop3: async (): Promise<BatterRankingResponse> => {
-    const response = await instance.get(ApiRoutes.BatterHrTop3);
+  getBatterHrTop3: async (
+    params?: RankingDto
+  ): Promise<BatterRankingResponse> => {
+    const response = await instance.get(ApiRoutes.BatterHrTop3, { params });
     return response.data;
   },
   getKTBatterRanking: async (

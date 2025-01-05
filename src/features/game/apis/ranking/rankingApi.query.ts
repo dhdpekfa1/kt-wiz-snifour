@@ -48,9 +48,9 @@ export function useGetPitcherEraTop3(
   >
 ) {
   return useQuery({
-    queryKey: RANKING_API_QUERY_KEY.GET_PITCHER_ERA_TOP3(),
+    queryKey: RANKING_API_QUERY_KEY.GET_PITCHER_ERA_TOP3(params?.variables),
     queryFn: async () => {
-      const response = await rankingApi.getPitcherEraTop3();
+      const response = await rankingApi.getPitcherEraTop3(params?.variables);
       return response;
     },
     select: (data) => {
@@ -69,9 +69,9 @@ export function useGetPitcherWinTop3(
   >
 ) {
   return useQuery({
-    queryKey: RANKING_API_QUERY_KEY.GET_PITCHER_WIN_TOP3(),
+    queryKey: RANKING_API_QUERY_KEY.GET_PITCHER_WIN_TOP3(params?.variables),
     queryFn: async () => {
-      const response = await rankingApi.getPitcherWinTop3();
+      const response = await rankingApi.getPitcherWinTop3(params?.variables);
       return response;
     },
     select: (data) => {
@@ -133,9 +133,9 @@ export function useGetBatterHraTop3(
   >
 ) {
   return useQuery({
-    queryKey: RANKING_API_QUERY_KEY.GET_BATTER_HRA_TOP3(),
+    queryKey: RANKING_API_QUERY_KEY.GET_BATTER_HRA_TOP3(params?.variables),
     queryFn: async () => {
-      const response = await rankingApi.getBatterHraTop3();
+      const response = await rankingApi.getBatterHraTop3(params?.variables);
       return response;
     },
     select: (data) => {
@@ -154,9 +154,9 @@ export function useGetBatterHrTop3(
   >
 ) {
   return useQuery({
-    queryKey: RANKING_API_QUERY_KEY.GET_BATTER_HR_TOP3(),
+    queryKey: RANKING_API_QUERY_KEY.GET_BATTER_HR_TOP3(params?.variables),
     queryFn: async () => {
-      const response = await rankingApi.getBatterHrTop3();
+      const response = await rankingApi.getBatterHrTop3(params?.variables);
       return response;
     },
     select: (data) => {
