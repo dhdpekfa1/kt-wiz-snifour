@@ -43,13 +43,7 @@ export const useGetMatchScheduleQuery = ({
     error,
   } = useQuery<GameSchedule[], Error>({
     queryKey: MATCH_SCHEDULE_QUERY_KEY.GET_SCHEDULE(`${type}-${yearMonth}`),
-    // queryFn: () => fetchFn(yearMonth),
-    queryFn: async () => {
-      const res = await fetchFn(yearMonth);
-      console.log("fetchFn result:", res);
-
-      return res;
-    },
+    queryFn: () => fetchFn(yearMonth),
     staleTime: 5 * 60 * 1000,
   });
 
