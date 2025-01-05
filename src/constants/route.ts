@@ -14,6 +14,7 @@ export enum ApiRoutes {
   BatterHrTop3 = '/game/rank/batter/hr/top3',
   KTBatterRank = '/game/rank/kt/batter',
   AllBatterRank = '/game/rank/total/batter',
+  CrowdRank = '/game/rank/crowd',
   News = '/article/newslistpage',
   NewsDetail = '/article/newsdetail',
   Press = '/article/wizpresslistpage',

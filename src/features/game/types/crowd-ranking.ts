@@ -4,3 +4,9 @@ export interface CrowdRank {
   teamCode: string;
   teamName: string;
 }
+
+export interface CrowdRankingResponse {
+  data: {
+    list: CrowdRank[];
+  };
+}

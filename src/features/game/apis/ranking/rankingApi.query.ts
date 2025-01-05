@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import { OverallBatterRank } from '@/features/common/types/batters';
 import { arrangeVS } from '../../services/arrange-vs.service';
+import { CrowdRank, CrowdRankingResponse } from '../../types/crowd-ranking';
 
 // 랭킹 쿼리 키
 export const RANKING_API_QUERY_KEY = {
@@ -44,6 +45,10 @@ export const RANKING_API_QUERY_KEY = {
   GET_ALL_BATTER_RANKING: (
     params?: Parameter<typeof rankingApi.getAllBatterRanking>
   ) => ['allbatter-ranking', params].filter(isNotNullish),
+
+  /* 관중 */
+  GET_CROWD_RANKING: (params?: Parameter<typeof rankingApi.getCrowdRanking>) =>
+    ['crowd-ranking', params].filter(isNotNullish),
 };
 
 /* 팀 */
@@ -260,6 +265,28 @@ export function useGetAllBatterRanking(
     queryKey: RANKING_API_QUERY_KEY.GET_ALL_BATTER_RANKING(params?.variables),
     queryFn: async () => {
       const response = await rankingApi.getAllBatterRanking(params?.variables);
+      return response;
+    },
+    select: (data) => {
+      return data.data.list;
+    },
+    ...params?.options,
+  });
+}
+
+/* 관중 */
+export function useGetCrowdRanking(
+  params?: UseQueryParams<
+    typeof rankingApi.getCrowdRanking,
+    AxiosError,
+    CrowdRankingResponse,
+    CrowdRank[]
+  >
+) {
+  return useQuery({
+    queryKey: RANKING_API_QUERY_KEY.GET_CROWD_RANKING(params?.variables),
+    queryFn: async () => {
+      const response = await rankingApi.getCrowdRanking(params?.variables);
       return response;
     },
     select: (data) => {

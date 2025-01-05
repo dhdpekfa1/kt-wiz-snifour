@@ -6,6 +6,7 @@ import {
 } from '../../types/ranking';
 import { ApiRoutes } from '@/constants/route';
 import { TeamRankingResponse, TeamVSResponse } from '../../types/team-ranking';
+import { CrowdRankingResponse } from '../../types/crowd-ranking';
 
 // ranking api
 export const rankingApi = {
@@ -76,6 +77,14 @@ export const rankingApi = {
     params?: RankingDto
   ): Promise<BatterRankingResponse> => {
     const response = await instance.get(ApiRoutes.AllBatterRank, { params });
+    return response.data;
+  },
+
+  // 관중
+  getCrowdRanking: async (
+    params?: RankingDto
+  ): Promise<CrowdRankingResponse> => {
+    const response = await instance.get(ApiRoutes.CrowdRank, { params });
     return response.data;
   },
 };
