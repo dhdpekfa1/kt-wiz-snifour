@@ -15,6 +15,10 @@ const REG_TABS_CONFIG = [
   { value: 'crowd', path: '/ranking/crowd' },
 ];
 
+/**
+ * 문제점 - react query의 캐시에 데이터가 저장된 경우 렌더링 버그
+ */
+
 function RankingTab() {
   const { currentTab, handleTabChange } = useTabFromUrl({
     basePath: '/game/regular',

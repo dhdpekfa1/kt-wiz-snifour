@@ -5,9 +5,28 @@ import {
   RankingDto,
 } from '../../types/ranking';
 import { ApiRoutes } from '@/constants/route';
+import { TeamRankingResponse, TeamVSResponse } from '../../types/team-ranking';
 
 // ranking api
 export const rankingApi = {
+  // 팀
+  getTeamRank: async (): Promise<TeamRankingResponse> => {
+    const response = await instance.get(ApiRoutes.teamRank);
+    return response.data;
+  },
+  getTeamRankByPitcher: async (): Promise<TeamRankingResponse> => {
+    const response = await instance.get(ApiRoutes.teamRankByPitcher);
+    return response.data;
+  },
+  getTeamRankByBatter: async (): Promise<TeamRankingResponse> => {
+    const response = await instance.get(ApiRoutes.teamRankByBatter);
+    return response.data;
+  },
+  getTeamVs: async (): Promise<TeamVSResponse> => {
+    const response = await instance.get(ApiRoutes.teamVs);
+    return response.data;
+  },
+
   // 투수
   getPitcherEraTop3: async (
     params?: RankingDto
@@ -33,6 +52,7 @@ export const rankingApi = {
     const response = await instance.get(ApiRoutes.AllPitcherRank, { params });
     return response.data;
   },
+
   // 타자
   getBatterHraTop3: async (
     params?: RankingDto

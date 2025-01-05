@@ -23,14 +23,18 @@ interface ArrangedTeamVS {
 }
 
 function TeamVSTable() {
-  const { vs, loading, error } = useTeamVS();
+  const { vs, isLoading, isError, error } = useTeamVS();
 
-  if (!Object.keys(vs) || loading) {
-    return null;
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (isError) {
+    return <div>{error?.toString()}</div>;
+  }
+
+  if (!vs) {
+    return null;
   }
 
   return (

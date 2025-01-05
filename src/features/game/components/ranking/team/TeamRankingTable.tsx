@@ -4,9 +4,9 @@ import { useTeamRank } from '@/features/game/hooks/ranking/useTeamRank';
 import { TeamStats } from '@/features/game/types/team-ranking';
 
 function TeamRankingTable() {
-  const { ranking, loading, error } = useTeamRank('team');
+  const { ranking, isLoading, isError, error } = useTeamRank('team');
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="w-full min-h-48 flex items-center justify-center font-bold text-2xl">
         데이터 불러오는 중...
@@ -14,15 +14,15 @@ function TeamRankingTable() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="w-full min-h-48 flex items-center justify-center font-bold text-2xl">
-        Error!: {error}
+        Error!: {error?.toString()}
       </div>
     );
   }
 
-  if (!ranking.length) {
+  if (!ranking?.length) {
     return (
       <div className="w-full min-h-48 flex items-center justify-center font-bold text-2xl">
         데이터가 존재하지 않습니다.

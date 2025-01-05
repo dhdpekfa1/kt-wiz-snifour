@@ -2,6 +2,10 @@ import { match } from 'path-to-regexp';
 
 // api routes: api 요청 경로 (TODO: api 요청 경로 업데이트)
 export enum ApiRoutes {
+  teamRank = '/game/teamrankbyyear',
+  teamRankByPitcher = '/game/rank/pitching',
+  teamRankByBatter = '/game/rank/batting',
+  teamVs = '/game/rank/teamvs',
   PitcherEraTop3 = '/game/rank/pitcher/era/top3',
   PitcherWinTop3 = '/game/rank/pitcher/win/top3',
   KtPitcherRank = '/game/rank/kt/pitcher',

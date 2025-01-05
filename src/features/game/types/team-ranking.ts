@@ -33,3 +33,15 @@ export interface TeamVS {
   vsTeamCode: string;
   win: number;
 }
+
+export interface TeamRankingResponse {
+  data: {
+    list: TeamStats[];
+  };
+}
+
+export interface TeamVSResponse {
+  data: {
+    list: TeamVS[];
+  };
+}
