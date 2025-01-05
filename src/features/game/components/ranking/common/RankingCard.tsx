@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import SubTitle from '@/features/common/SubTitle';
 import { OverallBatterRank } from '@/features/common/types/batters';
@@ -23,7 +23,7 @@ function RankingCard({
   indicator,
 }: RankingCardProps) {
   if (!ranking.length) {
-    return null;
+    return <div>데이터가 없습니다.</div>;
   }
 
   const [selectedPlayer, setSelectedPlayer] = useState<Player>(ranking[0]);
@@ -31,6 +31,10 @@ function RankingCard({
   const handleSelectPlayer = (player: Player) => {
     setSelectedPlayer(player);
   };
+
+  useEffect(() => {
+    setSelectedPlayer(ranking[0]);
+  }, [ranking[0]]);
 
   return (
     <div

@@ -27,8 +27,8 @@ export function useTopPitcherRank() {
   return {
     eraRanking,
     winRanking,
-    isLoading: isEraLoading || isWinLoading,
-    isError: isEraError || isWinError,
-    error: eraError || winError,
+    isLoading: isEraLoading ?? isWinLoading,
+    isError: isEraError ?? isWinError,
+    error: eraError ?? winError,
   };
 }

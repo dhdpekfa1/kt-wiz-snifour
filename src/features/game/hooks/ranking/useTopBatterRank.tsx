@@ -27,8 +27,8 @@ export function useTopBatterRank() {
   return {
     hraRanking,
     hrRanking,
-    isLoading: isHraLoading || isHrLoading,
-    isError: isHraError || isHrError,
-    error: hraError || hrError,
+    isLoading: isHraLoading ?? isHrLoading,
+    isError: isHraError ?? isHrError,
+    error: hraError ?? hrError,
   };
 }
