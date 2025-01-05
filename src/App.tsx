@@ -22,13 +22,14 @@ import SignupForm from './features/auth/SignupForm';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
+import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
+import FirstPitchPage from './pages/media/FirstPitchPage';
+import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
+import StoryDetailPage from './pages/media/id/StoryDetailPage';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
-import StoryDetailPage from './pages/media/id/StoryDetailPage';
-import FirstPitchPage from './pages/media/FirstPitchPage';
-import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 
 function App() {
   return (
@@ -52,6 +53,14 @@ function App() {
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
             <Route path="/ktwiz/about" element={<KtHistoryPage />} />
             <Route path="/ktwiz/history" element={<KtHistoryPage />} />
+            <Route
+              path="/ktwiz/policy/regular"
+              element={<MembershipPolicyPage />}
+            />
+            <Route
+              path="/ktwiz/policy/donation"
+              element={<MembershipPolicyPage />}
+            />
 
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
