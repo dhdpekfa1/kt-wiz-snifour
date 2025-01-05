@@ -40,12 +40,14 @@ function RankingCard({
         'lg:gap-4'
       )}
     >
-      <img
-        src={selectedPlayer.playerPrvwImg}
-        alt={selectedPlayer.playerName}
-        className={cn('rounded-xl w-1/2', '')}
-      />
-      <div className="w-full h-full flex flex-col gap-2 mt-4">
+      <div className="w-1/2">
+        <img
+          src={selectedPlayer.playerPrvwImg}
+          alt={selectedPlayer.playerName}
+          className={cn('rounded-xl w-full aspect-square object-cover', '')}
+        />
+      </div>
+      <div className="w-full md:w-1/2 h-full flex flex-col gap-2 mt-4">
         <SubTitle title={title} className={cn('')} />
         <ol className="text-black flex flex-col justify-center">
           {ranking.map((player, index) => (
