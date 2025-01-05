@@ -1,12 +1,12 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
-import SubTabsTrigger from '@/features/common/SubTabsTrigger';
-import { PlayerRecordChart } from './PlayerRecordChart';
-import { usePlayerStore } from '@/store/usePlayerStore';
-import { useParams } from 'react-router';
 import {
   recentBatterConfig,
   recentPitcherConfig,
 } from '@/constants/chart-config';
+import SubTabsTrigger from '@/features/common/SubTabsTrigger';
+import { usePlayerStore } from '@/store/usePlayerStore';
+import { useParams } from 'react-router';
+import { PlayerRecordChart } from './PlayerRecordChart';
 
 function RecentRecordTab() {
   const { player, loading } = usePlayerStore();

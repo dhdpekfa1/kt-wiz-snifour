@@ -8,9 +8,9 @@ import {
   PlayerRecordChart,
   SeasonSummary,
 } from '@/features/player/components';
+import { RecentRecordTab } from '@/features/player/components/detail/RecentRecordTab';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
-import { RecentRecordTab } from '@/features/player/components/detail/RecentRecordTab';
 
 function PlayerDetailPage() {
   const { position } = useParams();

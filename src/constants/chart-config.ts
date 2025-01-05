@@ -343,7 +343,6 @@ export const yearBatterConfig = {
   },
 };
 
-// TODO: 해당 데이터 맞는지 확인 후 수정 필요
 export const TeamRankingBatterConfig = {
   hit: {
     label: '안타',
