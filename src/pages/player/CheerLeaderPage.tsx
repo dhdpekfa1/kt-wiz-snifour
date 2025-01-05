@@ -2,7 +2,7 @@ import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import SearchBar from '@/features/media/common/SearchBar';
-import NotFonudSearch from '@/features/player/components/NotFonudSearch';
+import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import CheerleaderDialog from '@/features/player/components/cheerleader/CheerleaderDialog';
 import useCheerleaderList from '@/features/player/hooks/useCheerleaderList';
 import { useSearchParams } from 'react-router';
@@ -51,7 +51,7 @@ function CheerleaderPage() {
       />
       {filteredCheerleaderList.length === 0 && !error && !loading ? (
         // 검색 결과 없음
-        <NotFonudSearch />
+        <NotFoundSearch />
       ) : (
         // 컴포넌트
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">

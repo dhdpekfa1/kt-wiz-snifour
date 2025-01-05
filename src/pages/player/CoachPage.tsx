@@ -3,7 +3,7 @@ import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components/';
-import NotFonudSearch from '@/features/player/components/NotFonudSearch';
+import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import useCoachList from '@/features/player/hooks/useCoachList';
 import { useSearchParams } from 'react-router';
 
@@ -47,7 +47,7 @@ const CoachPage = () => {
         }
       />
       {!loading && !error && filteredCoachList.length === 0 ? (
-        <NotFonudSearch />
+        <NotFoundSearch />
       ) : (
         <PlayerList
           playerList={error ? [] : filteredCoachList}

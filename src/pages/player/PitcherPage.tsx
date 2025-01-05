@@ -2,7 +2,7 @@ import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components';
-import NotFonudSearch from '@/features/player/components/NotFonudSearch';
+import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import { usePlayerSearch } from '@/features/player/hooks/usePlayerSearch';
 
 function PitcherPage() {
@@ -29,7 +29,7 @@ function PitcherPage() {
         leftComponent={<SearchBar value={searchWord} onSubmit={handleSearch} />}
       />
       {!loading && !error && filteredPlayerList.length === 0 ? (
-        <NotFonudSearch />
+        <NotFoundSearch />
       ) : (
         <PlayerList
           playerList={error ? [] : filteredPlayerList}

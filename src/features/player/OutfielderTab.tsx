@@ -1,7 +1,7 @@
 import Breadcrumb from '../common/Breadcrumb';
 import SearchBar from '../media/common/SearchBar';
 import { PlayerList } from './components';
-import NotFonudSearch from './components/NotFonudSearch';
+import NotFonudSearch from './components/NotFoundSearch';
 import { usePlayerSearch } from './hooks/usePlayerSearch';
 
 function OutfielderTab() {
