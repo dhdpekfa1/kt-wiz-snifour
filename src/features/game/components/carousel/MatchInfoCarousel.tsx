@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 const MatchInfoCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const { currentMonth, selectedDate } = useMatchStore();
-  const { matchData = [], isLoading } = useGetMatchScheduleQuery({
+  const { matchData, isLoading } = useGetMatchScheduleQuery({
     currentMonth,
     carouselApi,
   });
