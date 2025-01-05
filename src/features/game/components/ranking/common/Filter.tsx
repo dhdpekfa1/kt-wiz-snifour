@@ -1,17 +1,10 @@
-import { useState } from 'react';
-
 import { useSearchParams } from 'react-router';
 import SearchBar from '@/features/media/common/SearchBar';
-import CustomSelect from '@/features/common/CustomSelect.tsx';
-import { seasons } from '@/constants/seasons';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui';
 
 function Filter() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [season, setSeason] = useState<string>(
-    searchParams.get('gyear') || seasons[0]
-  );
 
   return (
     <div className="flex items-center justify-between">
@@ -45,18 +38,6 @@ function Filter() {
           </span>
         </Button>
       </div>
-      <CustomSelect
-        type="year"
-        data={seasons}
-        value={season}
-        onChange={(value) => {
-          setSeason(value);
-          setSearchParams({
-            ...Object.fromEntries(searchParams.entries()),
-            gyear: value,
-          });
-        }}
-      />
     </div>
   );
 }

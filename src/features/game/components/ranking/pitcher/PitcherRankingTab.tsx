@@ -8,10 +8,18 @@ import { useTopPitcherRank } from '@/features/game/hooks/ranking/useTopPitcherRa
 import { cn } from '@/lib/utils';
 import Breadcrumb from '../../../../common/Breadcrumb';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
+import CustomSelect from '@/features/common/CustomSelect.tsx';
+import { useSearchParams } from 'react-router';
+import { seasons } from '@/constants/seasons';
+import { useState } from 'react';
 
 function PitcherRankingTab() {
   const { eraRanking, winRanking, isLoading, error, isError } =
     useTopPitcherRank();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [season, setSeason] = useState<string>(
+    searchParams.get('gyear') || seasons[0]
+  );
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -23,7 +31,22 @@ function PitcherRankingTab() {
 
   return (
     <div>
-      <Breadcrumb />
+      <Breadcrumb
+        leftComponent={
+          <CustomSelect
+            type="year"
+            data={seasons}
+            value={season}
+            onChange={(value) => {
+              setSeason(value);
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                gyear: value,
+              });
+            }}
+          />
+        }
+      />
 
       {/* 투수 랭킹 카드 */}
       <div
