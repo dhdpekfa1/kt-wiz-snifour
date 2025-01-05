@@ -1,47 +1,49 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
 import {
   CalenderBody,
   MatchCalendarCell,
-} from '@/features/game//components/calender';
-import { getAllMonthSchedule, getMonthSchedule } from '@/features/game/apis';
-import { GameSchedule } from '@/features/game/types/match-schedule';
-import { useMatchStore } from '@/store/useMatchStore';
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
+} from "@/features/game/components/calender";
+import { useMatchStore } from "@/store/useMatchStore";
+import { format } from "date-fns";
+import { useState } from "react";
+import { useGetMatchScheduleQuery } from "@/features/game/apis/match-schedule/matchScheduleApi.query";
 
 const GAME_TABS_CONFIG = [
-  { value: 'ktWiz', label: 'KT Wiz 경기' },
-  { value: 'allLeague', label: '전체 리그' },
+  { value: "ktWiz", label: "KT Wiz 경기" },
+  { value: "allLeague", label: "전체 리그" },
 ];
 
 const MatchCalendar = () => {
-  const [ktMatchData, setKTMatchData] = useState<GameSchedule[]>();
-  const [allMatchData, setAllMatchData] = useState<GameSchedule[]>();
   const { currentMonth } = useMatchStore();
-  const [currentTab, setCurrentTab] = useState<'ktWiz' | 'allLeague'>('ktWiz');
+  const [currentTab, setCurrentTab] = useState<"ktWiz" | "allLeague">("ktWiz");
 
-  useEffect(() => {
-    const fetchMatchSchedule = async () => {
-      const yearMonth = format(currentMonth, 'yyyyMM');
-      if (currentTab === 'ktWiz') {
-        const data = await getMonthSchedule(yearMonth);
-        setKTMatchData(data);
-      } else if (currentTab === 'allLeague') {
-        const data = await getAllMonthSchedule(yearMonth);
-        setAllMatchData(data);
-      }
-    };
-    fetchMatchSchedule();
-  }, [currentMonth, currentTab]);
+  const { matchData: ktMatchData = [], isLoading: isLoadingKT } =
+    useGetMatchScheduleQuery({
+      currentMonth,
+      type: "kt",
+    });
 
+  const { matchData: allMatchData = [], isLoading: isLoadingAll } =
+    useGetMatchScheduleQuery({
+      currentMonth,
+      type: "all",
+    });
+
+  // 날짜별 데이터 렌더링
   const renderCellContent = (date: Date) => {
-    const formattedDate = format(date, 'yyyyMMdd');
-    const match = ktMatchData?.find(
-      (item) => item.gameDate.toString() === formattedDate
-    );
-    const matches = allMatchData?.filter(
-      (item) => item.gameDate.toString() === formattedDate
-    );
+    const formattedDate = format(date, "yyyyMMdd");
+
+    const match =
+      currentTab === "ktWiz"
+        ? ktMatchData.find((item) => item.gameDate.toString() === formattedDate)
+        : undefined;
+
+    const matches =
+      currentTab === "allLeague"
+        ? allMatchData.filter(
+            (item) => item.gameDate.toString() === formattedDate
+          )
+        : undefined;
 
     return (
       <MatchCalendarCell
@@ -53,8 +55,9 @@ const MatchCalendar = () => {
     );
   };
 
+  // 탭 변경 핸들러
   const handleTabChange = (value: string) => {
-    setCurrentTab(value as 'ktWiz' | 'allLeague');
+    setCurrentTab(value as "ktWiz" | "allLeague");
   };
 
   return (
@@ -71,9 +74,6 @@ const MatchCalendar = () => {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                onClick={() =>
-                  handleTabChange(tab.value as 'ktWiz' | 'allLeague')
-                }
                 className="media-tabs-trigger px-6 py-2.5"
               >
                 {tab.label}
@@ -82,16 +82,24 @@ const MatchCalendar = () => {
           </TabsList>
           <div className="flex gap-2 text-xs md:text-sm lg:text-base text-white">
             <span className="px-2 lg:px-3 py-2 rounded bg-red-500">승</span>
-            <span className="px-2 lg:px-3 py-2  rounded bg-gray-700">패</span>
-            <span className="px-2 lg:px-3 py-2  rounded bg-gray-500">무</span>
+            <span className="px-2 lg:px-3 py-2 rounded bg-gray-700">패</span>
+            <span className="px-2 lg:px-3 py-2 rounded bg-gray-500">무</span>
           </div>
         </div>
         {/* 탭 컨텐츠 */}
         <TabsContent value="ktWiz">
-          <CalenderBody renderCellContent={renderCellContent} />
+          {isLoadingKT ? (
+            <p>Loading...</p>
+          ) : (
+            <CalenderBody renderCellContent={renderCellContent} />
+          )}
         </TabsContent>
         <TabsContent value="allLeague">
-          <CalenderBody renderCellContent={renderCellContent} />
+          {isLoadingAll ? (
+            <p>Loading...</p>
+          ) : (
+            <CalenderBody renderCellContent={renderCellContent} />
+          )}
         </TabsContent>
       </Tabs>
     </div>
