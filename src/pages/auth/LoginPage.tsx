@@ -20,6 +20,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { z } from 'zod';
 import useLogin from '@/features/auth/hooks/useLogin';
+import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -34,6 +35,7 @@ const LoginPage = () => {
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
+  useAuthRedirect();
 
   // 로컬 스토리지에서 이메일 불러오기
   useEffect(() => {

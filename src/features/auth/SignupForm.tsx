@@ -22,6 +22,7 @@ import AgreementItem from './AgreementItem';
 import { signupSchema } from './schemas/signupSchema';
 import { AgreementData, AgreementsType } from './types/agreements';
 import useSignup from './hooks/useSignup';
+import useAuthRedirect from './hooks/useAuthRedirect';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
@@ -51,6 +52,7 @@ const SignupForm = () => {
   });
   const { signup, error } = useSignup();
   const agreements = watch('agreements');
+  useAuthRedirect();
 
   // 전체 동의 체크박스 변경 핸들러
   const handleAllAgreedChange = () => {
