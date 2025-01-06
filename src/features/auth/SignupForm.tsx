@@ -21,8 +21,7 @@ import { z } from 'zod';
 import AgreementItem from './AgreementItem';
 import { signupSchema } from './schemas/signupSchema';
 import { AgreementData, AgreementsType } from './types/agreements';
-import { supabase } from '@/lib/supabase'; // Supabase 클라이언트 가져오기
-import { useNavigate } from 'react-router';
+import useSignup from './hooks/useSignup';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
@@ -50,7 +49,7 @@ const SignupForm = () => {
       },
     },
   });
-  const navigate = useNavigate();
+  const { signup, error } = useSignup();
   const agreements = watch('agreements');
 
   // 전체 동의 체크박스 변경 핸들러
@@ -63,6 +62,7 @@ const SignupForm = () => {
 
   const onSubmit = async (data: SignupFormValues) => {
     const { email, password, nickname, agreements } = data;
+
     if (
       !agreements.termsOfService ||
       !agreements.personalInfo ||
@@ -71,29 +71,11 @@ const SignupForm = () => {
       alert('필수 약관에 동의해야 회원가입이 가능합니다.');
       return;
     }
-    try {
-      // Supabase 회원가입 호출
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            nickname,
-          },
-        },
-      });
 
-      if (error) {
-        console.error('회원가입 실패:', error.message);
-        alert(`회원가입 실패: ${error.message}`);
-        return;
-      }
+    const success = await signup({ email, password, nickname });
 
-      alert('kt 가족이 되신 걸 환영합니다!\n이메일 인증 후 이용하세요');
-      navigate('/login'); // 로그인 페이지로 이동
-    } catch (err) {
-      console.error('회원가입 중 문제가 발생했습니다:', err);
-      alert('회원가입 중 문제가 발생했습니다. 다시 시도해주세요.');
+    if (!success) {
+      console.error(error);
     }
   };
 

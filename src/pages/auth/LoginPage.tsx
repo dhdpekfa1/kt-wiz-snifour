@@ -17,17 +17,15 @@ import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { z } from 'zod';
-import { supabase } from '@/lib/supabase';
+import useLogin from '@/features/auth/hooks/useLogin';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
   const [saveId, setSaveId] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const navigate = useNavigate();
-
+  const { login, error } = useLogin();
   const {
     register,
     handleSubmit,
@@ -47,47 +45,9 @@ const LoginPage = () => {
   }, [setValue]);
 
   const onSubmit = async (data: LoginFormValues) => {
-    setErrorMessage(null); // 이전 에러 메시지 초기화
+    const success = await login({ ...data, saveId });
 
-    try {
-      const { email, password } = data;
-
-      // Supabase 로그인 요청
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        // 이메일 확인이 필요한 경우
-        if (error.code === 'email_not_confirmed') {
-          setErrorMessage(
-            '이메일 확인을 완료해주세요. 인증 이메일을 다시 보냈습니다.'
-          );
-
-          // 인증 이메일 재발송
-          await supabase.auth.resend({
-            type: 'signup', // 이메일 인증 타입
-            email,
-          });
-        }
-
-        // 기타 에러 처리
-        setErrorMessage(error.message);
-        return;
-      }
-
-      // 로그인 성공 시 처리
-      if (saveId) {
-        localStorage.setItem('savedEmail', email);
-      } else {
-        localStorage.removeItem('savedEmail');
-      }
-
-      alert('로그인 성공! 메인 페이지로 이동합니다.');
-      navigate('/'); // 메인 페이지로 이동
-    } catch (error: unknown) {
-      setErrorMessage('로그인 중 문제가 발생했습니다. 다시 시도해주세요.');
+    if (!success) {
       console.error(error);
     }
   };
@@ -169,9 +129,9 @@ const LoginPage = () => {
                   이메일 저장
                 </Label>
               </div>
-              {errorMessage && (
+              {/* {errorMessage && (
                 <p className="text-red-500 text-xs mt-2">{errorMessage}</p>
-              )}
+              )} */}
               <CardFooter className="flex flex-col mt-6 gap-2">
                 <Button
                   className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
