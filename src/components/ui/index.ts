@@ -57,6 +57,7 @@ export {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  DialogFooter,
 } from './dialog/dialog';
 export { Calendar } from './calendar/calendar';
 export {

@@ -3,9 +3,13 @@ import { Link } from 'react-router';
 
 import { navMenus } from '@/constants/nav-menus';
 import { cn } from '@/lib/utils';
+import { useUserStore } from '@/store/useUserStore';
+import { EditProfileDialog } from '@/features/auth';
 
 function WebHeader({ className }: { className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const nickname = useUserStore((state) => state.nickname);
 
   return (
     <div
@@ -25,12 +29,20 @@ function WebHeader({ className }: { className?: string }) {
               isHovered && 'text-black'
             }`}
           >
-            <Link to="/login">
-              <li>로그인</li>
-            </Link>
-            <Link to="/join">
-              <li>회원가입</li>
-            </Link>
+            {nickname ? (
+              <EditProfileDialog>
+                <li>{nickname}</li>
+              </EditProfileDialog>
+            ) : (
+              <>
+                <Link to="/login">
+                  <li>로그인</li>
+                </Link>
+                <Link to="/join">
+                  <li>회원가입</li>
+                </Link>
+              </>
+            )}
           </ul>
         </nav>
 

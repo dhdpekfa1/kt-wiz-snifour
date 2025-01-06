@@ -18,11 +18,11 @@ import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import AgreementItem from './AgreementItem';
-import { signupSchema } from './schemas/signupSchema';
-import { AgreementData, AgreementsType } from './types/agreements';
-import useSignup from './hooks/useSignup';
-import useAuthRedirect from './hooks/useAuthRedirect';
+import { AgreementItem } from './AgreementItem';
+import { signupSchema } from '../schemas/signupSchema';
+import { AgreementData, AgreementsType } from '../types/agreements';
+import useSignup from '../hooks/useSignup';
+import useAuthRedirect from '../hooks/useAuthRedirect';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
@@ -247,4 +247,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export { SignupForm };
