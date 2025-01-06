@@ -1,11 +1,14 @@
-import { ArrowLeft, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const Header = () => {
+  const handleClose = () => {
+    return <div>초기 UI</div>;
+  };
+
   return (
     <div className="w-full flex justify-between items-center p-5 bg-wiz-red text-wiz-white">
-      <ArrowLeft />
-      <h4>KT wiz 챗봇</h4>
-      <X />
+      <h4 className="font-semibold">KT wiz 챗봇</h4>
+      <X onClick={handleClose} />
     </div>
   );
 };

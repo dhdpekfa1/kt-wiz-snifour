@@ -1,6 +1,7 @@
-import Header from '@/features/chatbot/Header';
 import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
+import Header from './Header';
+import WizAvatar from './WizAvatar';
 
 const config = {
   initialMessages: [
@@ -8,6 +9,7 @@ const config = {
   ],
   customComponents: {
     header: () => React.createElement(Header),
+    botAvatar: () => React.createElement(WizAvatar),
   },
 };
 
