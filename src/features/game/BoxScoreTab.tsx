@@ -5,37 +5,27 @@ import {
   MatchScoreTable,
   PitchingRecordTable,
 } from '@/features/game/components/table';
-import { useEffect, useState } from 'react';
+import { formatDate } from '@/lib/utils';
 import { useParams } from 'react-router';
-import { getMatchData } from './apis/boxScore';
 import KeyRecordsCard from './components/card/KeyRecordsCard';
-import { MatchBoard } from './components/watch-point';
-import type { BoxScoreData } from './types/BoxScoreData';
+import { MatchBoard } from './components/common';
+import useBoxscore from './hooks/boxscore/useBoxscore';
 
-const BoxScoreTab = () => {
+const BoxscoreTab = () => {
   const { gameDate, gameKey } = useParams<{
     gameDate: string;
     gameKey: string;
   }>();
-  const [matchData, setMatchData] = useState<BoxScoreData>();
 
-  useEffect(() => {
-    const fetchMatchData = async () => {
-      if (!gameDate && !gameKey) {
-        const data = await getMatchData(
-          '20241011',
-          '33331011KTLG0'
-        ); /**TODO: 최신 경기 날짜 전달 - 오늘 기준으로 경기가 있는 날짜 확인*/
-        setMatchData(data);
-      }
-      if (gameDate && gameKey) {
-        const data = await getMatchData(gameDate, gameKey);
-        setMatchData(data);
-      }
-    };
+  const { boxData: matchData, loading, error } = useBoxscore(gameDate, gameKey);
 
-    fetchMatchData();
-  }, [gameDate, gameKey]);
+  if (!matchData || loading) {
+    return null;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   const handleDateChange = (direction: 'prev' | 'next') => {
     if (matchData) {
@@ -50,6 +40,7 @@ const BoxScoreTab = () => {
       }
     }
   };
+  console.log('matchData', matchData.schedule);
 
   return (
     <div className="w-full flex justify-center my-20">
@@ -73,19 +64,23 @@ const BoxScoreTab = () => {
             stadium: '홈',
             tabType: 'MatchBoard',
           }}
-          matchDate={matchData?.schedule.current.gameDate.toString()}
+          matchDate={formatDate(
+            matchData?.schedule.current.gameDate.toString()
+          )}
           matchTime={matchData?.schedule.current.gtime}
           stadium={matchData?.schedule.current.stadium}
           gameTable={<MatchScoreTable data={matchData?.scoreboard} />}
           crowd={matchData?.schedule.current.crowdCn}
           onDateChange={handleDateChange}
+          disablePrev={!matchData.schedule.prev}
+          disableNext={!matchData.schedule.next}
         />
 
         {/* 주요 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
           <div className="w-full items-center mt-4">
-            <KeyRecordsCard data={matchData?.etcgames} />
+            <KeyRecordsCard data={matchData} />
           </div>
         </div>
         {/* team1 타자 기록 */}
@@ -146,4 +141,4 @@ const BoxScoreTab = () => {
   );
 };
 
-export { BoxScoreTab };
+export { BoxscoreTab };

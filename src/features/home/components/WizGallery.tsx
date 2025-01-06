@@ -11,10 +11,10 @@ import {
   CardTitle,
   Carousel,
   CarouselContent,
-  CarouselItem,
 } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { Photo } from '../types';
+import { WizGalleryAnimationItem } from './WizGalleryAnimationItem';
 
 function WizGallery() {
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -55,21 +55,12 @@ function WizGallery() {
       <CardContent className="w-full flex flex-col items-center gap-4 px-0">
         <Carousel className="w-full">
           <CarouselContent>
-            {photos.map((photo) => (
-              <CarouselItem className={cn('md:basis-1/2', 'lg:basis-1/3')}>
-                <div className="h-[36rem] rounded-xl overflow-hidden relative">
-                  <img
-                    src={photo.imgFilePath}
-                    alt={photo.artcTitle}
-                    className="w-auto h-full object-cover object-center"
-                  />
-                  <div className="h-full w-full absolute top-0 left-0 flex flex-col items-center justify-end">
-                    <h3 className="w-full text-center text-white font-bold text-2xl z-10 pb-12 bg-gradient-to-t from-black to-transparent">
-                      {photo.artcTitle}
-                    </h3>
-                  </div>
-                </div>
-              </CarouselItem>
+            {photos.map((photo, index) => (
+              <WizGalleryAnimationItem
+                key={photo.artcSeq}
+                photo={photo}
+                index={index}
+              />
             ))}
           </CarouselContent>
         </Carousel>
@@ -78,7 +69,7 @@ function WizGallery() {
         <Link
           to="/media/photos/1"
           className={cn(
-            'border-2 rounded bg-white text-xs px-2 py-1',
+            'rounded bg-white bg-opacity-10 text-white hover:bg-opacity-100 hover:text-black text-xs px-2 py-1 transition-colors duration-300',
             'lg:text-base lg:px-4 lg:py-2'
           )}
         >

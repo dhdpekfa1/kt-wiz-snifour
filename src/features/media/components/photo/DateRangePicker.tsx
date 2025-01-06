@@ -1,5 +1,6 @@
-import { addDays, format } from 'date-fns';
-import * as React from 'react';
+import { format, subDays } from 'date-fns';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
 
 import {
   Button,
@@ -16,25 +17,53 @@ import { CalendarIcon } from 'lucide-react';
 
 interface DateRangePickerProps {
   className?: string;
-  onDateRangeChange?: (range: DateRange | undefined) => void;
 }
 
-export function DateRangePicker({
-  className,
-  onDateRangeChange,
-}: DateRangePickerProps) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 7),
+export function DateRangePicker({ className }: DateRangePickerProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: subDays(new Date(), 7),
+    to: new Date(),
   });
+
+  useEffect(() => {
+    const startDate = searchParams.get('startDate');
+    const endDate = searchParams.get('endDate');
+
+    if (!startDate && !endDate) {
+      setDate({
+        from: subDays(new Date(), 7),
+        to: new Date(),
+      });
+    }
+    if (startDate) {
+      setDate({
+        from: new Date(startDate),
+        to: endDate ? new Date(endDate) : new Date(),
+      });
+    }
+  }, [searchParams]);
+
+  const handleSubmitDate = () => {
+    if (!date || !date.from) return;
+
+    const { from, to } = date;
+    const startDate = format(from, 'yyyy-MM-dd');
+    const endDate = format(to || from, 'yyyy-MM-dd');
+
+    const updatedSearchParams = new URLSearchParams();
+    updatedSearchParams.set('startDate', startDate);
+    updatedSearchParams.set('endDate', endDate);
+
+    setSearchParams(updatedSearchParams);
+  };
 
   const handleSelect = (range: DateRange | undefined) => {
     setDate(range);
-    onDateRangeChange?.(range);
   };
 
   return (
-    <div className={cn('grid gap-2 w-full md:w-[300px]', className)}>
+    <div className={cn('flex items-center gap-2 w-fit', className)}>
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -71,6 +100,15 @@ export function DateRangePicker({
           />
         </PopoverContent>
       </Popover>
+      <Button
+        type="button"
+        className={cn(
+          'shrink-0 rounded-md bg-wiz-white/10 text-white text-center hover:bg-wiz-white/20 transition-colors'
+        )}
+        onClick={() => handleSubmitDate()}
+      >
+        <span className={cn('px-1', 'text-wiz-white/80')}>검색</span>
+      </Button>
     </div>
   );
 }

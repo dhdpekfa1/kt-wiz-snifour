@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 import {
   Card,
@@ -11,13 +11,15 @@ import {
 } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { Video } from '../types';
+import { WizVideoAnimation } from './WizVideoAnimation';
 
 function WizVideo() {
   const [videos, setVideos] = useState<Video[]>([]);
   const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getMainHightVideos = async () => {
+    const getMainHighlightVideos = async () => {
       try {
         const { data, status } = await axios.get(
           `${API_URL}/media/highlightlist?count=5`
@@ -31,7 +33,7 @@ function WizVideo() {
       }
     };
 
-    getMainHightVideos();
+    getMainHighlightVideos();
   }, []);
 
   if (videos.length === 0) {
@@ -47,36 +49,22 @@ function WizVideo() {
       </CardHeader>
       <CardContent className="w-full px-0">
         <div className="w-full h-fit bg-gray-200 rounded-3xl overflow-hidden">
-          <img src={videos[0].imgFilePath} alt={videos[0].artcTitle} />
+          <iframe
+            title={videos[0].artcTitle}
+            src={`https://www.ktwiz.co.kr/${videos[0].videoLink}`}
+            className="w-full aspect-video"
+          />
         </div>
         <div
           className={cn('w-full grid grid-cols-2 gap-4 py-4', 'lg:grid-cols-4')}
         >
-          {videos.slice(1).map((vid) => (
-            <div className="flex flex-col gap-2 bg-white rounded-xl overflow-hidden">
-              <div className="w-full h-fit bg-gray-500">
-                <img src={vid.imgFilePath} alt={vid.artcTitle} />
-              </div>
-              <div className="h-full flex flex-col justify-between px-2 py-1 gap-4 md:gap-8">
-                <p
-                  className={cn(
-                    'font-semibold text-xs',
-                    'md:text-sm',
-                    'lg:text-base'
-                  )}
-                >
-                  {vid.artcTitle}
-                </p>
-                <p
-                  className={cn(
-                    'text-gray-400 self-end text-[0.6rem]',
-                    'lg:text-xs'
-                  )}
-                >
-                  {vid.contentsDate}
-                </p>
-              </div>
-            </div>
+          {videos.slice(1).map((vid, index) => (
+            <WizVideoAnimation
+              key={vid.artcSeq}
+              vid={vid}
+              index={index}
+              navigate={navigate}
+            />
           ))}
         </div>
       </CardContent>
@@ -84,7 +72,7 @@ function WizVideo() {
         <Link
           to="/media/highlight"
           className={cn(
-            'border-2 rounded bg-white text-xs px-2 py-1',
+            'rounded bg-white bg-opacity-10 text-white text-xs px-2 py-1 hover:bg-opacity-100 hover:text-black transition-colors duration-300',
             'lg:text-base lg:px-4 lg:py-2'
           )}
         >

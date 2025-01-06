@@ -36,7 +36,7 @@ const MatchCalendarCell = ({
     <div className="relative w-full h-full flex flex-col items-center justify-start gap-2">
       {/* 날짜 */}
       <div
-        className={`absolute top-2 right-2 text-[10px] md:text-sm lg:text-base font-bold ${
+        className={`absolute top-1 md:top-2 right-2 text-[8px] md:text-sm lg:text-base font-bold ${
           day === 0
             ? 'text-red-500'
             : day === 6
@@ -86,7 +86,7 @@ const MatchCalendarCell = ({
 
       {/* 전체 리그 */}
       {allMatchData && currentTab === 'allLeague' && (
-        <div className="flex flex-col gap-2 items-center mt-6">
+        <div className="flex flex-col md:gap-1 lg:gap-2 items-center mt-4 md:mt-6">
           {allMatchData.map((data) => {
             const isKTGame = data.home === 'KT' || data.visit === 'KT';
             return (
@@ -94,7 +94,7 @@ const MatchCalendarCell = ({
                 key={data.gmkey}
                 className={`${
                   isKTGame ? 'text-wiz-red' : 'text-wiz-white'
-                } text-[8px] md:text-[10px] lg:text-base`}
+                } text-[7px] md:text-[10px] lg:text-base`}
               >
                 {data.home} {data.homeScore || '-'} : {data.visit}
                 {data.visitScore || '-'}{' '}

@@ -50,7 +50,7 @@ const TeamInfo = ({
             className={`${
               isMatchBoard
                 ? 'text-wiz-white text-opacity-30 text-center'
-                : 'leading-none text-white text-xl'
+                : 'leading-none text-white text-base md:text-xl'
             }`}
           >
             {teamName}

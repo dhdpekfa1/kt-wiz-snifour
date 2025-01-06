@@ -5,54 +5,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui';
-import { CarouselCard } from '@/features/game/components';
+import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
+import { CarouselCard } from '@/features/game/components/carousel';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format, isValid, parse } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { getMonthSchedule } from '../../apis';
-import { GameSchedule } from '../../types/match-schedule';
 
 const MatchInfoCarousel = () => {
-  const [matchData, setMatchData] = useState<GameSchedule[]>([]);
-  const { currentMonth, selectedDate } = useMatchStore();
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const { currentMonth, selectedDate } = useMatchStore();
+  const { matchData, isLoading } = useGetMatchScheduleQuery({
+    currentMonth,
+    carouselApi,
+  });
 
-  useEffect(() => {
-    // 이번 달에 경기가 없을 경우 가장 최신 경기 확인
-    const fetchMatchSchedule = async () => {
-      let yearMonth = format(currentMonth, 'yyyyMM');
-      let retries = 12; // 최대 12번 호출 (1년)
-      let allMatches: GameSchedule[] = [];
-
-      while (retries > 0) {
-        const data: GameSchedule[] = await getMonthSchedule(yearMonth);
-
-        if (data.length) {
-          allMatches = [...allMatches, ...data];
-          break; // 데이터가 있으면 반복 중지
-        }
-
-        // 이전 달로 이동
-        const currentDate = new Date(
-          parseInt(yearMonth.slice(0, 4)),
-          parseInt(yearMonth.slice(4, 6)) - 1,
-          1
-        );
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        yearMonth = format(currentDate, 'yyyyMM');
-        retries -= 1;
-      }
-
-      setMatchData(allMatches);
-
-      // 가장 마지막 경기로 이동
-      if (allMatches.length > 0 && carouselApi) {
-        carouselApi.scrollTo(allMatches.length - 1, true); // 마지막 경기 인덱스로 이동
-      }
-    };
-
-    fetchMatchSchedule();
-  }, [currentMonth, carouselApi]);
+  if (isLoading) {
+    // TODO: 스켈레톤 작업
+  }
 
   /**  날짜 선택 시 캐러셀 이동 */
   useEffect(() => {

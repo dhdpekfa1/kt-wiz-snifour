@@ -2,27 +2,33 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/header/Header';
 import HomePage from './pages/HomePage';
-import TeamHistory from './pages/ktwiz/TeamHistory';
-import TeamIntroduce from './pages/ktwiz/TeamIntroduce';
+import HighlightPage from './pages/media/HighlightPage';
+import NewsPage from './pages/media/NewsPage';
+import PhotoPage from './pages/media/PhotoPage';
+import StoryPage from './pages/media/StoryPage';
+
 import WallpaperPage from './pages/ktwiz/WallpaperPage';
-import PlayerPage from './pages/media/FirstPitch';
-import HighlightPage from './pages/media/Highlight';
-import NewsPage from './pages/media/News';
-import PhotoPage from './pages/media/Photo';
-import StoryPage from './pages/media/Story';
-import NewsDetailPage from './pages/media/id/NewsDetail';
-import TicketReservation from './pages/ticketpurchase/TicketReservation';
+import NewsDetailPage from './pages/media/id/NewsDetailPage';
 import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
+import SignupForm from './features/auth/SignupForm';
 import ScrollToTop from './features/common/ScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
+import LoginPage from './pages/auth/LoginPage';
+import SignupPage from './pages/auth/SignupPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
-import PressDetailPage from './pages/media/id/PressDetail';
-
+import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
+import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
+import FirstPitchPage from './pages/media/FirstPitchPage';
+import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
+import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
+import PressDetailPage from './pages/media/id/PressDetailPage';
+import StoryDetailPage from './pages/media/id/StoryDetailPage';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
+import TicketReservation from './pages/ticketpurchase/TicketReservation';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
 function App() {
@@ -39,15 +45,23 @@ function App() {
           <Routes>
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/join" element={<SignupPage />} />
             <Route path="/join/step" element={<SignupForm />} />
 
             {/* KT Wiz */}
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
-            <Route path="/ktwiz/about" element={<TeamIntroduce />} />
-            <Route path="/ktwiz/history" element={<TeamHistory />} />
+            <Route path="/ktwiz/about" element={<KtHistoryPage />} />
+            <Route path="/ktwiz/history" element={<KtHistoryPage />} />
+            <Route
+              path="/ktwiz/policy/regular"
+              element={<MembershipPolicyPage />}
+            />
+            <Route
+              path="/ktwiz/policy/donation"
+              element={<MembershipPolicyPage />}
+            />
+
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />
             <Route path="/wizpark/location" element={<ParkLocationPage />} />
@@ -74,13 +88,22 @@ function App() {
             <Route path="/media/wiznews" element={<NewsPage />} />
             <Route path="/media/wizpress" element={<NewsPage />} />
             <Route path="/media/wizstory" element={<StoryPage />} />
-            <Route path="/media/photos/:id" element={<PhotoPage />} />
-            <Route path="/media/firstpitch" element={<PlayerPage />} />
+            <Route path="/media/firstpitch" element={<FirstPitchPage />} />
             <Route path="/media/highlight" element={<HighlightPage />} />
 
             {/* Media 상세 */}
             <Route path="/media/wiznews/:id" element={<NewsDetailPage />} />
             <Route path="/media/wizpress/:id" element={<PressDetailPage />} />
+            <Route path="/media/wizstory/:id" element={<StoryDetailPage />} />
+            <Route path="/media/photos/:id" element={<PhotoPage />} />
+            <Route
+              path="/media/highlight/:id"
+              element={<HighlightDetailPage />}
+            />
+            <Route
+              path="/media/firstpitch/:id"
+              element={<FirstPitchDetailPage />}
+            />
 
             {/* Ticketpurchase */}
             <Route path="/ticket/reservation" element={<TicketReservation />} />

@@ -1,24 +1,28 @@
-import { useState } from 'react';
-
 import { crowdRankColumns } from '@/constants/columns/crowd-columns';
 import { seasons } from '@/constants/seasons';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import CustomSelect from '@/features/common/CustomSelect.tsx';
 import DataTable from '@/features/common/DataTable';
 import SubTitle from '@/features/common/SubTitle';
-import { CrowdRankingChart } from './CrowdRankingChart';
 import { useCrowdRank } from '@/features/game/hooks/ranking';
+import { useSearchParams } from 'react-router';
+import { CrowdRankingChart } from './CrowdRankingChart';
 
 function CrowdRankingTab() {
-  const [season, setSeason] = useState<string>('2024');
-  const { ranking, loading, error } = useCrowdRank(season);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { ranking, isLoading, isError, error } = useCrowdRank();
+  const season = searchParams.get('gyear') || seasons[0];
 
-  if (!ranking.length || loading) {
-    return null;
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (isError) {
+    return <div>{error?.toString()}</div>;
+  }
+
+  if (!ranking?.length) {
+    return null;
   }
 
   return (
@@ -33,7 +37,11 @@ function CrowdRankingTab() {
           type="year"
           data={seasons.filter((year) => Number(year) > 2018)}
           value={season}
-          onChange={(value) => setSeason(value)}
+          onChange={(value) =>
+            setSearchParams({
+              gyear: value,
+            })
+          }
         />
       </div>
 

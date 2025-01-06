@@ -3,11 +3,10 @@ import {
   CalenderBody,
   MatchCalendarCell,
 } from '@/features/game//components/calender';
-import { getAllMonthSchedule, getMonthSchedule } from '@/features/game/apis';
-import { GameSchedule } from '@/features/game/types/match-schedule';
+import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const GAME_TABS_CONFIG = [
   { value: 'ktWiz', label: 'KT Wiz 경기' },
@@ -15,24 +14,16 @@ const GAME_TABS_CONFIG = [
 ];
 
 const MatchCalendar = () => {
-  const [ktMatchData, setKTMatchData] = useState<GameSchedule[]>();
-  const [allMatchData, setAllMatchData] = useState<GameSchedule[]>();
-  const { currentMonth } = useMatchStore();
   const [currentTab, setCurrentTab] = useState<'ktWiz' | 'allLeague'>('ktWiz');
+  const { currentMonth } = useMatchStore();
 
-  useEffect(() => {
-    const fetchMatchSchedule = async () => {
-      const yearMonth = format(currentMonth, 'yyyyMM');
-      if (currentTab === 'ktWiz') {
-        const data = await getMonthSchedule(yearMonth);
-        setKTMatchData(data);
-      } else if (currentTab === 'allLeague') {
-        const data = await getAllMonthSchedule(yearMonth);
-        setAllMatchData(data);
-      }
-    };
-    fetchMatchSchedule();
-  }, [currentMonth, currentTab]);
+  const { matchData: ktMatchData } = useGetMatchScheduleQuery({ currentMonth });
+
+  // '전체 리그 경기' 데이터
+  const { matchData: allMatchData } = useGetMatchScheduleQuery({
+    currentMonth,
+    type: 'all',
+  });
 
   const renderCellContent = (date: Date) => {
     const formattedDate = format(date, 'yyyyMMdd');
@@ -74,7 +65,6 @@ const MatchCalendar = () => {
                 onClick={() =>
                   handleTabChange(tab.value as 'ktWiz' | 'allLeague')
                 }
-                className="media-tabs-trigger px-6 py-2.5"
               >
                 {tab.label}
               </TabsTrigger>

@@ -1,4 +1,4 @@
-export interface BoxScoreData {
+export interface BoxscoreData {
   etcgames: EtcGame[];
   gameFlag: string;
   hbatters: Batter[];

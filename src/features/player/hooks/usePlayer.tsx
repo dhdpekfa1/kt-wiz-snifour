@@ -1,9 +1,9 @@
+import { OverallBatterRank } from '@/features/common/types/batters';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { rankingApi } from '@/features/game/apis/ranking/rankingApi';
+import { usePlayerStore } from '@/store/usePlayerStore';
 import { useEffect } from 'react';
 import { getPlayer } from '../apis/player';
-import { getKTPitcherRanking } from '@/features/game/apis/ranking/pitcher';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { usePlayerStore } from '@/store/usePlayerStore';
-import { getKTBatterRanking } from '@/features/game/apis/ranking/batter';
 
 export const usePlayer = (
   position: string | undefined,
@@ -52,18 +52,30 @@ export const usePlayer = (
     const findMaxStats = async (position: string) => {
       try {
         setLoading(true);
-        let data = [];
+        let data: OverallPitcherRank[] | OverallBatterRank[] = [];
         if (position === 'pitcher') {
-          data = await getKTPitcherRanking();
+          const result = await rankingApi.getKTPitcherRanking({
+            gyear: '2024',
+            pname: '',
+            sortKey: 'ERA',
+          });
+          data = result.data.list || [];
         } else {
-          data = await getKTBatterRanking();
+          const result = await rankingApi.getKTBatterRanking({
+            gyear: '2024',
+            pname: '',
+            sortKey: 'HRA',
+          });
+          data = result.data.list || [];
         }
 
         const results: { [key: string]: number } = { ipg: 0, kbb: 0 };
 
         for (const player of data) {
           for (const key in player) {
-            const value = Number(player[key as keyof OverallPitcherRank]);
+            const value = Number(
+              (player as OverallPitcherRank)[key as keyof OverallPitcherRank]
+            );
 
             if (Number.isNaN(value)) continue;
 
@@ -76,9 +88,13 @@ export const usePlayer = (
           if (position === 'pitcher') {
             results.ipg = Math.max(
               results.ipg,
-              Number(player.inn2) / Number(player.gamenum)
+              Number((player as OverallPitcherRank).inn2) /
+                Number(player.gamenum)
             );
-            results.kbb = Math.max(results.kbb, Number(player.kkbb));
+            results.kbb = Math.max(
+              results.kbb,
+              Number((player as OverallPitcherRank).kkbb)
+            );
           }
         }
 

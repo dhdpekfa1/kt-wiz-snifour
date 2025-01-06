@@ -1,29 +1,54 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
-// import { useState } from "react";
-import {
-  MatchBoard,
-  StartingPitcherTable,
-  TeamLineup,
-} from './components/watch-point';
+import { useEffect, useState } from 'react';
+import { MatchBoard } from './components/common';
+import { StartingPitcherTable, TeamLineup } from './components/watch-point';
+import useRecentMatches from './hooks/common/useRecentMatches';
 import useWatchPoint from './hooks/watch-point/useWatchPoint';
 
 const WatchPointTab = () => {
-  // const [gameDate, setGameDate] = useState("20240922");
-  // const [gameKey, setGameKey] = useState("20240922SKKT0");
-  const { watchData, loading, error } = useWatchPoint(
-    '20240922',
-    '20240922SKKT0'
-  );
+  const {
+    recentMatchData,
+    loading: recentLoading,
+    error: recentError,
+  } = useRecentMatches();
+  const [gameDate, setGameDate] = useState(String(recentMatchData?.gameDate));
+  const [gameKey, setGameKey] = useState(String(recentMatchData?.gmkey));
 
-  if (!watchData || loading) {
-    return null;
+  const { watchData, loading, error } = useWatchPoint(gameDate, gameKey);
+
+  useEffect(() => {
+    if (recentMatchData) {
+      setGameDate(String(recentMatchData.gameDate));
+      setGameKey(String(recentMatchData.gmkey));
+    }
+  }, [recentMatchData]);
+
+  if (
+    recentLoading ||
+    !recentMatchData ||
+    !gameDate ||
+    !gameKey ||
+    loading ||
+    !watchData
+  ) {
+    return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (recentError || error) {
+    return <div>{recentError ? recentError : error}</div>;
   }
+  // 날짜 변경 핸들러
+  const handleDateChange = (direction: 'prev' | 'next') => {
+    if (direction === 'prev' && watchData.schedule.prev) {
+      setGameDate(String(watchData.schedule.prev.gameDate));
+      setGameKey(String(watchData.schedule.prev.gmkey));
+    } else if (direction === 'next' && watchData.schedule.next) {
+      setGameDate(String(watchData.schedule.next.gameDate));
+      setGameKey(String(watchData.schedule.next.gmkey));
+    }
+  };
 
   return (
     <div className="w-full flex my-20">
@@ -57,6 +82,9 @@ const WatchPointTab = () => {
               visitTeamWinLose={watchData?.visitTeamWinLose}
             />
           }
+          onDateChange={handleDateChange}
+          disablePrev={!watchData.schedule.prev}
+          disableNext={!watchData.schedule.next}
         />
 
         {/* 선발투수 비교 */}

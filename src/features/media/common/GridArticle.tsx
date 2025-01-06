@@ -5,34 +5,44 @@ import { EyeIcon } from 'lucide-react';
 const GridArticle = ({
   children,
   className,
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => {
-  return <article className={cn('group', className)}>{children}</article>;
-};
-
-// Media Container 컴포넌트
-const GridArticleMedia = ({
-  children,
-  onClick,
-  className,
-}: { children: React.ReactNode; onClick?: () => void; className?: string }) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onClick?.();
     }
   };
+  return (
+    <article
+      className={cn('group', className)}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+    >
+      {children}
+    </article>
+  );
+};
 
+// Media Container 컴포넌트
+const GridArticleMedia = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+
+  className?: string;
+}) => {
   return (
     <div
       className={cn(
         'relative aspect-video overflow-hidden rounded-lg mb-4',
         className
       )}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
     >
       {children}
     </div>
@@ -44,7 +54,11 @@ const GridArticleThumbnail = ({
   imgFilePath,
   title,
   className,
-}: { imgFilePath?: string; title: string; className?: string }) => {
+}: {
+  imgFilePath?: string;
+  title: string;
+  className?: string;
+}) => {
   return (
     <img
       src={imgFilePath || DEFAULT_IMAGE}
@@ -100,8 +114,26 @@ const GridArticleOverlay = ({ elements }: { elements?: React.ReactNode }) => {
 const GridArticleTitle = ({
   title,
   className,
-}: { title: string; className?: string }) => {
+}: {
+  title: string;
+  className?: string;
+}) => {
   return <h3 className={cn('media-article-title', className)}>{title}</h3>;
+};
+
+// SubTitle 컴포넌트
+const GridArticleSubTitle = ({
+  title,
+  className,
+}: {
+  title: string;
+  className?: string;
+}) => {
+  return (
+    <h4 className={cn('media-article-title', 'text-base', className)}>
+      {title}
+    </h4>
+  );
 };
 
 // Footer 컴포넌트
@@ -109,7 +141,11 @@ const GridArticleFooter = ({
   date,
   viewCount,
   className,
-}: { date: string; viewCount?: number; className?: string }) => {
+}: {
+  date: string;
+  viewCount?: number;
+  className?: string;
+}) => {
   return (
     <div className={cn('media-article-footer mt-2', className)}>
       <time>{date}</time>
@@ -128,6 +164,7 @@ GridArticle.Thumbnail = GridArticleThumbnail;
 GridArticle.Video = GridArticleVideo;
 GridArticle.Overlay = GridArticleOverlay;
 GridArticle.Title = GridArticleTitle;
+GridArticle.SubTitle = GridArticleSubTitle;
 GridArticle.Footer = GridArticleFooter;
 
 export default GridArticle;

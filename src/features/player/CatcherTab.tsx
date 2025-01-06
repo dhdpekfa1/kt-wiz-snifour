@@ -1,24 +1,32 @@
 import Breadcrumb from '../common/Breadcrumb';
+import SearchBar from '../media/common/SearchBar';
 import { PlayerList } from './components';
-import { usePlayerList } from './hooks/usePlayerList';
+import NotFonudSearch from './components/NotFoundSearch';
+import { usePlayerSearch } from './hooks/usePlayerSearch';
 
 function CatcherTab() {
-  const { playerList, loading, error } = usePlayerList('catcher');
+  const { filteredPlayerList, loading, error, searchWord, handleSearch } =
+    usePlayerSearch('catcher');
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   return (
-    <div className="my-20">
-      <Breadcrumb />
-
-      <PlayerList
-        playerList={playerList}
-        endpoint="catcher"
-        loading={loading}
+    <>
+      <Breadcrumb
+        leftComponent={<SearchBar value={searchWord} onSubmit={handleSearch} />}
       />
-    </div>
+      {!loading && !error && filteredPlayerList.length === 0 ? (
+        <NotFonudSearch />
+      ) : (
+        <PlayerList
+          playerList={error ? [] : filteredPlayerList}
+          endpoint="catcher"
+          loading={loading}
+        />
+      )}
+    </>
   );
 }
 

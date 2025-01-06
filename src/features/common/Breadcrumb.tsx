@@ -13,18 +13,32 @@ interface BreadcrumbProps {
   leftComponent?: ReactNode;
 }
 
-const getLabel = (paths: string[], currentPath: string) => {
-  let current: { [key: string]: UrlStructure } = PAGE_URLS;
-  for (const path of paths) {
-    if (path !== currentPath && current[path].sub) {
-      current = current[path].sub;
-    } else if (path !== currentPath && !current[path].sub) {
-      return null;
-    } else {
-      return current[path].name;
+const getLabel = (paths: string[], pathToFind: string) => {
+  const findPathInStructure = (current: UrlStructure): string | null => {
+    // 하위 구조(sub)가 존재하는 경우 재귀적으로 탐색
+    if (current.sub) {
+      for (const key in current.sub) {
+        // 현재 경로가 pathToFind와 일치하면 name 반환
+        if (key === pathToFind) {
+          return current.sub[key].name;
+        }
+        const result = findPathInStructure(current.sub[key]);
+        if (result) return result; // 일치하는 경로를 찾으면 반환
+      }
     }
+
+    // 일치하는 경로가 없으면 null 반환
+    return null;
+  };
+
+  if (!paths.length) return null; // 경로가 비어 있는 경우 null 반환
+  const rootPath = paths[0]; // 첫 번째 경로 가져오기
+  const rootStructure = PAGE_URLS[rootPath];
+  if (rootPath === pathToFind) {
+    return rootStructure.name;
   }
-  return null;
+  if (!rootStructure) return null; // 최상위 경로를 찾지 못한 경우 null 반환
+  return findPathInStructure(rootStructure);
 };
 
 const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
@@ -65,21 +79,24 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
   return (
     <div
       className={cn(
-        'w-full mt-6 mb-4 pb-2 border-b-2 border-wiz-red flex items-center',
-        leftComponent ? 'justify-between' : 'justify-end'
+        'w-full mt-6 mb-4 pb-2 border-b-2 border-wiz-red flex flex-col md:flex-row md:items-end',
+        leftComponent ? 'md:justify-between' : 'justify-end'
       )}
     >
+      {/* md 이상에서 브래드크럼 좌측에 표시되는 leftComponent */}
       {leftComponent && (
-        <div className="flex items-center gap-2">{leftComponent}</div>
+        <div className="hidden md:flex items-center gap-2">{leftComponent}</div>
       )}
-      <span className="flex items-center font-light text-wiz-white">
+
+      {/* Breadcrumb */}
+      <span className="flex items-center font-light text-wiz-white whitespace-wraps">
         <HomeIcon className={cn('mr-1 h-3', 'lg:mr-2 lg:h-4')} />
         {filteredPaths.map((path, index) => (
           <span
             key={path.key}
             className={cn(
               'flex items-center text-xs',
-              'lg:text-sm',
+              'md:text-sm',
               path.isActive && 'text-wiz-red'
             )}
           >
@@ -90,6 +107,13 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
           </span>
         ))}
       </span>
+
+      {/* sm 이하에서 브래드크럼 아래에 표시되는 leftComponent */}
+      {leftComponent && (
+        <div className="flex items-center gap-2 mt-4 md:mt-0 md:ml-4 md:hidden">
+          {leftComponent}
+        </div>
+      )}
     </div>
   );
 };

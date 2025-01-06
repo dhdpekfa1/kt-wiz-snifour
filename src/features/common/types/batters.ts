@@ -39,8 +39,8 @@ export interface TeamBatterRank extends CommonBatterStats {
   teamCode: string;
 }
 
-// 타자 타율 순위 스탯
-export interface BatterHra extends CommonBatterStats {
+// 전체 타자 순위 스탯
+export interface OverallBatterRank extends CommonBatterStats {
   babip: string;
   cba: string;
   cgopo: string;
@@ -66,9 +66,3 @@ export interface BatterHra extends CommonBatterStats {
   subCn: number;
   wrHit: string;
 }
-
-// 홈런 수와 관련된 순위 스탯
-export interface BatterHR extends BatterHra {}
-
-// 전체 타자 순위 스탯
-export interface OverallBatterRank extends BatterHra {}

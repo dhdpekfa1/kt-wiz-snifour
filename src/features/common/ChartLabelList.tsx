@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { Config } from '../player/components/PlayerRecordChart';
+import { Config } from '../player/components/detail/PlayerRecordChart';
 
 interface ChartLabelListProps {
   config: Config;

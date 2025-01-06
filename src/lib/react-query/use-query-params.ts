@@ -3,7 +3,11 @@
  */
 
 import { Parameter } from '@/lib';
-import { UseQueryOptions } from '@tanstack/react-query';
+import {
+  QueryKey,
+  UseInfiniteQueryOptions,
+  UseQueryOptions,
+} from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -64,10 +68,31 @@ type UseQueryParams<
   >;
 } & WrapVariables<Parameter<T>>;
 
+type UseInfiniteQueryParams<
+  T extends AsyncFn,
+  Error = AxiosError,
+  Data = AsyncFnReturn<T>,
+  TransformedData = Data,
+  PageParam = unknown,
+> = {
+  options?: Omit<
+    UseInfiniteQueryOptions<
+      Data,
+      Error,
+      TransformedData,
+      Data,
+      QueryKey,
+      PageParam
+    >,
+    'queryKey' | 'queryFn'
+  >;
+} & WrapVariables<Parameter<T>>;
+
 export {
   type AsyncFn,
   type AsyncFnReturn,
   type PromiseType,
   type AsyncFnParams,
   type UseQueryParams,
+  type UseInfiniteQueryParams,
 };

@@ -6,6 +6,7 @@ type GridViewType = {
   boardSeq: number; // 게시판 카테고리 순번 (현재는 0으로 설정)
   boardCode: string; // 게시판 코드
   title: string; // 기사 제목
+  subTitle: string; // 부제목
   imgFilePath?: string; // 이미지 파일 경로
   maxArticlePerPage: number; // 페이지당 최대 기사 수
   totalPage: number; // 전체 페이지 수
@@ -20,4 +21,9 @@ type GridDataType = {
   list: GridViewType[];
 };
 
-export type { GridDataType, GridViewType };
+type GridInfiniteQueryResult = {
+  pages: GridViewType[][];
+  pageParams: number[];
+};
+
+export type { GridDataType, GridViewType, GridInfiniteQueryResult };
