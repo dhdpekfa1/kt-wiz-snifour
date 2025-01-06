@@ -10,6 +10,7 @@ import {
   Label,
   Button,
 } from '@/components/ui';
+import { cn } from '@/lib/utils';
 import { useUserStore } from '@/store/useUserStore';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router';
@@ -21,7 +22,13 @@ import { nicknameSchema } from '../schemas/signupSchema';
 
 export type NicknameValue = z.infer<typeof nicknameSchema>;
 
-const EditProfileDialog = ({ children }: { children: ReactNode }) => {
+const EditProfileDialog = ({
+  children,
+  isHovered = false,
+}: {
+  children: ReactNode;
+  isHovered?: boolean;
+}) => {
   const { setNickname, resetUser } = useUserStore();
   const { email, nickname, sub } = useUserSession();
   const navigate = useNavigate();
@@ -67,9 +74,12 @@ const EditProfileDialog = ({ children }: { children: ReactNode }) => {
       <DialogTrigger asChild>
         <Button
           variant={null}
-          className="-ml-3 lg:border lg:border-wiz-white/20"
+          className={cn(
+            '-ml-3  lg:border-b-2 lg:border-b-wiz-red rounded-sm',
+            isHovered ? ' text-wiz-black' : 'text-wiz-white bg-opacity-20'
+          )}
         >
-          {children}
+          {children} 님
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[360px] bg-wiz-black text-wiz-white border-wiz-red border-opacity-30 rounded-md">

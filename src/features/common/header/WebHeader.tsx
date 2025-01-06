@@ -29,7 +29,7 @@ function WebHeader({ className }: { className?: string }) {
             }`}
           >
             {nickname ? (
-              <EditProfileDialog>
+              <EditProfileDialog isHovered={isHovered}>
                 <li>{nickname}</li>
               </EditProfileDialog>
             ) : (
