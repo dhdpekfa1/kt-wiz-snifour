@@ -8,9 +8,10 @@ interface ActionProviderProps {
   children: React.ReactNode;
 }
 
-// biome-ignore lint/correctness/noUnusedVariables: <explanation>
 const ActionProvider: React.FC<ActionProviderProps> = ({
+  // biome-ignore lint/correctness/noUnusedVariables: <explanation>
   createChatBotMessage,
+  // biome-ignore lint/correctness/noUnusedVariables: <explanation>
   setState,
   children,
 }) => {

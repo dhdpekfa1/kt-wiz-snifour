@@ -34,6 +34,7 @@ import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
 import ActionProvider from './features/chatbot/ActionProvider';
 import MessageParser from './features/chatbot/MessageParser';
+import './features/chatbot/chatbot.css';
 import config from './features/chatbot/config';
 
 function App() {
