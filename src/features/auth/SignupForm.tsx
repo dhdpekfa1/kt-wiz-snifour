@@ -18,10 +18,11 @@ import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import AgreementItem from './AgreementItem';
 import { signupSchema } from './schemas/signupSchema';
 import { AgreementData, AgreementsType } from './types/agreements';
+import { supabase } from '@/lib/supabase'; // Supabase 클라이언트 가져오기
+import { useNavigate } from 'react-router';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
@@ -49,7 +50,7 @@ const SignupForm = () => {
       },
     },
   });
-
+  const navigate = useNavigate();
   const agreements = watch('agreements');
 
   // 전체 동의 체크박스 변경 핸들러
@@ -60,8 +61,8 @@ const SignupForm = () => {
     }
   };
 
-  const onSubmit = (data: SignupFormValues) => {
-    const { agreements } = data;
+  const onSubmit = async (data: SignupFormValues) => {
+    const { email, password, nickname, agreements } = data;
     if (
       !agreements.termsOfService ||
       !agreements.personalInfo ||
@@ -70,8 +71,30 @@ const SignupForm = () => {
       alert('필수 약관에 동의해야 회원가입이 가능합니다.');
       return;
     }
-    console.log('회원가입 데이터:', data);
-    // 회원가입 API 호출 로직 추가
+    try {
+      // Supabase 회원가입 호출
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            nickname,
+          },
+        },
+      });
+
+      if (error) {
+        console.error('회원가입 실패:', error.message);
+        alert(`회원가입 실패: ${error.message}`);
+        return;
+      }
+
+      alert('kt 가족이 되신 걸 환영합니다!\n이메일 인증 후 이용하세요');
+      navigate('/login'); // 로그인 페이지로 이동
+    } catch (err) {
+      console.error('회원가입 중 문제가 발생했습니다:', err);
+      alert('회원가입 중 문제가 발생했습니다. 다시 시도해주세요.');
+    }
   };
 
   return (
@@ -122,6 +145,10 @@ const SignupForm = () => {
                   {...register('email')}
                   className="text-xs md:text-sm bg-wiz-black text-wiz-white"
                 />
+                <p className="text-[10px] md:text-xs">
+                  * 정확한 이메일을 입력해주세요. 회원가입 후 이메일 인증에
+                  사용됩니다.
+                </p>
                 {errors.email && (
                   <p className="text-red-500 text-xs mt-1">
                     {errors.email.message}

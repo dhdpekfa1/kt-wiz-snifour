@@ -17,13 +17,16 @@ import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { z } from 'zod';
+import { supabase } from '@/lib/supabase';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
   const [saveId, setSaveId] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -39,21 +42,54 @@ const LoginPage = () => {
     const savedEmail = localStorage.getItem('savedEmail');
     if (savedEmail) {
       setValue('email', savedEmail);
-      setSaveId(true); // 체크박스도 활성화
+      setSaveId(true); // 체크박스 활성화
     }
   }, [setValue]);
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log('로그인 데이터:', { ...data, saveId });
+  const onSubmit = async (data: LoginFormValues) => {
+    setErrorMessage(null); // 이전 에러 메시지 초기화
 
-    // 이메일 저장 체크 상태에 따라 로컬 스토리지 처리
-    if (saveId) {
-      localStorage.setItem('savedEmail', data.email); // 이메일 저장
-    } else {
-      localStorage.removeItem('savedEmail'); // 이메일 삭제
+    try {
+      const { email, password } = data;
+
+      // Supabase 로그인 요청
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        // 이메일 확인이 필요한 경우
+        if (error.code === 'email_not_confirmed') {
+          setErrorMessage(
+            '이메일 확인을 완료해주세요. 인증 이메일을 다시 보냈습니다.'
+          );
+
+          // 인증 이메일 재발송
+          await supabase.auth.resend({
+            type: 'signup', // 이메일 인증 타입
+            email,
+          });
+        }
+
+        // 기타 에러 처리
+        setErrorMessage(error.message);
+        return;
+      }
+
+      // 로그인 성공 시 처리
+      if (saveId) {
+        localStorage.setItem('savedEmail', email);
+      } else {
+        localStorage.removeItem('savedEmail');
+      }
+
+      alert('로그인 성공! 메인 페이지로 이동합니다.');
+      navigate('/'); // 메인 페이지로 이동
+    } catch (error: unknown) {
+      setErrorMessage('로그인 중 문제가 발생했습니다. 다시 시도해주세요.');
+      console.error(error);
     }
-
-    // 로그인 API 호출 로직 추가
   };
 
   return (
@@ -133,6 +169,9 @@ const LoginPage = () => {
                   이메일 저장
                 </Label>
               </div>
+              {errorMessage && (
+                <p className="text-red-500 text-xs mt-2">{errorMessage}</p>
+              )}
               <CardFooter className="flex flex-col mt-6 gap-2">
                 <Button
                   className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
