@@ -1,12 +1,13 @@
 import instance from '@/lib/axios/instance';
 import {
   BatterRankingResponse,
+  CrowdRankingResponse,
   PitcherRankingResponse,
   RankingDto,
+  TeamRankingResponse,
+  TeamVSResponse,
 } from '../../types/ranking';
 import { ApiRoutes } from '@/constants/route';
-import { TeamRankingResponse, TeamVSResponse } from '../../types/team-ranking';
-import { CrowdRankingResponse } from '../../types/crowd-ranking';
 
 // ranking api
 export const rankingApi = {
