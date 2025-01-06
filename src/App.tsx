@@ -2,16 +2,16 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Footer from './features/common/Footer';
 import Header from './features/common/header/Header';
 import HomePage from './pages/HomePage';
+import TeamHistory from './pages/ktwiz/TeamHistory';
+import TeamIntroduce from './pages/ktwiz/TeamIntroduce';
+import WallpaperPage from './pages/ktwiz/WallpaperPage';
 import PlayerPage from './pages/media/FirstPitch';
 import HighlightPage from './pages/media/Highlight';
 import NewsPage from './pages/media/News';
 import PhotoPage from './pages/media/Photo';
 import StoryPage from './pages/media/Story';
-
-import TeamHistory from './pages/ktwiz/TeamHistory';
-import TeamIntroduce from './pages/ktwiz/TeamIntroduce';
-import WallpaperPage from './pages/ktwiz/WallpaperPage';
 import NewsDetailPage from './pages/media/id/NewsDetail';
+import TicketReservation from './pages/ticketpurchase/TicketReservation';
 import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
@@ -39,6 +39,10 @@ function App() {
           <Routes>
             {/* 메인 */}
             <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/join" element={<SignupPage />} />
+            <Route path="/join/step" element={<SignupForm />} />
 
             {/* KT Wiz */}
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
@@ -77,6 +81,9 @@ function App() {
             {/* Media 상세 */}
             <Route path="/media/wiznews/:id" element={<NewsDetailPage />} />
             <Route path="/media/wizpress/:id" element={<PressDetailPage />} />
+
+            {/* Ticketpurchase */}
+            <Route path="/ticket/reservation" element={<TicketReservation />} />
 
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />

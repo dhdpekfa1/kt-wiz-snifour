@@ -97,7 +97,7 @@ Kt wiz 위안부 피해 할머니(이옥선, 박옥선) 시구/시타 및 후원
   ];
 
   return (
-    <div className="bg-wiz-black min-h-screen py-10 px-4">
+    <div className=" min-h-screen py-10 px-4">
       <Breadcrumb />
       <h1 className="text-wiz-white text-4xl text-center font-bold mb-10">
         KT Wiz 연혁
