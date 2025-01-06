@@ -1,9 +1,9 @@
-import { Coach, Player } from '@/features/player/types/list';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router';
+import { CoachListItem, PlayerListItem } from '../types/player';
 
 interface PlayerListProps {
-  playerList: (Coach | Player)[];
+  playerList: (CoachListItem | PlayerListItem)[];
   endpoint: string;
   loading?: boolean;
 }
@@ -11,13 +11,13 @@ interface PlayerListProps {
 const PlayerList = ({ playerList, endpoint, loading }: PlayerListProps) => {
   const navigate = useNavigate();
 
-  const handlePlayerClick = (player: Player | Coach) => {
+  const handlePlayerClick = (player: CoachListItem | PlayerListItem) => {
     navigate(`/player/${endpoint}/detail?pcode=${player.pcode}`);
   };
 
   const handleKeyDown = (
     event: React.KeyboardEvent,
-    player: Player | Coach
+    player: PlayerListItem | CoachListItem
   ) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
