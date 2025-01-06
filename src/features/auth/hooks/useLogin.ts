@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router';
+import { useUserStore } from '@/store/useUserStore';
 
 interface LoginData {
   email: string;
@@ -13,16 +14,21 @@ const useLogin = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  const setEmail = useUserStore((state) => state.setEmail);
+  const setNickname = useUserStore((state) => state.setNickname);
+  const setSub = useUserStore((state) => state.setSub);
+
   const login = async (data: LoginData) => {
     const { email, password, saveId } = data;
     setIsLoading(true);
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const { data: sessionData, error } =
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
 
       if (error) {
         if (error.code === 'email_not_confirmed') {
@@ -39,6 +45,15 @@ const useLogin = () => {
           setError(error.message);
         }
         return false;
+      }
+
+      // 로그인 성공 시 사용자 정보 가져오기
+      const user = sessionData?.user;
+      if (user) {
+        // Zustand store에 사용자 정보 저장
+        setEmail(user.email || null);
+        setNickname(user.user_metadata.nickname || null);
+        setSub(user.user_metadata.sub || null);
       }
 
       // 이메일 저장 처리
