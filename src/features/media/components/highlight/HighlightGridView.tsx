@@ -20,8 +20,6 @@ const HighlightGridView = () => {
     hasNextPage,
   } = useHighlightListQuery();
 
-  console.log({ highlightList });
-
   if (!isLoading && isSuccess && !highlightList?.pages?.length) {
     return <NotFoundSearchResult />;
   }

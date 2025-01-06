@@ -6,10 +6,18 @@ import { cn } from '@/lib/utils';
 import { RankingCard } from '../common/RankingCard';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
+import { useSearchParams } from 'react-router';
+import { useState } from 'react';
+import { seasons } from '@/constants/seasons';
+import CustomSelect from '@/features/common/CustomSelect.tsx';
 
 function BatterRankingTab() {
   const { hraRanking, hrRanking, isLoading, error, isError } =
     useTopBatterRank();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [season, setSeason] = useState<string>(
+    searchParams.get('gyear') || seasons[0]
+  );
 
   if (!hraRanking?.length || !hrRanking?.length) {
     return null;
@@ -25,7 +33,22 @@ function BatterRankingTab() {
 
   return (
     <div>
-      <Breadcrumb />
+      <Breadcrumb
+        leftComponent={
+          <CustomSelect
+            type="year"
+            data={seasons}
+            value={season}
+            onChange={(value) => {
+              setSeason(value);
+              setSearchParams({
+                ...Object.fromEntries(searchParams.entries()),
+                gyear: value,
+              });
+            }}
+          />
+        }
+      />
 
       {/* 타자 랭킹 카드 */}
       <div
@@ -49,7 +72,12 @@ function BatterRankingTab() {
       </div>
 
       {/* 타자 순위 표 */}
-      <Tabs defaultValue="ktBatters">
+      <Tabs
+        defaultValue="ktBatters"
+        onValueChange={() => {
+          setSearchParams({ gyear: searchParams.get('gyear') || '' });
+        }}
+      >
         <TabsList className="my-8">
           <SubTabsTrigger value="ktBatters">KT Wiz 타자</SubTabsTrigger>
           <SubTabsTrigger value="allBatters">전체 타자 순위</SubTabsTrigger>

@@ -6,24 +6,31 @@ import { useTeamRank } from '@/features/game/hooks/ranking/useTeamRank';
 import TeamRankingView from '../common/TeamRankingView';
 
 function TeamBatterRankingView() {
-  const { ranking, loading, error } = useTeamRank('batter');
+  const { ranking, isLoading, isError, error } = useTeamRank('batter');
 
-  if (!ranking.length || loading) {
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  if (isError) {
+    return <div>{error?.toString()}</div>;
+  }
+
+  if (!ranking?.length) {
     return null;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
-    <TeamRankingView
-      tableData={ranking as TeamBatterRank[]}
-      chartData={ranking as TeamBatterRank[]}
-      columns={teamBatterRankColumns}
-      chartConfig={TeamRankingBatterConfig}
-      domain="all"
-    />
+    <>
+      <p className="text-neutral-400">타율 비교 순위입니다.</p>
+      <TeamRankingView
+        tableData={ranking as TeamBatterRank[]}
+        chartData={ranking as TeamBatterRank[]}
+        columns={teamBatterRankColumns}
+        chartConfig={TeamRankingBatterConfig}
+        domain="all"
+      />
+    </>
   );
 }
 

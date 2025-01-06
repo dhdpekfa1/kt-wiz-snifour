@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import SubTitle from '@/features/common/SubTitle';
 import { OverallBatterRank } from '@/features/common/types/batters';
@@ -23,7 +23,7 @@ function RankingCard({
   indicator,
 }: RankingCardProps) {
   if (!ranking.length) {
-    return null;
+    return <div>데이터가 없습니다.</div>;
   }
 
   const [selectedPlayer, setSelectedPlayer] = useState<Player>(ranking[0]);
@@ -31,6 +31,10 @@ function RankingCard({
   const handleSelectPlayer = (player: Player) => {
     setSelectedPlayer(player);
   };
+
+  useEffect(() => {
+    setSelectedPlayer(ranking[0]);
+  }, [ranking[0]]);
 
   return (
     <div
@@ -40,12 +44,14 @@ function RankingCard({
         'lg:gap-4'
       )}
     >
-      <img
-        src={selectedPlayer.playerPrvwImg}
-        alt={selectedPlayer.playerName}
-        className={cn('rounded-xl w-1/2', '')}
-      />
-      <div className="w-full h-full flex flex-col gap-2 mt-4">
+      <div className="w-1/2">
+        <img
+          src={selectedPlayer.playerPrvwImg}
+          alt={selectedPlayer.playerName}
+          className={cn('rounded-xl w-full aspect-square object-cover', '')}
+        />
+      </div>
+      <div className="w-full md:w-1/2 h-full flex flex-col gap-2 mt-4">
         <SubTitle title={title} className={cn('')} />
         <ol className="text-black flex flex-col justify-center">
           {ranking.map((player, index) => (

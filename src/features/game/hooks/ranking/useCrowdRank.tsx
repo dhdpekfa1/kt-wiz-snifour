@@ -1,28 +1,18 @@
-import { getCrowdRanking } from '@/features/game/apis/ranking/crowd';
-import { CrowdRank } from '@/features/game/types/crowd-ranking';
-import { useEffect, useState } from 'react';
+import { seasons } from '@/constants/seasons';
+import { useGetCrowdRanking } from '../../apis/ranking/rankingApi.query';
+import { useSearchParams } from 'react-router';
 
-export function useCrowdRank(season: string) {
-  const [ranking, setRanking] = useState<CrowdRank[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export function useCrowdRank() {
+  const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getCrowdRanking(season);
+  const variables = { gyear: searchParams.get('gyear') || seasons[0] };
 
-        setRanking(data);
-      } catch (err) {
-        console.error(err);
-        setError('데이터를 가져오는 중 오류가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const {
+    data: ranking,
+    isLoading,
+    isError,
+    error,
+  } = useGetCrowdRanking({ variables });
 
-    fetchData();
-  }, [season]);
-
-  return { ranking, loading, error };
+  return { ranking, isLoading, isError, error };
 }
