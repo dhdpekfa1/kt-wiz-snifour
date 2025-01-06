@@ -1,3 +1,17 @@
+export interface GameScheduleResponse {
+  data: {
+    list: GameSchedule[];
+  };
+}
+
+// 오늘 스케줄(임시-데이터확인 되면 수정 필요)
+export interface TodayGameScheduleResponse {
+  data: {
+    ktwiztodaygame: GameSchedule[];
+    otherteamlist: GameSchedule[];
+  };
+}
+
 export interface GameSchedule {
   broadcast: string;
   displayDate: string;
