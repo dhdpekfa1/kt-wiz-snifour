@@ -14,10 +14,11 @@ import {
 import { useUserStore } from '@/store/useUserStore';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router';
+import useUserSession from '../hooks/useUserSession';
 
 const EditProfileDialog = ({ children }: { children: ReactNode }) => {
-  const { sub, email, nickname, setNickname, setSub, setEmail } =
-    useUserStore();
+  const { setNickname, resetUser } = useUserStore();
+  const { email, nickname, sub } = useUserSession();
   const [localNickname, setLocalNickname] = useState<string | null>(nickname);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -44,9 +45,7 @@ const EditProfileDialog = ({ children }: { children: ReactNode }) => {
       alert('로그아웃에 실패했습니다.\n다시 시도해주세요.');
     }
     setIsOpen(false);
-    setSub(null);
-    setEmail(null);
-    setNickname(null);
+    resetUser();
     alert('로그아웃되었습니다.');
     navigate('/'); // 홈으로 이동
   };

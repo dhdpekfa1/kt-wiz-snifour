@@ -112,6 +112,7 @@ const LoginPage = () => {
                 placeholder="비밀번호를 입력하세요."
                 {...register('password')}
                 className="text-xs md:text-sm"
+                autoComplete="current-password"
               />
               {errors.password && (
                 <p className="text-red-500 text-xs mt-1">

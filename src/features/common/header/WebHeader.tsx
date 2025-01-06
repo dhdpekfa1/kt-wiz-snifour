@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-
 import { navMenus } from '@/constants/nav-menus';
 import { cn } from '@/lib/utils';
-import { useUserStore } from '@/store/useUserStore';
 import { EditProfileDialog } from '@/features/auth';
+import useUserSession from '@/features/auth/hooks/useUserSession';
 
 function WebHeader({ className }: { className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const nickname = useUserStore((state) => state.nickname);
+  const { nickname } = useUserSession();
 
   return (
     <div
