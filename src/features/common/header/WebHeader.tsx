@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-
 import { navMenus } from '@/constants/nav-menus';
 import { cn } from '@/lib/utils';
+import { EditProfileDialog } from '@/features/auth';
+import useUserSession from '@/features/auth/hooks/useUserSession';
 
 function WebHeader({ className }: { className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const { nickname } = useUserSession();
 
   return (
     <div
@@ -25,12 +28,20 @@ function WebHeader({ className }: { className?: string }) {
               isHovered && 'text-black'
             }`}
           >
-            <Link to="/login">
-              <li>로그인</li>
-            </Link>
-            <Link to="/join">
-              <li>회원가입</li>
-            </Link>
+            {nickname ? (
+              <EditProfileDialog isHovered={isHovered}>
+                <li>{nickname}</li>
+              </EditProfileDialog>
+            ) : (
+              <>
+                <Link to="/login">
+                  <li>로그인</li>
+                </Link>
+                <Link to="/join">
+                  <li>회원가입</li>
+                </Link>
+              </>
+            )}
           </ul>
         </nav>
 

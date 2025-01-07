@@ -1,17 +1,17 @@
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
-import { useTabFromUrl } from '@/hooks/useTabFromUrl';
-import { cn } from '@/lib/utils';
-import { useSearchParams } from 'react-router';
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui";
+import { useTabFromUrl } from "@/hooks/useTabFromUrl";
+import { cn } from "@/lib/utils";
+import { useSearchParams } from "react-router";
 
-import Banner from '@/features/common/Banner';
-import Layout from '@/features/common/Layout';
-import SearchBar from '@/features/media/common/SearchBar';
-import NewsListView from '@/features/media/components/news/NewsListView';
-import Breadcrumb from '@/features/common/Breadcrumb';
+import Banner from "@/features/common/Banner";
+import Layout from "@/features/common/Layout";
+import SearchBar from "@/features/media/common/SearchBar";
+import NewsListView from "@/features/media/components/news/NewsListView";
+import Breadcrumb from "@/features/common/Breadcrumb";
 
 export const NEWS_TABS_CONFIG = [
-  { value: 'news', path: '/wiznews', label: 'wiz 소식' },
-  { value: 'press', path: '/wizpress', label: 'wiz 보도자료' },
+  { value: "news", path: "/wiznews", label: "wiz 소식" },
+  { value: "press", path: "/wizpress", label: "wiz 보도자료" },
 ];
 
 /** 뉴스 페이지 */
@@ -19,7 +19,7 @@ const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { currentTab, handleTabChange } = useTabFromUrl({
-    basePath: '/media',
+    basePath: "/media",
     tabs: NEWS_TABS_CONFIG,
     defaultTab: NEWS_TABS_CONFIG[0].value,
   });
@@ -47,15 +47,11 @@ const NewsPage = () => {
         defaultValue={currentTab}
         onValueChange={handleTabChange}
       >
-        <div className={cn('media-header')}>
-          <div className={cn('media-tabs-wrapper')}>
-            <TabsList className={cn('media-tabs-list')}>
+        <div className={cn("media-header")}>
+          <div className={cn("media-tabs-wrapper")}>
+            <TabsList className={cn("media-tabs-list")}>
               {NEWS_TABS_CONFIG.map((tab) => (
-                <TabsTrigger
-                  key={tab.value}
-                  value={tab.value}
-                  className={cn('media-tabs-trigger')}
-                >
+                <TabsTrigger key={tab.value} value={tab.value}>
                   {tab.label}
                 </TabsTrigger>
               ))}
@@ -65,7 +61,7 @@ const NewsPage = () => {
         <Breadcrumb
           leftComponent={
             <SearchBar
-              value={searchParams.get('searchWord') || ''}
+              value={searchParams.get("searchWord") || ""}
               onSubmit={(searchWord) =>
                 setSearchParams({
                   ...Object.fromEntries(searchParams.entries()),

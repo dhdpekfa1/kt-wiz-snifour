@@ -10,10 +10,16 @@
 
 body {
   font-family: 'Pretendard', sans-serif;
+  scrollbar-gutter: stable;
 }
 
 @layer utilities {
   .shadow-inner-bottom {
     box-shadow: inset 0 -10px 15px rgba(0, 0, 0, 0.5);
   }
+}
+
+/* 스크롤바 설정*/
+::-webkit-scrollbar {
+  display: none;
 }

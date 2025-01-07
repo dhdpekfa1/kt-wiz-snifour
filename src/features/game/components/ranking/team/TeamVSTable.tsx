@@ -8,29 +8,24 @@ import {
 } from '@/components/ui';
 import { vsOrder } from '@/constants/team-vs-order';
 import { useTeamVS } from '@/features/game/hooks/ranking/useTeamVS';
+import {
+  ArrangedTeamVS,
+  TeamVSResult,
+} from '@/features/game/services/arrange-vs.service';
 import { cn } from '@/lib/utils';
-
-interface TeamVSResult {
-  win: number | string;
-  lose: number | string;
-  drawn: number | string;
-}
-
-interface ArrangedTeamVS {
-  teamName: string;
-  teamCode: string;
-  [vsTeamCode: string]: { win: number; lose: number; drawn: number } | string;
-}
-
 function TeamVSTable() {
-  const { vs, loading, error } = useTeamVS();
+  const { vs, isLoading, isError, error } = useTeamVS();
 
-  if (!Object.keys(vs) || loading) {
-    return null;
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (isError) {
+    return <div>{error?.toString()}</div>;
+  }
+
+  if (!vs) {
+    return null;
   }
 
   return (
@@ -40,6 +35,7 @@ function TeamVSTable() {
       >
         팀 간 승-패-무 정보입니다.
       </p>
+
       <Table className="mt-4">
         <TableHeader>
           <TableRow className="font-semibold border-none">
@@ -61,6 +57,7 @@ function TeamVSTable() {
             ))}
           </TableRow>
         </TableHeader>
+
         <TableBody className="text-center">
           {vsOrder.map(({ teamCode, teamName }, index) => (
             <TableRow
@@ -71,18 +68,16 @@ function TeamVSTable() {
               )}
             >
               <TableCell>{teamName}</TableCell>
-              {vsOrder.map((vsTeam, vIndex) => {
-                const { win, lose, drawn }: TeamVSResult = ((
-                  vs as ArrangedTeamVS[]
-                )[index][vsTeam.teamCode] as TeamVSResult) || {
-                  win: '',
-                  lose: '',
-                  drawn: '',
-                };
+              {vsOrder.map(({ teamCode: vsTeamCode }, vIndex) => {
+                const rowData = vs.get(teamCode) as ArrangedTeamVS;
+
+                const { win, lose, drawn } = (rowData[
+                  vsTeamCode
+                ] as TeamVSResult) || { win: 0, lose: 0, drawn: 0 };
 
                 return (
                   <TableCell
-                    key={`${teamCode}-${vsTeam.teamCode}`}
+                    key={`${teamCode}-${vsTeamCode}`}
                     className={cn(
                       'w-fit',
                       index > 0 &&
@@ -90,7 +85,7 @@ function TeamVSTable() {
                         'bg-wiz-red bg-opacity-70 font-bold' // 중복 색칠 방지(배경색 투명도가 있기 때문)
                     )}
                   >
-                    {teamCode !== vsTeam.teamCode && (
+                    {teamCode !== vsTeamCode && (
                       <p>
                         {win}-{lose}-{drawn}
                       </p>

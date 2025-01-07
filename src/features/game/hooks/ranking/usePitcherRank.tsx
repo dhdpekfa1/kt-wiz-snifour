@@ -1,35 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { useSearchParams } from 'react-router';
 import {
-  getAllPitcherRanking,
-  getKTPitcherRanking,
-} from '@/features/game/apis/ranking/pitcher';
+  useGetAllPitcherRanking,
+  useGetKTPitcherRanking,
+} from '../../apis/ranking/rankingApi.query';
 
 export function usePitcherRank(domain: 'kt' | 'all') {
-  const [ranking, setRanking] = useState<OverallPitcherRank[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data =
-          domain === 'kt'
-            ? await getKTPitcherRanking()
-            : await getAllPitcherRanking();
-
-        setRanking(data);
-      } catch (err) {
-        console.error(err);
-        setError('데이터를 가져오는 중 오류가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
+  const variables = useMemo(() => {
+    return {
+      gyear: searchParams.get('gyear') || '2024',
+      pname: '',
+      sortKey: 'ERA',
     };
+  }, [searchParams]);
 
-    fetchData();
-  }, [domain]);
-
-  return { ranking, loading, error };
+  switch (domain) {
+    case 'kt': {
+      const {
+        data: ranking,
+        isLoading,
+        isError,
+        error,
+      } = useGetKTPitcherRanking({ variables });
+      return { ranking, isLoading, error, isError };
+    }
+    case 'all': {
+      const {
+        data: ranking,
+        isLoading,
+        isError,
+        error,
+      } = useGetAllPitcherRanking({ variables });
+      return { ranking, isLoading, error, isError };
+    }
+    default: {
+      return { ranking: [], loading: false, error: 'error' };
+    }
+  }
 }

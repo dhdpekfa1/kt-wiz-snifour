@@ -18,10 +18,11 @@ import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
-
-import AgreementItem from './AgreementItem';
-import { signupSchema } from './schemas/signupSchema';
-import { AgreementData, AgreementsType } from './types/agreements';
+import { AgreementItem } from './AgreementItem';
+import { signupSchema } from '../schemas/signupSchema';
+import { AgreementData, AgreementsType } from '../types/agreements';
+import useSignup from '../hooks/useSignup';
+import useAuthRedirect from '../hooks/useAuthRedirect';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
@@ -49,8 +50,9 @@ const SignupForm = () => {
       },
     },
   });
-
+  const { signup, error } = useSignup();
   const agreements = watch('agreements');
+  useAuthRedirect();
 
   // 전체 동의 체크박스 변경 핸들러
   const handleAllAgreedChange = () => {
@@ -60,8 +62,9 @@ const SignupForm = () => {
     }
   };
 
-  const onSubmit = (data: SignupFormValues) => {
-    const { agreements } = data;
+  const onSubmit = async (data: SignupFormValues) => {
+    const { email, password, nickname, agreements } = data;
+
     if (
       !agreements.termsOfService ||
       !agreements.personalInfo ||
@@ -70,8 +73,12 @@ const SignupForm = () => {
       alert('필수 약관에 동의해야 회원가입이 가능합니다.');
       return;
     }
-    console.log('회원가입 데이터:', data);
-    // 회원가입 API 호출 로직 추가
+
+    const success = await signup({ email, password, nickname });
+
+    if (!success) {
+      console.error(error);
+    }
   };
 
   return (
@@ -122,6 +129,10 @@ const SignupForm = () => {
                   {...register('email')}
                   className="text-xs md:text-sm bg-wiz-black text-wiz-white"
                 />
+                <p className="text-[10px] md:text-xs">
+                  * 정확한 이메일을 입력해주세요. 회원가입 후 이메일 인증에
+                  사용됩니다.
+                </p>
                 {errors.email && (
                   <p className="text-red-500 text-xs mt-1">
                     {errors.email.message}
@@ -236,4 +247,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export { SignupForm };

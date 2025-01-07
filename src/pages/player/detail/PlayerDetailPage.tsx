@@ -1,11 +1,6 @@
-import { useParams, useSearchParams } from 'react-router';
+import { useParams } from 'react-router';
 
-import {
-  recentBatterConfig,
-  recentPitcherConfig,
-  yearBatterConfig,
-  yearPitcherConfig,
-} from '@/constants/chart-config';
+import { yearBatterConfig, yearPitcherConfig } from '@/constants/chart-config';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import {
@@ -13,22 +8,21 @@ import {
   PlayerRecordChart,
   SeasonSummary,
 } from '@/features/player/components';
+import { RecentRecordTab } from '@/features/player/components/detail/RecentRecordTab';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
 
 function PlayerDetailPage() {
   const { position } = useParams();
-  const [searchParams] = useSearchParams();
-  const pcode = searchParams.get('pcode');
 
-  const { player, loading, error } = usePlayer(position, pcode);
+  const { player, isLoading, isError, error } = usePlayer();
 
   if (!player) {
     return <div>선수 정보가 없습니다.</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
   }
 
   return (
@@ -47,31 +41,15 @@ function PlayerDetailPage() {
           <PlayerProfile className="w-full lg:w-80" />
           {/* 경기 기록 */}
           <div className="w-full flex flex-col items-center gap-4 lg:w-[calc(100%-22rem)]">
-            <PlayerRecordChart
-              title={
-                player.recentgamerecordlist.length > 0
-                  ? '정규 리그 최근 5경기'
-                  : '퓨처스 리그 최근 5경기'
-              }
-              data={
-                player.recentgamerecordlist.length > 0
-                  ? player.recentgamerecordlist
-                  : player.recentgamerecordlistfutures
-              }
-              config={
-                position === 'pitcher'
-                  ? recentPitcherConfig
-                  : recentBatterConfig
-              }
-              loading={loading}
-            />
+            <RecentRecordTab />
             <PlayerRecordChart
               title="정규 리그 통산 기록"
               data={player.yearrecordlist}
               config={
                 position === 'pitcher' ? yearPitcherConfig : yearBatterConfig
               }
-              loading={loading}
+              loading={isLoading}
+              className="pt-4"
             />
           </div>
         </div>

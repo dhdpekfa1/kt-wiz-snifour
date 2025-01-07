@@ -13,7 +13,7 @@ const usePhotoListQuery = () => {
   const startDate = QueryParser.toString(searchParams.get('startDate')) ?? '';
   const endDate = QueryParser.toString(searchParams.get('endDate')) ?? '';
 
-  const variables: PhotoListDto = { type, itemCount: 6 };
+  const variables: PhotoListDto = { type, itemCount: 6, pageNum: 1 };
   if (searchWord) {
     variables.searchWord = searchWord;
   }
@@ -27,9 +27,18 @@ const usePhotoListQuery = () => {
     isError,
     isLoading,
     isSuccess,
+    hasNextPage,
+    fetchNextPage,
   } = useGetPhotoList({ variables });
 
-  return { photoList, isError, isLoading, isSuccess };
+  return {
+    photoList,
+    isError,
+    isLoading,
+    isSuccess,
+    hasNextPage,
+    fetchNextPage,
+  };
 };
 
 export default usePhotoListQuery;

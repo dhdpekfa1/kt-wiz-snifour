@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import GridArticle from '@/features/media/common/GridArticle';
 import { LoadingView } from '@/features/media/common/LoadingView';
@@ -10,45 +11,60 @@ import useHighlightListQuery from '../../hooks/highlight/useHighlightListQuery';
 
 const HighlightGridView = () => {
   const navigate = useNavigate();
-  const { highlightList, isLoading, isError, isSuccess } =
-    useHighlightListQuery();
+  const {
+    highlightList,
+    isLoading,
+    isError,
+    isSuccess,
+    fetchNextPage,
+    hasNextPage,
+  } = useHighlightListQuery();
 
-  if (!isLoading && isSuccess && !highlightList?.list?.length) {
+  if (!isLoading && isSuccess && !highlightList?.pages?.length) {
     return <NotFoundSearchResult />;
   }
 
+  const handleLoadMore = () => {
+    fetchNextPage();
+  };
+
   return (
-    <>
+    <InfiniteScroll hasMore={hasNextPage} loadMore={handleLoadMore}>
       <div className={cn('media-grid')}>
         <LoadingView
           isLoading={isLoading}
           isError={isError}
           fallback={<GridArticleSkeleton />}
         >
-          {highlightList?.list?.map(
-            ({ artcSeq, imgFilePath, title, contentsDate, viewCount }) => (
-              <GridArticle
-                key={artcSeq}
-                onClick={() => {
-                  navigate(`/media/highlight/${artcSeq}`);
-                }}
-                className="cursor-pointer"
-              >
-                <GridArticle.Media>
-                  <GridArticle.Thumbnail
-                    imgFilePath={imgFilePath}
-                    title={title}
+          {highlightList?.pages?.map((page) =>
+            page.map(
+              ({ artcSeq, imgFilePath, title, contentsDate, viewCount }) => (
+                <GridArticle
+                  key={artcSeq}
+                  onClick={() => {
+                    navigate(`/media/highlight/${artcSeq}`);
+                  }}
+                  className="cursor-pointer"
+                >
+                  <GridArticle.Media>
+                    <GridArticle.Thumbnail
+                      imgFilePath={imgFilePath}
+                      title={title}
+                    />
+                    <GridArticle.Overlay elements={<PlayButton />} />
+                  </GridArticle.Media>
+                  <GridArticle.Title title={title} />
+                  <GridArticle.Footer
+                    date={contentsDate}
+                    viewCount={viewCount}
                   />
-                  <GridArticle.Overlay elements={<PlayButton />} />
-                </GridArticle.Media>
-                <GridArticle.Title title={title} />
-                <GridArticle.Footer date={contentsDate} viewCount={viewCount} />
-              </GridArticle>
+                </GridArticle>
+              )
             )
           )}
         </LoadingView>
       </div>
-    </>
+    </InfiniteScroll>
   );
 };
 

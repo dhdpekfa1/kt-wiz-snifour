@@ -1,7 +1,11 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import Banner from '@/features/common/Banner';
+import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
-import { CatcherTab, InfielderTab, OutfielderTab } from '@/features/player';
+import SearchBar from '@/features/media/common/SearchBar';
+import { PlayerList } from '@/features/player/components';
+import NotFoundSearch from '@/features/player/components/NotFoundSearch';
+import { usePlayerSearch } from '@/features/player/hooks/usePlayerSearch';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 
 const REG_TABS_CONFIG = [
@@ -16,6 +20,19 @@ function BatterPage() {
     tabs: REG_TABS_CONFIG,
     defaultTab: 'catcher',
   });
+
+  const {
+    filteredPlayerList,
+    isLoading,
+    isError,
+    error,
+    searchWord,
+    handleSearch,
+  } = usePlayerSearch();
+
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
+  }
 
   return (
     <div className="text-white">
@@ -36,15 +53,26 @@ function BatterPage() {
           <SubTabsTrigger value="infielder">내야수</SubTabsTrigger>
           <SubTabsTrigger value="outfielder">외야수</SubTabsTrigger>
         </TabsList>
-        <TabsContent value="catcher">
-          <CatcherTab />
-        </TabsContent>
-        <TabsContent value="infielder">
-          <InfielderTab />
-        </TabsContent>
-        <TabsContent value="outfielder">
-          <OutfielderTab />
-        </TabsContent>
+        {REG_TABS_CONFIG.map(({ value }) => (
+          <TabsContent value={value} key={value}>
+            <>
+              <Breadcrumb
+                leftComponent={
+                  <SearchBar value={searchWord} onSubmit={handleSearch} />
+                }
+              />
+              {!isLoading && !isError && filteredPlayerList?.length === 0 ? (
+                <NotFoundSearch />
+              ) : (
+                <PlayerList
+                  playerList={filteredPlayerList ?? []}
+                  endpoint={value}
+                  loading={isLoading}
+                />
+              )}
+            </>
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
   );

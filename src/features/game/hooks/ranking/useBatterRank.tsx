@@ -1,35 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
-import { OverallBatterRank } from '@/features/common/types/batters';
+import { useSearchParams } from 'react-router';
 import {
-  getAllBatterRanking,
-  getKTBatterRanking,
-} from '@/features/game/apis/ranking/batter';
+  useGetAllBatterRanking,
+  useGetKTBatterRanking,
+} from '../../apis/ranking/rankingApi.query';
 
 export function useBatterRank(domain: 'kt' | 'all') {
-  const [ranking, setRanking] = useState<OverallBatterRank[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data =
-          domain === 'kt'
-            ? await getKTBatterRanking()
-            : await getAllBatterRanking();
-
-        setRanking(data);
-      } catch (err) {
-        console.error(err);
-        setError('데이터를 가져오는 중 오류가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
+  const variables = useMemo(() => {
+    return {
+      gyear: searchParams.get('gyear') || '2024',
+      pname: '',
+      sortKey: 'HRA',
     };
+  }, [searchParams]);
 
-    fetchData();
-  }, [domain]);
-
-  return { ranking, loading, error };
+  switch (domain) {
+    case 'kt': {
+      const {
+        data: ranking,
+        isLoading,
+        isError,
+        error,
+      } = useGetKTBatterRanking({ variables });
+      return { ranking, isLoading, error, isError };
+    }
+    case 'all': {
+      const {
+        data: ranking,
+        isLoading,
+        isError,
+        error,
+      } = useGetAllBatterRanking({ variables });
+      return { ranking, isLoading, error, isError };
+    }
+    default: {
+      return { ranking: [], loading: false, error: 'error' };
+    }
+  }
 }

@@ -1,13 +1,22 @@
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
+import SearchBar from '@/features/media/common/SearchBar';
 import { PlayerList } from '@/features/player/components';
-import { usePlayerList } from '@/features/player/hooks/usePlayerList';
+import NotFoundSearch from '@/features/player/components/NotFoundSearch';
+import { usePlayerSearch } from '@/features/player/hooks/usePlayerSearch';
 
 function PitcherPage() {
-  const { playerList, loading, error } = usePlayerList('pitcher');
+  const {
+    filteredPlayerList,
+    isLoading,
+    isError,
+    error,
+    searchWord,
+    handleSearch,
+  } = usePlayerSearch();
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
   }
 
   return (
@@ -22,16 +31,18 @@ function PitcherPage() {
           <Banner.Description description="KT Wiz의 자랑스런 '첫 번째 선수단'을 소개합니다." />
         </Banner.Overlay>
       </Banner>
-
-      <div className="my-20">
-        <Breadcrumb />
-        {/* 투수 리스트 */}
+      <Breadcrumb
+        leftComponent={<SearchBar value={searchWord} onSubmit={handleSearch} />}
+      />
+      {!isLoading && !isError && filteredPlayerList?.length === 0 ? (
+        <NotFoundSearch />
+      ) : (
         <PlayerList
-          playerList={playerList}
+          playerList={filteredPlayerList ?? []}
           endpoint="pitcher"
-          loading={loading}
+          loading={isLoading}
         />
-      </div>
+      )}
     </div>
   );
 }

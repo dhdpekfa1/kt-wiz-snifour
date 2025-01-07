@@ -55,7 +55,7 @@ type HighlightDetailResponse = {
 type HighlightListDto = {
   searchWord: string;
   itemCount: number;
-  pageNum: number;
+  pageNum?: number;
 };
 
 type HighlightDetailDto = {

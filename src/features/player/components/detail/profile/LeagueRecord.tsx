@@ -1,13 +1,13 @@
 import { useParams } from 'react-router';
 
 import { cn } from '@/lib/utils';
-import { usePlayerStore } from '@/store/usePlayerStore';
 import Skeleton from 'react-loading-skeleton';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
   SeasonSummary,
-} from '../../types/detail';
+} from '../../../types/detail';
+import { usePlayer } from '@/features/player/hooks/usePlayer';
 
 interface Season {
   pitcher: { label: string; key: keyof PitcherSeasonSummaryBase }[];
@@ -28,7 +28,7 @@ function LeagueRecordSkeleton() {
 function LeagueRecord() {
   const { position } = useParams();
   const role = position === 'pitcher' ? 'pitcher' : 'batter';
-  const { player, loading } = usePlayerStore();
+  const { player, isLoading } = usePlayer();
 
   const season: Season = {
     pitcher: [
@@ -61,13 +61,13 @@ function LeagueRecord() {
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-wiz-red bg-opacity-50 -z-10" />
       </h4>
       <div className={cn('flex flex-col gap-1 py-4', 'lg:gap-2')}>
-        {loading && <LeagueRecordSkeleton />}
-        {!loading && !data && (
+        {isLoading && <LeagueRecordSkeleton />}
+        {!isLoading && !data && (
           <h4 className="text-base text-center font-bold mt-2">
             정규 리그 데이터가 없습니다.
           </h4>
         )}
-        {!loading &&
+        {!isLoading &&
           data &&
           season[role as keyof Season].map((item) => (
             <div

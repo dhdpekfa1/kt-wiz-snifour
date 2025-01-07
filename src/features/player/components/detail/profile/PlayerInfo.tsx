@@ -1,8 +1,8 @@
+import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn, formatDate } from '@/lib/utils';
-import { usePlayerStore } from '@/store/usePlayerStore';
 
 function PlayerInfo() {
-  const { player } = usePlayerStore();
+  const { player } = usePlayer();
   if (!player) {
     return <div>데이터가 존재하지 않습니다.</div>;
   }
@@ -12,7 +12,7 @@ function PlayerInfo() {
   const info = [
     { label: '생년월일', content: `${formatDate(data.birth)}` },
     { label: '체격', content: `${data.height}cm / ${data.weight}kg` },
-    { label: '연봉', content: data.promise },
+    { label: '연봉/계약', content: `${data.money} / ${data.promise}` },
     { label: '출신', content: data.career?.split('-').join(' - ') },
   ];
 
@@ -27,7 +27,7 @@ function PlayerInfo() {
           )}
         >
           <span>{data.playerName}</span>
-          <span>No.{data.backnum}</span>
+          <span className="text-wiz-red">No.{data.backnum}</span>
         </div>
         <div
           className={cn(

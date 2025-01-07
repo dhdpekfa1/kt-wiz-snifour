@@ -18,10 +18,13 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetailPage';
 
-import SignupForm from './features/auth/SignupForm';
+import { SignupForm } from './features/auth';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
+
+import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
+
 import FirstPitchPage from './pages/media/FirstPitchPage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
@@ -74,6 +77,14 @@ function App() {
             <Route path="/ktwiz/wallpaper" element={<WallpaperPage />} />
             <Route path="/ktwiz/about" element={<KtHistoryPage />} />
             <Route path="/ktwiz/history" element={<KtHistoryPage />} />
+            <Route
+              path="/ktwiz/policy/regular"
+              element={<MembershipPolicyPage />}
+            />
+            <Route
+              path="/ktwiz/policy/donation"
+              element={<MembershipPolicyPage />}
+            />
 
             {/* Wiz Park */}
             <Route path="/wizpark/intro" element={<ParkIntroPage />} />

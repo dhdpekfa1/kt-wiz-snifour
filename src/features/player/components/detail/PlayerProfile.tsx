@@ -1,16 +1,17 @@
+import { PlayerProfileSkeleton } from '@/features/player/components';
 import { cn } from '@/lib/utils';
-import { usePlayerStore } from '@/store/usePlayerStore';
 import LeagueRecord from './profile/LeagueRecord';
 import PlayerInfo from './profile/PlayerInfo';
-import { PlayerProfileSkeleton } from './skeletons/PlayerProfileSkeleton';
+import { usePlayer } from '../../hooks/usePlayer';
 
 interface PlayerProfileProps {
   className: string;
 }
 
 function PlayerProfile({ className }: PlayerProfileProps) {
-  const { player, loading } = usePlayerStore();
-  if (loading) {
+  const { player, isLoading } = usePlayer();
+
+  if (isLoading) {
     return <PlayerProfileSkeleton />;
   }
 
@@ -33,7 +34,7 @@ function PlayerProfile({ className }: PlayerProfileProps) {
       </div>
       <div className={cn('w-2/3 h-full flex items-center', 'lg:w-full')}>
         {/* 선수 프로필 */}
-        <div className={cn('w-full h-full flex flex-col gap-2')}>
+        <div className={cn('w-full h-full flex flex-col gap-2 lg:gap-4')}>
           {/* 이름, 포지션 */}
           <PlayerInfo />
           {/* 정규 리그 성적 */}

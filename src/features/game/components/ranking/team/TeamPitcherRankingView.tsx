@@ -5,24 +5,31 @@ import { useTeamRank } from '@/features/game/hooks/ranking/useTeamRank';
 import TeamRankingView from '../common/TeamRankingView';
 
 function TeamPitcherRankingView() {
-  const { ranking, loading, error } = useTeamRank('pitcher');
+  const { ranking, isLoading, isError, error } = useTeamRank('pitcher');
 
-  if (!ranking.length || loading) {
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+
+  if (isError) {
+    return <div>{error?.toString()}</div>;
+  }
+
+  if (!ranking?.length) {
     return null;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
-    <TeamRankingView
-      tableData={ranking as TeamPitcherRank[]}
-      chartData={ranking as TeamPitcherRank[]}
-      columns={teamPitcherRankColumns}
-      chartConfig={TeamRankingPitcherConfig}
-      domain="all"
-    />
+    <>
+      <p className="text-neutral-400">ERA 비교 순위입니다.</p>
+      <TeamRankingView
+        tableData={ranking as TeamPitcherRank[]}
+        chartData={ranking as TeamPitcherRank[]}
+        columns={teamPitcherRankColumns}
+        chartConfig={TeamRankingPitcherConfig}
+        domain="all"
+      />
+    </>
   );
 }
 

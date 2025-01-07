@@ -1,11 +1,21 @@
 import {
-  GridDataType,
+  GridInfiniteQueryResult,
   HighlightDetailResponse,
   HighlightItem,
   HighlightResponse,
 } from '@/features/media/types';
-import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
-import { useQuery } from '@tanstack/react-query';
+import {
+  Parameter,
+  UseInfiniteQueryParams,
+  UseQueryParams,
+  isNotNullish,
+} from '@/lib';
+import {
+  InfiniteData,
+  QueryKey,
+  useInfiniteQuery,
+  useQuery,
+} from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { createGridViewItem } from '../../services/grid-mapper.service';
 import { highlightApi } from './HighlightApi';
@@ -22,33 +32,56 @@ export const HIGHLIGHT_API_QUERY_KEY = {
 /**
  * [GET] /api/article/highlightlist?count=
  * @param params 하이라이트 목록 조회에 필요한 파라미터
- * @returns 그리드 타입으로 변환된 뉴스 목록 데이터와 총 데이터 개수
+ * @returns 그리드 타입으로 변환된 하이라이트 목록 데이터와 총 데이터 개수
  */
 export function useGetHighlightList(
-  params?: UseQueryParams<
+  params: UseInfiniteQueryParams<
     typeof highlightApi.getHighlightList,
     AxiosError,
     HighlightResponse, // 실제 응답
-    GridDataType // 변환된 응답
+    GridInfiniteQueryResult, // 변환된 응답
+    number // pageParams 타입
   >
 ) {
-  return useQuery({
-    queryKey: HIGHLIGHT_API_QUERY_KEY.GET_LIST(params?.variables),
-    queryFn: async () => {
-      const response = await highlightApi.getHighlightList(params?.variables);
+  return useInfiniteQuery<
+    HighlightResponse, // TQueryFnData
+    AxiosError, // TError
+    GridInfiniteQueryResult, // TData
+    QueryKey, // TQueryKey
+    number // TPageParam
+  >({
+    queryKey: HIGHLIGHT_API_QUERY_KEY.GET_LIST(params.variables),
+    queryFn: async ({ pageParam }): Promise<HighlightResponse> => {
+      const response = await highlightApi.getHighlightList({
+        ...params.variables,
+        pageNum: pageParam,
+      });
       return response;
     },
-    select: (res: HighlightResponse): GridDataType => ({
-      list: res.data.list
-        .filter((item) => item.useYn === 'Y')
-        .map(createGridViewItem),
-    }),
-    ...params?.options,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return allPages.length < lastPage.data.list[0].totalPage
+        ? allPages.length + 1
+        : undefined;
+    },
+    select: (
+      data: InfiniteData<HighlightResponse, number>
+    ): GridInfiniteQueryResult => {
+      return {
+        pages: data.pages.map((page) => {
+          return page.data.list
+            .filter((item) => item.useYn === 'Y')
+            .map(createGridViewItem);
+        }),
+        pageParams: data.pageParams as number[],
+      };
+    },
+    ...params.options,
   });
 }
 
 export function useGetHighlightDetail(
-  params?: UseQueryParams<
+  params: UseQueryParams<
     typeof highlightApi.getHighlightDetail,
     AxiosError,
     HighlightDetailResponse, // 실제 응답
@@ -58,7 +91,7 @@ export function useGetHighlightDetail(
   return useQuery({
     queryKey: HIGHLIGHT_API_QUERY_KEY.GET_DETAIL(params?.variables),
     queryFn: async () => {
-      const response = await highlightApi.getHighlightDetail(params?.variables);
+      const response = await highlightApi.getHighlightDetail(params.variables);
       return response;
     },
     select: (res: HighlightDetailResponse): HighlightItem => {

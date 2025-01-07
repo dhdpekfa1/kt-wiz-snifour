@@ -1,9 +1,9 @@
-import { isNotNullish, Parameter, UseQueryParams } from '@/lib';
+import { isNotNullish, Parameter, UseInfiniteQueryParams } from '@/lib';
 import { photoApi } from './PhotoApi';
 import { AxiosError } from 'axios';
 import { PhotoResponse } from '../../types/photo';
-import { GridDataType } from '../../types';
-import { useQuery } from '@tanstack/react-query';
+import { GridInfiniteQueryResult } from '../../types';
+import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
 import { createGridViewItem } from '../../services/grid-mapper.service';
 
 export const PHOTO_API_QUERY_KEY = {
@@ -18,24 +18,41 @@ export const PHOTO_API_QUERY_KEY = {
  * @returns 그리드 타입으로 변환된 포토 목록 데이터와 총 데이터 개수
  */
 export function useGetPhotoList(
-  params: UseQueryParams<
+  params: UseInfiniteQueryParams<
     typeof photoApi.getPhotoList,
     AxiosError,
     PhotoResponse, // 실제 응답
-    GridDataType // 변환된 응답
+    GridInfiniteQueryResult, // 변환된 응답
+    number // pageParams 타입
   >
 ) {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: PHOTO_API_QUERY_KEY.GET_LIST(params.variables),
-    queryFn: async () => {
-      const response = await photoApi.getPhotoList(params.variables);
+    queryFn: async ({ pageParam }) => {
+      const response = await photoApi.getPhotoList({
+        ...params.variables,
+        pageNum: pageParam,
+      });
       return response;
     },
-    select: (res: PhotoResponse): GridDataType => ({
-      list: res.data.list
-        .filter((item) => item.useYn === 'Y')
-        .map(createGridViewItem),
-    }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return allPages.length < lastPage.data.list[0].totalPage
+        ? allPages.length + 1
+        : undefined;
+    },
+    select: (
+      data: InfiniteData<PhotoResponse, number>
+    ): GridInfiniteQueryResult => {
+      return {
+        pages: data.pages.map((page) => {
+          return page.data.list
+            .filter((item) => item.useYn === 'Y')
+            .map(createGridViewItem);
+        }),
+        pageParams: data.pageParams as number[],
+      };
+    },
     ...params?.options,
   });
 }

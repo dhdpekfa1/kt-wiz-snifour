@@ -21,4 +21,9 @@ type GridDataType = {
   list: GridViewType[];
 };
 
-export type { GridDataType, GridViewType };
+type GridInfiniteQueryResult = {
+  pages: GridViewType[][];
+  pageParams: number[];
+};
+
+export type { GridDataType, GridViewType, GridInfiniteQueryResult };
