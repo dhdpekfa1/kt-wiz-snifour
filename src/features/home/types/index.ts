@@ -20,7 +20,7 @@ export interface MatchInfoType {
   visitScore: number;
 }
 
-export interface TeamRank {
+export interface WizRank {
   game: number;
   gyear: string;
   rank: number;
@@ -74,4 +74,10 @@ export interface Photo {
   updr: string;
   useYn: string;
   viewCnt: number;
+}
+
+export interface WizRankResponse {
+  data: {
+    ktWizTeamRank: WizRank;
+  };
 }
