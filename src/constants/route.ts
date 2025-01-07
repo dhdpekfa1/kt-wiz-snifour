@@ -2,6 +2,14 @@ import { match } from 'path-to-regexp';
 
 // api routes: api 요청 경로 (TODO: api 요청 경로 업데이트)
 export enum ApiRoutes {
+  /* 메인 */
+  WizRank = '/game/ktwizteamrank',
+
+  /* 경기 정보 */
+  GameSchedule = '/game/monthschedule',
+  AllGameSchedule = '/game/allgameschedule',
+  TodayGameSchedule = '/game/dayschedule',
+
   /* 랭킹 */
   teamRank = '/game/teamrankbyyear',
   teamRankByPitcher = '/game/rank/pitching',
@@ -43,9 +51,6 @@ export enum ApiRoutes {
   GamePhoto = '/article/wizphotolist1page',
   TrainingPhoto = '/article/wizphotolist2page',
   EventPhoto = '/article/wizphotolist3page',
-  GameSchedule = '/game/monthschedule',
-  AllGameSchedule = '/game/allgameschedule',
-  TodayGameSchedule = '/game/dayschedule',
 }
 
 // page routes: 페이지 경로 (TODO: 페이지 경로 업데이트)

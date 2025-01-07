@@ -1,30 +1,8 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
 import { cn } from '@/lib/utils';
-import { TeamRank } from '../types';
+import { useGetWizRank } from '../apis/mainApi.query';
 
 function TeamRanking() {
-  const [ranking, setRanking] = useState<TeamRank>({} as TeamRank);
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
-
-  useEffect(() => {
-    const getKTRanking = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/game/ktwizteamrank`
-        );
-
-        if (status === 200 && data) {
-          setRanking(data.data.ktWizTeamRank);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getKTRanking();
-  }, []);
+  const { data } = useGetWizRank();
 
   return (
     <div
@@ -35,10 +13,10 @@ function TeamRanking() {
     >
       <div className="flex flex-col items-center justify-center relative">
         <img
-          src="https://www.ktwiz.co.kr/v2/imgs/img-score@2x.png"
+          src="/assets/main/img-score@2x.png"
           alt=""
           className={cn(
-            'w-20 aspect-square',
+            'w-20',
             'md:w-12 md:translate-x-2 md:-translate-y-2',
             'lg:w-24 lg:translate-x-3 lg:-translate-y-3'
           )}
@@ -50,14 +28,14 @@ function TeamRanking() {
             'lg:text-base lg:px-2'
           )}
         >
-          {ranking.rankName}
+          {data?.rankName}
         </div>
       </div>
       <div className={cn('flex flex-col items-end gap-1', 'lg:gap-4')}>
         <p
           className={cn('font-extrabold text-xs', 'md:text-xs', 'lg:text-2xl')}
         >
-          {ranking.wldName}
+          {data?.wldName}
         </p>
         <div
           className={cn(
@@ -65,8 +43,8 @@ function TeamRanking() {
             'lg:text-xs'
           )}
         >
-          <p>총 {ranking.game}경기</p>
-          <p>승률 {ranking.wra}</p>
+          <p>총 {data?.game}경기</p>
+          <p>승률 {data?.wra}</p>
         </div>
       </div>
     </div>
