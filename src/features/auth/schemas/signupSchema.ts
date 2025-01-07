@@ -27,3 +27,11 @@ export const signupSchema = z
     path: ['confirmPassword'],
     message: '비밀번호가 일치하지 않습니다.',
   });
+
+// 닉네임
+export const nicknameSchema = z.object({
+  nickname: z
+    .string()
+    .min(2, '닉네임은 최소 2자 이상이어야 합니다.')
+    .max(8, '닉네임은 8자를 초과할 수 없습니다.'),
+});

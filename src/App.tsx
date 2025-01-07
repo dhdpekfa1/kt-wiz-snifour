@@ -18,7 +18,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import PressDetailPage from './pages/media/id/PressDetailPage';
 
-import SignupForm from './features/auth/SignupForm';
+import { SignupForm } from './features/auth';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';

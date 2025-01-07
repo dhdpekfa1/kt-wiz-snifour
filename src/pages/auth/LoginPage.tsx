@@ -19,12 +19,14 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { z } from 'zod';
+import useLogin from '@/features/auth/hooks/useLogin';
+import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const LoginPage = () => {
   const [saveId, setSaveId] = useState<boolean>(false);
-
+  const { login, error } = useLogin();
   const {
     register,
     handleSubmit,
@@ -33,27 +35,23 @@ const LoginPage = () => {
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
+  useAuthRedirect();
 
   // 로컬 스토리지에서 이메일 불러오기
   useEffect(() => {
     const savedEmail = localStorage.getItem('savedEmail');
     if (savedEmail) {
       setValue('email', savedEmail);
-      setSaveId(true); // 체크박스도 활성화
+      setSaveId(true); // 체크박스 활성화
     }
   }, [setValue]);
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log('로그인 데이터:', { ...data, saveId });
+  const onSubmit = async (data: LoginFormValues) => {
+    const success = await login({ ...data, saveId });
 
-    // 이메일 저장 체크 상태에 따라 로컬 스토리지 처리
-    if (saveId) {
-      localStorage.setItem('savedEmail', data.email); // 이메일 저장
-    } else {
-      localStorage.removeItem('savedEmail'); // 이메일 삭제
+    if (!success) {
+      console.error(error);
     }
-
-    // 로그인 API 호출 로직 추가
   };
 
   return (
@@ -114,6 +112,7 @@ const LoginPage = () => {
                 placeholder="비밀번호를 입력하세요."
                 {...register('password')}
                 className="text-xs md:text-sm"
+                autoComplete="current-password"
               />
               {errors.password && (
                 <p className="text-red-500 text-xs mt-1">
@@ -133,6 +132,9 @@ const LoginPage = () => {
                   이메일 저장
                 </Label>
               </div>
+              {/* {errorMessage && (
+                <p className="text-red-500 text-xs mt-2">{errorMessage}</p>
+              )} */}
               <CardFooter className="flex flex-col mt-6 gap-2">
                 <Button
                   className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
