@@ -1,55 +1,54 @@
-// 공통 속성만 포함하는 기본 인터페이스
-interface PlayerItemBase {
-  backnum: string;
-  gyear: string;
-  hittype: string;
-  mobilePlayerImg1: string;
-  mobilePlayerImg2: string;
-  pcode: string;
-  playerName: string;
-  playerPrvwImg: string;
-  position: string;
-  teamName: string;
+import { CoachListItem, PlayerListItem } from './list';
+import {
+  BatterSeasonSummaryBase,
+  GameRecord,
+  PitcherSeasonSummaryBase,
+  PlayerBase,
+} from './detail';
+
+/* 요청 파라미터 타입 */
+export interface PlayerDto {
+  pcode?: string;
+  position?: string;
 }
 
-// 감독 리스트 아이템
-export interface CoachListItem extends PlayerItemBase {
-  birth: string;
-  career: string;
-  height: string;
-  heightWeight: string;
-  orderSeq: string;
-  playerPrvwImg2: string;
-  playerPrvwImg3: string;
-  teamCode: string;
-  weight: string;
+/* 리스트 타입 */
+// 코치 리스트 응답 타입
+export interface CoachListResponse {
+  data: {
+    list: CoachListItem[];
+  };
 }
 
+// 선수 리스트 응답 타입
+export interface PlayerListResponse {
+  data: PlayerListItem[];
+}
+
+/* 디테일 타입 */
+// 코치 디테일 타입
 export interface CoachItem extends CoachListItem {
   engName: string;
 }
 
-// 선수
-export interface PlayerListItem extends PlayerItemBase {
-  energybar: number;
-  energybarName: string;
-  hasFanpage: string;
-  mobilePlayerImg: string;
-  rank: number;
-  rankName: string;
-}
-export interface PlayerDto {
-  pcode?: string;
+// 선수 디테일 타입
+export interface PlayerItem {
+  gameplayer: PlayerBase;
+  recentgamerecordlist: GameRecord[];
+  recentgamerecordlistfutures: GameRecord[];
+  seasonsummary: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
+  seasonsummaryfutures: PitcherSeasonSummaryBase | BatterSeasonSummaryBase;
+  yearrecordlist: (PitcherSeasonSummaryBase | BatterSeasonSummaryBase)[];
 }
 
-export interface PlayerListResponse {
-  data: {
-    list: CoachListItem[] | PlayerListItem[];
-  };
-}
-
+// 코치 디테일 응답 타입
 export interface CoachDetailResponse {
   data: {
     coachstep: CoachItem;
   };
+}
+
+// 선수 디테일 응답 타입
+export interface PlayerDetailResponse {
+  data: PlayerItem;
 }

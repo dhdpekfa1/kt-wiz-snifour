@@ -1,4 +1,5 @@
 import { Player } from '@/features/player/types/detail';
+import { AxiosError } from 'axios';
 import { create } from 'zustand';
 
 interface PlayerStoreState {
@@ -8,7 +9,7 @@ interface PlayerStoreState {
   maxStats: null | { [key: string]: number };
   setPlayer: (data: Player | null) => void;
   setLoading: (status: boolean) => void;
-  setError: (error: string | null) => void;
+  setError: (error: AxiosError | string) => void;
   setMaxStats: (stats: { [key: string]: number }) => void;
 }
 
@@ -19,6 +20,9 @@ export const usePlayerStore = create<PlayerStoreState>((set) => ({
   maxStats: null,
   setPlayer: (data) => set(() => ({ player: data })),
   setLoading: (status) => set(() => ({ loading: status })),
-  setError: (msg) => set(() => ({ error: msg })),
+  setError: (error) =>
+    set(() => ({
+      error: error?.toString(),
+    })),
   setMaxStats: (stats) => set(() => ({ maxStats: stats })),
 }));
