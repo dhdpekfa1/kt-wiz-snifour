@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { format } from 'date-fns';
+import { format, addMonths, subMonths } from 'date-fns';
 import { CarouselApi } from '@/components/ui';
 import { GameSchedule } from '@/features/game/types/match-schedule';
 import { scheduleApi } from './matchScheduleApi';
@@ -25,10 +25,8 @@ export const useGetMatchScheduleQuery = ({
   const queryClient = useQueryClient();
 
   const yearMonth = format(currentMonth, 'yyyyMM');
-  const prevMonth = new Date(currentMonth);
-  prevMonth.setMonth(prevMonth.getMonth() - 1);
-  const nextMonth = new Date(currentMonth);
-  nextMonth.setMonth(nextMonth.getMonth() + 1);
+  const prevMonth = subMonths(currentMonth, 1);
+  const nextMonth = addMonths(currentMonth, 1);
 
   // 호출할 함수 선택
   const fetchFn =
