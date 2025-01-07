@@ -1,6 +1,6 @@
 import { PlayerProfileSkeleton } from '@/features/player/components';
 import { cn } from '@/lib/utils';
-import { usePlayerStore } from '@/store/usePlayerStore';
+import { usePlayer } from '../../hooks/usePlayer';
 import LeagueRecord from './profile/LeagueRecord';
 import PlayerInfo from './profile/PlayerInfo';
 
@@ -9,8 +9,9 @@ interface PlayerProfileProps {
 }
 
 function PlayerProfile({ className }: PlayerProfileProps) {
-  const { player, loading } = usePlayerStore();
-  if (loading) {
+  const { player, isLoading } = usePlayer();
+
+  if (isLoading) {
     return <PlayerProfileSkeleton />;
   }
 

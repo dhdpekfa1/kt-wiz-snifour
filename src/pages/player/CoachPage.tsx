@@ -8,13 +8,17 @@ import useCoachList from '@/features/player/hooks/useCoachList';
 import { useSearchParams } from 'react-router';
 
 const CoachPage = () => {
-  const { coachList, loading, error } = useCoachList();
+  const { coachList, isLoading, isError, error } = useCoachList();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchWord = searchParams.get('searchWord') || '';
 
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
+  }
+
   // 검색 결과 필터링
-  const filteredCoachList = coachList.filter((coach) =>
+  const filteredCoachList = coachList?.filter((coach) =>
     coach.playerName.toLowerCase().includes(searchWord.toLowerCase())
   );
 
@@ -46,13 +50,13 @@ const CoachPage = () => {
           />
         }
       />
-      {!loading && !error && filteredCoachList.length === 0 ? (
+      {!isLoading && !isError && filteredCoachList?.length === 0 ? (
         <NotFoundSearch />
       ) : (
         <PlayerList
-          playerList={error ? [] : filteredCoachList}
+          playerList={filteredCoachList ?? []}
           endpoint="coach"
-          loading={loading}
+          loading={isLoading}
         />
       )}
     </Layout>

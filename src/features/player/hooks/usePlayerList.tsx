@@ -1,28 +1,18 @@
-import { useEffect, useState } from 'react';
-import { getPlayerList } from '../apis/player';
-import { Player } from '../types/list';
+import { useParams } from 'react-router';
+import { useGetPlayerList } from '../apis/playerApi.query';
 
-export const usePlayerList = (position: string) => {
-  const [playerList, setPlayerList] = useState<Player[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const usePlayerList = () => {
+  const { position } = useParams();
+  const variables = {
+    position,
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPlayerList(position);
+  const {
+    data: playerList,
+    isLoading,
+    isError,
+    error,
+  } = useGetPlayerList({ variables });
 
-        setPlayerList(data);
-      } catch (err) {
-        console.error(err);
-        setError('usePlayerList: 데이터를 가져오는 중 오류가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [position]);
-
-  return { playerList, loading, error };
+  return { playerList, isLoading, isError, error };
 };

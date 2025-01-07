@@ -1,10 +1,12 @@
 import { cn } from '@/lib/utils';
-import { usePlayerStore } from '@/store/usePlayerStore';
 import { useParams } from 'react-router';
+
+import { useMaxStats } from '../../hooks/useMaxStats';
+import { usePlayer } from '../../hooks/usePlayer';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
-} from '../types/detail';
+} from '../../types/detail';
 import { StatCard } from './StatCard';
 
 interface Indicators {
@@ -71,7 +73,6 @@ const indicators: Indicators = {
     { accessorKey: 'gd', header: '병살' },
     { accessorKey: 'slg', header: '장타율' },
     { accessorKey: 'bra', header: '출루율' },
-    // { accessorKey: 'kbb', header: '실책' },
     { accessorKey: 'sba', header: '도루성공률' },
     { accessorKey: 'bbkk', header: 'BB/K' },
     { accessorKey: 'xbhrun', header: '장타/안타' },
@@ -87,9 +88,10 @@ function calculateIPG(inn: number, gamenum: number) {
 function SeasonSummary() {
   const { position } = useParams();
   const role = position === 'pitcher' ? 'pitcher' : 'batter';
-  const { player, loading, maxStats } = usePlayerStore();
+  const { player, isLoading } = usePlayer();
+  const { maxStats, isLoading: maxStatsLoading } = useMaxStats();
 
-  if (loading) {
+  if (isLoading) {
     return <div className="text-center">데이터를 불러오는 중입니다...</div>;
   }
   const data = player?.seasonsummary;
@@ -100,6 +102,10 @@ function SeasonSummary() {
         정규 리그 데이터가 없습니다.
       </div>
     );
+  }
+
+  if (maxStatsLoading) {
+    return <div className="text-center">스탯 계산중입니다...</div>;
   }
 
   if (!maxStats) {

@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router';
 
 import { navMenus } from '@/constants/nav-menus';
+import { EditProfileDialog } from '@/features/auth';
+import useUserSession from '@/features/auth/hooks/useUserSession';
 import { cn } from '@/lib/utils';
 
 function Sidebar({
@@ -14,6 +16,7 @@ function Sidebar({
   onClose: () => void;
 }) {
   const sideBarRef = useRef<HTMLDivElement | null>(null);
+  const { nickname } = useUserSession();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -75,7 +78,32 @@ function Sidebar({
             </ul>
           </div>
         ))}
+        {/* 사용자 상태에 따른 동적 메뉴 */}
+        <div className="my-8">
+          <h4 className="text-wiz-red my-2">회원 정보</h4>
+          {nickname ? (
+            <EditProfileDialog>{nickname}</EditProfileDialog>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="block rounded w-full py-1 hover:bg-wiz-white hover:bg-opacity-10"
+                onClick={onClose}
+              >
+                로그인
+              </Link>
+              <Link
+                to="/join"
+                className="block rounded w-full py-1 hover:bg-wiz-white hover:bg-opacity-10"
+                onClick={onClose}
+              >
+                회원가입
+              </Link>
+            </>
+          )}
+        </div>
       </div>
+
       {/* 사이드바 외부 배경 */}
       {open && (
         <div className="absolute bg-black bg-opacity-50 top-0 left-0 w-screen h-screen" />

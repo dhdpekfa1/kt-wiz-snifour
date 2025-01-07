@@ -8,7 +8,7 @@ import {
   Label,
 } from '@/components/ui';
 import { useState } from 'react';
-import { AgreementsType } from './types/agreements';
+import { AgreementsType } from '../types/agreements';
 
 interface AgreementItemProps {
   id: keyof AgreementsType;
@@ -81,4 +81,4 @@ const AgreementItem = ({
   );
 };
 
-export default AgreementItem;
+export { AgreementItem };

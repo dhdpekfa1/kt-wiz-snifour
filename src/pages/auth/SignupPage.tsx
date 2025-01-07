@@ -4,12 +4,14 @@ import {
   CardDescription,
   CardHeader,
 } from '@/components/ui';
+import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import { Link } from 'react-router';
 
 const SignupPage = () => {
+  useAuthRedirect();
   return (
     <Layout
       header={

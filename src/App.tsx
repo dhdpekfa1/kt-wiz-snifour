@@ -13,9 +13,10 @@ import ParkIntroPage from './pages/wizPark/ParkIntroPage';
 import ParkLocationPage from './pages/wizPark/ParkLocationPage';
 import ParkingPage from './pages/wizPark/ParkingPage';
 
-import SignupForm from './features/auth/SignupForm';
 import ScrollToTop from './features/common/ScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
+
+import { SignupForm } from './features/auth';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';

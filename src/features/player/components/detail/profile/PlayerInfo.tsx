@@ -1,8 +1,8 @@
+import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn, formatDate } from '@/lib/utils';
-import { usePlayerStore } from '@/store/usePlayerStore';
 
 function PlayerInfo() {
-  const { player } = usePlayerStore();
+  const { player } = usePlayer();
   if (!player) {
     return <div>데이터가 존재하지 않습니다.</div>;
   }

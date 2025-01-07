@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router';
+import { useParams } from 'react-router';
 
 import { yearBatterConfig, yearPitcherConfig } from '@/constants/chart-config';
 import Breadcrumb from '@/features/common/Breadcrumb';
@@ -14,17 +14,15 @@ import { cn } from '@/lib/utils';
 
 function PlayerDetailPage() {
   const { position } = useParams();
-  const [searchParams] = useSearchParams();
-  const pcode = searchParams.get('pcode');
 
-  const { player, loading, error } = usePlayer(position, pcode);
+  const { player, isLoading, isError, error } = usePlayer();
 
   if (!player) {
     return <div>선수 정보가 없습니다.</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
   }
 
   return (
@@ -50,7 +48,7 @@ function PlayerDetailPage() {
               config={
                 position === 'pitcher' ? yearPitcherConfig : yearBatterConfig
               }
-              loading={loading}
+              loading={isLoading}
               className="pt-4"
             />
           </div>

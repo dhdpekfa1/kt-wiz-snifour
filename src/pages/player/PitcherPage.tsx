@@ -6,11 +6,17 @@ import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import { usePlayerSearch } from '@/features/player/hooks/usePlayerSearch';
 
 function PitcherPage() {
-  const { filteredPlayerList, loading, error, searchWord, handleSearch } =
-    usePlayerSearch('pitcher');
+  const {
+    filteredPlayerList,
+    isLoading,
+    isError,
+    error,
+    searchWord,
+    handleSearch,
+  } = usePlayerSearch();
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
   }
 
   return (
@@ -28,13 +34,13 @@ function PitcherPage() {
       <Breadcrumb
         leftComponent={<SearchBar value={searchWord} onSubmit={handleSearch} />}
       />
-      {!loading && !error && filteredPlayerList.length === 0 ? (
+      {!isLoading && !isError && filteredPlayerList?.length === 0 ? (
         <NotFoundSearch />
       ) : (
         <PlayerList
-          playerList={error ? [] : filteredPlayerList}
+          playerList={filteredPlayerList ?? []}
           endpoint="pitcher"
-          loading={loading}
+          loading={isLoading}
         />
       )}
     </div>
