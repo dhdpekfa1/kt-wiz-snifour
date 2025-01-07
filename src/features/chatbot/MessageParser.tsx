@@ -10,8 +10,9 @@ interface MessageParserProps {
 
 const MessageParser: React.FC<MessageParserProps> = ({ children, actions }) => {
   const parse = (message: string): void => {
-    if (message.includes('티켓구매')) {
-      actions.handleTicketPurchase();
+    if (message.trim().includes('티켓')) {
+      if (message.trim().includes('사') || message.trim().includes('구매'))
+        actions.handleTicketPurchase();
     } else {
       actions.handleUnknownMessage();
     }

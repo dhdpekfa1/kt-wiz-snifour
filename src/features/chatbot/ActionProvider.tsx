@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { useNavigate } from 'react-router';
 
 interface ActionProviderProps {
   createChatBotMessage: (
@@ -24,12 +25,25 @@ const ActionProvider: React.FC<ActionProviderProps> = ({
   setState,
   children,
 }) => {
+  const nav = useNavigate();
+
   const handleTicketPurchase = () => {
-    const botMessage = createChatBotMessage('티켓구매 버튼');
+    const botMessage = createChatBotMessage('티켓 구매 옵션을 선택해주세요', {
+      widget: 'ticketPurchaseOptions',
+    });
+
     setState((prev: State) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
+  };
+
+  const handleClickHomepage = () => {
+    nav('/ticket/reservation');
+  };
+
+  const handleClickTicketLink = () => {
+    window.open('https://www.ticketlink.co.kr/sports/137/62', '_blank');
   };
 
   const handleUnknownMessage = () => {
@@ -47,7 +61,12 @@ const ActionProvider: React.FC<ActionProviderProps> = ({
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child as ReactElement, {
-            actions: { handleTicketPurchase, handleUnknownMessage },
+            actions: {
+              handleTicketPurchase,
+              handleUnknownMessage,
+              handleClickHomepage,
+              handleClickTicketLink,
+            },
           });
         }
         return child;
