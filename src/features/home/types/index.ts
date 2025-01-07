@@ -86,8 +86,18 @@ export interface MainWizVideoDto {
   count: number;
 }
 
+export interface MainWizPhotoDto {
+  count: number;
+}
+
 export interface MainWizVideoResponse {
   data: {
     list: Video[];
+  };
+}
+
+export interface MainWizPhotoResponse {
+  data: {
+    list: Photo[];
   };
 }
