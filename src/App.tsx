@@ -33,6 +33,7 @@ import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 import { useEffect, useState } from 'react';
 import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
+import { Button } from './components/ui';
 import ActionProvider from './features/chatbot/ActionProvider';
 import MessageParser from './features/chatbot/MessageParser';
 import './features/chatbot/chatbot.css';
@@ -129,14 +130,13 @@ function App() {
         >
           TOP▲
         </div>
-        {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
         {!showChatbot && (
-          <button
+          <Button
             onClick={() => setShowChatbot(true)}
-            className="w-12 h-12 rounded-full bg-white border fixed bottom-20 right-2"
+            className="w-12 h-12 rounded-full bg-white border fixed bottom-20 right-2 hover:bg-wiz-red hover:text-wiz-white"
           >
             챗봇
-          </button>
+          </Button>
         )}
         {showChatbot && (
           <Chatbot
