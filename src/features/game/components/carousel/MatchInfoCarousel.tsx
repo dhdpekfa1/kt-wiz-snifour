@@ -29,9 +29,9 @@ const MatchInfoCarousel = () => {
   const type = useMemo(() => {
     const formattedCurrentMonth = format(currentMonth, 'yyyyMM');
     if (recentMonth && recentMonth < formattedCurrentMonth) {
-      return 'recent'; // recentMonth가 currentMonth보다 이전이면 'recent'
+      return 'recent';
     }
-    return 'kt'; // 기본적으로 'kt'를 사용
+    return 'kt';
   }, [recentMonth, currentMonth]);
 
   // `useGetMatchScheduleQuery` 호출 시 사용할 `queryMonth` 결정
@@ -40,11 +40,9 @@ const MatchInfoCarousel = () => {
     if (recentMonth && recentMonth < formattedCurrentMonth) {
       return recentMonth; // recentMonth가 currentMonth보다 이전이면 recentMonth 사용
     }
-    return formattedCurrentMonth; // 기본적으로 currentMonth 사용
+    return formattedCurrentMonth;
   }, [recentMonth, currentMonth]);
 
-  console.log('type', type);
-  console.log('queryMonth', queryMonth);
   // 경기 일정 데이터
   const { matchData, isLoading } = useGetMatchScheduleQuery({
     currentMonth: parse(queryMonth, 'yyyyMM', new Date()), // `queryMonth`를 `Date`로 변환
@@ -53,7 +51,7 @@ const MatchInfoCarousel = () => {
   });
 
   if (isLoading) {
-    // TODO: 스켈레톤 작업
+    console.log(isLoading);
   }
 
   /** 날짜 선택 시 캐러셀 이동 */

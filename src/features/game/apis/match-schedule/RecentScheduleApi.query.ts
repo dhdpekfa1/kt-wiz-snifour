@@ -6,7 +6,6 @@ import { RecentGameScheduleResponse } from '../../types/match-schedule';
 // 최근 경기 쿼리 키
 export const RECENT_MATCHES_QUERY_KEY = ['recentMatches'];
 
-// React Query를 사용한 custom hook
 const useGetRecentMatchScheduleQuery = () => {
   const { setRecentMonth } = useMatchStore();
 
