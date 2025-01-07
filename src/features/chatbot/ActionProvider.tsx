@@ -1,26 +1,53 @@
 import React, { ReactElement } from 'react';
 
 interface ActionProviderProps {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  createChatBotMessage: (message: string, options?: any) => any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  setState: React.Dispatch<React.SetStateAction<any>>;
+  createChatBotMessage: (
+    message: string,
+    options?: Record<string, unknown>
+  ) => unknown;
+  setState: React.Dispatch<React.SetStateAction<unknown>>;
   children: React.ReactNode;
 }
 
+interface BotMessage {
+  message: string;
+  [key: string]: unknown;
+}
+
+interface State {
+  messages: BotMessage[];
+  [key: string]: unknown;
+}
+
 const ActionProvider: React.FC<ActionProviderProps> = ({
-  // biome-ignore lint/correctness/noUnusedVariables: <explanation>
   createChatBotMessage,
-  // biome-ignore lint/correctness/noUnusedVariables: <explanation>
   setState,
   children,
 }) => {
+  const handleTicketPurchase = () => {
+    const botMessage = createChatBotMessage('티켓구매 버튼');
+    setState((prev: State) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
+  const handleUnknownMessage = () => {
+    const botMessage = createChatBotMessage(
+      '죄송해요. 무슨 말씀이신지 잘 모르겠어요.🥺'
+    );
+    setState((prev: State) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
   return (
     <div>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child as ReactElement, {
-            actions: {},
+            actions: { handleTicketPurchase, handleUnknownMessage },
           });
         }
         return child;

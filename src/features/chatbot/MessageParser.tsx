@@ -2,13 +2,19 @@ import React, { ReactElement } from 'react';
 
 interface MessageParserProps {
   children: React.ReactNode;
-  actions: Record<string, unknown>;
+  actions: {
+    handleTicketPurchase: () => void;
+    handleUnknownMessage: () => void;
+  };
 }
 
-// biome-ignore lint/correctness/noUnusedVariables: <explanation>
 const MessageParser: React.FC<MessageParserProps> = ({ children, actions }) => {
   const parse = (message: string): void => {
-    console.log(message);
+    if (message.includes('티켓구매')) {
+      actions.handleTicketPurchase();
+    } else {
+      actions.handleUnknownMessage();
+    }
   };
 
   return (
@@ -17,7 +23,7 @@ const MessageParser: React.FC<MessageParserProps> = ({ children, actions }) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child as ReactElement, {
             parse: parse,
-            actions: {},
+            actions,
           });
         }
         return child;
