@@ -49,11 +49,12 @@ export enum ApiRoutes {
   TrainingPhoto = '/article/wizphotolist2page',
   EventPhoto = '/article/wizphotolist3page',
 
-  /* 경기 정보 */
+  /* 게임 */
   GameSchedule = '/game/monthschedule',
   AllGameSchedule = '/game/allgameschedule',
   TodayGameSchedule = '/game/dayschedule',
   RecentGameSchedule = '/game/recentGames',
+  WatchPoint = '/game/watchpoint',
 }
 
 // page routes: 페이지 경로 (TODO: 페이지 경로 업데이트)
@@ -73,6 +74,7 @@ export enum PageRoutes {
   TrainingPhoto = '/media/photos/2',
   EventPhoto = '/media/photos/3',
   GameSchedule = '/game/regular/schedule',
+  WatchPoint = '/game/regular/watchPoint',
 }
 
 // 현재 경로의 페이지가 존재하는지 확인하는 함수
