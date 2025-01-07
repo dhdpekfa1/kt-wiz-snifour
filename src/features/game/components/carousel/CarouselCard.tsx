@@ -1,15 +1,15 @@
-import { Card, CardContent, CarouselItem } from "@/components/ui";
-import TeamInfo from "@/features/common/TeamInfo";
-import type { GameSchedule } from "@/features/game/types/match-schedule";
-import { format, isValid, parse } from "date-fns";
-import { useCallback } from "react";
+import { Card, CardContent, CarouselItem } from '@/components/ui';
+import TeamInfo from '@/features/common/TeamInfo';
+import type { GameSchedule } from '@/features/game/types/match-schedule';
+import { format, isValid, parse } from 'date-fns';
+import { useCallback } from 'react';
 
 const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
   const formatDate = useCallback((date: string): string => {
-    const parsedDate = parse(date, "yyyyMMdd", new Date());
+    const parsedDate = parse(date, 'yyyyMMdd', new Date());
     return isValid(parsedDate)
-      ? format(parsedDate, "yyyy.MM.dd")
-      : "날짜 정보 없음";
+      ? format(parsedDate, 'yyyy.MM.dd')
+      : '날짜 정보 없음';
   }, []);
 
   const handleGameInfoClick = () => {
@@ -23,7 +23,7 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
   return (
     <CarouselItem
       className={
-        "pl-1 md:basis-1/2 lg:basis-1/3 transition-transform duration-300 w-fit"
+        'pl-1 md:basis-1/2 lg:basis-1/3 transition-transform duration-300 w-fit'
       }
     >
       <div className="p-1">
@@ -34,12 +34,12 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                 {/* 날짜 라벨 */}
                 <h4
                   className={`text-white px-6 py-1 rounded-full text-sm md:text-base ${
-                    data.outcome === "패" ? "bg-wiz-red" : "bg-wiz-black"
+                    data.outcome === '패' ? 'bg-wiz-red' : 'bg-wiz-black'
                   }`}
                 >
                   {data.displayDate
                     ? formatDate(data.displayDate)
-                    : "예정된 경기가 없습니다."}
+                    : '예정된 경기가 없습니다.'}
                 </h4>
 
                 <div className="flex gap-3 items-center justify-center px-4 md:px-3">
@@ -47,8 +47,8 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                   <TeamInfo
                     tabType="MatchScheduleTab"
                     teamName={data.home}
-                    logoUrl={data.homeLogo || ""}
-                    result={data.homeScore > data.visitScore ? "win" : "lose"}
+                    logoUrl={data.homeLogo || ''}
+                    result={data.homeScore > data.visitScore ? 'win' : 'lose'}
                   />
 
                   {/* 스코어, 승패, 경기 정보 버튼 */}
@@ -71,13 +71,13 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                   <TeamInfo
                     tabType="MatchScheduleTab"
                     teamName={data.visit}
-                    logoUrl={data.visitLogo || ""}
-                    result={data.homeScore > data.visitScore ? "lose" : "win"}
+                    logoUrl={data.visitLogo || ''}
+                    result={data.homeScore > data.visitScore ? 'lose' : 'win'}
                   />
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col gap-5 h-48 items-center p-2">
+              <div className="flex flex-col gap-5 h-44 md:h-48 items-center p-2">
                 <div className="top-0 w-full h-7 bg-wiz-black text-white p-1 rounded-2xl" />
                 <p className="mb-4 text-wiz-white text-xs md:text-sm lg:text-base">
                   예정된 경기가 없습니다.
