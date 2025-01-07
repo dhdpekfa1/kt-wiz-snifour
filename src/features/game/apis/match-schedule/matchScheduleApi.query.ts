@@ -8,7 +8,7 @@ import { scheduleApi } from './matchScheduleApi';
 interface UseMatchScheduleQueryParams {
   currentMonth: Date;
   carouselApi?: CarouselApi | null;
-  type?: 'kt' | 'all';
+  type?: 'kt' | 'all' | 'recent';
 }
 
 // 경기 일정 쿼리 키
@@ -52,12 +52,16 @@ export const useGetMatchScheduleQuery = ({
     staleTime: 5 * 60 * 1000,
   });
 
-  // 현재 달 첫 번째 경기로 이동
+  // 현재 달 첫 번째 경기 | 마지막 경기로 이동
   useEffect(() => {
-    if (carouselApi && currentData.length > 0) {
-      carouselApi.scrollTo(0, true);
+    if (carouselApi) {
+      if (type === 'recent') {
+        carouselApi.scrollTo(currentData.length - 1, true); // 마지막 인덱스
+      } else {
+        carouselApi.scrollTo(0, true); // 첫 번째 인덱스
+      }
     }
-  }, [carouselApi, currentData]);
+  }, [carouselApi, currentData, type]);
 
   // 이전, 다음 달 데이터 프리패칭
   useEffect(() => {

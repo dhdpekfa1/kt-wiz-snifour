@@ -46,6 +46,7 @@ export enum ApiRoutes {
   GameSchedule = '/game/monthschedule',
   AllGameSchedule = '/game/allgameschedule',
   TodayGameSchedule = '/game/dayschedule',
+  RecentGameSchedule = '/game/recentGames',
 }
 
 // page routes: 페이지 경로 (TODO: 페이지 경로 업데이트)
