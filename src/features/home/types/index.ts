@@ -81,3 +81,13 @@ export interface WizRankResponse {
     ktWizTeamRank: WizRank;
   };
 }
+
+export interface MainWizVideoDto {
+  count: number;
+}
+
+export interface MainWizVideoResponse {
+  data: {
+    list: Video[];
+  };
+}

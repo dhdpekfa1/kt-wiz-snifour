@@ -4,6 +4,8 @@ import { match } from 'path-to-regexp';
 export enum ApiRoutes {
   /* 메인 */
   WizRank = '/game/ktwizteamrank',
+  MainWizVideo = '/media/highlightlist',
+  MainWizPhoto = '/media/photolist',
 
   /* 경기 정보 */
   GameSchedule = '/game/monthschedule',
