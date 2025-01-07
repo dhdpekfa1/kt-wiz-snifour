@@ -1,18 +1,20 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import useCoach from '@/features/player/hooks/useCoach';
-import { useSearchParams } from 'react-router';
 
 const CoachDetailPage = () => {
-  const [searchParams] = useSearchParams();
-  const pcode = searchParams.get('pcode');
-  const { coachData, loading, error } = useCoach(pcode);
+  const { coachData, isLoading, isError, error } = useCoach();
 
-  if (!coachData || loading) {
-    return null;
+  // TODO: skeleton
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
+  }
+
+  if (!coachData) {
+    return <div>데이터가 존재하지 않습니다.</div>;
   }
 
   return (

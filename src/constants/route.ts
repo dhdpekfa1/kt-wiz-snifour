@@ -2,6 +2,7 @@ import { match } from 'path-to-regexp';
 
 // api routes: api 요청 경로 (TODO: api 요청 경로 업데이트)
 export enum ApiRoutes {
+  /* 랭킹 */
   teamRank = '/game/teamrankbyyear',
   teamRankByPitcher = '/game/rank/pitching',
   teamRankByBatter = '/game/rank/batting',
@@ -15,6 +16,20 @@ export enum ApiRoutes {
   KTBatterRank = '/game/rank/kt/batter',
   AllBatterRank = '/game/rank/total/batter',
   CrowdRank = '/game/rank/crowd',
+
+  /* 플레이어 */
+  CoachList = '/player/coachlist',
+  CoachDetail = '/player/coachdetail',
+  PitcherList = '/player/pitcherlist',
+  PitcherDetail = '/player/pitcherdetail',
+  CatcherList = '/player/catcherlist',
+  CatcherDetail = '/player/catcherdetail',
+  InfielderList = '/player/infielderlist',
+  InfielderDetail = '/player/infielderdetail',
+  OutfielderList = '/player/outfielderlist',
+  OutfielderDetail = '/player/outfielderdetail',
+
+  /* 미디어 */
   News = '/article/newslistpage',
   NewsDetail = '/article/newsdetail',
   Press = '/article/wizpresslistpage',

@@ -4,12 +4,12 @@ import {
   recentPitcherConfig,
 } from '@/constants/chart-config';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
-import { usePlayerStore } from '@/store/usePlayerStore';
 import { useParams } from 'react-router';
 import { PlayerRecordChart } from './PlayerRecordChart';
+import { usePlayer } from '../../hooks/usePlayer';
 
 function RecentRecordTab() {
-  const { player, loading } = usePlayerStore();
+  const { player, isLoading } = usePlayer();
   const { position } = useParams();
 
   if (!player) {
@@ -34,7 +34,7 @@ function RecentRecordTab() {
             config={
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
             }
-            loading={loading}
+            loading={isLoading}
             className="bg-opacity-0"
           />
         </TabsContent>
@@ -45,7 +45,7 @@ function RecentRecordTab() {
             config={
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
             }
-            loading={loading}
+            loading={isLoading}
             className="bg-opacity-0"
           />
         </TabsContent>

@@ -1,14 +1,14 @@
 import { useSearchParams } from 'react-router';
 import { usePlayerList } from './usePlayerList';
 
-function usePlayerSearch(playerType: string) {
-  const { playerList, loading, error } = usePlayerList(playerType);
+function usePlayerSearch() {
+  const { playerList, isLoading, isError, error } = usePlayerList();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchWord = searchParams.get('searchWord') || '';
 
   // 검색 결과 필터링
-  const filteredPlayerList = playerList.filter((player) =>
+  const filteredPlayerList = playerList?.filter((player) =>
     player.playerName.toLowerCase().includes(searchWord.toLowerCase())
   );
 
@@ -19,7 +19,14 @@ function usePlayerSearch(playerType: string) {
     });
   };
 
-  return { filteredPlayerList, loading, error, searchWord, handleSearch };
+  return {
+    filteredPlayerList,
+    isLoading,
+    isError,
+    error,
+    searchWord,
+    handleSearch,
+  };
 }
 
 export { usePlayerSearch };
