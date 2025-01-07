@@ -7,11 +7,6 @@ export enum ApiRoutes {
   MainWizVideo = '/media/highlightlist',
   MainWizPhoto = '/media/photolist',
 
-  /* 경기 정보 */
-  GameSchedule = '/game/monthschedule',
-  AllGameSchedule = '/game/allgameschedule',
-  TodayGameSchedule = '/game/dayschedule',
-
   /* 랭킹 */
   teamRank = '/game/teamrankbyyear',
   teamRankByPitcher = '/game/rank/pitching',
@@ -53,6 +48,12 @@ export enum ApiRoutes {
   GamePhoto = '/article/wizphotolist1page',
   TrainingPhoto = '/article/wizphotolist2page',
   EventPhoto = '/article/wizphotolist3page',
+
+  /* 경기 정보 */
+  GameSchedule = '/game/monthschedule',
+  AllGameSchedule = '/game/allgameschedule',
+  TodayGameSchedule = '/game/dayschedule',
+  RecentGameSchedule = '/game/recentGames',
 }
 
 // page routes: 페이지 경로 (TODO: 페이지 경로 업데이트)

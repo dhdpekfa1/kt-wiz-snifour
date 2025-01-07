@@ -1,29 +1,26 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { MatchBoard } from './components/common';
 import { StartingPitcherTable, TeamLineup } from './components/watch-point';
-import useRecentMatches from './hooks/common/useRecentMatches';
 import useWatchPoint from './hooks/watch-point/useWatchPoint';
+import useGetRecentMatchScheduleQuery from './apis/match-schedule/RecentScheduleApi.query';
 
 const WatchPointTab = () => {
   const {
     recentMatchData,
     loading: recentLoading,
     error: recentError,
-  } = useRecentMatches();
-  const [gameDate, setGameDate] = useState(String(recentMatchData?.gameDate));
-  const [gameKey, setGameKey] = useState(String(recentMatchData?.gmkey));
+  } = useGetRecentMatchScheduleQuery();
+  const [gameDate, setGameDate] = useState(
+    String(recentMatchData?.data.current.gameDate)
+  );
+  const [gameKey, setGameKey] = useState(
+    String(recentMatchData?.data.current.gmkey)
+  );
 
   const { watchData, loading, error } = useWatchPoint(gameDate, gameKey);
-
-  useEffect(() => {
-    if (recentMatchData) {
-      setGameDate(String(recentMatchData.gameDate));
-      setGameKey(String(recentMatchData.gmkey));
-    }
-  }, [recentMatchData]);
 
   if (
     recentLoading ||
@@ -39,6 +36,7 @@ const WatchPointTab = () => {
   if (recentError || error) {
     return <div>{recentError ? recentError : error}</div>;
   }
+
   // 날짜 변경 핸들러
   const handleDateChange = (direction: 'prev' | 'next') => {
     if (direction === 'prev' && watchData.schedule.prev) {
