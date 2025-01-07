@@ -3,6 +3,7 @@ import { cn, formatDate, isDateWithinWeek } from '@/lib/utils';
 import { GameSchedule } from '@/features/game/types/match-schedule';
 import { endOfWeek, startOfWeek, parse } from 'date-fns';
 import Skeleton from 'react-loading-skeleton';
+import { useNavigate } from 'react-router';
 
 interface RecentMatchesProps {
   match: GameSchedule[];
@@ -11,6 +12,7 @@ interface RecentMatchesProps {
 }
 
 function RecentMatches({ match, matchOfToday, loading }: RecentMatchesProps) {
+  const navigate = useNavigate();
   const matchesOfWeek = useMemo(() => {
     if (match.length === 0 || !matchOfToday?.displayDate) {
       return []; // 데이터가 없을 경우 빈 배열 반환
@@ -49,7 +51,19 @@ function RecentMatches({ match, matchOfToday, loading }: RecentMatchesProps) {
             {loading ? (
               <Skeleton className="w-full h-16" baseColor="#d1d5db" />
             ) : (
-              <>
+              <div
+                className="cursor-pointer"
+                onClick={() =>
+                  navigate(
+                    `/game/regular/boxscore/${match.gameDate}/${match.gmkey}`
+                  )
+                }
+                onKeyDown={() =>
+                  navigate(
+                    `/game/regular/boxscore/${match.gameDate}/${match.gmkey}`
+                  )
+                }
+              >
                 <p
                   className={cn(
                     'font-semibold mb-1 text-[0.6rem]',
@@ -63,13 +77,15 @@ function RecentMatches({ match, matchOfToday, loading }: RecentMatchesProps) {
                     <img src={match.homeLogo} alt={match.homeKey} />
                   </div>
                   <div className="font-bold text-2xl">
-                    {match.homeScore} : {match.visitScore}
+                    {match.outcome === '취'
+                      ? '취소'
+                      : `${match.homeScore} : ${match.visitScore}`}
                   </div>
                   <div className="w-12 h-12">
                     <img src={match.visitLogo} alt={match.visitKey} />
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </li>
         ))}
