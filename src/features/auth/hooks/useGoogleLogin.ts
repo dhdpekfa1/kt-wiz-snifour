@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useNavigate } from 'react-router';
-// import { useUserStore } from '@/store/useUserStore';
 
 const useGoogleLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-
-  // const { setEmail, setNickname, setSub } = useUserStore();
 
   const signinWithGoogle = async () => {
     setIsLoading(true);
