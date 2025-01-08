@@ -22,7 +22,9 @@ import { SignupForm } from './features/auth';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
+
 import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
+
 import FirstPitchPage from './pages/media/FirstPitchPage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
@@ -31,7 +33,29 @@ import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
+import { useEffect, useState } from 'react';
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css';
+import { Button } from './components/ui';
+import ActionProvider from './features/chatbot/ActionProvider';
+import MessageParser from './features/chatbot/MessageParser';
+import './features/chatbot/chatbot.css';
+import config from './features/chatbot/config';
+
 function App() {
+  const [showChatbot, setShowChatbot] = useState(false);
+
+  useEffect(() => {
+    const handleCloseChatbot = () => {
+      setShowChatbot(false);
+    };
+    window.addEventListener('closeChatbot', handleCloseChatbot);
+
+    return () => {
+      window.removeEventListener('closeChatbot', handleCloseChatbot);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -117,6 +141,21 @@ function App() {
         >
           TOP▲
         </div>
+        {!showChatbot && (
+          <Button
+            onClick={() => setShowChatbot(true)}
+            className="w-12 h-12 rounded-full bg-white border fixed bottom-20 right-2 hover:bg-wiz-red hover:text-wiz-white"
+          >
+            챗봇
+          </Button>
+        )}
+        {showChatbot && (
+          <Chatbot
+            config={config}
+            messageParser={MessageParser}
+            actionProvider={ActionProvider}
+          />
+        )}
       </div>
     </BrowserRouter>
   );
