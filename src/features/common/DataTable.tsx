@@ -14,6 +14,7 @@ import {
   TableRow,
 } from '@/components/ui';
 import { cn } from '@/lib/utils';
+import Skeleton from 'react-loading-skeleton';
 
 interface TypeHasTeamName {
   teamName?: string;
@@ -23,15 +24,34 @@ interface TypeHasTeamName {
 interface DataTableProps<TData> {
   data: TData[];
   columns: ColumnDef<TData>[];
+  loading?: boolean;
   domain?: 'kt' | 'all';
 }
 
-function DataTable<TData>({ data, columns, domain }: DataTableProps<TData>) {
+function DataTable<TData>({
+  data,
+  columns,
+  loading = false,
+  domain,
+}: DataTableProps<TData>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  if (loading) {
+    return (
+      <div>
+        <Skeleton
+          baseColor="#d1d5db"
+          className="w-full h-8 md:h-10 lg:h-12"
+          count={10}
+        />
+      </div>
+    );
+  }
+
   return (
     <Table className="mt-4">
       <TableHeader>
