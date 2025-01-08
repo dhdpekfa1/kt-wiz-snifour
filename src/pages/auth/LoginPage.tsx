@@ -63,7 +63,7 @@ const LoginPage = () => {
             alt="login"
           />
           <Banner.Overlay>
-            <Banner.Heading title="Login" subtitle="kt wiz의 가족" />
+            <Banner.Heading title="로그인" subtitle="kt wiz의 가족" />
             <Banner.Description description="로그인 후 kt wiz 사이트를 더욱 다양하게 이용해 보세요." />
           </Banner.Overlay>
         </Banner>
@@ -132,16 +132,31 @@ const LoginPage = () => {
                   이메일 저장
                 </Label>
               </div>
-              {/* {errorMessage && (
-                <p className="text-red-500 text-xs mt-2">{errorMessage}</p>
-              )} */}
+
               <CardFooter className="flex flex-col mt-6 gap-2">
                 <Button
-                  className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
+                  className="w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
                   type="submit"
                 >
                   로그인
                 </Button>
+                {/* 소셜 로그인 */}
+                <div className="flex w-full mt-4">
+                  <Button className="w-full cursor-pointer" type="button">
+                    <img
+                      src="/assets/auth/kakao_login.png"
+                      alt="카카오로그인"
+                      className="w-full"
+                    />
+                  </Button>
+                  <Button className="w-full" type="button">
+                    <img
+                      src="/assets/auth/google_login.png"
+                      alt="구글로그인"
+                      className="w-full"
+                    />
+                  </Button>
+                </div>
               </CardFooter>
             </form>
           </CardContent>
