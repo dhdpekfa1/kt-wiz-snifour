@@ -21,6 +21,7 @@ import { Link } from 'react-router';
 import { z } from 'zod';
 import useLogin from '@/features/auth/hooks/useLogin';
 import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
+import { supabase } from '@/lib/supabase';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -52,6 +53,23 @@ const LoginPage = () => {
     if (!success) {
       console.error(error);
     }
+  };
+
+  const signinWhiteGoogle = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    });
+
+    if (error) {
+      console.error(error);
+    }
+    console.log(data);
   };
 
   return (
@@ -141,19 +159,23 @@ const LoginPage = () => {
                   로그인
                 </Button>
                 {/* 소셜 로그인 */}
-                <div className="flex w-full mt-4">
+                <div className="flex w-full mt-0 lg:mt-4">
                   <Button className="w-full cursor-pointer" type="button">
                     <img
                       src="/assets/auth/kakao_login.png"
                       alt="카카오로그인"
-                      className="w-full"
+                      className="w-auto h-8 md:h-10 lg:h-14"
                     />
                   </Button>
-                  <Button className="w-full" type="button">
+                  <Button
+                    className="w-full"
+                    type="button"
+                    onClick={signinWhiteGoogle}
+                  >
                     <img
                       src="/assets/auth/google_login.png"
                       alt="구글로그인"
-                      className="w-full"
+                      className="w-auto h-8 md:h-10 lg:h-14"
                     />
                   </Button>
                 </div>
