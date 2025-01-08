@@ -1,7 +1,7 @@
 import { batterColumns } from '@/constants/columns/player-rank-colums';
 import SortableTable from '@/features/common/SortableTable';
 import { useBatterRank } from '@/features/game/hooks/ranking';
-import { PlayerScatterChart } from '../common/PlayerScatterChart';
+import { PlayerScatterChart } from '../common/chart/PlayerScatterChart';
 import { useSearchParams } from 'react-router';
 import Filter from '../common/Filter';
 

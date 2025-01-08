@@ -1,9 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-
-import SubTitle from '@/features/common/SubTitle';
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { cn } from '@/lib/utils';
 import {
   CartesianGrid,
   Cell,
@@ -14,9 +9,16 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import Skeleton from 'react-loading-skeleton';
+
+import SubTitle from '@/features/common/SubTitle';
+import { OverallBatterRank } from '@/features/common/types/batters';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { cn } from '@/lib/utils';
 import { Props } from 'recharts/types/container/Surface';
 import CustomTooltip from './CustomTooltip';
-import Skeleton from 'react-loading-skeleton';
+import { assignColor } from '@/features/game/services/assing-color.service';
+import CellLegend from './CellLegend';
 
 type PlayerRank = OverallPitcherRank | OverallBatterRank;
 
@@ -37,18 +39,18 @@ function PlayerScatterChart<T extends PlayerRank>({
   position,
   loading = false,
 }: PlayerScatterChartProps<T>) {
-  const { x, y, xLabel, yLabel } = useMemo(() => {
-    return position === 'pitcher'
-      ? { x: 'wra', xLabel: '승률', y: 'era', yLabel: '평균자책점' }
-      : { x: 'hra', xLabel: '타율', y: 'ops', yLabel: 'OPS' };
-  }, [position]);
-
   const [fontSize, setFontSize] = useState('16px');
   const [aspect, setAspect] = useState(3);
   const [cellSize, setCellSize] = useState({
     width: 30,
     height: 30,
   });
+
+  const { x, y, xLabel, yLabel } = useMemo(() => {
+    return position === 'pitcher'
+      ? { x: 'wra', xLabel: '승률', y: 'era', yLabel: '평균자책점' }
+      : { x: 'hra', xLabel: '타율', y: 'ops', yLabel: 'OPS' };
+  }, [position]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -96,56 +98,20 @@ function PlayerScatterChart<T extends PlayerRank>({
       });
 
     if (position === 'pitcher') {
-      return filteredData.map((pitcher, index) => {
-        const result = {
-          ...pitcher,
-          era: Number((pitcher as OverallPitcherRank).era),
-          wra: Number((pitcher as OverallPitcherRank).wra),
-        };
-        if (index < filteredData.length * 0.33) {
-          return {
-            ...result,
-            color: 'bg-[#059212]',
-          };
-        }
-        if (index < filteredData.length * 0.66) {
-          return {
-            ...result,
-            color: 'bg-[#ffba08]',
-          };
-        }
-        return {
-          ...result,
-          color: 'bg-gray-500',
-        };
-      });
+      return filteredData.map((pitcher, index) => ({
+        ...pitcher,
+        era: Number((pitcher as OverallPitcherRank).era),
+        wra: Number((pitcher as OverallPitcherRank).wra),
+        color: assignColor(index, filteredData.length),
+      }));
     }
 
-    if (position === 'batter') {
-      return filteredData.map((batter, index) => {
-        const result = {
-          ...batter,
-          ops: Number((batter as OverallBatterRank).ops),
-          hra: Number((batter as OverallBatterRank).hra),
-        };
-        if (index < filteredData.length * 0.33) {
-          return {
-            ...result,
-            color: 'bg-[#059212]',
-          };
-        }
-        if (index < filteredData.length * 0.66) {
-          return {
-            ...result,
-            color: 'bg-[#ffba08]',
-          };
-        }
-        return {
-          ...result,
-          color: 'bg-gray-500',
-        };
-      });
-    }
+    return filteredData.map((batter, index) => ({
+      ...batter,
+      ops: Number((batter as OverallBatterRank).ops),
+      hra: Number((batter as OverallBatterRank).hra),
+      color: assignColor(index, filteredData.length),
+    }));
   }, [data, position]);
 
   const renderImageCell = (props: unknown) => {
@@ -181,36 +147,9 @@ function PlayerScatterChart<T extends PlayerRank>({
           10경기 이상 출장한 선수만 표시합니다.
         </p>
         <div className="flex items-center gap-4 text-xs md:text-sm lg:text-base">
-          <div className="flex items-center gap-1">
-            <div
-              className={cn(
-                'bg-[#059212] rounded-full w-3 h-3',
-                'md:w-4 md:h-4',
-                'lg:w-5 lg:h-5'
-              )}
-            />
-            <p>상위권</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <div
-              className={cn(
-                'bg-[#ffba08] rounded-full w-3 h-3',
-                'md:w-4 md:h-4',
-                'lg:w-5 lg:h-5'
-              )}
-            />
-            <p>중위권</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <div
-              className={cn(
-                'bg-gray-500 rounded-full w-3 h-3',
-                'md:w-4 md:h-4',
-                'lg:w-5 lg:h-5'
-              )}
-            />
-            <p>하위권</p>
-          </div>
+          <CellLegend color="#059212" label="상위권" />
+          <CellLegend color="#ffba08" label="중위권" />
+          <CellLegend color="#6b7280" label="하위권" />
         </div>
       </div>
       {loading && (
