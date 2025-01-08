@@ -12,20 +12,17 @@ import { MatchBoard } from './components/common';
 import useBoxscore from './hooks/boxscore/useBoxscore';
 
 const BoxscoreTab = () => {
+  //TODO: recentScheduleApi query를 이용해서 초기 렌더링 화면을 최신경기의 gameDate, gameKey로 세팅하기
   const { gameDate, gameKey } = useParams<{
     gameDate: string;
     gameKey: string;
   }>();
 
-  const { boxData: matchData, loading, error } = useBoxscore(gameDate, gameKey);
+  const { data: matchData, isLoading, error } = useBoxscore(gameDate, gameKey);
 
-  if (!matchData || loading) {
-    return null;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!matchData) return <div>데이터가 없습니다.</div>;
 
   const handleDateChange = (direction: 'prev' | 'next') => {
     if (matchData) {
