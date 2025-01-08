@@ -25,11 +25,13 @@ function RankingCard({
   indicator,
   loading = false,
 }: RankingCardProps) {
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(
+    ranking.length ? ranking[0] : null
+  );
+
   if (!loading && !ranking.length) {
     return <div>데이터가 없습니다.</div>;
   }
-
-  const [selectedPlayer, setSelectedPlayer] = useState<Player>(ranking[0]);
 
   const handleSelectPlayer = (player: Player) => {
     setSelectedPlayer(player);
@@ -55,8 +57,8 @@ function RankingCard({
           />
         ) : (
           <img
-            src={selectedPlayer.playerPrvwImg}
-            alt={selectedPlayer.playerName}
+            src={selectedPlayer?.playerPrvwImg}
+            alt={selectedPlayer?.playerName}
             className={cn('rounded-xl w-full aspect-square object-cover', '')}
           />
         )}
@@ -75,7 +77,7 @@ function RankingCard({
                 className={cn(
                   'bg-white mt-2 px-2 py-1 rounded shadow-sm flex items-center justify-between transition-transform duration-300 cursor-pointer hover:scale-105 text-sm',
                   'md:px-4 md:py-2 md:text-base md:mt-4',
-                  player.pcode === selectedPlayer.pcode &&
+                  player.pcode === selectedPlayer?.pcode &&
                     'bg-wiz-red text-white font-bold scale-105'
                 )}
               >

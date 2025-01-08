@@ -10,10 +10,6 @@ function AllBatterRankingTab() {
   const [searchParams] = useSearchParams();
   const pname = searchParams.get('pname');
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   if (isError) {
     return <div>{error?.toString()}</div>;
   }
@@ -24,11 +20,16 @@ function AllBatterRankingTab() {
 
   return (
     <div className="flex flex-col">
-      <PlayerScatterChart data={ranking || []} position="batter" />
+      <PlayerScatterChart
+        data={ranking || []}
+        position="batter"
+        loading={isLoading}
+      />
       <Filter />
       <SortableTable
         data={filteredRanking || []}
         columns={batterColumns}
+        loading={isLoading}
         domain="all"
       />
     </div>
