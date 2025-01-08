@@ -138,30 +138,35 @@ const LoginPage = () => {
 
               <CardFooter className="flex flex-col mt-6 gap-2">
                 <Button
-                  className="w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
+                  className="w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70 text-sm lg:text-base"
                   type="submit"
                 >
                   로그인
                 </Button>
                 {/* 소셜 로그인 */}
-                <div className="flex w-full mt-0 lg:mt-4">
-                  <Button className="w-full cursor-pointer" type="button">
+                <div className="flex w-full mt-1 md:mt-2 lg:mt-4 gap-3">
+                  <Button
+                    className="w-full cursor-pointer bg-[#ffeb38] hover:bg-[#ffeb38] text-xs md:text-sm lg:text-base text-wiz-black"
+                    type="button"
+                  >
                     <img
-                      src="/assets/auth/kakao_login.png"
-                      alt="카카오로그인"
-                      className="w-auto h-8 md:h-10 lg:h-14"
+                      src="/assets/auth/kakao_logo.png"
+                      alt="kakao logo"
+                      className="w-auto h-5 md:h-6 lg:h-8"
                     />
+                    <p>카카오 로그인</p>
                   </Button>
                   <Button
-                    className="w-full"
+                    className="flex items-center w-full cursor-pointer bg-[#f2f2f2] hover:bg-[#f2f2f2] text-xs md:text-sm lg:text-base text-wiz-black"
                     type="button"
                     onClick={signinWithGoogle}
                   >
                     <img
-                      src="/assets/auth/google_login.png"
-                      alt="구글로그인"
-                      className="w-auto h-8 md:h-10 lg:h-14"
+                      src="/assets/auth/google_logo.png"
+                      alt="google logo"
+                      className="w-auto h-5 md:h-6 lg:h-8"
                     />
+                    <p>구글 로그인</p>
                   </Button>
                 </div>
               </CardFooter>
