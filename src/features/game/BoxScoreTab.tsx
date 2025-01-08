@@ -18,10 +18,15 @@ const BoxscoreTab = () => {
     gameKey: string;
   }>();
 
-  const { data: matchData, isLoading, error } = useBoxscore(gameDate, gameKey);
+  const {
+    data: matchData,
+    isLoading,
+    isError,
+    error,
+  } = useBoxscore(gameDate, gameKey);
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isError) return <div>Error: {error.message}</div>;
   if (!matchData) return <div>데이터가 없습니다.</div>;
 
   const handleDateChange = (direction: 'prev' | 'next') => {

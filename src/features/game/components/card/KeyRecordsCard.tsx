@@ -29,7 +29,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
   };
 
   const handlerPlayerImage = (name: string) => {
-    let team: string | undefined;
+    let team = '';
 
     // 홈 팀 타자, 투수 확인
     if (
@@ -47,7 +47,17 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
       team = data.schedule.current.visit;
     }
 
-    const { playerImage } = usePlayerImage(team, name);
+    const {
+      data: playerImage,
+      isLoading,
+      isError,
+      error,
+    } = usePlayerImage(team, name);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error: {error.message}</div>;
+    if (!playerImage) return <div>데이터가 없습니다.</div>;
+
     return (
       <img
         src={playerImage}
@@ -61,7 +71,6 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {tableRows.map((row) => (
         <Card
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           key={row.label}
           className="hover:scale-105 transition-transform ease-in-out duration-500 rounded-lg"
         >
