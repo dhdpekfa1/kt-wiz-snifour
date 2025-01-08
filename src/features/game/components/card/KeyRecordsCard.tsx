@@ -28,8 +28,9 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
     return str.match(pattern) || [str];
   };
 
-  const handlerPlayerImage = (name: string) => {
+  const handlePlayerImage = (playerName: string) => {
     let team = '';
+    const name = playerName.replace(/\d+/g, '').trim(); //이름에서 숫자 제외
 
     // 홈 팀 타자, 투수 확인
     if (
@@ -82,7 +83,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
               (record) => (
                 <div className="flex gap-2 items-center">
                   {row.label !== '심판' && record.length > 0
-                    ? handlerPlayerImage(
+                    ? handlePlayerImage(
                         record.substring(0, record.indexOf('('))
                       )
                     : ''}
