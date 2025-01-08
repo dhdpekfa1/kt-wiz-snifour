@@ -13,10 +13,6 @@ function CrowdRankingTab() {
   const { ranking, isLoading, isError, error } = useCrowdRank();
   const season = searchParams.get('gyear') || seasons[0];
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   if (isError) {
     return <div>{error?.toString()}</div>;
   }
@@ -46,8 +42,13 @@ function CrowdRankingTab() {
       </div>
 
       <div>
-        <CrowdRankingChart data={ranking} />
-        <DataTable data={ranking} columns={crowdRankColumns} domain="all" />
+        <CrowdRankingChart data={ranking} loading={isLoading} />
+        <DataTable
+          data={ranking}
+          columns={crowdRankColumns}
+          domain="all"
+          loading={isLoading}
+        />
       </div>
     </div>
   );
