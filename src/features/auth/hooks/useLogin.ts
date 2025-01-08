@@ -13,10 +13,7 @@ const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-
-  const setEmail = useUserStore((state) => state.setEmail);
-  const setNickname = useUserStore((state) => state.setNickname);
-  const setSub = useUserStore((state) => state.setSub);
+  const { setEmail, setNickname, setSub } = useUserStore();
 
   const login = async (data: LoginData) => {
     const { email, password, saveId } = data;
