@@ -62,7 +62,6 @@ const useLogin = () => {
       } else {
         localStorage.removeItem('savedEmail');
       }
-      console.log();
       navigate('/'); // 메인 페이지로 이동
       return true;
     } catch (err) {

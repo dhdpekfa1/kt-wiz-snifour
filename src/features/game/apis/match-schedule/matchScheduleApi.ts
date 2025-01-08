@@ -1,6 +1,9 @@
-import { ApiRoutes } from '@/constants/route';
-import { GameScheduleResponse } from '@/features/game/types/match-schedule';
 import instance from '@/lib/axios/instance';
+import { ApiRoutes } from '@/constants/route';
+import {
+  GameScheduleResponse,
+  RecentGameScheduleResponse,
+} from '@/features/game/types/match-schedule';
 
 export const scheduleApi = {
   // 월 스케줄
@@ -26,6 +29,12 @@ export const scheduleApi = {
   // 오늘 스케줄
   getTodaySchedule: async (): Promise<GameScheduleResponse> => {
     const response = await instance.get(ApiRoutes.TodayGameSchedule);
+    return response.data;
+  },
+
+  // 최근 스케줄
+  getRecentSchedule: async (): Promise<RecentGameScheduleResponse> => {
+    const response = await instance.get(ApiRoutes.RecentGameSchedule);
     return response.data;
   },
 };

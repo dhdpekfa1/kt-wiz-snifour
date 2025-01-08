@@ -5,51 +5,68 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui';
-import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
 import { CarouselCard } from '@/features/game/components/carousel';
+import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
 import { useMatchStore } from '@/store/useMatchStore';
-import { format, isValid, parse } from 'date-fns';
-import { useEffect, useState } from 'react';
+import { parse, isValid } from 'date-fns';
+import { useEffect, useMemo, useState } from 'react';
+import useGetRecentMatchScheduleQuery from '@/features/game/apis/match-schedule/RecentScheduleApi.query';
+import { parseDate, selectTypeAndMonth } from '@/lib/helpers/parse-date';
 
 const MatchInfoCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const { currentMonth, selectedDate } = useMatchStore();
-  const { matchData, isLoading } = useGetMatchScheduleQuery({
-    currentMonth,
+  const { recentMatchData } = useGetRecentMatchScheduleQuery();
+
+  // recentMonth 계산
+  const recentMonth = useMemo(
+    () => parseDate(recentMatchData?.data.current.gameDate?.toString()),
+    [recentMatchData]
+  );
+
+  // type, queryMonth 결정
+  const { type, queryMonth } = useMemo(
+    () => selectTypeAndMonth(recentMonth, currentMonth),
+    [recentMonth, currentMonth]
+  );
+
+  // 경기 일정 데이터
+  const { matchData } = useGetMatchScheduleQuery({
+    currentMonth: queryMonth,
     carouselApi,
+    type,
   });
 
-  if (isLoading) {
-    // TODO: 스켈레톤 작업
-  }
-
-  /**  날짜 선택 시 캐러셀 이동 */
+  // 날짜 선택 시 캐러셀 이동
   useEffect(() => {
     if (!selectedDate || !carouselApi || matchData.length === 0) return;
-    const formattedSelectedDate = format(selectedDate, 'yyyyMMdd'); // 형식 변환 변환
 
-    // matchData에서 formattedSelectedDate와 일치하는 인덱스 찾기
-    const selectedIndex = matchData.findIndex(
-      (game) => game.gameDate.toString() === formattedSelectedDate
-    );
+    const selectedIndex = matchData.findIndex((game) => {
+      const parsedDate = parse(
+        game.gameDate?.toString(),
+        'yyyyMMdd',
+        new Date()
+      );
+      return (
+        isValid(parsedDate) && parsedDate.getTime() === selectedDate.getTime()
+      );
+    });
 
     if (selectedIndex !== -1) {
-      carouselApi.scrollTo(selectedIndex, true); // 해당 인덱스로 이동
+      carouselApi.scrollTo(selectedIndex, true);
     }
   }, [selectedDate, matchData, carouselApi]);
 
   const today = new Date();
   const hasUpcomingGames = matchData.some((game) => {
-    const gameDateString = game.gameDate?.toString();
-    if (!gameDateString) return false;
-    const parsedDate = parse(gameDateString, 'yyyyMMdd', new Date());
-    return isValid(parsedDate) && parsedDate >= today; // 유효한 날짜인지 확인 후 비교
+    const parsedDate = parse(game.gameDate?.toString(), 'yyyyMMdd', new Date());
+    return isValid(parsedDate) && parsedDate >= today;
   });
 
   return (
     <div className="w-full max-w-2xl min-w-full overflow:hidden">
       <Carousel
-        setApi={(api) => setCarouselApi(api)} // Carousel API 저장
+        setApi={(api) => setCarouselApi(api)}
         className="relative max-w-full"
       >
         <CarouselContent className="-ml-1">
@@ -59,7 +76,7 @@ const MatchInfoCarousel = () => {
           {!hasUpcomingGames && <CarouselCard data={null} />}
         </CarouselContent>
         <CarouselPrevious className="absolute border-none left-0 top-1/2 -translate-y-1/2 z-30 text-white hover:text-wiz-white hover:text-opacity-80 p-4 rounded-full" />
-        <CarouselNext className="absolute border-none  right-0 top-1/2 -translate-y-1/2 z-20 text-white hover:text-wiz-white hover:text-opacity-80 p-4 rounded-full" />
+        <CarouselNext className="absolute border-none right-0 top-1/2 -translate-y-1/2 z-20 text-white hover:text-wiz-white hover:text-opacity-80 p-4 rounded-full" />
       </Carousel>
     </div>
   );

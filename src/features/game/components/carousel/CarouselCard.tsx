@@ -77,7 +77,7 @@ const CarouselCard = ({ data }: { data: GameSchedule | null }) => {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col gap-5 h-48 items-center p-2">
+              <div className="flex flex-col gap-5 h-44 md:h-48 items-center p-2">
                 <div className="top-0 w-full h-7 bg-wiz-black text-white p-1 rounded-2xl" />
                 <p className="mb-4 text-wiz-white text-xs md:text-sm lg:text-base">
                   예정된 경기가 없습니다.

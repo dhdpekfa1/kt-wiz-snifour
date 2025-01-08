@@ -1,3 +1,5 @@
+import { RecentMatches } from './watch-point';
+
 export interface GameScheduleResponse {
   data: {
     list: GameSchedule[];
@@ -32,4 +34,12 @@ export interface GameSchedule {
   visitKey: string;
   visitLogo: string;
   visitScore: number;
+}
+
+// 최근 경기 일정
+export interface RecentGameScheduleResponse {
+  data: {
+    current: RecentMatches;
+    prev: RecentMatches;
+  };
 }

@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 
 interface TypeHasTeamName {
   teamName?: string;
+  team?: string;
 }
 
 interface DataTableProps<TData> {
@@ -60,7 +61,8 @@ function DataTable<TData>({ data, columns, domain }: DataTableProps<TData>) {
             className={cn(
               'border-b-wiz-white border-opacity-10 whitespace-nowrap',
               domain === 'all' &&
-                (row.original as TData & TypeHasTeamName).teamName === 'KT' &&
+                ((row.original as TData & TypeHasTeamName).teamName === 'KT' ||
+                  (row.original as TData & TypeHasTeamName).team === 'KT') &&
                 'bg-wiz-red bg-opacity-70 border-b-wiz-red'
             )}
           >
