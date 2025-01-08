@@ -1,5 +1,6 @@
 import CustomSelect from '@/features/common/CustomSelect.tsx';
-import { format } from 'date-fns';
+import { useMatchStore } from '@/store/useMatchStore';
+import { format, addMonths, startOfYear } from 'date-fns';
 import { IconLeft, IconRight } from 'react-day-picker';
 
 interface CalendarHeaderProps {
@@ -11,9 +12,16 @@ const CalendarHeader = ({
   displayMonth,
   setCurrentMonth,
 }: CalendarHeaderProps) => {
-  const months = Array.from({ length: 8 }, (_, i) =>
-    format(new Date(2024, 2 + i), 'yyyy-MM')
-  );
+  const { currentMonth } = useMatchStore();
+
+  // currentMonth가 1월이면 작년의 12개월 || 올해의 12개월 생성
+  const months = Array.from({ length: 12 }, (_, i) => {
+    const baseYear =
+      currentMonth.getMonth() === 0
+        ? currentMonth.getFullYear() - 1 // 1월까지는 작년 12개월
+        : currentMonth.getFullYear(); // 2월부터는 올해 12개월
+    return format(addMonths(startOfYear(new Date(baseYear, 0)), i), 'yyyy-MM');
+  });
 
   return (
     <div className="flex justify-center items-center gap-10 px-4 py-4 bg-wiz-white bg-opacity-10">
