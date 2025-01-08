@@ -24,7 +24,7 @@ const WizVideoAnimation: React.FC<WizVideoAnimationProps> = ({
     <div
       ref={ref}
       className={cn(
-        'flex flex-col gap-2 bg-white bg-opacity-10 rounded-xl overflow-hidden cursor-pointer text-white transition-all duration-500 ease-in-out transform',
+        'flex flex-col gap-2 bg-white bg-opacity-10 rounded-xl overflow-hidden cursor-pointer text-white transition-all duration-500 ease-in-out transform hover:scale-105',
         inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       )}
       style={{

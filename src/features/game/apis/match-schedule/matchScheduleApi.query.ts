@@ -43,6 +43,8 @@ export const useGetMatchScheduleQuery = ({
   const {
     data: currentData = [],
     isLoading,
+    isSuccess,
+    isError,
     error,
   } = useQuery<GameSchedule[], Error>({
     queryKey: MATCH_SCHEDULE_QUERY_KEY.GET_SCHEDULE(`${type}-${yearMonth}`),
@@ -80,5 +82,5 @@ export const useGetMatchScheduleQuery = ({
     });
   }, [queryClient, prevMonth, nextMonth, type, fetchFn]);
 
-  return { matchData: currentData, isLoading, error };
+  return { matchData: currentData, isLoading, isSuccess, isError, error };
 };

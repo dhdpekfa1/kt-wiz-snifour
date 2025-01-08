@@ -2,6 +2,11 @@ import { match } from 'path-to-regexp';
 
 // api routes: api 요청 경로 (TODO: api 요청 경로 업데이트)
 export enum ApiRoutes {
+  /* 메인 */
+  WizRank = '/game/ktwizteamrank',
+  MainWizVideo = '/media/highlightlist',
+  MainWizPhoto = '/media/photolist',
+
   /* 랭킹 */
   teamRank = '/game/teamrankbyyear',
   teamRankByPitcher = '/game/rank/pitching',

@@ -1,71 +1,72 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Carousel,
-  CarouselContent,
-} from '@/components/ui';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui';
 import { cn } from '@/lib/utils';
-import { Photo } from '../types';
 import { WizGalleryAnimationItem } from './WizGalleryAnimationItem';
+import { useGetMainWizPhoto } from '../apis/mainApi.query';
+import Skeleton from 'react-loading-skeleton';
 
 function WizGallery() {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+  const {
+    data: photos,
+    isLoading,
+    isError,
+    error,
+  } = useGetMainWizPhoto({
+    variables: {
+      count: 10,
+    },
+  });
 
-  useEffect(() => {
-    const getMainPhotos = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/media/photolist?count=10`
-        );
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
+  }
 
-        if (status === 200 && data) {
-          setPhotos(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getMainPhotos();
-  }, []);
-
-  if (photos.length === 0) {
-    return null;
+  if (!photos || !photos.length) {
+    return <div>데이터가 존재하지 않습니다.</div>;
   }
 
   return (
-    <Card className="w-full border-none shadow-none flex flex-col items-center pb-8">
-      <CardHeader className="w-full px-0">
-        <CardTitle className={cn('text-wiz-white text-lg', 'lg:text-2xl')}>
-          wiz Gallery
-        </CardTitle>
-        <CardDescription className="text-gray-400">
-          좌우 스크롤을 통해 사진을 볼 수 있습니다.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="w-full flex flex-col items-center gap-4 px-0">
+    <div className="w-full">
+      <h3
+        className={cn(
+          'text-white font-bold text-base my-2',
+          'md:text-xl md:my-3',
+          'lg:text-2xl lg:my-4'
+        )}
+      >
+        wiz Gallery
+      </h3>
+      <p className="text-neutral-400 mb-1 text-sm md:text-base">
+        좌우 스크롤을 통해 사진을 볼 수 있습니다.
+      </p>
+      <div className="w-full">
         <Carousel className="w-full">
           <CarouselContent>
-            {photos.map((photo, index) => (
-              <WizGalleryAnimationItem
-                key={photo.artcSeq}
-                photo={photo}
-                index={index}
-              />
-            ))}
+            {isLoading
+              ? Array.from({ length: 3 }).map(() => (
+                  <CarouselItem
+                    className={cn(
+                      'md:basis-1/2 lg:basis-1/3 transition-transform duration-500 ease-in-out'
+                    )}
+                  >
+                    <Skeleton
+                      className="w-full h-[36rem] rounded-xl"
+                      baseColor="#d1d5db"
+                    />
+                  </CarouselItem>
+                ))
+              : photos.map((photo, index) => (
+                  <WizGalleryAnimationItem
+                    key={photo.artcSeq}
+                    photo={photo}
+                    index={index}
+                  />
+                ))}
           </CarouselContent>
         </Carousel>
-      </CardContent>
-      <CardFooter>
+      </div>
+      <div className="flex items-center justify-center my-4">
         <Link
           to="/media/photos/1"
           className={cn(
@@ -75,8 +76,8 @@ function WizGallery() {
         >
           더 많은 사진보기
         </Link>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
 
