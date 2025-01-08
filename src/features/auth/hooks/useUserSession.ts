@@ -18,7 +18,7 @@ const useUserSession = () => {
       if (data?.session?.user) {
         const user = data.session.user;
         setEmail(user.email || null);
-        setNickname(user.user_metadata?.nickname || null);
+        setNickname(user.user_metadata?.nickname || user.user_metadata?.name);
         setSub(user.id || null);
       }
     };
