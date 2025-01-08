@@ -16,11 +16,13 @@ import {
 } from 'recharts';
 import { Props } from 'recharts/types/container/Surface';
 import CustomTooltip from './CustomTooltip';
+import Skeleton from 'react-loading-skeleton';
 
 type PlayerRank = OverallPitcherRank | OverallBatterRank;
 
 interface PlayerScatterChartProps<T extends PlayerRank> {
   data: T[];
+  loading?: boolean;
   position: 'pitcher' | 'batter';
 }
 
@@ -33,11 +35,8 @@ interface CellProps<T extends PlayerRank> {
 function PlayerScatterChart<T extends PlayerRank>({
   data,
   position,
+  loading = false,
 }: PlayerScatterChartProps<T>) {
-  if (!data.length) {
-    return null;
-  }
-
   const { x, y, xLabel, yLabel } = useMemo(() => {
     return position === 'pitcher'
       ? { x: 'wra', xLabel: '승률', y: 'era', yLabel: '평균자책점' }
@@ -214,48 +213,56 @@ function PlayerScatterChart<T extends PlayerRank>({
           </div>
         </div>
       </div>
-      <ResponsiveContainer aspect={aspect}>
-        <ScatterChart data={data}>
-          <CartesianGrid />
-          <XAxis
-            type="number"
-            dataKey={x}
-            label={{
-              value: xLabel,
-              position: 'insideBottom',
-              fontSize,
-            }}
-            height={50}
-            domain={['dataMin', 'auto']}
-            tick={{ fontSize }}
-          />
-          <YAxis
-            type="number"
-            dataKey={y}
-            label={{
-              value: yLabel,
-              angle: 90,
-              position: 'insideLeft',
-              fontSize,
-            }}
-            domain={['dataMin', 'auto']}
-            tick={{ fontSize }}
-          />
-          <Tooltip
-            content={<CustomTooltip type={position} />}
-            cursor={{ strokeDasharray: '3 3' }}
-          />
-          <Scatter
-            name={`${xLabel}과 ${yLabel} 비교`}
-            data={chartData}
-            shape={renderImageCell}
-          >
-            {data.map((entry) => (
-              <Cell key={entry.pcode} />
-            ))}
-          </Scatter>
-        </ScatterChart>
-      </ResponsiveContainer>
+      {loading && (
+        <div>
+          <Skeleton baseColor="#d1d5db" className="w-full aspect-[3/1]" />
+        </div>
+      )}
+      {!loading && !data.length && <div>데이터가 존재하지 않습니다.</div>}
+      {!loading && data.length > 0 && (
+        <ResponsiveContainer aspect={aspect}>
+          <ScatterChart data={data}>
+            <CartesianGrid />
+            <XAxis
+              type="number"
+              dataKey={x}
+              label={{
+                value: xLabel,
+                position: 'insideBottom',
+                fontSize,
+              }}
+              height={50}
+              domain={['dataMin', 'auto']}
+              tick={{ fontSize }}
+            />
+            <YAxis
+              type="number"
+              dataKey={y}
+              label={{
+                value: yLabel,
+                angle: 90,
+                position: 'insideLeft',
+                fontSize,
+              }}
+              domain={['dataMin', 'auto']}
+              tick={{ fontSize }}
+            />
+            <Tooltip
+              content={<CustomTooltip type={position} />}
+              cursor={{ strokeDasharray: '3 3' }}
+            />
+            <Scatter
+              name={`${xLabel}과 ${yLabel} 비교`}
+              data={chartData}
+              shape={renderImageCell}
+            >
+              {data.map((entry) => (
+                <Cell key={entry.pcode} />
+              ))}
+            </Scatter>
+          </ScatterChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 }
