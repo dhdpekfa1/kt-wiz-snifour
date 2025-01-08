@@ -21,7 +21,7 @@ import { Link } from 'react-router';
 import { z } from 'zod';
 import useLogin from '@/features/auth/hooks/useLogin';
 import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
-import { supabase } from '@/lib/supabase';
+import useGoogleLogin from '@/features/auth/hooks/useGoogleLogin';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -38,6 +38,8 @@ const LoginPage = () => {
   });
   useAuthRedirect();
 
+  const { signinWithGoogle } = useGoogleLogin();
+
   // 로컬 스토리지에서 이메일 불러오기
   useEffect(() => {
     const savedEmail = localStorage.getItem('savedEmail');
@@ -53,23 +55,6 @@ const LoginPage = () => {
     if (!success) {
       console.error(error);
     }
-  };
-
-  const signinWhiteGoogle = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
-        },
-      },
-    });
-
-    if (error) {
-      console.error(error);
-    }
-    console.log(data);
   };
 
   return (
@@ -170,7 +155,7 @@ const LoginPage = () => {
                   <Button
                     className="w-full"
                     type="button"
-                    onClick={signinWhiteGoogle}
+                    onClick={signinWithGoogle}
                   >
                     <img
                       src="/assets/auth/google_login.png"
