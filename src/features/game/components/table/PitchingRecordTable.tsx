@@ -1,6 +1,6 @@
 import { pitchingRecordColumns } from '@/constants/columns/pitching-record-columns';
 import DataTable from '@/features/common/DataTable';
-import type { Pitcher } from '../../types/BoxscoreData';
+import type { Pitcher } from '../../types/boxscore';
 
 interface PitchingRecordTableProps {
   data: Pitcher[] | undefined;

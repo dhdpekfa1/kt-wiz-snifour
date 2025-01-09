@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui';
 import { usePlayerImage } from '../../hooks/boxscore/usePlayerImage';
-import { BoxscoreData, EtcGame } from '../../types/BoxscoreData';
+import { BoxscoreData, EtcGame } from '../../types/boxscore';
 
 interface KeyRecordsTableProps {
   data: BoxscoreData;
@@ -28,8 +28,9 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
     return str.match(pattern) || [str];
   };
 
-  const handlerPlayerImage = (name: string) => {
-    let team: string | undefined;
+  const handlePlayerImage = (playerName: string) => {
+    let team = '';
+    const name = playerName.replace(/\d+/g, '').trim(); //이름에서 숫자 제외
 
     // 홈 팀 타자, 투수 확인
     if (
@@ -47,7 +48,17 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
       team = data.schedule.current.visit;
     }
 
-    const { playerImage } = usePlayerImage(team, name);
+    const {
+      data: playerImage,
+      isLoading,
+      isError,
+      error,
+    } = usePlayerImage(team, name);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error: {error.message}</div>;
+    if (!playerImage) return <div>데이터가 없습니다.</div>;
+
     return (
       <img
         src={playerImage}
@@ -61,7 +72,6 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {tableRows.map((row) => (
         <Card
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           key={row.label}
           className="hover:scale-105 transition-transform ease-in-out duration-500 rounded-lg"
         >
@@ -73,7 +83,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
               (record) => (
                 <div className="flex gap-2 items-center">
                   {row.label !== '심판' && record.length > 0
-                    ? handlerPlayerImage(
+                    ? handlePlayerImage(
                         record.substring(0, record.indexOf('('))
                       )
                     : ''}

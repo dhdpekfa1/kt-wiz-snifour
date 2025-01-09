@@ -55,6 +55,7 @@ export enum ApiRoutes {
   TodayGameSchedule = '/game/dayschedule',
   RecentGameSchedule = '/game/recentGames',
   WatchPoint = '/game/watchpoint',
+  Boxscore = '/game/boxscore',
 }
 
 // page routes: 페이지 경로 (TODO: 페이지 경로 업데이트)
