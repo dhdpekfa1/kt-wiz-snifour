@@ -6,6 +6,8 @@ import {
   PitchingRecordTable,
 } from '@/features/game/components/table';
 import { formatDate } from '@/lib/utils';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { useParams } from 'react-router';
 import { useGetBoxscoreQuery } from './apis/boxscore/boxscoreApi.query';
 import KeyRecordsCard from './components/card/KeyRecordsCard';
@@ -25,9 +27,9 @@ const BoxscoreTab = () => {
     error,
   } = useGetBoxscoreQuery(gameDate, gameKey);
 
-  if (isLoading) return <div>Loading...</div>;
+  //if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
-  if (!matchData) return <div>데이터가 없습니다.</div>;
+  //if (!matchData) return <div>데이터가 없습니다.</div>;
 
   const handleDateChange = (direction: 'prev' | 'next') => {
     if (matchData) {
@@ -42,7 +44,6 @@ const BoxscoreTab = () => {
       }
     }
   };
-  console.log('matchData', matchData.schedule);
 
   return (
     <div className="w-full flex justify-center my-20">
@@ -51,39 +52,53 @@ const BoxscoreTab = () => {
         <Breadcrumb />
 
         {/* 경기 스코어 테이블 */}
-        <MatchBoard
-          team1Data={{
-            teamName: matchData?.schedule.current.visit,
-            logoUrl: matchData?.schedule.current.visitLogo,
-            result: matchData?.schedule.current.vscore,
-            stadium: '원정',
-            tabType: 'MatchBoard',
-          }}
-          team2Data={{
-            teamName: matchData?.schedule.current.home,
-            logoUrl: matchData?.schedule.current.homeLogo,
-            result: matchData?.schedule.current.hscore,
-            stadium: '홈',
-            tabType: 'MatchBoard',
-          }}
-          matchDate={formatDate(
-            matchData?.schedule.current.gameDate.toString()
-          )}
-          matchTime={matchData?.schedule.current.gtime}
-          stadium={matchData?.schedule.current.stadium}
-          gameTable={<MatchScoreTable data={matchData?.scoreboard} />}
-          crowd={matchData?.schedule.current.crowdCn}
-          onDateChange={handleDateChange}
-          disablePrev={!matchData.schedule.prev}
-          disableNext={!matchData.schedule.next}
-        />
+        {isLoading || !matchData ? (
+          <div className="bg-gray-200 animate-pulse rounded-lg w-full">
+            <Skeleton height={340} className="w-full mb-10" />
+          </div>
+        ) : (
+          <MatchBoard
+            team1Data={{
+              teamName: matchData?.schedule.current.visit,
+              logoUrl: matchData?.schedule.current.visitLogo,
+              result: matchData?.schedule.current.vscore,
+              stadium: '원정',
+              tabType: 'MatchBoard',
+            }}
+            team2Data={{
+              teamName: matchData?.schedule.current.home,
+              logoUrl: matchData?.schedule.current.homeLogo,
+              result: matchData?.schedule.current.hscore,
+              stadium: '홈',
+              tabType: 'MatchBoard',
+            }}
+            matchDate={formatDate(
+              matchData?.schedule.current.gameDate.toString()
+            )}
+            matchTime={matchData?.schedule.current.gtime}
+            stadium={matchData?.schedule.current.stadium}
+            gameTable={<MatchScoreTable data={matchData?.scoreboard} />}
+            crowd={matchData?.schedule.current.crowdCn}
+            onDateChange={handleDateChange}
+            disablePrev={!matchData.schedule.prev}
+            disableNext={!matchData.schedule.next}
+          />
+        )}
 
         {/* 주요 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
-          <div className="w-full items-center mt-4">
-            <KeyRecordsCard data={matchData} />
-          </div>
+          {isLoading || !matchData ? (
+            <Skeleton
+              height={20}
+              width="100%"
+              className="bg-gray-200 animate-pulse"
+            />
+          ) : (
+            <div className="w-full items-center mt-4">
+              <KeyRecordsCard data={matchData} />
+            </div>
+          )}
         </div>
         {/* team1 타자 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
