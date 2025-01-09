@@ -5,8 +5,8 @@ import CustomSelect from '@/features/common/CustomSelect.tsx';
 import DataTable from '@/features/common/DataTable';
 import SubTitle from '@/features/common/SubTitle';
 import { useCrowdRank } from '@/features/game/hooks/ranking';
-import { CrowdRankingChart } from './CrowdRankingChart';
 import { useSearchParams } from 'react-router';
+import { CrowdRankingChart } from './CrowdRankingChart';
 
 function CrowdRankingTab() {
   const [searchParams, setSearchParams] = useSearchParams();
