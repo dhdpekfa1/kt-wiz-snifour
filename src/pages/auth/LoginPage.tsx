@@ -10,6 +10,10 @@ import {
   Label,
   PasswordInput,
 } from '@/components/ui';
+import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
+import useGoogleLogin from '@/features/auth/hooks/useGoogleLogin';
+import useKakaoLogin from '@/features/auth/hooks/useKakaoLogin';
+import useLogin from '@/features/auth/hooks/useLogin';
 import { loginSchema } from '@/features/auth/schemas/loginSchema';
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
@@ -19,9 +23,6 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { z } from 'zod';
-import useLogin from '@/features/auth/hooks/useLogin';
-import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
-import useGoogleLogin from '@/features/auth/hooks/useGoogleLogin';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -39,6 +40,8 @@ const LoginPage = () => {
   useAuthRedirect();
 
   const { signinWithGoogle } = useGoogleLogin();
+
+  const { signinWithKakao } = useKakaoLogin();
 
   // 로컬 스토리지에서 이메일 불러오기
   useEffect(() => {
@@ -148,6 +151,7 @@ const LoginPage = () => {
                   <Button
                     className="w-full cursor-pointer bg-[#ffeb38] hover:bg-[#ffeb38] text-xs md:text-sm lg:text-base text-wiz-black"
                     type="button"
+                    onClick={signinWithKakao}
                   >
                     <img
                       src="/assets/auth/kakao_logo.png"
