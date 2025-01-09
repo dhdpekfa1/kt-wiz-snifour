@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { format, addMonths, subMonths } from 'date-fns';
 import { CarouselApi } from '@/components/ui';
 import { GameSchedule } from '@/features/game/types/match-schedule';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { addMonths, format, subMonths } from 'date-fns';
+import { useEffect } from 'react';
 import { scheduleApi } from './matchScheduleApi';
 
 interface UseMatchScheduleQueryParams {
@@ -30,7 +30,7 @@ export const useGetMatchScheduleQuery = ({
 
   // 호출할 함수 선택
   const fetchFn =
-    type === 'kt'
+    type !== 'all'
       ? async (yearMonth: string): Promise<GameSchedule[]> => {
           const response = await scheduleApi.getMonthSchedule(yearMonth);
           return response.data.list;
@@ -39,6 +39,7 @@ export const useGetMatchScheduleQuery = ({
           const response = await scheduleApi.getAllMonthSchedule(yearMonth);
           return response.data.list;
         };
+
   // 현재 달 데이터 가져오기
   const {
     data: currentData = [],
