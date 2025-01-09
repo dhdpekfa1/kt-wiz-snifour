@@ -79,11 +79,11 @@ function DataTable<TData>({
           <TableRow
             key={row.id}
             className={cn(
-              'border-b-wiz-white border-opacity-10 whitespace-nowrap',
+              'border-b-wiz-white border-opacity-10 whitespace-nowrap bg-wiz-white bg-opacity-0 hover:bg-opacity-15',
               domain === 'all' &&
                 ((row.original as TData & TypeHasTeamName).teamName === 'KT' ||
                   (row.original as TData & TypeHasTeamName).team === 'KT') &&
-                'bg-wiz-red bg-opacity-70 border-b-wiz-red'
+                'bg-wiz-red bg-opacity-70 border-b-wiz-red hover:bg-opacity-90'
             )}
           >
             {row.getVisibleCells().map((cell) => (
