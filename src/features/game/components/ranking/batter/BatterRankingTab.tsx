@@ -1,15 +1,15 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
+import { seasons } from '@/constants/seasons';
 import Breadcrumb from '@/features/common/Breadcrumb';
+import CustomSelect from '@/features/common/CustomSelect.tsx';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import { useTopBatterRank } from '@/features/game/hooks/ranking';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router';
 import { RankingCard } from '../common/RankingCard';
 import { AllBatterRankingTab } from './AllBatterRankingTab';
 import { KTBatterRankingTab } from './KTBatterRankingTab';
-import { useSearchParams } from 'react-router';
-import { useState } from 'react';
-import { seasons } from '@/constants/seasons';
-import CustomSelect from '@/features/common/CustomSelect.tsx';
 
 function BatterRankingTab() {
   const { hraRanking, hrRanking, isLoading, error, isError } =
@@ -18,14 +18,6 @@ function BatterRankingTab() {
   const [season, setSeason] = useState<string>(
     searchParams.get('gyear') || seasons[0]
   );
-
-  if (!hraRanking?.length || !hrRanking?.length) {
-    return null;
-  }
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
 
   if (isError) {
     return <div>{error?.toString()}</div>;
@@ -59,15 +51,17 @@ function BatterRankingTab() {
       >
         <RankingCard
           title="타율 TOP 3"
-          ranking={hraRanking}
+          ranking={hraRanking || []}
           position="batter"
           indicator="hra"
+          loading={isLoading}
         />
         <RankingCard
           title="홈런 TOP 3"
-          ranking={hrRanking}
+          ranking={hrRanking || []}
           position="batter"
           indicator="hr"
+          loading={isLoading}
         />
       </div>
 

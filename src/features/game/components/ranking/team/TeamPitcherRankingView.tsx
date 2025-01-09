@@ -7,10 +7,6 @@ import TeamRankingView from '../common/TeamRankingView';
 function TeamPitcherRankingView() {
   const { ranking, isLoading, isError, error } = useTeamRank('pitcher');
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   if (isError) {
     return <div>{error?.toString()}</div>;
   }
@@ -27,6 +23,7 @@ function TeamPitcherRankingView() {
         chartData={ranking as TeamPitcherRank[]}
         columns={teamPitcherRankColumns}
         chartConfig={TeamRankingPitcherConfig}
+        loading={isLoading}
         domain="all"
       />
     </>

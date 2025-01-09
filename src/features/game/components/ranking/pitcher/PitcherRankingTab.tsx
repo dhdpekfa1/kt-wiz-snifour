@@ -1,4 +1,6 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
+import { seasons } from '@/constants/seasons';
+import CustomSelect from '@/features/common/CustomSelect.tsx';
 import {
   AllPitcherRankingTab,
   KTPitcherRankingTab,
@@ -6,12 +8,10 @@ import {
 } from '@/features/game/components/ranking';
 import { useTopPitcherRank } from '@/features/game/hooks/ranking/useTopPitcherRank';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router';
 import Breadcrumb from '../../../../common/Breadcrumb';
 import SubTabsTrigger from '../../../../common/SubTabsTrigger';
-import CustomSelect from '@/features/common/CustomSelect.tsx';
-import { useSearchParams } from 'react-router';
-import { seasons } from '@/constants/seasons';
-import { useState } from 'react';
 
 function PitcherRankingTab() {
   const { eraRanking, winRanking, isLoading, error, isError } =
@@ -20,10 +20,6 @@ function PitcherRankingTab() {
   const [season, setSeason] = useState<string>(
     searchParams.get('gyear') || seasons[0]
   );
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
 
   if (isError) {
     return <div>{error?.toString()}</div>;
@@ -60,12 +56,14 @@ function PitcherRankingTab() {
           ranking={eraRanking || []}
           position="pitcher"
           indicator="era"
+          loading={isLoading}
         />
         <RankingCard
           title="승리 TOP 3"
           ranking={winRanking || []}
           position="pitcher"
           indicator="w"
+          loading={isLoading}
         />
       </div>
 

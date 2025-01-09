@@ -5,14 +5,6 @@ import { useTeamRank } from '@/features/game/hooks/ranking/useTeamRank';
 function TeamRankingTable() {
   const { ranking, isLoading, isError, error } = useTeamRank('team');
 
-  if (isLoading) {
-    return (
-      <div className="w-full min-h-48 flex items-center justify-center font-bold text-2xl">
-        데이터 불러오는 중...
-      </div>
-    );
-  }
-
   if (isError) {
     return (
       <div className="w-full min-h-48 flex items-center justify-center font-bold text-2xl">
@@ -29,7 +21,14 @@ function TeamRankingTable() {
     );
   }
 
-  return <DataTable data={ranking} columns={teamRankColums} domain="all" />;
+  return (
+    <DataTable
+      data={ranking}
+      columns={teamRankColums}
+      loading={isLoading}
+      domain="all"
+    />
+  );
 }
 
 export { TeamRankingTable };

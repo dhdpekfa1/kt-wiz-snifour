@@ -21,5 +21,5 @@ export { CrowdRankingChart } from './crowd/CrowdRankingChart';
 
 /** 공통 */
 export { RankingCard } from './common/RankingCard';
-export { PlayerScatterChart } from './common/PlayerScatterChart';
+export { PlayerScatterChart } from './common/chart/PlayerScatterChart';
 export { SortingTrigger } from './common/SortingTrigger';

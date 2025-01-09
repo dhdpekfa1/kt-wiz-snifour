@@ -5,17 +5,13 @@ import CustomSelect from '@/features/common/CustomSelect.tsx';
 import DataTable from '@/features/common/DataTable';
 import SubTitle from '@/features/common/SubTitle';
 import { useCrowdRank } from '@/features/game/hooks/ranking';
-import { CrowdRankingChart } from './CrowdRankingChart';
 import { useSearchParams } from 'react-router';
+import { CrowdRankingChart } from './CrowdRankingChart';
 
 function CrowdRankingTab() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { ranking, isLoading, isError, error } = useCrowdRank();
   const season = searchParams.get('gyear') || seasons[0];
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
 
   if (isError) {
     return <div>{error?.toString()}</div>;
@@ -46,8 +42,13 @@ function CrowdRankingTab() {
       </div>
 
       <div>
-        <CrowdRankingChart data={ranking} />
-        <DataTable data={ranking} columns={crowdRankColumns} domain="all" />
+        <CrowdRankingChart data={ranking} loading={isLoading} />
+        <DataTable
+          data={ranking}
+          columns={crowdRankColumns}
+          domain="all"
+          loading={isLoading}
+        />
       </div>
     </div>
   );

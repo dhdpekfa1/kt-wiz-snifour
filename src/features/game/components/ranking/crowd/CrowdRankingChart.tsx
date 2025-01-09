@@ -1,10 +1,12 @@
 import { ChartContainer } from '@/components/ui/chart';
 import { CrowdRank } from '@/features/game/types/ranking';
 import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from 'recharts';
 
 interface CrowdRankingChartProps {
   data: CrowdRank[];
+  loading?: boolean;
 }
 
 const chartConfig = {
@@ -14,12 +16,8 @@ const chartConfig = {
   },
 };
 
-function CrowdRankingChart({ data }: CrowdRankingChartProps) {
+function CrowdRankingChart({ data, loading = false }: CrowdRankingChartProps) {
   const [fontSize, setFontSize] = useState('16px');
-
-  if (!data) {
-    return null;
-  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,6 +38,14 @@ function CrowdRankingChart({ data }: CrowdRankingChartProps) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <Skeleton className="w-full aspect-[3/1]" baseColor="#d1d5db" />
+      </div>
+    );
+  }
 
   return (
     <ChartContainer config={chartConfig} className="w-full h-96 mb-8">
@@ -67,6 +73,7 @@ function CrowdRankingChart({ data }: CrowdRankingChartProps) {
         >
           {data.map((team) => (
             <Cell
+              key={team.teamCode}
               fill={team.teamCode === 'KT' ? '#D60C0C' : 'var(--color-crowd)'}
             />
           ))}
