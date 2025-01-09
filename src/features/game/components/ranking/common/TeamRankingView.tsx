@@ -16,6 +16,7 @@ interface TeamRankingViewProps<T> {
     | TeamBatterRank[];
   columns: ColumnDef<T>[];
   chartConfig: Config;
+  loading?: boolean;
   domain: 'kt' | 'all' | undefined;
 }
 
@@ -24,6 +25,7 @@ function TeamRankingView<T>({
   chartData,
   columns,
   chartConfig: initialChartConfig,
+  loading = false,
   domain,
 }: TeamRankingViewProps<T>) {
   const [selectedTab, setSelectedTab] = useState<'table' | 'chart'>('table');
@@ -80,7 +82,12 @@ function TeamRankingView<T>({
         </button>
       </div>
       {selectedTab === 'table' ? (
-        <DataTable data={tableData} columns={columns} domain={domain} />
+        <DataTable
+          data={tableData}
+          columns={columns}
+          loading={loading}
+          domain={domain}
+        />
       ) : (
         <div>
           <CustomBarChart

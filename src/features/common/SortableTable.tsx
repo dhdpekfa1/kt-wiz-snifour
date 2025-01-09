@@ -19,18 +19,21 @@ import {
 import { OverallBatterRank } from '@/features/common/types/batters';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
 import { cn } from '@/lib/utils';
+import Skeleton from 'react-loading-skeleton';
 
 type PlayerRank = OverallPitcherRank | OverallBatterRank;
 
 interface PlayerRankingTableProps<T extends PlayerRank> {
   data: T[];
   columns: ColumnDef<T>[];
+  loading?: boolean;
   domain: 'kt' | 'all';
 }
 
 function SortableTable<T extends PlayerRank>({
   data,
   columns,
+  loading = false,
   domain,
 }: PlayerRankingTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -44,6 +47,18 @@ function SortableTable<T extends PlayerRank>({
       sorting,
     },
   });
+
+  if (loading) {
+    return (
+      <div>
+        <Skeleton
+          baseColor="#d1d5db"
+          className="w-full h-8 md:h-10 lg:h-12"
+          count={10}
+        />
+      </div>
+    );
+  }
 
   return (
     <Table className="mt-4">
