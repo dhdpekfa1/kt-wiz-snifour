@@ -1,5 +1,5 @@
 import { ChartContainer } from '@/components/ui/chart';
-import { CrowdRank } from '@/features/game/types/crowd-ranking';
+import { CrowdRank } from '@/features/game/types/ranking';
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from 'recharts';
 

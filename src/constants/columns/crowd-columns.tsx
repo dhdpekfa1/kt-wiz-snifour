@@ -1,4 +1,4 @@
-import { CrowdRank } from '@/features/game/types/crowd-ranking';
+import { CrowdRank } from '@/features/game/types/ranking';
 import { ColumnDef } from '@tanstack/react-table';
 
 export const crowdRankColumns: ColumnDef<CrowdRank>[] = [
