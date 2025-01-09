@@ -7,9 +7,9 @@ import {
 } from '@/features/game/components/table';
 import { formatDate } from '@/lib/utils';
 import { useParams } from 'react-router';
+import { useGetBoxscoreQuery } from './apis/boxscore/boxscoreApi.query';
 import KeyRecordsCard from './components/card/KeyRecordsCard';
 import { MatchBoard } from './components/common';
-import useBoxscore from './hooks/boxscore/useBoxscore';
 
 const BoxscoreTab = () => {
   //TODO: recentScheduleApi query를 이용해서 초기 렌더링 화면을 최신경기의 gameDate, gameKey로 세팅하기
@@ -23,7 +23,7 @@ const BoxscoreTab = () => {
     isLoading,
     isError,
     error,
-  } = useBoxscore(gameDate, gameKey);
+  } = useGetBoxscoreQuery(gameDate, gameKey);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
