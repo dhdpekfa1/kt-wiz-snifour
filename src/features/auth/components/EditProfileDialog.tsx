@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
   Input,
   Label,
   Button,
@@ -129,12 +130,14 @@ const EditProfileDialog = ({
             >
               로그아웃
             </Button>
-            <Button
-              type="submit"
-              className="bg-wiz-white bg-opacity-10 hover:bg-wiz-white hover:bg-opacity-20 w-full"
-            >
-              저장
-            </Button>
+            <DialogClose asChild>
+              <Button
+                type="submit"
+                className="bg-wiz-white bg-opacity-10 hover:bg-wiz-white hover:bg-opacity-20 w-full"
+              >
+                저장
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>

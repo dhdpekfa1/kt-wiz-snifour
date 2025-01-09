@@ -21,6 +21,7 @@ import { Link } from 'react-router';
 import { z } from 'zod';
 import useLogin from '@/features/auth/hooks/useLogin';
 import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
+import useGoogleLogin from '@/features/auth/hooks/useGoogleLogin';
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -36,6 +37,8 @@ const LoginPage = () => {
     resolver: zodResolver(loginSchema),
   });
   useAuthRedirect();
+
+  const { signinWithGoogle } = useGoogleLogin();
 
   // 로컬 스토리지에서 이메일 불러오기
   useEffect(() => {
@@ -63,7 +66,7 @@ const LoginPage = () => {
             alt="login"
           />
           <Banner.Overlay>
-            <Banner.Heading title="Login" subtitle="kt wiz의 가족" />
+            <Banner.Heading title="로그인" subtitle="kt wiz의 가족" />
             <Banner.Description description="로그인 후 kt wiz 사이트를 더욱 다양하게 이용해 보세요." />
           </Banner.Overlay>
         </Banner>
@@ -132,16 +135,40 @@ const LoginPage = () => {
                   이메일 저장
                 </Label>
               </div>
-              {/* {errorMessage && (
-                <p className="text-red-500 text-xs mt-2">{errorMessage}</p>
-              )} */}
+
               <CardFooter className="flex flex-col mt-6 gap-2">
                 <Button
-                  className="w-full m text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70"
+                  className="w-full text-white bg-wiz-red hover:bg-wiz-red hover:bg-opacity-70 text-sm lg:text-base"
                   type="submit"
                 >
                   로그인
                 </Button>
+                {/* 소셜 로그인 */}
+                <div className="flex w-full mt-1 md:mt-2 lg:mt-4 gap-3">
+                  <Button
+                    className="w-full cursor-pointer bg-[#ffeb38] hover:bg-[#ffeb38] text-xs md:text-sm lg:text-base text-wiz-black"
+                    type="button"
+                  >
+                    <img
+                      src="/assets/auth/kakao_logo.png"
+                      alt="kakao logo"
+                      className="w-auto h-5 md:h-6 lg:h-8"
+                    />
+                    <p>카카오 로그인</p>
+                  </Button>
+                  <Button
+                    className="flex items-center w-full cursor-pointer bg-[#f2f2f2] hover:bg-[#f2f2f2] text-xs md:text-sm lg:text-base text-wiz-black"
+                    type="button"
+                    onClick={signinWithGoogle}
+                  >
+                    <img
+                      src="/assets/auth/google_logo.png"
+                      alt="google logo"
+                      className="w-auto h-5 md:h-6 lg:h-8"
+                    />
+                    <p>구글 로그인</p>
+                  </Button>
+                </div>
               </CardFooter>
             </form>
           </CardContent>
