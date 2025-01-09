@@ -37,9 +37,8 @@ export function useGetPhotoList(
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      return allPages.length < lastPage.data.list[0].totalPage
-        ? allPages.length + 1
-        : undefined;
+      const totalPage = lastPage?.data?.list?.[0]?.totalPage ?? 0; // 안전하게 접근하고 기본값 설정
+      return allPages.length < totalPage ? allPages.length + 1 : undefined;
     },
     select: (
       data: InfiniteData<PhotoResponse, number>
