@@ -56,8 +56,16 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
     } = usePlayerImage(team, name);
 
     if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Error: {error.message}</div>;
-    if (!playerImage) return <div>데이터가 없습니다.</div>;
+    if (isError || !playerImage) {
+      console.log(error?.message);
+      return (
+        <img
+          src={undefined}
+          alt={name}
+          className="w-6 h-8 sm:w-7 sm:h-9 rounded-full"
+        />
+      );
+    }
 
     return (
       <img
