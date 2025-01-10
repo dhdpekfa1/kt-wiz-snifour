@@ -8,10 +8,7 @@ export const BOXSCORE_QUERY_KEY = (gameDate: string, gmkey: string) => [
   gmkey,
 ];
 
-export const useGetBoxscoreQuery = (
-  gameDate = '20241011',
-  gmkey = '33331011KTLG0'
-) => {
+export const useGetBoxscoreQuery = (gameDate: string, gmkey: string) => {
   return useQuery({
     queryKey: BOXSCORE_QUERY_KEY(gameDate, gmkey),
     queryFn: () => boxscoreApi.getMatchData(gameDate, gmkey),
