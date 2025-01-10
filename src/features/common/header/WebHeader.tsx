@@ -14,13 +14,13 @@ function WebHeader({ className }: { className?: string }) {
     <div
       className={cn(
         'w-screen fixed top-0 z-10 text-white hidden lg:flex flex-col justify-between items-center transition-all duration-150 origin-top',
-        isHovered ? 'bg-white h-96' : 'bg-black h-28 overflow-hidden',
+        isHovered ? 'bg-white h-96' : 'bg-black h-30',
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="w-[1200px]">
+      <div className="w-[1200px] h-30">
         {/* 윗단 - 스폰서, 로그인, 회원가입, KT Sports */}
         <nav className="">
           <ul
@@ -33,14 +33,20 @@ function WebHeader({ className }: { className?: string }) {
                 <li>{nickname}</li>
               </EditProfileDialog>
             ) : (
-              <>
-                <Link to="/login">
+              <div className="h-10 flex items-center gap-2">
+                <Link
+                  to="/login"
+                  className="border-b border-b-transparent hover:border-b-wiz-red"
+                >
                   <li>로그인</li>
                 </Link>
-                <Link to="/join">
+                <Link
+                  to="/join"
+                  className="border-b border-b-transparent hover:border-b-wiz-red"
+                >
                   <li>회원가입</li>
                 </Link>
-              </>
+              </div>
             )}
           </ul>
         </nav>
@@ -49,6 +55,7 @@ function WebHeader({ className }: { className?: string }) {
         {/* hover 안 했을 때 */}
         <nav className={isHovered ? 'text-black' : 'text-white'}>
           <ul className="grid grid-cols-8 text-xl font-semibold ">
+            {/* 로고 */}
             <li className="">
               {isHovered ? (
                 <Link to="/">
@@ -67,9 +74,10 @@ function WebHeader({ className }: { className?: string }) {
             {navMenus.map((menu) => (
               <li
                 key={menu.title}
-                className={`w-fit border-b-4 border-b-transparent py-6 cursor-pointer hover:border-b-[#d60c0c] ${
-                  menu.title === '티켓구매' ? 'text-[#d60c0c]' : ''
-                }`}
+                className={cn(
+                  'w-fit h-20 border-b-4 border-b-transparent cursor-pointer hover:border-b-wiz-red flex items-center justify-center',
+                  menu.title === '티켓구매' ? 'text-wiz-red' : ''
+                )}
               >
                 {menu.title === 'Shop' ? (
                   <Link to="https://www.ktwizstore.co.kr/">{menu.title}</Link>

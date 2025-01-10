@@ -1,4 +1,4 @@
-import type { Pitcher } from '@/features/game/types/BoxscoreData';
+import type { Pitcher } from '@/features/game/types/boxscore';
 import { ColumnDef } from '@tanstack/react-table';
 
 const generateResult = (wls: string) => {

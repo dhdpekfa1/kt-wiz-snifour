@@ -1,3 +1,7 @@
+export interface BoxscoreResponse {
+  data: BoxscoreData[];
+}
+
 export interface BoxscoreData {
   etcgames: EtcGame[];
   gameFlag: string;

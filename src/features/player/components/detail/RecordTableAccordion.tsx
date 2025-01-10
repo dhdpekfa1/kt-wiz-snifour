@@ -13,7 +13,7 @@ import {
 import DataTable from '@/features/common/DataTable';
 import { cn } from '@/lib/utils';
 import { useParams } from 'react-router';
-import { RecentRecord, YearRecord } from '../types/detail';
+import { RecentRecord, YearRecord } from '../../types/detail';
 
 interface RecordTableAccordionProps {
   data: RecentRecord[] | YearRecord[];

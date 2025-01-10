@@ -20,7 +20,7 @@ const StoryGridView = () => {
     fetchNextPage,
   } = useStoryListQuery();
 
-  if (!isLoading && isSuccess && !storyList?.pages?.length) {
+  if (!isLoading && isSuccess && !storyList?.pages?.[0]?.length) {
     return <NotFoundSearchResult />;
   }
   const handleLoadMore = () => {

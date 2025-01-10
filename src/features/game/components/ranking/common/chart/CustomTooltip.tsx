@@ -1,6 +1,6 @@
 import { OverallBatterRank } from '@/features/common/types/batters';
 import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { CrowdRank } from '@/features/game/types/crowd-ranking';
+import { CrowdRank } from '@/features/game/types/ranking';
 import { useMemo } from 'react';
 import { TooltipProps } from 'recharts';
 import CustomIndicator from './CustomIndicator';

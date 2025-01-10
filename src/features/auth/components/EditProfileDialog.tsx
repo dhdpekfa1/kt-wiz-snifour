@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
   Input,
   Label,
 } from '@/components/ui';
@@ -75,7 +76,7 @@ const EditProfileDialog = ({
         <Button
           variant={null}
           className={cn(
-            '-ml-3  lg:border-b-2 lg:border-b-wiz-red rounded-sm',
+            '-ml-3 lg:h-10 lg:border-b-2 lg:border-b-wiz-red rounded-sm',
             isHovered ? ' text-wiz-black' : 'text-wiz-white bg-opacity-20'
           )}
         >
@@ -129,12 +130,14 @@ const EditProfileDialog = ({
             >
               로그아웃
             </Button>
-            <Button
-              type="submit"
-              className="bg-wiz-white bg-opacity-10 hover:bg-wiz-white hover:bg-opacity-20 w-full"
-            >
-              저장
-            </Button>
+            <DialogClose asChild>
+              <Button
+                type="submit"
+                className="bg-wiz-white bg-opacity-10 hover:bg-wiz-white hover:bg-opacity-20 w-full"
+              >
+                저장
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>

@@ -21,10 +21,6 @@ function PitcherRankingTab() {
     searchParams.get('gyear') || seasons[0]
   );
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   if (isError) {
     return <div>{error?.toString()}</div>;
   }
@@ -60,12 +56,14 @@ function PitcherRankingTab() {
           ranking={eraRanking || []}
           position="pitcher"
           indicator="era"
+          loading={isLoading}
         />
         <RankingCard
           title="승리 TOP 3"
           ranking={winRanking || []}
           position="pitcher"
           indicator="w"
+          loading={isLoading}
         />
       </div>
 

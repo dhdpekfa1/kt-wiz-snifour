@@ -8,10 +8,6 @@ import TeamRankingView from '../common/TeamRankingView';
 function TeamBatterRankingView() {
   const { ranking, isLoading, isError, error } = useTeamRank('batter');
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   if (isError) {
     return <div>{error?.toString()}</div>;
   }
@@ -28,6 +24,7 @@ function TeamBatterRankingView() {
         chartData={ranking as TeamBatterRank[]}
         columns={teamBatterRankColumns}
         chartConfig={TeamRankingBatterConfig}
+        loading={isLoading}
         domain="all"
       />
     </>

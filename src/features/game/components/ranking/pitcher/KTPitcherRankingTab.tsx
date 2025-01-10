@@ -1,18 +1,16 @@
+import { useSearchParams } from 'react-router';
+
 import { pitcherColumns } from '@/constants/columns/player-rank-colums';
 import SortableTable from '@/features/common/SortableTable';
 import { PlayerScatterChart } from '@/features/game/components/ranking';
 import { usePitcherRank } from '@/features/game/hooks/ranking/usePitcherRank';
-import { useSearchParams } from 'react-router';
+
 import Filter from '../common/Filter';
 
 function KTPitcherRankingTab() {
   const { ranking, isLoading, error, isError } = usePitcherRank('kt');
   const [searchParams] = useSearchParams();
   const pname = searchParams.get('pname');
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
 
   if (isError) {
     return <div>{error?.toString()}</div>;
@@ -24,11 +22,16 @@ function KTPitcherRankingTab() {
 
   return (
     <div>
-      <PlayerScatterChart data={ranking || []} position="pitcher" />
+      <PlayerScatterChart
+        data={ranking || []}
+        position="pitcher"
+        loading={isLoading}
+      />
       <Filter />
       <SortableTable
         data={filteredRanking || []}
         columns={pitcherColumns}
+        loading={isLoading}
         domain="kt"
       />
     </div>

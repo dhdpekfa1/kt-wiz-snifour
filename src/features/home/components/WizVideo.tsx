@@ -1,74 +1,75 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui';
 import { cn } from '@/lib/utils';
-import { Video } from '../types';
 import { WizVideoAnimation } from './WizVideoAnimation';
+import { useGetMainWizVideo } from '../apis/mainApi.query';
+import Skeleton from 'react-loading-skeleton';
 
 function WizVideo() {
-  const [videos, setVideos] = useState<Video[]>([]);
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
   const navigate = useNavigate();
+  const {
+    data: videos,
+    isLoading,
+    isError,
+    error,
+  } = useGetMainWizVideo({
+    variables: { count: 5 },
+  });
 
-  useEffect(() => {
-    const getMainHighlightVideos = async () => {
-      try {
-        const { data, status } = await axios.get(
-          `${API_URL}/media/highlightlist?count=5`
-        );
+  if (isError) {
+    return <div>Error: {error?.toString()}</div>;
+  }
 
-        if (status === 200 && data) {
-          setVideos(data.data.list || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getMainHighlightVideos();
-  }, []);
-
-  if (videos.length === 0) {
-    return null;
+  if (!videos || !videos.length) {
+    return <div>데이터가 존재하지 않습니다.</div>;
   }
 
   return (
-    <Card className="w-full border-none shadow-none flex flex-col items-center">
-      <CardHeader className="w-full px-0">
-        <CardTitle className={cn('text-wiz-white text-lg', 'lg:text-2xl')}>
-          wiz Video
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="w-full px-0">
+    <div>
+      <h3
+        className={cn(
+          'text-white font-bold text-base my-2',
+          'md:text-xl md:my-3',
+          'lg:text-2xl lg:my-4'
+        )}
+      >
+        wiz Video
+      </h3>
+      <div>
         <div className="w-full h-fit bg-gray-200 rounded-3xl overflow-hidden">
-          <iframe
-            title={videos[0].artcTitle}
-            src={`https://www.ktwiz.co.kr/${videos[0].videoLink}`}
-            className="w-full aspect-video"
-          />
+          {isLoading ? (
+            <Skeleton className="w-full aspect-video" baseColor="#d1d5db" />
+          ) : (
+            <iframe
+              title={videos[0].artcTitle}
+              src={`https://www.ktwiz.co.kr/${videos[0].videoLink}`}
+              className="w-full aspect-video"
+            />
+          )}
         </div>
         <div
           className={cn('w-full grid grid-cols-2 gap-4 py-4', 'lg:grid-cols-4')}
         >
-          {videos.slice(1).map((vid, index) => (
-            <WizVideoAnimation
-              key={vid.artcSeq}
-              vid={vid}
-              index={index}
-              navigate={navigate}
-            />
-          ))}
+          {isLoading
+            ? Array.from({ length: 4 }).map(() => (
+                <Skeleton
+                  className="h-52 md:h-64 lg:h-72 rounded-xl"
+                  baseColor="#d1d5db"
+                />
+              ))
+            : videos
+                .slice(1)
+                .map((vid, index) => (
+                  <WizVideoAnimation
+                    key={vid.artcSeq}
+                    vid={vid}
+                    index={index}
+                    navigate={navigate}
+                  />
+                ))}
         </div>
-      </CardContent>
-      <CardFooter>
+      </div>
+      <div className="flex items-center justify-center my-4">
         <Link
           to="/media/highlight"
           className={cn(
@@ -78,8 +79,8 @@ function WizVideo() {
         >
           더 많은 영상보기
         </Link>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
 

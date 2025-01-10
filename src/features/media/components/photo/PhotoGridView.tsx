@@ -42,7 +42,7 @@ const PhotoGridView = () => {
   return (
     <InfiniteScroll hasMore={hasNextPage} loadMore={handleLoadMore}>
       {/* 포토 컨텐츠 */}
-      {!isLoading && isSuccess && !photoList?.pages.length ? (
+      {!isLoading && isSuccess && !photoList?.pages?.[0]?.length ? (
         <NotFoundSearchResult />
       ) : (
         <div className={cn('media-grid')}>

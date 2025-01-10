@@ -19,14 +19,6 @@ function BatterRankingTab() {
     searchParams.get('gyear') || seasons[0]
   );
 
-  if (!hraRanking?.length || !hrRanking?.length) {
-    return null;
-  }
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   if (isError) {
     return <div>{error?.toString()}</div>;
   }
@@ -59,15 +51,17 @@ function BatterRankingTab() {
       >
         <RankingCard
           title="타율 TOP 3"
-          ranking={hraRanking}
+          ranking={hraRanking || []}
           position="batter"
           indicator="hra"
+          loading={isLoading}
         />
         <RankingCard
           title="홈런 TOP 3"
-          ranking={hrRanking}
+          ranking={hrRanking || []}
           position="batter"
           indicator="hr"
+          loading={isLoading}
         />
       </div>
 

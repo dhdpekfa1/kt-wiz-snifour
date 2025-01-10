@@ -3,16 +3,12 @@ import SortableTable from '@/features/common/SortableTable';
 import { useBatterRank } from '@/features/game/hooks/ranking';
 import { useSearchParams } from 'react-router';
 import Filter from '../common/Filter';
-import { PlayerScatterChart } from '../common/PlayerScatterChart';
+import { PlayerScatterChart } from '../common/chart/PlayerScatterChart';
 
 function AllBatterRankingTab() {
   const { ranking, isLoading, error, isError } = useBatterRank('all');
   const [searchParams] = useSearchParams();
   const pname = searchParams.get('pname');
-
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
 
   if (isError) {
     return <div>{error?.toString()}</div>;
@@ -24,11 +20,16 @@ function AllBatterRankingTab() {
 
   return (
     <div className="flex flex-col">
-      <PlayerScatterChart data={ranking || []} position="batter" />
+      <PlayerScatterChart
+        data={ranking || []}
+        position="batter"
+        loading={isLoading}
+      />
       <Filter />
       <SortableTable
         data={filteredRanking || []}
         columns={batterColumns}
+        loading={isLoading}
         domain="all"
       />
     </div>

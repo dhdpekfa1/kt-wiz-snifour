@@ -10,14 +10,6 @@ function KTBatterRankingTab() {
   const [searchParams] = useSearchParams();
   const pname = searchParams.get('pname');
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
-  if (!ranking?.length) {
-    return null;
-  }
-
   if (isError) {
     return <div>{error?.toString()}</div>;
   }
@@ -28,11 +20,16 @@ function KTBatterRankingTab() {
 
   return (
     <div>
-      <PlayerScatterChart data={ranking || []} position="batter" />
+      <PlayerScatterChart
+        data={ranking || []}
+        position="batter"
+        loading={isLoading}
+      />
       <Filter />
       <SortableTable
         data={filteredRanking || []}
         columns={batterColumns}
+        loading={isLoading}
         domain="kt"
       />
     </div>

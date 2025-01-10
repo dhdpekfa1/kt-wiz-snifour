@@ -1,4 +1,4 @@
-import type { Batter } from '@/features/game/types/BoxscoreData';
+import type { Batter } from '@/features/game/types/boxscore';
 import { ColumnDef } from '@tanstack/react-table';
 
 export const battingRecordColumns: ColumnDef<Batter>[] = [

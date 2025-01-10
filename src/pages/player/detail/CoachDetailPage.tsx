@@ -1,13 +1,9 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import useCoach from '@/features/player/hooks/useCoach';
+import Skeleton from 'react-loading-skeleton';
 
 const CoachDetailPage = () => {
   const { coachData, isLoading, isError, error } = useCoach();
-
-  // TODO: skeleton
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
 
   if (isError) {
     return <div>Error: {error?.toString()}</div>;
@@ -20,36 +16,64 @@ const CoachDetailPage = () => {
   return (
     <div className="w-full h-screen pb-30">
       <Breadcrumb />
-      <div className="md:w-full">
-        {/* md 이하일 때 */}
-        <div className="block md:hidden text-xl rounded-lg p-2">
-          <div className="w-full h-fit aspect-square bg-wiz-white rounded-xl overflow-hidden">
+
+      <div className="block md:flex md:gap-8 rounded-xl p-2 md:bg-wiz-white md:bg-opacity-10 w-full md:pr-4 lg:pr-8">
+        <div className="w-full md:[60%] lg:w-1/2 h-fit aspect-square bg-wiz-white rounded-xl overflow-hidden md:m-4">
+          {isLoading ? (
+            <div className="bg-gray-200 animate-pulse rounded-lg w-full">
+              <Skeleton height={340} className="w-full mb-10" />
+            </div>
+          ) : (
             <img
               src={coachData.playerPrvwImg}
               alt={`${coachData.playerName} profile`}
               className="w-full"
             />
-          </div>
-          <div className="w-full h-full flex items-center mt-2">
-            {/* 선수 프로필 */}
-            <div className="w-full h-full flex flex-col gap-2">
-              {/* 이름, 포지션 */}
+          )}
+        </div>
+        <div className="w-full h-full flex items-center mt-4 md:mt-8">
+          {/* 선수 프로필 */}
+          <div className="w-full h-full flex flex-col gap-2">
+            {/* 이름, 포지션 */}
+            {isLoading ? (
+              <div className="w-full">
+                <div className="rounded-lg">
+                  <Skeleton
+                    height={36}
+                    width={240}
+                    className="bg-gray-200 animate-pulse"
+                  />
+                  <Skeleton
+                    height={36}
+                    width={320}
+                    className="my-4 bg-gray-200 animate-pulse"
+                  />
+                  <Skeleton
+                    height={36}
+                    width={140}
+                    className="bg-gray-200 animate-pulse"
+                  />
+                </div>
+              </div>
+            ) : (
               <div className="w-full h-full flex flex-col justify-between">
                 <div className="mb-4">
-                  <div className="flex justify-between text-xl font-bold text-wiz-white">
+                  <div className="flex justify-between text-xl md:text-2xl font-bold text-wiz-white">
                     <span>{coachData.playerName}</span>
-                    <span className="text-wiz-red">No.{coachData.backnum}</span>
+                    <span className="text-wiz-red text-xl md:text-2xl">
+                      No.{coachData.backnum}
+                    </span>
                   </div>
-                  <div className="text-neutral-400 flex items-center justify-between text-xs">
+                  <div className="text-neutral-400 flex items-center justify-between text-sm md:text-base lg:lg">
                     <span>{coachData.engName}</span>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 text-sm md:text-base lg:lg">
                       <span>{coachData.position}</span>
                       <span>({coachData.hittype})</span>
                     </div>
                   </div>
                 </div>
                 {/* 생년월일, 체격, 연봉, 출신 */}
-                <div className="w-full text-base flex flex-col gap-1 text-wiz-white">
+                <div className="w-full text-base md:text-lg flex flex-col gap-1 text-wiz-white">
                   <div className="flex items-center justify-between">
                     <p className="md:w-28 w-32">생년월일</p>
                     <p>{coachData?.birth}</p>
@@ -69,65 +93,7 @@ const CoachDetailPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* md 이상일 때 */}
-        <div
-          className="hidden md:block w-full h-auto p-10"
-          style={{
-            backgroundImage: `url(${coachData?.mobilePlayerImg1})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          <div className="w-full px-10 py-20">
-            <div className="flex flex-row items-start gap-10">
-              <div className="flex flex-col gap-10 text-wiz-black">
-                {/* 이름, 포지션 */}
-                <div className="flex flex-col gap-4">
-                  <div className="flex gap-8">
-                    <h2 className="md:text-4xl lg:text-6xl font-bold">
-                      {coachData?.playerName}
-                    </h2>
-                    <h2 className="text-wiz-red md:text-4xl lg:text-6xl font-bold">
-                      No. {coachData?.backnum}
-                    </h2>
-                  </div>
-                  <div className="flex gap-4 md:text-xl lg:text-2xl">
-                    <h3>{coachData?.engName}</h3>
-                    <h3>{coachData?.position}</h3>
-                  </div>
-                </div>
-
-                {/* 생년월일, 체격, 연봉, 출신 */}
-                <div className="flex flex-col gap-4 md:text-xl lg:text-2xl">
-                  <div className="flex items-start">
-                    <p className="md:w-28 lg:w-32">투타</p>
-                    <p>{coachData?.hittype}</p>
-                  </div>
-                  <div className="flex items-start">
-                    <p className="md:w-28 lg:w-32">생년월일</p>
-                    <p>{coachData?.birth}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="md:w-28 lg:w-32">체격</p>
-                    <p>{coachData?.heightWeight}</p>
-                  </div>
-
-                  <div className="flex items-start">
-                    <p className="md:w-28 lg:w-32">출신교</p>
-                    <div className="flex flex-wrap">
-                      <div className="flex flex-col max-w-[70%] break-keep">
-                        {coachData.career?.split('-').join(' - ')}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
