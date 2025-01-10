@@ -37,7 +37,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
       data.hbatters.find((batter) => batter.name === name) ||
       data.vbatters.find((batter) => batter.name === name)
     ) {
-      team = data.schedule.current.home;
+      team = data.schedule.current.homeKey;
     }
 
     // 원정 팀 타자, 투수 확인
@@ -45,7 +45,7 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
       data.vbatters.find((batter) => batter.name === name) ||
       data.vpitchers.find((pitcher) => pitcher.name === name)
     ) {
-      team = data.schedule.current.visit;
+      team = data.schedule.current.visitKey;
     }
 
     const {
