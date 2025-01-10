@@ -76,7 +76,7 @@ const EditProfileDialog = ({
         <Button
           variant={null}
           className={cn(
-            '-ml-3  lg:border-b-2 lg:border-b-wiz-red rounded-sm',
+            '-ml-3 lg:h-10 lg:border-b-2 lg:border-b-wiz-red rounded-sm',
             isHovered ? ' text-wiz-black' : 'text-wiz-white bg-opacity-20'
           )}
         >

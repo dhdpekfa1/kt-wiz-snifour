@@ -9,7 +9,7 @@ export const BannerDescription = ({ description }: BannerDescriptionProps) => {
   return (
     <p
       className={cn(
-        'text-gray-300 max-w-xl mt-1 text-xs',
+        'text-gray-300 mt-1 text-xs break-keep',
         'md:mt-2 md:text-sm',
         'lg:mt-4 lg:text-base'
       )}
