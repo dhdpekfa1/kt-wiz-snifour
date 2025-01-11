@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import Banner from '@/features/common/Banner';
 import Layout from '@/features/common/Layout';
-import { DonationProgramTab, GeneralMemberTab } from '@/features/kwWiz';
+import { DonationProgramTab, GeneralMemberTab } from '@/features/ktWiz';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 
 const REG_TABS_CONFIG = [
