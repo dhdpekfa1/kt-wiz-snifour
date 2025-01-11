@@ -37,6 +37,10 @@ const BoxscoreTab = () => {
       setBoxscoreDate(String(recentMatchData.data.current.gameDate));
       setBoxscoreKey(String(recentMatchData.data.current.gmkey));
     }
+    if (gameDate && gameKey) {
+      setBoxscoreDate(gameDate);
+      setBoxscoreKey(gameKey);
+    }
   }, [recentMatchData, gameDate, gameKey]);
 
   const {
@@ -55,14 +59,14 @@ const BoxscoreTab = () => {
 
   const handleDateChange = (direction: 'prev' | 'next') => {
     if (matchData) {
-      if (direction === 'prev') {
-        const prevDate = matchData.schedule.prev.gameDate.toString();
-        const prevKey = matchData.schedule.prev.gmkey;
-        window.location.href = `/game/regular/boxscore/${prevDate}/${prevKey}`;
-      } else {
-        const nextDate = matchData?.schedule.next.gameDate.toString();
-        const nextKey = matchData?.schedule.next.gmkey;
-        window.location.href = `/game/regular/boxscore/${nextDate}/${nextKey}`;
+      const targetSchedule =
+        direction === 'prev'
+          ? matchData.schedule.prev
+          : matchData.schedule.next;
+      if (targetSchedule) {
+        const targetDate = targetSchedule.gameDate.toString();
+        const targetKey = targetSchedule.gmkey;
+        window.location.href = `/game/regular/boxscore/${targetDate}/${targetKey}`;
       }
     }
   };
