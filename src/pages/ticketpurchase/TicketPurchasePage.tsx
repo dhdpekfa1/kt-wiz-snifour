@@ -25,10 +25,7 @@ const TicketPurchasePage = () => {
           alt="Ticket Reservation"
         />
         <Banner.Overlay>
-          <Banner.Heading
-            title="Ticket Reservations"
-            subtitle="티켓 정보 및 예매"
-          />
+          <Banner.Heading title="일반티켓" subtitle="티켓 정보 및 예매" />
           <Banner.Description description="Kt wiz 경기를 경기장에서 직접 만나 보세요." />
         </Banner.Overlay>
       </Banner>
