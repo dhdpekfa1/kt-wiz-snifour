@@ -3,7 +3,11 @@ import SubTitle from '@/features/common/SubTitle';
 import { MatchSummaryTable } from '@/features/game/components/table';
 import { useEffect, useState } from 'react';
 import { MatchBoard } from './components/common';
-import { StartingPitcherTable, TeamLineup } from './components/watch-point';
+import {
+  StartingPitcherChart,
+  StartingPitcherTable,
+  TeamLineup,
+} from './components/watch-point';
 import useGetRecentMatchScheduleQuery from './apis/match-schedule/RecentScheduleApi.query';
 import useGetWatchPointQuery from './apis/watch-point/watchPointApi.query';
 import Skeleton from 'react-loading-skeleton';
@@ -104,12 +108,19 @@ const WatchPointTab = () => {
                   <Skeleton height={200} />
                 </div>
               ) : (
-                <StartingPitcherTable
-                  homeTeam={watchData.gameScore.home || ''}
-                  visitTeam={watchData.gameScore.visit || ''}
-                  homePitcher={watchData.homePitcher}
-                  visitPitcher={watchData.visitPitcher}
-                />
+                <div>
+                  <StartingPitcherChart
+                    gameScore={watchData.gameScore}
+                    homePitcher={watchData.homePitcher}
+                    visitPitcher={watchData.visitPitcher}
+                  />
+                  <StartingPitcherTable
+                    homeTeam={watchData.gameScore.home || ''}
+                    visitTeam={watchData.gameScore.visit || ''}
+                    homePitcher={watchData.homePitcher}
+                    visitPitcher={watchData.visitPitcher}
+                  />
+                </div>
               )}
             </div>
           </div>
