@@ -12,7 +12,7 @@ const TicketPriceTab = () => {
         <SubTitle title="입장 요금" />
         <div className="rounded-lg p-6 bg-opacity-10 bg-wiz-black mt-6 mb-6 flex justify-center">
           <img
-            src="/assets/ticketpurchase/seat information.png"
+            src="/assets/ticketpurchase/seat.png"
             alt="좌석 정보"
             className="w-full max-w-4xl rounded-lg shadow-lg"
           />

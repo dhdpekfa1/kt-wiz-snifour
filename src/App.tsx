@@ -39,6 +39,7 @@ import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import TicketPurchasePage from './pages/ticketpurchase/TicketPurchasePage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
+import PressDetailPage from './pages/media/id/PressDetailPage';
 
 function App() {
   const [showChatbot, setShowChatbot] = useState(false);

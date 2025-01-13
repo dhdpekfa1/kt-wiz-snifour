@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 import Banner from '@/features/common/Banner';
 import Layout from '@/features/common/Layout';
-import { TeamHistoryTab, TeamIntroduceTab } from '@/features/kwWiz';
+import { TeamHistoryTab, TeamIntroduceTab } from '@/features/ktWiz';
 
 const WIZ_TABS_CONFIG = [
   { value: 'about', path: '/about' },

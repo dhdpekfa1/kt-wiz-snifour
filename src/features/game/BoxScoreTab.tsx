@@ -6,41 +6,67 @@ import {
   PitchingRecordTable,
 } from '@/features/game/components/table';
 import { formatDate } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useParams } from 'react-router';
 import { useGetBoxscoreQuery } from './apis/boxscore/boxscoreApi.query';
+import useGetRecentMatchScheduleQuery from './apis/match-schedule/RecentScheduleApi.query';
 import KeyRecordsCard from './components/card/KeyRecordsCard';
 import { MatchBoard } from './components/common';
 
 const BoxscoreTab = () => {
-  //TODO: recentScheduleApi query를 이용해서 초기 렌더링 화면을 최신경기의 gameDate, gameKey로 세팅하기
   const { gameDate, gameKey } = useParams<{
     gameDate: string;
     gameKey: string;
   }>();
+
+  const [boxscoreDate, setBoxscoreDate] = useState<string | undefined>(
+    gameDate
+  );
+  const [boxscoreKey, setBoxscoreKey] = useState<string | undefined>(gameKey);
+
+  const {
+    recentMatchData,
+    loading: recentLoading,
+    error: recentError,
+  } = useGetRecentMatchScheduleQuery();
+
+  useEffect(() => {
+    if (recentMatchData?.data.current && !gameDate && !gameKey) {
+      setBoxscoreDate(String(recentMatchData.data.current.gameDate));
+      setBoxscoreKey(String(recentMatchData.data.current.gmkey));
+    }
+    if (gameDate && gameKey) {
+      setBoxscoreDate(gameDate);
+      setBoxscoreKey(gameKey);
+    }
+  }, [recentMatchData, gameDate, gameKey]);
 
   const {
     data: matchData,
     isLoading,
     isError,
     error,
-  } = useGetBoxscoreQuery(gameDate, gameKey);
+  } = useGetBoxscoreQuery(boxscoreDate || '', boxscoreKey || '');
 
-  //if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
-  //if (!matchData) return <div>데이터가 없습니다.</div>;
+  if (isError || recentError)
+    return (
+      <div>
+        <p>Error: {error?.message || recentError}</p>
+      </div>
+    );
 
   const handleDateChange = (direction: 'prev' | 'next') => {
     if (matchData) {
-      if (direction === 'prev') {
-        const prevDate = matchData.schedule.prev.gameDate.toString();
-        const prevKey = matchData.schedule.prev.gmkey;
-        window.location.href = `/game/regular/boxscore/${prevDate}/${prevKey}`;
-      } else {
-        const nextDate = matchData?.schedule.next.gameDate.toString();
-        const nextKey = matchData?.schedule.next.gmkey;
-        window.location.href = `/game/regular/boxscore/${nextDate}/${nextKey}`;
+      const targetSchedule =
+        direction === 'prev'
+          ? matchData.schedule.prev
+          : matchData.schedule.next;
+      if (targetSchedule) {
+        const targetDate = targetSchedule.gameDate.toString();
+        const targetKey = targetSchedule.gmkey;
+        window.location.href = `/game/regular/boxscore/${targetDate}/${targetKey}`;
       }
     }
   };
@@ -52,7 +78,7 @@ const BoxscoreTab = () => {
         <Breadcrumb />
 
         {/* 경기 스코어 테이블 */}
-        {isLoading || !matchData ? (
+        {isLoading || !matchData || recentLoading ? (
           <div className="bg-gray-200 animate-pulse rounded-lg w-full">
             <Skeleton height={340} className="w-full mb-10" />
           </div>
@@ -88,7 +114,7 @@ const BoxscoreTab = () => {
         {/* 주요 기록 */}
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
-          {isLoading || !matchData ? (
+          {isLoading || !matchData || recentLoading ? (
             <Skeleton
               height={20}
               width="100%"

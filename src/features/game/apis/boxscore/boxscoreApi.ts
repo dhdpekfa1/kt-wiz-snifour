@@ -14,5 +14,4 @@ export const boxscoreApi = {
     });
     return response.data.data;
   },
-  // 주요 기록 선수 사진
 };
