@@ -13,14 +13,18 @@ const TicketItem = ({
   link,
   isButton,
 }: TicketItemProps) => (
-  <div className="flex items-center space-x-4">
-    <img src={icon} alt={`${title} 아이콘`} className="w-6 h-6" />
-    <div className="text-wiz-white text-sm flex items-center space-x-2">
+  <div className="flex items-center gap-2 text-base md:text-lg text-wiz-white">
+    <img
+      src={icon}
+      alt={`${title} 아이콘`}
+      className="w-8 h-auto md:w-10 lg:w-12"
+    />
+    <div className="flex items-center gap-2">
       <p>{title}</p>
       {link && isButton ? (
         <button
           type="button"
-          className="px-3 py-1 bg-wiz-red text-wiz-white rounded shadow"
+          className="px-3 py-1 bg-wiz-red text-wiz-white rounded shadow text-sm md:text-base"
           onClick={() => window.open(link, '_blank')}
         >
           {description}
