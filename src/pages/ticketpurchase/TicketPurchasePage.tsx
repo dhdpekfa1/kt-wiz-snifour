@@ -1,0 +1,78 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import Banner from '@/features/common/Banner';
+import TicketPriceTab from '@/features/ticket/components/TicketPriceTab';
+import TicketReservationTab from '@/features/ticket/components/TicketReservationTab';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
+
+const WIZ_TABS_CONFIG = [
+  { value: 'reservation', path: '/reservation' },
+  { value: 'price', path: '/price' },
+];
+
+const TicketPurchasePage = () => {
+  const { currentTab, handleTabChange } = useTabFromUrl({
+    basePath: '/ticket',
+    tabs: WIZ_TABS_CONFIG,
+    defaultTab: 'reservation',
+  });
+
+  return (
+    <div className="bg-wiz-black min-h-screen text-wiz-white">
+      {/* 공통 배너 */}
+      <Banner>
+        <Banner.Image
+          src="https://placehold.co/1200x200/141414/642521?text=TICKET+RESERVATION"
+          alt="Ticket Reservation"
+        />
+        <Banner.Overlay>
+          <Banner.Heading
+            title="Ticket Reservations"
+            subtitle="티켓 정보 및 예매"
+          />
+          <Banner.Description description="Kt wiz 경기를 경기장에서 직접 만나 보세요." />
+        </Banner.Overlay>
+      </Banner>
+
+      {/* Tabs 구성 */}
+      <Tabs
+        className="container"
+        defaultValue={currentTab}
+        onValueChange={handleTabChange}
+      >
+        <div className="header">
+          {/* 탭 리스트 */}
+          <div className="tabs-wrapper">
+            <TabsList className="tabs-list ">
+              <TabsTrigger
+                value="reservation"
+                className="px-5 py-2 text-base font-medium transition-all focus:outline-none"
+              >
+                티켓 예매
+              </TabsTrigger>
+              <TabsTrigger
+                value="price"
+                className="px-5 py-2 text-base font-medium transition-all focus:outline-none"
+              >
+                입장 요금
+              </TabsTrigger>
+            </TabsList>
+          </div>
+        </div>
+
+        {/* 탭 콘텐츠 */}
+        <TabsContent value="reservation">
+          <div className="mt-6">
+            <TicketReservationTab />
+          </div>
+        </TabsContent>
+        <TabsContent value="price">
+          <div className="mt-6">
+            <TicketPriceTab />
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+};
+
+export default TicketPurchasePage;
