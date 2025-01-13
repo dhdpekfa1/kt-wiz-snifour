@@ -108,7 +108,7 @@ const WatchPointTab = () => {
                   <Skeleton height={200} />
                 </div>
               ) : (
-                <div>
+                <div className="w-full">
                   <StartingPitcherChart
                     gameScore={watchData.gameScore}
                     homePitcher={watchData.homePitcher}

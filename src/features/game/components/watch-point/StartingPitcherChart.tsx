@@ -20,21 +20,32 @@ function StartingPitcherChart({
   const data = getWatchPointChartData(homePitcher, visitPitcher);
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex flex-col items-center justify-center">
+    <div className="w-full flex items-center justify-between">
+      <div className={cn('w-1/6 flex flex-col items-center justify-center')}>
         <img src={gameScore.homeLogo} alt={gameScore.home} />
-        <span>{homePitcher.playerName}</span>
+        <span className="text-xs md:text-base">{homePitcher.playerName}</span>
       </div>
-      <div className="flex flex-col items-center gap-2 py-6">
+      <div
+        className={cn(
+          'w-[calc(66%-2rem)] flex flex-col items-center gap-1 py-6',
+          'md:gap-2',
+          'lg:w-[calc(66%-8rem)]'
+        )}
+      >
         {data.map((stat) => (
           <div
-            className="w-[36rem] flex items-center justify-center gap-2"
+            className={cn('w-full flex items-center justify-center gap-2')}
             key={stat.label}
           >
-            <div className="w-[15rem] flex items-center justify-end">
+            <div
+              className={cn(
+                'w-[calc((100%-1rem)/2)] flex items-center justify-end'
+              )}
+            >
               <div
                 className={cn(
-                  'h-4 rounded-l-full',
+                  'h-2 rounded-l-full',
+                  'md:h-4',
                   stat.win === 'h' ? 'bg-wiz-red' : 'bg-neutral-600'
                 )}
                 style={{
@@ -42,11 +53,20 @@ function StartingPitcherChart({
                 }}
               />
             </div>
-            <p className="w-24 text-center font-semibold">{stat.label}</p>
-            <div className="w-[15rem] flex items-center">
+            <p
+              className={cn(
+                'w-16 text-[0.6rem] text-center font-semibold',
+                'md:w-20 md:text-sm',
+                'lg:w-24'
+              )}
+            >
+              {stat.label}
+            </p>
+            <div className="w-[calc((100%-1rem)/2)] flex items-center">
               <div
                 className={cn(
-                  'h-4 rounded-r-full',
+                  'h-2 rounded-r-full',
+                  'md:md:h-4',
                   stat.win === 'v' ? 'bg-wiz-red' : 'bg-neutral-600'
                 )}
                 style={{
@@ -57,9 +77,9 @@ function StartingPitcherChart({
           </div>
         ))}
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="w-1/6 flex flex-col items-center justify-center">
         <img src={gameScore.visitLogo} alt={gameScore.visit} />
-        <span>{visitPitcher.playerName}</span>
+        <span className="text-xs md:text-base">{visitPitcher.playerName}</span>
       </div>
     </div>
   );
