@@ -40,32 +40,18 @@ const TicketPurchasePage = () => {
           {/* 탭 리스트 */}
           <div className="tabs-wrapper">
             <TabsList className="tabs-list ">
-              <TabsTrigger
-                value="reservation"
-                className="px-5 py-2 text-base font-medium transition-all focus:outline-none"
-              >
-                티켓 예매
-              </TabsTrigger>
-              <TabsTrigger
-                value="price"
-                className="px-5 py-2 text-base font-medium transition-all focus:outline-none"
-              >
-                입장 요금
-              </TabsTrigger>
+              <TabsTrigger value="reservation">티켓 예매</TabsTrigger>
+              <TabsTrigger value="price">입장 요금</TabsTrigger>
             </TabsList>
           </div>
         </div>
 
         {/* 탭 콘텐츠 */}
         <TabsContent value="reservation">
-          <div className="mt-6">
-            <TicketReservationTab />
-          </div>
+          <TicketReservationTab />
         </TabsContent>
         <TabsContent value="price">
-          <div className="mt-6">
-            <TicketPriceTab />
-          </div>
+          <TicketPriceTab />
         </TabsContent>
       </Tabs>
     </div>
