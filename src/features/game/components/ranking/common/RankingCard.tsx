@@ -29,6 +29,10 @@ function RankingCard({
     ranking.length ? ranking[0] : null
   );
 
+  useEffect(() => {
+    setSelectedPlayer(ranking[0]);
+  }, [ranking[0]]);
+
   if (!loading && !ranking.length) {
     return <div>데이터가 없습니다.</div>;
   }
@@ -36,10 +40,6 @@ function RankingCard({
   const handleSelectPlayer = (player: Player) => {
     setSelectedPlayer(player);
   };
-
-  useEffect(() => {
-    setSelectedPlayer(ranking[0]);
-  }, [ranking[0]]);
 
   return (
     <div
