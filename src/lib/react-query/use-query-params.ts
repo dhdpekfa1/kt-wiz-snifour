@@ -60,7 +60,7 @@ type UseQueryParams<
   T extends AsyncFn,
   Error = AxiosError,
   Data = AsyncFnReturn<T>,
-  TransformedData = Data
+  TransformedData = Data,
 > = {
   options?: Omit<
     UseQueryOptions<Data, Error, TransformedData>,
@@ -73,7 +73,7 @@ type UseInfiniteQueryParams<
   Error = AxiosError,
   Data = AsyncFnReturn<T>,
   TransformedData = Data,
-  PageParam = unknown
+  PageParam = unknown,
 > = {
   options?: Omit<
     UseInfiniteQueryOptions<

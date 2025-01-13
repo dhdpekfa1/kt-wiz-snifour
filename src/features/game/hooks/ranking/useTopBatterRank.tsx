@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router';
 import {
-  useGetBatterHraTop3,
   useGetBatterHrTop3,
+  useGetBatterHraTop3,
 } from '../../apis/ranking/rankingApi.query';
 
 export function useTopBatterRank() {

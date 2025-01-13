@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router';
 
 import { navMenus } from '@/constants/nav-menus';
-import { cn } from '@/lib/utils';
-import useUserSession from '@/features/auth/hooks/useUserSession';
 import { EditProfileDialog } from '@/features/auth';
+import useUserSession from '@/features/auth/hooks/useUserSession';
+import { cn } from '@/lib/utils';
 
 function Sidebar({
   className,

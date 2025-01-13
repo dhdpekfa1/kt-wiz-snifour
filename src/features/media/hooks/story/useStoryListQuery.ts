@@ -1,6 +1,6 @@
+import { useGetStoryList } from '@/features/media/apis/story/StoryApi.query';
 import { QueryParser } from '@/lib';
 import { useSearchParams } from 'react-router';
-import { useGetStoryList } from '@/features/media/apis/story/StoryApi.query';
 
 const useStoryListQuery = () => {
   const [searchParams] = useSearchParams();

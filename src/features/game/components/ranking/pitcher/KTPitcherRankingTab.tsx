@@ -4,6 +4,7 @@ import { pitcherColumns } from '@/constants/columns/player-rank-colums';
 import SortableTable from '@/features/common/SortableTable';
 import { PlayerScatterChart } from '@/features/game/components/ranking';
 import { usePitcherRank } from '@/features/game/hooks/ranking/usePitcherRank';
+
 import Filter from '../common/Filter';
 
 function KTPitcherRankingTab() {

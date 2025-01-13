@@ -4,11 +4,11 @@ import { MediaDetail } from '@/features/media/common/MediaDetail';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
+import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
+import useFirstPitchDetailQuery from '@/features/media/hooks/firstPitch/useFirstPitchDetailQuery';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { toUrl } from '@/lib';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import useFirstPitchDetailQuery from '@/features/media/hooks/firstPitch/useFirstPitchDetailQuery';
 
 /** 뉴스 상세 페이지 */
 const FirstPitchDetailPage = () => {

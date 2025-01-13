@@ -1,13 +1,13 @@
 import { cn } from '@/lib/utils';
 import { useParams } from 'react-router';
 
-import { StatCard } from './StatCard';
-import { usePlayer } from '../../hooks/usePlayer';
 import { useMaxStats } from '../../hooks/useMaxStats';
+import { usePlayer } from '../../hooks/usePlayer';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
 } from '../../types/detail';
+import { StatCard } from './StatCard';
 
 interface Indicators {
   pitcher: {

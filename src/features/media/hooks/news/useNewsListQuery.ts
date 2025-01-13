@@ -3,10 +3,10 @@ import { useGetPressList } from '@/features/media/apis/news/PressApi.query';
 import { QueryParser } from '@/lib';
 import { useMemo } from 'react';
 
+import { usePagination } from '@/features/media/hooks/usePagination';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { NEWS_TABS_CONFIG } from '@/pages/media/NewsPage';
 import { useSearchParams } from 'react-router';
-import { usePagination } from '@/features/media/hooks/usePagination';
 
 const useNewsListQuery = () => {
   const { currentTab } = useTabFromUrl({

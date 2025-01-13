@@ -1,5 +1,5 @@
-import { useGetPlayerList } from '../apis/playerApi.query';
 import { useParams } from 'react-router';
+import { useGetPlayerList } from '../apis/playerApi.query';
 
 export const usePlayerList = () => {
   const { position } = useParams();

@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogFooter,
@@ -9,16 +9,16 @@ import {
   DialogClose,
   Input,
   Label,
-  Button,
 } from '@/components/ui';
+import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
 import { useUserStore } from '@/store/useUserStore';
-import { supabase } from '@/lib/supabase';
-import { useNavigate } from 'react-router';
-import useUserSession from '../hooks/useUserSession';
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ReactNode } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { z } from 'zod';
+import useUserSession from '../hooks/useUserSession';
 import { nicknameSchema } from '../schemas/signupSchema';
 
 export type NicknameValue = z.infer<typeof nicknameSchema>;

@@ -1,7 +1,7 @@
 import { QueryParser } from '@/lib';
 import { useParams, useSearchParams } from 'react-router';
-import { PhotoListDto } from '../../types/photo';
 import { useGetPhotoList } from '../../apis/photo/PhotoApi.query';
+import { PhotoListDto } from '../../types/photo';
 
 const usePhotoListQuery = () => {
   const { id } = useParams();

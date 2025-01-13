@@ -1,6 +1,9 @@
-import { isNotNullish, Parameter, UseQueryParams } from '@/lib';
-import { rankingApi } from './rankingApi';
+import { OverallBatterRank } from '@/features/common/types/batters';
+import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
+import { QueryKey, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { arrangeVS } from '../../services/arrange-vs.service';
 import {
   BatterRankingResponse,
   CrowdRank,
@@ -9,10 +12,7 @@ import {
   TeamRankingResponse,
   TeamStats,
 } from '../../types/ranking';
-import { QueryKey, useQuery } from '@tanstack/react-query';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { arrangeVS } from '../../services/arrange-vs.service';
+import { rankingApi } from './rankingApi';
 
 // 랭킹 쿼리 키
 export const RANKING_API_QUERY_KEY = {

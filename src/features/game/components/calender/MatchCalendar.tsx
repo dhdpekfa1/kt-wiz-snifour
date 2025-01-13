@@ -1,20 +1,20 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import {
   CalenderBody,
   MatchCalendarCell,
-} from "@/features/game//components/calender";
-import { useMatchStore } from "@/store/useMatchStore";
-import { format } from "date-fns";
-import { useState } from "react";
-import { useGetMatchScheduleQuery } from "@/features/game/apis/match-schedule/matchScheduleApi.query";
+} from '@/features/game//components/calender';
+import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
+import { useMatchStore } from '@/store/useMatchStore';
+import { format } from 'date-fns';
+import { useState } from 'react';
 
 const GAME_TABS_CONFIG = [
-  { value: "ktWiz", label: "KT Wiz 경기" },
-  { value: "allLeague", label: "전체 리그" },
+  { value: 'ktWiz', label: 'KT Wiz 경기' },
+  { value: 'allLeague', label: '전체 리그' },
 ];
 
 const MatchCalendar = () => {
-  const [currentTab, setCurrentTab] = useState<"ktWiz" | "allLeague">("ktWiz");
+  const [currentTab, setCurrentTab] = useState<'ktWiz' | 'allLeague'>('ktWiz');
   const { currentMonth } = useMatchStore();
 
   const { matchData: ktMatchData } = useGetMatchScheduleQuery({ currentMonth });
@@ -22,11 +22,11 @@ const MatchCalendar = () => {
   // '전체 리그 경기' 데이터
   const { matchData: allMatchData } = useGetMatchScheduleQuery({
     currentMonth,
-    type: "all",
+    type: 'all',
   });
 
   const renderCellContent = (date: Date) => {
-    const formattedDate = format(date, "yyyyMMdd");
+    const formattedDate = format(date, 'yyyyMMdd');
     const match = ktMatchData?.find(
       (item) => item.gameDate.toString() === formattedDate
     );
@@ -45,7 +45,7 @@ const MatchCalendar = () => {
   };
 
   const handleTabChange = (value: string) => {
-    setCurrentTab(value as "ktWiz" | "allLeague");
+    setCurrentTab(value as 'ktWiz' | 'allLeague');
   };
 
   return (
@@ -63,7 +63,7 @@ const MatchCalendar = () => {
                 key={tab.value}
                 value={tab.value}
                 onClick={() =>
-                  handleTabChange(tab.value as "ktWiz" | "allLeague")
+                  handleTabChange(tab.value as 'ktWiz' | 'allLeague')
                 }
               >
                 {tab.label}

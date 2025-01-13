@@ -1,10 +1,10 @@
-import { isNotNullish, Parameter, UseInfiniteQueryParams } from '@/lib';
-import { photoApi } from './PhotoApi';
-import { AxiosError } from 'axios';
-import { PhotoResponse } from '../../types/photo';
-import { GridInfiniteQueryResult } from '../../types';
+import { Parameter, UseInfiniteQueryParams, isNotNullish } from '@/lib';
 import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { createGridViewItem } from '../../services/grid-mapper.service';
+import { GridInfiniteQueryResult } from '../../types';
+import { PhotoResponse } from '../../types/photo';
+import { photoApi } from './PhotoApi';
 
 export const PHOTO_API_QUERY_KEY = {
   /** 포토 목록 조회 쿼리 키 생성 */

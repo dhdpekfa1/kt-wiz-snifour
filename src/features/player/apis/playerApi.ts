@@ -1,17 +1,17 @@
-import instance from '@/lib/axios/instance';
-import {
-  CoachDetailResponse,
-  PlayerDetailResponse,
-  PlayerDto,
-  CoachListResponse,
-  PlayerListResponse,
-} from '../types/player';
 import { ApiRoutes } from '@/constants/route';
+import instance from '@/lib/axios/instance';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
   PlayerBase,
 } from '../types/detail';
+import {
+  CoachDetailResponse,
+  CoachListResponse,
+  PlayerDetailResponse,
+  PlayerDto,
+  PlayerListResponse,
+} from '../types/player';
 
 export const playerApi = {
   getCoachList: async (): Promise<CoachListResponse> => {

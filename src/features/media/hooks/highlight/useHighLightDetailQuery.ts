@@ -1,11 +1,11 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router';
 
+import { highlightApi } from '@/features/media/apis/highlight/HighlightApi';
 import {
   HIGHLIGHT_API_QUERY_KEY,
   useGetHighlightDetail,
 } from '@/features/media/apis/highlight/HighlightApi.query';
-import { highlightApi } from '@/features/media/apis/highlight/HighlightApi';
 
 const useHighLightDetailQuery = () => {
   const queryClient = useQueryClient();

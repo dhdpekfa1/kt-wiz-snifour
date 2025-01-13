@@ -4,10 +4,10 @@ import Banner from '@/features/common/Banner';
 import MediaLayout from '@/features/media/common/MediaLayout';
 import SearchBar from '@/features/media/common/SearchBar';
 
-import '@/features/media/css/media-grid-layout.css';
-import '@/features/media/css/media.css';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import StoryGridView from '@/features/media/components/story/StoryGridView';
+import '@/features/media/css/media-grid-layout.css';
+import '@/features/media/css/media.css';
 
 /** 스토리 페이지 */
 const StoryPage = () => {
