@@ -25,14 +25,6 @@ import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
 
 import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
 
-import FirstPitchPage from './pages/media/FirstPitchPage';
-import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
-import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
-import StoryDetailPage from './pages/media/id/StoryDetailPage';
-import PlayerListPage from './pages/player/PlayerListPage';
-import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
-import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
-
 import { useEffect, useState } from 'react';
 import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
@@ -41,6 +33,14 @@ import ActionProvider from './features/chatbot/ActionProvider';
 import MessageParser from './features/chatbot/MessageParser';
 import './features/chatbot/chatbot.css';
 import config from './features/chatbot/config';
+import FirstPitchPage from './pages/media/FirstPitchPage';
+import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
+import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
+import StoryDetailPage from './pages/media/id/StoryDetailPage';
+import PlayerListPage from './pages/player/PlayerListPage';
+import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
+import TicketPurchasePage from './pages/ticketpurchase/TicketPurchasePage';
+import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
 
 function App() {
   const [showChatbot, setShowChatbot] = useState(false);
@@ -128,7 +128,12 @@ function App() {
               path="/media/firstpitch/:id"
               element={<FirstPitchDetailPage />}
             />
-
+            {/* Ticketpurchase */}
+            <Route
+              path="/ticket/reservation"
+              element={<TicketPurchasePage />}
+            />
+            <Route path="/ticket/price" element={<TicketPurchasePage />} />
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
