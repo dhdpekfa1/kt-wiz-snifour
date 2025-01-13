@@ -4,11 +4,11 @@ import useScrollTo from '@/features/media/hooks/useScrollTo';
 
 import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
+import Breadcrumb from '@/features/common/Breadcrumb';
 import { MediaDetail } from '@/features/media/common/MediaDetail';
 import { toUrl } from '@/lib';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
-import Breadcrumb from '@/features/common/Breadcrumb';
 
 /** 보도자료 상세 페이지 */
 const PressDetailPage = () => {

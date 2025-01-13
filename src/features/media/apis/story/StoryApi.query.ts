@@ -12,12 +12,12 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { createGridViewItem } from '../../services/grid-mapper.service';
-import { storyApi } from './StoryApi';
 import {
   StoryDetailResponse,
   StoryItem,
   StoryResponse,
 } from '../../types/story';
+import { storyApi } from './StoryApi';
 
 // 쿼리 키 정의
 export const STORY_API_QUERY_KEY = {

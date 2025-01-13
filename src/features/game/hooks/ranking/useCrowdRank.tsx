@@ -1,6 +1,6 @@
 import { seasons } from '@/constants/seasons';
-import { useGetCrowdRanking } from '../../apis/ranking/rankingApi.query';
 import { useSearchParams } from 'react-router';
+import { useGetCrowdRanking } from '../../apis/ranking/rankingApi.query';
 
 export function useCrowdRank() {
   const [searchParams] = useSearchParams();

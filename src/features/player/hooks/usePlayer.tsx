@@ -1,5 +1,5 @@
-import { useGetPlayerDetail } from '../apis/playerApi.query';
 import { useParams, useSearchParams } from 'react-router';
+import { useGetPlayerDetail } from '../apis/playerApi.query';
 
 export const usePlayer = () => {
   const { position } = useParams();

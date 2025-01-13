@@ -1,4 +1,6 @@
+import { ApiRoutes } from '@/constants/route';
 import instance from '@/lib/axios/instance';
+
 import {
   BatterRankingResponse,
   CrowdRankingResponse,
@@ -7,7 +9,6 @@ import {
   TeamRankingResponse,
   TeamVSResponse,
 } from '../../types/ranking';
-import { ApiRoutes } from '@/constants/route';
 
 // ranking api
 export const rankingApi = {

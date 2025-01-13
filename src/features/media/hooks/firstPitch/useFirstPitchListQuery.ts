@@ -1,12 +1,12 @@
 import { QueryParser } from '@/lib';
-import { useSearchParams } from 'react-router';
 import { useQueryClient } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router';
 
+import { firstPitchApi } from '@/features/media/apis/firstPitch/firstPitchApi';
 import {
   FIRSTPITCH_API_QUERY_KEY,
   useGetFirstPitchList,
 } from '@/features/media/apis/firstPitch/firstPitchApi.query';
-import { firstPitchApi } from '@/features/media/apis/firstPitch/firstPitchApi';
 
 const useFirstPitchListQuery = () => {
   const [searchParams] = useSearchParams();

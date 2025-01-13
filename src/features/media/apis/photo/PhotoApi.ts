@@ -1,6 +1,6 @@
+import { ApiRoutes } from '@/constants/route';
 import instance from '@/lib/axios/instance';
 import { PhotoListDto, PhotoResponse } from '../../types/photo';
-import { ApiRoutes } from '@/constants/route';
 
 const PhotoRoutes = {
   GAME: ApiRoutes.GamePhoto,

@@ -1,16 +1,16 @@
-import { isNotNullish, Parameter, UseQueryParams } from '@/lib';
-import { playerApi } from './playerApi';
+import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { CoachListItem, PlayerListItem } from '../types/list';
 import {
   CoachDetailResponse,
   CoachItem,
   CoachListResponse,
-  PlayerListResponse,
   PlayerDetailResponse,
   PlayerItem,
+  PlayerListResponse,
 } from '../types/player';
-import { CoachListItem, PlayerListItem } from '../types/list';
+import { playerApi } from './playerApi';
 
 export const PLAYER_API_QUERY_KEY = {
   GET_COACH_LIST: () => ['coach-list'],

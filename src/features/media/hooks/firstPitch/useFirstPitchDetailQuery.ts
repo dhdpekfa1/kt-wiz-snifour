@@ -1,11 +1,11 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router';
 
+import { firstPitchApi } from '@/features/media/apis/firstPitch/firstPitchApi';
 import {
   FIRSTPITCH_API_QUERY_KEY,
   useGetFirstPitchDetail,
 } from '@/features/media/apis/firstPitch/firstPitchApi.query';
-import { firstPitchApi } from '@/features/media/apis/firstPitch/firstPitchApi';
 
 const useFirstPitchDetailQuery = () => {
   const queryClient = useQueryClient();

@@ -5,8 +5,8 @@ import {
 } from '@/constants/chart-config';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
 import { useParams } from 'react-router';
-import { PlayerRecordChart } from './PlayerRecordChart';
 import { usePlayer } from '../../hooks/usePlayer';
+import { PlayerRecordChart } from './PlayerRecordChart';
 
 function RecentRecordTab() {
   const { player, isLoading } = usePlayer();

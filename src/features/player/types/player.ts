@@ -1,10 +1,10 @@
-import { CoachListItem, PlayerListItem } from './list';
 import {
   BatterSeasonSummaryBase,
   GameRecord,
   PitcherSeasonSummaryBase,
   PlayerBase,
 } from './detail';
+import { CoachListItem, PlayerListItem } from './list';
 
 /* 요청 파라미터 타입 */
 export interface PlayerDto {

@@ -15,16 +15,14 @@ import ParkingPage from './pages/wizPark/ParkingPage';
 
 import ScrollToTop from './features/common/ScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
-import RegularGamePage from './pages/game/regular/RegularGamePage';
-import PressDetailPage from './pages/media/id/PressDetailPage';
 
 import { SignupForm } from './features/auth';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
+import RegularGamePage from './pages/game/regular/RegularGamePage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
 
 import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
-
 import { useEffect, useState } from 'react';
 import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
@@ -128,12 +126,14 @@ function App() {
               path="/media/firstpitch/:id"
               element={<FirstPitchDetailPage />}
             />
+
             {/* Ticketpurchase */}
             <Route
               path="/ticket/reservation"
               element={<TicketPurchasePage />}
             />
             <Route path="/ticket/price" element={<TicketPurchasePage />} />
+
             {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

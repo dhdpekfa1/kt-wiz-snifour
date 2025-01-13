@@ -1,27 +1,27 @@
-import Banner from "@/features/common/Banner";
-import MediaLayout from "@/features/media/common/MediaLayout";
-import PhotoGridView from "@/features/media/components/photo/PhotoGridView";
-import PhotoFilter from "@/features/media/components/photo/PhotoFilter";
+import Banner from '@/features/common/Banner';
+import MediaLayout from '@/features/media/common/MediaLayout';
+import PhotoFilter from '@/features/media/components/photo/PhotoFilter';
+import PhotoGridView from '@/features/media/components/photo/PhotoGridView';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
-import { useTabFromUrl } from "@/hooks/useTabFromUrl";
-import { cn } from "@/lib/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
+import { cn } from '@/lib/utils';
 
-import "@/features/media/css/media-grid-layout.css";
-import "@/features/media/css/media.css";
+import '@/features/media/css/media-grid-layout.css';
+import '@/features/media/css/media.css';
 
 const PHOTO_TABS_CONFIG = [
-  { value: "game", path: "/photos/1" },
-  { value: "training", path: "/photos/2" },
-  { value: "event", path: "/photos/3" },
+  { value: 'game', path: '/photos/1' },
+  { value: 'training', path: '/photos/2' },
+  { value: 'event', path: '/photos/3' },
 ];
 
 /** 포토 페이지 */
 const PhotoPage = () => {
   const { currentTab, handleTabChange } = useTabFromUrl({
-    basePath: "/media",
+    basePath: '/media',
     tabs: PHOTO_TABS_CONFIG,
-    defaultTab: "news",
+    defaultTab: 'news',
   });
 
   return (
@@ -49,25 +49,25 @@ const PhotoPage = () => {
       >
         <div
           className={cn(
-            "media-header",
-            "flex-wrap md:justify-start lg:justify-end"
+            'media-header',
+            'flex-wrap md:justify-start lg:justify-end'
           )}
         >
           {/* 탭 */}
           <div className="media-tabs-wrapper">
             <TabsList className="media-tabs-list">
-              <TabsTrigger value="game" onClick={() => handleTabChange("game")}>
+              <TabsTrigger value="game" onClick={() => handleTabChange('game')}>
                 wiz 경기
               </TabsTrigger>
               <TabsTrigger
                 value="training"
-                onClick={() => handleTabChange("training")}
+                onClick={() => handleTabChange('training')}
               >
                 wiz 훈련
               </TabsTrigger>
               <TabsTrigger
                 value="event"
-                onClick={() => handleTabChange("event")}
+                onClick={() => handleTabChange('event')}
               >
                 wiz 행사
               </TabsTrigger>

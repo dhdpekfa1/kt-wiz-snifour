@@ -4,11 +4,11 @@ import { MediaDetail } from '@/features/media/common/MediaDetail';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
+import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
 import useNewsDetailQuery from '@/features/media/hooks/news/useNewsDetailQuery';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { toUrl } from '@/lib';
-import Breadcrumb from '@/features/common/Breadcrumb';
 
 /** 뉴스 상세 페이지 */
 const NewsDetailPage = () => {

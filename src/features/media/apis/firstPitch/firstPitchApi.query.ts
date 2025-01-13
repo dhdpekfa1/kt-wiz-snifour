@@ -2,13 +2,13 @@ import { ListDataType } from '@/features/media/types';
 import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { firstPitchApi } from './firstPitchApi';
+import { createListViewItem } from '../../services';
 import {
   FirstPitchDetailResponse,
   FirstPitchItem,
   FirstPitchResponse,
 } from '../../types/firstPitch';
-import { createListViewItem } from '../../services';
+import { firstPitchApi } from './firstPitchApi';
 
 // 쿼리 키 정의
 export const FIRSTPITCH_API_QUERY_KEY = {

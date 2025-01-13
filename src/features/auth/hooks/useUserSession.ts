@@ -1,6 +1,6 @@
-import { useEffect, useMemo } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useUserStore } from '@/store/useUserStore';
+import { useEffect, useMemo } from 'react';
 
 const useUserSession = () => {
   const { email, nickname, sub, setEmail, setNickname, setSub } =

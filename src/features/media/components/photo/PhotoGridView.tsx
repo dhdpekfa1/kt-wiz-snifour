@@ -12,11 +12,11 @@ import { X } from 'lucide-react';
 import { useState } from 'react';
 
 import GridArticle from '@/features/media/common/GridArticle';
-import usePhotoListQuery from '../../hooks/photo/usePhotoListQuery';
 import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
+import InfiniteScroll from 'react-infinite-scroller';
 import { LoadingView } from '../../common/LoadingView';
 import { GridArticleSkeleton } from '../../common/skeleton';
-import InfiniteScroll from 'react-infinite-scroller';
+import usePhotoListQuery from '../../hooks/photo/usePhotoListQuery';
 
 const PhotoGridView = () => {
   // API 연동

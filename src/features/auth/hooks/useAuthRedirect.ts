@@ -1,6 +1,6 @@
+import { supabase } from '@/lib/supabase';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { supabase } from '@/lib/supabase';
 
 const useAuthRedirect = () => {
   const navigate = useNavigate();

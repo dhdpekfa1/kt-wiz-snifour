@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 
+import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
 import Skeleton from 'react-loading-skeleton';
 import {
@@ -7,7 +8,6 @@ import {
   PitcherSeasonSummaryBase,
   SeasonSummary,
 } from '../../../types/detail';
-import { usePlayer } from '@/features/player/hooks/usePlayer';
 
 interface Season {
   pitcher: { label: string; key: keyof PitcherSeasonSummaryBase }[];

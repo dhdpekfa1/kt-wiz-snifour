@@ -1,7 +1,7 @@
-import { useSearchParams } from 'react-router';
+import { Button } from '@/components/ui';
 import SearchBar from '@/features/media/common/SearchBar';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui';
+import { useSearchParams } from 'react-router';
 
 function Filter() {
   const [searchParams, setSearchParams] = useSearchParams();

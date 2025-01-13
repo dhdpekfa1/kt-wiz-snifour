@@ -1,7 +1,7 @@
 import { GridViewType, HighlightListItem } from '@/features/media/types';
-import { StoryItem } from '../types/story';
 import { format } from 'date-fns';
 import { PhotoItem } from '../types/photo';
+import { StoryItem } from '../types/story';
 
 // GridViewType으로 변환하는 팩토리 함수
 const createGridViewItem = (
