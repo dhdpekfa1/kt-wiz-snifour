@@ -3,20 +3,24 @@ import { Pitcher } from '../types/watch-point';
 const calcRate = (
   home: {
     value: string | number;
-    game: number;
+    game?: number;
   },
   visit: {
     value: string | number;
-    game: number;
+    game?: number;
   }
 ) => {
-  const homeStat = Number(home.value) / home.game;
-  const visitStat = Number(visit.value) / visit.game;
+  const homeStat = home.game
+    ? Number(home.value) / home.game
+    : Number(home.value);
+  const visitStat = visit.game
+    ? Number(visit.value) / visit.game
+    : Number(visit.value);
 
   const max =
     homeStat > 1 && visitStat > 1
       ? Math.ceil(Math.max(homeStat, visitStat) / 10) * 10
-      : Math.max(homeStat, visitStat);
+      : Math.ceil(Math.max(homeStat, visitStat));
 
   return {
     home: `${(homeStat / max) * 100}%`,
@@ -31,17 +35,11 @@ export const getWatchPointChartData = (
 ) => [
   {
     label: '평균자책점',
-    ...calcRate(
-      { value: homePitcher.era, game: homePitcher.gamenum },
-      { value: visitPitcher.era, game: visitPitcher.gamenum }
-    ),
+    ...calcRate({ value: homePitcher.era }, { value: visitPitcher.era }),
   },
   {
     label: '승률',
-    ...calcRate(
-      { value: homePitcher.wra, game: homePitcher.gamenum },
-      { value: visitPitcher.wra, game: visitPitcher.gamenum }
-    ),
+    ...calcRate({ value: homePitcher.wra }, { value: visitPitcher.wra }),
   },
   {
     label: '피안타',
