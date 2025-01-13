@@ -2,7 +2,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -16,16 +15,16 @@ const LoginConfirmationDialog = ({ children }: { children: ReactNode }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="w-80 p-6 bg-white rounded-lg shadow-lg text-center flex flex-col items-center">
+      <DialogContent className="w-80 p-6 bg-wiz-white rounded-lg shadow-lg text-center flex flex-col items-center">
         <DialogHeader>
-          <DialogTitle className="text-lg font-bold mb-1">
+          <DialogTitle className="text-base md:text-lg font-bold mb-1">
             로그인 후 이용 가능합니다.
           </DialogTitle>
         </DialogHeader>
-        <DialogFooter className="flex justify-center">
+        <div className="flex justify-between items-center gap-2 w-full px-6 text-base md:text-lg">
           <button
             type="button"
-            className="px-4 py-2 bg-wiz-red text-white rounded font-bold mr-8"
+            className="bg-wiz-red text-wiz-white rounded font-bold w-full py-1 md:py-2 flex items-center justify-center hover:bg-wiz-red hover:bg-opacity-90"
             onClick={() => navigate('/login')}
           >
             로그인
@@ -33,12 +32,12 @@ const LoginConfirmationDialog = ({ children }: { children: ReactNode }) => {
           <DialogClose asChild>
             <button
               type="button"
-              className="px-4 py-2 bg-black text-white rounded font-bold"
+              className="bg-wiz-black text-wiz-white rounded font-bold w-full py-1 md:py-2 flex items-center justify-center hover:bg-wiz-black hover:bg-opacity-90"
             >
               취소
             </button>
           </DialogClose>
-        </DialogFooter>
+        </div>
       </DialogContent>
     </Dialog>
   );
