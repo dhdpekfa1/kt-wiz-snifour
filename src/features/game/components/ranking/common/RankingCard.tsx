@@ -30,7 +30,9 @@ function RankingCard({
   );
 
   useEffect(() => {
-    setSelectedPlayer(ranking[0]);
+    if (ranking.length > 0) {
+      setSelectedPlayer(ranking[0]);
+    }
   }, [ranking[0]]);
 
   if (!loading && !ranking.length) {
