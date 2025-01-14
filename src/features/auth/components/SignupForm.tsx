@@ -12,6 +12,10 @@ import {
   Label,
   PasswordInput,
 } from '@/components/ui';
+import {
+  AgreementData,
+  AgreementsType,
+} from '@/features/auth/types/agreements';
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
@@ -21,8 +25,7 @@ import { z } from 'zod';
 import useAuthRedirect from '../hooks/useAuthRedirect';
 import useSignup from '../hooks/useSignup';
 import { signupSchema } from '../schemas/signupSchema';
-import { AgreementData, AgreementsType } from '../types/agreements';
-import { AgreementItem } from './AgreementItem';
+import { AgreementItem } from './';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
