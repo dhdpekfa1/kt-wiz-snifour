@@ -74,6 +74,7 @@ function WallpaperPage() {
             >
               {size.map((item) => (
                 <button
+                  key={item}
                   type="button"
                   className={cn(
                     'bg-wiz-white bg-opacity-10 rounded text-xs px-2 py-1',
