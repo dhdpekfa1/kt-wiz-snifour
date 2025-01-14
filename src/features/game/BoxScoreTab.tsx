@@ -115,11 +115,14 @@ const BoxscoreTab = () => {
         <div className="flex flex-col gap-2 w-full my-10">
           <SubTitle title="주요 기록" />
           {isLoading || !matchData || recentLoading ? (
-            <Skeleton
-              height={20}
-              width="100%"
-              className="bg-gray-200 animate-pulse"
-            />
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+              {Array.from({ length: 8 }).map(() => (
+                <div
+                  key={Math.random()}
+                  className="h-[180px] md:h-[200px] lg:h-[220px] bg-gray-200 animate-pulse rounded-lg"
+                />
+              ))}
+            </div>
           ) : (
             <div className="w-full items-center mt-4">
               <KeyRecordsCard data={matchData} />
