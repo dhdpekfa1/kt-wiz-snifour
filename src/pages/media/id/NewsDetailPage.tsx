@@ -1,14 +1,12 @@
 import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
+import { Breadcrumb, Layout } from '@/features/common';
 import { MediaDetail } from '@/features/media';
-import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
-import { useNavigate } from 'react-router';
-
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
 import useNewsDetailQuery from '@/features/media/hooks/news/useNewsDetailQuery';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { toUrl } from '@/lib';
+import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 /** 뉴스 상세 페이지 */
 const NewsDetailPage = () => {

@@ -1,8 +1,6 @@
 import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
-
+import { Breadcrumb, Layout } from '@/features/common';
 import { MediaDetail } from '@/features/media';
 import useStoryDetailQuery from '@/features/media/hooks/story/useStoryDetailQuery';
 import { toUrl } from '@/lib';

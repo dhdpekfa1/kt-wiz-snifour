@@ -1,9 +1,11 @@
 import { crowdRankColumns } from '@/constants/columns/crowd-columns';
 import { seasons } from '@/constants/seasons';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import CustomSelect from '@/features/common/CustomSelect.tsx';
-import DataTable from '@/features/common/DataTable';
-import SubTitle from '@/features/common/SubTitle';
+import {
+  Breadcrumb,
+  CustomSelect,
+  DataTable,
+  SubTitle,
+} from '@/features/common';
 import { useCrowdRank } from '@/features/game/hooks/ranking';
 import { useSearchParams } from 'react-router';
 import { CrowdRankingChart } from './CrowdRankingChart';

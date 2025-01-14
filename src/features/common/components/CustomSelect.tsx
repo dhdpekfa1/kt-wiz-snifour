@@ -52,4 +52,4 @@ const CustomSelect = ({ type, data, value, onChange }: CustomSelectProps) => {
   );
 };
 
-export default CustomSelect;
+export { CustomSelect };

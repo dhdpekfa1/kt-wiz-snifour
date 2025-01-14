@@ -1,4 +1,5 @@
-import { DateRangePicker, SearchBar } from '@/features/media';
+import { SearchBar } from '@/features/common';
+import { DateRangePicker } from '@/features/media';
 import { useSearchParams } from 'react-router';
 
 const PhotoFilter = () => {

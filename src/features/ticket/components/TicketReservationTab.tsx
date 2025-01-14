@@ -1,6 +1,4 @@
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
-import SubTitle from '@/features/common/SubTitle';
+import { Breadcrumb, Layout, SubTitle } from '@/features/common';
 import TicketItem from '@/features/ticket/components/TicketItem';
 import { LoginConfirmationDialog } from './LoginConfirmationDialog';
 

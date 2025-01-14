@@ -1,5 +1,5 @@
+import { Config } from '@/features/player/components';
 import { cn } from '@/lib/utils';
-import { Config } from '../player/components/detail/PlayerRecordChart';
 
 interface ChartLabelListProps {
   config: Config;
@@ -33,4 +33,4 @@ function ChartLabelList({ config, onClick }: ChartLabelListProps) {
   );
 }
 
-export default ChartLabelList;
+export { ChartLabelList };

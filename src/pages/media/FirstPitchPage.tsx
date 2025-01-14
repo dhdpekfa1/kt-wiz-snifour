@@ -1,6 +1,5 @@
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import { FirstPitchListView, MediaLayout, SearchBar } from '@/features/media';
+import { Banner, Breadcrumb, SearchBar } from '@/features/common';
+import { FirstPitchListView, MediaLayout } from '@/features/media';
 
 import '@/features/media/css/media.css';
 import { useSearchParams } from 'react-router';

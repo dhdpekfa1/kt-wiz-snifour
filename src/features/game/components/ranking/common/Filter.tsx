@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui';
-import { SearchBar } from '@/features/media';
+import { SearchBar } from '@/features/common';
 import { cn } from '@/lib/utils';
 import { useSearchParams } from 'react-router';
 

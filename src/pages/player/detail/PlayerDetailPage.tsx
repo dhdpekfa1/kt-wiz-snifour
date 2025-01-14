@@ -1,8 +1,5 @@
-import { useParams } from 'react-router';
-
 import { yearBatterConfig, yearPitcherConfig } from '@/constants/chart-config';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import SubTitle from '@/features/common/SubTitle';
+import { Breadcrumb, SubTitle } from '@/features/common';
 import {
   PlayerProfile,
   PlayerRecordChart,
@@ -11,6 +8,7 @@ import {
 import { RecentRecordTab } from '@/features/player/components/detail/RecentRecordTab';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
+import { useParams } from 'react-router';
 
 function PlayerDetailPage() {
   const { position } = useParams();

@@ -1,8 +1,10 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import SubTabsTrigger from '@/features/common/SubTabsTrigger';
-import { SearchBar } from '@/features/media';
+import {
+  Banner,
+  Breadcrumb,
+  SearchBar,
+  SubTabsTrigger,
+} from '@/features/common';
 import { PlayerList } from '@/features/player/components';
 import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import { usePlayerSearch } from '@/features/player/hooks/usePlayerSearch';

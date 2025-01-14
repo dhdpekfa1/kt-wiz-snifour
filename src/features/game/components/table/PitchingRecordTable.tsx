@@ -1,5 +1,5 @@
 import { pitchingRecordColumns } from '@/constants/columns/pitching-record-columns';
-import DataTable from '@/features/common/DataTable';
+import { DataTable } from '@/features/common';
 import type { Pitcher } from '../../types/boxscore';
 
 interface PitchingRecordTableProps {

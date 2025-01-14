@@ -1,8 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
-import SubTitle from '@/features/common/SubTitle';
+import { Banner, Breadcrumb, Layout, SubTitle } from '@/features/common';
+
 import { cn } from '@/lib/utils';
 import { PhoneCall } from 'lucide-react';
 import { Link } from 'react-router';

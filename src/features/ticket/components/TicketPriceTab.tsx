@@ -1,5 +1,4 @@
-import Breadcrumb from '@/features/common/Breadcrumb';
-import SubTitle from '@/features/common/SubTitle';
+import { Breadcrumb, SubTitle } from '@/features/common';
 
 const TicketPriceTab = () => {
   return (

@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
-import Banner from '@/features/common/Banner';
+import { Banner } from '@/features/common';
 import TicketPriceTab from '@/features/ticket/components/TicketPriceTab';
 import TicketReservationTab from '@/features/ticket/components/TicketReservationTab';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';

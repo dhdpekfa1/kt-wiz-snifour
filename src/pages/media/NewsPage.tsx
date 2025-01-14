@@ -1,12 +1,9 @@
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
+import { Banner, Breadcrumb, Layout, SearchBar } from '@/features/common';
+import { NewsListView } from '@/features/media';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';
 import { useSearchParams } from 'react-router';
-
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
-import { NewsListView, SearchBar } from '@/features/media';
 
 export const NEWS_TABS_CONFIG = [
   { value: 'news', path: '/wiznews', label: 'wiz 소식' },

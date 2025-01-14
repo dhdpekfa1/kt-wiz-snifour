@@ -1,6 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import Layout from '@/features/common/Layout';
+import { Banner, Layout } from '@/features/common';
 import { DonationProgramTab, GeneralMemberTab } from '@/features/ktWiz';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 

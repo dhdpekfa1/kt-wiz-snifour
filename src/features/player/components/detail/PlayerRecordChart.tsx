@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
-import ChartLabelList from '@/features/common/ChartLabelList';
-import CustomBarChart from '@/features/common/CustomBarChart';
-import CustomLineChart from '@/features/common/CustomLineChart';
-import SubTitle from '@/features/common/SubTitle';
+import {
+  ChartLabelList,
+  CustomBarChart,
+  CustomLineChart,
+} from '@/features/common';
+import { SubTitle } from '@/features/common';
 import { cn } from '@/lib/utils';
 import Skeleton from 'react-loading-skeleton';
 import { RecentRecord, YearRecord } from '../../types/detail';

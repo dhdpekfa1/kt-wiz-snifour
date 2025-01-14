@@ -16,9 +16,7 @@ import {
   AgreementData,
   AgreementsType,
 } from '@/features/auth/types/agreements';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
+import { Banner, Breadcrumb, Layout } from '@/features/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';

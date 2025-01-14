@@ -9,7 +9,6 @@ export { Pagination } from './common/Pagination';
 export { PaginationList } from './common/PaginationList';
 export { PaginationSelect } from './common/PaginationSelect';
 export { PlayButton } from './common/PlayButton';
-export { SearchBar } from './common/SearchBar';
 // skeleton
 export { GridArticleSkeleton, ListArticleSkeleton } from './common/skeleton';
 

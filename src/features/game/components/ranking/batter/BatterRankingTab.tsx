@@ -1,8 +1,6 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import { seasons } from '@/constants/seasons';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import CustomSelect from '@/features/common/CustomSelect.tsx';
-import SubTabsTrigger from '@/features/common/SubTabsTrigger';
+import { Breadcrumb, CustomSelect, SubTabsTrigger } from '@/features/common';
 import { useTopBatterRank } from '@/features/game/hooks/ranking';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';

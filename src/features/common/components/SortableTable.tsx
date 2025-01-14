@@ -128,4 +128,4 @@ function SortableTable<T extends PlayerRank>({
   );
 }
 
-export default SortableTable;
+export { SortableTable };

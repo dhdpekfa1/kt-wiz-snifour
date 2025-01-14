@@ -1,6 +1,5 @@
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import { MediaLayout, SearchBar, StoryGridView } from '@/features/media';
+import { Banner, Breadcrumb, SearchBar } from '@/features/common';
+import { MediaLayout, StoryGridView } from '@/features/media';
 import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
 import { useSearchParams } from 'react-router';

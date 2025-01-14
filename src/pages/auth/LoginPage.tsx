@@ -17,9 +17,7 @@ import useKakaoLogin from '@/features/auth/hooks/useKakaoLogin';
 
 import useLogin from '@/features/auth/hooks/useLogin';
 import { loginSchema } from '@/features/auth/schemas/loginSchema';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
+import { Banner, Breadcrumb, Layout } from '@/features/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';

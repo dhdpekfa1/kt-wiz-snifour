@@ -14,4 +14,4 @@ const Layout = ({ header, children }: LayoutProps) => {
   );
 };
 
-export default Layout;
+export { Layout };

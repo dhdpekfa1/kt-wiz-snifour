@@ -1,6 +1,5 @@
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
+import { Banner, Breadcrumb } from '@/features/common';
 import { Song, SongBoard } from '@/features/song';
 import { TabsContent } from '@radix-ui/react-tabs';
 

@@ -111,4 +111,4 @@ function WebHeader({ className }: { className?: string }) {
   );
 }
 
-export default WebHeader;
+export { WebHeader };

@@ -7,8 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog/dialog';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import SubTitle from '@/features/common/SubTitle';
+import { Breadcrumb, SubTitle } from '@/features/common';
 import TicketItem from '@/features/ticket/components/TicketItem';
 import { useNavigate } from 'react-router';
 

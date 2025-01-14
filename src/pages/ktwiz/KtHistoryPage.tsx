@@ -1,10 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { Banner, Layout } from '@/features/common';
+import { TeamHistoryTab, TeamIntroduceTab } from '@/features/ktWiz';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';
-
-import Banner from '@/features/common/Banner';
-import Layout from '@/features/common/Layout';
-import { TeamHistoryTab, TeamIntroduceTab } from '@/features/ktWiz';
 
 const WIZ_TABS_CONFIG = [
   { value: 'about', path: '/about' },

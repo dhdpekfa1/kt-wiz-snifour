@@ -1,5 +1,5 @@
 import data from '@/assets/data/ktHistory.json';
-import Breadcrumb from '@/features/common/Breadcrumb';
+import { Breadcrumb } from '@/features/common';
 
 const TeamHistoryTab = () => {
   return (

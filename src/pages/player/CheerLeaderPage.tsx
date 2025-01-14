@@ -1,7 +1,4 @@
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
-import { SearchBar } from '@/features/media';
+import { Banner, Breadcrumb, Layout, SearchBar } from '@/features/common';
 import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import CheerleaderDialog from '@/features/player/components/cheerleader/CheerleaderDialog';
 import useCheerleaderList from '@/features/player/hooks/useCheerleaderList';

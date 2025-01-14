@@ -1,4 +1,4 @@
-import TeamInfo, { type TeamData } from '@/features/common/TeamInfo';
+import { TeamData, TeamInfo } from '@/features/common';
 import type { ReactNode } from 'react';
 import { IconLeft, IconRight } from 'react-day-picker';
 

@@ -1,6 +1,4 @@
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import { SearchBar } from '@/features/media';
+import { Banner, Breadcrumb, SearchBar } from '@/features/common';
 import { PlayerList } from '@/features/player/components';
 import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import { usePlayerSearch } from '@/features/player/hooks/usePlayerSearch';

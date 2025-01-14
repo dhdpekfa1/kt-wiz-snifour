@@ -1,5 +1,5 @@
 import { startingPitcherColumns } from '@/constants/columns/starting-pitcher-columns';
-import DataTable from '@/features/common/DataTable';
+import { DataTable } from '@/features/common';
 import { Pitcher } from '@/features/game/types/watch-point';
 
 interface StartingPitcherProps {

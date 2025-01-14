@@ -62,4 +62,4 @@ const TeamInfo = ({
   );
 };
 
-export default TeamInfo;
+export { TeamInfo };

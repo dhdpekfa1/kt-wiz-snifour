@@ -1,5 +1,5 @@
 import { battingRecordColumns } from '@/constants/columns/batting-record-columns';
-import DataTable from '@/features/common/DataTable';
+import { DataTable } from '@/features/common';
 import type { Batter } from '../../types/boxscore';
 
 interface BattingRecordTableProps {

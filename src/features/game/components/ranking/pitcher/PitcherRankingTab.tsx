@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import { seasons } from '@/constants/seasons';
-import CustomSelect from '@/features/common/CustomSelect.tsx';
+import { Breadcrumb, CustomSelect, SubTabsTrigger } from '@/features/common';
 import {
   AllPitcherRankingTab,
   KTPitcherRankingTab,
@@ -10,9 +10,6 @@ import { useTopPitcherRank } from '@/features/game/hooks/ranking/useTopPitcherRa
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import Breadcrumb from '../../../../common/Breadcrumb';
-import SubTabsTrigger from '../../../../common/SubTabsTrigger';
-
 function PitcherRankingTab() {
   const { eraRanking, winRanking, isLoading, error, isError } =
     useTopPitcherRank();

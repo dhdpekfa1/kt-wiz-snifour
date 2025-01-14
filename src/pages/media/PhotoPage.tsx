@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
-import Banner from '@/features/common/Banner';
+import { Banner } from '@/features/common';
 import { MediaLayout, PhotoFilter, PhotoGridView } from '@/features/media';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';

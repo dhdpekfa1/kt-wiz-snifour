@@ -1,5 +1,4 @@
-import MobileHeader from './MobileHeader';
-import WebHeader from './WebHeader';
+import { MobileHeader, WebHeader } from '@/features/common';
 
 function Header() {
   return (
@@ -10,4 +9,4 @@ function Header() {
   );
 }
 
-export default Header;
+export { Header };

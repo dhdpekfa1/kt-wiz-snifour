@@ -10,7 +10,7 @@ import {
   yearBatterRecordColumns,
   yearPitcherRecordColumns,
 } from '@/constants/columns/record-columns';
-import DataTable from '@/features/common/DataTable';
+import { DataTable } from '@/features/common';
 import { cn } from '@/lib/utils';
 import { useParams } from 'react-router';
 import { RecentRecord, YearRecord } from '../../types/detail';

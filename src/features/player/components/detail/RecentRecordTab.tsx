@@ -3,7 +3,7 @@ import {
   recentBatterConfig,
   recentPitcherConfig,
 } from '@/constants/chart-config';
-import SubTabsTrigger from '@/features/common/SubTabsTrigger';
+import { SubTabsTrigger } from '@/features/common';
 import { useParams } from 'react-router';
 import { usePlayer } from '../../hooks/usePlayer';
 import { PlayerRecordChart } from './PlayerRecordChart';

@@ -1,4 +1,4 @@
-import Breadcrumb from '@/features/common/Breadcrumb';
+import { Breadcrumb } from '@/features/common';
 import useCoach from '@/features/player/hooks/useCoach';
 import Skeleton from 'react-loading-skeleton';
 

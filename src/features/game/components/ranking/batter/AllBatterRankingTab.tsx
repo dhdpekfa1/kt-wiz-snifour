@@ -1,5 +1,5 @@
 import { batterColumns } from '@/constants/columns/player-rank-colums';
-import SortableTable from '@/features/common/SortableTable';
+import { SortableTable } from '@/features/common';
 import { useBatterRank } from '@/features/game/hooks/ranking';
 import { useSearchParams } from 'react-router';
 import Filter from '../common/Filter';

@@ -1,9 +1,9 @@
 import { ChartContainer } from '@/components/ui';
+import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { RecentRecord, YearRecord } from '../player/types/detail';
-import { TeamBatterRank } from './types/batters';
-import { TeamPitcherRank } from './types/pitchers';
+import { TeamBatterRank } from '../types/batters';
+import { TeamPitcherRank } from '../types/pitchers';
 
 interface Config {
   [key: string]: {
@@ -92,4 +92,4 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
   );
 }
 
-export default CustomBarChart;
+export { CustomBarChart };
