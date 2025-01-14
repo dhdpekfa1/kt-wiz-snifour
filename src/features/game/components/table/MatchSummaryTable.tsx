@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { TeamRank, TeamWinLose } from '../../types/watch-point';
+import { TeamRank, TeamWinLose } from '@/features/game';
 
 const calculateWinRate = (win?: number, lose?: number): string => {
   const rate = (win ?? 0) / ((win ?? 0) + (lose ?? 0) || 1);

@@ -5,10 +5,10 @@ import {
   NotFoundSearchResult,
   PlayButton,
 } from '@/features/media';
+import useHighlightListQuery from '@/features/media/hooks/highlight/useHighlightListQuery';
 import { cn } from '@/lib/utils';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useNavigate } from 'react-router';
-import useHighlightListQuery from '../../hooks/highlight/useHighlightListQuery';
 
 const HighlightGridView = () => {
   const navigate = useNavigate();

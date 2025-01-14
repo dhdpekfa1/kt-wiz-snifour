@@ -1,11 +1,11 @@
 import { ApiRoutes } from '@/constants/route';
-import instance from '@/lib/axios/instance';
 import {
   FirstPitchDetailDto,
   FirstPitchDetailResponse,
   FirstPitchListDto,
   FirstPitchResponse,
-} from '../../types/firstPitch';
+} from '@/features/media/types/firstPitch';
+import instance from '@/lib/axios/instance';
 
 export const firstPitchApi = {
   getFirstPitchList: async (

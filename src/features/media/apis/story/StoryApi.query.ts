@@ -1,4 +1,10 @@
+import { createGridViewItem } from '@/features/media/services/grid-mapper.service';
 import { GridInfiniteQueryResult } from '@/features/media/types';
+import {
+  StoryDetailResponse,
+  StoryItem,
+  StoryResponse,
+} from '@/features/media/types/story';
 import {
   Parameter,
   UseInfiniteQueryParams,
@@ -11,12 +17,6 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { createGridViewItem } from '../../services/grid-mapper.service';
-import {
-  StoryDetailResponse,
-  StoryItem,
-  StoryResponse,
-} from '../../types/story';
 import { storyApi } from './StoryApi';
 
 // 쿼리 키 정의

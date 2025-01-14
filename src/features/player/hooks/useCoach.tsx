@@ -1,5 +1,5 @@
+import { useGetCoachDetail } from '@/features/player/apis/playerApi.query';
 import { useSearchParams } from 'react-router';
-import { useGetCoachDetail } from '../apis/playerApi.query';
 
 const useCoach = () => {
   const [searchParams] = useSearchParams();

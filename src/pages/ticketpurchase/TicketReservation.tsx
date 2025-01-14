@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog/dialog';
 import { Breadcrumb, SubTitle } from '@/features/common';
-import TicketItem from '@/features/ticket/components/TicketItem';
+import { TicketItem } from '@/features/ticket';
 import { useNavigate } from 'react-router';
 
 function TicketReservation() {

@@ -1,5 +1,5 @@
+import { useGetWizRank } from '@/features/home/apis/mainApi.query';
 import { cn } from '@/lib/utils';
-import { useGetWizRank } from '../apis/mainApi.query';
 import Skeleton from 'react-loading-skeleton';
 
 function TeamRanking() {

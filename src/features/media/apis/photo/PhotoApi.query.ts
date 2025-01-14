@@ -1,9 +1,9 @@
+import { createGridViewItem } from '@/features/media/services/grid-mapper.service';
+import { GridInfiniteQueryResult } from '@/features/media/types';
+import { PhotoResponse } from '@/features/media/types/photo';
 import { Parameter, UseInfiniteQueryParams, isNotNullish } from '@/lib';
 import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { createGridViewItem } from '../../services/grid-mapper.service';
-import { GridInfiniteQueryResult } from '../../types';
-import { PhotoResponse } from '../../types/photo';
 import { photoApi } from './PhotoApi';
 
 export const PHOTO_API_QUERY_KEY = {

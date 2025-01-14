@@ -1,5 +1,5 @@
+import { Song } from '@/features/song/types';
 import { cn } from '@/lib/utils';
-import { Song } from '../types';
 import { NowPlaying } from './NowPlaying';
 
 function SongBoard({ song }: { song: Song }) {

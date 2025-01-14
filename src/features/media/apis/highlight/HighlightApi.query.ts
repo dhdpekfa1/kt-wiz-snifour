@@ -1,3 +1,4 @@
+import { createGridViewItem } from '@/features/media/services/grid-mapper.service';
 import {
   GridInfiniteQueryResult,
   HighlightDetailResponse,
@@ -17,7 +18,6 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { createGridViewItem } from '../../services/grid-mapper.service';
 import { highlightApi } from './HighlightApi';
 
 // 쿼리 키 정의

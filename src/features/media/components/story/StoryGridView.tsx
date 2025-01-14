@@ -7,9 +7,9 @@ import {
   NotFoundSearchResult,
   PlayButton,
 } from '@/features/media';
+import { GridArticleSkeleton } from '@/features/media/common/skeleton';
+import useStoryListQuery from '@/features/media/hooks/story/useStoryListQuery';
 import InfiniteScroll from 'react-infinite-scroller';
-import { GridArticleSkeleton } from '../../common/skeleton';
-import useStoryListQuery from '../../hooks/story/useStoryListQuery';
 
 const StoryGridView = () => {
   const navigate = useNavigate();

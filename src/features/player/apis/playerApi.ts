@@ -1,17 +1,17 @@
 import { ApiRoutes } from '@/constants/route';
-import instance from '@/lib/axios/instance';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
   PlayerBase,
-} from '../types/detail';
+} from '@/features/player/types/detail';
 import {
   CoachDetailResponse,
   CoachListResponse,
   PlayerDetailResponse,
   PlayerDto,
   PlayerListResponse,
-} from '../types/player';
+} from '@/features/player/types/player';
+import instance from '@/lib/axios/instance';
 
 export const playerApi = {
   getCoachList: async (): Promise<CoachListResponse> => {

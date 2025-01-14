@@ -1,6 +1,6 @@
+import { CoachListItem, PlayerListItem } from '@/features/player/types/list';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router';
-import { CoachListItem, PlayerListItem } from '../types/list';
 
 interface PlayerListProps {
   playerList: (CoachListItem | PlayerListItem)[];

@@ -1,4 +1,4 @@
-import { useGetCoachList } from '../apis/playerApi.query';
+import { useGetCoachList } from '@/features/player/apis/playerApi.query';
 
 const useCoachList = () => {
   const { data: coachList, isLoading, isError, error } = useGetCoachList();

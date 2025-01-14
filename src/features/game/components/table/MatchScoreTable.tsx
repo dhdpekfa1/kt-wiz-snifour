@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
-import { ScoreboardEntry } from '../../types/boxscore';
+import { ScoreboardEntry } from '@/features/game';
 
 interface MatchScoreTableProps {
   data: ScoreboardEntry[] | undefined;

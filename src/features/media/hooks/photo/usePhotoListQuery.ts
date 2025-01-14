@@ -1,7 +1,7 @@
+import { useGetPhotoList } from '@/features/media/apis/photo/PhotoApi.query';
+import { PhotoListDto } from '@/features/media/types/photo';
 import { QueryParser } from '@/lib';
 import { useParams, useSearchParams } from 'react-router';
-import { useGetPhotoList } from '../../apis/photo/PhotoApi.query';
-import { PhotoListDto } from '../../types/photo';
 
 const usePhotoListQuery = () => {
   const { id } = useParams();

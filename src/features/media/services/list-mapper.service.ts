@@ -1,5 +1,5 @@
 import { ListViewType, NewsItem } from '@/features/media/types';
-import { FirstPitchItem } from '../types/firstPitch';
+import { FirstPitchItem } from '@/features/media/types/firstPitch';
 
 // ListViewType으로 변환하는 팩토리 함수
 const createListViewItem = (item: NewsItem | FirstPitchItem): ListViewType => ({

@@ -1,8 +1,8 @@
+import { createListViewItem } from '@/features/media/services';
 import { ListDataType } from '@/features/media/types';
 import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { createListViewItem } from '../../services';
 import {
   FirstPitchDetailResponse,
   FirstPitchItem,

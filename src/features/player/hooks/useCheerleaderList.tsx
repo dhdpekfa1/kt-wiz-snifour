@@ -1,6 +1,6 @@
 import { getCheerleaderList } from '@/features/player/apis';
+import type { Cheerleader } from '@/features/player/types/cheerleader';
 import { useEffect, useState } from 'react';
-import type { Cheerleader } from '../types/cheerleader';
 
 const useCheerleaderList = () => {
   const [cheerleaderList, setCheerleaderList] = useState<Cheerleader[]>([]);

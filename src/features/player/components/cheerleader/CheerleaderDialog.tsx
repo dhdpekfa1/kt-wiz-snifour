@@ -7,9 +7,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui';
+import type { Cheerleader } from '@/features/player/types/cheerleader';
 import Skeleton from 'react-loading-skeleton';
 import { SocialIcon } from 'react-social-icons';
-import type { Cheerleader } from '../../types/cheerleader';
 
 interface cheerleaderDialogProps {
   data: Cheerleader;
