@@ -1,4 +1,4 @@
-import { ChartContainer } from '@/components/ui/chart';
+import { ChartContainer } from '@/components/ui';
 import { CrowdRank } from '@/features/game/types/ranking';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';

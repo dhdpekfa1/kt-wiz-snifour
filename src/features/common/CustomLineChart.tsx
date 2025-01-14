@@ -1,4 +1,4 @@
-import { ChartContainer } from '@/components/ui/chart';
+import { ChartContainer } from '@/components/ui';
 import { useEffect, useState } from 'react';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 import { RecentRecord, YearRecord } from '../player/types/detail';
