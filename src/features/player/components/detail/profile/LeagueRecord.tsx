@@ -89,4 +89,4 @@ function LeagueRecord() {
   );
 }
 
-export default LeagueRecord;
+export { LeagueRecord };

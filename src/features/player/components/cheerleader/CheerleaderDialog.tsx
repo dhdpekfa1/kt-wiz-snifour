@@ -87,4 +87,4 @@ function CheerleaderDialog({ data, loading }: cheerleaderDialogProps) {
   );
 }
 
-export default CheerleaderDialog;
+export { CheerleaderDialog };

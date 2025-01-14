@@ -3,9 +3,9 @@ import { Breadcrumb, SubTitle } from '@/features/common';
 import {
   PlayerProfile,
   PlayerRecordChart,
+  RecentRecordTab,
   SeasonSummary,
-} from '@/features/player/components';
-import { RecentRecordTab } from '@/features/player/components/detail/RecentRecordTab';
+} from '@/features/player';
 import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
 import { useParams } from 'react-router';

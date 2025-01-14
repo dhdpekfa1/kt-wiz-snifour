@@ -1,4 +1,4 @@
-import { Config } from '@/features/player/components';
+import { Config } from '@/features/player';
 import { cn } from '@/lib/utils';
 
 interface ChartLabelListProps {

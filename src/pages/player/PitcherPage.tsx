@@ -1,6 +1,5 @@
 import { Banner, Breadcrumb, SearchBar } from '@/features/common';
-import { PlayerList } from '@/features/player/components';
-import NotFoundSearch from '@/features/player/components/NotFoundSearch';
+import { NotFoundSearch, PlayerList } from '@/features/player';
 import { usePlayerSearch } from '@/features/player/hooks/usePlayerSearch';
 
 function PitcherPage() {

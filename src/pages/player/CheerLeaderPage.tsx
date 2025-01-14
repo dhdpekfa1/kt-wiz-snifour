@@ -1,6 +1,5 @@
 import { Banner, Breadcrumb, Layout, SearchBar } from '@/features/common';
-import NotFoundSearch from '@/features/player/components/NotFoundSearch';
-import CheerleaderDialog from '@/features/player/components/cheerleader/CheerleaderDialog';
+import { CheerleaderDialog, NotFoundSearch } from '@/features/player';
 import useCheerleaderList from '@/features/player/hooks/useCheerleaderList';
 import { useSearchParams } from 'react-router';
 

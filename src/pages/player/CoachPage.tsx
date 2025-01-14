@@ -1,6 +1,5 @@
 import { Banner, Breadcrumb, Layout, SearchBar } from '@/features/common';
-import { PlayerList } from '@/features/player/components/';
-import NotFoundSearch from '@/features/player/components/NotFoundSearch';
+import { NotFoundSearch, PlayerList } from '@/features/player';
 import useCoachList from '@/features/player/hooks/useCoachList';
 import { useSearchParams } from 'react-router';
 

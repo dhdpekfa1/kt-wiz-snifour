@@ -1,8 +1,10 @@
-import { PlayerProfileSkeleton } from '@/features/player/components';
+import {
+  LeagueRecord,
+  PlayerInfo,
+  PlayerProfileSkeleton,
+} from '@/features/player';
+import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { cn } from '@/lib/utils';
-import { usePlayer } from '../../hooks/usePlayer';
-import LeagueRecord from './profile/LeagueRecord';
-import PlayerInfo from './profile/PlayerInfo';
 
 interface PlayerProfileProps {
   className: string;

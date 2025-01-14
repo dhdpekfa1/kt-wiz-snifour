@@ -6,4 +6,4 @@ function NotFoundSearch() {
   );
 }
 
-export default NotFoundSearch;
+export { NotFoundSearch };
