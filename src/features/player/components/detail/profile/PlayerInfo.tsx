@@ -62,4 +62,4 @@ function PlayerInfo() {
   );
 }
 
-export default PlayerInfo;
+export { PlayerInfo };

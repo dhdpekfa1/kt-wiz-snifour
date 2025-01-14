@@ -6,17 +6,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui';
-
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
-import GridArticle from '@/features/media/common/GridArticle';
-import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
+import {
+  GridArticle,
+  LoadingView,
+  NotFoundSearchResult,
+} from '@/features/media';
+import { GridArticleSkeleton } from '@/features/media';
+import usePhotoListQuery from '@/features/media/hooks/photo/usePhotoListQuery';
 import InfiniteScroll from 'react-infinite-scroller';
-import { LoadingView } from '../../common/LoadingView';
-import { GridArticleSkeleton } from '../../common/skeleton';
-import usePhotoListQuery from '../../hooks/photo/usePhotoListQuery';
 
 const PhotoGridView = () => {
   // API 연동
@@ -120,4 +121,4 @@ const PhotoGridView = () => {
   );
 };
 
-export default PhotoGridView;
+export { PhotoGridView };

@@ -1,7 +1,4 @@
-import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
-import { useQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { CoachListItem, PlayerListItem } from '../types/list';
+import { CoachListItem, PlayerListItem } from '@/features/player/types/list';
 import {
   CoachDetailResponse,
   CoachItem,
@@ -9,7 +6,10 @@ import {
   PlayerDetailResponse,
   PlayerItem,
   PlayerListResponse,
-} from '../types/player';
+} from '@/features/player/types/player';
+import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
+import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { playerApi } from './playerApi';
 
 export const PLAYER_API_QUERY_KEY = {

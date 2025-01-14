@@ -1,12 +1,12 @@
 import { ApiRoutes } from '@/constants/route';
-import instance from '@/lib/axios/instance';
 import {
   MainWizPhotoDto,
   MainWizPhotoResponse,
   MainWizVideoDto,
   MainWizVideoResponse,
   WizRankResponse,
-} from '../types';
+} from '@/features/home';
+import instance from '@/lib/axios/instance';
 
 export const mainApi = {
   getWizRank: async (): Promise<WizRankResponse> => {

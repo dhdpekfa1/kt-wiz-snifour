@@ -1,4 +1,4 @@
-import { Song } from '../types';
+import { Song } from '@/features/song/types';
 
 function NowPlaying({ song }: { song: Song }) {
   return (

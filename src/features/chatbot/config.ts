@@ -1,8 +1,6 @@
 import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
-import Header from './Header';
-import WidgetButton, { WidgetButtonProps } from './WidgetButton';
-import WizAvatar from './WizAvatar';
+import { Header, WidgetButton, WidgetButtonProps, WizAvatar } from './';
 
 const config = {
   initialMessages: [

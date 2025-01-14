@@ -1,5 +1,5 @@
+import { Lineup } from '@/features/game/types/watch-point';
 import { useInView } from 'react-intersection-observer';
-import { Lineup } from '../../types/watch-point';
 
 const TeamLineupAnimation = ({
   player,

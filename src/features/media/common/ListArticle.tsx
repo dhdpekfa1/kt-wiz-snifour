@@ -37,7 +37,11 @@ const ListArticleThumbnail = ({
   imgFilePath,
   title,
   className,
-}: { imgFilePath?: string; title: string; className?: string }) => {
+}: {
+  imgFilePath?: string;
+  title: string;
+  className?: string;
+}) => {
   return (
     <div
       className={cn(
@@ -65,7 +69,10 @@ const ListArticleThumbnail = ({
 const ListArticleContent = ({
   children,
   className,
-}: { children: React.ReactNode; className?: string }) => {
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
     <div className={cn('flex-1 flex flex-col max-w-3xl py-3', className)}>
       {children}
@@ -77,7 +84,10 @@ const ListArticleContent = ({
 const ListArticleTitle = ({
   title,
   className,
-}: { title: string; className?: string }) => {
+}: {
+  title: string;
+  className?: string;
+}) => {
   return <h3 className={cn('media-article-title', className)}>{title}</h3>;
 };
 
@@ -85,7 +95,10 @@ const ListArticleTitle = ({
 const ListArticleDescription = ({
   content,
   className,
-}: { content: string; className?: string }) => {
+}: {
+  content: string;
+  className?: string;
+}) => {
   const textContent =
     new DOMParser()
       .parseFromString(content, 'text/html')
@@ -105,7 +118,11 @@ const ListArticleFooter = ({
   createdAt,
   viewCount,
   className,
-}: { createdAt: number; viewCount: number; className?: string }) => {
+}: {
+  createdAt: number;
+  viewCount: number;
+  className?: string;
+}) => {
   return (
     <div className={cn('media-article-footer', className)}>
       <time dateTime={new Date(createdAt).toISOString()}>
@@ -125,4 +142,4 @@ ListArticle.Title = ListArticleTitle;
 ListArticle.Description = ListArticleDescription;
 ListArticle.Footer = ListArticleFooter;
 
-export default ListArticle;
+export { ListArticle };

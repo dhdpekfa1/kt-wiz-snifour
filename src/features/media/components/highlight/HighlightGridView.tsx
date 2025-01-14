@@ -1,13 +1,14 @@
+import {
+  GridArticle,
+  GridArticleSkeleton,
+  LoadingView,
+  NotFoundSearchResult,
+  PlayButton,
+} from '@/features/media';
+import useHighlightListQuery from '@/features/media/hooks/highlight/useHighlightListQuery';
+import { cn } from '@/lib/utils';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useNavigate } from 'react-router';
-
-import GridArticle from '@/features/media/common/GridArticle';
-import { LoadingView } from '@/features/media/common/LoadingView';
-import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
-import PlayButton from '@/features/media/common/PlayButton';
-import { GridArticleSkeleton } from '@/features/media/common/skeleton';
-import { cn } from '@/lib/utils';
-import useHighlightListQuery from '../../hooks/highlight/useHighlightListQuery';
 
 const HighlightGridView = () => {
   const navigate = useNavigate();
@@ -68,4 +69,4 @@ const HighlightGridView = () => {
   );
 };
 
-export default HighlightGridView;
+export { HighlightGridView };

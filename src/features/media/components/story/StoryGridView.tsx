@@ -1,13 +1,15 @@
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router';
 
-import GridArticle from '@/features/media/common/GridArticle';
-import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
-import PlayButton from '@/features/media/common/PlayButton';
+import {
+  GridArticle,
+  LoadingView,
+  NotFoundSearchResult,
+  PlayButton,
+} from '@/features/media';
+import { GridArticleSkeleton } from '@/features/media/common/skeleton';
+import useStoryListQuery from '@/features/media/hooks/story/useStoryListQuery';
 import InfiniteScroll from 'react-infinite-scroller';
-import { LoadingView } from '../../common/LoadingView';
-import { GridArticleSkeleton } from '../../common/skeleton';
-import useStoryListQuery from '../../hooks/story/useStoryListQuery';
 
 const StoryGridView = () => {
   const navigate = useNavigate();
@@ -60,4 +62,4 @@ const StoryGridView = () => {
   );
 };
 
-export default StoryGridView;
+export { StoryGridView };

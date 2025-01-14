@@ -1,5 +1,5 @@
 import { CarouselApi } from '@/components/ui';
-import { GameSchedule } from '@/features/game/types/match-schedule';
+import { GameSchedule } from '@/features/game';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { addMonths, format, subMonths } from 'date-fns';
 import { useEffect } from 'react';

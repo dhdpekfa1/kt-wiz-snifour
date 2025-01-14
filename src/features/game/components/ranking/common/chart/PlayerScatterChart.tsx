@@ -1,3 +1,7 @@
+import { SubTitle } from '@/features/common';
+import { OverallBatterRank, OverallPitcherRank } from '@/features/common';
+import { assignColor } from '@/features/game/services/assing-color.service';
+import { cn } from '@/lib/utils';
 import { useEffect, useMemo, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import {
@@ -10,15 +14,9 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-
-import SubTitle from '@/features/common/SubTitle';
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { assignColor } from '@/features/game/services/assing-color.service';
-import { cn } from '@/lib/utils';
 import { Props } from 'recharts/types/container/Surface';
-import CellLegend from './CellLegend';
-import CustomTooltip from './CustomTooltip';
+import { CellLegend } from './CellLegend';
+import { CustomTooltip } from './CustomTooltip';
 
 type PlayerRank = OverallPitcherRank | OverallBatterRank;
 

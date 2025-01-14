@@ -1,10 +1,11 @@
-import Breadcrumb from '@/features/common/Breadcrumb';
-import SubTitle from '@/features/common/SubTitle';
+import { Breadcrumb, SubTitle } from '@/features/common';
 import {
   BattingRecordTable,
+  KeyRecordsCard,
+  MatchBoard,
   MatchScoreTable,
   PitchingRecordTable,
-} from '@/features/game/components/table';
+} from '@/features/game';
 import { formatDate } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
@@ -12,8 +13,6 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { useParams } from 'react-router';
 import { useGetBoxscoreQuery } from './apis/boxscore/boxscoreApi.query';
 import useGetRecentMatchScheduleQuery from './apis/match-schedule/RecentScheduleApi.query';
-import KeyRecordsCard from './components/card/KeyRecordsCard';
-import { MatchBoard } from './components/common';
 
 const BoxscoreTab = () => {
   const { gameDate, gameKey } = useParams<{

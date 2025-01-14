@@ -69,3 +69,12 @@ export {
 export { Label } from './label/label';
 export { Checkbox } from './checkbox/checkbox';
 export { PasswordInput } from './input/password-input';
+export { Progress } from './progress/progress';
+export {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+  ChartStyle,
+} from './chart/chart';

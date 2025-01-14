@@ -10,10 +10,10 @@ import {
   yearBatterRecordColumns,
   yearPitcherRecordColumns,
 } from '@/constants/columns/record-columns';
-import DataTable from '@/features/common/DataTable';
+import { DataTable } from '@/features/common';
+import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { cn } from '@/lib/utils';
 import { useParams } from 'react-router';
-import { RecentRecord, YearRecord } from '../../types/detail';
 
 interface RecordTableAccordionProps {
   data: RecentRecord[] | YearRecord[];

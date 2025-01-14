@@ -14,4 +14,4 @@ function CellLegend({ color, label }: { color: string; label: string }) {
   );
 }
 
-export default CellLegend;
+export { CellLegend };

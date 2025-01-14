@@ -1,3 +1,5 @@
+import { GameSchedule, Pitcher } from '@/features/game';
+
 export interface WatchPointData {
   gameScore: GameScore;
   homeLineup: Lineup[];
@@ -61,56 +63,6 @@ export interface Lineup {
   weight: string; // 몸무게 (kg)
 }
 
-export interface Pitcher {
-  babip: string; // 타구인플레이 타율
-  bb: number; // 볼넷
-  bf: number; // 타자 상대 횟수
-  bk: number; // 보크
-  bs: number; // 블론 세이브
-  er: number; // 자책점
-  era: string; // 평균자책점
-  err: number; // 에러 개수
-  fip: string; // 수비무관 평균자책점
-  fo: number; // 플라이 아웃
-  gamenum: number; // 경기 수
-  go: number; // 땅볼 아웃
-  gyear: string; // 시즌 연도
-  havg: string; // 타율
-  hit: number; // 피안타 수
-  hold: number; // 홀드
-  hp: number; // 사구
-  hr: number; // 피홈런 수
-  ib: number; // 고의4구
-  inn2: number; // 투구 이닝 (1/3 단위)
-  innDisplay: string; // 투구 이닝 (표시용, 예: "149 2/3")
-  kbb: string; // 삼진/볼넷 비율
-  kk: number; // 탈삼진 수
-  l: number; // 패배 수
-  oavg: string; // 피안타율
-  pcode: string; // 선수 코드
-  playerName: string; // 선수 이름
-  qs: number; // 퀄리티 스타트 수
-  qsPlus: number; // 퀄리티 스타트 플러스
-  r: number; // 실점
-  ravg: string; // 실점 평균
-  sf: number; // 희생플라이
-  sh: number; // 희생번트
-  sho: number; // 완봉승
-  start: number; // 선발 경기 수
-  sv: number; // 세이브 수
-  svo: number; // 세이브 기회 수
-  tugucount: number; // 총 타자 수
-  turfSave: number; // 터프 세이브
-  w: number; // 승리 수
-  wCg: number; // 완투 경기 수
-  war: string; // 대체 선수 대비 승리 기여도
-  whip: string; // 이닝당 출루 허용
-  winShares: string; // 승리 기여도
-  wl: string; // 승-패 기록
-  wp: number; // 폭투
-  wra: string; // 승률
-}
-
 export interface TeamRank {
   ab: number; // 타석 수
   bra: string; // 팀 타율
@@ -151,28 +103,6 @@ export interface Schedule {
   current: GameSchedule; // 현재 경기 일정
   next: GameSchedule; // 다음 경기 일정
   prev: GameSchedule; // 이전 경기 일정
-}
-
-export interface GameSchedule {
-  broadcast: string; // 중계 방송사
-  cancelFlag: string; // 경기 취소 여부 (0: 정상, 1: 취소)
-  crowdCn: number; // 관중 수
-  endFlag: string; // 경기 종료 여부 (0: 진행 중, 1: 종료)
-  game: string; // 경기 상태 (예: "current", "next", "prev")
-  gameDate: string; // 경기 날짜 (YYYYMMDD 형식)
-  gday: number; // 경기 일
-  gmkey: string; // 경기 고유 키
-  gmonth: number; // 경기 월
-  gtime: string; // 경기 시간
-  gyear: string; // 경기 연도
-  home: string; // 홈팀 이름
-  homeKey: string; // 홈팀 코드
-  hscore: number; // 홈팀 점수
-  stadium: string; // 경기장 이름
-  stadiumKey: string; // 경기장 코드
-  visit: string; // 원정팀 이름
-  visitKey: string; // 원정팀 코드
-  vscore: number; // 원정팀 점수
 }
 
 // 최근 경기

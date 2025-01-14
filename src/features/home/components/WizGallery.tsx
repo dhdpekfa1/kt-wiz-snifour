@@ -1,10 +1,9 @@
-import { Link } from 'react-router';
-
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui';
+import { useGetMainWizPhoto } from '@/features/home/apis/mainApi.query';
 import { cn } from '@/lib/utils';
-import { WizGalleryAnimationItem } from './WizGalleryAnimationItem';
-import { useGetMainWizPhoto } from '../apis/mainApi.query';
 import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router';
+import { WizGalleryAnimationItem } from './WizGalleryAnimationItem';
 
 function WizGallery() {
   const {

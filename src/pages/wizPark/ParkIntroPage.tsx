@@ -5,9 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
+import { Banner, Breadcrumb, Layout } from '@/features/common';
 
 function ParkIntroPage() {
   return (

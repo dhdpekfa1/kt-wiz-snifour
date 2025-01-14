@@ -1,8 +1,6 @@
+import { OverallBatterRank, OverallPitcherRank } from '@/features/common';
+import { SortingTrigger } from '@/features/game';
 import { ColumnDef } from '@tanstack/react-table';
-
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
-import { SortingTrigger } from '@/features/game/components/ranking';
 
 export const pitcherColumns: ColumnDef<OverallPitcherRank>[] = [
   {

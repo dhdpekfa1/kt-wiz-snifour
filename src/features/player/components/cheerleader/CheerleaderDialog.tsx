@@ -7,9 +7,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui';
+import type { Cheerleader } from '@/features/player/types/cheerleader';
 import Skeleton from 'react-loading-skeleton';
 import { SocialIcon } from 'react-social-icons';
-import type { Cheerleader } from '../../types/cheerleader';
 
 interface cheerleaderDialogProps {
   data: Cheerleader;
@@ -50,9 +50,9 @@ function CheerleaderDialog({ data, loading }: cheerleaderDialogProps) {
           >
             <div className="mt-8 mx-4 sm:mt-10 lg:m-10">
               <DialogHeader className="flex flex-col items-start">
-                <p className="text-wiz-white sm:text-wiz-red font-bold">
+                <span className="text-wiz-white sm:text-wiz-red font-bold">
                   {data.leaderPosition}
-                </p>
+                </span>
                 <div className="flex gap-4 items-center">
                   <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-bold">
                     {data.leaderName}
@@ -64,20 +64,22 @@ function CheerleaderDialog({ data, loading }: cheerleaderDialogProps) {
                     className="sm:h-[35px] sm:w-[35px]"
                   />
                 </div>
-                <p className="text-lg sm:text-xl text-gray-400">
+                <span className="text-lg sm:text-xl text-gray-400">
                   {data.leaderEngName}
-                </p>
+                </span>
               </DialogHeader>
-              <DialogDescription className="my-4 p-4 flex flex-col gap-2 bg-wiz-white rounded-md">
-                {dialogContentItems.map((item) => (
-                  <div
-                    className="flex items-baseline gap-2 text-xs sm:text-sm lg:text-base"
-                    key={item.label}
-                  >
-                    <p className="font-semibold">{item.label}</p>
-                    <p className="font-normal">{item.prop}</p>
-                  </div>
-                ))}
+              <DialogDescription asChild>
+                <div className="my-4 p-4 flex flex-col gap-2 bg-wiz-white rounded-md">
+                  {dialogContentItems.map((item) => (
+                    <div
+                      className="flex items-baseline gap-2 text-xs sm:text-sm lg:text-base"
+                      key={item.label}
+                    >
+                      <span className="font-semibold">{item.label}</span>
+                      <span className="font-normal">{item.prop}</span>
+                    </div>
+                  ))}
+                </div>
               </DialogDescription>
             </div>
           </DialogContent>
@@ -87,4 +89,4 @@ function CheerleaderDialog({ data, loading }: cheerleaderDialogProps) {
   );
 }
 
-export default CheerleaderDialog;
+export { CheerleaderDialog };

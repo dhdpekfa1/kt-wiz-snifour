@@ -117,4 +117,4 @@ const Breadcrumb = ({ leftComponent = null }: BreadcrumbProps) => {
     </div>
   );
 };
-export default Breadcrumb;
+export { Breadcrumb };

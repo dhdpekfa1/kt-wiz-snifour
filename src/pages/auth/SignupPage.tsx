@@ -5,9 +5,7 @@ import {
   CardHeader,
 } from '@/components/ui';
 import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
+import { Banner, Breadcrumb, Layout } from '@/features/common';
 import { Link } from 'react-router';
 
 const SignupPage = () => {
@@ -84,4 +82,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export { SignupPage };

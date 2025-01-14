@@ -1,6 +1,6 @@
-import CustomSelect from '@/features/common/CustomSelect.tsx';
+import { CustomSelect } from '@/features/common';
 import { useMatchStore } from '@/store/useMatchStore';
-import { format, addMonths, startOfYear } from 'date-fns';
+import { addMonths, format, startOfYear } from 'date-fns';
 import { IconLeft, IconRight } from 'react-day-picker';
 
 interface CalendarHeaderProps {

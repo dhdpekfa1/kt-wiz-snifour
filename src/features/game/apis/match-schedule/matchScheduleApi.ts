@@ -1,9 +1,9 @@
-import instance from '@/lib/axios/instance';
 import { ApiRoutes } from '@/constants/route';
 import {
   GameScheduleResponse,
   RecentGameScheduleResponse,
-} from '@/features/game/types/match-schedule';
+} from '@/features/game';
+import instance from '@/lib/axios/instance';
 
 export const scheduleApi = {
   // 월 스케줄

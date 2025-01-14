@@ -1,13 +1,13 @@
 import { useParams } from 'react-router';
 
 import { usePlayer } from '@/features/player/hooks/usePlayer';
-import { cn } from '@/lib/utils';
-import Skeleton from 'react-loading-skeleton';
 import {
   BatterSeasonSummaryBase,
   PitcherSeasonSummaryBase,
   SeasonSummary,
-} from '../../../types/detail';
+} from '@/features/player/types/detail';
+import { cn } from '@/lib/utils';
+import Skeleton from 'react-loading-skeleton';
 
 interface Season {
   pitcher: { label: string; key: keyof PitcherSeasonSummaryBase }[];
@@ -89,4 +89,4 @@ function LeagueRecord() {
   );
 }
 
-export default LeagueRecord;
+export { LeagueRecord };

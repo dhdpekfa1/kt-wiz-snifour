@@ -1,9 +1,8 @@
 import { batterColumns } from '@/constants/columns/player-rank-colums';
-import SortableTable from '@/features/common/SortableTable';
-import { PlayerScatterChart } from '@/features/game/components/ranking';
+import { SortableTable } from '@/features/common';
+import { Filter, PlayerScatterChart } from '@/features/game';
 import { useBatterRank } from '@/features/game/hooks/ranking';
 import { useSearchParams } from 'react-router';
-import Filter from '../common/Filter';
 
 function KTBatterRankingTab() {
   const { ranking, isLoading, isError, error } = useBatterRank('kt');

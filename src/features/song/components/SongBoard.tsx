@@ -1,8 +1,18 @@
+import { Song } from '@/features/song/types';
 import { cn } from '@/lib/utils';
-import { Song } from '../types';
 import { NowPlaying } from './NowPlaying';
 
 function SongBoard({ song }: { song: Song }) {
+  const cheerSongs = Array.from({ length: 15 }, (_, index) => ({
+    id: `cheer-song-${index}`,
+    title: `응원가 ${index + 1}`,
+  }));
+
+  const processedLyrics = song.lyrics.split('\n').map((line, index) => ({
+    id: `${line}-${index}`,
+    text: line,
+  }));
+
   return (
     <div
       className={cn(
@@ -23,9 +33,13 @@ function SongBoard({ song }: { song: Song }) {
             {song.title}
           </h3>
           <div className={cn('text-xs', 'md:text-sm', 'lg:text-base')}>
-            {song.lyrics
-              .split('\n')
-              .map((l) => (l === '' ? <br /> : <p>{l}</p>))}
+            {processedLyrics.map((line) =>
+              line.text === '' ? (
+                <br key={line.id} />
+              ) : (
+                <p key={line.id}>{line.text}</p>
+              )
+            )}
           </div>
         </div>
         {/* 이미지 */}
@@ -41,9 +55,12 @@ function SongBoard({ song }: { song: Song }) {
         {/* now playing... */}
         <NowPlaying song={song} />
         <ul className="h-72 lg:h-[calc(100%-80px)] overflow-y-scroll">
-          {Array.from({ length: 15 }, (_, index) => (
-            <li className="bg-wiz-white bg-opacity-10 px-4 py-2 my-1 rounded hover:bg-opacity-30 cursor-pointer">
-              응원가 {index + 1}
+          {cheerSongs.map((song) => (
+            <li
+              key={song.id}
+              className="bg-wiz-white bg-opacity-10 px-4 py-2 my-1 rounded hover:bg-opacity-30 cursor-pointer"
+            >
+              {song.title}
             </li>
           ))}
         </ul>

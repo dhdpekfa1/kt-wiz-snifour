@@ -33,4 +33,4 @@ const MessageParser: React.FC<MessageParserProps> = ({ children, actions }) => {
   );
 };
 
-export default MessageParser;
+export { MessageParser };

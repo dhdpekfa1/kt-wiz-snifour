@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui';
-import SearchBar from '@/features/media/common/SearchBar';
+import { SearchBar } from '@/features/common';
 import { cn } from '@/lib/utils';
 import { useSearchParams } from 'react-router';
 
@@ -42,4 +42,4 @@ function Filter() {
   );
 }
 
-export default Filter;
+export { Filter };

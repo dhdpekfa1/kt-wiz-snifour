@@ -6,4 +6,4 @@ function WizAvatar() {
   );
 }
 
-export default WizAvatar;
+export { WizAvatar };

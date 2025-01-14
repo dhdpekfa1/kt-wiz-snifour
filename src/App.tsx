@@ -1,45 +1,37 @@
+import { Button } from '@/components/ui';
+import { useEffect, useState } from 'react';
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import Footer from './features/common/Footer';
-import Header from './features/common/header/Header';
+import { SignupForm } from './features/auth';
+import { ActionProvider, MessageParser } from './features/chatbot';
+import './features/chatbot/chatbot.css';
+import config from './features/chatbot/config';
+import { Footer, Header, ScrollToTop } from './features/common';
 import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
+import { LoginPage, SignupPage } from './pages/auth';
+import RegularGamePage from './pages/game/regular/RegularGamePage';
+import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
+import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
+import WallpaperPage from './pages/ktwiz/WallpaperPage';
+import FirstPitchPage from './pages/media/FirstPitchPage';
 import HighlightPage from './pages/media/HighlightPage';
 import NewsPage from './pages/media/NewsPage';
 import PhotoPage from './pages/media/PhotoPage';
 import StoryPage from './pages/media/StoryPage';
-
-import WallpaperPage from './pages/ktwiz/WallpaperPage';
-import NewsDetailPage from './pages/media/id/NewsDetailPage';
-import ParkIntroPage from './pages/wizPark/ParkIntroPage';
-import ParkLocationPage from './pages/wizPark/ParkLocationPage';
-import ParkingPage from './pages/wizPark/ParkingPage';
-
-import ScrollToTop from './features/common/ScrollToTop';
-import NotFoundPage from './pages/NotFoundPage';
-
-import { SignupForm } from './features/auth';
-import LoginPage from './pages/auth/LoginPage';
-import SignupPage from './pages/auth/SignupPage';
-import RegularGamePage from './pages/game/regular/RegularGamePage';
-import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
-
-import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
-import { useEffect, useState } from 'react';
-import Chatbot from 'react-chatbot-kit';
-import 'react-chatbot-kit/build/main.css';
-import { Button } from './components/ui';
-import ActionProvider from './features/chatbot/ActionProvider';
-import MessageParser from './features/chatbot/MessageParser';
-import './features/chatbot/chatbot.css';
-import config from './features/chatbot/config';
-import FirstPitchPage from './pages/media/FirstPitchPage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
+import NewsDetailPage from './pages/media/id/NewsDetailPage';
+import PressDetailPage from './pages/media/id/PressDetailPage';
 import StoryDetailPage from './pages/media/id/StoryDetailPage';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import TicketPurchasePage from './pages/ticketpurchase/TicketPurchasePage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
-import PressDetailPage from './pages/media/id/PressDetailPage';
+import ParkIntroPage from './pages/wizPark/ParkIntroPage';
+import ParkLocationPage from './pages/wizPark/ParkLocationPage';
+import ParkingPage from './pages/wizPark/ParkingPage';
 
 function App() {
   const [showChatbot, setShowChatbot] = useState(false);

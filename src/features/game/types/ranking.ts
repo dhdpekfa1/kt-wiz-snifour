@@ -1,5 +1,4 @@
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { OverallBatterRank, OverallPitcherRank } from '@/features/common';
 
 // 랭킹 정보 요청을 할 때 필요한 파라미터 타입
 export interface RankingDto {

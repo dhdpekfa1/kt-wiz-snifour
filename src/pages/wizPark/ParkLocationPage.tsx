@@ -1,8 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
 import { Button } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
+import { Banner, Breadcrumb, Layout } from '@/features/common';
+
 import WizParkMap from '@/features/home/components/WizParkMap';
 import { ArrowBigRightIcon, MapPin } from 'lucide-react';
 

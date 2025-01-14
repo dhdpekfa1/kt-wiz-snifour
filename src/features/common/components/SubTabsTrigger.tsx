@@ -25,4 +25,4 @@ function SubTabsTrigger({ children, value, className }: SubTabsTriggerProps) {
   );
 }
 
-export default SubTabsTrigger;
+export { SubTabsTrigger };

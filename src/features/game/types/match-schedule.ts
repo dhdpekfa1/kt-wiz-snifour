@@ -1,4 +1,4 @@
-import { RecentMatches } from './watch-point';
+import { RecentMatches } from '@/features/game';
 
 export interface GameScheduleResponse {
   data: {

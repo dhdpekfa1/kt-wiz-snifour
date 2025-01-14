@@ -1,8 +1,8 @@
+import { Video } from '@/features/home/types';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router';
-import { Video } from '../types';
 
 interface WizVideoAnimationProps {
   vid: Video;

@@ -1,14 +1,12 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import { useTabFromUrl } from '@/hooks/useTabFromUrl';
-
-import Layout from '@/features/common/Layout';
+import { Banner, Layout } from '@/features/common';
 import {
   BoxscoreTab,
   MatchScheduleTab,
   RankingTab,
   WatchPointTab,
 } from '@/features/game';
+import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 
 import '@/features/game/css/game.css';
 

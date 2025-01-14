@@ -1,14 +1,12 @@
 import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
-import { MediaDetail } from '@/features/media/common/MediaDetail';
-import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
-import { useNavigate } from 'react-router';
-
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
+import { Breadcrumb, Layout } from '@/features/common';
+import { MediaDetail } from '@/features/media';
 import useFirstPitchDetailQuery from '@/features/media/hooks/firstPitch/useFirstPitchDetailQuery';
 import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { toUrl } from '@/lib';
+import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 /** 뉴스 상세 페이지 */
 const FirstPitchDetailPage = () => {

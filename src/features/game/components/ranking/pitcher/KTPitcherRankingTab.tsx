@@ -1,11 +1,8 @@
-import { useSearchParams } from 'react-router';
-
 import { pitcherColumns } from '@/constants/columns/player-rank-colums';
-import SortableTable from '@/features/common/SortableTable';
-import { PlayerScatterChart } from '@/features/game/components/ranking';
+import { SortableTable } from '@/features/common';
+import { Filter, PlayerScatterChart } from '@/features/game';
 import { usePitcherRank } from '@/features/game/hooks/ranking/usePitcherRank';
-
-import Filter from '../common/Filter';
+import { useSearchParams } from 'react-router';
 
 function KTPitcherRankingTab() {
   const { ranking, isLoading, error, isError } = usePitcherRank('kt');

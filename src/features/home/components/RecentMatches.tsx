@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
+import { GameSchedule } from '@/features/game';
 import { cn, formatDate, isDateWithinWeek } from '@/lib/utils';
-import { GameSchedule } from '@/features/game/types/match-schedule';
-import { endOfWeek, startOfWeek, parse } from 'date-fns';
+import { endOfWeek, parse, startOfWeek } from 'date-fns';
+import { useMemo } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router';
 

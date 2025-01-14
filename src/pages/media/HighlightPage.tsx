@@ -1,12 +1,8 @@
-import Banner from '@/features/common/Banner';
-import MediaLayout from '@/features/media/common/MediaLayout';
-import SearchBar from '@/features/media/common/SearchBar';
-import HighlightGridView from '@/features/media/components/highlight/HighlightGridView';
-import { useSearchParams } from 'react-router';
-
-import Breadcrumb from '@/features/common/Breadcrumb';
+import { Banner, Breadcrumb, SearchBar } from '@/features/common';
+import { HighlightGridView, MediaLayout } from '@/features/media';
 import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
+import { useSearchParams } from 'react-router';
 
 /** 하이라이트 페이지 */
 const HighlightPage = () => {

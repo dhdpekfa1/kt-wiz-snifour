@@ -1,11 +1,9 @@
-import Layout from '@/features/common/Layout';
-import usePressDetailQuery from '@/features/media/hooks/news/usePressDetailQuery';
-import useScrollTo from '@/features/media/hooks/useScrollTo';
-
 import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import { MediaDetail } from '@/features/media/common/MediaDetail';
+import { Breadcrumb, Layout } from '@/features/common';
+import { MediaDetail } from '@/features/media';
+import usePressDetailQuery from '@/features/media/hooks/news/usePressDetailQuery';
+import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { toUrl } from '@/lib';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';

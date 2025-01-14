@@ -1,6 +1,6 @@
-import { DateRangePicker } from '@/features/media/components/photo/DateRangePicker';
+import { SearchBar } from '@/features/common';
+import { DateRangePicker } from '@/features/media';
 import { useSearchParams } from 'react-router';
-import SearchBar from '../../common/SearchBar';
 
 const PhotoFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,4 +21,4 @@ const PhotoFilter = () => {
   );
 };
 
-export default PhotoFilter;
+export { PhotoFilter };

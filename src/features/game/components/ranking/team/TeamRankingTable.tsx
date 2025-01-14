@@ -1,5 +1,5 @@
 import { teamRankColums } from '@/constants/columns/team-rank-colums';
-import DataTable from '@/features/common/DataTable';
+import { DataTable } from '@/features/common';
 import { useTeamRank } from '@/features/game/hooks/ranking/useTeamRank';
 
 function TeamRankingTable() {

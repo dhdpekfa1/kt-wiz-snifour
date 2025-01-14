@@ -98,4 +98,4 @@ function DataTable<TData>({
   );
 }
 
-export default DataTable;
+export { DataTable };

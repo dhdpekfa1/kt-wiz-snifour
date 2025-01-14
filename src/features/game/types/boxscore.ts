@@ -54,6 +54,7 @@ export interface Batter {
 }
 
 export interface Pitcher {
+  playerName?: string;
   team?: string;
   ab: number;
   accmEr: number;
@@ -79,6 +80,14 @@ export interface Pitcher {
   tb: string;
   w: number;
   wls: string;
+  era?: string;
+  start?: number;
+  sv?: number;
+  hold?: number;
+  wra?: string;
+  innDisplay?: string;
+  bb?: number;
+  hp?: number;
 }
 
 export interface ScheduleInfo {

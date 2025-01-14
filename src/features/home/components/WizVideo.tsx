@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router';
 
+import { useGetMainWizVideo } from '@/features/home/apis/mainApi.query';
 import { cn } from '@/lib/utils';
-import { WizVideoAnimation } from './WizVideoAnimation';
-import { useGetMainWizVideo } from '../apis/mainApi.query';
 import Skeleton from 'react-loading-skeleton';
+import { WizVideoAnimation } from './WizVideoAnimation';
 
 function WizVideo() {
   const navigate = useNavigate();

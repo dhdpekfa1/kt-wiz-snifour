@@ -1,7 +1,6 @@
-import instance from '@/lib/axios/instance';
 import { ApiRoutes } from '@/constants/route';
-
-import { WatchPointData } from '../../types/watch-point';
+import { WatchPointData } from '@/features/game';
+import instance from '@/lib/axios/instance';
 
 export const watchPointApi = {
   // 관전포인트

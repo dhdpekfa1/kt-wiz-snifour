@@ -1,4 +1,4 @@
-import Breadcrumb from '@/features/common/Breadcrumb';
+import { Breadcrumb } from '@/features/common';
 
 const GeneralMemberTab = () => {
   return (

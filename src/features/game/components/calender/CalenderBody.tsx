@@ -1,8 +1,8 @@
+import { CalendarHeader } from '@/features/game';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { DayPicker } from 'react-day-picker';
-import { CalendarHeader } from '../calender';
 
 interface CalenderBodyProps {
   renderCellContent: (date: Date) => React.ReactNode;

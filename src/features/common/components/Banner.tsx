@@ -85,4 +85,4 @@ Banner.Description = BannerDescription;
 Banner.Image = BannerImage;
 Banner.Overlay = BannerOverlay;
 
-export default Banner;
+export { Banner };

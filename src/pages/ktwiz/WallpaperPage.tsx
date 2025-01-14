@@ -1,7 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
-import Banner from '@/features/common/Banner';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import Layout from '@/features/common/Layout';
+import { Banner, Breadcrumb, Layout } from '@/features/common';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -76,6 +74,7 @@ function WallpaperPage() {
             >
               {size.map((item) => (
                 <button
+                  key={item}
                   type="button"
                   className={cn(
                     'bg-wiz-white bg-opacity-10 rounded text-xs px-2 py-1',

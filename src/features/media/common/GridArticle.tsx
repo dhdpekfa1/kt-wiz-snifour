@@ -167,4 +167,4 @@ GridArticle.Title = GridArticleTitle;
 GridArticle.SubTitle = GridArticleSubTitle;
 GridArticle.Footer = GridArticleFooter;
 
-export default GridArticle;
+export { GridArticle };

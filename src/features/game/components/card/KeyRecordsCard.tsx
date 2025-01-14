@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui';
-import { usePlayerImage } from '../../hooks/boxscore/usePlayerImage';
-import { BoxscoreData, EtcGame } from '../../types/boxscore';
+import { BoxscoreData, EtcGame } from '@/features/game';
+import { usePlayerImage } from '@/features/game/hooks/boxscore/usePlayerImage';
 
 interface KeyRecordsTableProps {
   data: BoxscoreData;
@@ -120,4 +120,4 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
   );
 }
 
-export default KeyRecordsCard;
+export { KeyRecordsCard };

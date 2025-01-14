@@ -99,4 +99,4 @@ const PaginationList = ({
   );
 };
 
-export default PaginationList;
+export { PaginationList };

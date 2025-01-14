@@ -1,8 +1,8 @@
 import { seasons } from '@/constants/seasons';
 import { rankingApi } from '@/features/game/apis/ranking/rankingApi';
+import { findMaxStats } from '@/features/player/services/find-maxstats.service';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router';
-import { findMaxStats } from '../services/find-maxstats.service';
 
 interface MaxStats {
   [key: string]: number;

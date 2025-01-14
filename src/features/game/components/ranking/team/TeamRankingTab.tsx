@@ -1,13 +1,11 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import SubTabsTrigger from '@/features/common/SubTabsTrigger';
-import SubTitle from '@/features/common/SubTitle';
+import { Breadcrumb, SubTabsTrigger, SubTitle } from '@/features/common';
 import {
   TeamBatterRankingView,
   TeamPitcherRankingView,
   TeamRankingTable,
   TeamVSTable,
-} from '@/features/game/components/ranking';
+} from '@/features/game';
 
 function TeamRankingTab() {
   return (

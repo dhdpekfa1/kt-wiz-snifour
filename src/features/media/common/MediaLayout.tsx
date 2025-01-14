@@ -16,4 +16,4 @@ const MediaLayout = ({ header, children }: MediaLayoutProps) => {
   );
 };
 
-export default MediaLayout;
+export { MediaLayout };

@@ -1,5 +1,4 @@
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { OverallBatterRank, OverallPitcherRank } from '@/features/common';
 
 export const findMaxStats = (
   data: OverallPitcherRank[] | OverallBatterRank[],

@@ -1,11 +1,13 @@
-import ListArticle from '@/features/media/common/ListArticle';
-import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
+import {
+  ListArticle,
+  ListArticleSkeleton,
+  LoadingView,
+  NotFoundSearchResult,
+  PaginationList,
+} from '@/features/media';
+import useFirstPitchListQuery from '@/features/media/hooks/firstPitch/useFirstPitchListQuery';
 import { usePagination } from '@/features/media/hooks/usePagination';
 import { cn } from '@/lib/utils';
-import { LoadingView } from '../../common/LoadingView';
-import PaginationList from '../../common/PaginationList';
-import { ListArticleSkeleton } from '../../common/skeleton';
-import useFirstPitchListQuery from '../../hooks/firstPitch/useFirstPitchListQuery';
 
 const FirstPitchListView = () => {
   const { pageNum, itemCount, onPagination } = usePagination();
@@ -65,4 +67,4 @@ const FirstPitchListView = () => {
   );
 };
 
-export default FirstPitchListView;
+export { FirstPitchListView };

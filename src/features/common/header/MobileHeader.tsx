@@ -1,8 +1,7 @@
+import { Sidebar } from '@/features/common';
+import { AlignJustify } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-
-import { AlignJustify } from 'lucide-react';
-import Sidebar from './SideBar';
 
 function MobileHeader() {
   const navigate = useNavigate();
@@ -28,4 +27,4 @@ function MobileHeader() {
   );
 }
 
-export default MobileHeader;
+export { MobileHeader };

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui';
-import Breadcrumb from '@/features/common/Breadcrumb';
+import { Breadcrumb } from '@/features/common';
 
 const TeamIntroduceTab = () => {
   return (

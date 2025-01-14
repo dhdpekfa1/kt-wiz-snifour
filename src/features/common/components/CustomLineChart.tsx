@@ -1,31 +1,25 @@
-import { ChartContainer } from '@/components/ui/chart';
+import { ChartContainer } from '@/components/ui';
+import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { useEffect, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { RecentRecord, YearRecord } from '../player/types/detail';
-import { TeamBatterRank } from './types/batters';
-import { TeamPitcherRank } from './types/pitchers';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-interface Config {
-  [key: string]: {
-    label: string;
-    color: string;
-    isActive: boolean;
+interface CustomLineChartProps {
+  data: RecentRecord[] | YearRecord[];
+  config: {
+    [key: string]: {
+      label: string;
+      color: string;
+      isActive: boolean;
+    };
   };
-}
-
-type Data = RecentRecord | YearRecord | TeamPitcherRank | TeamBatterRank;
-interface CustomBarChartProps {
-  data: Data[];
-  config: Config;
   XAxisKey: string;
 }
 
-function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
+function CustomLineChart({ data, config, XAxisKey }: CustomLineChartProps) {
   const activeKey = Object.keys(config).filter(
     (key) => config[key].isActive
   )[0];
   const [fontSize, setFontSize] = useState('16px');
-  const [maxBarSize, setMaxBarSize] = useState(40);
 
   if (!data) {
     return null;
@@ -36,10 +30,8 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
       if (window.innerWidth < 768) {
         // 모바일 화면 크기 기준
         setFontSize('10px');
-        setMaxBarSize(18);
       } else {
         setFontSize('16px');
-        setMaxBarSize(40);
       }
     };
 
@@ -55,7 +47,7 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
 
   return (
     <ChartContainer config={config} className="w-full h-52 mt-4">
-      <BarChart accessibilityLayer data={data}>
+      <LineChart accessibilityLayer data={data}>
         <CartesianGrid vertical={false} strokeOpacity={0.1} />
         <XAxis
           dataKey={XAxisKey}
@@ -71,25 +63,26 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
             0,
             () => {
               const max = Math.max(
-                ...data.map((item: Data) =>
-                  Number(item[activeKey as keyof Data])
+                ...data.map((item: RecentRecord | YearRecord) =>
+                  Number(item[activeKey as keyof (RecentRecord | YearRecord)])
                 )
               ); // dataMax를 사용했더니 제대로 max 값을 찾지 못하는 버그가 있어 직접 계산
               return max === 0 ? 5 : (max * 1.1).toFixed(2); // 최대값에 여유를 두고 10% 확대
             },
           ]}
         />
-        <Bar
+
+        <Line
           key={activeKey}
           dataKey={activeKey}
-          fill={`var(--color-${activeKey})`}
-          radius={3}
-          maxBarSize={maxBarSize}
+          stroke={`var(--color-${activeKey})`}
+          strokeWidth={3}
+          dot={{ fill: `var(--color-${activeKey})` }}
           label={{ position: 'top', fontSize }}
         />
-      </BarChart>
+      </LineChart>
     </ChartContainer>
   );
 }
 
-export default CustomBarChart;
+export { CustomLineChart };

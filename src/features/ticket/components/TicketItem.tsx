@@ -40,4 +40,4 @@ const TicketItem = ({
   </div>
 );
 
-export default TicketItem;
+export { TicketItem };

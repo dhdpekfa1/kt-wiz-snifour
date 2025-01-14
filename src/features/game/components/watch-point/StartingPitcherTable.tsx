@@ -1,6 +1,6 @@
 import { startingPitcherColumns } from '@/constants/columns/starting-pitcher-columns';
-import DataTable from '@/features/common/DataTable';
-import { Pitcher } from '@/features/game/types/watch-point';
+import { DataTable } from '@/features/common';
+import { Pitcher } from '@/features/game';
 
 interface StartingPitcherProps {
   homeTeam: string;
