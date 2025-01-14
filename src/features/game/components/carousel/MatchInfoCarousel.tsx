@@ -5,9 +5,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui';
+import { CarouselCard } from '@/features/game';
 import useGetRecentMatchScheduleQuery from '@/features/game/apis/match-schedule/RecentScheduleApi.query';
 import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
-import { CarouselCard } from '@/features/game/components';
 import { parseDate, selectTypeAndMonth } from '@/lib/helpers/parse-date';
 import { useMatchStore } from '@/store/useMatchStore';
 import { isValid, parse } from 'date-fns';

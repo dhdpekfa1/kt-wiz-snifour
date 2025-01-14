@@ -1,6 +1,6 @@
 import channelsData from '@/assets/data/broadcastChannels.json';
 import { Breadcrumb } from '@/features/common';
-import { MatchCalendar, MatchInfoCarousel } from '@/features/game/components';
+import { MatchCalendar, MatchInfoCarousel } from '@/features/game';
 
 const MatchScheduleTab = () => {
   return (

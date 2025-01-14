@@ -1,5 +1,5 @@
+import { TeamLineupAnimation } from '@/features/game';
 import { Lineup } from '@/features/game/types/watch-point';
-import { TeamLineupAnimation } from './TeamLineupAnimation';
 
 const TeamLineup = ({ data, logoUrl }: { data: Lineup[]; logoUrl: string }) => {
   const positionData: Record<string, { style: string; label: string }> = {

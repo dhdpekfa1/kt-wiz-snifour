@@ -5,7 +5,7 @@ import {
   StartingPitcherChart,
   StartingPitcherTable,
   TeamLineup,
-} from '@/features/game/components';
+} from '@/features/game';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';

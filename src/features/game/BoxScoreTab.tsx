@@ -5,7 +5,7 @@ import {
   MatchBoard,
   MatchScoreTable,
   PitchingRecordTable,
-} from '@/features/game/components';
+} from '@/features/game';
 import { formatDate } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
