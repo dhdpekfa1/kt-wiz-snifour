@@ -1,7 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
-import { mainApi } from './mainApi';
-import { isNotNullish, Parameter, UseQueryParams } from '@/lib';
-import { AxiosError } from 'axios';
 import {
   MainWizPhotoResponse,
   MainWizVideoResponse,
@@ -9,7 +5,11 @@ import {
   Video,
   WizRank,
   WizRankResponse,
-} from '../types';
+} from '@/features/home';
+import { Parameter, UseQueryParams, isNotNullish } from '@/lib';
+import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { mainApi } from './mainApi';
 
 export const MAIN_API_QUERY_KEY = {
   GET_WIZ_RANK: () => ['wiz-rank'],
