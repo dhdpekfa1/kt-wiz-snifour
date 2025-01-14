@@ -14,4 +14,4 @@ const TicketPriceTab = () => {
   );
 };
 
-export default TicketPriceTab;
+export { TicketPriceTab };

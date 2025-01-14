@@ -1,6 +1,5 @@
 import { Breadcrumb, Layout, SubTitle } from '@/features/common';
-import TicketItem from '@/features/ticket/components/TicketItem';
-import { LoginConfirmationDialog } from './LoginConfirmationDialog';
+import { LoginConfirmationDialog, TicketItem } from '@/features/ticket';
 
 function TicketReservationTab() {
   return (
@@ -95,4 +94,4 @@ function TicketReservationTab() {
   );
 }
 
-export default TicketReservationTab;
+export { TicketReservationTab };
