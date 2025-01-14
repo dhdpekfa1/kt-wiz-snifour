@@ -2,7 +2,7 @@ import { useMatchStore } from '@/store/useMatchStore';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { DayPicker } from 'react-day-picker';
-import { CalendarHeader } from '../calender';
+import { CalendarHeader } from '../';
 
 interface CalenderBodyProps {
   renderCellContent: (date: Date) => React.ReactNode;

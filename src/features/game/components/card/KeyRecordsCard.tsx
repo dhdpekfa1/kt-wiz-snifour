@@ -120,4 +120,4 @@ function KeyRecordsCard({ data }: KeyRecordsTableProps) {
   );
 }
 
-export default KeyRecordsCard;
+export { KeyRecordsCard };

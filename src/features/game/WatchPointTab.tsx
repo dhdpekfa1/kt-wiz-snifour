@@ -1,17 +1,17 @@
 import Breadcrumb from '@/features/common/Breadcrumb';
 import SubTitle from '@/features/common/SubTitle';
-import { MatchSummaryTable } from '@/features/game/components/table';
-import { useEffect, useState } from 'react';
-import { MatchBoard } from './components/common';
 import {
+  MatchBoard,
+  MatchSummaryTable,
   StartingPitcherChart,
   StartingPitcherTable,
   TeamLineup,
-} from './components/watch-point';
-import useGetRecentMatchScheduleQuery from './apis/match-schedule/RecentScheduleApi.query';
-import useGetWatchPointQuery from './apis/watch-point/watchPointApi.query';
+} from '@/features/game/components';
+import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useGetRecentMatchScheduleQuery from './apis/match-schedule/RecentScheduleApi.query';
+import useGetWatchPointQuery from './apis/watch-point/watchPointApi.query';
 
 const WatchPointTab = () => {
   const {

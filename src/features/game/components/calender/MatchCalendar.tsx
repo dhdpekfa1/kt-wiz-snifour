@@ -1,8 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
-import {
-  CalenderBody,
-  MatchCalendarCell,
-} from '@/features/game//components/calender';
+import { CalenderBody, MatchCalendarCell } from '@/features/game//components';
 import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
 import { useMatchStore } from '@/store/useMatchStore';
 import { format } from 'date-fns';
