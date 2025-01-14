@@ -1,11 +1,12 @@
+import mockData from '@/assets/data/__test__/pitcher/강건.json';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import {
   recentBatterConfig,
   recentPitcherConfig,
 } from '@/constants/chart-config';
 import SubTabsTrigger from '@/features/common/SubTabsTrigger';
+import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { useParams } from 'react-router';
-import { usePlayer } from '../../hooks/usePlayer';
 import { PlayerRecordChart } from './PlayerRecordChart';
 
 function RecentRecordTab() {
@@ -30,7 +31,11 @@ function RecentRecordTab() {
         <TabsContent value="regular" className="pb-4">
           <PlayerRecordChart
             title={'정규 리그 최근 5경기'}
-            data={player.recentgamerecordlist}
+            data={
+              player.recentgamerecordlist.length > 0
+                ? player.recentgamerecordlist
+                : mockData.data.recentgamerecordlist
+            }
             config={
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
             }
@@ -41,7 +46,11 @@ function RecentRecordTab() {
         <TabsContent value="futures" className="pb-4">
           <PlayerRecordChart
             title={'퓨처스 리그 최근 5경기'}
-            data={player.recentgamerecordlistfutures}
+            data={
+              player.recentgamerecordlistfutures.length > 0
+                ? player.recentgamerecordlistfutures
+                : mockData.data.recentgamerecordlistfutures
+            }
             config={
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
             }
