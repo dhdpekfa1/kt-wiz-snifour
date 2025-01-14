@@ -1,6 +1,5 @@
 import { SubTitle } from '@/features/common';
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { OverallBatterRank, OverallPitcherRank } from '@/features/common';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';

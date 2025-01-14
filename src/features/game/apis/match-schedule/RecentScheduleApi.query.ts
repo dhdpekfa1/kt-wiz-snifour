@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { scheduleApi } from './matchScheduleApi';
+import { RecentGameScheduleResponse } from '@/features/game';
 import { useMatchStore } from '@/store/useMatchStore';
-import { RecentGameScheduleResponse } from '../../types/match-schedule';
+import { useQuery } from '@tanstack/react-query';
 import { isValid, parse } from 'date-fns';
+import { scheduleApi } from './matchScheduleApi';
 
 // 최근 경기 쿼리 키
 export const RECENT_MATCHES_QUERY_KEY = ['recentMatches'];

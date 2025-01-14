@@ -1,9 +1,8 @@
 import { pitcherColumns } from '@/constants/columns/player-rank-colums';
 import { SortableTable } from '@/features/common';
-import { PlayerScatterChart } from '@/features/game/components/ranking';
+import { Filter, PlayerScatterChart } from '@/features/game';
 import { usePitcherRank } from '@/features/game/hooks/ranking/usePitcherRank';
 import { useSearchParams } from 'react-router';
-import Filter from '../common/Filter';
 
 function AllPitcherRankingTab() {
   const { ranking, isLoading, error, isError } = usePitcherRank('all');

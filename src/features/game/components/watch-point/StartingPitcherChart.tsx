@@ -1,6 +1,6 @@
+import { GameScore, Pitcher } from '@/features/game';
+import { getWatchPointChartData } from '@/features/game/services/calc-rate-watchpoint.service';
 import { cn } from '@/lib/utils';
-import { GameScore, Pitcher } from '../../types/watch-point';
-import { getWatchPointChartData } from '../../services/calc-rate-watchpoint.service';
 
 interface StartingPitcherChartProps {
   gameScore: GameScore;

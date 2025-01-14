@@ -1,6 +1,5 @@
-import { TeamBatterRank } from '@/features/common/types/batters';
-import { TeamPitcherRank } from '@/features/common/types/pitchers';
-import { TeamStats } from '@/features/game/types/ranking';
+import { TeamBatterRank, TeamPitcherRank } from '@/features/common';
+import { TeamStats } from '@/features/game';
 import { ColumnDef } from '@tanstack/react-table';
 
 // 팀 순위 - 팀 기록

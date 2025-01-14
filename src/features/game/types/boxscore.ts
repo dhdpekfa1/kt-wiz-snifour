@@ -54,6 +54,7 @@ export interface Batter {
 }
 
 export interface Pitcher {
+  playerName?: string;
   team?: string;
   ab: number;
   accmEr: number;

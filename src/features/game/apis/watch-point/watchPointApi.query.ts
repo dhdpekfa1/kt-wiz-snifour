@@ -1,5 +1,5 @@
+import { WatchPointData } from '@/features/game';
 import { useQuery } from '@tanstack/react-query';
-import { WatchPointData } from '../../types/watch-point';
 import { watchPointApi } from './watchPointApi';
 
 // 관전포인트 쿼리 키

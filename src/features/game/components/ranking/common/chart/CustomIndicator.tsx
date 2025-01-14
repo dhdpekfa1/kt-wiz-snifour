@@ -14,4 +14,4 @@ function CustomIndicator({ indicator, value }: CustomIndicatorProps) {
   );
 }
 
-export default CustomIndicator;
+export { CustomIndicator };

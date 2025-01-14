@@ -21,3 +21,15 @@ export { Header } from './header/Header';
 export { MobileHeader } from './header/MobileHeader';
 export { Sidebar } from './header/Sidebar';
 export { WebHeader } from './header/WebHeader';
+
+/** types */
+export type {
+  CommonBatterStats,
+  TeamBatterRank,
+  OverallBatterRank,
+} from './types/batters';
+export type {
+  CommonPitcherStats,
+  TeamPitcherRank,
+  OverallPitcherRank,
+} from './types/pitchers';

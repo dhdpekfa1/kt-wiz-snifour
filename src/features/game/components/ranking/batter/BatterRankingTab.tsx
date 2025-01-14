@@ -1,13 +1,15 @@
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import { seasons } from '@/constants/seasons';
 import { Breadcrumb, CustomSelect, SubTabsTrigger } from '@/features/common';
+import {
+  AllBatterRankingTab,
+  KTBatterRankingTab,
+  RankingCard,
+} from '@/features/game';
 import { useTopBatterRank } from '@/features/game/hooks/ranking';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { RankingCard } from '../common/RankingCard';
-import { AllBatterRankingTab } from './AllBatterRankingTab';
-import { KTBatterRankingTab } from './KTBatterRankingTab';
 
 function BatterRankingTab() {
   const { hraRanking, hrRanking, isLoading, error, isError } =

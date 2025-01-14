@@ -12,18 +12,14 @@ import {
   Label,
   PasswordInput,
 } from '@/components/ui';
-import {
-  AgreementData,
-  AgreementsType,
-} from '@/features/auth/types/agreements';
+import { AgreementData, AgreementItem, AgreementsType } from '@/features/auth';
+import useAuthRedirect from '@/features/auth/hooks/useAuthRedirect';
+import useSignup from '@/features/auth/hooks/useSignup';
+import { signupSchema } from '@/features/auth/schemas/signupSchema';
 import { Banner, Breadcrumb, Layout } from '@/features/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { AgreementItem } from '../';
-import useAuthRedirect from '../hooks/useAuthRedirect';
-import useSignup from '../hooks/useSignup';
-import { signupSchema } from '../schemas/signupSchema';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;

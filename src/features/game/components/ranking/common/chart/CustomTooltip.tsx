@@ -1,9 +1,8 @@
-import { OverallBatterRank } from '@/features/common/types/batters';
-import { OverallPitcherRank } from '@/features/common/types/pitchers';
+import { OverallBatterRank, OverallPitcherRank } from '@/features/common';
+import { CustomIndicator } from '@/features/game';
 import { CrowdRank } from '@/features/game/types/ranking';
 import { useMemo } from 'react';
 import { TooltipProps } from 'recharts';
-import CustomIndicator from './CustomIndicator';
 
 type Payload = OverallPitcherRank & OverallBatterRank & CrowdRank;
 
@@ -50,4 +49,4 @@ function CustomTooltip({ active, payload, type }: CustomTooltipProps) {
   return null;
 }
 
-export default CustomTooltip;
+export { CustomTooltip };

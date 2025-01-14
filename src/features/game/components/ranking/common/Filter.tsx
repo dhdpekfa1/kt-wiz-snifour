@@ -42,4 +42,4 @@ function Filter() {
   );
 }
 
-export default Filter;
+export { Filter };

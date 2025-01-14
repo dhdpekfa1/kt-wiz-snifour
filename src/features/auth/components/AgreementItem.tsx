@@ -7,7 +7,7 @@ import {
   DialogTrigger,
   Label,
 } from '@/components/ui';
-import { AgreementsType } from '@/features/auth/types/agreements';
+import { AgreementsType } from '@/features/auth';
 import { useState } from 'react';
 
 interface AgreementItemProps {

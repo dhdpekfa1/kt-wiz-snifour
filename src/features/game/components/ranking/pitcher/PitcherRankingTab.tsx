@@ -5,7 +5,7 @@ import {
   AllPitcherRankingTab,
   KTPitcherRankingTab,
   RankingCard,
-} from '@/features/game/components/ranking';
+} from '@/features/game';
 import { useTopPitcherRank } from '@/features/game/hooks/ranking/useTopPitcherRank';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';

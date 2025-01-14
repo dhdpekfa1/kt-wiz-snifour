@@ -5,7 +5,7 @@ import {
   CrowdRankingTab,
   PitcherRankingTab,
   TeamRankingTab,
-} from '@/features/game/components/ranking';
+} from '@/features/game';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 
 const REG_TABS_CONFIG = [

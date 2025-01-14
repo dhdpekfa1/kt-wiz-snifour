@@ -8,7 +8,7 @@ import {
   RankingDto,
   TeamRankingResponse,
   TeamVSResponse,
-} from '../../types/ranking';
+} from '@/features/game';
 
 // ranking api
 export const rankingApi = {

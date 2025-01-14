@@ -1,6 +1,9 @@
-import { CustomBarChart, DataTable } from '@/features/common';
-import { TeamBatterRank } from '@/features/common/types/batters';
-import { TeamPitcherRank } from '@/features/common/types/pitchers';
+import {
+  CustomBarChart,
+  DataTable,
+  TeamBatterRank,
+  TeamPitcherRank,
+} from '@/features/common';
 import { Config } from '@/features/player';
 import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { ColumnDef } from '@tanstack/react-table';
@@ -121,4 +124,4 @@ function TeamRankingView<T>({
   );
 }
 
-export default TeamRankingView;
+export { TeamRankingView };

@@ -1,9 +1,8 @@
 import { TeamRankingBatterConfig } from '@/constants/chart-config';
 import { teamBatterRankColumns } from '@/constants/columns/team-rank-colums';
-import { TeamBatterRank } from '@/features/common/types/batters';
+import { TeamBatterRank } from '@/features/common';
+import { TeamRankingView } from '@/features/game';
 import { useTeamRank } from '@/features/game/hooks/ranking/useTeamRank';
-
-import TeamRankingView from '../common/TeamRankingView';
 
 function TeamBatterRankingView() {
   const { ranking, isLoading, isError, error } = useTeamRank('batter');

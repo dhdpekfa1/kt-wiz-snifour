@@ -1,8 +1,8 @@
 import { batterColumns } from '@/constants/columns/player-rank-colums';
 import { SortableTable } from '@/features/common';
+import { Filter } from '@/features/game';
 import { useBatterRank } from '@/features/game/hooks/ranking';
 import { useSearchParams } from 'react-router';
-import Filter from '../common/Filter';
 import { PlayerScatterChart } from '../common/chart/PlayerScatterChart';
 
 function AllBatterRankingTab() {

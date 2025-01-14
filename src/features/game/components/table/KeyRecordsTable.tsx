@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui';
-import { EtcGame } from '../../types/BoxscoreData';
+import { EtcGame } from '@/features/game';
 
 interface KeyRecordsTableProps {
   data: EtcGame[] | undefined;
