@@ -28,6 +28,25 @@ function RegularGamePage() {
     defaultTab: 'schedule',
   });
 
+  // value에 따라 subtitle 설정
+  let subtitle = 'KT WIZ 정규 리그';
+  switch (currentTab) {
+    case 'schedule':
+      subtitle = 'KT WIZ 정규리그 경기 일정';
+      break;
+    case 'boxscore':
+      subtitle = '박스 스코어 정보';
+      break;
+    case 'ranking':
+      subtitle = 'KT WIZ 정규리그 기록';
+      break;
+    case 'watchpoint':
+      subtitle = '경기 관전 포인트';
+      break;
+    default:
+      subtitle = 'KT WIZ 정규 리그';
+  }
+
   return (
     <Layout
       header={
@@ -37,10 +56,7 @@ function RegularGamePage() {
             alt="KT WIZ GAMES"
           />
           <Banner.Overlay>
-            <Banner.Heading
-              title="정규 리그"
-              subtitle="KT WIZ의 정규리그 경기 일정"
-            />
+            <Banner.Heading title="정규 리그" subtitle={subtitle} />
             <Banner.Description description="" />
           </Banner.Overlay>
         </Banner>
