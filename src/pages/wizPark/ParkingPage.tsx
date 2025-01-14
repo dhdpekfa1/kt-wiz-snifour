@@ -54,10 +54,10 @@ function ParkingPage() {
               <span className="font-bold">사전 예약차량만 주차가 가능</span>
               하며, 경기시간 2시간 전부터 주차 가능합니다.
             </p>
-            <p className="text-base text-center text-gray-300 max-sm:text-sm flex items-center justify-center gap-1 max-sm:justify-start">
+            <div className="text-base text-center text-gray-300 max-sm:text-sm flex items-center justify-center gap-1 max-sm:justify-start">
               <p className="text-wiz-red text-base text-center">*</p>수원 kt wiz
               park 동일
-            </p>
+            </div>
           </div>
         </div>
 
