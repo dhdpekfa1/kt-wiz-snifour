@@ -34,4 +34,4 @@ const PaginationSelect = ({
   );
 };
 
-export default PaginationSelect;
+export { PaginationSelect };

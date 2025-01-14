@@ -1,9 +1,6 @@
-import Banner from '@/features/common/Banner';
-import MediaLayout from '@/features/media/common/MediaLayout';
-import PhotoFilter from '@/features/media/components/photo/PhotoFilter';
-import PhotoGridView from '@/features/media/components/photo/PhotoGridView';
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import Banner from '@/features/common/Banner';
+import { MediaLayout, PhotoFilter, PhotoGridView } from '@/features/media';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';
 

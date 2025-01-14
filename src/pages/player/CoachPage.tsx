@@ -1,7 +1,7 @@
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
-import SearchBar from '@/features/media/common/SearchBar';
+import { SearchBar } from '@/features/media';
 import { PlayerList } from '@/features/player/components/';
 import NotFoundSearch from '@/features/player/components/NotFoundSearch';
 import useCoachList from '@/features/player/hooks/useCoachList';

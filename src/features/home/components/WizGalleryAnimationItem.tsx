@@ -8,11 +8,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui';
+import { GridArticle } from '@/features/media';
 import { cn } from '@/lib/utils';
+import { X } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Photo } from '../types';
-import { X } from 'lucide-react';
-import GridArticle from '@/features/media/common/GridArticle';
 
 const WizGalleryAnimationItem = ({
   photo,

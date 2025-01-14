@@ -6,8 +6,7 @@ import { useSearchParams } from 'react-router';
 import Banner from '@/features/common/Banner';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
-import SearchBar from '@/features/media/common/SearchBar';
-import NewsListView from '@/features/media/components/news/NewsListView';
+import { NewsListView, SearchBar } from '@/features/media';
 
 export const NEWS_TABS_CONFIG = [
   { value: 'news', path: '/wiznews', label: 'wiz 소식' },

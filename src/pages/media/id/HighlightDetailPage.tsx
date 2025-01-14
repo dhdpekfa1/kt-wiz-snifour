@@ -2,7 +2,7 @@ import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
 import Breadcrumb from '@/features/common/Breadcrumb';
 import Layout from '@/features/common/Layout';
-import { MediaDetail } from '@/features/media/common/MediaDetail';
+import { MediaDetail } from '@/features/media';
 import useHighLightDetailQuery from '@/features/media/hooks/highlight/useHighLightDetailQuery';
 import { toUrl } from '@/lib';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';

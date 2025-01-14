@@ -1,4 +1,4 @@
-import ListArticle from '@/features/media/common/ListArticle';
+import { ListArticle } from '@/features/media';
 import { ListViewType } from '@/features/media/types';
 import { useLocation } from 'react-router';
 
@@ -34,4 +34,4 @@ const NewsList = ({ news }: NewsListProps) => {
   );
 };
 
-export default NewsList;
+export { NewsList };

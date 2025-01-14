@@ -12,4 +12,4 @@ const Category = ({ catetory }: { catetory: string }) => {
   );
 };
 
-export default Category;
+export { Category };

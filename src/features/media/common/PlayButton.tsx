@@ -15,4 +15,4 @@ const PlayButton = ({ className }: { className?: string }) => {
   );
 };
 
-export default PlayButton;
+export { PlayButton };

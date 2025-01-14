@@ -1,6 +1,5 @@
+import { PaginationList, PaginationSelect } from '@/features/media';
 import { cn } from '@/lib/utils';
-import PaginationList from './PaginationList';
-import PaginationSelect from './PaginationSelect';
 
 export type PaginationProps = {
   currentPage: number;
@@ -24,4 +23,4 @@ const Pagination = (props: PaginationProps) => {
   );
 };
 
-export default Pagination;
+export { Pagination };

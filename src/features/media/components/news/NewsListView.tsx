@@ -1,13 +1,13 @@
-import { cn } from '@/lib/utils';
-
-import { LoadingView } from '@/features/media/common/LoadingView';
-import { ListArticleSkeleton } from '@/features/media/common/skeleton';
+import {
+  ListArticleSkeleton,
+  LoadingView,
+  NewsList,
+  NotFoundSearchResult,
+  Pagination,
+} from '@/features/media';
+import useNewsListQuery from '@/features/media/hooks/news/useNewsListQuery';
 import { usePagination } from '@/features/media/hooks/usePagination';
-
-import NotFoundSearchResult from '@/features/media/common/NotFoundSearchResult';
-import Pagination from '@/features/media/common/Pagination';
-import useNewsListQuery from '../../hooks/news/useNewsListQuery';
-import NewsList from './NewsList';
+import { cn } from '@/lib/utils';
 
 const NewsListView = () => {
   const { pageNum, itemCount, onPagination } = usePagination();
@@ -38,4 +38,4 @@ const NewsListView = () => {
   );
 };
 
-export default NewsListView;
+export { NewsListView };

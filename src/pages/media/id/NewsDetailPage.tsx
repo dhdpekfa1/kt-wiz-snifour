@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
-import { MediaDetail } from '@/features/media/common/MediaDetail';
+import { MediaDetail } from '@/features/media';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 

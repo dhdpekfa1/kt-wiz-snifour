@@ -5,7 +5,7 @@ import useScrollTo from '@/features/media/hooks/useScrollTo';
 import { Button } from '@/components/ui';
 import { PageRoutes } from '@/constants/route';
 import Breadcrumb from '@/features/common/Breadcrumb';
-import { MediaDetail } from '@/features/media/common/MediaDetail';
+import { MediaDetail } from '@/features/media';
 import { toUrl } from '@/lib';
 import { ArrowLeftIcon, ListOrderedIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
