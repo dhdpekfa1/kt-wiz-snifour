@@ -75,4 +75,4 @@ const ActionProvider: React.FC<ActionProviderProps> = ({
   );
 };
 
-export default ActionProvider;
+export { ActionProvider };

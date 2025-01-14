@@ -22,24 +22,23 @@ import SignupPage from './pages/auth/SignupPage';
 import RegularGamePage from './pages/game/regular/RegularGamePage';
 import KtHistoryPage from './pages/ktwiz/KtHistoryPage';
 
-import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
 import { useEffect, useState } from 'react';
 import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
 import { Button } from './components/ui';
-import ActionProvider from './features/chatbot/ActionProvider';
-import MessageParser from './features/chatbot/MessageParser';
+import { ActionProvider, MessageParser } from './features/chatbot';
 import './features/chatbot/chatbot.css';
 import config from './features/chatbot/config';
+import MembershipPolicyPage from './pages/ktwiz/MembershipPolicyPage';
 import FirstPitchPage from './pages/media/FirstPitchPage';
 import FirstPitchDetailPage from './pages/media/id/FirstPitchDetailPage';
 import HighlightDetailPage from './pages/media/id/HighlightDetailPage';
+import PressDetailPage from './pages/media/id/PressDetailPage';
 import StoryDetailPage from './pages/media/id/StoryDetailPage';
 import PlayerListPage from './pages/player/PlayerListPage';
 import TeamMemberDetailPage from './pages/player/detail/TeamMemberDetailPage';
 import TicketPurchasePage from './pages/ticketpurchase/TicketPurchasePage';
 import IksanStadiumPage from './pages/wizPark/IksanStadiumPage';
-import PressDetailPage from './pages/media/id/PressDetailPage';
 
 function App() {
   const [showChatbot, setShowChatbot] = useState(false);

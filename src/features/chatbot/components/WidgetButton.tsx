@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui';
 
-export interface WidgetButtonProps {
+interface WidgetButtonProps {
   actionProvider: {
     handleClickHomepage: () => void;
     handleClickTicketLink: () => void;
@@ -26,4 +26,5 @@ function WidgetButton(props: WidgetButtonProps) {
   );
 }
 
-export default WidgetButton;
+export { WidgetButton };
+export type { WidgetButtonProps };

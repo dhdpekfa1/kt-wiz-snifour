@@ -22,10 +22,10 @@ import Layout from '@/features/common/Layout';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { AgreementItem } from '../';
 import useAuthRedirect from '../hooks/useAuthRedirect';
 import useSignup from '../hooks/useSignup';
 import { signupSchema } from '../schemas/signupSchema';
-import { AgreementItem } from './';
 
 // JSON 데이터를 AgreementData 타입으로 변환
 const agreementData: AgreementData = agreementDataJson as AgreementData;
