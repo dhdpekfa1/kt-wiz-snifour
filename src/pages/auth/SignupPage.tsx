@@ -82,4 +82,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export { SignupPage };
