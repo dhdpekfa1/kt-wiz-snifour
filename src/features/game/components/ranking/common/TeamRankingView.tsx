@@ -96,6 +96,7 @@ function TeamRankingView<T>({
             data={chartData}
             config={chartConfig}
             XAxisKey="teamName"
+            domain="all"
           />
           <div className="flex flex-wrap items-center justify-start lg:justify-center md:ml-8 gap-2">
             {Object.keys(chartConfig).map((key) => (

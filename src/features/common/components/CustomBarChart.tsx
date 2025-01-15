@@ -2,7 +2,7 @@ import { ChartContainer } from '@/components/ui';
 import { TeamBatterRank, TeamPitcherRank } from '@/features/common';
 import { RecentRecord, YearRecord } from '@/features/player/types/detail';
 import { useEffect, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from 'recharts';
 
 interface Config {
   [key: string]: {
@@ -13,13 +13,20 @@ interface Config {
 }
 
 type Data = RecentRecord | YearRecord | TeamPitcherRank | TeamBatterRank;
+
 interface CustomBarChartProps {
   data: Data[];
   config: Config;
   XAxisKey: string;
+  domain: 'kt' | 'all';
 }
 
-function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
+function CustomBarChart({
+  data,
+  config,
+  XAxisKey,
+  domain = 'kt',
+}: CustomBarChartProps) {
   const activeKey = Object.keys(config).filter(
     (key) => config[key].isActive
   )[0];
@@ -78,14 +85,34 @@ function CustomBarChart({ data, config, XAxisKey }: CustomBarChartProps) {
             },
           ]}
         />
-        <Bar
-          key={activeKey}
-          dataKey={activeKey}
-          fill={`var(--color-${activeKey})`}
-          radius={3}
-          maxBarSize={maxBarSize}
-          label={{ position: 'top', fontSize }}
-        />
+        {domain === 'kt' ? (
+          <Bar
+            key={activeKey}
+            dataKey={activeKey}
+            fill={`var(--color-${activeKey})`}
+            radius={3}
+            maxBarSize={maxBarSize}
+            label={{ position: 'top', fontSize }}
+          />
+        ) : (
+          <Bar
+            key={activeKey}
+            dataKey={activeKey}
+            fill={`var(--color-${activeKey})`}
+            radius={3}
+            maxBarSize={maxBarSize}
+            label={{ position: 'top', fontSize }}
+          >
+            {data.map((team) => (
+              <Cell
+                key={team.teamCode}
+                fill={
+                  team.teamCode === 'KT' ? `var(--color-${activeKey})` : 'gray'
+                }
+              />
+            ))}
+          </Bar>
+        )}
       </BarChart>
     </ChartContainer>
   );

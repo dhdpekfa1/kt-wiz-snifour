@@ -26,6 +26,8 @@ export interface GameRecord {
   h2?: number; // 2루타 (포수 전용 필드)
   h3?: number; // 3루타 (포수 전용 필드)
   hra?: string; // 홈런 비율 (포수 전용 필드)
+  teamCode?: string;
+  teamName?: string;
 }
 
 export interface PlayerBase {
@@ -111,6 +113,8 @@ export interface PitcherSeasonSummaryBase {
   wl: string; // 승/패 기록
   wp: number; // 폭투
   wra: string; // WRA (Weighted Run Average)
+  teamCode?: string;
+  teamName?: string;
 }
 
 export interface BatterSeasonSummaryBase {
@@ -149,6 +153,8 @@ export interface BatterSeasonSummaryBase {
   woba: string; // wOBA (Weighted On-Base Average)
   wrHit: string; // Hit Weighted Runs
   xbhrun: string; // Extra base hit 비율
+  teamCode?: string;
+  teamName?: string;
 }
 
 export interface Player {
