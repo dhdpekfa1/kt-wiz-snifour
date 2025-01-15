@@ -16,7 +16,7 @@ const SubTitle = ({
         className
       )}
     >
-      <div className={cn('w-1 h-4 bg-wiz-black', 'md:h-5', 'lg:h-6')} />
+      <div className={cn('w-1 h-4 bg-wiz-red', 'md:h-5', 'lg:h-6')} />
       <h4 className="font-semibold">{title}</h4>
     </div>
   );
