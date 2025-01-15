@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { cn } from '@/lib/utils';
-import RecentMatches from './RecentMatches';
-import { TeamRanking } from './TeamRanking';
-import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
-import MatchInfoCard from './MatchInfoCard';
 import useGetRecentMatchScheduleQuery from '@/features/game/apis/match-schedule/RecentScheduleApi.query';
+import { useGetMatchScheduleQuery } from '@/features/game/apis/match-schedule/matchScheduleApi.query';
+import { cn } from '@/lib/utils';
 import { useMatchStore } from '@/store/useMatchStore';
 import { Link } from 'react-router';
+import MatchInfoCard from './MatchInfoCard';
+import RecentMatches from './RecentMatches';
+import { TeamRanking } from './TeamRanking';
 
 function MatchInfo() {
   useGetRecentMatchScheduleQuery();

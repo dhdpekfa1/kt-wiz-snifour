@@ -8,10 +8,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui';
+import { GameSchedule } from '@/features/game/types/match-schedule';
 import { cn, findBroadCast, formatDate } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ReactNode, useMemo } from 'react';
-import { GameSchedule } from '@/features/game/types/match-schedule';
 import Skeleton from 'react-loading-skeleton';
 
 function MatchInfoHeader({

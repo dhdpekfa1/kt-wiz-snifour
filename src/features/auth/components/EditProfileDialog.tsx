@@ -1,12 +1,12 @@
 import {
   Button,
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
   Input,
   Label,
 } from '@/components/ui';
