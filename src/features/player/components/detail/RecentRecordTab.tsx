@@ -8,7 +8,8 @@ import { usePlayer } from '@/features/player/hooks/usePlayer';
 import { useParams } from 'react-router';
 import { PlayerRecordChart } from './PlayerRecordChart';
 
-import mockData from '@/assets/data/__test__/pitcher/강건.json';
+import pitcherMockData from '@/assets/data/__test__/pitcher/강건.json';
+import batterMockdata from '@/assets/data/__test__/catcher/장성우.json';
 
 function RecentRecordTab() {
   const { player, isLoading } = usePlayer();
@@ -35,7 +36,9 @@ function RecentRecordTab() {
             data={
               player.recentgamerecordlist.length > 0
                 ? player.recentgamerecordlist
-                : mockData.data.recentgamerecordlist
+                : position === 'pitcher'
+                ? pitcherMockData.data.recentgamerecordlist
+                : batterMockdata.data.recentgamerecordlist
             }
             config={
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
@@ -50,7 +53,9 @@ function RecentRecordTab() {
             data={
               player.recentgamerecordlistfutures.length > 0
                 ? player.recentgamerecordlistfutures
-                : mockData.data.recentgamerecordlistfutures
+                : position === 'pitcher'
+                ? pitcherMockData.data.recentgamerecordlistfutures
+                : batterMockdata.data.recentgamerecordlistfutures
             }
             config={
               position === 'pitcher' ? recentPitcherConfig : recentBatterConfig
