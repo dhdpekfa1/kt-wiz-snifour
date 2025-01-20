@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import BatterPage from './BatterPage';
 import CheerSongPage from './CheerSongPage';
-import CheerleaderPage from './CheerleaderPage';
+import CheerleaderPage from './CheerLeaderPage';
 import CoachPage from './CoachPage';
 import PitcherPage from './PitcherPage';
 

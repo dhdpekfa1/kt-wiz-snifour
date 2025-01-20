@@ -1,5 +1,5 @@
 /** tab */
-export { BoxscoreTab } from './BoxscoreTab';
+export { BoxscoreTab } from './BoxScoreTab';
 export { MatchScheduleTab } from './MatchScheduleTab';
 export { WatchPointTab } from './WatchPointTab';
 export { RankingTab } from './RankingTab';
