@@ -1,4 +1,4 @@
-import { Pitcher } from '../types/watch-point';
+import { StartingPitcher } from '../types/watch-point';
 
 const calcRate = (
   home: {
@@ -30,8 +30,8 @@ const calcRate = (
 };
 
 export const getWatchPointChartData = (
-  homePitcher: Pitcher,
-  visitPitcher: Pitcher
+  homePitcher: StartingPitcher,
+  visitPitcher: StartingPitcher
 ) => [
   {
     label: '평균자책점',

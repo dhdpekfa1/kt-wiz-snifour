@@ -1,16 +1,53 @@
-import { GameSchedule, Pitcher } from '@/features/game';
+import { GameSchedule } from '@/features/game';
 
-export interface WatchPointData {
-  gameScore: GameScore;
-  homeLineup: Lineup[];
-  homePitcher: Pitcher;
-  homeTeamRank: TeamRank;
-  homeTeamWinLose: TeamWinLose;
-  schedule: Schedule;
-  visitLineup: Lineup[];
-  visitPitcher: Pitcher;
-  visitTeamRank: TeamRank;
-  visitTeamWinLose: TeamWinLose;
+export interface StartingPitcher {
+  babip: string;
+  bb: number;
+  bf: number;
+  bk: number;
+  bs: number;
+  er: number;
+  era: string;
+  err: number;
+  fip: string;
+  fo: number;
+  gamenum: number;
+  go: number;
+  gyear: string;
+  havg: string;
+  hit: number;
+  hold: number;
+  hp: number;
+  hr: number;
+  ib: number;
+  inn2: number;
+  innDisplay: string;
+  kbb: string;
+  kk: number;
+  l: number;
+  oavg: string;
+  pcode: string;
+  playerName: string;
+  qs: number;
+  qsPlus: number;
+  r: number;
+  ravg: string;
+  sf: number;
+  sh: number;
+  sho: number;
+  start: number;
+  sv: number;
+  svo: number;
+  tugucount: number;
+  turfSave: number;
+  w: number;
+  wCg: number;
+  war: string;
+  whip: string;
+  winShares: string;
+  wl: string;
+  wp: number;
+  wra: string;
 }
 
 export interface GameScore {
@@ -137,4 +174,17 @@ export interface RecentMatches {
   visitLogo: string;
   visitScore: 1;
   visitStarter: string;
+}
+
+export interface WatchPointData {
+  gameScore: GameScore;
+  homeLineup: Lineup[];
+  homePitcher: StartingPitcher;
+  homeTeamRank: TeamRank;
+  homeTeamWinLose: TeamWinLose;
+  schedule: Schedule;
+  visitLineup: Lineup[];
+  visitPitcher: StartingPitcher;
+  visitTeamRank: TeamRank;
+  visitTeamWinLose: TeamWinLose;
 }
