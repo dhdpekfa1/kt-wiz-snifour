@@ -65,12 +65,12 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
   </tr>
   <tr>
     <td style='text-align:center'>
-      <a href="https://github.com/mymain838" target="_blank">
+      <a href="https://github.com/mal0070" target="_blank">
         민아
       </a>
     </td>
     <td style='text-align:center'>
-      <a href="https://github.com/AmitaWhite" target="_blank">
+      <a href="https://github.com/cozups" target="_blank">
         미소
       </a>
     </td>
@@ -80,12 +80,12 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
       </a>
     </td>
     <td style='text-align:center'>
-      <a href="https://github.com/dayoung-woo" target="_blank">
+      <a href="https://github.com/crqa453" target="_blank">
         주환
       </a>
     </td>
     <td style='text-align:center'>
-      <a href="https://github.com/dayoung-woo" target="_blank">
+      <a href="https://github.com/rara-record" target="_blank">
         보라
       </a>
     </td>
