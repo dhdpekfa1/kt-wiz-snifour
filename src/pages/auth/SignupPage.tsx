@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import {
   Card,
   CardContent,
@@ -25,6 +26,11 @@ const SignupPage = () => {
         </Banner>
       }
     >
+      <SEO
+        title="kt wiz 회원가입 페이지"
+        description="회원가입 후 kt wiz 사이트를 더욱 다양하게 이용해 보세요."
+        keywords="ktwiz, 야구, 회원가입"
+      />
       <Breadcrumb />
       <div className="flex items-center flex-col my-10 md:my-20">
         <Card className="w-[85%] lg:w-[75%] border-wiz-white border-opacity-50 shadow-lg shadow-wiz-red">

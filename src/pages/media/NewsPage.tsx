@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui';
 import { Banner, Breadcrumb, Layout, SearchBar } from '@/features/common';
 import { NewsListView } from '@/features/media';
@@ -38,6 +39,11 @@ const NewsPage = () => {
         </Banner>
       }
     >
+      <SEO
+        title="wiz 뉴스"
+        description="KT WIZ의 시즌 소식을 가장 빠르게 만나보세요. 경기 소식부터 팬 이벤트까지 다양한 소식을 전해드립니다."
+        keywords="ktwiz, 야구, 뉴스"
+      />
       <Tabs
         className="media-container"
         defaultValue={currentTab}

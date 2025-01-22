@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import { Tabs, TabsContent, TabsList } from '@/components/ui';
 import {
   Banner,
@@ -47,7 +48,11 @@ function BatterPage() {
           <Banner.Description description="KT Wiz의 자랑스런 '첫 번째 선수단'을 소개합니다." />
         </Banner.Overlay>
       </Banner>
-
+      <SEO
+        title="wiz 선수단"
+        description='KT Wiz의 자랑스런 "첫 번째 선수단"을 소개합니다.'
+        keywords="ktwiz, 야구, 선수, 타자"
+      />
       <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
         <TabsList>
           <SubTabsTrigger value="catcher">포수</SubTabsTrigger>

@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import { Banner, Breadcrumb, SearchBar } from '@/features/common';
 import { MediaLayout, StoryGridView } from '@/features/media';
 import '@/features/media/css/media-grid-layout.css';
@@ -26,6 +27,11 @@ const StoryPage = () => {
         </Banner>
       }
     >
+      <SEO
+        title="wiz 스토리"
+        description="선수들의 활약상과 팬들과 함께한 순간들을 영상으로 만나보세요."
+        keywords="ktwiz, 야구, 스토리"
+      />
       <Breadcrumb
         leftComponent={
           <SearchBar

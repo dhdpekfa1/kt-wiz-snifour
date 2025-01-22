@@ -4,6 +4,7 @@ import { MediaLayout, PhotoFilter, PhotoGridView } from '@/features/media';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 import { cn } from '@/lib/utils';
 
+import SEO from '@/components/SEO';
 import '@/features/media/css/media-grid-layout.css';
 import '@/features/media/css/media.css';
 
@@ -39,6 +40,11 @@ const PhotoPage = () => {
         </Banner>
       }
     >
+      <SEO
+        title="wiz 포토"
+        description="경기, 훈련, 행사에서 포착한 특별한 순간들을 만나보세요. kt wiz의 생생한 역사적 순간을 담았습니다."
+        keywords="ktwiz, 야구, 사진"
+      />
       <Tabs
         className="media-container"
         defaultValue={currentTab}

@@ -8,6 +8,7 @@ import {
 } from '@/features/game';
 import { useTabFromUrl } from '@/hooks/useTabFromUrl';
 
+import SEO from '@/components/SEO';
 import '@/features/game/css/game.css';
 
 const REG_TABS_CONFIG = [
@@ -62,6 +63,11 @@ function RegularGamePage() {
         </Banner>
       }
     >
+      <SEO
+        title="kt wiz 정규리그 페이지"
+        description="kt wiz 선수단의 정규리그 경기 일정을 확인하세요."
+        keywords="ktwiz, 야구, 경기 일정, 박스스코어, 순위기록, 관전포인트"
+      />
       <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
         {/* 탭 */}
         <div>

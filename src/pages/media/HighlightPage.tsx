@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import { Banner, Breadcrumb, SearchBar } from '@/features/common';
 import { HighlightGridView, MediaLayout } from '@/features/media';
 import '@/features/media/css/media-grid-layout.css';
@@ -23,6 +24,11 @@ const HighlightPage = () => {
         </Banner>
       }
     >
+      <SEO
+        title="wiz 명장면"
+        description="짜릿한 홈런부터 환상적인 수비까지, KT WIZ가 만들어낸 최고의 순간들을 영상으로 만나보세요."
+        keywords="ktwiz, 야구, 하이라이트"
+      />
       <Breadcrumb
         leftComponent={
           <SearchBar

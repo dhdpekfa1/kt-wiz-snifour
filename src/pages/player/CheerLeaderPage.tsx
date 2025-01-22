@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import { Banner, Breadcrumb, Layout, SearchBar } from '@/features/common';
 import { CheerleaderDialog, NotFoundSearch } from '@/features/player';
 import useCheerleaderList from '@/features/player/hooks/useCheerleaderList';
@@ -32,6 +33,11 @@ function CheerleaderPage() {
         </Banner>
       }
     >
+      <SEO
+        title="wiz 선수단"
+        description='KT Wiz의 자랑스런 "첫 번째 응원단"을 소개합니다.'
+        keywords="ktwiz, 야구, 응원, 치어리더"
+      />
       <Breadcrumb
         leftComponent={
           <SearchBar

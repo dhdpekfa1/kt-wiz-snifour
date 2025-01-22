@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import { Banner, Breadcrumb, Layout, SearchBar } from '@/features/common';
 import { NotFoundSearch, PlayerList } from '@/features/player';
 import useCoachList from '@/features/player/hooks/useCoachList';
@@ -33,6 +34,11 @@ const CoachPage = () => {
         </Banner>
       }
     >
+      <SEO
+        title="wiz 선수단"
+        description="최고의 kt wiz 코칭스텝을 소개합니다."
+        keywords="ktwiz, 야구, 코치, 코칭스텝"
+      />
       <Breadcrumb
         leftComponent={
           <SearchBar

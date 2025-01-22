@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import { Banner, Breadcrumb, SearchBar } from '@/features/common';
 import { FirstPitchListView, MediaLayout } from '@/features/media';
 
@@ -26,6 +27,11 @@ const FirstPitchPage = () => {
         </Banner>
       }
     >
+      <SEO
+        title="kt wiz 시구자 정보"
+        description="야구장을 빛낸 특별한 손님들, 시구자들과 함께 만든 KT WIZ의 소중한 추억을 함께해요."
+        keywords="ktwiz, 야구, 시구"
+      />
       <Breadcrumb
         leftComponent={
           <SearchBar

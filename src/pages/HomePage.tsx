@@ -1,3 +1,4 @@
+import SEO from '@/components/SEO';
 import {
   MainImageSlider,
   MatchInfo,
@@ -8,6 +9,11 @@ import {
 function HomePage() {
   return (
     <div className="flex flex-col items-center gap-4">
+      <SEO
+        title="KT Wiz 홈페이지"
+        description="가을의 마법사 KT Wiz가 궁금하신가요?"
+        keywords="ktwiz, 야구, kt"
+      />
       {/* 슬라이더 영역 */}
       <MainImageSlider />
 
