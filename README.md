@@ -112,7 +112,6 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 
 - 카카오 맵 API를 활용한 동적 지도 서비스로 변경.
 - 실시간 교통 상황 확인 및 빠른 길찾기 기능 추가.
-- ![wizPark](https://github.com/user-attachments/assets/8b0fa769-e8b6-4e9e-86f6-307a267043c7)
 <img alt='wizPark' src="https://github.com/user-attachments/assets/8b0fa769-e8b6-4e9e-86f6-307a267043c7" width="280" />
 
 
@@ -132,7 +131,6 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 
 - **선수 상세 페이지**: 최근 5경기 및 통산 기록을 차트로 시각화.
 - **응원단**: 다이얼로그를 통한 응원단 상세 정보 제공.
-
 <img width="280" alt="player" src="https://github.com/user-attachments/assets/734725c6-93b2-48ef-9863-6a7c3bddbaf4" />
 
 
@@ -141,7 +139,7 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 - 뉴스 및 시구자 정보: 페이지네이션 적용.
 - 포토/스토리/하이라이트: 무한 스크롤 및 상세 보기 기능 구현.
 - HTML 렌더링 보안 문제를 해결한 커스텀 함수 적용.
-- <img width="280" alt="media" src="https://github.com/user-attachments/assets/3dd38206-7f64-49a4-9a94-434ceb0086f3" />
+<img width="280" alt="media" src="https://github.com/user-attachments/assets/3dd38206-7f64-49a4-9a94-434ceb0086f3" />
 
 
 ### 6. 로그인 및 회원가입
@@ -151,7 +149,6 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 - 사용자 정보 전역 상태 관리 및 로그아웃 시 데이터 초기화.
 <img width="280" alt="auth_signin" src="https://github.com/user-attachments/assets/9a47a856-e20a-42c3-ad23-e9bbc35d39ba" />
 <img width="280" alt="auth_signup" src="https://github.com/user-attachments/assets/fb09ab42-547e-4920-bae1-e5c2b479ec10" />
-
 <img width="280" alt="google_signin" src="https://github.com/user-attachments/assets/c698ad08-7034-4979-ba4b-570fcfb83b51" />
 <img width="280" alt="user" src="https://github.com/user-attachments/assets/c1258d22-0ac2-4792-8f86-6fa4b8051fe6" />
 
