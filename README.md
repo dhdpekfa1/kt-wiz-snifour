@@ -119,11 +119,19 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 - **박스스코어**: 주요 기록을 카드 형식으로 변경하여 시각적 요소 강화.
 - **순위 기록**: 막대 차트, 선 차트, 산점도 차트를 활용한 데이터 시각화.
 - **관전포인트**: 선발 투수 비교 차트 및 라인업 애니메이션 제공.
+<img width="320" alt="game_2" src="https://github.com/user-attachments/assets/401d1f94-773b-4168-9f95-15aa4e64fe23" />
+<img width="320" alt="game_1" src="https://github.com/user-attachments/assets/61ccca82-bb48-4ad6-a139-22c5490af7d9" />
+
+nts/assets/c698ad08-7034-4979-ba4b-570fcfb83b51" />
 
 ### 4. 플레이어
 
 - **선수 상세 페이지**: 최근 5경기 및 통산 기록을 차트로 시각화.
 - **응원단**: 다이얼로그를 통한 응원단 상세 정보 제공.
+
+<img width="350" alt="player" src="https://github.com/user-attachments/assets/7c554c16-4981-49d2-a57e-aa0b36c4c2d3" />
+<img width="280" alt="coach" src="https://github.com/user-attachments/assets/8542469b-a662-4e98-9618-b9438a17b5fb" />
+
 
 ### 5. 미디어
 
@@ -132,9 +140,16 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 - HTML 렌더링 보안 문제를 해결한 커스텀 함수 적용.
 
 ### 6. 로그인 및 회원가입
-
 - **Supabase**를 활용한 이메일/소셜 로그인.
+- 다이아로그 모달을 통해 자신의 닉네임을 수정 및 로그아웃 기능 제공.
 - 사용자 정보 전역 상태 관리 및 로그아웃 시 데이터 초기화.
+
+<img width="320" alt="google_signin" src="https://github.com/user-attachments/assets/c698ad08-7034-4979-ba4b-570fcfb83b51" />
+<img width="320" alt="signin" src="https://github.com/user-attachments/assets/9fa9e144-9d3a-4189-9f0a-2588215165af" />
+<img width="320" alt="signup" src="https://github.com/user-attachments/assets/f7a87c35-21c9-4e11-8eda-3cd5afc32d8e" />
+<img width="320" alt="user" src="https://github.com/user-attachments/assets/c1258d22-0ac2-4792-8f86-6fa4b8051fe6" />
+
+
 
 ## 프로젝트 구조
 
