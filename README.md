@@ -18,8 +18,8 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 <br/>
 
 ## 기술 스택
+<img alt='diagram' src="https://velog.velcdn.com/images/dhdpekfa1/post/211ece56-f8b8-4871-bc32-1b35843b7005/image.jpg" width="280" />
 
-![diagram](https://velog.velcdn.com/images/dhdpekfa1/post/211ece56-f8b8-4871-bc32-1b35843b7005/image.jpg)
 
 | 카테고리          | 사용 기술                         |
 | ----------------- | --------------------------------- |
@@ -107,6 +107,9 @@ KT Wiz 홈페이지의 UI/UX를 개선하는 프로젝트로, 사용자의 편�
 - 기존 탭 위치 및 배너 디자인을 현대적인 트렌드에 맞춰 업데이트.
 - 직관적인 탐색을 위한 색상 강조 및 타이포그래피 활용.
 - 애니메이션을 통해 시각적 피드백 강화.
+<img alt='animation' src="https://github.com/user-attachments/assets/826d4e13-03de-4c61-ba1a-6f3f8c69dde8" width="280" />
+
+  
 
 ### 2. WIZ PARK 지도 기능
 
